@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{624FEB1E-5186-465D-A4E7-4455310D23E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CP_MathHub.Entity</RootNamespace>
+    <AssemblyName>CP-MathHub.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Answer.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnswerEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Article.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Assessment.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Attendance.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conversation.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CPMathHubModel.Context.cs">
+      <DependentUpon>CPMathHubModel.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CPMathHubModel.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CPMathHubModel.Designer.cs">
+      <DependentUpon>CPMathHubModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Discussion.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EditedContent.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FriendRequestEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Function.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GroupRoleEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invitation.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainPost.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainPostPrivacyEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Participation.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ParticipationEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Post.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrivacySetting.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Privilege.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelationshipEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReputationRule.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SeenBlogEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subscription.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tag.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRelationship.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vote.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoteEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CPMathHubModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CPMathHubModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CPMathHubModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CPMathHubModel.edmx</DependentUpon>
+      <LastGenOutput>CPMathHubModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CPMathHubModel.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CPMathHubModel.edmx.diagram">
+      <DependentUpon>CPMathHubModel.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CPMathHubModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CPMathHubModel.edmx</DependentUpon>
+      <LastGenOutput>CPMathHubModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+  dslVersion="1.0.0.0"
+  Id="770ca288-41f2-41ed-8b9d-a382bcf87b3a"
+  name="Modeling" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <component
+        Id="16a91d54-446d-456a-8938-44a6aa560751"
+        name="QAService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="de016645-623f-43dd-8139-9ec59c06c996"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="fab14194-3b0e-4742-8157-cc45c21b8093">
+                <providedInterfaceMoniker
+                  Id="3d0f1be3-4fe2-468d-9591-46f912d01d23"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="a9bd9c2f-fb0f-4262-a271-55ef14bb4682">
+                <providedInterfaceMoniker
+                  Id="f011ed08-94e7-48ee-b85c-bc6552be2479"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="34b6fd23-77de-4fcc-b094-45db673ebf19">
+                <providedInterfaceMoniker
+                  Id="3ec37c70-a2b8-4a13-8bfa-c238755549ba"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="b34bf3d8-c1f8-4c6b-8bc4-6c7d66291cf1">
+                <providedInterfaceMoniker
+                  Id="a7a38496-bc82-4a69-bf58-57a1234c63b2"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="5bebdecc-bf3c-4ab1-80a7-836a1297a4ee">
+                <providedInterfaceMoniker
+                  Id="4e2dc643-729c-4d5e-968a-466a4f9dd08e"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="0e8c95e7-5058-4d77-b761-a6de3a1c51cc">
+                <providedInterfaceMoniker
+                  Id="e24a9882-6a74-4a04-8db6-31f2742c1994"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="0d8f1445-dc66-492c-8d4c-1895fd43fbd5"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="499c1da7-b033-47ed-9ac3-0c20ef2f6a31"
+        name="QuestionDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="3d0f1be3-4fe2-468d-9591-46f912d01d23"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="e76798a7-1767-4f2f-ae6e-dab0719b1606"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="66f42195-d439-480c-a575-48b8a75a1773"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="e21c00e9-31a0-4427-b7e6-0c5f24a6fb8a"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5825f6da-5394-4a16-b3a2-81b47ed4ee4f"
+        name="AnswerDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="f011ed08-94e7-48ee-b85c-bc6552be2479"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="42f7db92-3bbe-40a2-85e4-fe7db28fec7c"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="189bc62e-89b8-43fc-8439-cd9015c4daaf"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="17b6cc6b-83a9-473f-b712-b1be34e4ceab"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="0f76c44c-9416-4509-bf3c-bdace62285d4"
+        name="CommentDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="3ec37c70-a2b8-4a13-8bfa-c238755549ba"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="2b6bc19c-4839-4570-b404-60a2eb7cad21"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d7645642-c716-4a02-b1ac-0e5c3cd73240"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c853a3e7-c102-45b9-82a1-ff812a6c9dce"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5c775e1c-9290-4b15-a6de-591705dead8c"
+        name="BlogDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="a7a38496-bc82-4a69-bf58-57a1234c63b2"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="49b219ac-fae8-4423-ada2-4964f69fa2e4"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="10239689-e555-45b0-a24c-06b872a33fb5"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="80914398-ec83-42f3-b6f4-72a6b9c7595d"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="270c6a3e-3522-4c00-8b86-c57cb3aafd7c"
+        name="DiscussionDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="4e2dc643-729c-4d5e-968a-466a4f9dd08e"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="00b51523-30e1-4967-b570-0f197f6865de"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="d624a6c1-7a34-41a2-ac6d-cd6e52781971"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4226faa8-c089-4875-9cda-a40d9685f09a"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="e76798a7-1767-4f2f-ae6e-dab0719b1606"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="42f7db92-3bbe-40a2-85e4-fe7db28fec7c"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2b6bc19c-4839-4570-b404-60a2eb7cad21"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="49b219ac-fae8-4423-ada2-4964f69fa2e4"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="00b51523-30e1-4967-b570-0f197f6865de"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5dafc80c-e14f-4f7e-93ce-7303de55eb0a"
+        name="ScoreDAO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="e24a9882-6a74-4a04-8db6-31f2742c1994"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b4595237-8261-45c2-94e6-104227b9e1a5"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b4595237-8261-45c2-94e6-104227b9e1a5"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5f33b67e-07ba-4421-99c5-a1aa9fdfbaac"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="0d8f1445-dc66-492c-8d4c-1895fd43fbd5"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ef2a6d92-47a9-4324-b744-f7509f919789"
+        name="BlogService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <requiredInterface
+            Id="b97b3cd7-b2a4-4ceb-af7c-e04f9dc44aae"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="c56920b6-9c03-42d7-82cc-5d6b5c6eecac">
+                <providedInterfaceMoniker
+                  Id="3d0f1be3-4fe2-468d-9591-46f912d01d23"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="3912c9c3-dcd4-41d1-8c32-762c16fd713c">
+                <providedInterfaceMoniker
+                  Id="f011ed08-94e7-48ee-b85c-bc6552be2479"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="45d5a1be-8d1a-4368-9019-85341a688114">
+                <providedInterfaceMoniker
+                  Id="3ec37c70-a2b8-4a13-8bfa-c238755549ba"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="401bd465-7e4e-4857-898f-549ae8f81078">
+                <providedInterfaceMoniker
+                  Id="a7a38496-bc82-4a69-bf58-57a1234c63b2"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="e545f7b8-3af4-4033-a7fb-09c9da8933bd">
+                <providedInterfaceMoniker
+                  Id="4e2dc643-729c-4d5e-968a-466a4f9dd08e"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+              <dependency
+                Id="9ae222c9-6022-4338-9c06-6742dd665a8f">
+                <providedInterfaceMoniker
+                  Id="e24a9882-6a74-4a04-8db6-31f2742c1994"
+                  LastKnownName="Port1"
+                  LastKnownLocation="Modeling.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="8fae639a-0af8-4bd1-b065-ab43d86b4aa3"
+                LastKnownName="Data access"
+                LastKnownLocation="Modeling.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8fae639a-0af8-4bd1-b065-ab43d86b4aa3"
+        name="Data access"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="03339e1b-67d6-4e08-b712-0559a7c660b8"
+        name="DiscussionService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
