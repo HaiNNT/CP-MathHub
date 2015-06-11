@@ -12,13 +12,16 @@ namespace CP_MathHub.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class EditedContent
+    public partial class UserFriendship
     {
         public int Id { get; set; }
-        public string Content { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public int PostId { get; set; }
+        public int UserId { get; set; }
+        public int TargetUserId { get; set; }
+        public RelationshipEnum Status { get; set; }
+        public System.DateTime LastChangeStatus { get; set; }
     
-        public virtual Post Post { get; set; }
+        public virtual User User { get; set; }
+        public virtual User TargetUser { get; set; }
     }
 }

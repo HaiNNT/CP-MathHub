@@ -20,7 +20,7 @@ namespace CP_MathHub.Entity
         }
     
         public int Id { get; set; }
-        public string JoinedDate { get; set; }
+        public System.DateTime JoinedDate { get; set; }
         public System.DateTime SeenDate { get; set; }
         public int ConversationId { get; set; }
         public int UserId { get; set; }

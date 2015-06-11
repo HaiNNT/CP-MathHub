@@ -30,7 +30,6 @@ namespace CP_MathHub.Entity
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Subscription> Subscriptions { get; set; }
         public virtual DbSet<Invitation> Invitations { get; set; }
         public virtual DbSet<Vote> Votes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -42,10 +41,19 @@ namespace CP_MathHub.Entity
         public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Activity> Activities { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
-        public virtual DbSet<UserRelationship> UserRelationships { get; set; }
+        public virtual DbSet<UserFriendship> UserFriendships { get; set; }
         public virtual DbSet<PrivacySetting> PrivacySettings { get; set; }
-        public virtual DbSet<EditedContent> EditedContents { get; set; }
+        public virtual DbSet<EditedLog> EditedLogs { get; set; }
         public virtual DbSet<Participation> Participations { get; set; }
         public virtual DbSet<ReputationRule> ReputationRules { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
+        public virtual DbSet<Advertisement> Advertisements { get; set; }
+        public virtual DbSet<BanAccount> BanAccounts { get; set; }
+        public virtual DbSet<BanReason> BanReasons { get; set; }
+        public virtual DbSet<Series> Series { get; set; }
+        public virtual DbSet<ProfileHistory> ProfileHistories { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }

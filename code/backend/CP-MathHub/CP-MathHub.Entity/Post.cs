@@ -18,7 +18,8 @@ namespace CP_MathHub.Entity
         {
             this.Comments = new HashSet<Comment>();
             this.Votes = new HashSet<Vote>();
-            this.EditedContents = new HashSet<EditedContent>();
+            this.EditedContents = new HashSet<EditedLog>();
+            this.Reports = new HashSet<Report>();
         }
     
         public int Id { get; set; }
@@ -26,11 +27,14 @@ namespace CP_MathHub.Entity
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime LastEditedDate { get; set; }
         public int UserId { get; set; }
-        public int Status { get; set; }
+        public Nullable<PostStatusEnum> Status { get; set; }
+        public int VoteUp { get; set; }
+        public int VoteDown { get; set; }
     
         public virtual User Author { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
-        public virtual ICollection<EditedContent> EditedContents { get; set; }
+        public virtual ICollection<EditedLog> EditedContents { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
     }
 }

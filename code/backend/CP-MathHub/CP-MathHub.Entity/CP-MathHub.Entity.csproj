@@ -51,6 +51,9 @@
     <Compile Include="Activity.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Advertisement.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Answer.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
@@ -64,6 +67,15 @@
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Attendance.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanAccount.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banner.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BanReason.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
@@ -90,7 +102,10 @@
     <Compile Include="Discussion.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EditedContent.cs">
+    <Compile Include="EditedLog.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EducationEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FriendRequestEnum.cs">
@@ -99,13 +114,25 @@
     <Compile Include="Function.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GenderEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Group.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupRoleEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GroupTypeEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Invitation.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainPost.cs">
@@ -132,6 +159,9 @@
     <Compile Include="Post.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PostStatusEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PrivacySetting.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
@@ -141,11 +171,23 @@
     <Compile Include="Profile.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProfileHistory.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Question.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RelationshipEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTypeEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReputationRule.cs">
@@ -157,7 +199,7 @@
     <Compile Include="SeenBlogEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Subscription.cs">
+    <Compile Include="Series.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tag.cs">
@@ -166,7 +208,10 @@
     <Compile Include="User.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserRelationship.cs">
+    <Compile Include="UserFriendship.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserStatusEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Vote.cs">

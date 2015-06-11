@@ -20,6 +20,7 @@ namespace CP_MathHub.Entity
         public ParticipationEnum Status { get; set; }
         public int UserId { get; set; }
         public int GroupId { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
         public virtual User User { get; set; }
         public virtual Group Group { get; set; }

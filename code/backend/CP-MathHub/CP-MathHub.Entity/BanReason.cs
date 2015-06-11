@@ -12,14 +12,19 @@ namespace CP_MathHub.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Subscription
+    public partial class BanReason
     {
-        public int Id { get; set; }
-        public int SubsAction { get; set; }
-        public int FollowerId { get; set; }
-        public int UserId { get; set; }
+        public BanReason()
+        {
+            this.BanAccounts = new HashSet<BanAccount>();
+        }
     
-        public virtual User Follower { get; set; }
-        public virtual User Followee { get; set; }
+        public int Id { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int Duration { get; set; }
+    
+        public virtual ICollection<BanAccount> BanAccounts { get; set; }
     }
 }

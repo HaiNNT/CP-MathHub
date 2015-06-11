@@ -21,6 +21,7 @@ namespace CP_MathHub.Entity
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     
         public virtual ICollection<Attendance> Attendances { get; set; }
     }

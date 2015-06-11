@@ -15,7 +15,7 @@ namespace CP_MathHub.Entity
     public partial class Vote
     {
         public int Id { get; set; }
-        public string VotedDate { get; set; }
+        public System.DateTime VotedDate { get; set; }
         public int PostId { get; set; }
         public int UserId { get; set; }
         public VoteEnum Type { get; set; }

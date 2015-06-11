@@ -15,11 +15,13 @@ namespace CP_MathHub.Entity
     public partial class Invitation
     {
         public int Id { get; set; }
-        public string InvitedDate { get; set; }
+        public System.DateTime InvitedDate { get; set; }
         public int MainPostId { get; set; }
-        public int UserId { get; set; }
+        public int InviterId { get; set; }
+        public int InviteeId { get; set; }
     
         public virtual MainPost MainPost { get; set; }
-        public virtual User User { get; set; }
+        public virtual User Inviter { get; set; }
+        public virtual User Invitee { get; set; }
     }
 }

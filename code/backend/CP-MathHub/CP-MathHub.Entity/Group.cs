@@ -18,13 +18,18 @@ namespace CP_MathHub.Entity
         {
             this.Participations = new HashSet<Participation>();
             this.Articles = new HashSet<Article>();
+            this.Series = new HashSet<Series>();
+            this.Subscribers = new HashSet<User>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public GroupTypeEnum Type { get; set; }
     
         public virtual ICollection<Participation> Participations { get; set; }
         public virtual ICollection<Article> Articles { get; set; }
+        public virtual ICollection<Series> Series { get; set; }
+        public virtual ICollection<User> Subscribers { get; set; }
     }
 }

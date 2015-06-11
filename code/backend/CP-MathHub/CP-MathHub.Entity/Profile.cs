@@ -18,11 +18,14 @@ namespace CP_MathHub.Entity
         public string FullName { get; set; }
         public string School { get; set; }
         public System.DateTime Birthday { get; set; }
-        public string Location { get; set; }
+        public string Address { get; set; }
         public string Facebook { get; set; }
         public string Summary { get; set; }
         public string ViewPoint { get; set; }
+        public Nullable<GenderEnum> Gender { get; set; }
+        public EducationEnum Education { get; set; }
     
         public virtual User User { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

@@ -21,27 +21,35 @@ namespace CP_MathHub.Entity
             this.Tags = new HashSet<Tag>();
             this.Bookmarks = new HashSet<MainPost>();
             this.FollowPosts = new HashSet<MainPost>();
-            this.Followers = new HashSet<Subscription>();
-            this.Followings = new HashSet<Subscription>();
-            this.Invitations = new HashSet<Invitation>();
+            this.InviteInvitations = new HashSet<Invitation>();
             this.Votes = new HashSet<Vote>();
             this.Assessments = new HashSet<Assessment>();
             this.Privileges = new HashSet<Privilege>();
             this.Attendances = new HashSet<Attendance>();
             this.SharedMainPosts = new HashSet<MainPost>();
-            this.ActiveRelationship = new HashSet<UserRelationship>();
-            this.PassiveRelationship = new HashSet<UserRelationship>();
+            this.ActiveRelationships = new HashSet<UserFriendship>();
+            this.PassiveRelationship = new HashSet<UserFriendship>();
             this.Notifications = new HashSet<Notification>();
             this.GroupParticipations = new HashSet<Participation>();
+            this.Reports = new HashSet<Report>();
+            this.ReportedList = new HashSet<Report>();
+            this.BannedAccounts = new HashSet<BanAccount>();
+            this.BanAccounts = new HashSet<BanAccount>();
+            this.EditedContents = new HashSet<EditedLog>();
+            this.ProfileHistories = new HashSet<ProfileHistory>();
+            this.SubscribedGroups = new HashSet<Group>();
+            this.Followers = new HashSet<User>();
+            this.Followees = new HashSet<User>();
+            this.InvitedInvitations = new HashSet<Invitation>();
         }
     
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public int Reputaion { get; set; }
+        public int Reputation { get; set; }
         public System.DateTime CreatedDate { get; set; }
-        public int Status { get; set; }
+        public UserStatusEnum Status { get; set; }
     
         public virtual ICollection<Post> Posts { get; set; }
         public virtual Profile Profile { get; set; }
@@ -49,19 +57,28 @@ namespace CP_MathHub.Entity
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<MainPost> Bookmarks { get; set; }
         public virtual ICollection<MainPost> FollowPosts { get; set; }
-        public virtual ICollection<Subscription> Followers { get; set; }
-        public virtual ICollection<Subscription> Followings { get; set; }
-        public virtual ICollection<Invitation> Invitations { get; set; }
+        public virtual ICollection<Invitation> InviteInvitations { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
         public virtual ICollection<Assessment> Assessments { get; set; }
         public virtual ICollection<Privilege> Privileges { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
         public virtual ICollection<MainPost> SharedMainPosts { get; set; }
-        public virtual ICollection<UserRelationship> ActiveRelationship { get; set; }
-        public virtual ICollection<UserRelationship> PassiveRelationship { get; set; }
+        public virtual ICollection<UserFriendship> ActiveRelationships { get; set; }
+        public virtual ICollection<UserFriendship> PassiveRelationship { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual PrivacySetting PrivacySetting { get; set; }
         public virtual ICollection<Participation> GroupParticipations { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
+        public virtual Image Avatar { get; set; }
+        public virtual ICollection<Report> ReportedList { get; set; }
+        public virtual ICollection<BanAccount> BannedAccounts { get; set; }
+        public virtual ICollection<BanAccount> BanAccounts { get; set; }
+        public virtual ICollection<EditedLog> EditedContents { get; set; }
+        public virtual ICollection<ProfileHistory> ProfileHistories { get; set; }
+        public virtual ICollection<Group> SubscribedGroups { get; set; }
+        public virtual ICollection<User> Followers { get; set; }
+        public virtual ICollection<User> Followees { get; set; }
+        public virtual ICollection<Invitation> InvitedInvitations { get; set; }
         public virtual Activity Activity { get; set; }
     }
 }

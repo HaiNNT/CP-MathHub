@@ -15,14 +15,14 @@ namespace CP_MathHub.Entity
     {
         UserAnswerQuestion = 1,
         UserCommentMainPost = 2,
-        Invited = 3,
-        UserComment = 4,
-        AcceptedAnswer = 5,
-        UserLikeComment = 6,
-        ReceivedPrivilege = 7,
-        Banned = 8,
-        BlockedPost = 9,
-        Voted = 10,
-        SettedRole = 11
+        Invited = 4,
+        UserComment = 8,
+        AcceptedAnswer = 16,
+        UserLikeComment = 32,
+        ReceivedPrivilege = 64,
+        Banned = 128,
+        BlockedPost = 256,
+        Voted = 512,
+        SettedRole = 1024
     }
 }

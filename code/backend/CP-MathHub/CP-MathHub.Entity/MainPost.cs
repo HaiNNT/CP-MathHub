@@ -26,6 +26,7 @@ namespace CP_MathHub.Entity
         public string Title { get; set; }
         public int View { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
+        public System.DateTime LastViewed { get; set; }
     
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<User> BookmarkUsers { get; set; }

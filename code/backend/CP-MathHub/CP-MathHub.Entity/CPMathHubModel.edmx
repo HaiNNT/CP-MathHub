@@ -11,7 +11,6 @@
     <EntitySet Name="Profiles" EntityType="CPMathHubModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tags" EntityType="CPMathHubModel.Store.Tags" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Groups" EntityType="CPMathHubModel.Store.Groups" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Subscriptions" EntityType="CPMathHubModel.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Invitations" EntityType="CPMathHubModel.Store.Invitations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Votes" EntityType="CPMathHubModel.Store.Votes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="CPMathHubModel.Store.Roles" store:Type="Tables" Schema="dbo" />
@@ -23,11 +22,20 @@
     <EntitySet Name="Attendances" EntityType="CPMathHubModel.Store.Attendances" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Activities" EntityType="CPMathHubModel.Store.Activities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Notifications" EntityType="CPMathHubModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserRelationships" EntityType="CPMathHubModel.Store.UserRelationships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserFriendships" EntityType="CPMathHubModel.Store.UserFriendships" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PrivacySettings" EntityType="CPMathHubModel.Store.PrivacySettings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EditedContents" EntityType="CPMathHubModel.Store.EditedContents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EditedLogs" EntityType="CPMathHubModel.Store.EditedLogs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Participations" EntityType="CPMathHubModel.Store.Participations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ReputationRules" EntityType="CPMathHubModel.Store.ReputationRules" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reports" EntityType="CPMathHubModel.Store.Reports" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="CPMathHubModel.Store.Images" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Banners" EntityType="CPMathHubModel.Store.Banners" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Advertisements" EntityType="CPMathHubModel.Store.Advertisements" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BanAccounts" EntityType="CPMathHubModel.Store.BanAccounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BanReasons" EntityType="CPMathHubModel.Store.BanReasons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Series" EntityType="CPMathHubModel.Store.Series" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileHistories" EntityType="CPMathHubModel.Store.ProfileHistories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="CPMathHubModel.Store.Locations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Comment" EntityType="CPMathHubModel.Store.Posts_Comment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_MainPost" EntityType="CPMathHubModel.Store.Posts_MainPost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Question" EntityType="CPMathHubModel.Store.Posts_Question" store:Type="Tables" Schema="dbo" />
@@ -36,11 +44,14 @@
     <EntitySet Name="Posts_Discussion" EntityType="CPMathHubModel.Store.Posts_Discussion" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TagMainPost" EntityType="CPMathHubModel.Store.TagMainPost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FavoriteTag" EntityType="CPMathHubModel.Store.FavoriteTag" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BookmarkPost" EntityType="CPMathHubModel.Store.UserMainPost" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FollowPost" EntityType="CPMathHubModel.Store.UserMainPost1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookmarkMainPost" EntityType="CPMathHubModel.Store.BookmarkMainPost" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FollowMainPost" EntityType="CPMathHubModel.Store.FollowMainPost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FunctionRole" EntityType="CPMathHubModel.Store.FunctionRole" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PrivilegeUser" EntityType="CPMathHubModel.Store.PrivilegeUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ShareMainPost" EntityType="CPMathHubModel.Store.ShareMainPost" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BanAccountBanReason" EntityType="CPMathHubModel.Store.BanAccountBanReason" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubscribeGroup" EntityType="CPMathHubModel.Store.SubscribeGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Follow" EntityType="CPMathHubModel.Store.Follow" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PostUser" Association="CPMathHubModel.Store.PostUser">
       <End Role="Post" EntitySet="Posts" />
       <End Role="User" EntitySet="Users" />
@@ -73,33 +84,25 @@
       <End Role="User" EntitySet="Users" />
       <End Role="FavoriteTag" EntitySet="FavoriteTag" />
     </AssociationSet>
-    <AssociationSet Name="TagUser" Association="CPMathHubModel.Store.TagUser">
+    <AssociationSet Name="CreateTag" Association="CPMathHubModel.Store.CreateTag">
       <End Role="Tag" EntitySet="Tags" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_BookmarkPost_User" Association="CPMathHubModel.Store.FK_UserMainPost_User">
+    <AssociationSet Name="FK_BookmarkMainPost_User" Association="CPMathHubModel.Store.FK_BookmarkMainPost_User">
       <End Role="User" EntitySet="Users" />
-      <End Role="UserMainPost" EntitySet="BookmarkPost" />
+      <End Role="BookmarkMainPost" EntitySet="BookmarkMainPost" />
     </AssociationSet>
-    <AssociationSet Name="FK_BookmarkPost_MainPost" Association="CPMathHubModel.Store.FK_UserMainPost_MainPost">
+    <AssociationSet Name="FK_BookmarkMainPost_MainPost" Association="CPMathHubModel.Store.FK_BookmarkMainPost_MainPost">
       <End Role="MainPost" EntitySet="Posts_MainPost" />
-      <End Role="UserMainPost" EntitySet="BookmarkPost" />
+      <End Role="BookmarkMainPost" EntitySet="BookmarkMainPost" />
     </AssociationSet>
-    <AssociationSet Name="FK_FollowPost_User" Association="CPMathHubModel.Store.FK_UserMainPost1_User">
+    <AssociationSet Name="FK_FollowMainPost_User" Association="CPMathHubModel.Store.FK_FollowMainPost_User">
       <End Role="User" EntitySet="Users" />
-      <End Role="UserMainPost1" EntitySet="FollowPost" />
+      <End Role="FollowMainPost" EntitySet="FollowMainPost" />
     </AssociationSet>
-    <AssociationSet Name="FK_FollowPost_MainPost" Association="CPMathHubModel.Store.FK_UserMainPost1_MainPost">
+    <AssociationSet Name="FK_FollowMainPost_MainPost" Association="CPMathHubModel.Store.FK_FollowMainPost_MainPost">
       <End Role="MainPost" EntitySet="Posts_MainPost" />
-      <End Role="UserMainPost1" EntitySet="FollowPost" />
-    </AssociationSet>
-    <AssociationSet Name="SubscriptionUser" Association="CPMathHubModel.Store.SubscriptionUser">
-      <End Role="Subscription" EntitySet="Subscriptions" />
-      <End Role="User" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="SubscriptionUser1" Association="CPMathHubModel.Store.SubscriptionUser1">
-      <End Role="Subscription" EntitySet="Subscriptions" />
-      <End Role="User" EntitySet="Users" />
+      <End Role="FollowMainPost" EntitySet="FollowMainPost" />
     </AssociationSet>
     <AssociationSet Name="InvitationMainPost" Association="CPMathHubModel.Store.InvitationMainPost">
       <End Role="Invitation" EntitySet="Invitations" />
@@ -165,16 +168,16 @@
       <End Role="MainPost" EntitySet="Posts_MainPost" />
       <End Role="ShareMainPost" EntitySet="ShareMainPost" />
     </AssociationSet>
-    <AssociationSet Name="RequestFriend" Association="CPMathHubModel.Store.FriendRequestionUser">
-      <End Role="FriendRequestion" EntitySet="UserRelationships" />
+    <AssociationSet Name="RequestFriend" Association="CPMathHubModel.Store.RequestFriend">
+      <End Role="FriendRequestion" EntitySet="UserFriendships" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="TargetUser" Association="CPMathHubModel.Store.FriendRequestionUser1">
-      <End Role="FriendRequestion" EntitySet="UserRelationships" />
+      <End Role="FriendRequestion" EntitySet="UserFriendships" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="EditedContentPost" Association="CPMathHubModel.Store.EditedContentPost">
-      <End Role="EditedContent" EntitySet="EditedContents" />
+      <End Role="EditedContent" EntitySet="EditedLogs" />
       <End Role="Post" EntitySet="Posts" />
     </AssociationSet>
     <AssociationSet Name="NotificationUser" Association="CPMathHubModel.Store.NotificationUser">
@@ -197,9 +200,93 @@
       <End Role="Group" EntitySet="Groups" />
       <End Role="Article" EntitySet="Posts_Article" />
     </AssociationSet>
-    <AssociationSet Name="ActivityUser" Association="CPMathHubModel.Store.ActivityUser">
-      <End Role="Activity" EntitySet="Activities" />
+    <AssociationSet Name="ReportUser" Association="CPMathHubModel.Store.ReportUser">
+      <End Role="Report" EntitySet="Reports" />
       <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ImageUser" Association="CPMathHubModel.Store.ImageUser">
+      <End Role="Image" EntitySet="Images" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ReportedUser" Association="CPMathHubModel.Store.ReportedUser">
+      <End Role="Report" EntitySet="Reports" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="BannerImage" Association="CPMathHubModel.Store.BannerImage">
+      <End Role="Banner" EntitySet="Banners" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="AdvertisementImage" Association="CPMathHubModel.Store.AdvertisementImage">
+      <End Role="Advertisement" EntitySet="Advertisements" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BanAccountBanReason_BanAccount" Association="CPMathHubModel.Store.FK_BanAccountBanReason_BanAccount">
+      <End Role="BanAccount" EntitySet="BanAccounts" />
+      <End Role="BanAccountBanReason" EntitySet="BanAccountBanReason" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BanAccountBanReason_BanReason" Association="CPMathHubModel.Store.FK_BanAccountBanReason_BanReason">
+      <End Role="BanReason" EntitySet="BanReasons" />
+      <End Role="BanAccountBanReason" EntitySet="BanAccountBanReason" />
+    </AssociationSet>
+    <AssociationSet Name="BanAccountUser" Association="CPMathHubModel.Store.BanAccountUser">
+      <End Role="BanAccount" EntitySet="BanAccounts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="UserBanAccount" Association="CPMathHubModel.Store.UserBanAccount">
+      <End Role="BanAccount" EntitySet="BanAccounts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="EditedContentUser" Association="CPMathHubModel.Store.EditedContentUser">
+      <End Role="EditedContent" EntitySet="EditedLogs" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="SeriesArticle" Association="CPMathHubModel.Store.SeriesArticle">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="Article" EntitySet="Posts_Article" />
+    </AssociationSet>
+    <AssociationSet Name="SeriesGroup" Association="CPMathHubModel.Store.SeriesGroup">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="Group" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileHistoryUser" Association="CPMathHubModel.Store.ProfileHistoryUser">
+      <End Role="ProfileHistory" EntitySet="ProfileHistories" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubscribeGroup_Group" Association="CPMathHubModel.Store.FK_SubscribeGroup_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="SubscribeGroup" EntitySet="SubscribeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubscribeGroup_User" Association="CPMathHubModel.Store.FK_SubscribeGroup_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SubscribeGroup" EntitySet="SubscribeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Follow_Follower" Association="CPMathHubModel.Store.FK_Follow_Follower">
+      <End Role="Follower" EntitySet="Users" />
+      <End Role="Follow" EntitySet="Follow" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Follow_Followee" Association="CPMathHubModel.Store.FK_Follow_Followee">
+      <End Role="Followee" EntitySet="Users" />
+      <End Role="Follow" EntitySet="Follow" />
+    </AssociationSet>
+    <AssociationSet Name="InvitedUser" Association="CPMathHubModel.Store.InvitedUser">
+      <End Role="Invitation" EntitySet="Invitations" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ReportPost" Association="CPMathHubModel.Store.ReportPost">
+      <End Role="Report" EntitySet="Reports" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="LocationLocation" Association="CPMathHubModel.Store.LocationLocation">
+      <End Role="ParentLocation" EntitySet="Locations" />
+      <End Role="ChildrenLocation" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="LocationProfile" Association="CPMathHubModel.Store.LocationProfile">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="UserActivity" Association="CPMathHubModel.Store.UserActivity">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Activity" EntitySet="Activities" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
@@ -235,7 +322,9 @@
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="LastEditedDate" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="true" />
+    <Property Name="VoteUp" Type="int" Nullable="false" />
+    <Property Name="VoteDown" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -245,9 +334,10 @@
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Reputaion" Type="int" Nullable="false" />
+    <Property Name="Reputation" Type="int" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Avatar_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Profiles">
     <Key>
@@ -255,12 +345,14 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="School" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="School" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Birthday" Type="datetime" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Facebook" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ViewPoint" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Facebook" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Summary" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ViewPoint" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gender" Type="int" Nullable="true" />
+    <Property Name="Education" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tags">
@@ -280,31 +372,24 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Subscriptions">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SubsAction" Type="int" Nullable="false" />
-    <Property Name="FollowerId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Invitations">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="InvitedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="InvitedDate" Type="datetime" Nullable="false" />
     <Property Name="MainPostId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="InviterId" Type="int" Nullable="false" />
+    <Property Name="InviteeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Votes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="VotedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VotedDate" Type="datetime" Nullable="false" />
     <Property Name="PostId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
@@ -324,6 +409,7 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="RoleId" Type="int" Nullable="false" />
     <Property Name="AssessedDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpireDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Functions">
     <Key>
@@ -339,7 +425,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Score" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Icon" Type="nvarchar(max)" Nullable="true" />
@@ -359,13 +445,14 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Attendances">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JoinedDate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="JoinedDate" Type="datetime" Nullable="false" />
     <Property Name="SeenDate" Type="datetime" Nullable="false" />
     <Property Name="ConversationId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
@@ -394,8 +481,9 @@
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Setting" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="UserRelationships">
+  <EntityType Name="UserFriendships">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -416,7 +504,7 @@
     <Property Name="SeenBlog" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="EditedContents">
+  <EntityType Name="EditedLogs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -424,6 +512,7 @@
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Participations">
     <Key>
@@ -435,6 +524,7 @@
     <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ReputationRules">
     <Key>
@@ -451,6 +541,106 @@
     <Property Name="AcceptedAnswer" Type="int" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportedDate" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ReporterId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="true" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Caption" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Banners">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Image_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Advertisements">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="ExpiredDate" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="Image_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BanAccounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannedDate" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="UnBanedDate" Type="datetime" Nullable="false" />
+    <Property Name="BannedUserId" Type="int" Nullable="false" />
+    <Property Name="BanUserId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BanReasons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Createddate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileHistories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Career" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FromTime" Type="datetime" Nullable="false" />
+    <Property Name="ToTime" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Posts_Comment">
     <Key>
       <PropertyRef Name="Id" />
@@ -465,6 +655,7 @@
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="View" Type="int" Nullable="false" />
     <Property Name="Privacy" Type="int" Nullable="false" />
+    <Property Name="LastViewed" Type="datetime" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts_Question">
@@ -487,6 +678,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="PublicDate" Type="datetime" Nullable="true" />
+    <Property Name="SeriesId" Type="int" Nullable="true" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts_Discussion">
@@ -511,7 +704,7 @@
     <Property Name="FavoriteTags_Id" Type="int" Nullable="false" />
     <Property Name="FavoriteUsers_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="UserMainPost">
+  <EntityType Name="BookmarkMainPost">
     <Key>
       <PropertyRef Name="BookmarkUsers_Id" />
       <PropertyRef Name="Bookmarks_Id" />
@@ -519,7 +712,7 @@
     <Property Name="BookmarkUsers_Id" Type="int" Nullable="false" />
     <Property Name="Bookmarks_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="UserMainPost1">
+  <EntityType Name="FollowMainPost">
     <Key>
       <PropertyRef Name="FollowUsers_Id" />
       <PropertyRef Name="FollowPosts_Id" />
@@ -551,6 +744,30 @@
     <Property Name="Sharers_Id" Type="int" Nullable="false" />
     <Property Name="SharedMainPosts_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="BanAccountBanReason">
+    <Key>
+      <PropertyRef Name="BanAccounts_Id" />
+      <PropertyRef Name="BanReasons_Id" />
+    </Key>
+    <Property Name="BanAccounts_Id" Type="int" Nullable="false" />
+    <Property Name="BanReasons_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubscribeGroup">
+    <Key>
+      <PropertyRef Name="SubscribedGroups_Id" />
+      <PropertyRef Name="Subscribers_Id" />
+    </Key>
+    <Property Name="SubscribedGroups_Id" Type="int" Nullable="false" />
+    <Property Name="Subscribers_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Follow">
+    <Key>
+      <PropertyRef Name="Followees_Id" />
+      <PropertyRef Name="Followers_Id" />
+    </Key>
+    <Property Name="Followees_Id" Type="int" Nullable="false" />
+    <Property Name="Followers_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="PostUser">
     <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="*" />
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
@@ -565,7 +782,9 @@
   </Association>
   <Association Name="ProfileUser">
     <End Role="Profile" Type="CPMathHubModel.Store.Profiles" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -577,7 +796,9 @@
   </Association>
   <Association Name="CommentPost">
     <End Role="Comment" Type="CPMathHubModel.Store.Posts_Comment" Multiplicity="*" />
-    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1" />
+    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="Id" />
@@ -588,7 +809,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="QuestionAnswer">
-    <End Role="Question" Type="CPMathHubModel.Store.Posts_Question" Multiplicity="1" />
+    <End Role="Question" Type="CPMathHubModel.Store.Posts_Question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Answer" Type="CPMathHubModel.Store.Posts_Answer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Question">
@@ -599,7 +822,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TagUser">
+  <Association Name="CreateTag">
     <End Role="Tag" Type="CPMathHubModel.Store.Tags" Multiplicity="*" />
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
     <ReferentialConstraint>
@@ -611,33 +834,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="SubscriptionUser">
-    <End Role="Subscription" Type="CPMathHubModel.Store.Subscriptions" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Subscription">
-        <PropertyRef Name="FollowerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="SubscriptionUser1">
-    <End Role="Subscription" Type="CPMathHubModel.Store.Subscriptions" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Subscription">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="InvitationMainPost">
     <End Role="Invitation" Type="CPMathHubModel.Store.Invitations" Multiplicity="*" />
-    <End Role="MainPost" Type="CPMathHubModel.Store.Posts_MainPost" Multiplicity="1" />
+    <End Role="MainPost" Type="CPMathHubModel.Store.Posts_MainPost" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="MainPost">
         <PropertyRef Name="Id" />
@@ -655,7 +856,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Invitation">
-        <PropertyRef Name="UserId" />
+        <PropertyRef Name="InviterId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -685,7 +886,9 @@
   </Association>
   <Association Name="AssessmentUser">
     <End Role="Assessment" Type="CPMathHubModel.Store.Assessments" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -697,7 +900,9 @@
   </Association>
   <Association Name="AssessmentRole">
     <End Role="Assessment" Type="CPMathHubModel.Store.Assessments" Multiplicity="*" />
-    <End Role="Role" Type="CPMathHubModel.Store.Roles" Multiplicity="1" />
+    <End Role="Role" Type="CPMathHubModel.Store.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Role">
         <PropertyRef Name="Id" />
@@ -721,7 +926,9 @@
   </Association>
   <Association Name="MessageAttendance">
     <End Role="Message" Type="CPMathHubModel.Store.Messages" Multiplicity="*" />
-    <End Role="Attendance" Type="CPMathHubModel.Store.Attendances" Multiplicity="1" />
+    <End Role="Attendance" Type="CPMathHubModel.Store.Attendances" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Attendance">
         <PropertyRef Name="Id" />
@@ -733,7 +940,9 @@
   </Association>
   <Association Name="AttendanceConversation">
     <End Role="Attendance" Type="CPMathHubModel.Store.Attendances" Multiplicity="*" />
-    <End Role="Conversation" Type="CPMathHubModel.Store.Conversations" Multiplicity="1" />
+    <End Role="Conversation" Type="CPMathHubModel.Store.Conversations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Conversation">
         <PropertyRef Name="Id" />
@@ -755,9 +964,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FriendRequestionUser">
-    <End Role="FriendRequestion" Type="CPMathHubModel.Store.UserRelationships" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+  <Association Name="RequestFriend">
+    <End Role="FriendRequestion" Type="CPMathHubModel.Store.UserFriendships" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -768,8 +979,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FriendRequestionUser1">
-    <End Role="FriendRequestion" Type="CPMathHubModel.Store.UserRelationships" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="FriendRequestion" Type="CPMathHubModel.Store.UserFriendships" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -780,8 +993,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EditedContentPost">
-    <End Role="EditedContent" Type="CPMathHubModel.Store.EditedContents" Multiplicity="*" />
-    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1" />
+    <End Role="EditedContent" Type="CPMathHubModel.Store.EditedLogs" Multiplicity="*" />
+    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="Id" />
@@ -793,7 +1008,9 @@
   </Association>
   <Association Name="NotificationUser">
     <End Role="Notification" Type="CPMathHubModel.Store.Notifications" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -805,7 +1022,9 @@
   </Association>
   <Association Name="PrivacySettingUser">
     <End Role="PrivacySetting" Type="CPMathHubModel.Store.PrivacySettings" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -829,7 +1048,9 @@
   </Association>
   <Association Name="ParticipationGroup">
     <End Role="Participation" Type="CPMathHubModel.Store.Participations" Multiplicity="*" />
-    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="1" />
+    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Group">
         <PropertyRef Name="Id" />
@@ -851,9 +1072,211 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ActivityUser">
-    <End Role="Activity" Type="CPMathHubModel.Store.Activities" Multiplicity="*" />
+  <Association Name="ReportUser">
+    <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="ReporterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ImageUser">
+    <End Role="Image" Type="CPMathHubModel.Store.Images" Multiplicity="0..1" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Avatar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReportedUser">
+    <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BannerImage">
+    <End Role="Banner" Type="CPMathHubModel.Store.Banners" Multiplicity="*" />
+    <End Role="Image" Type="CPMathHubModel.Store.Images" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="Image_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AdvertisementImage">
+    <End Role="Advertisement" Type="CPMathHubModel.Store.Advertisements" Multiplicity="*" />
+    <End Role="Image" Type="CPMathHubModel.Store.Images" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Image">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Advertisement">
+        <PropertyRef Name="Image_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BanAccountUser">
+    <End Role="BanAccount" Type="CPMathHubModel.Store.BanAccounts" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BanAccount">
+        <PropertyRef Name="BannedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBanAccount">
+    <End Role="BanAccount" Type="CPMathHubModel.Store.BanAccounts" Multiplicity="*" />
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BanAccount">
+        <PropertyRef Name="BanUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EditedContentUser">
+    <End Role="EditedContent" Type="CPMathHubModel.Store.EditedLogs" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EditedContent">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SeriesArticle">
+    <End Role="Series" Type="CPMathHubModel.Store.Series" Multiplicity="0..1" />
+    <End Role="Article" Type="CPMathHubModel.Store.Posts_Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Series">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="SeriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SeriesGroup">
+    <End Role="Series" Type="CPMathHubModel.Store.Series" Multiplicity="*" />
+    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Series">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileHistoryUser">
+    <End Role="ProfileHistory" Type="CPMathHubModel.Store.ProfileHistories" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileHistory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvitedUser">
+    <End Role="Invitation" Type="CPMathHubModel.Store.Invitations" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invitation">
+        <PropertyRef Name="InviteeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReportPost">
+    <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
+    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Report">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationLocation">
+    <End Role="ParentLocation" Type="CPMathHubModel.Store.Locations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChildrenLocation" Type="CPMathHubModel.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParentLocation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ChildrenLocation">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LocationProfile">
+    <End Role="Location" Type="CPMathHubModel.Store.Locations" Multiplicity="*" />
+    <End Role="Profile" Type="CPMathHubModel.Store.Profiles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserActivity">
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Activity" Type="CPMathHubModel.Store.Activities" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -911,50 +1334,50 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserMainPost_User">
+  <Association Name="FK_BookmarkMainPost_User">
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
-    <End Role="UserMainPost" Type="CPMathHubModel.Store.UserMainPost" Multiplicity="*" />
+    <End Role="BookmarkMainPost" Type="CPMathHubModel.Store.BookmarkMainPost" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserMainPost">
+      <Dependent Role="BookmarkMainPost">
         <PropertyRef Name="BookmarkUsers_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserMainPost_MainPost">
-    <End Role="UserMainPost" Type="CPMathHubModel.Store.UserMainPost" Multiplicity="*" />
+  <Association Name="FK_BookmarkMainPost_MainPost">
+    <End Role="BookmarkMainPost" Type="CPMathHubModel.Store.BookmarkMainPost" Multiplicity="*" />
     <End Role="MainPost" Type="CPMathHubModel.Store.Posts_MainPost" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MainPost">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserMainPost">
+      <Dependent Role="BookmarkMainPost">
         <PropertyRef Name="Bookmarks_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserMainPost1_User">
+  <Association Name="FK_FollowMainPost_User">
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
-    <End Role="UserMainPost1" Type="CPMathHubModel.Store.UserMainPost1" Multiplicity="*" />
+    <End Role="FollowMainPost" Type="CPMathHubModel.Store.FollowMainPost" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserMainPost1">
+      <Dependent Role="FollowMainPost">
         <PropertyRef Name="FollowUsers_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserMainPost1_MainPost">
-    <End Role="UserMainPost1" Type="CPMathHubModel.Store.UserMainPost1" Multiplicity="*" />
+  <Association Name="FK_FollowMainPost_MainPost">
+    <End Role="FollowMainPost" Type="CPMathHubModel.Store.FollowMainPost" Multiplicity="*" />
     <End Role="MainPost" Type="CPMathHubModel.Store.Posts_MainPost" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MainPost">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserMainPost1">
+      <Dependent Role="FollowMainPost">
         <PropertyRef Name="FollowPosts_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1028,6 +1451,78 @@
       </Principal>
       <Dependent Role="ShareMainPost">
         <PropertyRef Name="SharedMainPosts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BanAccountBanReason_BanAccount">
+    <End Role="BanAccount" Type="CPMathHubModel.Store.BanAccounts" Multiplicity="1" />
+    <End Role="BanAccountBanReason" Type="CPMathHubModel.Store.BanAccountBanReason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BanAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BanAccountBanReason">
+        <PropertyRef Name="BanAccounts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BanAccountBanReason_BanReason">
+    <End Role="BanAccountBanReason" Type="CPMathHubModel.Store.BanAccountBanReason" Multiplicity="*" />
+    <End Role="BanReason" Type="CPMathHubModel.Store.BanReasons" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="BanReason">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BanAccountBanReason">
+        <PropertyRef Name="BanReasons_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubscribeGroup_Group">
+    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="1" />
+    <End Role="SubscribeGroup" Type="CPMathHubModel.Store.SubscribeGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubscribeGroup">
+        <PropertyRef Name="SubscribedGroups_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubscribeGroup_User">
+    <End Role="SubscribeGroup" Type="CPMathHubModel.Store.SubscribeGroup" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubscribeGroup">
+        <PropertyRef Name="Subscribers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Follow_Follower">
+    <End Role="Follower" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="Follow" Type="CPMathHubModel.Store.Follow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Follower">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow">
+        <PropertyRef Name="Followees_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Follow_Followee">
+    <End Role="Follow" Type="CPMathHubModel.Store.Follow" Multiplicity="*" />
+    <End Role="Followee" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Followee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow">
+        <PropertyRef Name="Followers_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1148,27 +1643,18 @@
             <End Role="Tag" EntitySet="Tags" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="TagUser" Association="CPMathHubModel.TagUser">
+          <AssociationSet Name="CreateTag" Association="CPMathHubModel.CreateTag">
             <End Role="Tag" EntitySet="Tags" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="Groups" EntityType="CPMathHubModel.Group" />
-          <AssociationSet Name="BookmarkPost" Association="CPMathHubModel.UserMainPost">
+          <AssociationSet Name="BookmarkMainPost" Association="CPMathHubModel.BookmarkMainPost">
             <End Role="User" EntitySet="Users" />
             <End Role="MainPost" EntitySet="Posts" />
           </AssociationSet>
-          <AssociationSet Name="FollowPost" Association="CPMathHubModel.UserMainPost1">
+          <AssociationSet Name="FollowMainPost" Association="CPMathHubModel.FollowMainPost">
             <End Role="User" EntitySet="Users" />
             <End Role="MainPost" EntitySet="Posts" />
-          </AssociationSet>
-          <EntitySet Name="Subscriptions" EntityType="CPMathHubModel.Subscription" />
-          <AssociationSet Name="SubscriptionUser" Association="CPMathHubModel.SubscriptionUser">
-            <End Role="Subscription" EntitySet="Subscriptions" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="SubscriptionUser1" Association="CPMathHubModel.SubscriptionUser1">
-            <End Role="Subscription" EntitySet="Subscriptions" />
-            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="Invitations" EntityType="CPMathHubModel.Invitation" />
           <AssociationSet Name="InvitationMainPost" Association="CPMathHubModel.InvitationMainPost">
@@ -1233,19 +1719,19 @@
           </AssociationSet>
           <EntitySet Name="Activities" EntityType="CPMathHubModel.Activity" />
           <EntitySet Name="Notifications" EntityType="CPMathHubModel.Notification" />
-          <EntitySet Name="UserRelationships" EntityType="CPMathHubModel.UserRelationship" />
-          <AssociationSet Name="RequestFriend" Association="CPMathHubModel.FriendRequestionUser">
-            <End Role="FriendRequestion" EntitySet="UserRelationships" />
+          <EntitySet Name="UserFriendships" EntityType="CPMathHubModel.UserFriendship" />
+          <AssociationSet Name="RequestFriend" Association="CPMathHubModel.RequestFriend">
+            <End Role="FriendRequestion" EntitySet="UserFriendships" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="TargetUser" Association="CPMathHubModel.FriendRequestionUser1">
-            <End Role="FriendRequestion" EntitySet="UserRelationships" />
+            <End Role="FriendRequestion" EntitySet="UserFriendships" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="PrivacySettings" EntityType="CPMathHubModel.PrivacySetting" />
-          <EntitySet Name="EditedContents" EntityType="CPMathHubModel.EditedContent" />
+          <EntitySet Name="EditedLogs" EntityType="CPMathHubModel.EditedLog" />
           <AssociationSet Name="EditedContentPost" Association="CPMathHubModel.EditedContentPost">
-            <End Role="EditedContent" EntitySet="EditedContents" />
+            <End Role="EditedContent" EntitySet="EditedLogs" />
             <End Role="Post" EntitySet="Posts" />
           </AssociationSet>
           <AssociationSet Name="NotificationUser" Association="CPMathHubModel.NotificationUser">
@@ -1269,11 +1755,92 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="Article" EntitySet="Posts" />
           </AssociationSet>
-          <AssociationSet Name="ActivityUser" Association="CPMathHubModel.ActivityUser">
-            <End Role="Activity" EntitySet="Activities" />
+          <EntitySet Name="ReputationRules" EntityType="CPMathHubModel.ReputationRule" />
+          <EntitySet Name="Reports" EntityType="CPMathHubModel.Report" />
+          <AssociationSet Name="ReportUser" Association="CPMathHubModel.ReportUser">
+            <End Role="Report" EntitySet="Reports" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="ReputationRules" EntityType="CPMathHubModel.ReputationRule" />
+          <EntitySet Name="Images" EntityType="CPMathHubModel.Image" />
+          <AssociationSet Name="ImageUser" Association="CPMathHubModel.ImageUser">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ReportedUser" Association="CPMathHubModel.ReportedUser">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Banners" EntityType="CPMathHubModel.Banner" />
+          <EntitySet Name="Advertisements" EntityType="CPMathHubModel.Advertisement" />
+          <AssociationSet Name="BannerImage" Association="CPMathHubModel.BannerImage">
+            <End Role="Banner" EntitySet="Banners" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="AdvertisementImage" Association="CPMathHubModel.AdvertisementImage">
+            <End Role="Advertisement" EntitySet="Advertisements" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <EntitySet Name="BanAccounts" EntityType="CPMathHubModel.BanAccount" />
+          <EntitySet Name="BanReasons" EntityType="CPMathHubModel.BanReason" />
+          <AssociationSet Name="BanAccountBanReason" Association="CPMathHubModel.BanAccountBanReason">
+            <End Role="BanAccount" EntitySet="BanAccounts" />
+            <End Role="BanReason" EntitySet="BanReasons" />
+          </AssociationSet>
+          <AssociationSet Name="BanAccountUser" Association="CPMathHubModel.BanAccountUser">
+            <End Role="BanAccount" EntitySet="BanAccounts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserBanAccount" Association="CPMathHubModel.UserBanAccount">
+            <End Role="BanAccount" EntitySet="BanAccounts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="EditedContentUser" Association="CPMathHubModel.EditedContentUser">
+            <End Role="EditedContent" EntitySet="EditedLogs" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Series" EntityType="CPMathHubModel.Series" />
+          <AssociationSet Name="SeriesArticle" Association="CPMathHubModel.SeriesArticle">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="Article" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="SeriesGroup" Association="CPMathHubModel.SeriesGroup">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <EntitySet Name="ProfileHistories" EntityType="CPMathHubModel.ProfileHistory" />
+          <AssociationSet Name="ProfileHistoryUser" Association="CPMathHubModel.ProfileHistoryUser">
+            <End Role="ProfileHistory" EntitySet="ProfileHistories" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="SubscribeGroup" Association="CPMathHubModel.SubscribeGroup">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Follow" Association="CPMathHubModel.Follow">
+            <End Role="Follower" EntitySet="Users" />
+            <End Role="Followee" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="InvitedUser" Association="CPMathHubModel.InvitedUser">
+            <End Role="Invitation" EntitySet="Invitations" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ReportPost" Association="CPMathHubModel.ReportPost">
+            <End Role="Report" EntitySet="Reports" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="Locations" EntityType="CPMathHubModel.Location" />
+          <AssociationSet Name="LocationLocation" Association="CPMathHubModel.LocationLocation">
+            <End Role="ParentLocation" EntitySet="Locations" />
+            <End Role="ChildrenLocation" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="LocationProfile" Association="CPMathHubModel.LocationProfile">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserActivity" Association="CPMathHubModel.UserActivity">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
           <Documentation>
@@ -1290,8 +1857,11 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="CPMathHubModel.CommentPost" FromRole="Post" ToRole="Comment" />
           <NavigationProperty Name="Votes" Relationship="CPMathHubModel.VotePost" FromRole="Post" ToRole="Vote" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="CPMathHubModel.PostStatusEnum" Nullable="true" />
           <NavigationProperty Name="EditedContents" Relationship="CPMathHubModel.EditedContentPost" FromRole="Post" ToRole="EditedContent" />
+          <Property Name="VoteUp" Type="Int32" Nullable="false" />
+          <Property Name="VoteDown" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reports" Relationship="CPMathHubModel.ReportPost" FromRole="Post" ToRole="Report" />
         </EntityType>
         <EntityType Name="MainPost" BaseType="CPMathHubModel.Post" Abstract="true">
           <Documentation>
@@ -1299,12 +1869,13 @@
           </Documentation>
           <Property Name="Title" Type="String" Nullable="false" />
           <NavigationProperty Name="Tags" Relationship="CPMathHubModel.TagMainPost" FromRole="MainPost" ToRole="Tag" />
-          <NavigationProperty Name="BookmarkUsers" Relationship="CPMathHubModel.UserMainPost" FromRole="MainPost" ToRole="User" />
-          <NavigationProperty Name="FollowUsers" Relationship="CPMathHubModel.UserMainPost1" FromRole="MainPost" ToRole="User" />
+          <NavigationProperty Name="BookmarkUsers" Relationship="CPMathHubModel.BookmarkMainPost" FromRole="MainPost" ToRole="User" />
+          <NavigationProperty Name="FollowUsers" Relationship="CPMathHubModel.FollowMainPost" FromRole="MainPost" ToRole="User" />
           <NavigationProperty Name="Invitations" Relationship="CPMathHubModel.InvitationMainPost" FromRole="MainPost" ToRole="Invitation" />
           <NavigationProperty Name="Sharers" Relationship="CPMathHubModel.ShareMainPost" FromRole="MainPost" ToRole="User" />
           <Property Name="View" Type="Int32" Nullable="false" />
           <Property Name="Privacy" Type="CPMathHubModel.MainPostPrivacyEnum" Nullable="false" />
+          <Property Name="LastViewed" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -1315,28 +1886,37 @@
           <Property Name="Username" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="Reputaion" Type="Int32" Nullable="false" />
+          <Property Name="Reputation" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Profile" Relationship="CPMathHubModel.ProfileUser" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="FavoriteTags" Relationship="CPMathHubModel.FavoriteTag" FromRole="User" ToRole="Tag" />
-          <NavigationProperty Name="Tags" Relationship="CPMathHubModel.TagUser" FromRole="User" ToRole="Tag" />
-          <NavigationProperty Name="Bookmarks" Relationship="CPMathHubModel.UserMainPost" FromRole="User" ToRole="MainPost" />
-          <NavigationProperty Name="FollowPosts" Relationship="CPMathHubModel.UserMainPost1" FromRole="User" ToRole="MainPost" />
-          <NavigationProperty Name="Followers" Relationship="CPMathHubModel.SubscriptionUser" FromRole="User" ToRole="Subscription" />
-          <NavigationProperty Name="Followings" Relationship="CPMathHubModel.SubscriptionUser1" FromRole="User" ToRole="Subscription" />
-          <NavigationProperty Name="Invitations" Relationship="CPMathHubModel.InviteUser" FromRole="User" ToRole="Invitation" />
+          <NavigationProperty Name="Tags" Relationship="CPMathHubModel.CreateTag" FromRole="User" ToRole="Tag" />
+          <NavigationProperty Name="Bookmarks" Relationship="CPMathHubModel.BookmarkMainPost" FromRole="User" ToRole="MainPost" />
+          <NavigationProperty Name="FollowPosts" Relationship="CPMathHubModel.FollowMainPost" FromRole="User" ToRole="MainPost" />
+          <NavigationProperty Name="InviteInvitations" Relationship="CPMathHubModel.InviteUser" FromRole="User" ToRole="Invitation" />
           <NavigationProperty Name="Votes" Relationship="CPMathHubModel.VoteUser" FromRole="User" ToRole="Vote" />
           <NavigationProperty Name="Assessments" Relationship="CPMathHubModel.AssessmentUser" FromRole="User" ToRole="Assessment" />
           <NavigationProperty Name="Privileges" Relationship="CPMathHubModel.PrivilegeUser" FromRole="User" ToRole="Privilege" />
           <NavigationProperty Name="Attendances" Relationship="CPMathHubModel.AttendanceUser" FromRole="User" ToRole="Attendance" />
           <NavigationProperty Name="SharedMainPosts" Relationship="CPMathHubModel.ShareMainPost" FromRole="User" ToRole="MainPost" />
-          <NavigationProperty Name="ActiveRelationship" Relationship="CPMathHubModel.FriendRequestionUser" FromRole="User" ToRole="FriendRequestion" />
+          <NavigationProperty Name="ActiveRelationships" Relationship="CPMathHubModel.RequestFriend" FromRole="User" ToRole="FriendRequestion" />
           <NavigationProperty Name="PassiveRelationship" Relationship="CPMathHubModel.FriendRequestionUser1" FromRole="User" ToRole="FriendRequestion" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Notifications" Relationship="CPMathHubModel.NotificationUser" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="PrivacySetting" Relationship="CPMathHubModel.PrivacySettingUser" FromRole="User" ToRole="PrivacySetting" />
           <NavigationProperty Name="GroupParticipations" Relationship="CPMathHubModel.ParticipationUser" FromRole="User" ToRole="Participation" />
-          <NavigationProperty Name="Activity" Relationship="CPMathHubModel.ActivityUser" FromRole="User" ToRole="Activity" />
+          <NavigationProperty Name="Reports" Relationship="CPMathHubModel.ReportUser" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Avatar" Relationship="CPMathHubModel.ImageUser" FromRole="User" ToRole="Image" />
+          <NavigationProperty Name="ReportedList" Relationship="CPMathHubModel.ReportedUser" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="BannedAccounts" Relationship="CPMathHubModel.BanAccountUser" FromRole="User" ToRole="BanAccount" />
+          <NavigationProperty Name="BanAccounts" Relationship="CPMathHubModel.UserBanAccount" FromRole="User" ToRole="BanAccount" />
+          <NavigationProperty Name="EditedContents" Relationship="CPMathHubModel.EditedContentUser" FromRole="User" ToRole="EditedContent" />
+          <NavigationProperty Name="ProfileHistories" Relationship="CPMathHubModel.ProfileHistoryUser" FromRole="User" ToRole="ProfileHistory" />
+          <NavigationProperty Name="SubscribedGroups" Relationship="CPMathHubModel.SubscribeGroup" FromRole="User" ToRole="Group" />
+          <Property Name="Status" Type="CPMathHubModel.UserStatusEnum" Nullable="false" />
+          <NavigationProperty Name="Followers" Relationship="CPMathHubModel.Follow" FromRole="Follower" ToRole="Followee" />
+          <NavigationProperty Name="Followees" Relationship="CPMathHubModel.Follow" FromRole="Followee" ToRole="Follower" />
+          <NavigationProperty Name="InvitedInvitations" Relationship="CPMathHubModel.InvitedUser" FromRole="User" ToRole="Invitation" />
+          <NavigationProperty Name="Activity" Relationship="CPMathHubModel.UserActivity" FromRole="User" ToRole="Activity" />
           </EntityType>
         <Association Name="PostUser">
           <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="*" />
@@ -1356,17 +1936,22 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" Nullable="false" />
-          <Property Name="School" Type="String" Nullable="false" />
+          <Property Name="School" Type="String" Nullable="true" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" />
-          <Property Name="Location" Type="String" Nullable="false" />
-          <Property Name="Facebook" Type="String" Nullable="false" />
-          <Property Name="Summary" Type="String" Nullable="false" />
-          <Property Name="ViewPoint" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Facebook" Type="String" Nullable="true" />
+          <Property Name="Summary" Type="String" Nullable="true" />
+          <Property Name="ViewPoint" Type="String" Nullable="true" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.ProfileUser" FromRole="Profile" ToRole="User" />
+          <Property Name="Gender" Type="CPMathHubModel.GenderEnum" Nullable="true" />
+          <Property Name="Education" Type="CPMathHubModel.EducationEnum" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="CPMathHubModel.LocationProfile" FromRole="Profile" ToRole="Location" />
         </EntityType>
         <Association Name="ProfileUser">
-          <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="1" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
         </Association>
         <EntityType Name="Comment" BaseType="CPMathHubModel.Post" >
           <NavigationProperty Name="Post" Relationship="CPMathHubModel.CommentPost" FromRole="Comment" ToRole="Post" />
@@ -1374,7 +1959,9 @@
         </EntityType>
         <Association Name="CommentPost">
           <End Type="CPMathHubModel.Comment" Role="Comment" Multiplicity="*" />
-          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Post">
               <PropertyRef Name="Id" />
@@ -1394,7 +1981,9 @@
           <NavigationProperty Name="Answers" Relationship="CPMathHubModel.QuestionAnswer" FromRole="Question" ToRole="Answer" />
         </EntityType>
         <Association Name="QuestionAnswer">
-          <End Type="CPMathHubModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="CPMathHubModel.Question" Role="Question" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="CPMathHubModel.Answer" Role="Answer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
@@ -1408,6 +1997,9 @@
         <EntityType Name="Article" BaseType="CPMathHubModel.MainPost" >
           <NavigationProperty Name="Group" Relationship="CPMathHubModel.GroupArticle" FromRole="Article" ToRole="Group" />
           <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="PublicDate" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Series" Relationship="CPMathHubModel.SeriesArticle" FromRole="Article" ToRole="Series" />
+          <Property Name="SeriesId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Discussion" BaseType="CPMathHubModel.MainPost" />
         <EntityType Name="Tag">
@@ -1420,7 +2012,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="MainPosts" Relationship="CPMathHubModel.TagMainPost" FromRole="Tag" ToRole="MainPost" />
           <NavigationProperty Name="FavoriteUsers" Relationship="CPMathHubModel.FavoriteTag" FromRole="Tag" ToRole="User" />
-          <NavigationProperty Name="Creator" Relationship="CPMathHubModel.TagUser" FromRole="Tag" ToRole="User" />
+          <NavigationProperty Name="Creator" Relationship="CPMathHubModel.CreateTag" FromRole="Tag" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="TagMainPost">
@@ -1431,7 +2023,7 @@
           <End Type="CPMathHubModel.Tag" Role="Tag" Multiplicity="*" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <Association Name="TagUser">
+        <Association Name="CreateTag">
           <End Type="CPMathHubModel.Tag" Role="Tag" Multiplicity="*" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
           <ReferentialConstraint>
@@ -1452,64 +2044,36 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Participations" Relationship="CPMathHubModel.ParticipationGroup" FromRole="Group" ToRole="Participation" />
           <NavigationProperty Name="Articles" Relationship="CPMathHubModel.GroupArticle" FromRole="Group" ToRole="Article" />
+          <NavigationProperty Name="Series" Relationship="CPMathHubModel.SeriesGroup" FromRole="Group" ToRole="Series" />
+          <Property Name="Type" Type="CPMathHubModel.GroupTypeEnum" Nullable="false" />
+          <NavigationProperty Name="Subscribers" Relationship="CPMathHubModel.SubscribeGroup" FromRole="Group" ToRole="User" />
         </EntityType>
-        <Association Name="UserMainPost">
+        <Association Name="BookmarkMainPost">
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="*" />
           <End Type="CPMathHubModel.MainPost" Role="MainPost" Multiplicity="*" />
         </Association>
-        <Association Name="UserMainPost1">
+        <Association Name="FollowMainPost">
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="*" />
           <End Type="CPMathHubModel.MainPost" Role="MainPost" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Subscription">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubsAction" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Follower" Relationship="CPMathHubModel.SubscriptionUser" FromRole="Subscription" ToRole="User" />
-          <Property Name="FollowerId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Followee" Relationship="CPMathHubModel.SubscriptionUser1" FromRole="Subscription" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="SubscriptionUser">
-          <End Type="CPMathHubModel.Subscription" Role="Subscription" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subscription">
-              <PropertyRef Name="FollowerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SubscriptionUser1">
-          <End Type="CPMathHubModel.Subscription" Role="Subscription" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Subscription">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <EntityType Name="Invitation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvitedDate" Type="String" Nullable="false" />
+          <Property Name="InvitedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="MainPost" Relationship="CPMathHubModel.InvitationMainPost" FromRole="Invitation" ToRole="MainPost" />
           <Property Name="MainPostId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="CPMathHubModel.InviteUser" FromRole="Invitation" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inviter" Relationship="CPMathHubModel.InviteUser" FromRole="Invitation" ToRole="User" />
+          <Property Name="InviterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invitee" Relationship="CPMathHubModel.InvitedUser" FromRole="Invitation" ToRole="User" />
+          <Property Name="InviteeId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="InvitationMainPost">
           <End Type="CPMathHubModel.Invitation" Role="Invitation" Multiplicity="*" />
-          <End Type="CPMathHubModel.MainPost" Role="MainPost" Multiplicity="1" />
+          <End Type="CPMathHubModel.MainPost" Role="MainPost" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="MainPost">
               <PropertyRef Name="Id" />
@@ -1527,7 +2091,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Invitation">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="InviterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1536,7 +2100,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VotedDate" Type="String" Nullable="false" />
+          <Property Name="VotedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Post" Relationship="CPMathHubModel.VotePost" FromRole="Vote" ToRole="Post" />
           <Property Name="PostId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.VoteUser" FromRole="Vote" ToRole="User" />
@@ -1586,10 +2150,13 @@
           <NavigationProperty Name="Role" Relationship="CPMathHubModel.AssessmentRole" FromRole="Assessment" ToRole="Role" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="AssessedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ExpireDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="AssessmentUser">
           <End Type="CPMathHubModel.Assessment" Role="Assessment" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -1601,7 +2168,9 @@
         </Association>
         <Association Name="AssessmentRole">
           <End Type="CPMathHubModel.Assessment" Role="Assessment" Multiplicity="*" />
-          <End Type="CPMathHubModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="CPMathHubModel.Role" Role="Role" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="Id" />
@@ -1630,7 +2199,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Score" Type="String" Nullable="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Icon" Type="String" Nullable="true" />
@@ -1662,13 +2231,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Attendances" Relationship="CPMathHubModel.AttendanceConversation" FromRole="Conversation" ToRole="Attendance" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JoinedDate" Type="String" Nullable="false" />
+          <Property Name="JoinedDate" Type="DateTime" Nullable="false" />
           <Property Name="SeenDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Messages" Relationship="CPMathHubModel.MessageAttendance" FromRole="Attendance" ToRole="Message" />
           <NavigationProperty Name="Conversation" Relationship="CPMathHubModel.AttendanceConversation" FromRole="Attendance" ToRole="Conversation" />
@@ -1678,7 +2248,9 @@
         </EntityType>
         <Association Name="MessageAttendance">
           <End Type="CPMathHubModel.Message" Role="Message" Multiplicity="*" />
-          <End Type="CPMathHubModel.Attendance" Role="Attendance" Multiplicity="1" />
+          <End Type="CPMathHubModel.Attendance" Role="Attendance" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Attendance">
               <PropertyRef Name="Id" />
@@ -1689,8 +2261,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AttendanceConversation">
-          <End Type="CPMathHubModel.Attendance" Role="Attendance" Multiplicity="*" />
-          <End Type="CPMathHubModel.Conversation" Role="Conversation" Multiplicity="1" />
+          <End Type="CPMathHubModel.Attendance" Role="Attendance" Multiplicity="*" >
+          </End>
+          <End Type="CPMathHubModel.Conversation" Role="Conversation" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Conversation">
               <PropertyRef Name="Id" />
@@ -1727,7 +2302,7 @@
           <Property Name="LastLogin" Type="DateTime" Nullable="false" />
           <Property Name="LastIp" Type="String" Nullable="false" />
           <Property Name="LastSeenFriendRequest" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="CPMathHubModel.ActivityUser" FromRole="Activity" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.UserActivity" FromRole="Activity" ToRole="User" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -1741,23 +2316,26 @@
           <Property Name="Type" Type="CPMathHubModel.NotificationEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.NotificationUser" FromRole="Notification" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Setting" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="UserRelationship">
+        <EntityType Name="UserFriendship">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="CPMathHubModel.FriendRequestionUser" FromRole="FriendRequestion" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.RequestFriend" FromRole="FriendRequestion" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TargetUser" Relationship="CPMathHubModel.FriendRequestionUser1" FromRole="FriendRequestion" ToRole="User" />
           <Property Name="TargetUserId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="CPMathHubModel.RelationshipEnum" Nullable="false" />
           <Property Name="LastChangeStatus" Type="DateTime" Nullable="false" />
         </EntityType>
-        <Association Name="FriendRequestionUser">
-          <End Type="CPMathHubModel.UserRelationship" Role="FriendRequestion" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+        <Association Name="RequestFriend">
+          <End Type="CPMathHubModel.UserFriendship" Role="FriendRequestion" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -1768,8 +2346,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FriendRequestionUser1">
-          <End Type="CPMathHubModel.UserRelationship" Role="FriendRequestion" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.UserFriendship" Role="FriendRequestion" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -1789,7 +2369,7 @@
           <Property Name="SeenBlog" Type="CPMathHubModel.SeenBlogEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.PrivacySettingUser" FromRole="PrivacySetting" ToRole="User" />
         </EntityType>
-        <EntityType Name="EditedContent">
+        <EntityType Name="EditedLog">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -1798,10 +2378,14 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Post" Relationship="CPMathHubModel.EditedContentPost" FromRole="EditedContent" ToRole="Post" />
           <Property Name="PostId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.EditedContentUser" FromRole="EditedContent" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="EditedContentPost">
-          <End Type="CPMathHubModel.EditedContent" Role="EditedContent" Multiplicity="*" />
-          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" />
+          <End Type="CPMathHubModel.EditedLog" Role="EditedContent" Multiplicity="*" />
+          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Post">
               <PropertyRef Name="Id" />
@@ -1813,7 +2397,9 @@
         </Association>
         <Association Name="NotificationUser">
           <End Type="CPMathHubModel.Notification" Role="Notification" Multiplicity="*" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -1825,7 +2411,9 @@
         </Association>
         <Association Name="PrivacySettingUser">
           <End Type="CPMathHubModel.PrivacySetting" Role="PrivacySetting" Multiplicity="1" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
         </Association>
         <EntityType Name="Participation">
           <Key>
@@ -1839,6 +2427,7 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Group" Relationship="CPMathHubModel.ParticipationGroup" FromRole="Participation" ToRole="Group" />
           <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="ParticipationUser">
           <End Type="CPMathHubModel.Participation" Role="Participation" Multiplicity="*" />
@@ -1854,7 +2443,9 @@
         </Association>
         <Association Name="ParticipationGroup">
           <End Type="CPMathHubModel.Participation" Role="Participation" Multiplicity="*" />
-          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="1" />
+          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <ReferentialConstraint>
             <Principal Role="Group">
               <PropertyRef Name="Id" />
@@ -1876,22 +2467,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ActivityUser">
-          <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="1" />
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
-        </Association>
         <EnumType Name="NotificationEnum">
           <Member Name="UserAnswerQuestion" Value="1" />
           <Member Name="UserCommentMainPost" Value="2" />
-          <Member Name="Invited" Value="3" />
-          <Member Name="UserComment" Value="4" />
-          <Member Name="AcceptedAnswer" Value="5" />
-          <Member Name="UserLikeComment" Value="6" />
-          <Member Name="ReceivedPrivilege" Value="7" />
-          <Member Name="Banned" Value="8" />
-          <Member Name="BlockedPost" Value="9" />
-          <Member Name="Voted" Value="10" />
-          <Member Name="SettedRole" Value="11" />
+          <Member Name="Invited" Value="4" />
+          <Member Name="UserComment" Value="8" />
+          <Member Name="AcceptedAnswer" Value="16" />
+          <Member Name="UserLikeComment" Value="32" />
+          <Member Name="ReceivedPrivilege" Value="64" />
+          <Member Name="Banned" Value="128" />
+          <Member Name="BlockedPost" Value="256" />
+          <Member Name="Voted" Value="512" />
+          <Member Name="SettedRole" Value="1024" />
         </EnumType>
         <EnumType Name="AnswerEnum">
           <Member Name="Answer" Value="1" />
@@ -1946,6 +2533,353 @@
           <Member Name="Friend" Value="2" />
           <Member Name="FriendOfFriend" Value="3" />
         </EnumType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Type" Type="CPMathHubModel.ReportTypeEnum" Nullable="false" />
+          <NavigationProperty Name="Reporter" Relationship="CPMathHubModel.ReportUser" FromRole="Report" ToRole="User" />
+          <Property Name="ReporterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.ReportedUser" FromRole="Report" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Post" Relationship="CPMathHubModel.ReportPost" FromRole="Report" ToRole="Post" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ReportUser">
+          <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReporterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="ReportTypeEnum">
+          <Member Name="DuplicateQuestion" Value="1" />
+          <Member Name="Swearing" Value="2" />
+          <Member Name="SpamComment" Value="3" />
+          <Member Name="Other" Value="0" />
+          <Member Name="SpamAnswer" Value="4" />
+          <Member Name="ClonedAccount" Value="5" />
+          <Member Name="SpamQuestion" Value="6" />
+          <Member Name="WrongMainPostPosition" Value="7" />
+        </EnumType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" />
+          <Property Name="Caption" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.ImageUser" FromRole="Image" ToRole="User" />
+          <NavigationProperty Name="Banner" Relationship="CPMathHubModel.BannerImage" FromRole="Image" ToRole="Banner" />
+          <NavigationProperty Name="Advertisement" Relationship="CPMathHubModel.AdvertisementImage" FromRole="Image" ToRole="Advertisement" />
+        </EntityType>
+        <Association Name="ImageUser">
+          <End Type="CPMathHubModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ReportedUser">
+          <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Link" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="CPMathHubModel.BannerImage" FromRole="Banner" ToRole="Image" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Link" Type="String" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="CPMathHubModel.AdvertisementImage" FromRole="Advertisement" ToRole="Image" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="ExpiredDate" Type="DateTime" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="BannerImage">
+          <End Type="CPMathHubModel.Banner" Role="Banner" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Image" Role="Image" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+        </Association>
+        <Association Name="AdvertisementImage">
+          <End Type="CPMathHubModel.Advertisement" Role="Advertisement" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Image" Role="Image" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+        </Association>
+        <EntityType Name="BanAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BannedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="UnBanedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="BanReasons" Relationship="CPMathHubModel.BanAccountBanReason" FromRole="BanAccount" ToRole="BanReason" />
+          <NavigationProperty Name="BannedUser" Relationship="CPMathHubModel.BanAccountUser" FromRole="BanAccount" ToRole="User" />
+          <Property Name="BannedUserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BanUser" Relationship="CPMathHubModel.UserBanAccount" FromRole="BanAccount" ToRole="User" />
+          <Property Name="BanUserId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BanReason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BanAccounts" Relationship="CPMathHubModel.BanAccountBanReason" FromRole="BanReason" ToRole="BanAccount" />
+        </EntityType>
+        <Association Name="BanAccountBanReason">
+          <End Type="CPMathHubModel.BanAccount" Role="BanAccount" Multiplicity="*" />
+          <End Type="CPMathHubModel.BanReason" Role="BanReason" Multiplicity="*" />
+        </Association>
+        <Association Name="BanAccountUser">
+          <End Type="CPMathHubModel.BanAccount" Role="BanAccount" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BanAccount">
+              <PropertyRef Name="BannedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserBanAccount">
+          <End Type="CPMathHubModel.BanAccount" Role="BanAccount" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BanAccount">
+              <PropertyRef Name="BanUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EditedContentUser">
+          <End Type="CPMathHubModel.EditedLog" Role="EditedContent" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EditedContent">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="GenderEnum">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="2" />
+          <Member Name="Other" Value="0" />
+        </EnumType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Createddate" Type="String" Nullable="false" />
+          <NavigationProperty Name="Articles" Relationship="CPMathHubModel.SeriesArticle" FromRole="Series" ToRole="Article" />
+          <NavigationProperty Name="Group" Relationship="CPMathHubModel.SeriesGroup" FromRole="Series" ToRole="Group" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="SeriesArticle">
+          <End Type="CPMathHubModel.Series" Role="Series" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SeriesGroup">
+          <End Type="CPMathHubModel.Series" Role="Series" Multiplicity="*" />
+          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="ProvinceEnum">
+          <Member Name="Other" Value="0" />
+          <Member Name="AnGiang" Value="1" />
+          <Member Name="BacGiang" Value="2" />
+        </EnumType>
+        <EnumType Name="EducationEnum">
+          <Member Name="PrimarySchool" Value="1" />
+          <Member Name="SecondarySchool" Value="2" />
+          <Member Name="HighSchool" Value="3" />
+          <Member Name="Student" Value="4" />
+          <Member Name="Bachelor" Value="5" />
+          <Member Name="Master" Value="6" />
+          <Member Name="Doctor" Value="7" />
+          <Member Name="Professor" Value="8" />
+        </EnumType>
+        <EntityType Name="ProfileHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="Career" Type="String" Nullable="false" />
+          <Property Name="FromTime" Type="DateTime" Nullable="false" />
+          <Property Name="ToTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.ProfileHistoryUser" FromRole="ProfileHistory" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ProfileHistoryUser">
+          <End Type="CPMathHubModel.ProfileHistory" Role="ProfileHistory" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileHistory">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="PostStatusEnum">
+          <Member Name="Active" Value="1" />
+          <Member Name="Closed" Value="2" />
+          <Member Name="Hidden" Value="3" />
+        </EnumType>
+        <EnumType Name="GroupTypeEnum">
+          <Member Name="Public" Value="1" />
+          <Member Name="Private" Value="2" />
+        </EnumType>
+        <Association Name="SubscribeGroup">
+          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="*" >
+          </End>
+        </Association>
+        <EnumType Name="UserStatusEnum">
+          <Member Name="Active" Value="1" />
+          <Member Name="Banned" Value="2" />
+          <Member Name="Pending" Value="3" />
+        </EnumType>
+        <Association Name="Follow">
+          <End Type="CPMathHubModel.User" Role="Follower" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="Followee" Multiplicity="*" />
+        </Association>
+        <Association Name="InvitedUser">
+          <End Type="CPMathHubModel.Invitation" Role="Invitation" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invitation">
+              <PropertyRef Name="InviteeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReportPost">
+          <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
+          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" />
+          <NavigationProperty Name="ChildrenLocations" Relationship="CPMathHubModel.LocationLocation" FromRole="ParentLocation" ToRole="ChildrenLocation" />
+          <NavigationProperty Name="ParentLocation" Relationship="CPMathHubModel.LocationLocation" FromRole="ChildrenLocation" ToRole="ParentLocation" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="CPMathHubModel.LocationProfile" FromRole="Location" ToRole="Profile" />
+        </EntityType>
+        <Association Name="LocationLocation">
+          <End Type="CPMathHubModel.Location" Role="ParentLocation" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CPMathHubModel.Location" Role="ChildrenLocation" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="ParentLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChildrenLocation">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocationProfile">
+          <End Type="CPMathHubModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="1" />
+        </Association>
+        <Association Name="UserActivity">
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1961,6 +2895,8 @@
           <ScalarProperty Name="LastEditedDate" ColumnName="LastEditedDate" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="VoteUp" ColumnName="VoteUp" />
+          <ScalarProperty Name="VoteDown" ColumnName="VoteDown" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Comment)">
@@ -1975,6 +2911,7 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="View" ColumnName="View" />
           <ScalarProperty Name="Privacy" ColumnName="Privacy" />
+          <ScalarProperty Name="LastViewed" ColumnName="LastViewed" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Question)">
@@ -1994,6 +2931,8 @@
         <MappingFragment StoreEntitySet="Posts_Article">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="PublicDate" ColumnName="PublicDate" />
+          <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Discussion)">
@@ -2009,7 +2948,7 @@
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Reputaion" ColumnName="Reputaion" />
+          <ScalarProperty Name="Reputation" ColumnName="Reputation" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -2022,10 +2961,12 @@
           <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="School" ColumnName="School" />
           <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Facebook" ColumnName="Facebook" />
           <ScalarProperty Name="Summary" ColumnName="Summary" />
           <ScalarProperty Name="ViewPoint" ColumnName="ViewPoint" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2046,16 +2987,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Subscriptions">
-      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Subscription)">
-        <MappingFragment StoreEntitySet="Subscriptions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SubsAction" ColumnName="SubsAction" />
-          <ScalarProperty Name="FollowerId" ColumnName="FollowerId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2065,7 +2997,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="InvitedDate" ColumnName="InvitedDate" />
           <ScalarProperty Name="MainPostId" ColumnName="MainPostId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InviterId" ColumnName="InviterId" />
+          <ScalarProperty Name="InviteeId" ColumnName="InviteeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2095,6 +3028,7 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="AssessedDate" ColumnName="AssessedDate" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2133,6 +3067,7 @@
         <MappingFragment StoreEntitySet="Conversations">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2170,12 +3105,13 @@
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Setting" ColumnName="Setting" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserRelationships">
-      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.UserRelationship)">
-        <MappingFragment StoreEntitySet="UserRelationships">
+    <EntitySetMapping Name="UserFriendships">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.UserFriendship)">
+        <MappingFragment StoreEntitySet="UserFriendships">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -2195,13 +3131,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EditedContents">
-      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.EditedContent)">
-        <MappingFragment StoreEntitySet="EditedContents">
+    <EntitySetMapping Name="EditedLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.EditedLog)">
+        <MappingFragment StoreEntitySet="EditedLogs">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2214,6 +3151,7 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2230,6 +3168,112 @@
           <ScalarProperty Name="AnswerDownVote" ColumnName="AnswerDownVote" />
           <ScalarProperty Name="AcceptedAnswer" ColumnName="AcceptedAnswer" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Report)">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ReporterId" ColumnName="ReporterId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Image)">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Banner)">
+        <MappingFragment StoreEntitySet="Banners">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Advertisements">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Advertisement)">
+        <MappingFragment StoreEntitySet="Advertisements">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BanAccounts">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.BanAccount)">
+        <MappingFragment StoreEntitySet="BanAccounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BannedDate" ColumnName="BannedDate" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="UnBanedDate" ColumnName="UnBanedDate" />
+          <ScalarProperty Name="BannedUserId" ColumnName="BannedUserId" />
+          <ScalarProperty Name="BanUserId" ColumnName="BanUserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BanReasons">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.BanReason)">
+        <MappingFragment StoreEntitySet="BanReasons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Series">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Series)">
+        <MappingFragment StoreEntitySet="Series">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.ProfileHistory)">
+        <MappingFragment StoreEntitySet="ProfileHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Career" ColumnName="Career" />
+          <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+          <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Location)">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2257,7 +3301,7 @@
         <ScalarProperty Name="Id" ColumnName="FavoriteUsers_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="BookmarkPost" TypeName="CPMathHubModel.UserMainPost" StoreEntitySet="BookmarkPost">
+    <AssociationSetMapping Name="BookmarkMainPost" TypeName="CPMathHubModel.BookmarkMainPost" StoreEntitySet="BookmarkMainPost">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="BookmarkUsers_Id" />
       </EndProperty>
@@ -2265,7 +3309,7 @@
         <ScalarProperty Name="Id" ColumnName="Bookmarks_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="FollowPost" TypeName="CPMathHubModel.UserMainPost1" StoreEntitySet="FollowPost">
+    <AssociationSetMapping Name="FollowMainPost" TypeName="CPMathHubModel.FollowMainPost" StoreEntitySet="FollowMainPost">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="FollowUsers_Id" />
       </EndProperty>
@@ -2313,7 +3357,64 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ActivityUser" TypeName="CPMathHubModel.ActivityUser" StoreEntitySet="Activities">
+    <AssociationSetMapping Name="ImageUser" TypeName="CPMathHubModel.ImageUser" StoreEntitySet="Users">
+      <EndProperty Name="Image">
+        <ScalarProperty Name="Id" ColumnName="Avatar_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Avatar_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BannerImage" TypeName="CPMathHubModel.BannerImage" StoreEntitySet="Banners">
+      <EndProperty Name="Image">
+        <ScalarProperty Name="Id" ColumnName="Image_Id" />
+      </EndProperty>
+      <EndProperty Name="Banner">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AdvertisementImage" TypeName="CPMathHubModel.AdvertisementImage" StoreEntitySet="Advertisements">
+      <EndProperty Name="Image">
+        <ScalarProperty Name="Id" ColumnName="Image_Id" />
+      </EndProperty>
+      <EndProperty Name="Advertisement">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BanAccountBanReason" TypeName="CPMathHubModel.BanAccountBanReason" StoreEntitySet="BanAccountBanReason">
+      <EndProperty Name="BanAccount">
+        <ScalarProperty Name="Id" ColumnName="BanAccounts_Id" />
+      </EndProperty>
+      <EndProperty Name="BanReason">
+        <ScalarProperty Name="Id" ColumnName="BanReasons_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SubscribeGroup" TypeName="CPMathHubModel.SubscribeGroup" StoreEntitySet="SubscribeGroup">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="SubscribedGroups_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Subscribers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Follow" TypeName="CPMathHubModel.Follow" StoreEntitySet="Follow">
+      <EndProperty Name="Follower">
+        <ScalarProperty Name="Id" ColumnName="Followees_Id" />
+      </EndProperty>
+      <EndProperty Name="Followee">
+        <ScalarProperty Name="Id" ColumnName="Followers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocationProfile" TypeName="CPMathHubModel.LocationProfile" StoreEntitySet="Locations">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="Location">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserActivity" TypeName="CPMathHubModel.UserActivity" StoreEntitySet="Activities">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="User_Id" />
       </EndProperty>
