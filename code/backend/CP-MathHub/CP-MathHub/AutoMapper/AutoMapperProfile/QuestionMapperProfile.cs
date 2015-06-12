@@ -20,18 +20,28 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             // Question           
             Mapper.CreateMap<Question, QuestionItemViewModel>()
                 .ForMember(
-                s => s.AnswerNum,
-                d => d.MapFrom(m => new MathHubUoW().Repository<Answer>().Table.Count(p => p.QuestionId == m.Id & p.Type == AnswerEnum.Answer))
+                    s => s.AnswerNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Answer>()
+                        .Table.Count(p => p.QuestionId == m.Id & p.Type == AnswerEnum.Answer))
                 )
                 .ForMember(
-               s => s.HintNum,
-                d => d.MapFrom(m => new MathHubUoW().Repository<Answer>().Table.Count(p => p.QuestionId == m.Id & p.Type == AnswerEnum.Hint))
+                    s => s.HintNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Answer>()
+                        .Table.Count(p => p.QuestionId == m.Id & p.Type == AnswerEnum.Hint))
                 )
                 .ForMember(
-                s => s.ReportNum,
-                d => d.MapFrom(m => new MathHubUoW().Repository<Report>().Table.Count(p => p.PostId == m.Id))
+                    s => s.ReportNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
+                        .Table.Count(p => p.PostId == m.Id))
                 )
-                ;
+                .ForMember(
+                    s => s.BookmarkNum,
+                    d => d.MapFrom(m => m.BookmarkUsers.Count)
+                )
+                .ForMember(
+                    s => s.ShareNum,
+                    d => d.MapFrom(m => m.Sharers.Count)
+                );
         }
     }
 }

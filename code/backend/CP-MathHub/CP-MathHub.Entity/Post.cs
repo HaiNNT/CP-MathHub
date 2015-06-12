@@ -28,8 +28,8 @@ namespace CP_MathHub.Entity
         public System.DateTime LastEditedDate { get; set; }
         public int UserId { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
-        public int VoteUp { get; set; }
-        public int VoteDown { get; set; }
+        public Nullable<int> VoteUp { get; set; }
+        public Nullable<int> VoteDown { get; set; }
     
         public virtual User Author { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

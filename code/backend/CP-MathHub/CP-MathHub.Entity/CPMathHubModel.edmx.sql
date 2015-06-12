@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/11/2015 22:12:12
--- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub.git\trunk\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 06/12/2015 15:53:04
+-- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -368,8 +368,8 @@ CREATE TABLE [dbo].[Posts] (
     [LastEditedDate] datetime  NOT NULL,
     [UserId] int  NOT NULL,
     [Status] int  NULL,
-    [VoteUp] int  NOT NULL,
-    [VoteDown] int  NOT NULL
+    [VoteUp] int  NULL,
+    [VoteDown] int  NULL
 );
 GO
 

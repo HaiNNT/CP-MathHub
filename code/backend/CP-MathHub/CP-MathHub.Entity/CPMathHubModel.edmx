@@ -323,8 +323,8 @@
     <Property Name="LastEditedDate" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="true" />
-    <Property Name="VoteUp" Type="int" Nullable="false" />
-    <Property Name="VoteDown" Type="int" Nullable="false" />
+    <Property Name="VoteUp" Type="int" Nullable="true" />
+    <Property Name="VoteDown" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -1859,8 +1859,8 @@
           <NavigationProperty Name="Votes" Relationship="CPMathHubModel.VotePost" FromRole="Post" ToRole="Vote" />
           <Property Name="Status" Type="CPMathHubModel.PostStatusEnum" Nullable="true" />
           <NavigationProperty Name="EditedContents" Relationship="CPMathHubModel.EditedContentPost" FromRole="Post" ToRole="EditedContent" />
-          <Property Name="VoteUp" Type="Int32" Nullable="false" />
-          <Property Name="VoteDown" Type="Int32" Nullable="false" />
+          <Property Name="VoteUp" Type="Int32" Nullable="true" />
+          <Property Name="VoteDown" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Reports" Relationship="CPMathHubModel.ReportPost" FromRole="Post" ToRole="Report" />
         </EntityType>
         <EntityType Name="MainPost" BaseType="CPMathHubModel.Post" Abstract="true">

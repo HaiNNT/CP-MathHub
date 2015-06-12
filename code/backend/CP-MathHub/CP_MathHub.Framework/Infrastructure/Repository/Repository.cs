@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Data;
 using System.Data.Entity;
 using CP_MathHub.Core.Interfaces.Repository;
+using CP_MathHub.Core.Configuration;
 using CP_MathHub.Entity;
 
 
@@ -34,7 +35,7 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "",
             int skip = 0,
-            int take = 10)
+            int take = Constant.Question.Integer.PagingDefaultTake)
         {
             IQueryable<TEntity> query = dbSet;
 

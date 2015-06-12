@@ -18,7 +18,7 @@ namespace CP_MathHub.Models.Question
         public int HintNum { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public int FavoriteNum { get; set; }
+        public int BookmarkNum { get; set; }
         public int ReportNum { get; set; }
         public int ShareNum { get; set; }
 
