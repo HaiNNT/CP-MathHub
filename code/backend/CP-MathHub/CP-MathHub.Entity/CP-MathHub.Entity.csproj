@@ -147,7 +147,7 @@
     <Compile Include="Notification.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NotificationEnum.cs">
+    <Compile Include="NotificationSettingEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Participation.cs">

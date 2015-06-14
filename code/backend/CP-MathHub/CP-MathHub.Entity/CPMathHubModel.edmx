@@ -172,7 +172,7 @@
       <End Role="FriendRequestion" EntitySet="UserFriendships" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="TargetUser" Association="CPMathHubModel.Store.FriendRequestionUser1">
+    <AssociationSet Name="RequestedFriend" Association="CPMathHubModel.Store.RequestedFriend">
       <End Role="FriendRequestion" EntitySet="UserFriendships" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
@@ -481,7 +481,6 @@
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Setting" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserFriendships">
     <Key>
@@ -502,6 +501,7 @@
     <Property Name="ReceiveEmail" Type="bit" Nullable="false" />
     <Property Name="SendRequest" Type="int" Nullable="false" />
     <Property Name="SeenBlog" Type="int" Nullable="false" />
+    <Property Name="Notification" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="EditedLogs">
@@ -796,9 +796,7 @@
   </Association>
   <Association Name="CommentPost">
     <End Role="Comment" Type="CPMathHubModel.Store.Posts_Comment" Multiplicity="*" />
-    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Post">
         <PropertyRef Name="Id" />
@@ -809,9 +807,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="QuestionAnswer">
-    <End Role="Question" Type="CPMathHubModel.Store.Posts_Question" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Question" Type="CPMathHubModel.Store.Posts_Question" Multiplicity="1" />
     <End Role="Answer" Type="CPMathHubModel.Store.Posts_Answer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Question">
@@ -978,11 +974,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FriendRequestionUser1">
+  <Association Name="RequestedFriend">
     <End Role="FriendRequestion" Type="CPMathHubModel.Store.UserFriendships" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -1100,9 +1094,7 @@
   </Association>
   <Association Name="ReportedUser">
     <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -1247,9 +1239,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="LocationLocation">
-    <End Role="ParentLocation" Type="CPMathHubModel.Store.Locations" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="ParentLocation" Type="CPMathHubModel.Store.Locations" Multiplicity="1" />
     <End Role="ChildrenLocation" Type="CPMathHubModel.Store.Locations" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ParentLocation">
@@ -1724,7 +1714,7 @@
             <End Role="FriendRequestion" EntitySet="UserFriendships" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="TargetUser" Association="CPMathHubModel.FriendRequestionUser1">
+          <AssociationSet Name="RequestedFriend" Association="CPMathHubModel.RequestedFriend">
             <End Role="FriendRequestion" EntitySet="UserFriendships" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
@@ -1900,7 +1890,7 @@
           <NavigationProperty Name="Attendances" Relationship="CPMathHubModel.AttendanceUser" FromRole="User" ToRole="Attendance" />
           <NavigationProperty Name="SharedMainPosts" Relationship="CPMathHubModel.ShareMainPost" FromRole="User" ToRole="MainPost" />
           <NavigationProperty Name="ActiveRelationships" Relationship="CPMathHubModel.RequestFriend" FromRole="User" ToRole="FriendRequestion" />
-          <NavigationProperty Name="PassiveRelationship" Relationship="CPMathHubModel.FriendRequestionUser1" FromRole="User" ToRole="FriendRequestion" />
+          <NavigationProperty Name="PassiveRelationship" Relationship="CPMathHubModel.RequestedFriend" FromRole="User" ToRole="FriendRequestion" />
           <NavigationProperty Name="Notifications" Relationship="CPMathHubModel.NotificationUser" FromRole="User" ToRole="Notification" />
           <NavigationProperty Name="PrivacySetting" Relationship="CPMathHubModel.PrivacySettingUser" FromRole="User" ToRole="PrivacySetting" />
           <NavigationProperty Name="GroupParticipations" Relationship="CPMathHubModel.ParticipationUser" FromRole="User" ToRole="Participation" />
@@ -1960,7 +1950,6 @@
         <Association Name="CommentPost">
           <End Type="CPMathHubModel.Comment" Role="Comment" Multiplicity="*" />
           <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
           </End>
           <ReferentialConstraint>
             <Principal Role="Post">
@@ -1982,7 +1971,6 @@
         </EntityType>
         <Association Name="QuestionAnswer">
           <End Type="CPMathHubModel.Question" Role="Question" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
           </End>
           <End Type="CPMathHubModel.Answer" Role="Answer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2313,10 +2301,9 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="Seen" Type="Boolean" Nullable="false" />
           <Property Name="Link" Type="String" Nullable="false" />
-          <Property Name="Type" Type="CPMathHubModel.NotificationEnum" Nullable="false" />
+          <Property Name="Type" Type="CPMathHubModel.NotificationSettingEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.NotificationUser" FromRole="Notification" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Setting" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UserFriendship">
           <Key>
@@ -2326,7 +2313,7 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.RequestFriend" FromRole="FriendRequestion" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TargetUser" Relationship="CPMathHubModel.FriendRequestionUser1" FromRole="FriendRequestion" ToRole="User" />
+          <NavigationProperty Name="TargetUser" Relationship="CPMathHubModel.RequestedFriend" FromRole="FriendRequestion" ToRole="User" />
           <Property Name="TargetUserId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="CPMathHubModel.RelationshipEnum" Nullable="false" />
           <Property Name="LastChangeStatus" Type="DateTime" Nullable="false" />
@@ -2345,10 +2332,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FriendRequestionUser1">
+        <Association Name="RequestedFriend">
           <End Type="CPMathHubModel.UserFriendship" Role="FriendRequestion" Multiplicity="*" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
           </End>
           <ReferentialConstraint>
             <Principal Role="User">
@@ -2368,6 +2354,7 @@
           <Property Name="SendRequest" Type="CPMathHubModel.FriendRequestEnum" Nullable="false" />
           <Property Name="SeenBlog" Type="CPMathHubModel.SeenBlogEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.PrivacySettingUser" FromRole="PrivacySetting" ToRole="User" />
+          <Property Name="Notification" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EditedLog">
           <Key>
@@ -2467,7 +2454,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EnumType Name="NotificationEnum">
+        <EnumType Name="NotificationSettingEnum">
           <Member Name="UserAnswerQuestion" Value="1" />
           <Member Name="UserCommentMainPost" Value="2" />
           <Member Name="Invited" Value="4" />
@@ -2589,7 +2576,6 @@
         <Association Name="ReportedUser">
           <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="0..1" >
-            <OnDelete Action="Cascade" />
           </End>
           <ReferentialConstraint>
             <Principal Role="User">
@@ -2857,7 +2843,6 @@
         </EntityType>
         <Association Name="LocationLocation">
           <End Type="CPMathHubModel.Location" Role="ParentLocation" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
           </End>
           <End Type="CPMathHubModel.Location" Role="ChildrenLocation" Multiplicity="*" >
           </End>
@@ -3105,7 +3090,6 @@
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Setting" ColumnName="Setting" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -3128,6 +3112,7 @@
           <ScalarProperty Name="ReceiveEmail" ColumnName="ReceiveEmail" />
           <ScalarProperty Name="SendRequest" ColumnName="SendRequest" />
           <ScalarProperty Name="SeenBlog" ColumnName="SeenBlog" />
+          <ScalarProperty Name="Notification" ColumnName="Notification" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

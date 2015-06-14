@@ -11,7 +11,7 @@ namespace CP_MathHub.Entity
 {
     using System;
     
-    public enum NotificationEnum : int
+    public enum NotificationSettingEnum : int
     {
         UserAnswerQuestion = 1,
         UserCommentMainPost = 2,

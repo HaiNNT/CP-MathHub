@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/12/2015 15:53:04
+-- Date Created: 06/14/2015 11:11:36
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -525,8 +525,7 @@ CREATE TABLE [dbo].[Notifications] (
     [Seen] bit  NOT NULL,
     [Link] nvarchar(max)  NOT NULL,
     [Type] int  NOT NULL,
-    [UserId] int  NOT NULL,
-    [Setting] int  NOT NULL
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -547,6 +546,7 @@ CREATE TABLE [dbo].[PrivacySettings] (
     [ReceiveEmail] bit  NOT NULL,
     [SendRequest] int  NOT NULL,
     [SeenBlog] int  NOT NULL,
+    [Notification] int  NOT NULL,
     [User_Id] int  NOT NULL
 );
 GO
@@ -1125,7 +1125,7 @@ ADD CONSTRAINT [FK_CommentPost]
     FOREIGN KEY ([PostId])
     REFERENCES [dbo].[Posts]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CommentPost'
@@ -1140,7 +1140,7 @@ ADD CONSTRAINT [FK_QuestionAnswer]
     FOREIGN KEY ([QuestionId])
     REFERENCES [dbo].[Posts_Question]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_QuestionAnswer'
@@ -1499,15 +1499,15 @@ GO
 
 -- Creating foreign key on [TargetUserId] in table 'UserFriendships'
 ALTER TABLE [dbo].[UserFriendships]
-ADD CONSTRAINT [FK_FriendRequestionUser1]
+ADD CONSTRAINT [FK_RequestedFriend]
     FOREIGN KEY ([TargetUserId])
     REFERENCES [dbo].[Users]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_FriendRequestionUser1'
-CREATE INDEX [IX_FK_FriendRequestionUser1]
+-- Creating non-clustered index for FOREIGN KEY 'FK_RequestedFriend'
+CREATE INDEX [IX_FK_RequestedFriend]
 ON [dbo].[UserFriendships]
     ([TargetUserId]);
 GO
@@ -1638,7 +1638,7 @@ ADD CONSTRAINT [FK_ReportedUser]
     FOREIGN KEY ([UserId])
     REFERENCES [dbo].[Users]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ReportedUser'
@@ -1875,7 +1875,7 @@ ADD CONSTRAINT [FK_LocationLocation]
     FOREIGN KEY ([ParentId])
     REFERENCES [dbo].[Locations]
         ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_LocationLocation'

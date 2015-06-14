@@ -18,6 +18,7 @@ namespace CP_MathHub.Entity
         public bool ReceiveEmail { get; set; }
         public FriendRequestEnum SendRequest { get; set; }
         public SeenBlogEnum SeenBlog { get; set; }
+        public int Notification { get; set; }
     
         public virtual User User { get; set; }
     }
