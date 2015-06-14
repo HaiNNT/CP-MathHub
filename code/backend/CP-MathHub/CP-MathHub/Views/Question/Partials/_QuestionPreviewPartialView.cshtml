@@ -1,10 +1,10 @@
-﻿@model CP_MathHub.Models.Question.QuestionItemViewModel
+﻿@model CP_MathHub.Models.Question.QuestionPreviewViewModel
 
 
-<h3><a href="#">@Model.Title</a></h3><br />
+<h3>@Html.ActionLink(Model.Title, "Detail", "Question", new { Model.Id}, null)</h3><br />
 <ul>
     @*<li>User:@Model.UserInfo.Username</li>*@
-    <li>Id:@Html.Raw(@Model.Id) </li>
+    <li>Id:@Model.Id </li>
     <li>Content: @Html.Raw(@Model.Content) </li>
     <li>DateCreated: @Model.CreatedDate </li>
     <li>UserId: @Model.UserId </li>
@@ -15,6 +15,11 @@
     <li>BookmarkNum: @Model.BookmarkNum </li>
     <li>ShareNum: @Model.ShareNum </li>
     <li>ReportNum: @Model.ReportNum </li>
-
-
+</ul>
+<h4>Tag</h4>
+<ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Name</li>
+    }
 </ul>

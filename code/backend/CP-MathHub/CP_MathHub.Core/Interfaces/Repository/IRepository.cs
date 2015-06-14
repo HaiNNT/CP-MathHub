@@ -34,9 +34,9 @@ namespace CP_MathHub.Core.Interfaces.Repository
             int skip = 0,
             int take = Constant.Question.Integer.PagingDefaultTake);
         void Insert(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        void Delete(int id);
+        bool Update(TEntity entity);
+        bool Delete(TEntity entity);
+        bool Delete(int id);
         IQueryable<TEntity> Table { get; }
     }
 }

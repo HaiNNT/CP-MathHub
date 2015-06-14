@@ -14,11 +14,23 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get Default Questions
         /// </summary>
         /// <returns></returns>
-        List<Question> getQuestions(string homeTab, int skip = 0);
+        List<Question> GetQuestions(string homeTab, int skip = 0);
         /// <summary>
         /// Get Questions by Author
         /// </summary>
         /// <returns></returns>
-        List<Question> getQuestions(int authorId);
+        List<Question> GetQuestions(int authorId);
+        /// <summary>
+        /// Get detail of a Question
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Question GetQuestionDetail(int id);
+        /// <summary>
+        /// Insert a Question
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
+        void InsertQuestion(Question question);
     }
 }

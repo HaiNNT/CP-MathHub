@@ -1,10 +1,10 @@
 ﻿@using CP_MathHub.Models.Question
-@model ICollection<QuestionItemViewModel>
+@model ICollection<QuestionPreviewViewModel>
 <h2>Number: @Model.Count</h2>
 @{
 
-    foreach (QuestionItemViewModel question in Model)
+    foreach (QuestionPreviewViewModel question in Model)
     {
-        @Html.Partial("Partials/_QuestionItemPartialView", question);
+        @Html.Partial("Partials/_QuestionPreviewPartialView", question);
     }
 }

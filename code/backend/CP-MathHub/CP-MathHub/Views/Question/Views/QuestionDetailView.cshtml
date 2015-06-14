@@ -1,0 +1,73 @@
+﻿@using CP_MathHub.Models.Question
+@model QuestionDetailViewModel
+@{
+    ViewBag.Title = "QuestionDetailView";
+    Layout = "~/Views/Question/Layouts/_QuestionDetailLayout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<ul>
+    @*<li>User:@Model.UserInfo.Username</li>*@
+    <li>Id:@Model.Id</li>
+    <li>Content: @Html.Raw(@Model.Content) </li>
+    <li>DateCreated: @Model.CreatedDate </li>
+    <li>UserId: @Model.UserId </li>
+    <li>VoteUpNum: @Model.VoteUp</li>
+    <li>VoteDownNum: @Model.VoteDown </li>
+    <li>AnswerNum: @Model.Answers.Count </li>
+    <li>BookmarkNum: @Model.BookmarkNum </li>
+    <li>ShareNum: @Model.ShareNum </li>
+    <li>ReportNum: @Model.ReportNum </li>
+</ul>
+<h3>Tag</h3>
+<ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Name</li>
+    }
+</ul>
+<h3>Comment</h3>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>@comment.Content</li>
+    }
+</ul>
+<h3>Answer</h3>
+<ul>
+    @foreach (var answer in Model.Answers)
+    {
+        <li>
+            <div>Id: @answer.Id</div>
+            <div>Content: @answer.Content</div>
+            <div>CreatedDate: @answer.CreatedDate</div>
+            <div>Vote: @(answer.VoteUp - answer.VoteDown)</div>
+            <div>Comment:
+                <ul>
+                    @foreach (var comment in answer.Comments)
+                    {
+                        <li>@comment.Content</li>
+                    }
+                </ul>
+            </div>
+        </li>
+    }
+</ul>
+@section LeftPanel
+{
+    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.GroupWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+}
+@section RightPanel
+{
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}

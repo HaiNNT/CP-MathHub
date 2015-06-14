@@ -19,7 +19,7 @@ namespace CP_MathHub.Service.Services
         {
             dal = new MathHubUoW();   
         }
-        public List<Question> getQuestions(string homeTab, int skip = 0)
+        public List<Question> GetQuestions(string homeTab, int skip = 0)
         {
             List<Question> list = new List<Question>();
             switch (homeTab)
@@ -59,18 +59,22 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        /// <summary>
-        /// Get Questions by Author
-        /// </summary>
-        /// <param name="authorId"></param>
-        /// <returns></returns>
-        public List<Question> getQuestions(int authorId)
+        public List<Question> GetQuestions(int authorId)
         {
             return dal.Repository<Question>() //Get Question Repository
                 .Get(
                     (a => a.UserId > 0), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)) //Order Question by CreatedDate
                 ).ToList();
+        }
+        public Question GetQuestionDetail(int id)
+        {
+            return dal.Repository<Question>().GetById(id);
+        }
+        public void InsertQuestion(Question question)
+        {
+            dal.Repository<Question>().Insert(question);
+            //dal.Save();
         }
     }
 }

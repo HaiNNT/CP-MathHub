@@ -62,28 +62,32 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
 
         public void Insert(TEntity entity)
         {
-            dbSet.Add(entity);           
+            context.Entry(entity).State = EntityState.Added;
+            dbSet.Add(entity);
+            context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
+            return Delete(entityToDelete);
         }
 
-        public void Delete(TEntity entityToDelete)
+        public bool Delete(TEntity entityToDelete)
         {
             if (context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 dbSet.Attach(entityToDelete);
             }
             dbSet.Remove(entityToDelete);
+            return true;
         }
 
-        public void Update(TEntity entityToUpdate)
+        public bool Update(TEntity entityToUpdate)
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+            return true;
         }
 
         public IQueryable<TEntity> Table

@@ -137,8 +137,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\UserInfoViewModel.cs" />
+    <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
+    <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
-    <Compile Include="Models\Question\QuestionItemViewModel.cs" />
+    <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +176,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Question\Layouts\_QuestionHomeLayout.cshtml" />
     <Content Include="Views\Question\Partials\_QuestionListPartialView.cshtml" />
-    <Content Include="Views\Question\Partials\_QuestionItemPartialView.cshtml" />
+    <Content Include="Views\Question\Partials\_QuestionPreviewPartialView.cshtml" />
     <Content Include="Views\Question\Views\QuestionHomeView.cshtml" />
+    <Content Include="Views\Question\Layouts\_QuestionDetailLayout.cshtml" />
+    <Content Include="Views\Question\Views\QuestionDetailView.cshtml" />
+    <Content Include="Views\Question\Layouts\_QuestionCreateLayout.cshtml" />
+    <Content Include="Views\Question\Views\QuestionCreateView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

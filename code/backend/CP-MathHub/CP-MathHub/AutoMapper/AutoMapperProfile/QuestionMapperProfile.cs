@@ -17,8 +17,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            // Question           
-            Mapper.CreateMap<Question, QuestionItemViewModel>()
+            // Question Preview      
+            Mapper.CreateMap<Question, QuestionPreviewViewModel>()
                 .ForMember(
                     s => s.AnswerNum,
                     d => d.MapFrom(m => new MathHubUoW().Repository<Answer>()
@@ -41,6 +41,38 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 .ForMember(
                     s => s.ShareNum,
                     d => d.MapFrom(m => m.Sharers.Count)
+                )
+                .ForMember(
+                    s => s.Tags,
+                    d => d.MapFrom(m => m.Tags)
+                );
+
+            //Question Detail
+            Mapper.CreateMap<Question, QuestionDetailViewModel>()
+                .ForMember(
+                    s => s.ReportNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
+                        .Table.Count(p => p.PostId == m.Id))
+                )
+                .ForMember(
+                    s => s.BookmarkNum,
+                    d => d.MapFrom(m => m.BookmarkUsers.Count)
+                )
+                .ForMember(
+                    s => s.ShareNum,
+                    d => d.MapFrom(m => m.Sharers.Count)
+                )
+                .ForMember(
+                    s => s.Answers,
+                    d => d.MapFrom(m => m.Answers)
+                )
+                .ForMember(
+                    s => s.Comments,
+                    d => d.MapFrom(m => m.Comments)
+                )
+                .ForMember(
+                    s => s.Tags,
+                    d => d.MapFrom(m => m.Tags)
                 );
         }
     }

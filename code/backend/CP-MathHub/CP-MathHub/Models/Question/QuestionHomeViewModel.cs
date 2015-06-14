@@ -8,7 +8,7 @@ namespace CP_MathHub.Models.Question
     public class QuestionHomeViewModel
     {
         public string Name { get; set; }
-        public ICollection<QuestionItemViewModel> Items { get; set; }
+        public ICollection<QuestionPreviewViewModel> Items { get; set; }
     
     }
 }
