@@ -19,7 +19,7 @@ namespace CP_MathHub.Controllers
             return View();
         }
 
-        public ActionResult Contact(string hai)
+        public ActionResult Contact()
         {
 
 
