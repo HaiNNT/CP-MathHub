@@ -7,6 +7,14 @@
 
 <h2>QuestionHomeView</h2>
 
+@using (Html.BeginForm("Search", "Question",FormMethod.Get))
+{
+    <div>
+        Title: @Html.TextBox("searchString") <br />
+        <input type="submit" value="Search" />
+    </div>
+}
+
 @{
 <h3>@Model.Name</h3>
     @Html.Partial("Partials/_QuestionListPartialView", @Model.Items);

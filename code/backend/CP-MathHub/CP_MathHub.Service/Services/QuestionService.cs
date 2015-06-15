@@ -74,7 +74,29 @@ namespace CP_MathHub.Service.Services
         public void InsertQuestion(Question question)
         {
             dal.Repository<Question>().Insert(question);
-            //dal.Save();
+            dal.Save();
+        }
+        public void EditQuestion(Question question)
+        {
+            dal.Repository<Question>().Update(question);
+            dal.Save();
+        }
+        public void DeleteQuestion(Question question)
+        {
+            dal.Repository<Question>().Delete(question);
+            dal.Save();
+        }
+        public List<Question> SearchQuestion(string searchString)
+        {
+            List<Question> list = new List<Question>();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = dal.Repository<Question>()
+                               .Get(p => p.Title.Contains(searchString),
+                               (p => p.OrderBy(s => s.CreatedDate))
+                               ).ToList();
+            }
+            return list;
         }
     }
 }

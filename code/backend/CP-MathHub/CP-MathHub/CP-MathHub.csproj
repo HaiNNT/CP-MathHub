@@ -138,7 +138,9 @@
     </Compile>
     <Compile Include="Models\Account\UserInfoViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
+    <Compile Include="Models\Question\QuestionDeleteViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
+    <Compile Include="Models\Question\QuestionEditViewModel.cs" />
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,6 +184,10 @@
     <Content Include="Views\Question\Views\QuestionDetailView.cshtml" />
     <Content Include="Views\Question\Layouts\_QuestionCreateLayout.cshtml" />
     <Content Include="Views\Question\Views\QuestionCreateView.cshtml" />
+    <Content Include="Views\Question\Views\QuestionEditView.cshtml" />
+    <Content Include="Views\Question\Layouts\_QuestionEditLayout.cshtml" />
+    <Content Include="Views\Question\Layouts\_QuestionDeleteLayout.cshtml" />
+    <Content Include="Views\Question\Views\QuestionDeleteView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

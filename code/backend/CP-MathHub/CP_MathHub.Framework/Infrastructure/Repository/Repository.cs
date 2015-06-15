@@ -52,19 +52,24 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).Skip(skip).Take(take).ToList();
+                query = orderBy(query);
             }
-            else
+            if (query.Count() - 1 > skip)
             {
-                return query.Skip(skip).Take(take).ToList();
+                query = query.Skip(skip);
             }
+            if (query.Count() > take)
+            {
+                query = query.Take(take);
+            }
+            return query.ToList();
+
         }
 
         public void Insert(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Added;
             dbSet.Add(entity);
-            context.SaveChanges();
         }
 
         public bool Delete(int id)

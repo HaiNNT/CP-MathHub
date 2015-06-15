@@ -39,6 +39,21 @@ namespace CP_MathHub.Controllers
 
             return View("Views/QuestionHomeView", questionHomeVM);
         }
+        [HttpGet]
+        public ActionResult Search(string searchString)
+        {
+            QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
+            questionHomeVM.Name = "All Questions";
+            List<Question> questions = qService.SearchQuestion(searchString);
+
+            ICollection<QuestionPreviewViewModel> problemVms =
+                questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
+                .ToList();
+
+            questionHomeVM.Items = problemVms;
+
+            return View("Views/QuestionHomeView", questionHomeVM);
+        }
 
         // GET: Detail
         [HttpGet]
@@ -77,12 +92,66 @@ namespace CP_MathHub.Controllers
             //Console.WriteLine(questionVM.Tags[0]);
             if (question.Id != 0)
             {
-                return Detail(question.Id);
+                return RedirectToAction("Index");
             }
             else
             {
                 return View("Views/Error");
             }
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            QuestionEditViewModel questionEditVM = new QuestionEditViewModel();
+            Question question = qService.GetQuestionDetail(id);
+            questionEditVM.Content = question.Content;
+            questionEditVM.Id = question.Id;
+            questionEditVM.Title = question.Title;
+
+            //QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
+            //Question question = qService.GetQuestionDetail(id);
+
+            //questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
+            return View("Views/QuestionEditView", questionEditVM);
+        }
+        [HttpPost]
+        public ActionResult Edit(QuestionEditViewModel questionVM)
+        {
+            Question question = qService.GetQuestionDetail(questionVM.Id);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = question.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = question.Id;
+            editedlog.UserId = question.UserId;
+            
+            question.Title = questionVM.Title;
+            question.Content = questionVM.Content;
+            question.LastEditedDate = editedlog.CreatedDate;
+            question.EditedContents.Add(editedlog);
+
+            qService.EditQuestion(question);
+
+            return RedirectToAction("Detail", new { id = question.Id });
+        }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            QuestionDeleteViewModel questionDeleteVM = new QuestionDeleteViewModel();
+            Question question = qService.GetQuestionDetail(id);
+
+            questionDeleteVM.Content = question.Content;
+            questionDeleteVM.Id = question.Id;
+            questionDeleteVM.Title = question.Title;
+            return View("Views/QuestionDeleteView", questionDeleteVM);
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            QuestionDeleteViewModel questionDeleteVM = new QuestionDeleteViewModel();
+            Question question = qService.GetQuestionDetail(id);
+            qService.DeleteQuestion(question);
+            return RedirectToAction("Index");
         }
     }
 }
