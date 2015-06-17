@@ -1,0 +1,40 @@
+﻿@using CP_MathHub.Models.Discussion
+@model DiscussionDetailViewModel
+@{
+    ViewBag.Title = "DiscussionDetailView";
+    Layout = "~/Views/Discussion/Layouts/_DiscussionDetailLayout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<ul>
+    @*<li>User:@Model.UserInfo.Username</li>*@
+    <li>Id:@Model.Id</li>
+    <li>Content: @Html.Raw(@Model.Content) </li>
+    <li>DateCreated: @Model.CreatedDate </li>
+</ul>
+<h3>Tag</h3>
+<ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Name</li>
+    }
+</ul>
+@Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+@section LeftPanel
+{
+    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.GroupWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+}
+@section RightPanel
+{
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}

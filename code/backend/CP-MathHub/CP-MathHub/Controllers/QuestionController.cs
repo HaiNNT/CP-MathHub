@@ -79,14 +79,8 @@ namespace CP_MathHub.Controllers
         {
 
             Question question = new Question();
-            question.Title = questionVM.Title;
-            question.Content = questionVM.Content;
-            question.CreatedDate = DateTime.Now;
             question.UserId = 93;
-            question.View = 0;
-            question.Privacy = MainPostPrivacyEnum.Everyone;
-            question.LastViewed = question.CreatedDate;
-            question.LastEditedDate = question.CreatedDate;
+            question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
 
             qService.InsertQuestion(question);
             //Console.WriteLine(questionVM.Tags[0]);
@@ -99,21 +93,17 @@ namespace CP_MathHub.Controllers
                 return View("Views/Error");
             }
         }
+        //GET: Edit
         [HttpGet]
         public ActionResult Edit(int id)
         {
             QuestionEditViewModel questionEditVM = new QuestionEditViewModel();
             Question question = qService.GetQuestionDetail(id);
-            questionEditVM.Content = question.Content;
-            questionEditVM.Id = question.Id;
-            questionEditVM.Title = question.Title;
 
-            //QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
-            //Question question = qService.GetQuestionDetail(id);
-
-            //questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
+            questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
             return View("Views/QuestionEditView", questionEditVM);
         }
+        //Post: Edit
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
@@ -134,21 +124,9 @@ namespace CP_MathHub.Controllers
 
             return RedirectToAction("Detail", new { id = question.Id });
         }
-        [HttpGet]
+        //Delete
         public ActionResult Delete(int id)
         {
-            QuestionDeleteViewModel questionDeleteVM = new QuestionDeleteViewModel();
-            Question question = qService.GetQuestionDetail(id);
-
-            questionDeleteVM.Content = question.Content;
-            questionDeleteVM.Id = question.Id;
-            questionDeleteVM.Title = question.Title;
-            return View("Views/QuestionDeleteView", questionDeleteVM);
-        }
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            QuestionDeleteViewModel questionDeleteVM = new QuestionDeleteViewModel();
             Question question = qService.GetQuestionDetail(id);
             qService.DeleteQuestion(question);
             return RedirectToAction("Index");

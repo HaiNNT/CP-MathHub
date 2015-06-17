@@ -1,0 +1,10 @@
+﻿@using CP_MathHub.Models.Discussion
+@model ICollection<DiscussionPreviewViewModel>
+<h2>Number: @Model.Count</h2>
+@{
+
+    foreach (DiscussionPreviewViewModel discussion in Model)
+    {
+        @Html.Partial("Partials/_DiscussionPreviewPartialView", discussion);
+    }
+}
