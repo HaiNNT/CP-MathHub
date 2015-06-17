@@ -6,6 +6,7 @@ using AutoMapper;
 using Profile = AutoMapper.Profile;
 using CP_MathHub.Entity;
 using CP_MathHub.Models.Question;
+using CP_MathHub.Models.Account;
 using CP_MathHub.DAL;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
@@ -17,6 +18,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
+            //User
+            Mapper.CreateMap<User, UserInfoViewModel>();
+
             // Question Preview      
             Mapper.CreateMap<Question, QuestionPreviewViewModel>()
                 .ForMember(
@@ -45,7 +49,12 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 .ForMember(
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
-                );
+                )
+                .ForMember(
+                    s => s.UserInfo,
+                    d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
+                )
+                ;
 
             //Question Detail
             Mapper.CreateMap<Question, QuestionDetailViewModel>()
