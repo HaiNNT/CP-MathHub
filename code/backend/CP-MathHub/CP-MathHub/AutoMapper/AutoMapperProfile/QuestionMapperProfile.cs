@@ -74,6 +74,35 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
                 );
+            //Create Question
+            Mapper.CreateMap<QuestionCreateViewModel, Question>()
+               .ForMember(
+                   s => s.CreatedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+               .ForMember(
+                   s => s.Tags,
+                   d => d.MapFrom(m => m.Tags)
+               )
+               .ForMember(
+                   s => s.Privacy,
+                   d => d.MapFrom(m => MainPostPrivacyEnum.Everyone)
+               )
+                .ForMember(
+                   s => s.UserId,
+                   d => d.MapFrom(m => 93)
+               )
+                .ForMember(
+                   s => s.LastViewed,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+               .ForMember(
+                   s => s.LastEditedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               );
+            //Edit Question Get
+            Mapper.CreateMap<Question, QuestionEditViewModel>(
+                );
         }
     }
 }
