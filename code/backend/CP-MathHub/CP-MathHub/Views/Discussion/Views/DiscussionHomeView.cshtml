@@ -1,0 +1,40 @@
+﻿@using CP_MathHub.Models.Discussion
+@model DiscussionHomeViewModel
+@{
+    ViewBag.Title = "DiscussionHomeView";
+    Layout = "~/Views/Discussion/Layouts/_DiscussionHomeLayout.cshtml";
+}
+
+<h2>DiscussionHomeView</h2>
+
+@using (Html.BeginForm("Search", "Discussion", FormMethod.Get))
+{
+    <div>
+        Title: @Html.TextBox("searchString") <br />
+        <input type="submit" value="Search" />
+    </div>
+}
+
+@{
+    <h3>@Model.Name</h3>
+    @Html.Partial("Partials/_DiscussionListPartialView", @Model.Items);
+}
+
+@section LeftPanel
+{
+    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.GroupWidget())
+        <hr />
+        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+}
+@section RightPanel
+{
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}

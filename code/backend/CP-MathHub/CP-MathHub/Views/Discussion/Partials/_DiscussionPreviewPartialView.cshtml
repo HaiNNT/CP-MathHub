@@ -1,0 +1,19 @@
+﻿@model CP_MathHub.Models.Discussion.DiscussionPreviewViewModel
+
+
+<h3>@Html.ActionLink(Model.Title, "Detail", "Discussion", new { Model.Id }, null)</h3><br />
+<ul>
+    @*<li>User:@Model.UserInfo.Username</li>*@
+    <li>Id:@Model.Id </li>
+    <li>Content: @Html.Raw(@Model.Content) </li>
+    <li>DateCreated: @Model.CreatedDate </li>
+    <li>UserId: @Model.UserId </li>
+    <li>ReportNum: @Model.ReportNum </li>
+</ul>
+<h4>Tag</h4>
+<ul>
+    @foreach (var tag in Model.Tags)
+    {
+        <li>@tag.Name</li>
+    }
+</ul>

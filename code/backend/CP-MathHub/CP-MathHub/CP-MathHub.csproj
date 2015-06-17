@@ -130,15 +130,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\QuestionMapperProfile.cs" />
+    <Compile Include="Controllers\DiscussionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\UserInfoViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionDetailViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
-    <Compile Include="Models\Question\QuestionDeleteViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
     <Compile Include="Models\Question\QuestionEditViewModel.cs" />
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
@@ -188,6 +194,16 @@
     <Content Include="Views\Question\Layouts\_QuestionEditLayout.cshtml" />
     <Content Include="Views\Question\Layouts\_QuestionDeleteLayout.cshtml" />
     <Content Include="Views\Question\Views\QuestionDeleteView.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionHomeLayout.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionPreviewPartialView.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionHomeView.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionCreateLayout.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionDetailLayout.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionEditLayout.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionCreateView.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionEditView.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionDetailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
