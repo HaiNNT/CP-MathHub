@@ -192,8 +192,6 @@
     <Content Include="Views\Question\Views\QuestionCreateView.cshtml" />
     <Content Include="Views\Question\Views\QuestionEditView.cshtml" />
     <Content Include="Views\Question\Layouts\_QuestionEditLayout.cshtml" />
-    <Content Include="Views\Question\Layouts\_QuestionDeleteLayout.cshtml" />
-    <Content Include="Views\Question\Views\QuestionDeleteView.cshtml" />
     <Content Include="Views\Discussion\Layouts\_DiscussionHomeLayout.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionPreviewPartialView.cshtml" />

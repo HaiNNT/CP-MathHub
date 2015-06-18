@@ -18,10 +18,37 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         protected override void Configure()
         {
             // Discussion Preview      
-            Mapper.CreateMap<Discussion, DiscussionPreviewViewModel>();
+            Mapper.CreateMap<Discussion, DiscussionPreviewViewModel>(
+                );
 
             // Discussion Detail
-            Mapper.CreateMap<Discussion, DiscussionDetailViewModel>();
+            Mapper.CreateMap<Discussion, DiscussionDetailViewModel>(
+                );
+            //Create Question
+            Mapper.CreateMap<DiscussionCreateViewModel, Discussion>()
+               .ForMember(
+                   s => s.CreatedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+               .ForMember(
+                   s => s.Privacy,
+                   d => d.MapFrom(m => MainPostPrivacyEnum.Everyone)
+               )
+                .ForMember(
+                   s => s.UserId,
+                   d => d.MapFrom(m => 93)
+               )
+                .ForMember(
+                   s => s.LastViewed,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+               .ForMember(
+                   s => s.LastEditedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               );
+            //Edit Discussion Get
+            Mapper.CreateMap<Discussion, DiscussionEditViewModel>(
+                );
         }
     }
 }

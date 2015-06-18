@@ -67,7 +67,7 @@ namespace CP_MathHub.Service.Services
                     (p => p.OrderBy(s => s.CreatedDate)) //Order Question by CreatedDate
                 ).ToList();
         }
-        public Question GetQuestionDetail(int id)
+        public Question GetQuestion(int id)
         {
             return dal.Repository<Question>().GetById(id);
         }
