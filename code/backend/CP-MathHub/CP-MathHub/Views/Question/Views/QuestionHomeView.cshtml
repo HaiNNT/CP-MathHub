@@ -41,33 +41,3 @@
     <hr />
     @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
 }
-
-<script type="text/javascript">
-    var page = 0;
-    var i = true;
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && i) {
-                i = false;
-                getMoreQuestion();               
-            }
-        });
-    })
-
-    function getMoreQuestion() {
-        var list = $("#list-questions");
-        $.ajax({
-            method: "GET",
-            url: "Question/Index",
-            data: { tab: "Newest", page: ++page }
-        })
-          .done(function (msg) {
-              console.log(msg);
-              list.append(msg);
-              i = true;
-          })
-          .fail(function () {
-              alert("error");
-          });
-    }
-</script>
