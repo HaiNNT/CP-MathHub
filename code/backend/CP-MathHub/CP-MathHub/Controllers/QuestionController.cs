@@ -66,7 +66,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
-            Question question = qService.GetQuestionDetail(id);
+            Question question = qService.GetQuestion(id);
 
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
             return View("Views/QuestionDetailView", questionDetailVM);
@@ -104,7 +104,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(int id)
         {
             QuestionEditViewModel questionEditVM = new QuestionEditViewModel();
-            Question question = qService.GetQuestionDetail(id);
+            Question question = qService.GetQuestion(id);
 
             questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
             return View("Views/QuestionEditView", questionEditVM);
@@ -113,7 +113,7 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
-            Question question = qService.GetQuestionDetail(questionVM.Id);
+            Question question = qService.GetQuestion(questionVM.Id);
 
             EditedLog editedlog = new EditedLog();
             editedlog.Content = question.Content;
@@ -133,7 +133,7 @@ namespace CP_MathHub.Controllers
         //Delete
         public ActionResult Delete(int id)
         {
-            Question question = qService.GetQuestionDetail(id);
+            Question question = qService.GetQuestion(id);
             qService.DeleteQuestion(question);
             return RedirectToAction("Index");
         }

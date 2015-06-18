@@ -69,7 +69,7 @@ namespace CP_MathHub.Service.Services
                     "Author"
                 ).ToList();
         }
-        public Question GetQuestionDetail(int id)
+        public Question GetQuestion(int id)
         {
             return dal.Repository<Question>().GetById(id);
         }
