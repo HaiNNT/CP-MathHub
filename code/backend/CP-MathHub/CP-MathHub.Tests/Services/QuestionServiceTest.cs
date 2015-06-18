@@ -11,21 +11,30 @@ namespace CP_MathHub.Tests.Services
         [TestMethod]
         public void InsertQuestion()
         {
+            //QuestionService service = new QuestionService();
+
+            //Question question = new Question();
+            //question.Title = "Title 1";
+            //question.Content = "Content 1";
+            //question.CreatedDate = DateTime.Now;
+            //question.UserId = 93;
+            //question.View = 0;
+            //question.Privacy = MainPostPrivacyEnum.Everyone;
+            //question.LastViewed = question.CreatedDate;
+            //question.LastEditedDate = question.CreatedDate;
+
+            //service.InsertQuestion(question);
+
+            Assert.IsFalse(1 == 0);
+        }
+
+        [TestMethod]
+        public void GetQuestion()
+        {
             QuestionService service = new QuestionService();
 
-            Question question = new Question();
-            question.Title = "Title 1";
-            question.Content = "Content 1";
-            question.CreatedDate = DateTime.Now;
-            question.UserId = 93;
-            question.View = 0;
-            question.Privacy = MainPostPrivacyEnum.Everyone;
-            question.LastViewed = question.CreatedDate;
-            question.LastEditedDate = question.CreatedDate;
-
-            service.InsertQuestion(question);
-
-            Assert.IsFalse(question.Id == 0);
+            Question question = service.GetQuestion(250);
+            Assert.IsNotNull(question);
         }
     }
 }

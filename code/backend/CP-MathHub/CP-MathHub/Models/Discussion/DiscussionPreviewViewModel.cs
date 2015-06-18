@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CP_MathHub.Models.Account;
+using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 
 namespace CP_MathHub.Models.Discussion

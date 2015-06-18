@@ -1,0 +1,12 @@
+﻿@model CP_MathHub.Models.Common.ProfileWidgetViewModel
+<div class="mh-profile row">
+    <a href="#"><img src="Content/img/user.jpg"></a>
+    @*<a href="@Url.Action("Index", "Account")"><img src="@Model.Avatar.Url"></a>*@
+    <div>
+        <a href="#">@Model.Username</a>
+        <div class="detail-reputation">
+            <span>@Model.Reputation</span>
+            <i class="fa fa-circle mh-reputation-icon"></i>
+        </div>
+    </div>
+</div>

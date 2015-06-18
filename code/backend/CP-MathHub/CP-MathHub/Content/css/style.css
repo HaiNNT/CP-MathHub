@@ -1,23 +1,21 @@
 /*
 Author: HaiNNT
 Created Date: 2015-06-16
-Edited: TamTV 2015-06-17
-Edited: HaiNNT 2015-06-18
 */
 body {
-	background: #eff3f8;
+    background: #eff3f8;
 }
 
 .panel-info > .panel-footer {
-	color: #31708f;
-	background-color: #d9edf7;
-	border-color: #bce8f1;
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
 }
 
 .panel-warning > .panel-footer {
-	color: #8a6d3b;
-	background-color: #fcf8e3;
-	border-color: #faebcc;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
 }
 
 #mh-header {
@@ -31,15 +29,15 @@ body {
 }
 
 #mh-nav-link > li > a:hover {
-	background-color: #752B20;
-	border: #752B20;
-	color: #fff !important;
+    background-color: #752B20;
+    border: #752B20;
+    color: #fff !important;
 }
 
 
 #mh-logo {
-	width: 169px;
-	margin-top: -5px;
+    width: 169px;
+    margin-top: -5px;
 }
 
 #mh-nav-link {
@@ -55,30 +53,30 @@ body {
 }
 
 .navbar-default .mh-navbar-toggle .icon-bar {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 .mh-notification > li.dropdown > a {
-	color: #752B20;
-	padding: 13px 10px;
-	font-size: 17pt;
+    color: #752B20;
+    padding: 13px 10px;
+    font-size: 17pt;
 }
 
 
 .mh-notification > li.dropdown > a:hover {
-	color: #fff;
-	background-color: #A73D2D;
+    color: #fff;
+    background-color: #A73D2D;
 }
 
 
  .mh-notification > li.open > a {
 	color: #fff !important;
-	background-color: #A73D2D !important;
+    background-color: #A73D2D !important;
 }
 
 .mh-active > a {
 	background-color: #752B20 !important;
-	border: #752B20 !important;
+    border: #752B20 !important;
 }
 
 .dropdown-menu {
@@ -88,7 +86,7 @@ body {
 	margin-right: -5px;
 }
 #mh-nav-user > li > a {
-	padding: 10px 0px 10px 5px;
+    padding: 10px 0px 10px 5px;
 }
 
 #mh-nav-user > li:first-child > a {
@@ -99,12 +97,13 @@ body {
 
 #mh-nav-user > li.open > a {
 	color: #fff !important;
-	background-color: #A73D2D !important;
+    background-color: #A73D2D !important;
 }
 
-#mh-user-icon {
-	width: 30px;
-	height: 30px;
+.mh-user-icon {
+    width: 30px;
+    height: 30px;
+	border: 1px solid silver;
 }
 
 #mh-search-header{
@@ -112,9 +111,9 @@ body {
 }
 
 #mh-search-header i {
-	position: absolute;
-	top: 32%;
-	right: 25px
+    position: absolute;
+    top: 32%;
+    right: 25px
 }
 
 .mh-body {
@@ -169,15 +168,15 @@ body {
 .mh-question-preview > .panel-heading > div > a {
 	width: 40px;
 	float: left;
-	margin: 0px 10px;
+    margin: 0px 10px;
 }
 
 .mh-question-preview > .panel-heading > div > a > img {
-	width: 40px;
-	height: 40px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .mh-question-preview > .panel-heading > div {
@@ -185,20 +184,20 @@ body {
 }
 
 .mh-question-preview > .panel-heading > div > div {
-	width: 70%;
+    width: 70%;
 	float: left;
 }
 
 .mh-question-preview > .panel-heading > div > i {
-	position: absolute;
-	top: 25%;
-	left: 90%;
-	font-size: 15pt;
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    font-size: 15pt;
 }
 
 .mh-question-preview > .panel-body > div {
-	padding-left: 15px;
-	padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .mh-question-preview > .panel-body > div > .mh-info {
@@ -218,13 +217,13 @@ body {
 }
 
 .mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
-	width: 84%;
-	margin-left: 8%;
-	background-color: #FCD7A3;
+    width: 84%;
+    margin-left: 8%;
+    background-color: #FCD7A3;
 }
 
 .mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
-	background-color: #FCD7A3;
+    background-color: #FCD7A3;
 }
 
 .mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
@@ -267,16 +266,16 @@ body {
 
 .mh-tag {
 	padding: 2px 5px;
-	background-color: #F43E3E;
-	color: #fff !important;
-	border-radius: 3px;
-	position: relative;
+    background-color: #F43E3E;
+    color: #fff !important;
+    border-radius: 3px;
+    position: relative;
 }
 
 .mh-tag > i{
-	font-size: 9px;
-	position: absolute;
-	top: 5px;
+    font-size: 9px;
+    position: absolute;
+    top: 5px;
 }
 
 .mh-tag > span {
@@ -290,12 +289,12 @@ body {
 }
 
  .mh-list-tags {
-	margin: 0px;
-	padding: 0px;
+ 	margin: 0px;
+ 	padding: 0px;
  }
 
  .mh-list-tags > i {
-	color: #17A8EC;
+ 	color: #17A8EC;
  }
 
 .mh-list-tags li{
@@ -309,7 +308,24 @@ body {
 .mh-list-tags-left {
 	text-align: left;
 }
-
+ /* QA detail: start */
+ .mh-info a {
+	color: grey;
+ }
+ .mh-info a:hover {
+	color: black;
+ }
+.mh-vote-up {
+	font-size: 25pt;
+}
+.mh-vote-down {
+	font-size: 25pt;
+}
+.mh-btn-shre {
+	text-align:	right;
+}
+ /* QA detail: end */
+ 
 /* Mid: end */
 
 /* Left: start */
@@ -326,9 +342,9 @@ body {
 
 .mh-profile > div {
 	width: 50%;
-	float: left;
-	margin-left: 10px;
-	margin-top: 5px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
 }
 
 .mh-profile > div > a {
@@ -342,9 +358,9 @@ body {
 .mh-profile img {
 	width: 60px;
 	height: 60px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .mh-table-info a {
@@ -364,7 +380,7 @@ body {
 }
 .mh-table-info-body {
 	padding-left: 20px;
-	padding-top: 5px;
+    padding-top: 5px;
 }
 .mh-table-info-body-letter {
 	margin-top: 5px;
@@ -372,16 +388,16 @@ body {
 .mh-table-info-row{
 	padding-bottom: 5px;
 }
-.mh-NumIcon {
+.mh-num-icon {
 	background-color: #F43E3E;
 	font-size: 10px;
 }
-.mh-table-info-row  img {
-	width: 30px;
-	height: 30px;
-	border: 1px solid silver;
+.mh-cmt {
+	margin: -15px 0 0 10px;
 }
-
+.mh-cmt-detail {
+	padding: 0px;
+}
 
 /* Left: end */
 

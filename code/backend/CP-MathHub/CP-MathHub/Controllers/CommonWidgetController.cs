@@ -9,6 +9,7 @@ using CP_MathHub.Core.Configuration;
 using CP_MathHub.Service.Services;
 using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Question;
+using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
 
@@ -25,14 +26,20 @@ namespace CP_MathHub.Controllers
         }
 
         #region User Widget
-        //public virtual ActionResult ProfileWidget()
-        //{
+        public virtual ActionResult ProfileWidget()
+        {
+            User user = aService.GetLoginUser();
+            ProfileWidgetViewModel profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
 
-        //    User user = _userQueryService.GetLoginUser();
-        //    ProfileWidgetVM profileWidgetVm = Mapper.Map<User, ProfileWidgetVM>(user);
+            return PartialView("_ProfileWidget", profileWidgetVm);
+        }
+        public virtual ActionResult UserHeaderWidget()
+        {
+            User user = aService.GetLoginUser();
+            UserHeaderViewModel userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
 
-        //    return PartialView("_ProfileWidget", profileWidgetVm);
-        //}
+            return PartialView("_UserHeaderWidget", userHeaderVM);
+        }
 
         //public virtual ActionResult FavoriteTagWidget()
         //{

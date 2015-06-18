@@ -1,25 +1,63 @@
 ﻿@model CP_MathHub.Models.Question.QuestionPreviewViewModel
 
+<div class="panel panel-warning mh-question-preview">
+    <div class="panel-heading">
+        @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2 hidden-sm hidden-xs mh-info">
+                <div>
+                    <h2>@(Model.VoteUp - Model.VoteDown)</h2>
+                    <span>bình chọn</span>
+                </div>
+                <div class="mh-answer-num">
+                    <h2>@Model.AnswerNum</h2>
+                    <span>câu trả lời</span>
+                </div>
+                <div>
+                    <h2>@Model.ViewNum</h2>
+                    <span>lượt xem</span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg mh-info">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4">
+                        <h2>@(Model.VoteUp - Model.VoteDown)</h2>
+                        <span>bình chọn</span>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num">
+                        <h2>@Model.AnswerNum</h2>
+                        <span>câu trả lời</span>
+                    </div>
+                    <div class="col-xs-4 col-sm-4">
+                        <h2>@Model.ViewNum</h2>
+                        <span>lượt xem</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 col-xs-12 mh-content">
+                <a href="#">@Model.Title</a>
+                <div>
+                    @Html.Raw(@Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <a class="mh-seemore" href="#">Xem thêm...</a>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <ul class="list-inline mh-list-tags mh-list-tags-right">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                    }                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h3>@Html.ActionLink(Model.Title, "Detail", "Question", new { Model.Id}, null)</h3><br />
-<ul>
-    @Html.Partial("../Account/Partials/_UserInfoPartialView", @Model.UserInfo)
-    <li>Id:@Model.Id </li>
-    <li>Content: @Html.Raw(@Model.Content) </li>
-    <li>DateCreated: @Model.CreatedDate </li>
-    <li>UserId: @Model.UserId </li>
-    <li>VoteUpNum: @Model.VoteUp</li>
-    <li>VoteDownNum: @Model.VoteDown </li>
-    <li>AnswerNum: @Model.AnswerNum </li>
-    <li>HintNum: @Model.HintNum </li>
-    <li>BookmarkNum: @Model.BookmarkNum </li>
-    <li>ShareNum: @Model.ShareNum </li>
-    <li>ReportNum: @Model.ReportNum </li>
-</ul>
-<h4>Tag</h4>
-<ul>
-    @foreach (var tag in Model.Tags)
-    {
-        <li>@Html.Partial("../Common/_TagPartialView", tag)</li>
-    }
-</ul>
