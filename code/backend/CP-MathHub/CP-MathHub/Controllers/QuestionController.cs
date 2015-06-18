@@ -25,20 +25,26 @@ namespace CP_MathHub.Controllers
 
         // GET: Question
         [HttpGet]
-        public ActionResult Index(string tab = Constant.Question.String.HomeDefaultTab)
+        public ActionResult Index(string tab = Constant.Question.String.HomeDefaultTab
+                                    , int page = 0)
         {
-            QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
-            questionHomeVM.Name = "All Questions";
-            List<Question> questions = qService.GetQuestions(tab);
-
-            ICollection<QuestionPreviewViewModel> problemVms =
-                questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
-                .ToList();
-
-            questionHomeVM.Items = problemVms;
-
-            return View("Views/QuestionHomeView", questionHomeVM);
+            int skip = page*Constant.Question.Integer.PagingDefaultTake;
+            List<Question> questions = qService.GetQuestions(tab, skip);
+            ICollection<QuestionPreviewViewModel> questionPreviewVMs =
+                    questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+            if (page == 0) { 
+                QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
+                questionHomeVM.Name = "All Questions";
+                questionHomeVM.Items = questionPreviewVMs;
+                return View("Views/QuestionHomeView", questionHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_QuestionListPartialView", questionPreviewVMs);
+            }
         }
+
         [HttpGet]
         public ActionResult Search(string searchString)
         {

@@ -28,7 +28,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Question>() // Get Question Repository
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
-                                    "", // Not Include any Property
+                                    "Author", // Include Author Property
                                     skip
                                 ).ToList();
                     break;
@@ -37,7 +37,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.QuestionHelper.UnAnsweredQuestion(), // Get unanswered Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "",
+                                    "Author",
                                     skip
                                 ).ToList();
                     break;
@@ -45,14 +45,15 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Question>()
                                 .Get(
                                     ExpressionHelper.QuestionHelper.HotQuestion(),// Get hot Question lambda expression
-                                    (p => p.OrderByDescending(s => s.CreatedDate))
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author"
                                 ).ToList();
                     break;
                 default:
                     list = dal.Repository<Question>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "",
+                                    "Author",
                                     skip
                                 ).ToList();
                     break;
@@ -64,7 +65,8 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<Question>() //Get Question Repository
                 .Get(
                     (a => a.UserId > 0), //Filter Question by Author
-                    (p => p.OrderBy(s => s.CreatedDate)) //Order Question by CreatedDate
+                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    "Author"
                 ).ToList();
         }
         public Question GetQuestion(int id)
@@ -93,7 +95,8 @@ namespace CP_MathHub.Service.Services
             {
                 list = dal.Repository<Question>()
                                .Get(p => p.Title.Contains(searchString),
-                               (p => p.OrderBy(s => s.CreatedDate))
+                               (p => p.OrderBy(s => s.CreatedDate)),
+                               "Author"
                                ).ToList();
             }
             return list;
