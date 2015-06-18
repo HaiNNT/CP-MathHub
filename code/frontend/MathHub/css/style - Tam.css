@@ -100,7 +100,7 @@ body {
     background-color: #A73D2D !important;
 }
 
-#mh-user-icon {
+.mh-user-icon {
     width: 30px;
     height: 30px;
 	border: 1px solid silver;
@@ -388,7 +388,7 @@ body {
 .mh-table-info-row{
 	padding-bottom: 5px;
 }
-.mh-NumIcon {
+.mh-num-icon {
 	background-color: #F43E3E;
 	font-size: 10px;
 }
