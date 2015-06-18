@@ -68,14 +68,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Create(DiscussionCreateViewModel discussionCreateVM)
         {
             Discussion discussion = new Discussion();
-            discussion.Title = discussionCreateVM.Title;
-            discussion.Content = discussionCreateVM.Content;
-            discussion.CreatedDate = DateTime.Now;
-            discussion.UserId = 1;
-            discussion.View = 0;
-            discussion.Privacy = MainPostPrivacyEnum.Everyone;
-            discussion.LastViewed = discussion.CreatedDate;
-            discussion.LastEditedDate = discussion.CreatedDate;
+            discussion = Mapper.Map<DiscussionCreateViewModel, Discussion>(discussionCreateVM);
             dService.InsertDiscussion(discussion);
             if (discussion.Id != 0)
             {
@@ -92,9 +85,7 @@ namespace CP_MathHub.Controllers
         {
             DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
             Discussion discussion = dService.GetDiscussion(id);
-            discussionEditVM.Id = discussion.Id;
-            discussionEditVM.Content = discussion.Content;
-            discussionEditVM.Title = discussion.Title;
+            discussionEditVM = Mapper.Map<Discussion, DiscussionEditViewModel>(discussion);
             return View("Views/DiscussionEditView", discussionEditVM);
         }
         //Post: Edit
@@ -118,18 +109,8 @@ namespace CP_MathHub.Controllers
 
             return RedirectToAction("Detail", new { id = discussion.Id });
         }
-        //Get: delete
-        [HttpGet]
+        //Delete
         public ActionResult Delete(int id)
-        {
-            DiscussionDetailViewModel discussionDetailVM = new DiscussionDetailViewModel();
-            Discussion discussion = dService.GetDiscussion(id);
-            discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
-            return View("Views/DiscussionDeleteView", discussionDetailVM );
-        }
-        //Post: Delete
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
         {
             Discussion discussion = dService.GetDiscussion(id);
             dService.DeleteDiscussion(discussion);

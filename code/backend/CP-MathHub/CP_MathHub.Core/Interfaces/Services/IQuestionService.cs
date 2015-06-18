@@ -23,11 +23,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Question> GetQuestions(int authorId);
 
         /// <summary>
-        /// Get detail of a Question
+        /// Get a Question By Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Question GetQuestionDetail(int id);
+        Question GetQuestion(int id);
 
         /// <summary>
         /// Insert a Question

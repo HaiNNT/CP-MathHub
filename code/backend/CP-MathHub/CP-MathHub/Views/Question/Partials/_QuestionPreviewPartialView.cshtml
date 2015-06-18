@@ -3,7 +3,7 @@
 
 <h3>@Html.ActionLink(Model.Title, "Detail", "Question", new { Model.Id}, null)</h3><br />
 <ul>
-    @*<li>User:@Model.UserInfo.Username</li>*@
+    @Html.Partial("../Account/Partials/_UserInfoPartialView", @Model.UserInfo)
     <li>Id:@Model.Id </li>
     <li>Content: @Html.Raw(@Model.Content) </li>
     <li>DateCreated: @Model.CreatedDate </li>
@@ -20,6 +20,6 @@
 <ul>
     @foreach (var tag in Model.Tags)
     {
-        <li>@tag.Name</li>
+        <li>@Html.Partial("../Common/_TagPartialView", tag)</li>
     }
 </ul>

@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CommonWidget\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\QuestionMapperProfile.cs" />
+    <Compile Include="Controllers\CommonWidgetController.cs" />
     <Compile Include="Controllers\DiscussionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -154,12 +156,40 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\CTV.jpg" />
+    <Content Include="Content\img\logoMain.png" />
+    <Content Include="Content\img\user.jpg" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-1.11.3.js" />
+    <Content Include="Content\js\npm.js" />
+    <Content Include="Content\js\infinity-loading.js" />
+    <Content Include="Content\js\script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -192,8 +222,6 @@
     <Content Include="Views\Question\Views\QuestionCreateView.cshtml" />
     <Content Include="Views\Question\Views\QuestionEditView.cshtml" />
     <Content Include="Views\Question\Layouts\_QuestionEditLayout.cshtml" />
-    <Content Include="Views\Question\Layouts\_QuestionDeleteLayout.cshtml" />
-    <Content Include="Views\Question\Views\QuestionDeleteView.cshtml" />
     <Content Include="Views\Discussion\Layouts\_DiscussionHomeLayout.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionPreviewPartialView.cshtml" />
@@ -204,6 +232,9 @@
     <Content Include="Views\Discussion\Views\DiscussionCreateView.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionEditView.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionDetailView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserInfoPartialView.cshtml" />
+    <Content Include="Views\Common\_TagPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_ProfilePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
