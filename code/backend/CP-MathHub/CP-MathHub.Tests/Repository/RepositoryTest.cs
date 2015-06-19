@@ -15,9 +15,10 @@ namespace CP_MathHub.Tests.Repository
         [TestMethod]
         public void Test()
         {
-            MathHubUoW dal = new MathHubUoW();
-            User q = dal.Repository<User>().GetById(55);
-            Assert.IsNotNull(q);
+           
+            Assert.IsNotNull("awdawdawd".Contains(""));
+            Assert.IsNotNull("awdawdawd".Contains("awdawdawd"));
+
         }
     }
 }

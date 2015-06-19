@@ -53,6 +53,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        List<Question> SearchQuestion(string searchString);
+        List<Question> SearchQuestion(string searchString, int skip);
+
+        /// <summary>
+        /// Count search result
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
+        int CountSearchResult(string searchString);
     }
 }

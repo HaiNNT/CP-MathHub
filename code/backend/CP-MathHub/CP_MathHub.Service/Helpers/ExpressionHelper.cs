@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using CP_MathHub.Entity;
 
 namespace CP_MathHub.Service.Helpers
@@ -25,7 +26,7 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Question, bool>> HotQuestion()
             {
                 return (a => a.Answers.Count > 2
-                            && (a.CreatedDate - new DateTime()).Days < 5
+                            && DbFunctions.DiffDays(a.CreatedDate,  DateTime.Now) < 500
                             && (a.View > 500));
             }
             /// <summary>

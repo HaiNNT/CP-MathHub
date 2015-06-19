@@ -54,15 +54,14 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             {
                 query = orderBy(query);
             }
-            if (query.Count() - 1 > skip)
+
+            if (query.Count() - 1 >= skip)
             {
-                query = query.Skip(skip);
+                int i = query.Skip(skip).Take(take).Count();
+                return query.Skip(skip).Take(take);
             }
-            if (query.Count() > take)
-            {
-                query = query.Take(take);
-            }
-            return query.ToList();
+
+            return new List<TEntity>();
 
         }
 

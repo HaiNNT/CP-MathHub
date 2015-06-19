@@ -6,37 +6,42 @@
 }
 <div class="mh-top-content">
     <div class="row">
-        <div class="col-md-4 mh-content-title">
-            <h3>HỎI ĐÁP</h3>
+        <div class="col-md-10 mh-content-title">
+            <h3>@Model.Name</h3>
         </div>
     </div>
 </div>
 <div class="mh-home">
     <div class="row">
         <div class="col-xs-12 col-md-7 mh-home-tab">
-            <a href="#" class="btn btn-danger btn-sm active">Mới nhất</a>
-            <a href="#" class="btn btn-danger btn-sm">Hot</a>
-            <a href="#" class="btn btn-danger btn-sm">Chưa trả lời</a>
-            <a href="#" class="btn btn-danger btn-sm">Thẻ</a>
-            <a href="#" class="btn btn-danger btn-sm">Người dùng</a>
+            @Html.ActionLink("Mới nhất", "Index", new { @tab = "Newest" }, new { @class = "btn btn-danger btn-sm " + (Model.Tab == "Newest" ? "active" : "" )})
+            @Html.ActionLink("Hot", "Index", new { @tab = "Hot" }, new { @class = "btn btn-danger btn-sm " + (Model.Tab == "Hot" ? "active" : "" )})
+            @Html.ActionLink("Chưa trả lời", "Index", new { @tab = "Unanswered" }, new { @class = "btn btn-danger btn-sm " + (Model.Tab == "Unanswered" ? "active" : "" )})
+            <a href="#" class="btn btn-danger btn-sm @(Model.Tab == "Tag" ? "active" : "")">Thẻ</a>
+            <a href="#" class="btn btn-danger btn-sm @(Model.Tab == "Users" ? "active" : "")">Người dùng</a>
             <a href="#" class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+            
         </div>
         <div class="col-xs-12 col-md-5 mh-page-search">
-            <form>
+            @using (Html.BeginForm("Search", "Question", FormMethod.Get))
+            {
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <input type="text" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa fa-search"></i>
                         </button>
                     </span>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
 
+<input id="tab" type="hidden" value="@Model.Tab" />
 <input id="system" type="hidden" value="question" />
+<input id="searchString" type="hidden" value="@ViewBag.SearchString" />
+
 
 @Html.Partial("Partials/_QuestionListPartialView", Model.Items)
 

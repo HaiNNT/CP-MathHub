@@ -12,7 +12,7 @@ namespace CP_MathHub.Models.Question
         public int Id { get; set; }
         public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int ViewNum { get; set; }
+        public int View { get; set; }
         public int VoteUp { get; set; }
         public int VoteDown { get; set; }
         public int AnswerNum { get; set; }
