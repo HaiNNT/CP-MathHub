@@ -37,6 +37,9 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "All Questions";
                 questionHomeVM.Items = questionPreviewVMs;
+                foreach( QuestionPreviewViewModel q in questionPreviewVMs){
+                    q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                }
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -57,7 +60,7 @@ namespace CP_MathHub.Controllers
                 .ToList();
 
             questionHomeVM.Items = problemVms;
-
+            ViewBag.SearchString = searchString;
             return View("Views/QuestionHomeView", questionHomeVM);
         }
 

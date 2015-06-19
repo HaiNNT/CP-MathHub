@@ -4,37 +4,52 @@
     ViewBag.Title = "QuestionHomeView";
     Layout = "~/Views/Question/Layouts/_QuestionHomeLayout.cshtml";
 }
-
-<h2>QuestionHomeView</h2>
-
-@using (Html.BeginForm("Search", "Question",FormMethod.Get))
-{
-    <div>
-        Title: @Html.TextBox("searchString") <br />
-        <input type="submit" value="Search" />
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-4 mh-content-title">
+            <h3>HỎI ĐÁP</h3>
+        </div>
     </div>
-}
-
-@{
-<h3>@Model.Name</h3>
-    <div id="list-questions">
-        @Html.Partial("Partials/_QuestionListPartialView", @Model.Items);
+</div>
+<div class="mh-home">
+    <div class="row">
+        <div class="col-xs-12 col-md-7 mh-home-tab">
+            <a href="#" class="btn btn-danger btn-sm active">Mới nhất</a>
+            <a href="#" class="btn btn-danger btn-sm">Hot</a>
+            <a href="#" class="btn btn-danger btn-sm">Chưa trả lời</a>
+            <a href="#" class="btn btn-danger btn-sm">Thẻ</a>
+            <a href="#" class="btn btn-danger btn-sm">Người dùng</a>
+            <a href="#" class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+        </div>
+        <div class="col-xs-12 col-md-5 mh-page-search">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
     </div>
-}
-<button onclick="getMoreQuestion()">Load more</button>
+</div>
+
+<input id="system" type="hidden" value="question" />
+
+@Html.Partial("Partials/_QuestionListPartialView", Model.Items)
 
 @section LeftPanel
 {
-    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
-    <hr />
-    @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
-    <hr />
-    @Html.Action(MVC.CommonWidget.GroupWidget())
-    <hr />
-    @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+    @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockup/_LeftSectionMockup")
 }
 @section RightPanel
 {
+    @Html.Partial("../CommonWidget/Mockup/_RightSectionMockup")
     @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
     <hr />
     @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })

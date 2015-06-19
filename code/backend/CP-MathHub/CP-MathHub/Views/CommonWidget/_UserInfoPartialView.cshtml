@@ -1,0 +1,21 @@
+﻿@model CP_MathHub.Models.Common.UserInfoViewModel
+@using CP_MathHub.Service.Helpers
+<div class="row">
+    <a href="#">
+        <img src="Content/img/user.jpg">
+    </a>
+    <div>
+        <div>
+            <a href="#">
+                <span class="mh-username">@Model.Username</span>
+            </a>
+            <span class="mh-time">@MhHtmlHelper.MainPostCreateTime(@Model.CreateMainPostDate)</span>
+        </div>
+        <div class="detail-reputation">
+            <span>@Model.Reputation</span>
+            <i class="fa fa-circle mh-reputation-icon"></i>
+        </div>
+    </div>
+    <i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+</div>
+

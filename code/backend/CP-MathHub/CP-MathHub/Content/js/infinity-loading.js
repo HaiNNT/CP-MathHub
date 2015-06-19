@@ -11,7 +11,7 @@ var IL_MAIN_POST_TYPE_ARTICLE = "article";
 var IL_MAIN_POST_TYPE_DISCUSSION = "discussion";
 
 $(document).ready(function () {
-    var type = $("#system").val;
+    var type = $("#system").val();
     $(window).scroll(function () {
         if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && il_ready) {
             il_ready = false;
@@ -32,7 +32,7 @@ function getMoreMainPost(type) {
     var url; //server url {string}
     var data; //request param {object}
     switch(type) {
-        case MAIN_POST_TYPE_QUESTION:
+        case IL_MAIN_POST_TYPE_QUESTION:
             list = $("#list-questions");
             url = "Question/Index";
             data = { tab: "Newest", page: ++il_page }
@@ -64,6 +64,7 @@ function getMoreMainPost(type) {
           il_ready = true;
       })
       .fail(function () {
+          --il_page;
           alert("error");
       });
 }

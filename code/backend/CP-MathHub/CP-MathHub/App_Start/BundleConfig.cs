@@ -17,11 +17,11 @@ namespace CP_MathHub
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/js/bootstrap.min.js"));
+                      "~/Content/js/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/script").Include(
-                      "~/Scripts/js/script.js",
-                      "~/Scripts/js/infinity-loading.js"));
+                      "~/Content/js/script.js",
+                      "~/Content/js/infinity-loading.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",

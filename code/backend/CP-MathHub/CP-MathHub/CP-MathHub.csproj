@@ -125,12 +125,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CommonWidget\" />
+    <Folder Include="Models\Account\" />
+    <Folder Include="Views\Account\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile\CommonMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\QuestionMapperProfile.cs" />
     <Compile Include="Controllers\CommonWidgetController.cs" />
@@ -140,7 +142,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\UserInfoViewModel.cs" />
+    <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
+    <Compile Include="Models\Common\UserHeaderViewModel.cs" />
+    <Compile Include="Models\Common\UserInfoViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionDetailViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
@@ -190,6 +194,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -232,9 +237,12 @@
     <Content Include="Views\Discussion\Views\DiscussionCreateView.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionEditView.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionDetailView.cshtml" />
-    <Content Include="Views\Account\Partials\_UserInfoPartialView.cshtml" />
-    <Content Include="Views\Common\_TagPartialView.cshtml" />
-    <Content Include="Views\Account\Partials\_ProfilePartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_UserInfoPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_TagPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_ProfileWidget.cshtml" />
+    <Content Include="Views\CommonWidget\Mockup\_LeftSectionMockup.cshtml" />
+    <Content Include="Views\CommonWidget\Mockup\_RightSectionMockup.cshtml" />
+    <Content Include="Views\CommonWidget\_UserHeaderWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

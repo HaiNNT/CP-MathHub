@@ -6,7 +6,7 @@ using AutoMapper;
 using Profile = AutoMapper.Profile;
 using CP_MathHub.Entity;
 using CP_MathHub.Models.Question;
-using CP_MathHub.Models.Account;
+using CP_MathHub.Models.Common;
 using CP_MathHub.DAL;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using CP_MathHub.Entity;
 
-namespace CP_MathHub.Models.Account
+namespace CP_MathHub.Models.Common
 {
-    public class UserInfoViewModel
+    public class ProfileWidgetViewModel
     {
         public string Username { get; set; }
         public int Reputation { get; set; }
