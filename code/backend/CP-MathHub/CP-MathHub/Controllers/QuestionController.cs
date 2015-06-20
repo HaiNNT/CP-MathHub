@@ -33,13 +33,15 @@ namespace CP_MathHub.Controllers
             ICollection<QuestionPreviewViewModel> questionPreviewVMs =
                     questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
+            foreach (QuestionPreviewViewModel q in questionPreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
             if (page == 0) { 
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
-                questionHomeVM.Name = "All Questions";
-                questionHomeVM.Items = questionPreviewVMs;
-                foreach( QuestionPreviewViewModel q in questionPreviewVMs){
-                    q.UserInfo.CreateMainPostDate = q.CreatedDate;
-                }
+                questionHomeVM.Name = "HỎI ĐÁP";
+                questionHomeVM.Tab = tab;
+                questionHomeVM.Items = questionPreviewVMs;           
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -49,19 +51,32 @@ namespace CP_MathHub.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search(string searchString)
+        public ActionResult Search(string searchString, int page = 0)
         {
-            QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
-            questionHomeVM.Name = "All Questions";
-            List<Question> questions = qService.SearchQuestion(searchString);
+            int skip = page * Constant.Question.Integer.PagingDefaultTake;
+            List<Question> questions = qService.SearchQuestion(searchString.Trim(), skip);
 
             ICollection<QuestionPreviewViewModel> problemVms =
                 questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-
-            questionHomeVM.Items = problemVms;
+            foreach (QuestionPreviewViewModel q in problemVms)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
             ViewBag.SearchString = searchString;
-            return View("Views/QuestionHomeView", questionHomeVM);
+
+            if(page == 0){
+                QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
+                questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString) 
+                                        + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
+                questionHomeVM.Tab = "Search";
+                questionHomeVM.Items = problemVms;
+                return View("Views/QuestionHomeView", questionHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_QuestionListPartialView", problemVms);
+            }
         }
 
         // GET: Detail

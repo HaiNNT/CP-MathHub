@@ -46,7 +46,8 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.QuestionHelper.HotQuestion(),// Get hot Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author"
+                                    "Author",
+                                    skip
                                 ).ToList();
                     break;
                 default:
@@ -88,18 +89,26 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Question>().Delete(question);
             dal.Save();
         }
-        public List<Question> SearchQuestion(string searchString)
+        public List<Question> SearchQuestion(string searchString, int skip)
         {
             List<Question> list = new List<Question>();
-            if (!String.IsNullOrEmpty(searchString))
+            if (searchString != null)
             {
-                list = dal.Repository<Question>()
-                               .Get(p => p.Title.Contains(searchString),
-                               (p => p.OrderBy(s => s.CreatedDate)),
-                               "Author"
-                               ).ToList();
+                IEnumerable<Question> ienum = dal.Repository<Question>()
+                               .Get(a => a.Title.Contains(searchString),
+                                    (p => p.OrderBy(s => s.CreatedDate)),
+                                    "Author",
+                                    skip
+                               );
+                ienum.Distinct();
+                list = ienum.ToList();
             }
             return list;
+        }
+
+        public int CountSearchResult(string searchString)
+        {
+            return dal.Repository<Question>().Table.Count(m => m.Title.Contains(searchString));
         }
     }
 }
