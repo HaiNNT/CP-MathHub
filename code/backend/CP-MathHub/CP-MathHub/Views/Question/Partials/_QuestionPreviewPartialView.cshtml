@@ -38,8 +38,20 @@
             </div>
             <div class="col-md-10 col-xs-12 mh-content">
                 <a href="#">@Model.Title</a>
-                <div>
-                    @Html.Raw(@Model.Content)
+                <div class="mh-sort-content">
+                    @{
+                        int length = Model.Title.Length > 50 ? 431 : 571;                   
+                        if (Model.Content.Length > length){
+                            @Html.Raw(Model.Content.Substring(0, length - 1) + "...");
+                        }
+                        else
+                        {
+                            @Html.Raw(Model.Content);            
+                        }                                     
+                  }
+                </div>
+                <div class="mh-full-content hidden">
+                    @Html.Raw(Model.Content)
                 </div>
             </div>
         </div>
@@ -47,7 +59,7 @@
     <div class="panel-footer">
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-md-3">
-                <a class="mh-seemore" href="#">Xem thêm...</a>
+                <a class="mh-seemore">Xem thêm...</a>
             </div>
             <div class="col-xs-12 col-sm-8 col-md-9">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">

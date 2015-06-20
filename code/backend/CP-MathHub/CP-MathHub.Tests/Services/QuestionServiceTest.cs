@@ -31,7 +31,7 @@ namespace CP_MathHub.Tests.Services
         [TestMethod]
         public void GetQuestion()
         {
-            QuestionService service = new QuestionService();
+            QuestionService service = new QuestionService(new CPMathHubModelContainer());
 
             Question question = service.GetQuestion(250);
             Assert.IsNotNull(question);

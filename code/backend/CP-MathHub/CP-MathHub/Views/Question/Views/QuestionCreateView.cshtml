@@ -24,7 +24,9 @@
     <div class="form-group">
         @Html.Label("Tag", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Tags)
+            <input type="hidden" value="1" name="TagIds" />
+            <input type="hidden" value="2" name="TagIds" />
+            <input type="hidden" value="3" name="TagIds" />
         </div>
     </div>
     <button type="submit">Create</button>

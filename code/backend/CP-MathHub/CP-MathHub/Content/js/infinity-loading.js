@@ -75,7 +75,7 @@ function getMoreMainPost(type) {
     })
       .done(function (msg) {
           list.append(msg);
-          console.log(il_page);
+          seeMore();
           if(msg != "\n")
             il_ready = true;
       })

@@ -52,6 +52,7 @@
     <Compile Include="Interfaces\Services\IAdminService.cs" />
     <Compile Include="Interfaces\Services\IBlogService.cs" />
     <Compile Include="Interfaces\DAL\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\Services\ICommonService.cs" />
     <Compile Include="Interfaces\Services\IDiscussionService.cs" />
     <Compile Include="Interfaces\Services\IQuestionService.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />

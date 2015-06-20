@@ -17,10 +17,14 @@ namespace CP_MathHub.Controllers
     public class QuestionController : BaseController
     {
         private IQuestionService qService;
+        private ICommonService cService;
+        private CPMathHubModelContainer context;
 
         public QuestionController()
         {
-            qService = new QuestionService();
+            context = new CPMathHubModelContainer();
+            qService = new QuestionService(context);
+            cService = new CommonService(context);
         }
 
         // GET: Question
@@ -103,8 +107,9 @@ namespace CP_MathHub.Controllers
         {
 
             Question question = new Question();
-            question.UserId = 93;
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
+            question.UserId = 93;
+            question.Tags = cService.GetTags(questionVM.TagIds);
 
             qService.InsertQuestion(question);
             //Console.WriteLine(questionVM.Tags[0]);

@@ -231,8 +231,8 @@ body {
 }
 
 .mh-question-preview > .panel-body > div > .mh-content {
-	max-height: 190px;
-	overflow-y: hidden;
+	/*max-height: 190px;
+	overflow-y: hidden;*/
 }
 
 .mh-question-preview > .panel-body > div > .mh-content > a {

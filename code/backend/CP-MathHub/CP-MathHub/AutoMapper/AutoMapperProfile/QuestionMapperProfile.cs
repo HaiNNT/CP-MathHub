@@ -90,10 +90,6 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    d => d.MapFrom(m => DateTime.Now)
                )
                .ForMember(
-                   s => s.Tags,
-                   d => d.MapFrom(m => m.Tags)
-               )
-               .ForMember(
                    s => s.Privacy,
                    d => d.MapFrom(m => MainPostPrivacyEnum.Everyone)
                )

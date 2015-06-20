@@ -19,15 +19,16 @@ namespace CP_MathHub.DAL
         private bool disposed;
         private Dictionary<string, object> repositories;
 
-        public MathHubUoW()
-       {
-           this.context = new CPMathHubModelContainer();
-           this.repositoryClass = typeof(Repository<>);
-       }
         public MathHubUoW(CPMathHubModelContainer context)
        {
            this.context = context;
+           this.repositoryClass = typeof(Repository<>);
        }
+        public MathHubUoW()
+        {
+            this.context = new CPMathHubModelContainer();
+            this.repositoryClass = typeof(Repository<>);
+        }
 
         public void Dispose()
         {

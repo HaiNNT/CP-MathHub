@@ -15,9 +15,9 @@ namespace CP_MathHub.Service.Services
     public class QuestionService : IQuestionService
     {
         private IUnitOfWork dal;
-        public QuestionService()
+        public QuestionService(CPMathHubModelContainer context)
         {
-            dal = new MathHubUoW();   
+            dal = new MathHubUoW(context);   
         }
         public List<Question> GetQuestions(string homeTab, int skip = 0)
         {
