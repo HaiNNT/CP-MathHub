@@ -18,6 +18,12 @@ body {
     border-color: #faebcc;
 }
 
+.panel-success > .panel-footer {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
 #mh-header {
 	background-color: #A73D2D;
 }
@@ -171,7 +177,7 @@ body {
     margin: 0px 10px;
 }
 
-.mh-question-preview > .panel-heading > div > a > img {
+.mh-user-avatar {
     width: 40px;
     height: 40px;
     background-color: #fff;
@@ -228,6 +234,7 @@ body {
 
 .mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
 	margin: 0px;
+	text-align: center;
 }
 
 .mh-question-preview > .panel-body > div > .mh-content {
@@ -255,8 +262,8 @@ body {
 	font-size: 12pt;
 }
 
-.mh-question-preview .mh-time {
-	font-size: 11pt;
+.mh-time {
+	font-size: 10pt;
 	color: #A9A9A9
 }
 
@@ -266,7 +273,7 @@ body {
 
 .mh-tag {
 	padding: 2px 5px;
-    background-color: #F43E3E;
+    background-color: #0DBBC2;
     color: #fff !important;
     border-radius: 3px;
     position: relative;
@@ -284,7 +291,7 @@ body {
 
 .mh-tag:hover, .mh-tag:focus {
 	text-decoration: none !important;
-	background-color: #D63333 !important;
+	background-color: #1BA9AE !important;
 	color: #fff !important;
 }
 
@@ -309,20 +316,229 @@ body {
 	text-align: left;
 }
  /* QA detail: start */
- .mh-info a {
+ .mh-vote {
+	padding: 0px;
+	text-align: center;
+ }
+ .mh-vote a {
 	color: grey;
  }
- .mh-info a:hover {
+ .mh-vote a:hover {
 	color: black;
  }
-.mh-vote-up {
+.mh-vote-icon {
 	font-size: 25pt;
+}
+.mh-check-icon {
+	font-size: 25pt;
+	padding-top: 10px;
+}
+.mh-vote-num {
+	font-size: 20pt;
 }
 .mh-vote-down {
-	font-size: 25pt;
+	margin-top: -5px;
 }
-.mh-btn-shre {
-	text-align:	right;
+.mh-content-detail {
+	max-height: none;
+	overflow-y: auto;
+	text-align: justify;
+}
+.mh-question-preview > .panel-body > div > .mh-content-detail  > a {
+	font-size: 17pt;
+	font-weight: bolder;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content-detail  > a:hover {
+	text-decoration: none;
+}
+.mh-comment-content {
+	padding: 5px 0px;
+	border-bottom: 1px solid silver;
+}
+.panel-body.mh-comment > .mh-comment-detail {
+	padding: 5px 20px;
+	background-color: ghostwhite;
+}
+.mh-rely {
+	padding:0 10px;
+}
+.mh-rely-detail {
+	padding:0 10px;
+	border-left: 2px solid #dcdee3;
+}
+.mh-rely-rely {
+	margin-top: 10px;
+	width: 90%;
+}
+.mh-answer_hint-content {
+	padding-bottom: 10px;
+}
+.mh-answer_hint-content-row {
+	border-bottom: 1px solid silver;
+}
+.mh-answer_hint-detail {
+}
+.mh-answer_hint-detail-content {
+}
+.mh-form-input-comment {
+	margin-top: 5px;
+	width: 100%;
+}
+.mh-answer-avatar {
+	padding: 0;
+}
+.mh-answer-username {
+	padding: 0;
+}
+.mh-answer_hint-user_info {
+	border-bottom: 1px solid silver;
+	padding-bottom: 5px;
+	padding-left: 20px;
+}
+.mh-post-Ans_Hint {
+	/* margin: 15px;
+	text-align: center; */
+}
+		/* css: tab */
+.mh-tabs {
+    position: relative;
+	margin: 40px auto;
+}
+
+.mh-tabs > input {
+	position: absolute;
+	z-index: 1000;
+	height: 40px;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+	cursor: pointer;
+}
+.mh-tabs input.mh-tab-2{
+	left: 120px;
+}
+
+.mh-tabs label {
+	background: white;
+	background: -moz-linear-gradient(top, #white 0%, #4e8c8a 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#white), color-stop(100%,#4e8c8a));
+	background: -webkit-linear-gradient(top, #white 0%,#4e8c8a 100%);
+	background: -o-linear-gradient(top, #white 0%,#4e8c8a 100%);
+	background: -ms-linear-gradient(top, #white 0%,#4e8c8a 100%);
+	background: linear-gradient(top, #white 0%,#4e8c8a 100%);
+	font-size: 15px;
+	line-height: 40px;
+	height: 40px;
+	position: relative;
+	padding: 0 20px;
+    float: left;
+	display: block;
+	color: #385c5b;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+    /* box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1); */
+	cursor: pointer;
+}
+
+.mh-tabs label:after {
+    content: '';
+	background: #fff;
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	display: block;
+}
+
+.mh-tabs input:hover + label {
+	background: #EEEEEE;
+}
+
+.mh-tabs label:first-of-type {
+    z-index: 4;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+}
+
+.mh-tab-label-2 {
+    z-index: 3;
+}
+
+.mh-tabs input:checked + label {
+    background: whitesmoke;
+	z-index: 6;
+	border: 1px solid silver;
+}
+
+.clear-shadow {
+	clear: both;
+}
+
+.mh-tab-content {
+    background: #fff;
+	position: relative;
+    width: 100%;
+	z-index: 5;
+    box-shadow: 0 -2px 3px -2px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.1);
+    border-radius: 0 3px 3px 3px;
+	border: 1px solid silver;
+	margin-top: -6px;
+}
+
+.mh-tab-content > div {
+	top: 0;
+	left: 0;
+	padding: 15px 20px;
+	z-index: 1;
+    display: none;
+
+    -webkit-transition: opacity linear 0.1s;
+    -moz-transition: opacity linear 0.1s;
+    -o-transition: opacity linear 0.1s;
+    -ms-transition: opacity linear 0.1s;
+    transition: opacity linear 0.1s;
+}
+
+.mh-tabs input.mh-tab-selector-1:checked ~ .mh-tab-content .mh-tab-content-1,
+.mh-tabs input.mh-tab-selector-2:checked ~ .mh-tab-content .mh-tab-content-2{
+	z-index: 100;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    display: block;
+
+    -webkit-transition: opacity ease-out 0.2s 0.1s;
+    -moz-transition: opacity ease-out 0.2s 0.1s;
+    -o-transition: opacity ease-out 0.2s 0.1s;
+    -ms-transition: opacity ease-out 0.2s 0.1s;
+    transition: opacity ease-out 0.2s 0.1s;
+}
+
+.mh-tab-content div h2,
+.mh-tab-content div h3{
+	color: #398080;
+}
+.mh-tab-content div p {
+	line-height: 22px;
+	text-align: left;
+	margin: 0;
+	padding-left: 15px;
+	/*font-size: 14px;
+	font-style: italic;
+	color: #777;
+	font-family: Cambria, Georgia, serif;
+	border-left: 8px solid rgba(63,148,148, 0.1);*/
+}
+			/* css: tab */
+
+.mh-post-Ans_Hint-button {
+	margin-top: 10px;
+	text-align: center;
 }
  /* QA detail: end */
  
@@ -391,12 +607,6 @@ body {
 .mh-num-icon {
 	background-color: #F43E3E;
 	font-size: 10px;
-}
-.mh-cmt {
-	margin: -15px 0 0 10px;
-}
-.mh-cmt-detail {
-	padding: 0px;
 }
 
 /* Left: end */

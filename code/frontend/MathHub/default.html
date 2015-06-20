@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +15,9 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
 					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">
 					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
@@ -44,22 +43,20 @@
 							<li><a href="#">Separated link</a></li>
 						</ul>
 					</li>
-					<li><a href="#"><img id="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>					
+					<li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>					
 				</ul>
 				<ul class="nav navbar-nav navbar-right mh-notification">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<i class="icon-globe"></i>
+							<i class="fa fa-globe"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Action</a></li>
 							<li class="divider"></li>
-							<div>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-							</div>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 						</ul>
@@ -68,7 +65,7 @@
 				<ul class="nav navbar-nav navbar-right mh-notification">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<i class="icon-comments"></i>
+							<i class="fa fa-comments"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Action</a></li>
@@ -82,7 +79,7 @@
 				<ul class="nav navbar-nav navbar-right mh-notification">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-							<i class="icon-group"></i>
+							<i class="fa fa-group"></i>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Action</a></li>
@@ -96,7 +93,7 @@
 <!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Tìm kiếm">
-						<i class="icon-search"></i>
+						<i class="fa fa-search"></i>
 					</div>
 				</form> -->
 				
@@ -105,36 +102,165 @@
 	</header>	
 	<div class="container mh-body">
 		<div class="row">
-			<div class="col-md-3 col-sm-4 hidden-xs mh-left-section">
+			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
 				<div class="mh-profile row">
 					<a href=""><img src="img/user.jpg"></a>
 					<div class="">
 						<a href="">Văn Tâm</a>
-						<div class="detail-reputat">
+						<div class="detail-reputation">
 							<span>1432</span>
-							<i class="icon-circle mh-reputation-icon"></i>
+							<i class="fa fa-circle mh-reputation-icon"></i>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-8 col-md-6 mh-mid-section">
-				<div class="row">
-					<div class="col-md-4">
-						<h3><b>HỎI ĐÁP</b></h3>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Hoạt động</div>
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
 					</div>
-					<div class="col-md-8 mh-home-tab">
-						<a class="btn btn-danger btn-sm active">Mới nhất</a>
-						<a class="btn btn-danger btn-sm">Hot</a>
-						<a class="btn btn-danger btn-sm">Chưa trả lời</a>
-						<a class="btn btn-danger btn-sm">Thẻ</a>
-						<a class="btn btn-danger btn-sm">Người dùng</a>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Tags yêu thích</div>
+					<div class="mh-table-info-body">
+						<ul class="list-inline mh-list-tags mh-list-tags-left">	
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Lớp 6</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán đố</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán dễ</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán khó</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Theo dõi</div>
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+				<div class="mh-top-content">
+					<div class="row">
+						<div class="col-md-4 mh-content-title">
+							<h3>HỎI ĐÁP</h3>
+						</div>
+					</div>
+				</div>
+				<div class="mh-home">
+					<div class="row">
+						<div class="col-xs-12 col-md-7 mh-home-tab">
+							<a class="btn btn-danger btn-sm active">Mới nhất</a>
+							<a class="btn btn-danger btn-sm">Hot</a>
+							<a class="btn btn-danger btn-sm">Chưa trả lời</a>
+							<a class="btn btn-danger btn-sm">Thẻ</a>
+							<a class="btn btn-danger btn-sm">Người dùng</a>
+							<a class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+						</div>
+						<div class="col-xs-12 col-md-5 mh-page-search">
+							<form>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 				<div class="panel panel-warning mh-question-preview">
 					<div class="panel-heading">
 						<div class="row">
 							<a href="#">
-								<img src="img/user.jpg">
+								<img src="img/user.jpg" class="mh-user-avatar">
 							</a>
 							<div>
 								<div>
@@ -143,12 +269,12 @@
 									</a>
 									<span class="mh-time">vừa hỏi</span>
 								</div>
-								<div class="detail-reputat">
+								<div class="detail-reputation">
 									<span>612</span>
-									<i class="icon-circle mh-reputation-icon"></i>
+									<i class="fa fa-circle mh-reputation-icon"></i>
 								</div>
 							</div>
-							<i class="icon-star-empty mh-bookmark-icon" title="Đánh dấu bài này"></i>
+							<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -205,29 +331,28 @@
 								<a class="mh-seemore" href="#">Xem thêm...</a>
 							</div>
 							<div class="col-xs-12 col-sm-8 col-md-9">
-								<ul class="list-inline mh-list-tags">
-									<i class="icon-tags"></i>
+								<ul class="list-inline mh-list-tags mh-list-tags-right">	
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Lớp 6</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán đố</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán dễ</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán khó</span>
 										</a>
 									</li>
@@ -240,7 +365,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<a href="#">
-								<img src="img/user.jpg">
+								<img src="img/user.jpg" class="mh-user-avatar">
 							</a>
 							<div>
 								<div>
@@ -249,12 +374,12 @@
 									</a>
 									<span class="mh-time">vừa hỏi</span>
 								</div>
-								<div class="detail-reputat">
+								<div class="detail-reputation">
 									<span>612</span>
-									<i class="icon-circle mh-reputation-icon"></i>
+									<i class="fa fa-circle mh-reputation-icon"></i>
 								</div>
 							</div>
-							<i class="icon-star-empty mh-bookmark-icon" title="Đánh dấu bài này"></i>
+							<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -311,29 +436,28 @@
 								<a class="mh-seemore" href="#">Xem thêm...</a>
 							</div>
 							<div class="col-xs-12 col-sm-8 col-md-9">
-								<ul class="list-inline mh-list-tags">
-									<i class="icon-tags"></i>
+								<ul class="list-inline mh-list-tags mh-list-tags-right">									
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Lớp 6</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán đố</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán dễ</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán khó</span>
 										</a>
 									</li>
@@ -346,7 +470,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<a href="#">
-								<img class="" src="img/user.jpg">
+								<img src="img/user.jpg" class="mh-user-avatar">
 							</a>
 							<div>
 								<div>
@@ -355,12 +479,12 @@
 									</a>
 									<span class="mh-time">vừa hỏi</span>
 								</div>
-								<div class="detail-reputat">
+								<div class="detail-reputation">
 									<span>612</span>
-									<i class="icon-circle mh-reputation-icon"></i>
+									<i class="fa fa-circle mh-reputation-icon"></i>
 								</div>
 							</div>
-							<i class="icon-star-empty mh-bookmark-icon" title="Đánh dấu bài này"></i>
+							<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
 						</div>
 					</div>
 					<div class="panel-body">
@@ -417,29 +541,29 @@
 								<a class="mh-seemore" href="#">Xem thêm...</a>
 							</div>
 							<div class="col-xs-12 col-sm-8 col-md-9">
-								<ul class="list-inline mh-list-tags">
-									<i class="icon-tags"></i>
+								<ul class="list-inline mh-list-tags mh-list-tags-right">
+									
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Lớp 6</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán đố</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán dễ</span>
 										</a>
 									</li>
 									<li>
 										<a href="#" class="mh-tag">
-											<i class="icon-circle"></i>
+											<i class="fa fa-circle"></i>
 											<span>Toán khó</span>
 										</a>
 									</li>
@@ -449,9 +573,99 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3 hidden-xs hidden-sm mh-right-section">
-				
-			</div>
+			<!-- Right: start -->
+			<div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
+				<div class="mh-banner">					
+					<a href="#">
+						<img src="img/CTV.jpg">
+					</a>	
+				</div>
+				<div class="mh-btn">
+					<a href="#" class="btn btn-success">Đặt câu hỏi</a>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các thảo luận <span class="mh-hot">hot<span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các bài viết <span class="mh-hot">hot</span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div> <!-- Right: end -->
 		</div>
 	</div>	
 	<footer></footer>
