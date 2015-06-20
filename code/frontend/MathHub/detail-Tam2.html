@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/style - Tam.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "http://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="mh-header-collapse">
+				<ul class="nav navbar-nav" id="mh-nav-link">
+					<li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Bài Viết</a></li>
+					<li><a href="#">Thảo Luận</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="mh-nav-user">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							Thanh Hải
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>					
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-globe"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-comments"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-group"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+<!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Tìm kiếm">
+						<i class="fa fa-search"></i>
+					</div>
+				</form> -->
+				
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</header>	
+	<div class="container mh-body">
+		<div class="row">
+			<!-- Left: start -->
+			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+				<div class="mh-profile row">
+					<a href=""><img src="img/user.jpg"></a>
+					<div class="">
+						<a href="">Văn Tâm</a>
+						<div class="detail-reputat">
+							<span>1432</span>
+							<i class="fa fa-circle mh-reputation-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Hoạt động</div>
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Tags yêu thích</div>
+					<div class="mh-table-info-body">
+						<ul class="list-inline mh-list-tags mh-list-tags-left">	
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Lớp 6</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán đố</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán dễ</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán khó</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Table-info: start -->
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Theo dõi</div>
+					<!-- Table-info-body: start -->
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+					</div><!-- Table-info-body: end -->
+				</div><!-- Table-info: end -->
+			</div> <!-- Left: end -->
+			<!-- Mid: start -->
+			<div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+				<div class="mh-top-content">
+					<div class="row">
+						<div class="col-md-4 mh-content-title">
+							<h3>HỎI ĐÁP</h3>
+						</div>
+					</div>
+				</div>
+				<!-- mh-home: start -->
+				<div class="mh-home">
+					<!-- row: start -->
+					<div class="row">
+						<div class="col-xs-12 col-md-7 mh-home-tab">
+							<a class="btn btn-danger btn-sm">Mới nhất</a>
+							<a class="btn btn-danger btn-sm">Hot</a>
+							<a class="btn btn-danger btn-sm">Chưa trả lời</a>
+							<a class="btn btn-danger btn-sm">Thẻ</a>
+							<a class="btn btn-danger btn-sm">Người dùng</a>
+							<a class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+						</div>
+						<div class="col-xs-12 col-md-5 mh-page-search">
+							<form>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div><!-- row: end -->
+				</div><!-- mh-home: end -->
+				<!-- mh-question-preview: start -->
+				<div class="panel panel-success mh-question-preview">
+					<!-- panel-heading: start -->
+					<div class="panel-heading">
+						<div class="row">
+							<a href="#">
+								<img src="img/user.jpg" class="mh-user-avatar">
+							</a>
+							<div>
+								<div>
+									<a href="#">
+										<span class="mh-username">HaiNNT</span>
+									</a>
+									<span class="mh-time">vừa hỏi</span>
+								</div>
+								<div class="detail-reputat">
+									<span>612</span>
+									<i class="fa fa-circle mh-reputation-icon"></i>
+								</div>
+							</div>
+							<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+						</div>
+					</div><!-- panel-heading: end -->
+					<!-- panel-body: start -->
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+								<div>
+									<a href="#">
+										<i class="fa fa-chevron-up mh-vote-icon" title="Câu hỏi này hay, rõ ràng và giúp ích"></i>
+									</a>
+								</div>
+								<div>
+									<span class="mh-vote-num">20</span>
+								</div>
+								<div>
+									<a href="#">
+										<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu hỏi này không hay, không rõ ràng và không giúp ích"></i>
+									</a>
+								</div>
+							</div>
+							<div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
+								<a href="#">Giải toán lớp 6</a>
+								<div>
+									<p>Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
+									</p>
+									<p>Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì 
+										còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc; 
+										mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc? 
+										Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì 
+										còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc; 
+										mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
+									</p>
+								</div>
+							</div>
+						</div>
+					</div><!-- panel-heading: end -->
+					<!-- panel-footer: start -->
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-xs-6 col-sm-4 col-md-3">
+<div class="fb-share-button" data-href="http://getbootstrap.com/" data-layout="button_count"></div>
+								|
+								<a href="#">Report</a>
+							</div>
+							<div class="col-xs-12 col-sm-8 col-md-9">
+								<ul class="list-inline mh-list-tags mh-list-tags-right">	
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Lớp 6</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán đố</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán dễ</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán khó</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div><!-- panel-footer: end -->
+					<!-- mh-comment: start -->
+					<div class="panel-body mh-comment">
+						<!-- mh-comment-detail: start -->
+						<div class="mh-comment-detail">	
+							<div class="mh-comment-content">
+								<span>Câu hỏi của bạn thật thú vị.</span><br/>
+								<a href="#">User</a>
+								<span class="mh-time">5 phút</span>
+							</div>
+							<div class="mh-comment-content">
+								<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+								<a href="#">User</a>
+								<span class="mh-time">5 phút</span>
+							</div>
+							<div class="mh-comment-content">
+								<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+								<a href="#">User</a>
+								<span class="mh-time">5 phút</span>
+							</div>
+							<a href ="#">Xem thêm bình luận</a>
+						</div><!-- mh-comment-detail: end -->
+					</div><!-- mh-comment: end -->
+				</div><!-- mh-question-preview: end -->
+				<!-- mh-answer_hint: start -->
+				<div class="mh-answer_hint">
+					<section class="mh-tabs">
+						<input id="mh-tab-1" type="radio" name="radio-set-1" class="mh-tab-selector-1" checked="checked" />
+						<label for="mh-tab-1" class="mh-tab-label-1">3 câu trả lời</label>
+				
+						<input id="mh-tab-2" type="radio" name="radio-set-1" class="mh-tab-selector-2" />
+						<label for="mh-tab-2" class="mh-tab-2 mh-tab-label-2">3 gợi ý</label>
+						
+						<div class="clear-shadow"></div>
+							
+						<div class="mh-tab-content">
+							<div class="mh-tab-content-1">
+								<!-- mh-answer_hint-body: start -->
+								<div class="mh-answer_hint-body">
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 119 bậc.</p>
+													<p>Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60.</p> 
+													<p>Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,....</p> 
+													<p>Trong đó 119 là số nhỏ nhất chia hết cho 7.</p> 
+													<p>Vậy số bậc cầu thang có thể là 119</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div>
+															<input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 49</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div>
+															<a href ="#">Xem thêm bình luận</a>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 1149</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div>
+															<a href ="#">Bình luận</a>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+								</div><!-- mh-answer_hint-body: end -->
+							</div>
+							<div class="mh-tab-content-2">
+								<!-- mh-answer_hint-body: start -->
+								<div class="mh-answer_hint-body">
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 119 bậc.</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div>
+															<input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 49</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div class="mh-comment-content">
+															<span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br/>
+															<a href="#">User</a>
+															<span class="mh-time">5 phút</span>
+														</div>
+														<div>
+															<a href ="#">Xem thêm bình luận</a>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+									<!-- mh-answer_hint-content: start -->
+									<div class="mh-answer_hint-content">
+										<div class="row mh-answer_hint-content-row">
+											<div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<span class="mh-vote-num">20</span>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+													</a>
+												</div>
+												<div>
+													<a href="#">
+														<i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+													</a>
+												</div>
+											</div>
+											<div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+												<div class="mh-answer_hint-detail-content">
+													<p>Dãy cầu thang có 1149</p> 
+												</div>
+												<div class="mh-answer_hint-user_info">
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+															<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar" >
+																<a href="#">
+																	<img src="img/user.jpg" class="mh-user-avatar">
+																</a>
+															</div>
+															<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+																<a href="#">
+																	<span class="mh-username">HaiNNT</span>
+																</a>
+																<div class="detail-reputat">
+																	<span>612</span>
+																	<i class="fa fa-circle mh-reputation-icon"></i>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="panel-body mh-comment">
+													<div class="mh-comment-detail">	
+														<div>
+															<a href ="#">Bình luận</a>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</div><!-- mh-answer_hint-content: end -->
+								</div><!-- mh-answer_hint-body: end -->
+							</div>
+						</div>
+					</section>
+				</div><!-- mh-answer_hint: end -->	
+				<!-- mh-post-Ans_Hint": start -->
+				<div class="mh-post-Ans_Hint">
+					<section class="mh-tabs">
+						<input id="mh-tab-3" type="radio" name="radio-set-2" class="mh-tab-selector-1" checked="checked" />
+						<label for="mh-tab-3" class="mh-tab-label-1">Trả lời câu hỏi</label>
+				
+						<input id="mh-tab-4" type="radio" name="radio-set-2" class="mh-tab-selector-2" />
+						<label for="mh-tab-4" class="mh-tab-2 mh-tab-label-2">Gợi ý trả lời</label>
+						
+						<div class="clear-shadow"></div>
+						
+						<div class="mh-tab-content">
+							<div class="mh-tab-content-1">
+								<div class="mh-ckeditor ">
+									<form>
+										<textarea name="editor1" id="editor1" rows="10" cols="80">
+											Trả lời câu hỏi
+										</textarea>
+									</form>
+								</div>
+								<div class="mh-post-Ans_Hint-button">
+									<a href="#" type="button" class="btn btn-primary btn-lg">Đăng câu trả lời</a>
+								</div>
+							</div>
+							<div class="mh-tab-content-2">
+								<div class="mh-ckeditor ">
+									<form>
+										<textarea name="editor2" id="editor2" rows="10" cols="80">
+											Gợi ý trả lời
+										</textarea>
+									</form>
+								</div>	
+								<div class="mh-post-Ans_Hint-button">
+									<a href="#" type="button" class="btn btn-primary btn-lg">Đăng gợi ý</a>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div><!-- mh-post-Ans_Hint": end -->
+			</div><!-- Mid: end -->
+			<!-- Right: start -->
+			<div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
+				<div class="mh-banner">					
+					<a href="#">
+						<img src="img/CTV.jpg">
+					</a>	
+				</div>
+				<div class="mh-btn">
+					<a href="#" class="btn btn-success">Đặt câu hỏi</a>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các thảo luận <span class="mh-hot">hot<span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các bài viết <span class="mh-hot">hot</span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#" >
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div> <!-- Right: end -->
+		</div>
+	</div>	
+	<footer></footer>
+	<script src="js/jquery-1.11.3.js"></script>	
+	<script src="js/bootstrap.js"></script>	
+	<!-- Make sure the path to CKEditor is correct. -->
+	<script src="ckeditor/ckeditor.js"></script>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace( 'editor1' );
+		CKEDITOR.replace( 'editor2' );
+	</script>
+</body>
+</html>
