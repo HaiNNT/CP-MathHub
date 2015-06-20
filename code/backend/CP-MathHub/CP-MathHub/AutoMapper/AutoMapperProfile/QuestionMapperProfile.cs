@@ -8,6 +8,8 @@ using CP_MathHub.Entity;
 using CP_MathHub.Models.Question;
 using CP_MathHub.Models.Common;
 using CP_MathHub.DAL;
+using CP_MathHub.Service.Services;
+using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
 {
@@ -18,9 +20,6 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            //User
-            Mapper.CreateMap<User, UserInfoViewModel>();
-
             // Question Preview      
             Mapper.CreateMap<Question, QuestionPreviewViewModel>()
                 .ForMember(
@@ -54,7 +53,13 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
-                ;
+                .ForMember(
+                    s => s.Bookmarked,
+                    d => d.MapFrom(m => m.BookmarkUsers
+                                            .Where(u => u.Id == new CommonService(
+                                                                    new CPMathHubModelContainer())
+                                                                        .GetLoginUser().Id).Count() > 0)
+                );
 
             //Question Detail
             Mapper.CreateMap<Question, QuestionDetailViewModel>()
@@ -83,6 +88,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
                 );
+
             //Create Question
             Mapper.CreateMap<QuestionCreateViewModel, Question>()
                .ForMember(
@@ -105,9 +111,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
                );
+
             //Edit Question Get
-            Mapper.CreateMap<Question, QuestionEditViewModel>(
-                );
+            Mapper.CreateMap<Question, QuestionEditViewModel>();
         }
     }
 }

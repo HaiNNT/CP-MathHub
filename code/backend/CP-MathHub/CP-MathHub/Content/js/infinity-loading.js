@@ -13,7 +13,7 @@ var IL_MAIN_POST_TYPE_DISCUSSION = "discussion";
 $(document).ready(function () {
     var type = $("#system").val();
     $(window).scroll(function () {
-        if (($(window).scrollTop() + $(window).height() > $(document).height() - 1000) && il_ready) {
+        if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && il_ready) {
             il_ready = false;
             getMoreMainPost(type);
         }
@@ -35,14 +35,23 @@ function getMoreMainPost(type) {
         case IL_MAIN_POST_TYPE_QUESTION:
             list = $("#list-questions");
             var tab = $("#tab").val();
-            if (tab == "Search") {
-                var searchString = $("#searchString").val();
-                url = "/Question/Search";
-                data = { searchString: searchString , page: ++il_page}
-            } else {
-                url = "/Question/Index";
-                data = { tab: tab, page: ++il_page }
-            }         
+            switch (tab) {
+                case "Search":
+                    var searchString = $("#tab-param").val();
+                    url = "/Question/Search";
+                    data = { searchString: searchString, page: ++il_page };
+                    break;
+                case "Tag":
+                    var tag = $("#tab-param").val();
+                    url = "/Question/Tag";
+                    data = { tag: tag, page: ++il_page };
+                    break;
+                default:
+                    var tab = $("#tab").val();
+                    url = "/Question/Index";
+                    data = { tab: tab, page: ++il_page }
+                    break;
+            }
             break;
         //case MAIN_POST_TYPE_DISCUSSION:
         //    list = $("#list-discussions");
@@ -55,17 +64,26 @@ function getMoreMainPost(type) {
         //    data = { tab: "Newest", page: ++il_page }
         //    break;
         default:
-            list = $("#list-questions");
+            list = $("#list-questions");           
             var tab = $("#tab").val();
-            if (tab == "Search") {
-                var searchString = $("#searchString").val();
-                url = "/Question/Search";
-                data = { searchString: searchString, page: ++il_page }
-            } else {
-                url = "/Question/Index";
-                data = { tab: tab, page: ++il_page }
+            switch (tab) {
+                case "Search":          
+                    var searchString = $("#tab-param").val();
+                    url = "/Question/Search";
+                    data = { searchString: searchString, page: ++il_page };
+                    break;
+                case "Tag":
+                    var tag = $("#tab-param").val();
+                    url = "/Question/Tag";
+                    data = { tag: tag, page: ++il_page };
+                    break;
+                default:
+                    var tab = $("#tab").val();
+                    url = "/Question/Index";
+                    data = { tab: tab, page: ++il_page }
+                    break;
             }
-            break;
+
     }
         
     $.ajax({

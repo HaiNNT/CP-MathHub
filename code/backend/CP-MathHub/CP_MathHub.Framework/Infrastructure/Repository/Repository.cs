@@ -57,7 +57,6 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
 
             if (query.Count() - 1 >= skip)
             {
-                int i = query.Skip(skip).Take(take).Count();
                 return query.Skip(skip).Take(take);
             }
 

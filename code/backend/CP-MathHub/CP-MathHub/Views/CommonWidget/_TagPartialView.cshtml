@@ -1,6 +1,6 @@
 ﻿@model CP_MathHub.Entity.Tag
 
-<a href="#" class="mh-tag">
+<a href="@Url.Action("Tag", "Question", new { tag = Model.Name })" class="mh-tag">
     <i class="fa fa-circle"></i>
     <span>@Model.Name</span>
 </a>

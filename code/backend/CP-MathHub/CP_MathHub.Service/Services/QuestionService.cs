@@ -61,13 +61,23 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        public List<Question> GetQuestions(int authorId)
+        public List<Question> GetQuestions(int authorId, int skip = 0)
         {
             return dal.Repository<Question>() //Get Question Repository
                 .Get(
                     (a => a.UserId > 0), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
-                    "Author"
+                    "Author",
+                    skip
+                ).ToList();
+        }
+        public List<Question> GetQuestions(int skip, string tagName)
+        {
+            return dal.Repository<Question>() //Get Question Repository
+                .Get(a => a.Tags.Where(t => t.Name == tagName).Count() > 0, //Contain tag
+                        (p => p.OrderBy(s => s.CreatedDate)),
+                        "Author",
+                        skip
                 ).ToList();
         }
         public Question GetQuestion(int id)

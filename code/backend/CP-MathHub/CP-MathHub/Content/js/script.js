@@ -18,6 +18,86 @@ function seeMore() {
     });
 }
 
+/*
+  Bookmark a main post
+*/
+function bookmark(id, type) {
+    var url = "";
+    var data = { id: id };
+    var bookmarked = "#bookmarked-" + id;
+    var bookmark = "#bookmark-" + id;
+    switch (type) {
+        case "question":
+            url = "/Question/Bookmark";
+            break;
+        //case "article":
+
+        //    break;
+        //case "discussion":
+
+        //    break;
+        default:
+
+            break;
+    }
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+      .done(function (msg) {
+          if (msg) {
+              $(bookmark).addClass("hidden");
+              $(bookmarked).removeClass("hidden");
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {          
+          alert("fail error");
+      });
+}
+
+/*
+  Unbookmark a main post
+*/
+function unBookmark(id, type) {
+    var url = "";
+    var data = { id: id };
+    var bookmarked = "#bookmarked-" + id;
+    var bookmark = "#bookmark-" + id;
+    switch (type) {
+        case "question":
+            url = "/Question/Bookmark";
+            break;
+            //case "article":
+
+            //    break;
+            //case "discussion":
+
+            //    break;
+        default:
+
+            break;
+    }
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+      .done(function (msg) {
+          if (msg) {
+              $(bookmarked).addClass("hidden");
+              $(bookmark).removeClass("hidden");
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("fail error");
+      });
+}
+
 $(document).ready(function () {
     seeMore();
 })

@@ -20,7 +20,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get Questions by Author
         /// </summary>
         /// <returns></returns>
-        List<Question> GetQuestions(int authorId);
+        List<Question> GetQuestions(int authorId, int skip = 0);
+
+        /// <summary>
+        /// Get Questions by Tag
+        /// </summary>
+        /// <returns></returns>
+        List<Question> GetQuestions(int skip, string tagName);
 
         /// <summary>
         /// Get a Question By Id
@@ -61,5 +67,6 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="searchString"></param>
         /// <returns></returns>
         int CountSearchResult(string searchString);
+
     }
 }
