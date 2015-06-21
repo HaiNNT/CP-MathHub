@@ -18,24 +18,26 @@ namespace CP_MathHub.Controllers
     [ChildActionOnly]
     public partial class CommonWidgetController : BaseController
     {
-        private IAccountService aService;
+        private ICommonService cService;
+        private CPMathHubModelContainer context;
 
         public CommonWidgetController()
         {
-            aService = new AccountService();
+            context = new CPMathHubModelContainer();
+            cService = new CommonService(context);
         }
 
         #region User Widget
         public virtual ActionResult ProfileWidget()
         {
-            User user = aService.GetLoginUser();
+            User user = cService.GetLoginUser();
             ProfileWidgetViewModel profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
 
             return PartialView("_ProfileWidget", profileWidgetVm);
         }
         public virtual ActionResult UserHeaderWidget()
         {
-            User user = aService.GetLoginUser();
+            User user = cService.GetLoginUser();
             UserHeaderViewModel userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
 
             return PartialView("_UserHeaderWidget", userHeaderVM);

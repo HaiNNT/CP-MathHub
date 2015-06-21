@@ -54,6 +54,33 @@ namespace CP_MathHub.Controllers
             }
         }
 
+        public ActionResult Tag(string tag = "", int page = 0)
+        {
+            int skip = page*Constant.Question.Integer.PagingDefaultTake;
+            //Tag tagEntity = cService.GetTag(tag);
+            List<Question> questions = qService.GetQuestions(skip, tag);
+            ICollection<QuestionPreviewViewModel> questionPreviewVMs =
+                    questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+            foreach (QuestionPreviewViewModel q in questionPreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+            ViewBag.TabParam = tag;
+            if (page == 0) { 
+                QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
+                questionHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
+                questionHomeVM.Tab = Constant.Question.String.HomeTagTab;
+                questionHomeVM.Items = questionPreviewVMs;         
+                return View("Views/QuestionHomeView", questionHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_QuestionListPartialView", questionPreviewVMs);
+            }
+        }
+
+        //Get: Question/Search
         [HttpGet]
         public ActionResult Search(string searchString, int page = 0)
         {
@@ -67,8 +94,7 @@ namespace CP_MathHub.Controllers
             {
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
-            ViewBag.SearchString = searchString;
-
+            ViewBag.TabParam = searchString;
             if(page == 0){
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString) 
@@ -83,7 +109,7 @@ namespace CP_MathHub.Controllers
             }
         }
 
-        // GET: Detail
+        // GET: Question/Detail
         [HttpGet]
         public ActionResult Detail(int id)
         {
@@ -94,14 +120,14 @@ namespace CP_MathHub.Controllers
             return View("Views/QuestionDetailView", questionDetailVM);
         }
 
-        // GET: Create
+        // GET: Question/Create
         [HttpGet]
         public ActionResult Create()
         {
             return View("Views/QuestionCreateView");
         }
 
-        //Post: Create
+        //Post: Question/Create
         [HttpPost]
         public ActionResult Create(QuestionCreateViewModel questionVM)
         {
@@ -122,7 +148,8 @@ namespace CP_MathHub.Controllers
                 return View("Views/Error");
             }
         }
-        //GET: Edit
+
+        //GET: Question/Edit
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -132,7 +159,8 @@ namespace CP_MathHub.Controllers
             questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
             return View("Views/QuestionEditView", questionEditVM);
         }
-        //Post: Edit
+
+        //Post: Question/Edit
         [HttpPost]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
@@ -153,12 +181,23 @@ namespace CP_MathHub.Controllers
 
             return RedirectToAction("Detail", new { id = question.Id });
         }
-        //Delete
+
+        //Post: Question/Delete
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             Question question = qService.GetQuestion(id);
             qService.DeleteQuestion(question);
             return RedirectToAction("Index");
+        }
+
+        //Post: Question/Bookmark
+        [HttpPost]
+        public bool Bookmark(int id)
+        {
+            Question question = qService.GetQuestion(id);
+            User user = cService.GetLoginUser();
+            return cService.Bookmark(id, user);
         }
     }
 }

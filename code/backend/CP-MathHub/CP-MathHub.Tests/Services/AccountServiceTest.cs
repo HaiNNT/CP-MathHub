@@ -11,7 +11,7 @@ namespace CP_MathHub.Tests.Services
         [TestMethod]
         public void GetLoginUser()
         {
-            AccountService service = new AccountService();
+            AccountService service = new AccountService(new CPMathHubModelContainer());
             User user = service.GetLoginUser();
             Assert.IsNotNull(user);
             Assert.IsFalse(user.Username == "");

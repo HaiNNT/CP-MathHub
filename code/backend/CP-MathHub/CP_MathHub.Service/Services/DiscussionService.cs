@@ -15,9 +15,9 @@ namespace CP_MathHub.Service.Services
     public class DiscussionService : IDiscussionService
     {
          private IUnitOfWork dal;
-        public DiscussionService()
+        public DiscussionService(CPMathHubModelContainer context)
         {
-            dal = new MathHubUoW();   
+            dal = new MathHubUoW(context);   
         }
         public List<Discussion> GetDiscussions(string homeTab, int skip = 0)
         {

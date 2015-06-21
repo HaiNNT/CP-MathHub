@@ -17,9 +17,11 @@ namespace CP_MathHub.Controllers
     public class DiscussionController : BaseController
     {
         private IDiscussionService dService;
+        private CPMathHubModelContainer context;
         public DiscussionController()
         {
-            dService = new DiscussionService();
+            context = new CPMathHubModelContainer();
+            dService = new DiscussionService(context);
         }
         // GET: Discussion
         [HttpGet]

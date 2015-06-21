@@ -22,6 +22,7 @@ namespace CP_MathHub.Models.Question
         public int BookmarkNum { get; set; }
         public int ReportNum { get; set; }
         public int ShareNum { get; set; }
+        public bool Bookmarked { get; set; }
 
         public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }

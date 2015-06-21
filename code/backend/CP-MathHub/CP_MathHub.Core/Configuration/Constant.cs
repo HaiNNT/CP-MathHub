@@ -29,6 +29,8 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeNewestTab = "Newest";
                 public const string HomeUnAnsweredTab = "Unanswered";
                 public const string HomeHotTab = "Hot";
+                public const string HomeTagTab = "Tag";
+                public const string HomeUserTab = "Users";
             }
 
         }

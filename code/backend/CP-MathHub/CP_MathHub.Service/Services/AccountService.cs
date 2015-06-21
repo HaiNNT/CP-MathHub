@@ -16,9 +16,9 @@ namespace CP_MathHub.Service.Services
     public class AccountService : IAccountService
     {
         private IUnitOfWork dal;
-        public AccountService()
+        public AccountService(CPMathHubModelContainer context)
         {
-            dal = new MathHubUoW();   
+            dal = new MathHubUoW(context);   
         }
         public User GetLoginUser()
         {

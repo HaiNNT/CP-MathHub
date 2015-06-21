@@ -12,17 +12,17 @@ namespace CP_MathHub.Service.Helpers
         {
             TimeSpan period = (DateTime.Now - time);
 
-            if (period.TotalSeconds < 60)
+            if ((int) period.TotalSeconds < 60)
             {
                 return "vừa hỏi";
             }
-            if (period.TotalSeconds >= 60 && period.TotalHours < 1)
+            if ((int) period.TotalSeconds >= 60 && (int)period.TotalHours < 1)
             {
-                return "hỏi " + period.TotalMinutes + " phút trước";
+                return "hỏi " + (int) period.TotalMinutes + " phút trước";
             }
-            if (period.TotalMinutes >= 60 && period.TotalHours < 24)
+            if ((int) period.TotalMinutes >= 60 && (int)period.TotalHours < 24)
             {
-                return "hỏi " + period.TotalHours + " tiếng trước";
+                return "hỏi " + (int) period.TotalHours + " tiếng trước";
             }
             return "hỏi vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
