@@ -128,7 +128,9 @@ body {
 	border-right: 1px solid #C1C1C1;
 	border-left: 1px solid #C1C1C1;
 }
-
+.mh-body-bottom {
+	border-bottom: 1px solid #C1C1C1;
+}
 .mh-left-section {
 	padding-top: 20px;
 	padding-bottom: 10px;
@@ -138,7 +140,6 @@ body {
 	border-right: 1px solid #C1C1C1;
 	border-left: 1px solid #C1C1C1;
 }
-
 .mh-right-section {
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -541,7 +542,51 @@ body {
 	text-align: center;
 }
  /* QA detail: end */
- 
+ /*  QA create: start */
+ .mh-body-title {
+	margin-top: 15px;
+ }
+ .mh-body-createQuestion-label {
+	font-weight: bolder;
+	font-size: 14pt;
+ }
+ .mh-title-question {
+	width: 100%;
+	height: 40px;
+	font-size: 14pt;
+	font-weight: bolder;
+	margin-bottom: 20px;
+ }
+ .mh-preview {
+	margin-top:10px;
+	margin-bottom: 10px;
+ }
+ .mh-input-tags {
+	font-weight: normal;
+ }
+ .mh-preview-button {
+	width: 100%;
+	font-size: 15pt;
+ }
+ .mh-input-tagFriend {
+	font-weight: normal;
+ }
+ .mh-CreateQuestion-button {
+	width: 230px;
+	margin-right: 9px;
+	margin-bottom: 15px;
+ }
+ .mh-body-button {
+	text-align: right;
+ }
+ .mh-preview-content {
+	border: 1px solid silver;
+	margin-top:5px;
+	padding: 5px;
+	font-size: 13pt;
+	display: none;	
+ }
+  /*  QA create: end */
 /* Mid: end */
 
 /* Left: start */
@@ -662,3 +707,17 @@ body {
 }
 
 /* Right: end*/
+/*  footer:start */
+footer {
+	background-color: #ccc;
+	margin-top: 30px;
+}
+.mh-social {
+	background-color:#ccc;
+	border-color:#ccc;
+	
+}
+.mh-social-icon {
+	font-size: 30pt;
+}
+/*  footer: end */

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "http://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="mh-header-collapse">
+				<ul class="nav navbar-nav" id="mh-nav-link">
+					<li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Bài Viết</a></li>
+					<li><a href="#">Thảo Luận</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="mh-nav-user">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							Thanh Hải
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>					
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-globe"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-comments"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-group"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+<!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Tìm kiếm">
+						<i class="fa fa-search"></i>
+					</div>
+				</form> -->
+				
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</header>	
+	<div class="container mh-body mh-body-bottom">
+		<div class="row">
+			<!-- Left: start -->
+			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+				<div class="mh-profile row">
+					<a href=""><img src="img/user.jpg"></a>
+					<div class="">
+						<a href="">Văn Tâm</a>
+						<div class="detail-reputat">
+							<span>1432</span>
+							<i class="fa fa-circle mh-reputation-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Hoạt động</div>
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Tags yêu thích</div>
+					<div class="mh-table-info-body">
+						<ul class="list-inline mh-list-tags mh-list-tags-left">	
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Lớp 6</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán đố</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán dễ</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán khó</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Table-info: start -->
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Theo dõi</div>
+					<!-- Table-info-body: start -->
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+					</div><!-- Table-info-body: end -->
+				</div><!-- Table-info: end -->
+			</div> <!-- Left: end -->
+			<!-- Mid: start -->
+			<div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section" style="border-right: 0;">
+				<div class="mh-top-content">
+					<div class="row">
+						<div class="col-md-4 mh-content-title">
+							<h3>Đặt câu hỏi</h3>
+						</div>
+					</div>
+				</div>
+				<!-- mh-home: start -->
+				<div class="mh-home">
+					<!-- row: start -->
+					<div class="row">
+						<div class="col-xs-12 col-md-7 mh-home-tab">
+							<a class="btn btn-danger btn-sm">Mới nhất</a>
+							<a class="btn btn-danger btn-sm">Hot</a>
+							<a class="btn btn-danger btn-sm">Chưa trả lời</a>
+							<a class="btn btn-danger btn-sm">Thẻ</a>
+							<a class="btn btn-danger btn-sm">Người dùng</a>
+						</div>
+						<div class="col-xs-12 col-md-5 mh-page-search">
+							<form>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div><!-- row: end -->
+					<!-- Body content Mid: start  -->
+					<div class="mh-body-content-mid">
+						<form>
+							<div class="mh-body-title">
+								<span class="mh-body-createQuestion-label">Tiêu đề: </span><br/>
+								<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-title-question">
+							</div>
+							<div class="mh-ckeditor">
+								<span class="mh-body-createQuestion-label">Nôi dung: </span><br/>
+								<form>
+									<textarea name="editor1" id="editor1" rows="10" cols="80">
+										Nội dung câu hỏi
+									</textarea>
+								</form>
+							</div>
+							<div class="mh-preview">
+								<button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
+								<div class="mh-preview-content">
+								  Nội dung câu hỏi
+								</div>
+							</div>
+							<div>
+								<span class="mh-body-createQuestion-label">Gắn thẻ cho câu hỏi: </span><br/>
+								<input type="text" class="mh-title-question mh-input-tags">
+							</div>
+							<div>
+								<span class="mh-body-createQuestion-label">Mời bạn bè: </span><br/>
+								<input type="text" class="mh-title-question mh-input-tagFriend">
+							</div>
+							<div class="mh-body-button">
+								<button type="submit" class="btn btn-success btn-lg mh-CreateQuestion-button">Đăng</button>
+							</div>
+						</form>
+					</div><!-- Body content Mid: end  -->
+				</div><!-- mh-home: end -->
+			</div><!-- Mid: end -->
+		</div>
+	</div>	
+	<!--  footer: start -->
+	<footer>
+		<div class="container"">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<h2>Thông tin</h2>
+					<p>
+						 Capstone Project
+					</p>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<h2>Theo dõi Website trên</h2>
+			
+						  <a href="#">
+							<i class="fa fa-facebook-official mh-social-icon" style="color: #3C599F"></i>
+						  </a>
+						
+						  <a href="#">
+							<i class="fa fa-google-plus-square mh-social-icon" style="color: #CE3D2B"></i>
+						  </a>
+					
+					
+						  <a href="#">
+							<i class="fa fa-twitter-square mh-social-icon" style="color: #51A5E5"></i>
+						  </a>
+					
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					<h2>Liên hệ</h2>
+					<address class="margin-bottom-40">
+					Phone: 0000 000 000<br>
+					 Email: <a href="mailto:info@metronic.com">info@gmail.com</a>
+					</address>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-3">
+					2015 &copy; Handsome Team.
+				</div>
+			</div>
+		</div>
+	</footer><!--  footer: end -->
+	<script src="js/jquery-1.11.3.js"></script>	
+	<script src="js/bootstrap.js"></script>	
+	<!-- Make sure the path to CKEditor is correct. -->
+	<script src="ckeditor/ckeditor.js"></script>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace( 'editor1' );
+		CKEDITOR.replace( 'editor2' );
+	</script>
+	<script>
+		$( ".mh-preview-button" ).click(function() {
+		  $( ".mh-preview-content" ).slideToggle( "slow" );
+		});
+	</script>
+</body>
+</html>
