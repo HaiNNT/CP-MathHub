@@ -33,14 +33,14 @@ namespace CP_MathHub.Controllers
             User user = cService.GetLoginUser();
             ProfileWidgetViewModel profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
 
-            return PartialView("_ProfileWidget", profileWidgetVm);
+            return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
         }
         public virtual ActionResult UserHeaderWidget()
         {
             User user = cService.GetLoginUser();
             UserHeaderViewModel userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
 
-            return PartialView("_UserHeaderWidget", userHeaderVM);
+            return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);
         }
 
         //public virtual ActionResult FavoriteTagWidget()

@@ -21,7 +21,9 @@ namespace CP_MathHub
 
             bundles.Add(new ScriptBundle("~/bundles/script").Include(
                       "~/Content/js/script.js",
-                      "~/Content/js/infinity-loading.js"));
+                      "~/Content/js/infinity-loading.js",
+                      "~/Content/ckeditor/ckeditor.js",
+                      "~/Content/js/auto-complete.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",

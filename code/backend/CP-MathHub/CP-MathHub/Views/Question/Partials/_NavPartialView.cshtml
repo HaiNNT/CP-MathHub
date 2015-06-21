@@ -1,0 +1,27 @@
+﻿<div class="mh-home">
+    <div class="row">
+        <div class="col-xs-12 col-md-7 mh-home-tab">
+            @Html.ActionLink("Mới nhất", "Index", new { @tab = "Newest" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Newest" ? "active" : "") })
+            @Html.ActionLink("Hot", "Index", new { @tab = "Hot" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Hot" ? "active" : "") })
+            @Html.ActionLink("Chưa trả lời", "Index", new { @tab = "Unanswered" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Unanswered" ? "active" : "") })
+            <a href="#" class="btn btn-danger btn-sm @(ViewBag.Tab == "Tag" ? "active" : "")">Thẻ</a>
+            <a href="#" class="btn btn-danger btn-sm @(ViewBag.Tab == "Users" ? "active" : "")">Người dùng</a>
+            @if (ViewBag.Tab != "Create") { 
+                <a href="@Url.Action("Create", "Question")" class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+            }
+        </div>
+        <div class="col-xs-12 col-md-5 mh-page-search">
+            @using (Html.BeginForm("Search", "Question", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

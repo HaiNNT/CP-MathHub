@@ -108,7 +108,7 @@
 			</div><!-- /.navbar-collapse -->
 		</div>
 	</header>	
-	<div class="container mh-body mh-body-bottom">
+	<div class="container mh-body">
 		<div class="row">
 			<!-- Left: start -->
 			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
@@ -258,7 +258,7 @@
 						<div class="col-xs-12 col-md-5 mh-page-search">
 							<form>
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<input type="search" class="form-control" placeholder="Tìm kiếm...">
 									<span class="input-group-btn">
 										<button class="btn btn-primary" type="submit">
 											<i class="fa fa-search"></i>
@@ -269,16 +269,17 @@
 						</div>
 					</div><!-- row: end -->
 					<!-- Body content Mid: start  -->
-					<div class="mh-body-content-mid">
+				</div><!-- mh-home: end -->
+				<div class="mh-body-content-mid">
 						<form>
 							<div class="mh-body-title">
 								<span class="mh-body-createQuestion-label">Tiêu đề: </span><br/>
-								<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-title-question">
+								<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-input-question">
 							</div>
 							<div class="mh-ckeditor">
 								<span class="mh-body-createQuestion-label">Nôi dung: </span><br/>
 								<form>
-									<textarea name="editor1" id="editor1" rows="10" cols="80">
+									<textarea name="editor1" id="editor1" rows="15" cols="80">
 										<p>Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.</p> 
 										Hãy tính quãng đường chú chó đã chạy?
 									</textarea>
@@ -291,20 +292,53 @@
 									Hãy tính quãng đường chú chó đã chạy?
 								</div>
 							</div>
-							<div>
-								<span class="mh-body-createQuestion-label">Gắn thẻ cho câu hỏi: </span><br/>
-								<input type="text" class="mh-title-question mh-input-tags">
+							<div style="position: relative;">
+								<label class="mh-body-createQuestion-label">Gắn thẻ cho câu hỏi: </label><br />
+								<div class="mh-input-question mh-input-tag">
+										<div>
+											<span class="mh-tag-item">										
+												<span>Lớp 6</span>
+												<i class="fa fa-times-circle"></i>
+												<input type="hidden" name="TagIds" value="1" />
+											</span>
+											<span class="mh-tag-item">										
+												<span>Đại học</span>
+												<i class="fa fa-times-circle"></i>
+											</span>
+											<span class="mh-tag-item">										
+												<span>Lớp 10</span>
+												<i class="fa fa-times-circle"></i>
+											</span> 
+										</div>
+										<div>
+										<input type="text" class="" id="mh-input-tag" />
+										</div>
+								</div>
+								<ul id="mh-tag-autocomplete-list">
+									<li>
+										<label>Đại học</label> - Có 2134 câu hỏi
+										<span>1</span>
+									</li>
+									<li>
+										<label>Toán khó</label> - Có 3216 câu hỏi
+										<span>2</span>
+									</li>
+									<li>
+										<label>Lớp 12</label> - Có 2523 câu hỏi
+										<span>3</span>
+									</li>
+								</ul>
 							</div>
 							<div>
 								<span class="mh-body-createQuestion-label">Mời bạn bè: </span><br/>
-								<input type="text" class="mh-title-question mh-input-tagFriend">
+								<input type="text" class="mh-input-question mh-input-tagFriend">
 							</div>
 							<div class="mh-body-button">
 								<button type="submit" class="btn btn-success btn-lg mh-CreateQuestion-button">Đăng</button>
 							</div>
 						</form>
 					</div><!-- Body content Mid: end  -->
-				</div><!-- mh-home: end -->
+				
 			</div><!-- Mid: end -->
 		</div>
 	</div>	
@@ -314,14 +348,14 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
 					<h2>Thông tin</h2>
-					<span class="mh-footer-info-content">
+					<div class="mh-footer-info-content">
 						<p>
 						 MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
 						</p>
-						</p>
+						<p>
 							MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
 						</p>
-					</span>
+					</div>
 				</div>
 				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
 					<h2>Social media</h2>

@@ -44,7 +44,7 @@ namespace CP_MathHub.Controllers
             if (page == 0) { 
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "HỎI ĐÁP";
-                questionHomeVM.Tab = tab;
+                ViewBag.Tab = tab;
                 questionHomeVM.Items = questionPreviewVMs;           
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -70,7 +70,7 @@ namespace CP_MathHub.Controllers
             if (page == 0) { 
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
-                questionHomeVM.Tab = Constant.Question.String.HomeTagTab;
+                ViewBag.Tab = Constant.Question.String.HomeTagTab;
                 questionHomeVM.Items = questionPreviewVMs;         
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -99,7 +99,7 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString) 
                                         + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
-                questionHomeVM.Tab = "Search";
+                ViewBag.Tab = Constant.Question.String.SearchTab;
                 questionHomeVM.Items = problemVms;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -107,6 +107,24 @@ namespace CP_MathHub.Controllers
             {
                 return PartialView("Partials/_QuestionListPartialView", problemVms);
             }
+        }
+
+        //GET: Question/SearchTag
+        [HttpGet]
+        public ActionResult SearchTag(string name , string type = "search")
+        {
+            switch (type){
+                case "search":
+
+                    return null;
+                case "autocomplete":
+                    List<Tag> tags = cService.GetTags(name);
+                    
+                    return PartialView("../CommonWidget/_TagAutoCompletePartialView", tags);
+                default:
+                    return null;
+            }
+            
         }
 
         // GET: Question/Detail

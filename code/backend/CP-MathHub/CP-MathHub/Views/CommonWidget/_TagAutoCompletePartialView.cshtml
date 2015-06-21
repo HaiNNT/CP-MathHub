@@ -1,0 +1,3 @@
+﻿@model List<CP_MathHub.Entity.Tag>
+
+@foreach (var tag in Model) {<li onclick="addTag(this)" class="mh-tag-autocomplete-item"><label>@tag.Name</label><span>@tag.Id</span></li>}
