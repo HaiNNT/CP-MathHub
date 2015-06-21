@@ -25,13 +25,12 @@ body {
 }
 
 #mh-header {
-	background-color: #A73D2D;
+	background-color: brown;
 }
 
 #mh-nav-link > li > a {
 	color: #fff;
 	font-size: 12pt;
-	background-color: #A73D2D;
 }
 
 #mh-nav-link > li > a:hover {
@@ -69,15 +68,14 @@ body {
 }
 
 
-.mh-notification > li.dropdown > a:hover {
+.mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
     color: #fff;
-    background-color: #A73D2D;
+    background-color: brown;
 }
-
 
  .mh-notification > li.open > a {
 	color: #fff !important;
-    background-color: #A73D2D !important;
+    background-color: brown !important;
 }
 
 .mh-active > a {
@@ -103,7 +101,7 @@ body {
 
 #mh-nav-user > li.open > a {
 	color: #fff !important;
-    background-color: #A73D2D !important;
+    background-color: brown !important;
 }
 
 .mh-user-icon {
@@ -567,6 +565,7 @@ body {
  .mh-preview-button {
 	width: 100%;
 	font-size: 15pt;
+	border-radius: 4px 4px 0 0;
  }
  .mh-input-tagFriend {
 	font-weight: normal;
@@ -580,10 +579,11 @@ body {
 	text-align: right;
  }
  .mh-preview-content {
-	border: 1px solid silver;
-	margin-top:5px;
-	padding: 5px;
+	border: 1px solid #46b8da;
+	padding: 15px;
 	font-size: 13pt;
+	text-align: justify;
+	background-color: #E5F2FF;
 	display: none;	
  }
   /*  QA create: end */
@@ -709,15 +709,27 @@ body {
 /* Right: end*/
 /*  footer:start */
 footer {
-	background-color: #ccc;
+	background-color: #710A18;
 	margin-top: 30px;
+	color: #fff;
 }
-.mh-social {
-	background-color:#ccc;
-	border-color:#ccc;
-	
+.mh-footer-info {
+	padding-left: 0;
+	text-align: justify;
 }
-.mh-social-icon {
-	font-size: 30pt;
+.mh-footer-contact {
+	padding-right: 0;
+	text-align: justify;
+}
+.mh-footer-social {
+	text-align: center;
+}
+.mh-footer-social a:hover {
+	opacity: 0.7;
+}
+.mh-copyright-content {
+	text-align: center;
+	padding: 10px;
+	font-size: 10pt;
 }
 /*  footer: end */
