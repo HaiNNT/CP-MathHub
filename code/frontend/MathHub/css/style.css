@@ -125,10 +125,9 @@ body {
 	background-color: #fff;
 	border-right: 1px solid #C1C1C1;
 	border-left: 1px solid #C1C1C1;
-}
-.mh-body-bottom {
 	border-bottom: 1px solid #C1C1C1;
 }
+
 .mh-left-section {
 	padding-top: 20px;
 	padding-bottom: 10px;
@@ -548,13 +547,31 @@ body {
 	font-weight: bolder;
 	font-size: 14pt;
  }
- .mh-title-question {
-	width: 100%;
-	height: 40px;
-	font-size: 14pt;
-	font-weight: bolder;
-	margin-bottom: 20px;
+ .mh-input-question {
+    width: 100%;
+    height: 40px;
+    font-size: 14pt;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    border: 1px solid;
+	padding-left: 10px;
  }
+ 
+  .mh-input-question > div {
+	display: table-cell;
+  }
+ 
+  .mh-input-question > div > input {
+	border: 0px;
+    margin-left: 5px;
+    margin-top: 3px;
+	width: 100%;
+  }
+  
+  .mh-input-question > div > input:focus {
+	outline: none;
+  }
+ 
  .mh-preview {
 	margin-top:10px;
 	margin-bottom: 10px;
@@ -586,6 +603,50 @@ body {
 	background-color: #E5F2FF;
 	display: none;	
  }
+ 
+ .mh-tag-item {
+    margin-right: 5px;
+    font-size: 11pt;
+    background-color: #0DBBC2;
+    padding: 5px;
+    color: #fff;
+ }
+ 
+  .mh-tag-item  > span {
+	margin-right: 5px;
+  }
+  
+  .mh-tag-item  > i:hover {
+	color: #B91B1B;
+    cursor: pointer;
+  }
+  
+  #mh-tag-autocomplete-list {
+	padding: 0;
+    margin: 0;
+    background-color: #F1F9F8;
+    width: 25%;
+    border: 1px solid;
+    position: absolute;
+    top: 71px;
+	display: none;
+  }
+  
+  #mh-tag-autocomplete-list > li {
+	list-style-type: none;
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: -1px;
+  }
+  
+   #mh-tag-autocomplete-list > li > label {
+	color: #3271FF;
+   }
+  
+   #mh-tag-autocomplete-list > li > span {
+	display: none;
+   }
+  
   /*  QA create: end */
 /* Mid: end */
 

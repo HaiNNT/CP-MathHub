@@ -31,6 +31,8 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeHotTab = "Hot";
                 public const string HomeTagTab = "Tag";
                 public const string HomeUserTab = "Users";
+                public const string CreateTab = "Create";
+                public const string SearchTab = "Search";
             }
 
         }

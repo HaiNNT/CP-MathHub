@@ -98,6 +98,34 @@ function unBookmark(id, type) {
       });
 }
 
+/*
+  Show and hide Preview main post content
+*/
+function togglePreview() {
+    $(".mh-preview-button").click(function () {
+        $(".mh-preview-content").slideToggle("slow");
+    });
+}
+
+/*
+  Apply ckeditor for textarea
+*/
+function initCkeditor() {
+    var list = [];
+    $(".editor").each(function () {
+        list.push($(this).attr("id"));
+    });
+    for (var item in list) {
+        CKEDITOR.replace(list[item]);
+    }
+    
+}
+
+/*
+    Init all necessary fucntions
+*/
 $(document).ready(function () {
     seeMore();
-})
+    togglePreview();
+    initCkeditor();
+});

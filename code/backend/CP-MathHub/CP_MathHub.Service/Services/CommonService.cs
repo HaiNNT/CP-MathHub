@@ -45,6 +45,14 @@ namespace CP_MathHub.Service.Services
             }
             return tags;
         }
+        public List<Tag> GetTags(string name)
+        {
+            List<Tag> tags = dal.Repository<Tag>().Get(
+                    (t => t.Name.Contains(name)),
+                    (t => t.OrderBy(m => m.Name))
+                ).ToList();
+            return tags;
+        }
         public bool Bookmark(int id, User user)
         {
                 MainPost post = dal.Repository<MainPost>().GetById(id);

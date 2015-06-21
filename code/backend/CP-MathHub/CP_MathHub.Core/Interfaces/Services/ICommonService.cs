@@ -32,6 +32,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Tag> GetTags(List<int> tagIds);
 
         /// <summary>
+        /// Get list of tag by list tag name
+        /// </summary>
+        /// <param name="listTagId"></param>
+        /// <returns></returns>
+        List<Tag> GetTags(string name);
+
+        /// <summary>
         /// Bookmark/UnBookmark a MainPost
         /// </summary>
         /// <param name="id"></param>

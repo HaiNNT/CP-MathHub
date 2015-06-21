@@ -4,48 +4,61 @@
     Layout = "~/Views/Question/Layouts/_QuestionCreateLayout.cshtml";
 }
 
-<h2>QuestionCreateView</h2>
-@using (Html.BeginForm("Create", "Question", FormMethod.Post))
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-4 mh-content-title">
+            <h3>Đặt câu hỏi</h3>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("Partials/_NavPartialView")
+
+<div class="mh-body-content-mid">
+    @using (Html.BeginForm("Create", "Question", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.Label("Title", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title)
+        <div class="mh-body-title">
+            @Html.Label("Tiêu đề:", new { @class = "mh-body-createQuestion-label" })<br />
+            @Html.TextBoxFor(m => m.Title, new { @class = "mh-input-question", @placeholder = "Nhập tiêu đề..." })
             @Html.ValidationMessageFor(model => model.Title)
         </div>
-    </div>
-    <div class="form-group">
-        @Html.Label("Content", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Content)
+        <div class="mh-ckeditor">
+            @Html.Label("Nội dung:", new { @class = "mh-body-createQuestion-label" })<br />
+            @Html.TextAreaFor(model => model.Content, new { @class="editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
             @Html.ValidationMessageFor(model => model.Content)
         </div>
-    </div>
-    <div class="form-group">
-        @Html.Label("Tag", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="hidden" value="1" name="TagIds" />
-            <input type="hidden" value="2" name="TagIds" />
-            <input type="hidden" value="3" name="TagIds" />
+        <div class="mh-preview">
+            <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
+            <div class="mh-preview-content">
+
+            </div>
         </div>
-    </div>
-    <button type="submit">Create</button>
+        <div id="mh-input-tag-div">
+            <label class="mh-body-createQuestion-label">Gắn thẻ cho câu hỏi: </label><br />
+            
+            <div class="mh-input-question mh-input-tag">
+                <div id="mh-tag-list"></div>
+                <div><input type="text" id="mh-input-tag" /></div>                
+            </div>
+            <ul id="mh-tag-autocomplete-list"></ul>
+        </div>
+        <div id="mh-input-invite-div">
+            <label class="mh-body-createQuestion-label">Mời bạn bè: </label><br />
+            <input type="text" class="mh-input-question mh-input-tag" id="mh-input-invite" />
+            <span class="mh-tag-list"></span>
+            <ul id="mh-invite-autocomplete-list"></ul>
+        </div>
+        <div class="mh-body-button">
+            <button type="submit" class="btn btn-success btn-lg mh-createQuestion-button">Đăng</button>
+        </div>
 }
-@section LeftPanel
+</div><!-- Body content Mid: end  -->
+
+
+    @section LeftPanel
 {
-    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.GroupWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
-}
-@section RightPanel
-{
-    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
-}
+        @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+        @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+            @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+        @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+    }
