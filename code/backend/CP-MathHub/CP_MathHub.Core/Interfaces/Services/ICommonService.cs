@@ -50,5 +50,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         User GetLoginUser();
+
+        /// <summary>
+        /// Insert a new tag
+        /// </summary>
+        /// <returns></returns>
+        bool InsertTag(Tag tag);
     }
 }

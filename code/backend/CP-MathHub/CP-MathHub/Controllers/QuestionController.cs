@@ -109,24 +109,6 @@ namespace CP_MathHub.Controllers
             }
         }
 
-        //GET: Question/SearchTag
-        [HttpGet]
-        public ActionResult SearchTag(string name , string type = "search")
-        {
-            switch (type){
-                case "search":
-
-                    return null;
-                case "autocomplete":
-                    List<Tag> tags = cService.GetTags(name);
-                    
-                    return PartialView("../CommonWidget/_TagAutoCompletePartialView", tags);
-                default:
-                    return null;
-            }
-            
-        }
-
         // GET: Question/Detail
         [HttpGet]
         public ActionResult Detail(int id)
@@ -146,7 +128,7 @@ namespace CP_MathHub.Controllers
         }
 
         //Post: Question/Create
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(QuestionCreateViewModel questionVM)
         {
 
@@ -217,5 +199,34 @@ namespace CP_MathHub.Controllers
             User user = cService.GetLoginUser();
             return cService.Bookmark(id, user);
         }
+
+        //GET: Question/SearchTag
+        [HttpGet]
+        public ActionResult SearchTag(string name, string type = "search")
+        {
+            switch (type)
+            {
+                case "search":
+
+                    return null;
+                case "autocomplete":
+                    List<Tag> tags = cService.GetTags(name);
+                    return PartialView("../CommonWidget/_TagAutoCompletePartialView", tags);
+                default:
+                    return null;
+            }
+
+        }
+
+        //Post: Question/CreateTag
+        [HttpPost]
+        public ActionResult CreateTag(string name)
+        {
+            Tag tag = new Tag();
+            tag.Name = name;
+            cService.InsertTag(tag);
+            return PartialView("../CommonWidget/_TagPartialView", tag);
+        }
+
     }
 }

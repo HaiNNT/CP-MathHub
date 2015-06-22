@@ -2,5 +2,6 @@
 
 <a href="@Url.Action("Tag", "Question", new { tag = Model.Name })" class="mh-tag">
     <i class="fa fa-circle"></i>
-    <span>@Model.Name</span>
+    <label>@Model.Name</label>
+    <span class="hidden">@Model.Id</span>
 </a>

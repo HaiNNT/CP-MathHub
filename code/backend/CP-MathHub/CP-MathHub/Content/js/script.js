@@ -108,7 +108,7 @@ function togglePreview() {
 }
 
 /*
-  Apply ckeditor for textarea
+  Apply ckeditor for textarea and preview
 */
 function initCkeditor() {
     var list = [];
@@ -117,8 +117,52 @@ function initCkeditor() {
     });
     for (var item in list) {
         CKEDITOR.replace(list[item]);
+        CKEDITOR.instances[list[item]].on('change', function () {
+            var content = CKEDITOR.instances[list[item]].getData();
+            $(".mh-preview-content").html("");
+            $(".mh-preview-content").append($(content));
+        });
+    }   
+}
+
+function createTag() {
+    var name = $("#mh-input-tag").val();
+    $.ajax({
+        method: "POST",
+        url: "/Question/CreateTag",
+        data: { name : name }
+    })
+      .done(function (msg) {
+          if (msg) {
+              add(msg);
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("fail error");
+      });
+    var add = function(item){
+            var autocomplete = $("#mh-tag-autocomplete-list");
+            var tagName = $(item).find("label").text();
+            var tagId = $(item).find("span").text();
+            var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
+            var item = "<span class='mh-tag-item'>"
+                        + "<span>"
+                        + tagName
+                        + "</span>"
+                        + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+                        + hidden
+                        + "</span>";
+            var list = $("#mh-tag-list");
+            $("#mh-input-tag").val("");
+            $("#mh-input-tag").focus();
+            autocomplete.hide();
+            if (!ids[tagId]){
+                ids[tagId] = tagName;
+                list.append($(item));
+            }        
     }
-    
 }
 
 /*

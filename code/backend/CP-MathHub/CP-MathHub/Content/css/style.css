@@ -6,6 +6,10 @@ body {
     background: #eff3f8;
 }
 
+.panel-footer {
+    min-height: 46px;
+}
+
 .panel-info > .panel-footer {
     color: #31708f;
     background-color: #d9edf7;
@@ -235,11 +239,6 @@ body {
 	text-align: center;
 }
 
-.mh-question-preview > .panel-body > div > .mh-content {
-	max-height: 190px;
-	overflow-y: hidden;
-}
-
 .mh-question-preview > .panel-body > div > .mh-content > a {
 	font-size: 17pt;
 }
@@ -283,7 +282,7 @@ body {
     top: 5px;
 }
 
-.mh-tag > span {
+.mh-tag > label {
 	margin-left: 15px;
 }
 
@@ -538,6 +537,14 @@ body {
 	margin-top: 10px;
 	text-align: center;
 }
+
+#mh-create-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #5CB85C;
+    cursor: pointer;
+}
  /* QA detail: end */
  /*  QA create: start */
  .mh-body-title {
@@ -555,6 +562,7 @@ body {
     margin-bottom: 20px;
     border: 1px solid;
 	padding-left: 10px;
+    position:relative;
  }
  
   .mh-input-question > div {
@@ -654,6 +662,10 @@ body {
   
    #mh-tag-autocomplete-list > li > span {
 	display: none;
+   }
+
+   .mh-preview-content img, .mh-content img {
+       vertical-align: baseline !important;
    }
   /*  QA create: end */
 /* Mid: end */

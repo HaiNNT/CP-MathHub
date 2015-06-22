@@ -105,8 +105,8 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Question> ienum = dal.Repository<Question>()
-                               .Get(a => a.Title.Contains(searchString),
-                                    (p => p.OrderBy(s => s.CreatedDate)),
+                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author",
                                     skip
                                );
@@ -118,7 +118,7 @@ namespace CP_MathHub.Service.Services
 
         public int CountSearchResult(string searchString)
         {
-            return dal.Repository<Question>().Table.Count(m => m.Title.Contains(searchString));
+            return dal.Repository<Question>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
         }
     }
 }

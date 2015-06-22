@@ -22,8 +22,11 @@ function autocompleteTag() {
             data: { name: param, type: "autocomplete" }
         })
       .done(function (msg) {
-          if (msg != "\n") {            
-              list.append(filterAddedTag(msg));
+          if (msg != "\n") {
+              var array = filterAddedTag(msg);
+              for (var i = 0; i < array.length; i++) {
+                  list.append(array[i]);
+              }
               list.show();
           }
       })
@@ -36,8 +39,11 @@ function autocompleteTag() {
         list.html("");
         timeout = setTimeout(load, 1000);
     });
-
-    }
+    $("body").click(function () {
+        list.hide();
+        list.html("");
+    });
+}
 
 function addTag(item) {
     var autocomplete = $("#mh-tag-autocomplete-list");
@@ -52,6 +58,8 @@ function addTag(item) {
                 + hidden
                 + "</span>";
     var list = $("#mh-tag-list");
+    $("#mh-input-tag").val("");
+    $("#mh-input-tag").focus();
     autocomplete.hide();
     if (!ids[tagId]){
         ids[tagId] = tagName;
@@ -65,10 +73,10 @@ function removeTag(item) {
 
 function filterAddedTag(msg) {
     var list = $(msg);
-    var result = $(msg).clone();
+    var result = $("");
     for (var i = 0; i < list.length; i++) {
-        if (ids[$(list[i]).find("span").text()]) {
-            $(result[i]).remove();
+        if (!ids[$(list[i]).find("span").text()]) {
+            result.push($(list[i]).clone());
         }       
     }
     return result;

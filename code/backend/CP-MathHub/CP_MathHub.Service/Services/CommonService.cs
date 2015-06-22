@@ -24,10 +24,15 @@ namespace CP_MathHub.Service.Services
         }
         public Tag GetTag(string name)
         {
-            Tag tag = dal.Repository<Tag>().Table
-                .Where(
-                    t => t.Name == name
-                ).FirstOrDefault();
+            Tag tag = null;
+            IQueryable<Tag> query = dal.Repository<Tag>().Table
+            .Where(
+                t => t.Name.ToLower() == name.ToLower()
+            );
+            if (query.Count() > 0)
+            {
+                return tag = query.FirstOrDefault();
+            }
             return tag;
         }
         public Tag GetTag(int id)
@@ -48,11 +53,26 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(string name)
         {
             List<Tag> tags = dal.Repository<Tag>().Get(
-                    (t => t.Name.Contains(name)),
+                    (t => t.Name.ToLower().Contains(name.ToLower())),
                     (t => t.OrderBy(m => m.Name))
                 ).ToList();
             return tags;
         }
+
+        public bool InsertTag(Tag tag)
+        {
+            if (GetTag(tag.Name) != null)
+            {
+                return false;
+            }
+            tag.CreatedDate = DateTime.Now;
+            tag.UserId = GetLoginUser().Id;
+            tag.Description = "";
+            dal.Repository<Tag>().Insert(tag);
+            dal.Save();
+            return true;
+        }
+
         public bool Bookmark(int id, User user)
         {
                 MainPost post = dal.Repository<MainPost>().GetById(id);

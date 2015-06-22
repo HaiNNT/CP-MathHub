@@ -55,7 +55,9 @@
                   }
                 </div>
                 <div class="mh-full-content hidden">
-                    @Html.Raw(Model.Content)
+                    @if (Model.Content.Length > length){
+                        @Html.Raw(Model.Content)
+                    }                  
                 </div>
             </div>
         </div>
@@ -63,7 +65,10 @@
     <div class="panel-footer">
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-md-3">
-                <a class="mh-seemore">Xem thêm...</a>
+                @if (Model.Content.Length > length)
+                {
+                    <a class="mh-seemore">Xem thêm...</a>
+                }
             </div>
             <div class="col-xs-12 col-sm-8 col-md-9">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">
