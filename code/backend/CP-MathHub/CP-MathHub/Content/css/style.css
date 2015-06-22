@@ -129,7 +129,7 @@ body {
 	background-color: #fff;
 	border-right: 1px solid #C1C1C1;
 	border-left: 1px solid #C1C1C1;
-    border-bottom: 1px solid #C1C1C1;
+	border-bottom: 1px solid #C1C1C1;
 }
 
 .mh-left-section {
@@ -579,6 +579,7 @@ body {
   .mh-input-question > div > input:focus {
 	outline: none;
   }
+ 
  .mh-preview {
 	margin-top:10px;
 	margin-bottom: 10px;
@@ -609,8 +610,8 @@ body {
 	background-color: #E5F2FF;
 	display: none;	
  }
- 
- .mh-tag-list {
+
+  .mh-tag-list {
 	position: absolute;
     top: 42px;
     left: 10px;
@@ -633,10 +634,10 @@ body {
     cursor: pointer;
   }
 
-  #mh-input-tag-div {
+   #mh-input-tag-div {
       position: relative;
   }
-  
+
   #mh-tag-autocomplete-list {
 	padding: 0;
     margin: 0;
@@ -645,7 +646,7 @@ body {
     border: 1px solid;
     position: absolute;
     top: 71px;
-    display: none;
+	display: none;
     z-index: 100;
   }
   
@@ -664,10 +665,118 @@ body {
 	display: none;
    }
 
-   .mh-preview-content img, .mh-content img {
-       vertical-align: baseline !important;
-   }
+    .mh-preview-content img, .mh-content img {
+        vertical-align: baseline !important;
+    } 
   /*  QA create: end */
+  
+  /* QA User: start */
+ .mh-body-content-mid {
+	padding-top: 20px;
+}
+.mh-body-tabs {
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 15px;
+}
+.mh-body-tabs > ul> li{
+	float: right;
+}
+.mh-body-tabs > ul> li.active > a{
+	background-color: #fff;
+	color: #222;
+	border-top: 2px solid #FF9900;	
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+}
+.mh-body-tabs > ul> li.active > a:hover{
+	background-color: #fff;
+	color: #000;	
+}
+.mh-body-tabs > ul> li > a{
+	color: #777;
+	border-radius: 0px;
+	font-size: 10pt;
+	margin-left:8px;
+	padding: 5px 10px;
+	margin-bottom: -1px;
+	z-index: 5;
+}
+.mh-body-tabs  > ul> li > a:hover {
+	background-color: #fff;
+	border-top: 2px solid #FF9900;	
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+}
+.mh-body-search {
+	margin-bottom: 15px;
+}
+.mh-user-image {
+	width: 60px;
+	height: 60px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+.mh-body-detail > .row {
+	padding: 0 15px;
+}
+.mh-body-detail-image {
+	padding-right: 0;
+}
+.mh-body-detail-info {
+	padding-left: 0;
+	color: #888;
+}
+.mh-body-detail-info a {
+	color: #07c;
+}
+.mh-body-detail-info a:hover {
+	color: #30a7fc;
+	text-decoration: none;
+}
+.mh-user-item {
+	float: left;
+	width: 230px;
+	margin-bottom: 10px;
+	height: 80px;
+}
+.mh-search-title{
+	float: left;
+	margin-left: 15px;
+	height: 34px;
+	padding-top: 5px;
+}
+
+.mh-search-control {
+	float: left;
+	width: 240px;
+	margin-left: 15px;
+}
+  /* QA User: end */
+  /* QA Tag: start */
+.mh-tag-page {
+	padding: 7px;
+	float: left;
+	width: 226px;
+	height: 103px;
+	color: #888;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	background-color: rgb(234, 240, 245);
+}
+.mh-tag-name {
+	padding-bottom: 3px;
+}
+.mh-tag-content {
+	height: 54px;
+	overflow-y: hidden;
+	  font-size: 10pt;
+}
+.mh-tag-times {
+	font-size: 9pt;
+	color: #444;
+}
+  /* QA Tag: end */
 /* Mid: end */
 
 /* Left: start */

@@ -6,6 +6,10 @@ body {
     background: #eff3f8;
 }
 
+.panel-footer {
+    min-height: 46px;
+}
+
 .panel-info > .panel-footer {
     color: #31708f;
     background-color: #d9edf7;
@@ -235,11 +239,6 @@ body {
 	text-align: center;
 }
 
-.mh-question-preview > .panel-body > div > .mh-content {
-	max-height: 190px;
-	overflow-y: hidden;
-}
-
 .mh-question-preview > .panel-body > div > .mh-content > a {
 	font-size: 17pt;
 }
@@ -283,7 +282,7 @@ body {
     top: 5px;
 }
 
-.mh-tag > span {
+.mh-tag > label {
 	margin-left: 15px;
 }
 
@@ -538,10 +537,18 @@ body {
 	margin-top: 10px;
 	text-align: center;
 }
+
+#mh-create-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #5CB85C;
+    cursor: pointer;
+}
  /* QA detail: end */
  /*  QA create: start */
  .mh-body-title {
-	margin-top: 25px;
+	margin-top: 15px;
  }
  .mh-body-createQuestion-label {
 	font-weight: bolder;
@@ -555,6 +562,7 @@ body {
     margin-bottom: 20px;
     border: 1px solid;
 	padding-left: 10px;
+    position:relative;
  }
  
   .mh-input-question > div {
@@ -576,7 +584,8 @@ body {
 	margin-top:10px;
 	margin-bottom: 10px;
  }
- .mh-input-tags {
+
+ .mh-input-tag {
 	font-weight: normal;
  }
  .mh-preview-button {
@@ -584,10 +593,8 @@ body {
 	font-size: 15pt;
 	border-radius: 4px 4px 0 0;
  }
- .mh-input-tagFriend {
-	font-weight: normal;
- }
- .mh-CreateQuestion-button {
+
+ .mh-createQuestion-button {
 	width: 230px;
 	margin-right: 9px;
 	margin-bottom: 15px;
@@ -602,6 +609,12 @@ body {
 	text-align: justify;
 	background-color: #E5F2FF;
 	display: none;	
+ }
+
+  .mh-tag-list {
+	position: absolute;
+    top: 42px;
+    left: 10px;
  }
  
  .mh-tag-item {
@@ -620,7 +633,11 @@ body {
 	color: #B91B1B;
     cursor: pointer;
   }
-  
+
+   #mh-input-tag-div {
+      position: relative;
+  }
+
   #mh-tag-autocomplete-list {
 	padding: 0;
     margin: 0;
@@ -630,6 +647,7 @@ body {
     position: absolute;
     top: 71px;
 	display: none;
+    z-index: 100;
   }
   
   #mh-tag-autocomplete-list > li {
@@ -646,7 +664,10 @@ body {
    #mh-tag-autocomplete-list > li > span {
 	display: none;
    }
-  
+
+    .mh-preview-content img, .mh-content img {
+        vertical-align: baseline !important;
+    } 
   /*  QA create: end */
   
   /* QA User: start */
@@ -669,8 +690,7 @@ body {
 }
 .mh-body-tabs > ul> li.active > a:hover{
 	background-color: #fff;
-	color: #000;
-	
+	color: #000;	
 }
 .mh-body-tabs > ul> li > a{
 	color: #777;
