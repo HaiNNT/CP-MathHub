@@ -650,6 +650,9 @@ body {
   /*  QA create: end */
   
   /* QA User: start */
+ .mh-body-content-mid {
+	padding-top: 20px;
+}
 .mh-body-tabs {
 	border-bottom: 1px solid #e0e0e0;
 	margin-bottom: 15px;
@@ -664,12 +667,19 @@ body {
 	border-left: 1px solid #e0e0e0;
 	border-right: 1px solid #e0e0e0;
 }
+.mh-body-tabs > ul> li.active > a:hover{
+	background-color: #fff;
+	color: #000;
+	
+}
 .mh-body-tabs > ul> li > a{
 	color: #777;
 	border-radius: 0px;
 	font-size: 10pt;
 	margin-left:8px;
 	padding: 5px 10px;
+	margin-bottom: -1px;
+	z-index: 5;
 }
 .mh-body-tabs  > ul> li > a:hover {
 	background-color: #fff;
@@ -707,6 +717,7 @@ body {
 	float: left;
 	width: 230px;
 	margin-bottom: 10px;
+	height: 80px;
 }
 .mh-search-title{
 	float: left;
@@ -868,18 +879,3 @@ footer {
 	font-size: 10pt;
 }
 /*  footer: end */
-
-
-.mh-search-title{
-	float: left;
-	width: 100px;
-	margin-left: 15px;
-	height: 34px;
-	padding-top: 5px;
-}
-
-.mh-search-control {
-	float: left;
-	width: 2;
-	margin-left: 15px;
-}
