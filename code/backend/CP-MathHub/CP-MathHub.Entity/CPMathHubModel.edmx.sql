@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/14/2015 11:11:36
+-- Date Created: 06/22/2015 22:06:12
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -107,8 +107,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RequestFriend]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserFriendships] DROP CONSTRAINT [FK_RequestFriend];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FriendRequestionUser1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserFriendships] DROP CONSTRAINT [FK_FriendRequestionUser1];
+IF OBJECT_ID(N'[dbo].[FK_RequestedFriend]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserFriendships] DROP CONSTRAINT [FK_RequestedFriend];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EditedContentPost]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EditedLogs] DROP CONSTRAINT [FK_EditedContentPost];

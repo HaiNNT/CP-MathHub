@@ -6,9 +6,11 @@
 
 var il_page = 0;
 var il_ready = true;
-var IL_MAIN_POST_TYPE_QUESTION = "question";
-var IL_MAIN_POST_TYPE_ARTICLE = "article";
-var IL_MAIN_POST_TYPE_DISCUSSION = "discussion";
+var IL_TYPE_QUESTION = "question";
+var IL_TYPE_ARTICLE = "article";
+var IL_TYPE_DISCUSSION = "discussion";
+var IL_TYPE_USER = "user";
+var IL_TYPE_TAG = "tag";
 
 $(document).ready(function () {
     var type = $("#system").val();
@@ -32,7 +34,7 @@ function getMoreMainPost(type) {
     var url; //server url {string}
     var data; //request param {object}
     switch(type) {
-        case IL_MAIN_POST_TYPE_QUESTION:
+        case IL_TYPE_QUESTION:
             list = $("#list-questions");
             var tab = $("#tab").val();
             switch (tab) {
@@ -53,16 +55,28 @@ function getMoreMainPost(type) {
                     break;
             }
             break;
-        //case MAIN_POST_TYPE_DISCUSSION:
+        //case IL_TYPE_DISCUSSION:
         //    list = $("#list-discussions");
         //    url = "Discussion/Index";
         //    data = { tab: "Newest", page: ++il_page }
         //    break;
-        //case MAIN_POST_TYPE_ARTICLE:
+        //case IL_TYPE_DISCUSSION:
         //    list = $("#list-articles");
         //    url = "Blog/Index";
         //    data = { tab: "Newest", page: ++il_page }
         //    break;
+        case IL_TYPE_USER:
+            list = $("#mh-list-user");
+            var tab = $("#tab").val();
+            url = "/Question/Users";
+            data = { tab: tab, page: ++il_page };
+            break;
+        case IL_TYPE_TAG:
+            list = $("#mh-list-tag");
+            var tab = $("#tab").val();
+            url = "/Question/Tags";
+            data = { tab: tab, page: ++il_page };
+            break;
         default:
             list = $("#list-questions");           
             var tab = $("#tab").val();

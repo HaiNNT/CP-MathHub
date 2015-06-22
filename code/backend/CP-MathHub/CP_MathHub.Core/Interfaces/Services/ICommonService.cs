@@ -56,5 +56,17 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         bool InsertTag(Tag tag);
+
+        /// <summary>
+        /// Get list user by Name
+        /// </summary>
+        /// <returns></returns>
+        List<User> GetUsers(string name, int skip);
+
+        /// <summary>
+        /// Get list user by tab filter
+        /// </summary>
+        /// <returns></returns>
+        List<User> GetUsers(int skip, string tab);
     }
 }
