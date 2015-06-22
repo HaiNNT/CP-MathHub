@@ -705,6 +705,7 @@ body {
 }
 .mh-body-detail-info {
 	padding-left: 0;
+	color: #888;
 }
 .mh-body-detail-info a {
 	color: #07c;
@@ -721,7 +722,6 @@ body {
 }
 .mh-search-title{
 	float: left;
-	width: 100px;
 	margin-left: 15px;
 	height: 34px;
 	padding-top: 5px;
@@ -733,6 +733,30 @@ body {
 	margin-left: 15px;
 }
   /* QA User: end */
+  /* QA Tag: start */
+.mh-tag-page {
+	padding: 7px;
+	float: left;
+	width: 226px;
+	height: 103px;
+	color: #888;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	background-color: rgb(234, 240, 245);
+}
+.mh-tag-name {
+	padding-bottom: 3px;
+}
+.mh-tag-content {
+	height: 54px;
+	overflow-y: hidden;
+	  font-size: 10pt;
+}
+.mh-tag-times {
+	font-size: 9pt;
+	color: #444;
+}
+  /* QA Tag: end */
 /* Mid: end */
 
 /* Left: start */
