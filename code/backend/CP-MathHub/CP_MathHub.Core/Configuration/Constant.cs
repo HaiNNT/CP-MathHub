@@ -19,6 +19,7 @@ namespace CP_MathHub.Core.Configuration
             public static class Integer
             {
                 public const int PagingDefaultTake = 10;
+                public const int UserPagingDefaultTake = 30;
 
             }
 
@@ -33,6 +34,12 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeUserTab = "Users";
                 public const string CreateTab = "Create";
                 public const string SearchTab = "Search";
+                //User Tab Constant
+                public const string UserNewTab = "newuser";
+                public const string UserReputationTab = "reputation";
+                public const string UserModTab = "mod";
+                public const string UserExpertTab = "expert";
+
             }
 
         }

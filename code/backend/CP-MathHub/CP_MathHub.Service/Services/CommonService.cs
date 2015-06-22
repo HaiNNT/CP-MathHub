@@ -20,7 +20,7 @@ namespace CP_MathHub.Service.Services
         {
             dal = new MathHubUoW(context);
             aService = new AccountService(context);
-            
+
         }
         public Tag GetTag(string name)
         {
@@ -44,9 +44,10 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(List<int> tagIds)
         {
             List<Tag> tags = new List<Tag>();
-            foreach(int id in tagIds){
+            foreach (int id in tagIds)
+            {
                 Tag tag = GetTag(id);
-                tags.Add(tag);               
+                tags.Add(tag);
             }
             return tags;
         }
@@ -75,22 +76,84 @@ namespace CP_MathHub.Service.Services
 
         public bool Bookmark(int id, User user)
         {
-                MainPost post = dal.Repository<MainPost>().GetById(id);
-                if (post.BookmarkUsers.Contains(user))
-                {
-                    post.BookmarkUsers.Remove(user);
-                }
-                else
-                {
-                    post.BookmarkUsers.Add(user);
-                }               
-                dal.Repository<MainPost>().Update(post);
-                dal.Save();
-                return true;
+            MainPost post = dal.Repository<MainPost>().GetById(id);
+            if (post.BookmarkUsers.Contains(user))
+            {
+                post.BookmarkUsers.Remove(user);
+            }
+            else
+            {
+                post.BookmarkUsers.Add(user);
+            }
+            dal.Repository<MainPost>().Update(post);
+            dal.Save();
+            return true;
         }
         public User GetLoginUser()
         {
             return aService.GetLoginUser();
+        }
+        public List<User> GetUsers(int skip, string tab)
+        {
+            List<User> list = new List<User>();
+            switch (tab)
+            {
+                case Constant.Question.String.UserNewTab:
+                    list = dal.Repository<User>()
+                                .Get(null,
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserReputationTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    null,
+                                    (p => p.OrderByDescending(s => s.Reputation)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserExpertTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    ExpressionHelper.UserHelper.RoledUsers("Expert"),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserModTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    ExpressionHelper.UserHelper.RoledUsers("Moderator"),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                default:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    null,
+                                    (p => p.OrderByDescending(s => s.Reputation)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+            }
+            return list;
+        }
+
+        public List<User> GetUsers(string name, int skip)
+        {
+            return null;
         }
     }
 }

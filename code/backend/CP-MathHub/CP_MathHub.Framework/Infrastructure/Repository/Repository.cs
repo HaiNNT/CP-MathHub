@@ -38,16 +38,20 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             int take = Constant.Question.Integer.PagingDefaultTake)
         {
             IQueryable<TEntity> query = dbSet;
-
+            query = query.AsNoTracking();
             if (filter != null)
             {
                 query = query.Where(filter);
+                query = query.Distinct();
+                query = query.AsNoTracking();
             }
 
             foreach (var includeProperty in includeProperties.Split
                 (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);
+                query = query.Distinct();
+                query = query.AsNoTracking();
             }
 
             if (orderBy != null)
@@ -57,7 +61,8 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
 
             if (query.Count() - 1 >= skip)
             {
-                return query.Skip(skip).Take(take);
+                query = query.Skip(skip).Take(take);
+                return query;
             }
 
             return new List<TEntity>();

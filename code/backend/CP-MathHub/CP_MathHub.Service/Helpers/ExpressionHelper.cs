@@ -38,6 +38,16 @@ namespace CP_MathHub.Service.Helpers
                 return (a => a.Answers.Count == 0);
             }
         }
-        
+        public class UserHelper
+        {
+            /// <summary>
+            /// Get Expert User lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<User, bool>> RoledUsers(string role)
+            {
+                return (u => u.Assessments.Where(a => a.Role.Name == role).Count() > 0);
+            }
+        }
     }
 }
