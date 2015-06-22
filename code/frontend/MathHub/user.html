@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "http://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="mh-header-collapse">
+				<ul class="nav navbar-nav" id="mh-nav-link">
+					<li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Bài Viết</a></li>
+					<li><a href="#">Thảo Luận</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="mh-nav-user">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							Thanh Hải
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>					
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-globe"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-comments"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-group"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+<!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Tìm kiếm">
+						<i class="fa fa-search"></i>
+					</div>
+				</form> -->
+				
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</header>	
+	<div class="container mh-body">
+		<div class="row">
+			<!-- Left: start -->
+			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+				<div class="mh-profile row">
+					<a href=""><img src="img/user.jpg"></a>
+					<div class="">
+						<a href="">Văn Tâm</a>
+						<div class="detail-reputat">
+							<span>1432</span>
+							<i class="fa fa-circle mh-reputation-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Hoạt động</div>
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Tags yêu thích</div>
+					<div class="mh-table-info-body">
+						<ul class="list-inline mh-list-tags mh-list-tags-left">	
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Lớp 6</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán đố</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán dễ</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+									<span>Toán khó</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Table-info: start -->
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Theo dõi</div>
+					<!-- Table-info-body: start -->
+					<div class="mh-table-info-body">
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href = "#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+					</div><!-- Table-info-body: end -->
+				</div><!-- Table-info: end -->
+			</div> <!-- Left: end -->
+			<!-- Mid: start -->
+			<div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section" style="border-right: 0;">
+				<div class="mh-top-content">
+					<div class="row">
+						<div class="col-md-4 mh-content-title">
+							<h3>Thành viên</h3>
+						</div>
+					</div>
+				</div>
+				<!-- mh-home: start -->
+				<div class="mh-home">
+					<!-- row: start -->
+					<div class="row">
+						<div class="col-xs-12 col-md-7 mh-home-tab">
+							<a class="btn btn-danger btn-sm">Mới nhất</a>
+							<a class="btn btn-danger btn-sm">Hot</a>
+							<a class="btn btn-danger btn-sm">Chưa trả lời</a>
+							<a class="btn btn-danger btn-sm">Thẻ</a>
+							<a class="btn btn-danger btn-sm">Người dùng</a>
+						</div>
+						<div class="col-xs-12 col-md-5 mh-page-search">
+							<form>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div><!-- row: end -->	
+				</div><!-- mh-home: end -->
+				<!-- Body content Mid: start  -->
+				<div class="mh-body-content-mid">
+					<div class="mh-body-tabs">
+						<ul class="nav nav-pills">
+						  <li role="presentation"><a href="#">Quản trị</a></li>
+						  <li role="presentation"><a href="#">Chuyên gia</a></li>
+						  <li role="presentation"><a href="#">Thành viên mới</a></li>
+						  <li role="presentation" class="active"><a href="#">Uy tín</a></li>
+						</ul>
+					</div>
+					<div class="mh-body-search">
+						<div class="row">
+							<div class="mh-search-title">
+								Tìm thành viên:
+							</div>
+							<div class="mh-search-control">
+								<input type="text" class="form-control" placeholder="Tìm kiếm...">
+							</div>
+						</div>
+					</div>
+					<div class="mh-body-detail">
+						<!--  row: start -->
+						<div class="row">
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											TP HCM, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Đà Nẵng, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Hà Nội, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Yên Bái, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Hạ Long, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Việt Trì, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											An Giang, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											12
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Đăk Lăk Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Kom Tum, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Hải Phòng, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											61
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Hải Dương, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bình Dương, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bình Phước, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Đồng Nai, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Mỹ Tho, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Cà Mau, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Quảng Trị, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Quảng Bình, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Phú Thọ, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Nghệ An, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Đồng Tháp, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Kiên Giang, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Buôn Ma Thuột, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Đà Lạt, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bà Rịa - Vũng Tàu, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bắc Giang, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bắc Kạn, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bạc Liêu, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bắc Ninh, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Tây Ninh, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bến Tre, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-user-item">
+								<div class="row">
+									<div class="col-xs-4 mh-body-detail-image">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-image">
+										</a>
+									</div>
+									<div class="col-xs-8 mh-body-detail-info">
+										<div>
+											<a href="#">User</a>
+										</div>
+										<div>
+											Bình Định, Việt Nam.
+										</div>
+										<div class="detail-reputation">
+											612
+											<i class="fa fa-circle mh-reputation-icon"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div><!--  row: end -->
+					</div>
+				</div><!-- Body content Mid: end  -->
+			</div><!-- Mid: end -->
+		</div>
+	</div>	
+	<!--  footer: start -->
+	<footer>
+		<div class="container"">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
+					<h2>Thông tin</h2>
+					<span class="mh-footer-info-content">
+						<p>
+						 MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
+						</p>
+						</p>
+							MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
+						</p>
+					</span>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
+					<h2>Social media</h2>
+					<a href="#">
+						<img src="img/icon-facebook.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-google.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-twitter.ico">
+					</a>	
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-contact">
+					<h2>Liên hệ</h2>
+					<address class="margin-bottom-40">
+						Địa chỉ 1: 137 Nguyễn Thị Thập, Quận Liên Chiểu, TP. Đà Nẵng.<br>
+						Địa chỉ 2: Lầu 2. Tòa nhà Innovation, lô 24, Công viên phần mềm Quang Trung, P.Tân Chánh Hiệp, Quận 12, TP. Hồ Chí Minh.<br>
+						Phone: 0000 000 000<br>
+						Email: <a href="#">info@gmail.com</a>
+					</address>
+				</div>	
+			</div>
+		</div>
+	</footer><!--  footer: end -->
+	<div class="mh-copyright">
+		<div class="mh-copyright-content">
+			2015 &copy; MathHub Team
+		</div>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>	
+	<script src="js/bootstrap.js"></script>	
+	<!-- Make sure the path to CKEditor is correct. -->
+	<script src="ckeditor/ckeditor.js"></script>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		
+		CKEDITOR.replace( 'editor1' );
+		CKEDITOR.replace( 'editor2' );
+	</script>
+	<script>
+		$( ".mh-preview-button" ).click(function() {
+		  $( ".mh-preview-content" ).slideToggle( "slow" );
+		});
+	</script>
+</body>
+</html>
