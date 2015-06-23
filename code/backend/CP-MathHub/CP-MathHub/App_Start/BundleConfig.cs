@@ -29,6 +29,8 @@ namespace CP_MathHub
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style.css"));
+            bundles.Add(new StyleBundle("~/Content/questioncss").Include(
+                      "~/Content/css/style-question.css"));
         }
     }
 }
