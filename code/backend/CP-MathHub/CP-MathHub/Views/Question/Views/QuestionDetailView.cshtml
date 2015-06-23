@@ -1,7 +1,8 @@
 ﻿@using CP_MathHub.Models.Question
 @model QuestionDetailViewModel
 @{
-    ViewBag.Title = "QuestionDetailView";
+    ViewBag.Title = Model.Title;
+    ViewBag.MhPage = "question-create";
     Layout = "~/Views/Question/Layouts/_QuestionDetailLayout.cshtml";
 }
 

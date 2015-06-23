@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using CP_MathHub.Core.Interfaces.Services;
@@ -58,6 +59,116 @@ namespace CP_MathHub.Service.Services
                     (t => t.OrderBy(m => m.Name))
                 ).ToList();
             return tags;
+        }
+
+
+        public List<Tag> GetTags(string name, int skip)
+        {
+            List<Tag> tags = dal.Repository<Tag>().Get(
+                    (t => t.Name.ToLower().Contains(name.ToLower())),
+                    (t => t.OrderBy(m => m.Name)),
+                    "MainPosts",
+                    skip,
+                    Constant.Question.Integer.TagPagingDefaultTake
+                ).ToList();
+            return tags;
+        }
+
+        public List<Tag> GetTags(string tab, string name, int skip)
+        {
+            List<Tag> list = new List<Tag>();
+            switch (tab)
+            {
+                case Constant.Question.String.TagNewTab:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    ExpressionHelper.TagHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.TagPopularTab:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    ExpressionHelper.TagHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.MainPosts.Count)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.TagNameTab:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    ExpressionHelper.TagHelper.ContainName(name),
+                                    (p => p.OrderBy(s => s.Name)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                default:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    ExpressionHelper.TagHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.MainPosts.Count)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+            }
+            return list;
+        }
+
+        public List<Tag> GetTags(int skip, string tab)
+        {
+            List<Tag> list = new List<Tag>();
+            switch (tab)
+            {
+                case Constant.Question.String.TagNewTab:
+                    list = dal.Repository<Tag>()
+                                .Get(null,
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.TagPopularTab:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    null,
+                                    (p => p.OrderByDescending(s => s.MainPosts.Count)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.TagNameTab:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    null,
+                                    (p => p.OrderBy(s => s.Name)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+                default:
+                    list = dal.Repository<Tag>()
+                                .Get(
+                                    null,
+                                    (p => p.OrderByDescending(s => s.MainPosts.Count)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Question.Integer.TagPagingDefaultTake
+                                ).ToList();
+                    break;
+            }
+            return list;
         }
 
         public bool InsertTag(Tag tag)
@@ -151,9 +262,68 @@ namespace CP_MathHub.Service.Services
             return list;
         }
 
-        public List<User> GetUsers(string name, int skip)
+        public List<User> GetUsers(string name, int skip, string tab)
         {
-            return null;
+            List<User> list = new List<User>();
+            switch (tab)
+            {
+                case Constant.Question.String.UserNewTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    ExpressionHelper.UserHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserReputationTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    ExpressionHelper.UserHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.Reputation)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserExpertTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    Expression.Lambda<Func<User, bool>>(
+                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Expert").Body, 
+                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                case Constant.Question.String.UserModTab:
+                    list = dal.Repository<User>()
+                                .Get(
+                                     Expression.Lambda<Func<User, bool>>(
+                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Moderator").Body, 
+                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+                default:
+                    list = dal.Repository<User>()
+                                .Get(
+                                    ExpressionHelper.UserHelper.ContainName(name),
+                                    (p => p.OrderByDescending(s => s.Reputation)),
+                                    "",
+                                    skip,
+                                    Constant.Question.Integer.UserPagingDefaultTake
+                                ).ToList();
+                    break;
+            }
+            return list;
         }
+
     }
 }

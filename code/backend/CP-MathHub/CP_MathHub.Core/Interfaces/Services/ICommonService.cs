@@ -38,6 +38,33 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<Tag> GetTags(string name);
 
+
+        /// <summary>
+        /// Get a part of list tag by tab filter
+        /// </summary>
+        /// <returns></returns>
+        List<Tag> GetTags(int skip, string tab);
+
+        /// <summary>
+        /// Get a part of list tag by list tag name
+        /// </summary>
+        /// <param name="listTagId"></param>
+        /// <returns></returns>
+        List<Tag> GetTags(string name, int skip);
+
+        /// <summary>
+        /// Get a part of list tag by list tag name with tab filter
+        /// </summary>
+        /// <param name="listTagId"></param>
+        /// <returns></returns>
+        List<Tag> GetTags(string tab, string name, int skip);
+
+        /// <summary>
+        /// Insert a new tag
+        /// </summary>
+        /// <returns></returns>
+        bool InsertTag(Tag tag);
+
         /// <summary>
         /// Bookmark/UnBookmark a MainPost
         /// </summary>
@@ -52,21 +79,17 @@ namespace CP_MathHub.Core.Interfaces.Services
         User GetLoginUser();
 
         /// <summary>
-        /// Insert a new tag
+        /// Get list user by Name with tab filter
         /// </summary>
         /// <returns></returns>
-        bool InsertTag(Tag tag);
-
-        /// <summary>
-        /// Get list user by Name
-        /// </summary>
-        /// <returns></returns>
-        List<User> GetUsers(string name, int skip);
+        List<User> GetUsers(string name, int skip, string tab);
 
         /// <summary>
         /// Get list user by tab filter
         /// </summary>
         /// <returns></returns>
         List<User> GetUsers(int skip, string tab);
+
+
     }
 }

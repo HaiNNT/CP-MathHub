@@ -1,6 +1,7 @@
 ﻿@model CP_MathHub.Models.Question.QuestionCreateViewModel
 @{
-    ViewBag.Title = "QuestionCreateView";
+    ViewBag.Title = "Đặt Câu Hỏi";
+    ViewBag.MhPage = "question-create";
     Layout = "~/Views/Question/Layouts/_QuestionCreateLayout.cshtml";
 }
 
@@ -54,7 +55,7 @@
         </div>
 }
 </div><!-- Body content Mid: end  -->
-
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
 
     @section LeftPanel
 {

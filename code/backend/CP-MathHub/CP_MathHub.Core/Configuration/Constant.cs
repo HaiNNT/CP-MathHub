@@ -20,6 +20,7 @@ namespace CP_MathHub.Core.Configuration
             {
                 public const int PagingDefaultTake = 10;
                 public const int UserPagingDefaultTake = 30;
+                public const int TagPagingDefaultTake = 30;
 
             }
 
@@ -39,6 +40,10 @@ namespace CP_MathHub.Core.Configuration
                 public const string UserReputationTab = "reputation";
                 public const string UserModTab = "mod";
                 public const string UserExpertTab = "expert";
+                //Tag Tab Costant
+                public const string TagNewTab = "newtag";
+                public const string TagPopularTab = "popular";
+                public const string TagNameTab = "name";
 
             }
 

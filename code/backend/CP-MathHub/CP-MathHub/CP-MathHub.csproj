@@ -155,6 +155,7 @@
     <Compile Include="Models\Question\QuestionEditViewModel.cs" />
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
+    <Compile Include="Models\Question\TagsPageViewModel.cs" />
     <Compile Include="Models\Question\UsersPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -551,6 +552,9 @@
     <Content Include="Views\Question\Layouts\_UsersPageLayout.cshtml" />
     <Content Include="Views\Question\Views\UsersPageView.cshtml" />
     <Content Include="Views\Question\Partials\_UserListPartialView.cshtml" />
+    <Content Include="Views\Question\Layouts\_TagsPageLayout.cshtml" />
+    <Content Include="Views\Question\Views\TagsPageView.cshtml" />
+    <Content Include="Views\Question\Partials\_TagListPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -48,6 +48,28 @@ namespace CP_MathHub.Service.Helpers
             {
                 return (u => u.Assessments.Where(a => a.Role.Name == role).Count() > 0);
             }
+            /// <summary>
+            /// Get contain name lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<User, bool>> ContainName(string name)
+            {
+                return (u => u.Username.ToLower().Contains(name.ToLower()));
+            }
+        }
+
+        public class TagHelper
+        {
+            /// <summary>
+            /// Get contain name lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<Tag, bool>> ContainName(string name)
+            {
+                return (u => u.Name.ToLower().Contains(name.ToLower()));
+            }
         }
     }
 }
