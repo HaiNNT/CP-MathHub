@@ -125,6 +125,9 @@ function initCkeditor() {
     }   
 }
 
+/*
+    Create a tag 
+*/
 function createTag() {
     var name = $("#mh-input-tag").val();
     $.ajax({
@@ -166,10 +169,85 @@ function createTag() {
 }
 
 /*
+    Search tags
+*/
+function searchTag() {
+    var timeout;
+    var list = $("#mh-list-tag");
+    var load = function () {
+        clearTimeout(timeout);
+        var param = $("#mh-search-tag").val();
+        var tab = $("#tab").val();
+        $.ajax({
+            method: "GET",
+            url: "/Question/SearchTag",
+            data: { name: param, type: "search", tab: tab}
+        })
+      .done(function (msg) {
+          if (msg != "\n") {             
+              list.append($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-search-tag").keypress(function () {
+        list.html("");
+        timeout = setTimeout(load, 1000);
+    });
+}
+
+/*
+    Search users
+*/
+function searchUser() {
+    var timeout;
+    var list = $("#mh-list-user");
+    var load = function () {
+        clearTimeout(timeout);
+        var param = $("#mh-search-user").val();
+        var tab = $("#tab").val();
+        $.ajax({
+            method: "GET",
+            url: "/Question/SearchUser",
+            data: { name: param, tab: tab }
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.append($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-search-user").keypress(function () {
+        list.html("");
+        timeout = setTimeout(load, 1000);
+    });
+}
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {
-    seeMore();
-    togglePreview();
-    initCkeditor();
+    switch ($("#mh-page").val()) {
+        case "question-home":
+            seeMore();
+            break;
+        case "question-create":
+            togglePreview();
+            initCkeditor();
+            break;
+        case "question-tags":
+            searchTag();
+            break;
+        case "question-users":
+            searchUser();
+            break;
+        default:
+            seeMore();
+            break;
+    }
 });

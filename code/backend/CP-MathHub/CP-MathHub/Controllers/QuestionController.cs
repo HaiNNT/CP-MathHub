@@ -32,7 +32,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Index(string tab = Constant.Question.String.HomeDefaultTab
                                     , int page = 0)
         {
-            int skip = page*Constant.Question.Integer.PagingDefaultTake;
+            int skip = page * Constant.Question.Integer.PagingDefaultTake;
             List<Question> questions = qService.GetQuestions(tab, skip);
             ICollection<QuestionPreviewViewModel> questionPreviewVMs =
                     questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
@@ -41,11 +41,12 @@ namespace CP_MathHub.Controllers
             {
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
-            if (page == 0) { 
+            if (page == 0)
+            {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "HỎI ĐÁP";
                 ViewBag.Tab = tab;
-                questionHomeVM.Items = questionPreviewVMs;           
+                questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -56,7 +57,7 @@ namespace CP_MathHub.Controllers
 
         public ActionResult Tag(string tag = "", int page = 0)
         {
-            int skip = page*Constant.Question.Integer.PagingDefaultTake;
+            int skip = page * Constant.Question.Integer.PagingDefaultTake;
             //Tag tagEntity = cService.GetTag(tag);
             List<Question> questions = qService.GetQuestions(skip, tag);
             ICollection<QuestionPreviewViewModel> questionPreviewVMs =
@@ -67,11 +68,12 @@ namespace CP_MathHub.Controllers
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
             ViewBag.TabParam = tag;
-            if (page == 0) { 
+            if (page == 0)
+            {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
-                questionHomeVM.Items = questionPreviewVMs;         
+                questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -95,9 +97,10 @@ namespace CP_MathHub.Controllers
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
             ViewBag.TabParam = searchString;
-            if(page == 0){
+            if (page == 0)
+            {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
-                questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString) 
+                questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString)
                                         + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
                 ViewBag.Tab = Constant.Question.String.SearchTab;
                 questionHomeVM.Items = problemVms;
@@ -171,7 +174,7 @@ namespace CP_MathHub.Controllers
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = question.Id;
             editedlog.UserId = question.UserId;
-            
+
             question.Title = questionVM.Title;
             question.Content = questionVM.Content;
             question.LastEditedDate = editedlog.CreatedDate;
@@ -202,18 +205,46 @@ namespace CP_MathHub.Controllers
 
         //GET: Question/SearchTag
         [HttpGet]
-        public ActionResult SearchTag(string name, string type = "search")
+        public ActionResult SearchTag(string name
+                                        , string type = "search"
+                                        , int page = 0
+                                        , string tab = Constant.Question.String.TagPopularTab)
         {
+            List<Tag> tags = new List<Tag>();
+            int skip = page * Constant.Question.Integer.TagPagingDefaultTake;
             switch (type)
             {
                 case "search":
-
-                    return null;
+                    tags = cService.GetTags(tab, name, skip);
+                    return PartialView("Partials/_TagListPartialView", tags);
                 case "autocomplete":
-                    List<Tag> tags = cService.GetTags(name);
+                    tags = cService.GetTags(name);
                     return PartialView("../CommonWidget/_TagAutoCompletePartialView", tags);
                 default:
-                    return null;
+                    tags = cService.GetTags(tab, name, skip);
+                    return PartialView("Partials/_TagListPartialView", tags);
+            }
+
+        }
+
+        //Get: Question/Tags
+        [HttpGet]
+        public ActionResult Tags(string tab = Constant.Question.String.TagPopularTab, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.TagPagingDefaultTake;
+            List<Tag> tags = cService.GetTags(skip, tab);
+
+            if (page == 0)
+            {
+                TagsPageViewModel model = new TagsPageViewModel();
+                model.Tab = tab;
+                model.ListTags = tags;
+                ViewBag.Tab = Constant.Question.String.HomeTagTab;
+                return View("Views/TagsPageView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_TagListPartialView", tags);
             }
 
         }
@@ -230,7 +261,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Question/Users
         [HttpGet]
-        public ActionResult Users(string tab = "reputation", int page = 0)
+        public ActionResult Users(string tab = Constant.Question.String.UserReputationTab, int page = 0)
         {
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
             List<User> users = cService.GetUsers(skip, tab);
@@ -247,7 +278,18 @@ namespace CP_MathHub.Controllers
             {
                 return PartialView("Partials/_UserListPartialView", users);
             }
-            
+
         }
+
+        //Get: Question/SearchUsers
+        [HttpGet]
+        public ActionResult SearchUser(string name = "", string tab = Constant.Question.String.UserReputationTab, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> users = cService.GetUsers(name, skip, tab);
+
+            return PartialView("Partials/_UserListPartialView", users);
+        }
+
     }
 }

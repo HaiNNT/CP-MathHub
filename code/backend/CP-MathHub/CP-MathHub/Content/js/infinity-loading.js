@@ -11,6 +11,8 @@ var IL_TYPE_ARTICLE = "article";
 var IL_TYPE_DISCUSSION = "discussion";
 var IL_TYPE_USER = "user";
 var IL_TYPE_TAG = "tag";
+var IL_TYPE_SEARCH_USER = "searchuser";
+var IL_TYPE_SEARCH_TAG = "searchtag";
 
 $(document).ready(function () {
     var type = $("#system").val();
@@ -76,6 +78,20 @@ function getMoreMainPost(type) {
             var tab = $("#tab").val();
             url = "/Question/Tags";
             data = { tab: tab, page: ++il_page };
+            break;
+        case IL_TYPE_SEARCH_USER:
+            list = $("#mh-list-user");
+            var tab = $("#tab").val();
+            var name = $("#tab-param");
+            url = "/Question/Users";
+            data = { tab: tab, page: ++il_page, name: name };
+            break;
+        case IL_TYPE_SEARCH_TAG:
+            list = $("#mh-list-tag");
+            var tab = $("#tab").val();
+            var name = $("#tab-param");
+            url = "/Question/Tags";
+            data = { tab: tab, page: ++il_page, name: name, type: "search" };
             break;
         default:
             list = $("#list-questions");           

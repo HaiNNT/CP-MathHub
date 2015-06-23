@@ -42,8 +42,6 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             if (filter != null)
             {
                 query = query.Where(filter);
-                query = query.Distinct();
-                query = query.AsNoTracking();
             }
 
             foreach (var includeProperty in includeProperties.Split
@@ -51,7 +49,6 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             {
                 query = query.Include(includeProperty);
                 query = query.Distinct();
-                query = query.AsNoTracking();
             }
 
             if (orderBy != null)
