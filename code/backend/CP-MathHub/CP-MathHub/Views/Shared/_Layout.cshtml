@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>@ViewBag.Title</title>
+    <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/questioncss")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -22,6 +25,7 @@
                     <img id="mh-logo" alt="Brand" src="~/Content/img/logoMain.png" />
                 </a>
             </div>
+            @if (ViewBag.MhPage != "home") { 
             <div class="collapse navbar-collapse" id="mh-header-collapse">
                 <ul class="nav navbar-nav" id="mh-nav-link">
                     <li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
@@ -82,9 +86,17 @@
                                 </form> -->
 
             </div><!-- /.navbar-collapse -->
+            }
+            else
+            {
+                <div class="collapse navbar-collapse mh-header-login-register" id="mh-header-collapse">
+                    <a href="#" class="btn btn-primary">Đăng nhập</a>
+                    <a href="#" class="btn btn-success">Đăng ký</a>
+                </div>
+            }
         </div>
     </header>	
-    <div class="container mh-body">
+    <div class="container mh-body @(ViewBag.MhPage == "home" ? "mh-body-home" : "")">
         @RenderBody()
     </div>
     <footer>
