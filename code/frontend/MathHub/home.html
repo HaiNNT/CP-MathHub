@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse mh-header-login-register" id="mh-header-collapse">
+				<a href="#" class="btn btn-primary">Đăng nhập</a>
+				<a href="#" class="btn btn-success">Đăng ký</a>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</header>	
+	<div class="container mh-body mh-body-home">
+		<div class="row">
+			<div class="col-lg-4 mh-home-link">
+				<a href="#">
+					<div>
+						<span class="mh-home-title">Hỏi Đáp</span>
+						<img src="img/Question_Answer.png" class="mh-home-image" />	
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4 mh-home-link">
+				<a href="#">
+					<div>
+						<span class="mh-home-title">Bài Viết</span>
+						<img src="img/blog.png" class="mh-home-image" />	
+					</div>
+				</a>
+			</div>
+			<div class="col-lg-4 mh-home-link">
+				<a href="#">
+					<div>
+						<span class="mh-home-title">Thảo Luận</span>
+						<img src="img/discussion.png" class="mh-home-image" />	
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>	
+	<!--  footer: start -->
+	<footer>
+		<div class="container"">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
+					<h2>Thông tin</h2>
+					<div class="mh-footer-info-content">
+						<p>
+						 MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
+						</p>
+						<p>
+							MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
+					<h2>Social media</h2>
+					<a href="#">
+						<img src="img/icon-facebook.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-google.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-twitter.ico">
+					</a>	
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-contact">
+					<h2>Liên hệ</h2>
+					<address class="margin-bottom-40">
+						Địa chỉ 1: 137 Nguyễn Thị Thập, Quận Liên Chiểu, TP. Đà Nẵng.<br>
+						Địa chỉ 2: Lầu 2. Tòa nhà Innovation, lô 24, Công viên phần mềm Quang Trung, P.Tân Chánh Hiệp, Quận 12, TP. Hồ Chí Minh.<br>
+						Phone: 0000 000 000<br>
+						Email: <a href="#">info@gmail.com</a>
+					</address>
+				</div>	
+			</div>
+		</div>
+	</footer><!--  footer: end -->
+	<div class="mh-copyright">
+		<div class="mh-copyright-content">
+			2015 &copy; Handsome Team - All Rights Reserved
+		</div>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>	
+	<script src="js/bootstrap.js"></script>	
+	<!-- Make sure the path to CKEditor is correct. -->
+	<script src="ckeditor/ckeditor.js"></script>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		
+		CKEDITOR.replace( 'editor1' );
+		CKEDITOR.replace( 'editor2' );
+	</script>
+	<script>
+		$( ".mh-preview-button" ).click(function() {
+		  $( ".mh-preview-content" ).slideToggle( "slow" );
+		});
+	</script>
+</body>
+</html>
