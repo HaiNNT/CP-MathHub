@@ -686,6 +686,7 @@ footer > .container > .row {
 	color: #000;
 }
 /*  Home page: end */
+/*  Image user: start */
 .mh-user-image {
 	width: 60px;
 	height: 60px;
@@ -711,4 +712,63 @@ footer > .container > .row {
     width: 30px;
     height: 30px;
 	border: 1px solid silver;
+}
+/*  Image user: end */
+/*  Share fb: start */
+.mh-social-report > a:hover{
+	opacity: 0.7;
+}
+.mh-share-facebook-button {
+	width: 65px; 
+	height: 20px;
+	border: 0;
+}
+.mh-share-facebook {
+	float: left;
+}
+.pluginCountButton {
+	background: white;
+    border: 1px solid #9197a3;
+    -webkit-border-radius: 2px;
+    color: #4e5665;
+    display: inline-block;
+    font-size: 11px;
+    height: auto;
+    line-height: 18px;
+    margin-left: 6px;
+    min-width: 15px;
+    padding: 0 3px;
+    text-align: center;
+    white-space: nowrap;
+}
+.pluginCountTextConnected, .pluginCountConnected .pluginCountTextDisconnected {
+	display: none;
+}
+.pluginCountButtonNub {
+	height: 0;
+	left: 2px;
+	position: relative;
+	top: -15px;
+	width: 5px;
+	z-index: 2;
+}
+.pluginCountButtonNub s, .pluginCountButtonNub i {
+	border-color: transparent #9197a3;
+	border-style: solid;
+	border-width: 4px 5px 4px 0;
+	display: block;
+	position: relative;
+	top: 1px;
+}
+.pluginCountButtonNub i {
+	border-right-color: #fff;
+	left: 2px;
+	top: -7px;
+}
+/*  Share fb: end */
+.mh-social-report{
+	margin-bottom: 7px;
+}
+.mh-report-button {
+	margin-left: 15px;
 }

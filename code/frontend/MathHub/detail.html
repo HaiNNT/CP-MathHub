@@ -13,13 +13,14 @@
 
 <body>
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "http://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+	<div id="fb-root"></div>
 	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
 		<div class="container">
 			<div class="navbar-header">
@@ -564,9 +565,7 @@
 						<input type="text" class="form-control" placeholder="Tìm kiếm">
 						<i class="fa fa-search"></i>
 					</div>
-				</form> -->
-				
-			</div><!-- /.navbar-collapse -->
+					</div><!-- /.navbar-collapse -->
 		</div>
 	</header>	
 	<div class="container mh-body">
@@ -791,12 +790,25 @@
 					<!-- panel-footer: start -->
 					<div class="panel-footer">
 						<div class="row">
-							<div class="col-xs-6 col-sm-4 col-md-3">
-<div class="fb-share-button" data-href="http://getbootstrap.com/" data-layout="button_count"></div>
-								|
-								<a href="#">Report</a>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report">
+								<a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+									<img src="img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook"/>
+									<div class="mh-share-facebook">
+										<div class="pluginCountButton pluginCountNum">
+											<span class="pluginCountTextConnected">123</span>
+											<span class="pluginCountTextDisconnected">123</span>
+										</div>
+										<div class="pluginCountButtonNub">
+											<s></s>
+											<i></i>
+										</div>
+									</div>
+								</a>
+								<a href="#" class="mh-report-button">
+									<i class="fa fa-flag"></i> Báo vi phạm
+								</a>
 							</div>
-							<div class="col-xs-12 col-sm-8 col-md-9">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
 								<ul class="list-inline mh-list-tags mh-list-tags-right">	
 									<li>
 										<a href="#" class="mh-tag">
