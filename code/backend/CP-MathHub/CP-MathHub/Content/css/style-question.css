@@ -3,7 +3,7 @@
 	margin-top: 5px;
 }
 
-.mh-question-preview > .panel-heading > div > a {
+.mh-user-info > a {
 	width: 40px;
 	float: left;
     margin: 0px 10px;
@@ -12,7 +12,7 @@
 	position: relative;
 }
 
-.mh-question-preview > .panel-heading > div > div {
+.mh-user-info > a > div {
     width: 70%;
 	float: left;
 }
@@ -76,10 +76,10 @@
 	padding: 0px;
 	text-align: center;
  }
- .mh-vote a {
+ .mh-vote i {
 	color: grey;
  }
- .mh-vote a:hover {
+ .mh-vote i:hover {
 	color: black;
  }
 .mh-vote-icon {
