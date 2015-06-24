@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CP_MathHub.Entity;
+using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.Models.Question
 {
@@ -22,10 +23,12 @@ namespace CP_MathHub.Models.Question
         public int FollowNum { get; set; }
         public int BookmarkNum { get; set; }
         public int ShareNum { get; set; }
+        public bool Bookmarked { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
 
-        public ICollection<Answer> Answers { get; set; }
+        public AnswerViewModel AnswerVMs { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

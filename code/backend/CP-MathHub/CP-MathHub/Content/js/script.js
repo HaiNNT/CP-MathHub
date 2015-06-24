@@ -110,18 +110,20 @@ function togglePreview() {
 /*
   Apply ckeditor for textarea and preview
 */
-function initCkeditor() {
+function initCkeditor(preview) {
     var list = [];
     $(".editor").each(function () {
         list.push($(this).attr("id"));
     });
     for (var item in list) {
         CKEDITOR.replace(list[item]);
-        CKEDITOR.instances[list[item]].on('change', function () {
-            var content = CKEDITOR.instances[list[item]].getData();
-            $(".mh-preview-content").html("");
-            $(".mh-preview-content").append($(content));
-        });
+        if (preview){
+            CKEDITOR.instances[list[item]].on('change', function () {
+                var content = CKEDITOR.instances[list[item]].getData();
+                $(".mh-preview-content").html("");
+                $(".mh-preview-content").append($(content));
+            });
+        }
     }   
 }
 
@@ -238,7 +240,7 @@ $(document).ready(function () {
             break;
         case "question-create":
             togglePreview();
-            initCkeditor();
+            initCkeditor(true);
             break;
         case "question-tags":
             searchTag();
@@ -246,6 +248,8 @@ $(document).ready(function () {
         case "question-users":
             searchUser();
             break;
+        case "question-detail":
+            initCkeditor(false);
         default:
             seeMore();
             break;

@@ -16,6 +16,7 @@ var IL_TYPE_SEARCH_TAG = "searchtag";
 
 $(document).ready(function () {
     var type = $("#system").val();
+
     $(window).scroll(function () {
         if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && il_ready) {
             il_ready = false;

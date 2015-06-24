@@ -8,23 +8,23 @@ namespace CP_MathHub.Service.Helpers
 {
     public static class MhHtmlHelper
     {
-        public static string MainPostCreateTime(DateTime time)
+        public static string PostCreatedTime(DateTime time, string type)
         {
             TimeSpan period = (DateTime.Now - time);
 
             if ((int) period.TotalSeconds < 60)
             {
-                return "vừa hỏi";
+                return "vừa " + type;
             }
             if ((int) period.TotalSeconds >= 60 && (int)period.TotalHours < 1)
             {
-                return "hỏi " + (int) period.TotalMinutes + " phút trước";
+                return type + " " + (int)period.TotalMinutes + " phút trước";
             }
             if ((int) period.TotalMinutes >= 60 && (int)period.TotalHours < 24)
             {
-                return "hỏi " + (int) period.TotalHours + " tiếng trước";
+                return type + " " + (int)period.TotalHours + " tiếng trước";
             }
-            return "hỏi vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
-        }
+            return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
+        }      
     }
 }

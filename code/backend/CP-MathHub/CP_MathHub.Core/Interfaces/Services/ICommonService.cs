@@ -90,6 +90,5 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<User> GetUsers(int skip, string tab);
 
-
     }
 }

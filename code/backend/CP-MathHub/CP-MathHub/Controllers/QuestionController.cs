@@ -9,6 +9,7 @@ using CP_MathHub.Core.Configuration;
 using CP_MathHub.Service.Services;
 using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Question;
+using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
 
@@ -118,8 +119,16 @@ namespace CP_MathHub.Controllers
         {
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
             Question question = qService.GetQuestion(id);
-
+            qService.IncludeUserForComments(question.Comments.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
+            //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
+            //        .ToList();
+
+            AnswerViewModel answerVM = new AnswerViewModel();
+            answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
+            answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
+
+            questionDetailVM.AnswerVMs = answerVM;
             return View("Views/QuestionDetailView", questionDetailVM);
         }
 

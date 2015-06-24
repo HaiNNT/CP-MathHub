@@ -2,70 +2,104 @@
 @model QuestionDetailViewModel
 @{
     ViewBag.Title = Model.Title;
-    ViewBag.MhPage = "question-create";
+    ViewBag.MhPage = "question-detail";
+    ViewBag.CreatedDateType = "hỏi";
     Layout = "~/Views/Question/Layouts/_QuestionDetailLayout.cshtml";
 }
 
-<h2>@Model.Title</h2>
-<ul>
-    @*<li>User:@Model.UserInfo.Username</li>*@
-    <li>Id:@Model.Id</li>
-    <li>Content: @Html.Raw(@Model.Content) </li>
-    <li>DateCreated: @Model.CreatedDate </li>
-    <li>UserId: @Model.UserId </li>
-    <li>VoteUpNum: @Model.VoteUp</li>
-    <li>VoteDownNum: @Model.VoteDown </li>
-    <li>AnswerNum: @Model.Answers.Count </li>
-    <li>BookmarkNum: @Model.BookmarkNum </li>
-    <li>ShareNum: @Model.ShareNum </li>
-    <li>ReportNum: @Model.ReportNum </li>
-</ul>
-<h3>Tag</h3>
-<ul>
-    @foreach (var tag in Model.Tags)
-    {
-        <li>@tag.Name</li>
-    }
-</ul>
-<h3>Comment</h3>
-<ul>
-    @foreach (var comment in Model.Comments)
-    {
-        <li>@comment.Content</li>
-    }
-</ul>
-<h3>Answer</h3>
-<ul>
-    @foreach (var answer in Model.Answers)
-    {
-        <li>
-            <div>Id: @answer.Id</div>
-            <div>Content: @answer.Content</div>
-            <div>CreatedDate: @answer.CreatedDate</div>
-            <div>Vote: @(answer.VoteUp - answer.VoteDown)</div>
-            <div>Comment:
-                <ul>
-                    @foreach (var comment in answer.Comments)
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-10 mh-content-title">
+            <h3>Câu Hỏi</h3>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("Partials/_NavPartialView")
+
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+
+<div class="panel panel-success mh-question-preview">
+    <div class="panel-heading">
+        <div class="row">
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+            <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @Html.Partial("Partials/_VotePartialView", (Model.VoteUp - Model.VoteDown))
+            <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
+                <a href="#">@Model.Title</a>
+                <div>
+                    @Model.Content
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <a href="#" title="Có @Model.ShareNum người chia sẻ câu hỏi này">Chia sẻ</a>
+                |
+                <a href="#" title="Có @Model.ReportNum người báo vi phạm câu hỏi này">Báo vi phạm</a>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <ul class="list-inline mh-list-tags mh-list-tags-right">
+                    @foreach (var tag in Model.Tags)
                     {
-                        <li>@comment.Content</li>
+                        <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
                     }
                 </ul>
             </div>
-        </li>
-    }
-</ul>
+        </div>
+    </div>
+    @Html.Partial("Partials/_CommentPartialView", Model.Comments)
+</div>
+
+@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
+@Html.Partial("Partials/_AnswerPostPartialView")
+
+@*<h3>Comment</h3>
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>@comment.Content</li>
+        }
+    </ul>
+    <h3>Answer</h3>
+    <ul>
+        @foreach (var answer in Model.Answers)
+        {
+            <li>
+                <div>Id: @answer.Id</div>
+                <div>Content: @answer.Content</div>
+                <div>CreatedDate: @answer.CreatedDate</div>
+                <div>Vote: @(answer.VoteUp - answer.VoteDown)</div>
+                <div>Comment:
+                    <ul>
+                        @foreach (var comment in answer.Comments)
+                        {
+                            <li>@comment.Content</li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>*@
+
+
 @section LeftPanel
 {
-    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.GroupWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
 }
 @section RightPanel
 {
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
     @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })

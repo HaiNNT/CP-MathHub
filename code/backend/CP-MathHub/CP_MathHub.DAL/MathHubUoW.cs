@@ -21,6 +21,8 @@ namespace CP_MathHub.DAL
 
         public MathHubUoW(CPMathHubModelContainer context)
        {
+           //context.Configuration.LazyLoadingEnabled = false;
+           //context.Configuration.ProxyCreationEnabled = false;
            this.context = context;
            this.repositoryClass = typeof(Repository<>);
        }
