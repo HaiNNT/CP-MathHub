@@ -17,7 +17,7 @@ namespace CP_MathHub.Core.Interfaces.Repository
         /// </summary>
         /// <param name="id">entity id</param>
         /// <returns></returns>
-        TEntity GetById(int id);
+        TEntity GetById(int id, string properties = "");
         /// <summary>
         /// Get multiple entities with condition parameters
         /// </summary>

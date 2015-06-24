@@ -42,14 +42,14 @@
                                                         <span class="mh-username">@answer.Author.Username</span>
                                                     </a>
                                                     <div class="detail-reputat">
-                                                        <span>>@answer.Author.Reputation</span>
+                                                        <span>@answer.Author.Reputation</span>
                                                         <i class="fa fa-circle mh-reputation-icon"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentPartialView", answer.Comments)
+                                    @Html.Partial("Partials/_CommentPartialView", answer.Comments.ToList())
                                 </div>
                             </div>
                         </div>
@@ -87,14 +87,14 @@
                                                         <span class="mh-username">@hint.Author.Username</span>
                                                     </a>
                                                     <div class="detail-reputat">
-                                                        <span>>@hint.Author.Reputation</span>
+                                                        <span>@hint.Author.Reputation</span>
                                                         <i class="fa fa-circle mh-reputation-icon"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentPartialView", hint.Comments)
+                                    @Html.Partial("Partials/_CommentPartialView", hint.Comments.ToList())
                                 </div>
                             </div>
                         </div>

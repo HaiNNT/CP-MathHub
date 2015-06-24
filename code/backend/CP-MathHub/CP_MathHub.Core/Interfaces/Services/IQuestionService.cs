@@ -68,5 +68,20 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         int CountSearchResult(string searchString);
 
+        /// <summary>
+        /// Get Answers of Quuestion
+        /// </summary>
+        /// <returns></returns>
+        List<Answer> GetAnswers(int questionId, AnswerEnum type = 0);
+
+        /// <summary>
+        /// Get Comments of Post
+        /// </summary>
+        /// <returns></returns>
+        List<Comment> GetComments(int postId);
+
+        void IncludeCommentForAnswers(List<Answer> answers);
+
+        void IncludeUserForComments(List<Comment> comments);
     }
 }

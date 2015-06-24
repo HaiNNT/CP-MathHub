@@ -17,11 +17,7 @@
 
 @Html.Partial("Partials/_NavPartialView")
 
-
-<input id="system" type="hidden" value="question" />
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-
-
 
 <div class="panel panel-success mh-question-preview">
     <div class="panel-heading">
@@ -59,10 +55,10 @@
             </div>
         </div>
     </div>
-    @Html.Partial("Partials/_CommentPartialView")
+    @Html.Partial("Partials/_CommentPartialView", Model.Comments)
 </div>
 
-@Html.Partial("Partials/_AnswerPartialView")
+@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
 @Html.Partial("Partials/_AnswerPostPartialView")
 
 @*<h3>Comment</h3>

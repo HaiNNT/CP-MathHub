@@ -324,6 +324,5 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
     }
 }

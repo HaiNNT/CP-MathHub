@@ -142,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Common\CommentViewModel.cs" />
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
     <Compile Include="Models\Common\UserInfoViewModel.cs" />

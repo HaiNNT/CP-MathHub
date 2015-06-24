@@ -25,8 +25,13 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
         }
 
 
-        public TEntity GetById(int id)
+        public TEntity GetById(int id, string properties = "")
         {
+            foreach (var includeProperty in properties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                dbSet.Include(includeProperty);
+            }
             return dbSet.Find(id);
         }
 
@@ -56,14 +61,19 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
                 query = orderBy(query);
             }
 
-            if (query.Count() - 1 >= skip)
+            if (take == 0)
             {
-                query = query.Skip(skip).Take(take);
                 return query;
             }
-
+            else
+            {
+                if (query.Count() - 1 >= skip)
+                {
+                    query = query.Skip(skip).Take(take);
+                    return query;
+                }
+            }
             return new List<TEntity>();
-
         }
 
         public void Insert(TEntity entity)

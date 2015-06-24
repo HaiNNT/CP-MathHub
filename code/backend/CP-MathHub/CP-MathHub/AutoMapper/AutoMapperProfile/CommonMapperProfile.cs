@@ -21,6 +21,13 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             Mapper.CreateMap<User, UserInfoViewModel>();
             Mapper.CreateMap<User, ProfileWidgetViewModel>();
             Mapper.CreateMap<User, UserHeaderViewModel>();
+      
+            //Comment
+            //Mapper.CreateMap<Comment, CommentViewModel>()
+            //    .ForMember(
+            //        s => s.Username,
+            //        d => d.MapFrom(m => m.Author.Username)
+            //    );
         }
     }
 }

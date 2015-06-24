@@ -37,6 +37,30 @@ namespace CP_MathHub.Service.Helpers
             {
                 return (a => a.Answers.Count == 0);
             }
+            /// <summary>
+            /// Get answer by Id lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Answer, bool>> AnswerOfQuestion(int questionId)
+            {
+                return (a => a.Type == AnswerEnum.Answer && a.QuestionId == questionId);
+            }
+            /// <summary>
+            /// Get answer by Id lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Answer, bool>> HintOfQuestion(int questionId)
+            {
+                return (a => a.Type == AnswerEnum.Hint && a.QuestionId == questionId);
+            }
+            /// <summary>
+            /// Get order answer by vote and accepted
+            /// </summary>
+            /// <returns></returns>
+            public static Func<IQueryable<Answer>, IOrderedQueryable<Answer>> OrderUsefulAnswer()
+            {
+                return (a => a.OrderByDescending(m => m.Accepted).OrderByDescending(m => (m.VoteUp - m.VoteDown)));
+            }
         }
         public class UserHelper
         {

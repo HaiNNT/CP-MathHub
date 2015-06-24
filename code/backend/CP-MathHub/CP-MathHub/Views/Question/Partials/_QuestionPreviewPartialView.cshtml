@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-10 col-xs-12 mh-content">
-                <a href="#">@Model.Title</a>
+                <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;                   

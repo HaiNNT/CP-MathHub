@@ -26,8 +26,8 @@ namespace CP_MathHub.Models.Question
         public bool Bookmarked { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
 
-        public AnswerViewModel Answers { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public AnswerViewModel AnswerVMs { get; set; }
+        public ICollection<Comment> Comments { get; set; }
         public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }
     }

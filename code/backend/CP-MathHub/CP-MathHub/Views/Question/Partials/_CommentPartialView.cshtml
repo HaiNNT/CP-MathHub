@@ -7,7 +7,7 @@
             <div class="mh-comment-content">
                 <span>@Model.ElementAt(i).Content</span><br />
                 <a href="#">@Model.ElementAt(i).Author.Username</a>
-                <span class="mh-time">@MhHtmlHelper.CommentCreateTime(@Model.ElementAt(i).CreatedDate)</span>
+                <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.ElementAt(i).CreatedDate, "bình luận")</span>
             </div>
         }
         @if (Model.Count < 4)
@@ -19,12 +19,12 @@
         else
         {
             <a href="#">Xem thêm bình luận</a>
-            @for (int i = 3; i < Model.Count; i++)
+            for (int i = 3; i < Model.Count; i++)
             {
                 <div class="mh-comment-content hidden">
                     <span>@Model.ElementAt(i).Content</span><br />
                     <a href="#">@Model.ElementAt(i).Author.Username</a>
-                    <span class="mh-time">@MhHtmlHelper.CommentCreateTime(@Model.ElementAt(i).CreatedDate)</span>
+                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.ElementAt(i).CreatedDate, "bình luận")</span>
                 </div>
             }
             <div class="hidden">
