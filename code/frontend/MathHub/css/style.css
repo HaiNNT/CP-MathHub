@@ -63,18 +63,16 @@ body {
 .navbar-default .mh-navbar-toggle .icon-bar {
     background-color: #fff;
 }
-
+/*  Notification: start */
 .mh-notification > li.dropdown > a {
     color: #752B20;
     padding: 13px 10px;
     font-size: 17pt;
 }
-
 .mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
     color: #fff;
     background-color: #A52A2A;
 }
-/*  Notification: start */
 .mh-notification > li.open > a {
 	color: #fff !important;
     background-color: #A52A2A !important;
@@ -126,7 +124,7 @@ body {
 .mh-notification > li > ul > li > div > div{
 	border-bottom: 1px solid #e5e5e5;
 }
-.mh-notification > li > ul > li > div > div:hover {
+.mh-notification > li > ul > li > div > div:hover, #mh-nav-user  > li > ul > li > a:hover {
 	background-color: #eceef4;
 }
 .mh-notification .media {
@@ -149,6 +147,13 @@ body {
 .mh-notification .mh-notifi-content {
 	font-size: 10pt;
 	font-weight: normal;
+}
+.mh-notification  .media-body  .mh-notifi-friend {	
+	text-align: right;
+	padding-top: 3px;
+}
+.mh-notification  .media-body  .mh-notifi-friend .mh-request-button {
+	font-size: 9pt;
 }
 </*  Notification: end */
 .mh-active > a {
