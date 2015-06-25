@@ -444,6 +444,10 @@ color: #3271FF;
 #mh-tag-autocomplete-list > li > span {
 display: none;
 }
+
+.mh-seemore {
+    cursor: pointer;
+}
 /* Mid: end */
 
 /* Left: start */

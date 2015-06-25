@@ -89,6 +89,9 @@
 	font-size: 25pt;
 	padding-top: 10px;
 }
+.mh-checked {
+    color: green;
+}
 .mh-vote-num {
 	font-size: 19pt;
 }
@@ -138,8 +141,9 @@
 .mh-answer_hint-detail-content {
 }
 .mh-form-input-comment {
-	margin-top: 5px;
+	margin: 5px 0px;
 	width: 100%;
+    padding: 5px;
 }
 .mh-answer-avatar {
 	padding: 0;

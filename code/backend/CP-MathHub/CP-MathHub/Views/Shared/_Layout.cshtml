@@ -17,18 +17,18 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="fa fa-bar"></span>
-                    <span class="fa fa-bar"></span>
-                    <span class="fa fa-bar"></span>
+                    <span class="fa fa-bars"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="@Url.Action("Index", "Question")">
                     <img id="mh-logo" alt="Brand" src="~/Content/img/logoMain.png" />
                 </a>
             </div>
             @if (ViewBag.MhPage != "home") { 
             <div class="collapse navbar-collapse" id="mh-header-collapse">
                 <ul class="nav navbar-nav" id="mh-nav-link">
-                    <li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+                    <li class="mh-active">
+                        <a href="@Url.Action("Index", "Question")">Hỏi Đáp <span class="sr-only">(current)</span></a>
+                    </li>
                     <li><a href="#">Bài Viết</a></li>
                     <li><a href="#">Thảo Luận</a></li>
                 </ul>

@@ -115,12 +115,10 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public int CountSearchResult(string searchString)
         {
             return dal.Repository<Question>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
         }
-
         public List<Answer> GetAnswers(int questionId, AnswerEnum type = 0)
         {
             List<Answer> answers = new List<Answer>();
@@ -157,7 +155,6 @@ namespace CP_MathHub.Service.Services
             IncludeCommentForAnswers(answers);
             return answers;
         }
-
         public List<Comment> GetComments(int postId)
         {
             List<Comment> comments = dal.Repository<Comment>().Get(
@@ -171,20 +168,23 @@ namespace CP_MathHub.Service.Services
             return comments;
             
         }
-
         public void IncludeCommentForAnswers(List<Answer> answers)
         {
             foreach(Answer answer in answers){
                 IncludeUserForComments(answer.Comments.ToList());
             }
         }
-
         public void IncludeUserForComments(List<Comment> comments)
         {
             foreach (Comment comment in comments)
             {
                 comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
+        }
+        public void AnswerQuestion(Answer answer)
+        {
+            dal.Repository<Answer>().Insert(answer);
+            dal.Save();
         }
     }
 }

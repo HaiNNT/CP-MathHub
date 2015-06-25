@@ -80,8 +80,22 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<Comment> GetComments(int postId);
 
+        /// <summary>
+        /// Add comment for answers
+        /// </summary>
+        /// <param name="answers"></param>
         void IncludeCommentForAnswers(List<Answer> answers);
 
+        /// <summary>
+        /// Add author for comments
+        /// </summary>
+        /// <param name="comments"></param>
         void IncludeUserForComments(List<Comment> comments);
+
+        /// <summary>
+        /// Create answer for a question
+        /// </summary>
+        /// <param name="answe"></param>
+        void AnswerQuestion(Answer answe);
     }
 }

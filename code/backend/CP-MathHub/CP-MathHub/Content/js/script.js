@@ -5,7 +5,7 @@
  */
 
 /*
-  Init see more event listening 
+  Init see more question event listening 
 */
 function seeMore() {
     $(".mh-seemore").each(function () {
@@ -14,6 +14,21 @@ function seeMore() {
             var parent = $($(this).parents(".mh-question-preview")[0]);
             parent.find(".mh-sort-content").addClass("hidden");
             parent.find(".mh-full-content").removeClass("hidden");
+        });
+    });
+}
+
+/*
+  Init see more comment event listening 
+*/
+function seeMoreComment() {
+    $(".mh-seemore").each(function () {
+        $(this).click(function () {
+            $(this).addClass("hidden");
+            $(this).siblings(".hidden").each(function () {
+                $(this).removeClass("hidden");
+            });
+
         });
     });
 }
@@ -30,12 +45,12 @@ function bookmark(id, type) {
         case "question":
             url = "/Question/Bookmark";
             break;
-        //case "article":
+            //case "article":
 
-        //    break;
-        //case "discussion":
+            //    break;
+            //case "discussion":
 
-        //    break;
+            //    break;
         default:
 
             break;
@@ -53,7 +68,7 @@ function bookmark(id, type) {
               alert("false");
           }
       })
-      .fail(function () {          
+      .fail(function () {
           alert("fail error");
       });
 }
@@ -117,14 +132,14 @@ function initCkeditor(preview) {
     });
     for (var item in list) {
         CKEDITOR.replace(list[item]);
-        if (preview){
+        if (preview) {
             CKEDITOR.instances[list[item]].on('change', function () {
                 var content = CKEDITOR.instances[list[item]].getData();
                 $(".mh-preview-content").html("");
                 $(".mh-preview-content").append($(content));
             });
         }
-    }   
+    }
 }
 
 /*
@@ -135,7 +150,7 @@ function createTag() {
     $.ajax({
         method: "POST",
         url: "/Question/CreateTag",
-        data: { name : name }
+        data: { name: name }
     })
       .done(function (msg) {
           if (msg) {
@@ -147,26 +162,26 @@ function createTag() {
       .fail(function () {
           alert("fail error");
       });
-    var add = function(item){
-            var autocomplete = $("#mh-tag-autocomplete-list");
-            var tagName = $(item).find("label").text();
-            var tagId = $(item).find("span").text();
-            var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
-            var item = "<span class='mh-tag-item'>"
-                        + "<span>"
-                        + tagName
-                        + "</span>"
-                        + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
-                        + hidden
-                        + "</span>";
-            var list = $("#mh-tag-list");
-            $("#mh-input-tag").val("");
-            $("#mh-input-tag").focus();
-            autocomplete.hide();
-            if (!ids[tagId]){
-                ids[tagId] = tagName;
-                list.append($(item));
-            }        
+    var add = function (item) {
+        var autocomplete = $("#mh-tag-autocomplete-list");
+        var tagName = $(item).find("label").text();
+        var tagId = $(item).find("span").text();
+        var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
+        var item = "<span class='mh-tag-item'>"
+                    + "<span>"
+                    + tagName
+                    + "</span>"
+                    + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+                    + hidden
+                    + "</span>";
+        var list = $("#mh-tag-list");
+        $("#mh-input-tag").val("");
+        $("#mh-input-tag").focus();
+        autocomplete.hide();
+        if (!ids[tagId]) {
+            ids[tagId] = tagName;
+            list.append($(item));
+        }
     }
 }
 
@@ -183,10 +198,10 @@ function searchTag() {
         $.ajax({
             method: "GET",
             url: "/Question/SearchTag",
-            data: { name: param, type: "search", tab: tab}
+            data: { name: param, type: "search", tab: tab }
         })
       .done(function (msg) {
-          if (msg != "\n") {             
+          if (msg != "\n") {
               list.append($(msg));
           }
       })
@@ -231,6 +246,40 @@ function searchUser() {
 }
 
 /*
+    Comment for a post
+*/
+function commentPost() {
+    $(".mh-form-input-comment").each(function () {
+        var input = $(this);       
+        var list = $(input.parent().siblings(".mh-comment-list")[2]);
+        input.keypress(function (e) {
+            if (e.keyCode === 13) {
+                var content = input.val();
+                var postId = input.siblings(".mh-post-id").val();
+                console.log(content);
+                console.log(postId);
+                $.ajax({
+                    method: "Post",
+                    url: "/Question/PostComment",
+                    data: { postId: postId, content: content }
+                })
+                .done(function (msg) {
+                    if (msg != "\n") {
+                        list.append($(msg));
+                        input.val("");
+                    }
+                })
+                .fail(function (msg) {
+                    console.log(msg);
+                    alert(msg);
+                });
+            }
+        });
+    });
+}
+
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {
@@ -250,6 +299,8 @@ $(document).ready(function () {
             break;
         case "question-detail":
             initCkeditor(false);
+            commentPost();
+            seeMoreComment();
         default:
             seeMore();
             break;

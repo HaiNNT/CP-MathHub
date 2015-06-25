@@ -562,10 +562,11 @@
     <Content Include="Views\Question\Layouts\_TagsPageLayout.cshtml" />
     <Content Include="Views\Question\Views\TagsPageView.cshtml" />
     <Content Include="Views\Question\Partials\_TagListPartialView.cshtml" />
-    <Content Include="Views\Question\Partials\_CommentPartialView.cshtml" />
+    <Content Include="Views\Question\Partials\_CommentListPartialView.cshtml" />
     <Content Include="Views\Question\Partials\_AnswerPartialView.cshtml" />
     <Content Include="Views\Question\Partials\_VotePartialView.cshtml" />
     <Content Include="Views\Question\Partials\_AnswerPostPartialView.cshtml" />
+    <Content Include="Views\Question\Partials\_CommentItemPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
