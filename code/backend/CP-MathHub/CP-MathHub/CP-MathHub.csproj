@@ -132,9 +132,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile\BlogMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\CommonMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\QuestionMapperProfile.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommonWidgetController.cs" />
     <Compile Include="Controllers\DiscussionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -142,6 +144,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog\BlogHomeViewModel.cs" />
+    <Compile Include="Models\Blog\ArticlePreviewViewModel.cs" />
+    <Compile Include="Models\Blog\MyBlogViewModel.cs" />
     <Compile Include="Models\Common\CommentViewModel.cs" />
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
@@ -567,6 +572,14 @@
     <Content Include="Views\Question\Partials\_VotePartialView.cshtml" />
     <Content Include="Views\Question\Partials\_AnswerPostPartialView.cshtml" />
     <Content Include="Views\Question\Partials\_CommentItemPartialView.cshtml" />
+    <Content Include="Views\Blog\Layouts\_BlogHomeLayout.cshtml" />
+    <Content Include="Views\Blog\Views\BlogHomeView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleListPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticlePreviewPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleHotPartialView.cshtml" />
+    <Content Include="Views\Blog\Layouts\_MyBlogLayout.cshtml" />
+    <Content Include="Views\Blog\Views\MyBlogView.cshtml" />
+    <Content Include="Views\Blog\Partials\_MyArticleListPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
