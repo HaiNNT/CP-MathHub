@@ -60,8 +60,6 @@ namespace CP_MathHub.Service.Services
                 ).ToList();
             return tags;
         }
-
-
         public List<Tag> GetTags(string name, int skip)
         {
             List<Tag> tags = dal.Repository<Tag>().Get(
@@ -73,7 +71,6 @@ namespace CP_MathHub.Service.Services
                 ).ToList();
             return tags;
         }
-
         public List<Tag> GetTags(string tab, string name, int skip)
         {
             List<Tag> list = new List<Tag>();
@@ -122,7 +119,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public List<Tag> GetTags(int skip, string tab)
         {
             List<Tag> list = new List<Tag>();
@@ -170,7 +166,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public bool InsertTag(Tag tag)
         {
             if (GetTag(tag.Name) != null)
@@ -184,7 +179,6 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
-
         public bool Bookmark(int id, User user)
         {
             MainPost post = dal.Repository<MainPost>().GetById(id);
@@ -261,7 +255,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public List<User> GetUsers(string name, int skip, string tab)
         {
             List<User> list = new List<User>();
@@ -323,6 +316,11 @@ namespace CP_MathHub.Service.Services
                     break;
             }
             return list;
+        }
+        public void CommentPost(Comment comment)
+        {
+            dal.Repository<Comment>().Insert(comment);
+            dal.Save();
         }
     }
 }

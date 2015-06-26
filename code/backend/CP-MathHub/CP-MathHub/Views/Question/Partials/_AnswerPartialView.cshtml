@@ -19,37 +19,39 @@
                     {
                         <div class="mh-answer_hint-content">
                             <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", (answer.VoteUp - answer.VoteDown))
+                                @Html.Partial("Partials/_VotePartialView", (answer.VoteUp - answer.VoteDown), new ViewDataDictionary { {"Check", (answer.Accepted ? "accepted" : "check")}})
                                 <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
                                     <div class="mh-answer_hint-detail-content">
-                                        @answer.Content
+                                        @Html.Raw(answer.Content)
                                     </div>
                                     <div class="mh-answer_hint-user_info">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <span class="mh-time">@MhHtmlHelper.PostCreatedTime(answer.CreatedDate, "trả lời")</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                    <a href="#">
-                                                        <img src="~/Content/img/user.jpg" class="mh-user-avatar">
-                                                    </a>
+                                                <div class="row">
+                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(answer.CreatedDate, "trả lời")</span>
                                                 </div>
-                                                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="#">
-                                                        <span class="mh-username">@answer.Author.Username</span>
-                                                    </a>
-                                                    <div class="detail-reputat">
-                                                        <span>@answer.Author.Reputation</span>
-                                                        <i class="fa fa-circle mh-reputation-icon"></i>
+                                            </div>
+                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                <div class="row">
+                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                                        <a href="#">
+                                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                                        <a href="#">
+                                                            <span class="mh-username">@answer.Author.Username</span>
+                                                        </a>
+                                                        <div class="detail-reputat">
+                                                            <span>@answer.Author.Reputation</span>
+                                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentPartialView", answer.Comments.ToList())
+                                    @Html.Partial("Partials/_CommentListPartialView", answer.Comments.ToList(), new ViewDataDictionary { { "PostId", answer.Id } })
                                 </div>
                             </div>
                         </div>
@@ -64,37 +66,39 @@
                     {
                         <div class="mh-answer_hint-content">
                             <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", (hint.VoteUp - hint.VoteDown))
+                                @Html.Partial("Partials/_VotePartialView", (hint.VoteUp - hint.VoteDown), new ViewDataDictionary { { "Check", "hint" } })
                                 <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
                                     <div class="mh-answer_hint-detail-content">
-                                        @hint.Content
+                                        @Html.Raw(hint.Content)
                                     </div>
                                     <div class="mh-answer_hint-user_info">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <span class="mh-time">@MhHtmlHelper.PostCreatedTime(hint.CreatedDate, "gợi ý")</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                    <a href="#">
-                                                        <img src="~/Content/img/user.jpg" class="mh-user-avatar">
-                                                    </a>
+                                                <div class="row">
+                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(hint.CreatedDate, "gợi ý")</span>
                                                 </div>
-                                                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="#">
-                                                        <span class="mh-username">@hint.Author.Username</span>
-                                                    </a>
-                                                    <div class="detail-reputat">
-                                                        <span>@hint.Author.Reputation</span>
-                                                        <i class="fa fa-circle mh-reputation-icon"></i>
+                                            </div>
+                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                <div class="row">
+                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                                        <a href="#">
+                                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                                        <a href="#">
+                                                            <span class="mh-username">@hint.Author.Username</span>
+                                                        </a>
+                                                        <div class="detail-reputat">
+                                                            <span>@hint.Author.Reputation</span>
+                                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentPartialView", hint.Comments.ToList())
+                                    @Html.Partial("Partials/_CommentListPartialView", hint.Comments.ToList(), new ViewDataDictionary { { "PostId", hint.Id } })
                                 </div>
                             </div>
                         </div>

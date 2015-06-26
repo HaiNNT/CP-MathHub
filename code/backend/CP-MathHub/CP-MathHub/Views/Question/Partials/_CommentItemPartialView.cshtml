@@ -1,0 +1,8 @@
+﻿@model CP_MathHub.Entity.Comment
+@using CP_MathHub.Service.Helpers
+
+<div class="mh-comment-content">
+    <span>@Model.Content</span><br />
+    <a href="#">@Model.Author.Username</a>
+    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+</div>

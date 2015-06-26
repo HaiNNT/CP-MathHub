@@ -29,7 +29,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            @Html.Partial("Partials/_VotePartialView", (Model.VoteUp - Model.VoteDown))
+            @Html.Partial("Partials/_VotePartialView", (Model.VoteUp - Model.VoteDown), new ViewDataDictionary { { "Check", "question" } })
             <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
                 <a href="#">@Model.Title</a>
                 <div>
@@ -55,11 +55,11 @@
             </div>
         </div>
     </div>
-    @Html.Partial("Partials/_CommentPartialView", Model.Comments)
+    @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id } })
 </div>
 
 @Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
-@Html.Partial("Partials/_AnswerPostPartialView")
+@Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
 
 @*<h3>Comment</h3>
     <ul>

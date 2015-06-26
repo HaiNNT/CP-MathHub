@@ -1,4 +1,4 @@
-﻿
+﻿@using CP_MathHub.Entity
 <div class="mh-post-Ans_Hint">
     <section class="mh-tabs">
         <input id="mh-tab-3" type="radio" name="radio-set-2" class="mh-tab-selector-1" checked="checked" />
@@ -11,28 +11,32 @@
 
         <div class="mh-tab-content">
             <div class="mh-tab-content-1">
-                <form>
+                @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post)){
+                
                     <div class="mh-ckeditor ">
-                            <textarea class="editor" name="editor1" id="editor1" rows="10" cols="80">
-                                Trả lời câu hỏi
+                            <textarea class="editor" name="content" id="editor1" rows="10" cols="80" placeholder="Trả lời câu hỏi">
                             </textarea>
+                        <input type="hidden" name="type" value="@AnswerEnum.Answer" />
+                        <input type="hidden" name="questionId" value="@ViewData["QuestionId"]" />
                     </div>
                     <div class="mh-post-Ans_Hint-button">
                         <button type="submit" class="btn btn-success btn-lg">Đăng câu trả lời</button>
                     </div>
-                </form>
+                }
             </div>
             <div class="mh-tab-content-2">
-                <form>
+               @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post))
+               {
                     <div class="mh-ckeditor ">
-                        <textarea class="editor" name="editor2" id="editor2" rows="10" cols="80">
-                            Gợi ý trả lời
+                        <textarea class="editor" name="content" id="editor2" rows="10" cols="80" placeholder="Gợi ý câu trả lời">
                         </textarea>
+                        <input type="hidden" name="type" value="@AnswerEnum.Hint" />
+                        <input type="hidden" name="questionId" value="@ViewData["QuestionId"]" />
                     </div>
                     <div class="mh-post-Ans_Hint-button">
                         <button type="submit" class="btn btn-success btn-lg">Đăng gợi ý</button>
                     </div>
-                </form>
+                }
             </div>
         </div>
     </section>

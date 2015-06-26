@@ -90,5 +90,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<User> GetUsers(int skip, string tab);
 
+        /// <summary>
+        /// Comment for a post
+        /// </summary>
+        /// <param name="comment"></param>
+        void CommentPost(Comment comment);
+
     }
 }

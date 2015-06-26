@@ -300,5 +300,38 @@ namespace CP_MathHub.Controllers
             return PartialView("Partials/_UserListPartialView", users);
         }
 
+        //Post: Question/PostComment
+        [HttpPost]
+        public ActionResult PostComment( int postId, string content = "")
+        {
+            Comment comment = new Comment();
+            comment.Content = content;
+            comment.UserId = cService.GetLoginUser().Id;
+            comment.CreatedDate = DateTime.Now;
+            comment.LastEditedDate = comment.CreatedDate;
+            comment.PostId = postId;
+
+            cService.CommentPost(comment);
+            return PartialView("Partials/_CommentItemPartialView", comment);
+        }
+
+        //Post: Question/AnswerQuestion
+        [HttpPost, ValidateInput(false)]
+        public ActionResult AnswerQuestion(int questionId, string content = "", AnswerEnum type = AnswerEnum.Answer)
+        {
+            Answer answer = new Answer();
+            answer.Content = content;
+            answer.UserId = cService.GetLoginUser().Id;
+            answer.CreatedDate = DateTime.Now;
+            answer.LastEditedDate = answer.CreatedDate;
+            answer.QuestionId = questionId;
+            answer.Type = type;
+            answer.VoteDown = 0;
+            answer.VoteUp = 0;
+
+            qService.AnswerQuestion(answer);
+            return RedirectToAction("Detail", new { id = questionId });
+        }
+
     }
 }
