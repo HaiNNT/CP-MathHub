@@ -3,18 +3,8 @@
 	margin-top: 5px;
 }
 
-.mh-user-info > a {
-	width: 40px;
-	float: left;
-    margin: 0px 10px;
-}
 .mh-question-preview > .panel-heading > div {
 	position: relative;
-}
-
-.mh-user-info > a > div {
-    width: 70%;
-	float: left;
 }
 
 .mh-question-preview > .panel-heading > div > i {
@@ -66,9 +56,6 @@
 
 .mh-question-preview > .panel-body > div > .mh-content > a:hover {
 	text-decoration: none;
-}
-.mh-question-preview .mh-username {
-	font-size: 12pt;
 }
 /*QA default: end*/
 /* QA detail: start */
