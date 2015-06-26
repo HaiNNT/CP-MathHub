@@ -1,0 +1,195 @@
+/** posts slider widget **/
+.crsl-items {
+  display: block;
+  padding: 5px 0;
+}
+ 
+.crsl-item {
+  background: #fff;
+  padding: 8px;
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+}
+ 
+.crsl-item .thumbnail {
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.crsl-item .thumbnail img { 
+  display: block; /* fix 1px image space http://stackoverflow.com/q/5804256/477958 */
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.crsl-item .thumbnail:hover img {
+  opacity: 0.8;
+}
+ 
+.crsl-item h3 {
+  font-family: 'Oswald', 'Trebuchet MS', Helvetica, sans-serif;
+  font-size: 1.95em;
+  line-height: 1.25em;
+  margin-bottom: 12px;
+}
+.crsl-item h3 a {
+  text-decoration: none;
+  color: #333;
+}
+.crsl-item h3 a:hover {
+  text-decoration: underline;
+}
+ 
+.crsl-item .postdate {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 6px;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+  font-size: 1.2em;
+  font-weight: bold;
+  background: #4e90da;
+}
+ 
+.crsl-item > div.readmore {
+  font-size: 1.2em;
+  line-height: 1.55em;
+  margin-bottom: 5px;
+}
+ 
+.crsl-item > div.readmore a {
+  display: block;
+  float: right;
+  color: #4e90da;
+  padding: 0px 5px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  font-size: 10pt;
+}
+.crsl-item > div.readmore a:hover {
+  background: #4b6caa;
+  color: #fff;
+}
+/** posts slider nav **/
+.slidernav {
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
+}
+ 
+.slidernav a {
+  display: inline-block;
+  padding: 7px 10px;
+  margin-right: 8px;
+  font-size: 20pt;
+  background: #C7C7C7;
+  color: #fff;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.slidernav a:active {
+  -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+}
+/** media queries **/
+@media screen and (max-width: 660px) {
+  h1 { font-size: 2.4em; line-height: 1.2em; }
+   
+  .crsl-item h3 { font-size: 1.65em; }
+}
+ 
+/** clearfix **/
+.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.clearfix { display: inline-block; }
+  
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+
+.mh-slideshow-body {
+	padding: 5px;
+}
+.mh-slideshow-contents {
+	border: 1px solid #ccc;
+	height: 321px !important;
+}
+.mh-slideshow-contents  > div > .mh-row-time {
+	padding: 5px 30px 0px 15px;
+}
+.mh-slideshow-contents > a {
+	color: #000;
+	text-decoration: none;
+}	
+.mh-slideshow-title {
+	font-size: 14pt;
+	color: #D33030;
+	font-weight: bold;
+	min-height: 54px;
+}
+.mh-read-more {
+	text-align: right;
+}
+.mh-slideshow-footer {
+	height: 46px;
+	background-color: #ED5A5A;
+	padding: 8px;
+	padding-right: 0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+.mh-slideshow-footer > a {
+	color: #FFFFFF;
+	font-weight: bold;
+	margin-right: 3px;
+	padding-right: 7px;
+	display: inline-block;
+	font-size: 11px;
+	background: url(../img/line_boxIcon.gif) no-repeat right;
+	border-right: 1px dotted silver;
+	text-align: center;
+}
+.mh-slideshow-footer > a:last-child {
+	border-right: 0px !important;
+	padding-right: 0px;
+}
+.mh-slideshow-footer > a   i {
+	font-size: 16px;
+	margin-right: 3px;
+	vertical-align: baseline;
+}
+.mh-slideshow-footer > a:hover {
+	text-decoration: none;
+	color: #000;
+}
+.mh-slideshow-content {
+	text-align: justify;
+	height: 100px;
+}
+.mh-slideshow-body >.slidernav > .clearfix > .previous {
+	position: absolute;
+	left: 3px;
+	top: 330px;
+	z-index: 100;
+	opacity: 0.3;
+}
+.mh-slideshow-body >.slidernav > .clearfix > .next {
+	position: absolute;
+	right: -5px;
+	top: 330px;
+	z-index: 100;
+	opacity: 0.3;
+}
+.mh-slideshow-body >.slidernav > .clearfix > a:hover {
+	opacity: 1;
+}

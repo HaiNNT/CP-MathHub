@@ -63,6 +63,10 @@ body {
 .navbar-default .mh-navbar-toggle .icon-bar {
     background-color: #fff;
 }
+.mh-active > a {
+	background-color: #752B20 !important;
+    border: #752B20 !important;
+}
 /*  Notification: start */
 .mh-notification > li.dropdown > a {
     color: #752B20;
@@ -156,11 +160,6 @@ body {
 	font-size: 9pt;
 }
 </*  Notification: end */
-.mh-active > a {
-	background-color: #752B20 !important;
-    border: #752B20 !important;
-}
-
 .dropdown-menu {
 	background-color: #F5F5F5;
 }
@@ -210,10 +209,12 @@ body {
 	border-right: 1px solid #C1C1C1;
 	border-left: 1px solid #C1C1C1;
 	margin-left: -1px;
+	margin-right: -1px;
 }
 .mh-right-section {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	border-left: 1px solid #C1C1C1;
 }
 
 /* Mid: start*/
@@ -221,7 +222,18 @@ body {
 	margin-top: 15px;
 	font-weight: bolder;
 }
-
+.mh-user-info > a {
+	width: 40px;
+	float: left;
+    margin: 0px 10px;
+}
+.mh-user-info > a > div {
+    width: 70%;
+	float: left;
+}
+.mh-question-preview .mh-username {
+	font-size: 12pt;
+}
 .mh-mid-section > .mh-top-content > .row {
 	border-bottom: 1px solid #C1C1C1;
 }
@@ -559,6 +571,9 @@ display: none;
 .mh-table-info-body-letter {
 	margin-top: 5px;
 }
+.mh-table-info-num {
+	margin-top: 7px;
+}
 .mh-table-info-row{
 	padding-bottom: 5px;
 }
@@ -701,9 +716,9 @@ footer > .container > .row {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-.mh-user-notifi-avatar {
-    width: 50px;
-    height: 50px;
+.mh-user-smallest {
+    width: 16px;
+    height: 16px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -772,3 +787,19 @@ footer > .container > .row {
 .mh-report-button {
 	margin-left: 15px;
 }
+/* khung user blog: start */
+.mh-blog-user {
+	margin-bottom: 7px;
+	height: 50px;
+}
+.mh-blog-user > .mh-row-time{
+	padding: 0 15px;
+	font-size: 8pt;
+	color: #A9A9A9;
+}
+.mh-blog-user > .mh-row-info	> .mh-answer-username {
+	padding-left: 0px;
+	font-size: 9pt;
+	margin-top: 1px;
+}
+/* khung user blog: end */
