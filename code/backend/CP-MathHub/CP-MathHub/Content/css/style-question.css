@@ -12,6 +12,10 @@
 	position: relative;
 }
 
+.mh-question-preview .mh-username {
+	font-size: 12pt;
+}
+
 .mh-user-info > a > div {
     width: 70%;
 	float: left;
@@ -246,13 +250,6 @@
 }
 .mh-body-search {
 	margin-bottom: 15px;
-}
-.mh-user-image {
-	width: 60px;
-	height: 60px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 4px;
 }
 .mh-body-detail > .row {
 	padding: 0 15px;

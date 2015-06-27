@@ -1,2 +1,79 @@
 ﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
-
+@using CP_MathHub.Service.Helpers
+<div class="@ViewData["Class"]">
+    <a href="">
+        <div class="title">
+            @Model.Title
+        </div>
+    </a>
+    <div class="mh-blog-user">
+        <div class="row mh-row-time">
+            <span class="mh-blog-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, ViewBag.CreatedDateType)</span>
+        </div>
+        <div class="row mh-row-info">
+            <div class="col-xs-2 mh-answer-avatar">
+                <a href="#">
+                    <img src="~/Content/img/user.jpg" class="mh-user-smallest">
+                </a>
+            </div>
+            <div class="col-xs-10 mh-answer-username">
+                <a href="#">
+                    <span class="mh-username">@Model.UserInfo.Username</span>
+                </a>
+                -
+                <span>@Model.UserInfo.Reputation</span>
+                <i class="fa fa-circle mh-reputation-icon"></i>
+            </div>
+        </div>
+    </div>
+    <a href="">
+        <div class="content">
+            @if (Model.Content.Length <= 113)
+            {
+                @Html.Raw(Model.Content)
+            }
+            else
+            {
+                @Html.Raw(Model.Content.Substring(0, 110) + "...")
+            }
+        </div>
+    </a>
+    <div class="readmore">
+        <a href="#">Read More »</a>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="footer">
+        <a href="" title="Lượt xem">
+            <div>
+                <i class="fa fa-eye"></i>
+            </div>
+            <div>
+                171412
+            </div>
+        </a>
+        <a href="" title="Lượt bình luận">
+            <div>
+                <i class="fa fa-comment"></i>
+            </div>
+            <div>
+                300
+            </div>
+        </a>
+        <a href="" title="Lượt thích">
+            <div>
+                <i class="fa fa-thumbs-o-up"></i>
+            </div>
+            <div>
+                17141
+            </div>
+        </a>
+        <a href="" title="Lượt chia sẻ trên facebook">
+            <div>
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div>
+                1000
+            </div>
+        </a>
+    </div>
+</div>

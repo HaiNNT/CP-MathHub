@@ -462,8 +462,10 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\style-blog.css" />
     <Content Include="Content\css\style-question.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\styles-slideshow.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\blog.png" />
@@ -482,7 +484,9 @@
     <Content Include="Content\js\jquery-1.11.3.js" />
     <Content Include="Content\js\npm.js" />
     <Content Include="Content\js\infinity-loading.js" />
-    <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\responsiveCarousel-slideshow.js" />
+    <Content Include="Content\js\script-blog.js" />
+    <Content Include="Content\js\script-question.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -580,6 +584,8 @@
     <Content Include="Views\Blog\Layouts\_MyBlogLayout.cshtml" />
     <Content Include="Views\Blog\Views\MyBlogView.cshtml" />
     <Content Include="Views\Blog\Partials\_MyArticleListPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\Mockups\_NotificationMockup.cshtml" />
+    <Content Include="Views\Blog\Partials\_NavPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
