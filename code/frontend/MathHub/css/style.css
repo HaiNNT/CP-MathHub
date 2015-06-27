@@ -93,6 +93,7 @@ body {
 .mh-notification > .dropdown> ul  {
 	padding: 10px;
 	width: 430px;
+	background-color: #fff !important;
 }
 .mh-notification > .dropdown> ul > li> h3{
 	font-size: 10pt;
@@ -152,11 +153,25 @@ body {
 	font-size: 10pt;
 	font-weight: normal;
 }
-.mh-notification  .media-body  .mh-notifi-friend {	
-	text-align: right;
-	padding-top: 3px;
+.mh-notification-body #mh-notifi-friend {
+	margin: 0px;
+	
 }
-.mh-notification  .media-body  .mh-notifi-friend .mh-request-button {
+.mh-notification-body > #mh-notifi-friend .media-body {
+	vertical-align: middle;
+}
+#mh-notifi-friend:hover{
+	background-color: #fff;
+}
+#mh-notifi-user-name {
+	font-weight: bold;
+	cursor: pointer;
+}
+.mh-notification .mh-notifi-friend-button {	
+	text-align: right;
+	padding: 18px 0 0 0;
+}
+.mh-notification .mh-notifi-friend-button .mh-request-button {
 	font-size: 9pt;
 }
 </*  Notification: end */
@@ -300,6 +315,66 @@ body {
 .mh-list-tags-left {
 	text-align: left;
 }
+/*Panel: start */
+.mh-question-preview {
+	margin-top: 5px;
+}
+
+.mh-question-preview > .panel-heading > div {
+	position: relative;
+}
+
+.mh-question-preview > .panel-heading > div > i {
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    font-size: 15pt;
+}
+
+.mh-question-preview > .panel-body > div {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info {
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	padding:0;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info > div {
+	padding: 5px 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info h2 {
+	margin: 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
+    width: 84%;
+    margin-left: 8%;
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
+	margin: 0px;
+	text-align: center;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a {
+	font-size: 17pt;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a:hover {
+	text-decoration: none;
+}
+/*  Panel: end */
 		/* css: tab */
 .mh-tabs {
     position: relative;
@@ -796,8 +871,9 @@ footer > .container > .row {
 	padding: 0 15px;
 	font-size: 8pt;
 	color: #A9A9A9;
+	padding: 5px 30px 0px 15px;
 }
-.mh-blog-user > .mh-row-info	> .mh-answer-username {
+.mh-blog-user > .mh-row-info	> .user{
 	padding-left: 0px;
 	font-size: 9pt;
 	margin-top: 1px;
