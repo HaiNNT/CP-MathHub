@@ -804,20 +804,3 @@ footer > .container > .row {
 .mh-report-button {
 	margin-left: 15px;
 }
-/* khung user blog: start */
-.mh-blog-user {
-	margin-bottom: 7px;
-	height: 50px;
-}
-.mh-blog-user > .mh-row-time{
-	padding: 0 15px;
-	font-size: 8pt;
-	color: #A9A9A9;
-	padding: 5px 30px 0px 15px;
-}
-.mh-blog-user > .mh-row-info	> .user{
-	padding-left: 0px;
-	font-size: 9pt;
-	margin-top: 1px;
-}
-/* khung user blog: end */
