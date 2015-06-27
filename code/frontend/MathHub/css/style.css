@@ -152,11 +152,25 @@ body {
 	font-size: 10pt;
 	font-weight: normal;
 }
-.mh-notification  .media-body  .mh-notifi-friend {	
-	text-align: right;
-	padding-top: 3px;
+.mh-notification-body #mh-notifi-friend {
+	margin: 0px;
+	
 }
-.mh-notification  .media-body  .mh-notifi-friend .mh-request-button {
+.mh-notification-body > #mh-notifi-friend .media-body {
+	vertical-align: middle;
+}
+#mh-notifi-friend:hover{
+	background-color: #fff;
+}
+#mh-notifi-user-name {
+	font-weight: bold;
+	cursor: pointer;
+}
+.mh-notification .mh-notifi-friend-button {	
+	text-align: right;
+	padding: 18px 0 0 0;
+}
+.mh-notification .mh-notifi-friend-button .mh-request-button {
 	font-size: 9pt;
 }
 </*  Notification: end */
