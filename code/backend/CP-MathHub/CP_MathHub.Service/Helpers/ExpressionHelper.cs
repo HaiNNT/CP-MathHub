@@ -82,7 +82,6 @@ namespace CP_MathHub.Service.Helpers
                 return (u => u.Username.ToLower().Contains(name.ToLower()));
             }
         }
-
         public class TagHelper
         {
             /// <summary>
@@ -93,6 +92,59 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Tag, bool>> ContainName(string name)
             {
                 return (u => u.Name.ToLower().Contains(name.ToLower()));
+            }
+        }
+        public class BlogHelper
+        {
+            /// <summary>
+            /// Get subcribed article lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> SubcribedArticle(User user)
+            {
+                return (a => a.Author.Followers.Contains(user));
+            }
+
+            /// <summary>
+            /// Get Friend Article lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> FriendArticle(User user)
+            {
+                return (a => a.Author.ActiveRelationships.Where(m => m.TargetUserId == user.Id).Count() > 0
+                            && a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
+            }
+
+            /// <summary>
+            /// Get bookmark article lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> BookmarkArticle(User user)
+            {
+                return (a => a.BookmarkUsers.Contains(user));
+            }
+
+            /// <summary>
+            /// Get hot Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> HotArticle()
+            {
+                return (a => a.Comments.Count > 2
+                            && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 500
+                            && (a.View > 500));
+            }
+
+            /// <summary>
+            /// Get my Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> MyArticle(User user)
+            {
+                return (a => a.UserId == user.Id);
             }
         }
     }

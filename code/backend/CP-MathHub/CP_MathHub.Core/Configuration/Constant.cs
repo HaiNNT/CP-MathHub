@@ -55,12 +55,18 @@ namespace CP_MathHub.Core.Configuration
         {
             public static class Integer
             {
-
+                public const int PagingDefaultTake = 10;
             }
 
             public static class String
             {
-
+                public const string HomeDefaultTab = "Home";
+                public const string HomeHomeTab = "Home";
+                public const string HomeSubcribeTab = "Subcribe";
+                public const string HomeBookmarkTab = "Bookmark";
+                public const string HomeFriendTab = "Friend";
+                public const string HomeHotTab = "Hot";
+                public const string MyArticleTab = "Mine";
             }
         }
         /// <summary>
