@@ -8,8 +8,17 @@
     <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/questioncss")
+    @if (ViewBag.System == "question")
+    {
+        @Styles.Render("~/Content/question/css");
+    }
+    else if(ViewBag.System == "blog")
+    {
+        @Styles.Render("~/Content/blog/css");
+    }
+    @*@Styles.Render("~/Content/question/css");*@
     @Scripts.Render("~/bundles/modernizr")
+    @*<link rel="stylesheet" type="text/css" href="~/Content/css/style-question.css" />*@
 </head>
 <body>
     <header class="navbar navbar-default navbar-fixed-top" id="mh-header">
@@ -29,55 +38,13 @@
                     <li class="mh-active">
                         <a href="@Url.Action("Index", "Question")">Hỏi Đáp <span class="sr-only">(current)</span></a>
                     </li>
-                    <li><a href="#">Bài Viết</a></li>
+                    <li>
+                        <a href="@Url.Action("Index", "Blog")">Bài Viết</a>
+                    </li>
                     <li><a href="#">Thảo Luận</a></li>
                 </ul>
                 @Html.Action("UserHeaderWidget", new { controller = "CommonWidget" })
-                <ul class="nav navbar-nav navbar-right mh-notification">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-globe"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right mh-notification">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-comments"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right mh-notification">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-group"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
-                </ul>
+               @Html.Partial("../CommonWidget/Mockups/_NotificationMockup")
                 <!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Tìm kiếm">
@@ -145,6 +112,15 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/script")
+    @if (ViewBag.System == "question")
+    {
+        @Scripts.Render("~/bundles/questionjs")
+    }
+    else if (ViewBag.System == "blog")
+    {
+        @Scripts.Render("~/bundles/blogjs")
+    }
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

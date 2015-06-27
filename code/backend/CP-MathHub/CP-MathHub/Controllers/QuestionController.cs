@@ -47,6 +47,7 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "HỎI ĐÁP";
                 ViewBag.Tab = tab;
+                ViewBag.System = "question";
                 questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -74,6 +75,7 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
+                ViewBag.System = "question";
                 questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -104,6 +106,7 @@ namespace CP_MathHub.Controllers
                 questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString)
                                         + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
                 ViewBag.Tab = Constant.Question.String.SearchTab;
+                ViewBag.System = "question";
                 questionHomeVM.Items = problemVms;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -146,7 +149,7 @@ namespace CP_MathHub.Controllers
 
             Question question = new Question();
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
-            question.UserId = 93;
+            question.UserId = cService.GetLoginUser().Id;
             question.Tags = cService.GetTags(questionVM.TagIds);
 
             qService.InsertQuestion(question);
@@ -169,6 +172,7 @@ namespace CP_MathHub.Controllers
             Question question = qService.GetQuestion(id);
 
             questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
+            ViewBag.System = "question";
             return View("Views/QuestionEditView", questionEditVM);
         }
 
@@ -248,6 +252,7 @@ namespace CP_MathHub.Controllers
                 TagsPageViewModel model = new TagsPageViewModel();
                 model.Tab = tab;
                 model.ListTags = tags;
+                ViewBag.System = "question";
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
                 return View("Views/TagsPageView", model);
             }
@@ -281,6 +286,7 @@ namespace CP_MathHub.Controllers
                 model.Tab = tab;
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Question.String.HomeUserTab;
+                ViewBag.System = "question";
                 return View("Views/UsersPageView", model);
             }
             else

@@ -25,9 +25,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Question, bool>> HotQuestion()
             {
-                return (a => a.Answers.Count > 2
-                            && DbFunctions.DiffDays(a.CreatedDate,  DateTime.Now) < 500
-                            && (a.View > 500));
+                return (q => q.Answers.Count > 2
+                            && DbFunctions.DiffDays(q.CreatedDate,  DateTime.Now) < 500
+                            && (q.View > 500));
             }
             /// <summary>
             /// Get unanswered Question lambda expression

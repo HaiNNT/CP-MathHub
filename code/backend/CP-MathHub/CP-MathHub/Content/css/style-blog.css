@@ -1,0 +1,129 @@
+/* Top menu: start */
+#mh-header  {
+	background-color: #0055A5;
+}
+#mh-nav-link > li > a:hover {
+    background-color: #033462;
+    border: #033462;
+    color: #fff !important;
+}
+.mh-notification > li.dropdown > a {
+    color: #033462;
+}
+.mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
+    color: #fff;
+    background-color: #0055A5;
+}
+.mh-notification > li.open > a {
+	color: #fff !important;
+    background-color: #0055A5 !important;
+}
+#mh-nav-user > li.open > a {
+	color: #fff !important;
+    background-color: #0055A5 !important;
+}
+.mh-active > a {
+	background-color: #033462 !important;
+    border: #033462 !important;
+}
+.mh-notification > li > a > .badge {
+	background-color: #EC2424;
+	color: #FFFFFF;
+}
+/* Top menu: end */
+/*Body: start*/
+	/* Mid: start */
+.mh-content-title {
+	margin: 10px 15px;
+	text-align: right;
+}
+.mh-content-title > a {
+	font-weight: bolder;
+}
+.mh-home > .row {
+	border-bottom: 1px solid #C1C1C1;
+}	
+.mh-home-button {
+	font-size: 14pt;
+}
+.mh-blog-new-body {
+	padding: 5px;
+}
+.mh-blog-new-body > .row {
+	margin: 0px;
+}
+.mh-blog-new-contents {
+  border: 1px solid #ccc;
+  height: 321px;
+  width: 205px;
+  padding: 8px;
+  margin-right: 8px;
+  position: relative;
+  margin-bottom: 10px;
+}
+/*	
+.mh-blog-new-contents:nth-child(3n) {
+  margin-right: 0px;
+}
+*/
+.mh-blog-new-title {
+  font-size: 14pt;
+  color: #337ab7;
+  font-weight: bold;
+  min-height: 54px;
+}
+.mh-blog-new-contents  > div >  .mh-row-time {
+	padding: 5px 30px 0px 15px;
+}
+.mh-blog-new-contents > a {
+	text-decoration: none;
+	color: #000;
+}	
+.mh-blog-new-contents >a:hover {
+	color: #000;
+}
+.mh-readmore {
+	text-align: right;
+}
+.mh-blog-new-content {
+	text-align: justify;
+	height: 100px;
+}
+.mh-blog-new-footer {
+	height: 46px;
+	background-color: #EFEDED;
+	padding: 8px;
+	padding-right: 0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+}
+.mh-blog-new-footer > a {
+	color: #969696;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px #fff;
+	margin-right: 3px;
+	padding-right: 7px;
+	display: inline-block;
+	font-size: 11px;
+	background: url(../img/line_boxIcon.gif) no-repeat right;
+	border-right: 1px dotted silver;
+	text-align: center;
+}
+.mh-blog-new-footer > a:last-child {
+	border-right: 0px !important;
+	padding-right: 0px;
+}
+.mh-blog-new-footer > a   i {
+	font-size: 16px;
+	text-shadow: 0px 1px 0px #fff;
+	margin-right: 3px;
+	vertical-align: baseline;
+}
+.mh-blog-new-footer > a:hover {
+	text-decoration: none;
+	color: #000;
+}
+	/* Mid: end */	
+/*Body: end*/

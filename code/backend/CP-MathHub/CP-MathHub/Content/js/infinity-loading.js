@@ -7,7 +7,7 @@
 var il_page = 0;
 var il_ready = true;
 var IL_TYPE_QUESTION = "question";
-var IL_TYPE_ARTICLE = "article";
+var IL_TYPE_ARTICLE = "blog";
 var IL_TYPE_DISCUSSION = "discussion";
 var IL_TYPE_USER = "user";
 var IL_TYPE_TAG = "tag";
@@ -63,11 +63,27 @@ function getMoreMainPost(type) {
         //    url = "Discussion/Index";
         //    data = { tab: "Newest", page: ++il_page }
         //    break;
-        //case IL_TYPE_DISCUSSION:
-        //    list = $("#list-articles");
-        //    url = "Blog/Index";
-        //    data = { tab: "Newest", page: ++il_page }
-        //    break;
+        case IL_TYPE_ARTICLE:
+            list = $("#list-articles");
+            var tab = $("#tab").val();
+            switch (tab) {
+                case "Search":
+                    var searchString = $("#tab-param").val();
+                    url = "/Blog/Search";
+                    data = { searchString: searchString, page: ++il_page };
+                    break;
+                case "Tag":
+                    var tag = $("#tab-param").val();
+                    url = "/Blog/Tag";
+                    data = { tag: tag, page: ++il_page };
+                    break;
+                default:
+                    var tab = $("#tab").val();
+                    url = "/Blog/Index";
+                    data = { tab: tab, page: ++il_page }
+                    break;
+            }
+            break;
         case IL_TYPE_USER:
             list = $("#mh-list-user");
             var tab = $("#tab").val();

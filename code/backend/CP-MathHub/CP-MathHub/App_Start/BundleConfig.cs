@@ -20,17 +20,28 @@ namespace CP_MathHub
                       "~/Content/js/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/script").Include(
-                      "~/Content/js/script.js",
                       "~/Content/js/infinity-loading.js",
                       "~/Content/ckeditor/ckeditor.js",
                       "~/Content/js/auto-complete.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/questionjs").Include(
+                      "~/Content/js/script-question.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/blogjs").Include(
+                      "~/Content/js/responsiveCarousel-slideshow.js",
+                      "~/Content/js/script-blog.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style.css"));
-            bundles.Add(new StyleBundle("~/Content/questioncss").Include(
+
+            bundles.Add(new StyleBundle("~/Content/question/css").Include(
                       "~/Content/css/style-question.css"));
+
+            bundles.Add(new StyleBundle("~/Content/blog/css").Include(
+                      "~/Content/css/style-blog.css",
+                      "~/Content/css/style-slideshow.css"));
         }
     }
 }
