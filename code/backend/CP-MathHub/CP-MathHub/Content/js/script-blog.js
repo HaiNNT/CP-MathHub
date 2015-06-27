@@ -25,3 +25,7 @@ function hotArticleSlideShow(){
 			});
 		});
 }
+
+$(document).ready(function () {
+    hotArticleSlideShow();
+});
