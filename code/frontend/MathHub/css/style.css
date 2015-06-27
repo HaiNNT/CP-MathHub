@@ -93,6 +93,7 @@ body {
 .mh-notification > .dropdown> ul  {
 	padding: 10px;
 	width: 430px;
+	background-color: #F5F5F5 !important;
 }
 .mh-notification > .dropdown> ul > li> h3{
 	font-size: 10pt;
