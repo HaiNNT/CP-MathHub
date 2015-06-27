@@ -315,6 +315,66 @@ body {
 .mh-list-tags-left {
 	text-align: left;
 }
+/*Panel: start */
+.mh-question-preview {
+	margin-top: 5px;
+}
+
+.mh-question-preview > .panel-heading > div {
+	position: relative;
+}
+
+.mh-question-preview > .panel-heading > div > i {
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    font-size: 15pt;
+}
+
+.mh-question-preview > .panel-body > div {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info {
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	padding:0;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info > div {
+	padding: 5px 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info h2 {
+	margin: 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
+    width: 84%;
+    margin-left: 8%;
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
+	margin: 0px;
+	text-align: center;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a {
+	font-size: 17pt;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a:hover {
+	text-decoration: none;
+}
+/*  Panel: end */
 		/* css: tab */
 .mh-tabs {
     position: relative;
