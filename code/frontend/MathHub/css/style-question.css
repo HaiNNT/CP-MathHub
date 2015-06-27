@@ -1,15 +1,89 @@
 /* QA default: start */
+.mh-question-preview {
+	margin-top: 5px;
+}
 
+.mh-user-info > a {
+	width: 40px;
+	float: left;
+    margin: 0px 10px;
+}
+.mh-question-preview > .panel-heading > div {
+	position: relative;
+}
+
+.mh-question-preview .mh-username {
+	font-size: 12pt;
+}
+
+.mh-user-info > a > div {
+    width: 70%;
+	float: left;
+}
+
+.mh-question-preview > .panel-heading > div > i {
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    font-size: 15pt;
+}
+
+.mh-question-preview > .panel-body > div {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info {
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	padding:0;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info > div {
+	padding: 5px 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info h2 {
+	margin: 0px;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
+    width: 84%;
+    margin-left: 8%;
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
+    background-color: #FCD7A3;
+}
+
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
+	margin: 0px;
+	text-align: center;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a {
+	font-size: 17pt;
+}
+
+.mh-question-preview > .panel-body > div > .mh-content > a:hover {
+	text-decoration: none;
+}
+.mh-question-preview .mh-username {
+	font-size: 12pt;
+}
 /*QA default: end*/
 /* QA detail: start */
  .mh-vote {
 	padding: 0px;
 	text-align: center;
  }
- .mh-vote a {
+ .mh-vote i {
 	color: grey;
  }
- .mh-vote a:hover {
+ .mh-vote i:hover {
 	color: black;
  }
 .mh-vote-icon {
@@ -19,8 +93,11 @@
 	font-size: 25pt;
 	padding-top: 10px;
 }
+.mh-checked {
+    color: green;
+}
 .mh-vote-num {
-	font-size: 20pt;
+	font-size: 19pt;
 }
 .mh-vote-down {
 	margin-top: -5px;
@@ -68,8 +145,9 @@
 .mh-answer_hint-detail-content {
 }
 .mh-form-input-comment {
-	margin-top: 5px;
+	margin: 5px 0px;
 	width: 100%;
+    padding: 5px;
 }
 .mh-answer-avatar {
 	padding: 0;

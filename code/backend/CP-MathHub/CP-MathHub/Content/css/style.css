@@ -93,6 +93,7 @@ body {
 .mh-notification > .dropdown> ul  {
 	padding: 10px;
 	width: 430px;
+	background-color: #fff !important;
 }
 .mh-notification > .dropdown> ul > li> h3{
 	font-size: 10pt;
@@ -152,14 +153,28 @@ body {
 	font-size: 10pt;
 	font-weight: normal;
 }
-.mh-notification  .media-body  .mh-notifi-friend {	
-	text-align: right;
-	padding-top: 3px;
+.mh-notification-body #mh-notifi-friend {
+	margin: 0px;
+	
 }
-.mh-notification  .media-body  .mh-notifi-friend .mh-request-button {
+.mh-notification-body > #mh-notifi-friend .media-body {
+	vertical-align: middle;
+}
+#mh-notifi-friend:hover{
+	background-color: #fff;
+}
+#mh-notifi-user-name {
+	font-weight: bold;
+	cursor: pointer;
+}
+.mh-notification .mh-notifi-friend-button {	
+	text-align: right;
+	padding: 18px 0 0 0;
+}
+.mh-notification .mh-notifi-friend-button .mh-request-button {
 	font-size: 9pt;
 }
-</*  Notification: end */
+/*  Notification: end */
 .dropdown-menu {
 	background-color: #F5F5F5;
 }
@@ -231,9 +246,7 @@ body {
     width: 70%;
 	float: left;
 }
-.mh-question-preview .mh-username {
-	font-size: 12pt;
-}
+
 .mh-mid-section > .mh-top-content > .row {
 	border-bottom: 1px solid #C1C1C1;
 }
@@ -800,8 +813,9 @@ footer > .container > .row {
 	padding: 0 15px;
 	font-size: 8pt;
 	color: #A9A9A9;
+	padding: 5px 30px 0px 15px;
 }
-.mh-blog-user > .mh-row-info	> .mh-answer-username {
+.mh-blog-user > .mh-row-info	> .user{
 	padding-left: 0px;
 	font-size: 9pt;
 	margin-top: 1px;

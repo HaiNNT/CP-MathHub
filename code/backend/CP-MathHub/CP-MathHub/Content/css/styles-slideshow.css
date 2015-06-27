@@ -122,14 +122,11 @@ html[xmlns] .clearfix { display: block; }
 	border: 1px solid #ccc;
 	height: 321px !important;
 }
-.mh-slideshow-contents  > div > .mh-row-time {
-	padding: 5px 30px 0px 15px;
-}
 .mh-slideshow-contents > a {
 	color: #000;
 	text-decoration: none;
 }	
-.mh-slideshow-title {
+.mh-slideshow-contents .title {
 	font-size: 14pt;
 	color: #D33030;
 	font-weight: bold;
@@ -138,7 +135,7 @@ html[xmlns] .clearfix { display: block; }
 .mh-read-more {
 	text-align: right;
 }
-.mh-slideshow-footer {
+.mh-slideshow-contents .blog-footer {
 	height: 46px;
 	background-color: #ED5A5A;
 	padding: 8px;
@@ -148,7 +145,7 @@ html[xmlns] .clearfix { display: block; }
 	left: 0px;
 	width: 100%;
 }
-.mh-slideshow-footer > a {
+.mh-slideshow-contents .blog-footer > a {
 	color: #FFFFFF;
 	font-weight: bold;
 	margin-right: 3px;
@@ -159,20 +156,20 @@ html[xmlns] .clearfix { display: block; }
 	border-right: 1px dotted silver;
 	text-align: center;
 }
-.mh-slideshow-footer > a:last-child {
+.mh-slideshow-contents .blog-footer > a:last-child {
 	border-right: 0px !important;
 	padding-right: 0px;
 }
-.mh-slideshow-footer > a   i {
+.mh-slideshow-contents .blog-footer > a   i {
 	font-size: 16px;
 	margin-right: 3px;
 	vertical-align: baseline;
 }
-.mh-slideshow-footer > a:hover {
+.mh-slideshow-contents .blog-footer > a:hover {
 	text-decoration: none;
 	color: #000;
 }
-.mh-slideshow-content {
+.mh-slideshow-contents .content {
 	text-align: justify;
 	height: 100px;
 }
