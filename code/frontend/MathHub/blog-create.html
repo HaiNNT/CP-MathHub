@@ -7,8 +7,8 @@
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	<link href="css/style-question.css" rel="stylesheet">
-	<link href="img/favicon.ico" rel="shorcut icon" type="image/x-icon"/>
+	<link href="css/style-blog.css" rel="stylesheet">
+	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 					<span class="fa fa-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">
-					<img id="mh-logo" alt="Brand" src="img/logoMain.png">
+					<img id="mh-logo" alt="Brand" src="img/logo-blog.png">
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="mh-header-collapse">
@@ -680,107 +680,110 @@
 			</div> <!-- Left: end -->
 			<!-- Mid: start -->
 			<div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section" style="border-right: 0;">
+				<!-- mh-top-content: start -->
 				<div class="mh-top-content">
 					<div class="row">
-						<div class="col-md-4 mh-content-title">
-							<h3>Đặt câu hỏi</h3>
+						<div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
+							<h3>Tạo bài viết</h3>
+						</div>
+						<div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+							<a href="#" class="btn btn-default active">
+								<i class="fa fa-home mh-home-button"></i> 
+								Bài viết cộng đồng
+							</a>
+							<a href="#" class="btn btn-default">
+								<i class="fa fa-child mh-home-button"></i>
+								Bài viết của tôi
+							</a>
 						</div>
 					</div>
-				</div>
-				<!-- mh-home: start -->
-				<div class="mh-home">
-					<!-- row: start -->
-					<div class="row">
-						<div class="col-xs-12 col-md-7 mh-home-tab">
-							<a class="btn btn-danger btn-sm">Mới nhất</a>
-							<a class="btn btn-danger btn-sm">Hot</a>
-							<a class="btn btn-danger btn-sm">Chưa trả lời</a>
-							<a class="btn btn-danger btn-sm">Thẻ</a>
-							<a class="btn btn-danger btn-sm">Người dùng</a>
-						</div>
-						<div class="col-xs-12 col-md-5 mh-page-search">
-							<form>
-								<div class="input-group">
-									<input type="search" class="form-control" placeholder="Tìm kiếm...">
-									<span class="input-group-btn">
-										<button class="btn btn-primary" type="submit">
-											<i class="fa fa-search"></i>
-										</button>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div><!-- row: end -->
-					<!-- Body content Mid: start  -->
-				</div><!-- mh-home: end -->
+				</div><!-- mh-top-content: end -->
+				<!-- Body content Mid: start  -->
 				<div class="mh-body-content-mid">
-						<form>
-							<div class="mh-body-title">
-								<span class="mh-body-label">Tiêu đề: </span><br/>
-								<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-body-input">
-							</div>
-							<div class="mh-ckeditor">
-								<span class="mh-body-label">Nôi dung: </span><br/>
-								<form>
-									<textarea name="editor1" id="editor1" rows="15" cols="80">
-										<p>Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.</p> 
-										Hãy tính quãng đường chú chó đã chạy?
-									</textarea>
-								</form>
-							</div>
-							<div class="mh-preview">
-								<button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
-								<div class="mh-preview-content">
+					<form>
+						<div class="mh-body-title">
+							<span class="mh-body-label">Tiêu đề: </span><br/>
+							<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-body-input">
+						</div>
+						<div class="mh-ckeditor">
+							<span class="mh-body-label">Nôi dung: </span><br/>
+							<form>
+								<textarea name="editor1" id="editor1" rows="15" cols="80">
 									<p>Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.</p> 
 									Hãy tính quãng đường chú chó đã chạy?
-								</div>
+								</textarea>
+							</form>
+						</div>
+						<div class="mh-preview">
+							<button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
+							<div class="mh-preview-content">
+								<p>Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.</p> 
+								Hãy tính quãng đường chú chó đã chạy?
 							</div>
-							<div style="position: relative;">
-								<label class="mh-body-label">Gắn thẻ cho câu hỏi: </label><br />
-								<div class="mh-body-input mh-input-tag">
-										<div>
-											<span class="mh-tag-item">										
-												<span>Lớp 6</span>
-												<i class="fa fa-times-circle"></i>
-												<input type="hidden" name="TagIds" value="1" />
-											</span>
-											<span class="mh-tag-item">										
-												<span>Đại học</span>
-												<i class="fa fa-times-circle"></i>
-											</span>
-											<span class="mh-tag-item">										
-												<span>Lớp 10</span>
-												<i class="fa fa-times-circle"></i>
-											</span> 
-										</div>
-										<div>
-										<input type="text" class="" id="mh-input-tag" />
-										</div>
-								</div>
-								<ul id="mh-tag-autocomplete-list">
-									<li>
-										<label>Đại học</label> - Có 2134 câu hỏi
-										<span>1</span>
-									</li>
-									<li>
-										<label>Toán khó</label> - Có 3216 câu hỏi
-										<span>2</span>
-									</li>
-									<li>
-										<label>Lớp 12</label> - Có 2523 câu hỏi
-										<span>3</span>
-									</li>
-								</ul>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 mh-blog-choice-title">
+								<span class="mh-body-label">Ai thấy bài viết của bạn: </span><br/>
 							</div>
-							<div>
-								<span class="mh-body-label">Mời bạn bè: </span><br/>
-								<input type="text" class="mh-body-input mh-input-tagFriend">
+							<div class="dropdown col-xs-12 col-sm-6 col-md-7 col-lg-8 mh-blog-choice">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								- - - - - Chọn - - - - -  
+								<span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="#">Mọi người</a></li>
+								<li><a href="#">Chỉ bạn bè</a></li>
+								<li><a href="#">Một mình tôi</a></li>
+							  </ul>
 							</div>
-							<div class="mh-body-button">
-								<button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+							<input type="date"/> 
+						</div>
+						<div style="position: relative;">
+							<label class="mh-body-label">Gắn thẻ cho câu hỏi: </label><br />
+							<div class="mh-body-input mh-input-tag">
+									<div>
+										<span class="mh-tag-item">										
+											<span>Lớp 6</span>
+											<i class="fa fa-times-circle"></i>
+											<input type="hidden" name="TagIds" value="1" />
+										</span>
+										<span class="mh-tag-item">										
+											<span>Đại học</span>
+											<i class="fa fa-times-circle"></i>
+										</span>
+										<span class="mh-tag-item">										
+											<span>Lớp 10</span>
+											<i class="fa fa-times-circle"></i>
+										</span> 
+									</div>
+									<div>
+									<input type="text" class="" id="mh-input-tag" />
+									</div>
 							</div>
-						</form>
-					</div><!-- Body content Mid: end  -->
+							<ul id="mh-tag-autocomplete-list">
+								<li>
+									<label>Đại học</label> - Có 2134 câu hỏi
+									<span>1</span>
+								</li>
+								<li>
+									<label>Toán khó</label> - Có 3216 câu hỏi
+									<span>2</span>
+								</li>
+								<li>
+									<label>Lớp 12</label> - Có 2523 câu hỏi
+									<span>3</span>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<span class="mh-body-label">Mời bạn bè: </span><br/>
+							<input type="text" class="mh-body-input mh-input-tagFriend">
+						</div>
+						<div class="mh-body-button">
+							<button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+						</div>
+					</form>
+				</div><!-- Body content Mid: end  -->
 				
 			</div><!-- Mid: end -->
 		</div>

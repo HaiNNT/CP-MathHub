@@ -22,6 +22,9 @@
 	color: #fff !important;
     background-color: #0055A5 !important;
 }
+.mh-navbar-toggle:hover, .mh-navbar-toggle:focus  {
+	background-color: #0055A5 !important;
+}
 .mh-active > a {
 	background-color: #033462 !important;
     border: #033462 !important;
@@ -34,7 +37,7 @@
 /*Body: start*/
 	/* Mid: start */
 .mh-content-title {
-	margin: 10px 15px;
+	margin: 10px 0px;
 	text-align: right;
 }
 .mh-content-title > a {
@@ -48,6 +51,12 @@
 }	
 .mh-home-button {
 	font-size: 14pt;
+}
+.mh-home .mh-home-tab {
+	margin-top: 12px;
+}
+.mh-home .mh-page-search {
+	margin-bottom: 0px;
 }
 .mh-blog-new-body {
 	padding: 5px;
@@ -76,12 +85,8 @@
 	min-height: 54px;
 	color: #337ab7;
 }
-.mh-blog-new-contents > a {
-	text-decoration: none;
-	color: #000;
-}	
 .mh-blog-new-contents >a:hover {
-	color: #000;
+	text-decoration: none;
 }
 .mh-blog-new-contents .content {
 	text-align: justify;
@@ -129,7 +134,6 @@
 /* khung user blog: start */
 .mh-blog-user {
 	margin-bottom: 7px;
-	height: 50px;
 }
 .mh-blog-user > .mh-row-time{
 	padding: 0 15px;
@@ -144,42 +148,48 @@
 }
 /* khung user blog: end */
 /* Home Blog: end*/
+/*Page view: start*/
+.mh-page-view {
+	margin-top: 10px;
+	text-align: right;
+}
+.mh-page-view > button:hover, .mh-page-view > button.active {
+	color: #00aaf1;
+}
+/*Page view: end*/
 /* My blog: start */
-.mh-my-blog-contents {
+.mh-grid-content {
+	margin: 15px 0;
+}
+.mh-grid-content > div{
   border: 1px solid #ccc;
   padding: 15px;
-  position: relative;
-  margin-top: 15px;
 }
-.mh-my-blog-contents .title {
+.mh-grid-content > .blog-footer{
+  border-top: 0px;
+  padding: 5px 15px;
+}
+.mh-grid-content .title {
 	font-size: 17pt;
 	font-weight: bold;
 	color: #337ab7;
-}
-.mh-my-blog-contents > a {
-	text-decoration: none;
-	color: #000;
 }	
-.mh-my-blog-contents >a:hover {
-	color: #000;
+.mh-grid-content > div > .row > div > a:hover {
+	text-decoration: none;
 }
-.mh-my-blog-contents .content {
+.mh-grid-content .content {
 	text-align: justify;
 	font-size: 13pt;
 }
-.mh-my-blog-contents  .readmore {
+.mh-grid-content  .readmore {
 	text-align: right;
-	margin-bottom: 100px;
 }
-.mh-my-blog-contents  .blog-footer {
+.mh-grid-content  .blog-footer {
 	background-color: #EFEDED;
-	padding-top: 10px;
-	position: absolute;
-	bottom: 0px;
-	left: 15px;
 	width: 100%;
+	margin: 0px;
 }
-.mh-my-blog-contents .blog-footer > div >  a {
+.mh-grid-content .blog-footer > div >  a {
 	color: #969696;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #fff;
@@ -191,37 +201,42 @@
 	border-right: 1px dotted silver;
 	text-align: center;
 }
-.mh-my-blog-contents  .blog-footer > div > a:last-child {
+.mh-grid-content .blog-footer > div > a:last-child {
 	border-right: 0px !important;
 	padding-right: 0px;
 }
-.mh-my-blog-contents  .blog-footer > div > a   i {
+.mh-grid-content  .blog-footer > div > a   i {
 	font-size: 16px;
 	text-shadow: 0px 1px 0px #fff;
 	margin-right: 3px;
 	vertical-align: baseline;
 }
-.mh-my-blog-contents  .blog-footer > div > a:hover {
+.mh-grid-content  .blog-footer > div > a:hover {
 	text-decoration: none;
 	color: #000;
 }
-.mh-my-blog-contents  .blog-footer > .col-xs-12.col-md-5{ 
-	margin-bottom: 10px;
+.mh-grid-content  .blog-footer > .col-xs-12.col-md-5{ 
+	padding: 0px;
+	padding-top: 12px;
 }
-.mh-my-blog-contents  .blog-footer > .mh-blog-tags {
+.mh-grid-content  .blog-footer > .mh-blog-tags {
 	text-align: right;
+	padding: 0px;
 }
-.mh-my-blog-contents .mh-blog-user > .mh-row-time {
+.mh-grid-content  .blog-footer > .mh-blog-tags > ul {
+	margin-top: 10px;
+}
+.mh-grid-content .mh-blog-user > .mh-row-time {
 	font-size: 10pt;
 	color: #A9A9A9;
 	padding: 5px 30px 0px 15px
 }
-.mh-my-blog-contents .mh-blog-user > .mh-row-info > .user {
+.mh-grid-content .mh-blog-user > .mh-row-info > .user {
 	padding-left: 0px;
 	font-size: 11pt;
 	margin-top: 5px;
 }
-.mh-my-blog-contents .mh-blog-user {
+.mh-grid-content .mh-blog-user {
 	margin-top
 	margin-bottom: 10px;
 }
@@ -231,6 +246,28 @@
 .mh-blog-tags > ul > li {
 	margin-bottom: 5px;
 }
+.mh-blog-bookmark-setting  {
+	margin-top: 7px;
+}
+.mh-blog-bookmark-setting  .mh-blog-bookmark {
+	padding: 0;
+	font-size: 15pt;
+}
+.mh-blog-bookmark-setting  .mh-blog-setting {
+	padding: 0;
+}
+.mh-blog-bookmark-setting ul > li > a:hover {
+	background-color: #ccc;
+}
 /* My blog: end */
+.mh-body-content-mid  .row {
+	margin: 20px 0px;
+}
+.mh-body-content-mid  .row > .mh-blog-choice-title, .mh-body-content-mid  .row > .mh-blog-choice {
+	padding: 0;
+}
 	/* Mid: end */	
 /*Body: end*/
+footer { 
+	background-color: #0A0B71;
+}

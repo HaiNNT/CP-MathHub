@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+﻿<html lang="en"><head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/styles-slideshow.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/style-blog.css" rel="stylesheet">
-	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon"/>
+	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon">
 </head>
 
 <body>
@@ -545,7 +544,7 @@
 		<div class="row">
 			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
 				<div class="mh-profile row">
-					<a href="#"><img src="img/user.jpg" class="mh-user-image"/></a>
+					<a href="#"><img src="img/user.jpg" class="mh-user-image"></a>
 					<div class="">
 						<a href="">Văn Tâm</a>
 						<div class="detail-reputation">
@@ -557,7 +556,7 @@
 				<div class="mh-table-info">
 					<div class="mh-table-info-title">Hoạt động</div>
 					<div class="mh-table-info-body">
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
 									Inbox
@@ -567,7 +566,7 @@
 								</div>
 							</div>	
 						</a>	
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
 									Inbox
@@ -577,7 +576,7 @@
 								</div>
 							</div>	
 						</a>	
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
 									Inbox
@@ -623,7 +622,7 @@
 				<div class="mh-table-info">
 					<div class="mh-table-info-title">Theo dõi</div>
 					<div class="mh-table-info-body">
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-3 col-md-3">
 									<img src="img/user.jpg" class="mh-user-icon">
@@ -636,7 +635,7 @@
 								</div>
 							</div>	
 						</a>
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-3 col-md-3">
 									<img src="img/user.jpg" class="mh-user-icon">
@@ -649,7 +648,7 @@
 								</div>
 							</div>	
 						</a>
-						<a href = "#">
+						<a href="#">
 							<div class="row mh-table-info-row">
 								<div class="col-sm-3 col-md-3">
 									<img src="img/user.jpg" class="mh-user-icon">
@@ -665,28 +664,39 @@
 					</div>
 				</div>
 			</div>
+			<!-- Mid: start -->
 			<div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
 				<!-- mh-top-content: start -->
 				<div class="mh-top-content">
 					<div class="row">
-						<div class="mh-content-title">
-							<a href="#" class="btn btn-default">Bài viết cộng đồng</a>
-							<a href="#" class="btn btn-default active">Bài viết của tôi</a>
+						<div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
+							<h3></h3>
+						</div>
+						<div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+							<a href="#" class="btn btn-default active">
+								<i class="fa fa-home mh-home-button"></i> 
+								Bài viết cộng đồng
+							</a>
+							<a href="#" class="btn btn-default">
+								<i class="fa fa-child mh-home-button"></i>
+								Bài viết của tôi
+							</a>
 						</div>
 					</div>
 				</div><!-- mh-top-content: end -->
 				<!-- mh-homet: start -->
 				<div class="mh-home">
 					<div class="row">
-						<div class="col-xs-12 col-md-7 mh-home-tab">
+						<div class="col-xs-12 col-md-8 mh-home-tab">
 							<a class="btn btn-primary btn-sm active">
-								Bài viết của tôi
+								<i class="fa fa-child mh-home-button"></i>
 							</a>
-							<a class="btn btn-primary btn-sm">Subscribe blog</a>
+							<a class="btn btn-primary btn-sm">Subscribe Blog</a>
+							<a class="btn btn-primary btn-sm">Bài viết yêu thích</a>
 							<a class="btn btn-primary btn-sm">Bài viết bạn bè</a>
 							<a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
 						</div>
-						<div class="col-xs-12 col-md-5 mh-page-search">
+						<div class="col-xs-12 col-md-4 mh-page-search">
 							<form>
 								<div class="input-group">
 									<input type="text" class="form-control" placeholder="Tìm kiếm...">
@@ -699,41 +709,71 @@
 							</form>
 						</div>
 					</div>
-				</div><!-- mh-homet: end --> 
+				</div><!-- mh-homet: end -->
+				<!-- Page view: start -->
+				<div class="mh-page-view">
+					<button title="Lưới" type="button" class="btn btn-default" onclick="location.href = 'link...'">
+						<i class="fa fa-th-large"></i>
+					</button>
+					<button title="Danh sách" type="button" class="btn btn-default active">
+						<i class="fa fa-th-list"></i>
+					</button>
+				</div>
+				<!-- Page view: end -->
 				<!--  contend-body: start -->
-				<div>
-					<div class="mh-my-blog-contents">
-						<a href="">
-							<div class="title">
-								Blaise Pascal (19/6/1623)
-							</div>
-						</a>	
-						<div class="mh-blog-user">
-							<div class="row mh-row-time">
-								<span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
-							</div>
-							<div class="row mh-row-info">
-								<div class="col-xs-2">
-									<a href="#">
-										<img src="img/user.jpg" class="mh-user-icon">
-									</a>
+				<div class="mh-grid-contents">
+					<div class="mh-grid-content">
+						<div>
+							<div class="row">
+								<div class="col-xs-9 col-sm-10">
+									<a href="">
+										<div class="title">
+											Blaise Pascal (19/6/1623)
+										</div>
+									</a>	
 								</div>
-								<div class="col-xs-10 user">
-									<a href="#">
-										<span>HaiNNT</span>
-									</a>
-									-
-									<span>612</span>
-									<i class="fa fa-circle mh-reputation-icon"></i>
+								<div class="col-xs-3 col-sm-2 mh-blog-bookmark-setting">
+									<div class="row">
+										<div class="col-xs-6 mh-blog-bookmark">
+											<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+										</div>
+										<div class="dropdown col-xs-6 mh-blog-setting">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+												<li><a href="#">Báo cáo vi phạm</a></li>
+												<li><a href="#">Đóng bài viết</a></li>
+												<li><a href="#">Chỉnh sửa bài viết</a></li>
+												<li><a href="#">Xóa bài viết</a></li>
+											</ul>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="content">
-							Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
-						</div>
-						<div class="readmore">
-							<a href="#">Read More »</a>
-							<div style="clear: both;"></div>
+							<div class="mh-blog-user">
+								<div class="row mh-row-time">
+									<span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+								</div>
+								<div class="mh-row-info">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-icon">
+										</a>
+										<a href="#">
+											<span>HaiNNT</span>
+										</a>
+										-
+										<span>612</span>
+										<i class="fa fa-circle mh-reputation-icon"></i>
+								</div>
+							</div>
+							<div class="content">
+								Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+							</div>
+							<div class="readmore">
+								<a href="#">Read More »</a>
+								<div style="clear: both;"></div>
+							</div>
 						</div>
 						<div class="row  blog-footer">
 							<div class="col-xs-12 col-md-5">
@@ -784,9 +824,212 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<!--  contend-body: end -->
-			</div>
+					<div class="mh-grid-content">
+						<div>
+							<div class="row">
+								<div class="col-xs-9 col-sm-10">
+									<a href="">
+										<div class="title">
+											Blaise Pascal (19/6/1623)
+										</div>
+									</a>	
+								</div>
+								<div class="col-xs-3 col-sm-2 mh-blog-bookmark-setting">
+									<div class="row">
+										<div class="col-xs-6 mh-blog-bookmark">
+											<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+										</div>
+										<div class="dropdown col-xs-6 mh-blog-setting">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+												<li><a href="#">Báo cáo vi phạm</a></li>
+												<li><a href="#">Đóng bài viết</a></li>
+												<li><a href="#">Chỉnh sửa bài viết</a></li>
+												<li><a href="#">Xóa bài viết</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-blog-user">
+								<div class="row mh-row-time">
+									<span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+								</div>
+								<div class="mh-row-info">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-icon">
+										</a>
+										<a href="#">
+											<span>HaiNNT</span>
+										</a>
+										-
+										<span>612</span>
+										<i class="fa fa-circle mh-reputation-icon"></i>
+								</div>
+							</div>
+							<div class="content">
+								Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+							</div>
+							<div class="readmore">
+								<a href="#">Read More »</a>
+								<div style="clear: both;"></div>
+							</div>
+						</div>
+						<div class="row  blog-footer">
+							<div class="col-xs-12 col-md-5">
+									<a href="" title="Lượt xem">
+										<i class="fa fa-eye"></i>
+										171412										
+									</a>
+									<a href="" title="Lượt bình luận">
+										<i class="fa fa-comment"></i>
+										300								
+									</a>
+									<a href="" title="Lượt thích">
+										<i class="fa fa-thumbs-o-up"></i>
+										17141									
+									</a>
+									<a href="" title="Lượt chia sẻ trên facebook">
+										<i class="fa fa-facebook"></i>
+										1000									
+									</a>
+							</div>
+							<div class="col-xs-12 col-md-7 mh-blog-tags">
+								<ul class="list-inline">	
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Lớp 6</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán đố</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán dễ</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán khó</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="mh-grid-content">
+						<div>
+							<div class="row">
+								<div class="col-xs-9 col-sm-10">
+									<a href="">
+										<div class="title">
+											Blaise Pascal (19/6/1623)
+										</div>
+									</a>	
+								</div>
+								<div class="col-xs-3 col-sm-2 mh-blog-bookmark-setting">
+									<div class="row">
+										<div class="col-xs-6 mh-blog-bookmark">
+											<i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+										</div>
+										<div class="dropdown col-xs-6 mh-blog-setting">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+												<li><a href="#">Báo cáo vi phạm</a></li>
+												<li><a href="#">Đóng bài viết</a></li>
+												<li><a href="#">Chỉnh sửa bài viết</a></li>
+												<li><a href="#">Xóa bài viết</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mh-blog-user">
+								<div class="row mh-row-time">
+									<span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+								</div>
+								<div class="mh-row-info">
+										<a href="#">
+											<img src="img/user.jpg" class="mh-user-icon">
+										</a>
+										<a href="#">
+											<span>HaiNNT</span>
+										</a>
+										-
+										<span>612</span>
+										<i class="fa fa-circle mh-reputation-icon"></i>
+								</div>
+							</div>
+							<div class="content">
+								Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+							</div>
+							<div class="readmore">
+								<a href="#">Read More »</a>
+								<div style="clear: both;"></div>
+							</div>
+						</div>
+						<div class="row  blog-footer">
+							<div class="col-xs-12 col-md-5">
+									<a href="" title="Lượt xem">
+										<i class="fa fa-eye"></i>
+										171412										
+									</a>
+									<a href="" title="Lượt bình luận">
+										<i class="fa fa-comment"></i>
+										300								
+									</a>
+									<a href="" title="Lượt thích">
+										<i class="fa fa-thumbs-o-up"></i>
+										17141									
+									</a>
+									<a href="" title="Lượt chia sẻ trên facebook">
+										<i class="fa fa-facebook"></i>
+										1000									
+									</a>
+							</div>
+							<div class="col-xs-12 col-md-7 mh-blog-tags">
+								<ul class="list-inline">	
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Lớp 6</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán đố</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán dễ</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="mh-tag">
+											<i class="fa fa-circle"></i>
+											<span>Toán khó</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div><!--  contend-body: end -->
+			</div> <!-- Mid: end -->
 			<!-- Right: start -->
 			<div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
 				<div class="mh-banner">					
@@ -798,10 +1041,10 @@
 					<a href="#" class="btn btn-success">Tạo bài viết</a>
 				</div>
 				<div class="panel panel-info mh-panel-recommend">
-					<div class="panel-heading">Các thảo luận <span class="mh-hot">hot<span></div>
+					<div class="panel-heading">Các thảo luận <span class="mh-hot">hot<span></span></span></div>
 					<div class="panel-body mh-panel-recommend-body">
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -813,7 +1056,7 @@
 							</a>
 						</div>
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -825,7 +1068,7 @@
 							</a>
 						</div>
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -842,7 +1085,7 @@
 					<div class="panel-heading">Các bài viết <span class="mh-hot">hot</span></div>
 					<div class="panel-body mh-panel-recommend-body">
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -854,7 +1097,7 @@
 							</a>
 						</div>
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -866,7 +1109,7 @@
 							</a>
 						</div>
 						<div class="mh-panel-recommend-row">
-							<a href="#" >
+							<a href="#">
 								<div class="row">
 									<div class="col-md-1 mh-panel-recommend-icon">
 										<i class="fa fa-circle"></i>
@@ -882,8 +1125,72 @@
 			</div> <!-- Right: end -->
 		</div>
 	</div>	
-	<footer></footer>
+	<!--  footer: start -->
+	<footer>
+		<div class="container"">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
+					<h2>Thông tin</h2>
+					<div class="mh-footer-info-content">
+						<p>
+						 MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
+						</p>
+						<p>
+							MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
+					<h2>Social media</h2>
+					<a href="#">
+						<img src="img/icon-facebook.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-google.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-twitter.ico">
+					</a>	
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-contact">
+					<h2>Liên hệ</h2>
+					<address class="margin-bottom-40">
+						Địa chỉ 1: 137 Nguyễn Thị Thập, Quận Liên Chiểu, TP. Đà Nẵng.<br>
+						Địa chỉ 2: Lầu 2. Tòa nhà Innovation, lô 24, Công viên phần mềm Quang Trung, P.Tân Chánh Hiệp, Quận 12, TP. Hồ Chí Minh.<br>
+						Phone: 0000 000 000<br>
+						Email: <a href="#">info@gmail.com</a>
+					</address>
+				</div>	
+			</div>
+		</div>
+	</footer><!--  footer: end -->
+	<div class="mh-copyright">
+		<div class="mh-copyright-content">
+			2015 &copy; Handsome Team - All Rights Reserved
+		</div>
+	</div>
 	<script src="js/jquery-1.11.3.js"></script>	
 	<script src="js/bootstrap.js"></script>	
-</body>
-</html>
+	<script src="js/responsiveCarousel-slideshow.min.js"></script>	
+	<script>
+	$(function(){
+		$('.crsl-items').carousel({
+			visible: 3,
+			itemMinWidth: 180,
+			itemEqualHeight: 370,
+			itemMargin: 12,
+		});	  
+		$("a[href=#]").on('click', function(e) {
+			e.preventDefault();
+		});		
+		var interval = setInterval(function(){slider.next();}, 4000);
+		$("#navbtns > a").each(function(){
+			$(this).click(function(){
+				clearInterval(interval); 
+				interval = setInterval(function(){slider.next();}, 4000);
+			});
+		});		
+	});
+	</script>;
+
+</body></html>
