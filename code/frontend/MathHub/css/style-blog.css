@@ -49,6 +49,12 @@
 .mh-home-button {
 	font-size: 14pt;
 }
+.mh-home .mh-home-tab {
+	margin-top: 12px;
+}
+.mh-home .mh-page-search {
+	margin-bottom: 0px;
+}
 .mh-blog-new-body {
 	padding: 5px;
 }
@@ -150,6 +156,7 @@
   padding: 15px;
   position: relative;
   margin-top: 15px;
+  margin-bottom: 5px;
 }
 .mh-my-blog-contents .title {
 	font-size: 17pt;
@@ -234,3 +241,6 @@
 /* My blog: end */
 	/* Mid: end */	
 /*Body: end*/
+footer { 
+	background-color: #0A0B71;
+}
