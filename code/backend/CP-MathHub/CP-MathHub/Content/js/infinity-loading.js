@@ -5,7 +5,7 @@
  */
 
 var il_page = 0;
-var il_ready = true;
+var il_ready = false;
 var IL_TYPE_QUESTION = "question";
 var IL_TYPE_ARTICLE = "blog";
 var IL_TYPE_DISCUSSION = "discussion";

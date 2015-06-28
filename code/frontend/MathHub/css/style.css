@@ -68,6 +68,10 @@ body {
     border: #752B20 !important;
 }
 /*  Notification: start */
+.mh-notification {
+    margin-left: 0px;
+}
+
 .mh-notification > li.dropdown > a {
     color: #752B20;
     padding: 13px 10px;
@@ -266,9 +270,11 @@ body {
 }
 .mh-bookmark-icon {
 	color: #C4C4C4;
+    cursor: pointer;
 }
 .mh-bookmarked-icon {
 	color: #FFD252;
+    cursor: pointer;
 }
 .mh-time {
 	font-size: 10pt;
@@ -535,9 +541,10 @@ color: #3271FF;
 display: none;
 }
 
-.mh-seemore {
+.mh-seemore, .mh-seemore-comment {
     cursor: pointer;
 }
+
 /* Mid: end */
 
 /* Left: start */
@@ -809,14 +816,14 @@ footer > .container > .row {
 .mh-body-content-mid {
 	padding-top: 20px;
 }
-.mh-body-title {
+.mh-create-title {
 	margin-top: 15px;
 }
- .mh-body-label {
+ .mh-create-label {
 	font-weight: bolder;
 	font-size: 14pt;
  }
- .mh-body-input {
+ .mh-create-input {
     width: 100%;
     height: 40px;
     font-size: 14pt;
@@ -827,18 +834,18 @@ footer > .container > .row {
     position:relative;
  }
  
-.mh-body-input> div {
+.mh-create-input> div {
 	display: table-cell;
 }
  
-.mh-body-input > div > input {
+.mh-create-input > div > input {
 	border: 0px;
     margin-left: 5px;
     margin-top: 3px;
 	width: 100%;
 }
   
-.mh-body-input> div > input:focus {
+.mh-create-input> div > input:focus {
 	outline: none;
 }
 .mh-create-button {
@@ -846,7 +853,7 @@ footer > .container > .row {
 	margin-right: 9px;
 	margin-bottom: 15px;
  }
- .mh-body-button {
+ .mh-create-div {
 	text-align: right;
  }
 /*create: end */

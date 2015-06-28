@@ -19,12 +19,12 @@
     @using (Html.BeginForm("Create", "Question", FormMethod.Post))
 {
         <div class="mh-body-title">
-            @Html.Label("Tiêu đề:", new { @class = "mh-body-createQuestion-label" })<br />
-            @Html.TextBoxFor(m => m.Title, new { @class = "mh-input-question", @placeholder = "Nhập tiêu đề..." })
+            @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
+            @Html.TextBoxFor(m => m.Title, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
             @Html.ValidationMessageFor(model => model.Title)
         </div>
         <div class="mh-ckeditor">
-            @Html.Label("Nội dung:", new { @class = "mh-body-createQuestion-label" })<br />
+            @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
             @Html.TextAreaFor(model => model.Content, new { @class="editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
             @Html.ValidationMessageFor(model => model.Content)
         </div>
@@ -35,24 +35,24 @@
             </div>
         </div>
         <div id="mh-input-tag-div">
-            <label class="mh-body-createQuestion-label">Gắn thẻ cho câu hỏi: </label><br />
+            <label class="mh-create-label">Gắn thẻ cho câu hỏi: </label><br />
             
-            <div class="mh-input-question mh-input-tag">
+            <div class="mh-create-input mh-input-tag">
                 <div id="mh-tag-list"></div>
-                <div><input type="text" id="mh-input-tag" /></div>     
-                <i id="mh-create-tag" class="fa fa-plus-square" onclick="createTag()"></i>     
+                <div><input type="text" id="mh-input-tag" /></div>
+                <i id="mh-create-tag" class="fa fa-plus-square" onclick="createTag()"></i>
             </div>
             <ul id="mh-tag-autocomplete-list"></ul>
         </div>
         <div id="mh-input-invite-div">
-            <label class="mh-body-createQuestion-label">Mời bạn bè: </label><br />
-            <input type="text" class="mh-input-question mh-input-tag" id="mh-input-invite" />
+            <label class="mh-create-label">Mời bạn bè: </label><br />
+            <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
             <span class="mh-tag-list"></span>
             <ul id="mh-invite-autocomplete-list"></ul>
         </div>
-        <div class="mh-body-button">
-            <button type="submit" class="btn btn-success btn-lg mh-createQuestion-button">Đăng</button>
-        </div>
+    <div class="mh-create-div">
+        <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+    </div>
 }
 </div><!-- Body content Mid: end  -->
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />

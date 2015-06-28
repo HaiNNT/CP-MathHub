@@ -40,12 +40,25 @@
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-3">
-                <a href="#" title="Có @Model.ShareNum người chia sẻ câu hỏi này">Chia sẻ</a>
-                |
-                <a href="#" title="Có @Model.ReportNum người báo vi phạm câu hỏi này">Báo vi phạm</a>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report">
+                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+                    <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
+                    <div class="mh-share-facebook">
+                        <div class="pluginCountButton pluginCountNum">
+                            <span class="pluginCountTextConnected">123</span>
+                            <span class="pluginCountTextDisconnected">123</span>
+                        </div>
+                        <div class="pluginCountButtonNub">
+                            <s></s>
+                            <i></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
+                    <i class="fa fa-flag"></i> Báo vi phạm
+                </a>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-9">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">
                     @foreach (var tag in Model.Tags)
                     {
@@ -60,35 +73,6 @@
 
 @Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
 @Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
-
-@*<h3>Comment</h3>
-    <ul>
-        @foreach (var comment in Model.Comments)
-        {
-            <li>@comment.Content</li>
-        }
-    </ul>
-    <h3>Answer</h3>
-    <ul>
-        @foreach (var answer in Model.Answers)
-        {
-            <li>
-                <div>Id: @answer.Id</div>
-                <div>Content: @answer.Content</div>
-                <div>CreatedDate: @answer.CreatedDate</div>
-                <div>Vote: @(answer.VoteUp - answer.VoteDown)</div>
-                <div>Comment:
-                    <ul>
-                        @foreach (var comment in answer.Comments)
-                        {
-                            <li>@comment.Content</li>
-                        }
-                    </ul>
-                </div>
-            </li>
-        }
-    </ul>*@
-
 
 @section LeftPanel
 {

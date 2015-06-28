@@ -26,6 +26,14 @@ function hotArticleSlideShow(){
 		});
 }
 
+/*
+    Apply Infinity loading
+*/
+function applyInfinityLoading() {
+    il_ready = true;
+}
+
 $(document).ready(function () {
     hotArticleSlideShow();
+    applyInfinityLoading();
 });

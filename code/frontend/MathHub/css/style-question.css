@@ -88,6 +88,7 @@
  }
 .mh-vote-icon {
 	font-size: 25pt;
+    cursor: pointer;
 }
 .mh-check-icon {
 	font-size: 25pt;

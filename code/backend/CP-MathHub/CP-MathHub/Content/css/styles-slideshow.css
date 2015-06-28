@@ -82,6 +82,7 @@
   display: block;
   text-align: center;
   margin-bottom: 5px;
+  height: 0px;
 }
  
 .slidernav a {
@@ -117,6 +118,7 @@ html[xmlns] .clearfix { display: block; }
 
 .mh-slideshow-body {
 	padding: 5px;
+	position: relative;
 }
 .mh-slideshow-contents {
 	border: 1px solid #ccc;
@@ -175,15 +177,15 @@ html[xmlns] .clearfix { display: block; }
 }
 .mh-slideshow-body >.slidernav > .clearfix > .previous {
 	position: absolute;
-	left: 3px;
-	top: 330px;
+	left: -12px;
+	top: 135px;
 	z-index: 100;
 	opacity: 0.3;
 }
 .mh-slideshow-body >.slidernav > .clearfix > .next {
 	position: absolute;
-	right: -5px;
-	top: 330px;
+	right: -20px;
+	top: 135px;
 	z-index: 100;
 	opacity: 0.3;
 }

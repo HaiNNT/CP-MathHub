@@ -130,7 +130,7 @@ namespace CP_MathHub.Controllers
             AnswerViewModel answerVM = new AnswerViewModel();
             answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
             answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
-
+            ViewBag.System = "question";
             questionDetailVM.AnswerVMs = answerVM;
             return View("Views/QuestionDetailView", questionDetailVM);
         }
@@ -139,6 +139,7 @@ namespace CP_MathHub.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.System = "question";
             return View("Views/QuestionCreateView");
         }
 

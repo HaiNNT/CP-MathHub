@@ -82,6 +82,7 @@
   display: block;
   text-align: center;
   margin-bottom: 5px;
+  height: 0px;
 }
  
 .slidernav a {

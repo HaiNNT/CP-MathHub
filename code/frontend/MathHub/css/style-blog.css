@@ -23,7 +23,7 @@
     background-color: #0055A5 !important;
 }
 .mh-navbar-toggle:hover, .mh-navbar-toggle:focus  {
-	background-color: #0055A5 !important;
+	background-color: #0873D7 !important;
 }
 .mh-active > a {
 	background-color: #033462 !important;
@@ -150,7 +150,7 @@
 /* Home Blog: end*/
 /*Page view: start*/
 .mh-page-view {
-	margin-top: 10px;
+	margin-top: 20px;
 	text-align: right;
 }
 .mh-page-view > button:hover, .mh-page-view > button.active {
@@ -237,7 +237,7 @@
 	margin-top: 5px;
 }
 .mh-grid-content .mh-blog-user {
-	margin-top
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 .mh-blog-tags .mh-tag {

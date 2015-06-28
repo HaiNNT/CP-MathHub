@@ -88,6 +88,7 @@
  }
 .mh-vote-icon {
 	font-size: 25pt;
+    cursor: pointer;
 }
 .mh-check-icon {
 	font-size: 25pt;
@@ -169,52 +170,7 @@
 	text-align: center;
 }
  /* QA detail: end */
- /*  QA create: start */
- .mh-body-title {
-	margin-top: 15px;
- }
- .mh-body-createQuestion-label {
-	font-weight: bolder;
-	font-size: 14pt;
- }
- .mh-input-question {
-    width: 100%;
-    height: 40px;
-    font-size: 14pt;
-    font-weight: bolder;
-    margin-bottom: 20px;
-    border: 1px solid;
-	padding-left: 10px;
-    position:relative;
- }
- 
-  .mh-input-question > div {
-	display: table-cell;
-  }
- 
-  .mh-input-question > div > input {
-	border: 0px;
-    margin-left: 5px;
-    margin-top: 3px;
-	width: 100%;
-  }
-  
-  .mh-input-question > div > input:focus {
-	outline: none;
-  }
-  .mh-createQuestion-button {
-	width: 230px;
-	margin-right: 9px;
-	margin-bottom: 15px;
- }
- .mh-body-button {
-	text-align: right;
- }
-/*  QA create: end */
  /* QA User: start */
- .mh-body-content-mid {
-	padding-top: 20px;
-}
 .mh-body-tabs {
 	border-bottom: 1px solid #e0e0e0;
 	margin-bottom: 15px;

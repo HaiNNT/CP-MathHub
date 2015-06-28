@@ -44,41 +44,60 @@
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
                 <div class="mh-sort-content">
                     @{
-                        int length = Model.Title.Length > 50 ? 431 : 571;                   
-                        if (Model.Content.Length > length){
+                        int length = Model.Title.Length > 50 ? 431 : 571;
+                        if (Model.Content.Length > length)
+                        {
                             @Html.Raw(Model.Content.Substring(0, length - 1) + "...");
                         }
                         else
                         {
-                            @Html.Raw(Model.Content);            
-                        }                                     
-                  }
+                            @Html.Raw(Model.Content);
+                        }
+                    }
                 </div>
                 <div class="mh-full-content hidden">
-                    @if (Model.Content.Length > length){
+                    @if (Model.Content.Length > length)
+                    {
                         @Html.Raw(Model.Content)
-                    }                  
+                    }
                 </div>
             </div>
         </div>
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-3">
-                @if (Model.Content.Length > length)
-                {
+            @if (Model.Content.Length > length)
+            {
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
                     <a class="mh-seemore">Xem thêm...</a>
-                }
+                </div>
+            }
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report @(Model.Content.Length > length ? "hidden" : "")">
+                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+                    <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
+                    <div class="mh-share-facebook">
+                        <div class="pluginCountButton pluginCountNum">
+                            <span class="pluginCountTextConnected">123</span>
+                            <span class="pluginCountTextDisconnected">123</span>
+                        </div>
+                        <div class="pluginCountButtonNub">
+                            <s></s>
+                            <i></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
+                    <i class="fa fa-flag"></i> Báo vi phạm
+                </a>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-9">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">
                     @foreach (var tag in Model.Tags)
                     {
                         <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
-                    }                    
+                    }
                 </ul>
             </div>
         </div>
     </div>
 </div>
-

@@ -10,10 +10,11 @@
 function seeMore() {
     $(".mh-seemore").each(function () {
         $(this).click(function () {
-            $(this).addClass("hidden");
+            $(this).parent().addClass("hidden");
             var parent = $($(this).parents(".mh-question-preview")[0]);
             parent.find(".mh-sort-content").addClass("hidden");
             parent.find(".mh-full-content").removeClass("hidden");
+            parent.find(".mh-social-report").removeClass("hidden");
         });
     });
 }
@@ -22,7 +23,7 @@ function seeMore() {
   Init see more comment event listening 
 */
 function seeMoreComment() {
-    $(".mh-seemore").each(function () {
+    $(".mh-seemore-comment").each(function () {
         $(this).click(function () {
             $(this).addClass("hidden");
             $(this).siblings(".hidden").each(function () {
@@ -279,11 +280,19 @@ function commentPost() {
 }
 
 /*
+    Apply Infinity loading
+*/
+function applyInfinityLoading() {
+    il_ready = true;
+}
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "question-home":
+            applyInfinityLoading();
             seeMore();
             break;
         case "question-create":
@@ -291,16 +300,20 @@ $(document).ready(function () {
             initCkeditor(true);
             break;
         case "question-tags":
+            applyInfinityLoading();
             searchTag();
             break;
         case "question-users":
+            applyInfinityLoading();
             searchUser();
             break;
         case "question-detail":
             initCkeditor(false);
             commentPost();
             seeMoreComment();
+            break;
         default:
+            applyInfinityLoading();
             seeMore();
             break;
     }

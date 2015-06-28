@@ -15,6 +15,10 @@
             <div class="mh-tab-content-1">
 
                 <div class="mh-answer_hint-body">
+                    @if (Model.Answers.Count < 1)
+                    {
+                        <p>Chưa có câu trả lời nào.</p>
+                    }
                     @foreach (Answer answer in @Model.Answers)
                     {
                         <div class="mh-answer_hint-content">
@@ -62,6 +66,10 @@
             <div class="mh-tab-content-2">
 
                 <div class="mh-answer_hint-body">
+                    @if (Model.Hints.Count < 1)
+                    {
+                        <p>Chưa có gợi ý nào.</p>
+                    }
                     @foreach (Answer hint in @Model.Hints)
                     {
                         <div class="mh-answer_hint-content">
