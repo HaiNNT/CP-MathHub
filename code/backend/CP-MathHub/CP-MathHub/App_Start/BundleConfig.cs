@@ -41,7 +41,7 @@ namespace CP_MathHub
 
             bundles.Add(new StyleBundle("~/Content/blog/css").Include(
                       "~/Content/css/style-blog.css",
-                      "~/Content/css/style-slideshow.css"));
+                      "~/Content/css/styles-slideshow.css"));
         }
     }
 }

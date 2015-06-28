@@ -3,7 +3,7 @@
 <div class="@ViewData["Class"]">
     <a href="">
         <div class="title">
-            @Model.Title
+            @(Model.Title.Length <= 40 ? Model.Title : Model.Title.Substring(0, 37) + "...")
         </div>
     </a>
     <div class="mh-blog-user">
@@ -42,7 +42,7 @@
         <a href="#">Read More »</a>
         <div style="clear: both;"></div>
     </div>
-    <div class="footer">
+    <div class="blog-footer">
         <a href="" title="Lượt xem">
             <div>
                 <i class="fa fa-eye"></i>
