@@ -1,12 +1,7 @@
 ﻿@model ICollection<ArticlePreviewViewModel>
 @using CP_MathHub.Models.Blog
-<div class="mh-blog-new">
-    <h3>Bài viết <span style="color: red; font-weight: bold;">Mới</span></h3>
-    <div class="mh-blog-new-body">
-        <div class="row" id="list-articles">
+
             @foreach(ArticlePreviewViewModel article in Model){
                 @Html.Partial("Partials/_ArticlePreviewPartialView", article, new ViewDataDictionary { { "Class", "mh-blog-new-contents col-xs-4" } });                
             }
-        </div>
-    </div>
-</div>
+

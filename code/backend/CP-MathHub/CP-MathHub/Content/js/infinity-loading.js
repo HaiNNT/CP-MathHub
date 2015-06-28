@@ -140,7 +140,8 @@ function getMoreMainPost(type) {
     })
       .done(function (msg) {
           list.append(msg);
-          seeMore();
+          if (type != IL_TYPE_ARTICLE)
+            seeMore();
           if(msg != "\n")
             il_ready = true;
       })

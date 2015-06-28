@@ -55,6 +55,7 @@ namespace CP_MathHub.Controllers
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
                 ViewBag.Tab = tab;
+                ViewBag.System = "blog";
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
                 return View("Views/BlogHomeView", blogHomeVM);
