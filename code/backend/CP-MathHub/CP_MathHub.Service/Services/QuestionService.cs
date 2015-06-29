@@ -82,7 +82,7 @@ namespace CP_MathHub.Service.Services
         }
         public Question GetQuestion(int id)
         {
-            return dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports");
+            return dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
         }
         public void InsertQuestion(Question question)
         {
@@ -185,6 +185,39 @@ namespace CP_MathHub.Service.Services
         {
             dal.Repository<Answer>().Insert(answer);
             dal.Save();
+        }
+        public bool Vote(Vote vote)
+        {
+            if(dal.Repository<Vote>().Table.Where(v => v.UserId == vote.UserId && v.PostId == vote.PostId).Count() > 0)
+            {                
+                return false;
+            }
+            Post post = dal.Repository<Post>().GetById(vote.PostId);
+            if (vote.Type == VoteEnum.VoteUp)
+            {
+                ++post.VoteUp;
+            }
+            else
+            {
+                ++post.VoteDown;
+            }
+            dal.Repository<Vote>().Insert(vote);
+            dal.Repository<Post>().Update(post);
+            dal.Save();
+            return true;
+        }
+        public List<Vote> GetVotes(int postId)
+        {
+            List<Vote> votes = new List<Vote>();
+            votes = dal.Repository<Vote>().Table.Where(v => v.PostId == postId).ToList();
+            return votes;
+        }
+        public void IncludeUserForVotes(List<Vote> votes)
+        {
+            foreach (Vote vote in votes)
+            {
+                vote.User = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == vote.UserId);
+            }
         }
     }
 }

@@ -18,8 +18,8 @@
 <div class="mh-body-content-mid">
     <div class="mh-body-tabs">
         <ul class="nav nav-pills">
-            <li role="presentation" @(Model.Tab == "admin" ? "class=active" : "")>
-                @Html.ActionLink("Quản trị", "Users", new { @tab = "admin" })
+            <li role="presentation" @(Model.Tab == "mod" ? "class=active" : "")>
+                @Html.ActionLink("Quản trị", "Users", new { @tab = "mod" })
             </li>
             <li role="presentation" @(Model.Tab == "expert" ? "class=active" : "")>
                 @Html.ActionLink("Chuyên gia", "Users", new { @tab = "expert" })

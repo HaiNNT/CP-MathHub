@@ -10,6 +10,7 @@ namespace CP_MathHub.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.System = "question";
             return View();
         }
 

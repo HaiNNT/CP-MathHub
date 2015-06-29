@@ -80,6 +80,11 @@
 	padding: 0px;
 	text-align: center;
  }
+
+ .mh-voted {
+     color: #07c !important;
+ }
+
  .mh-vote i {
 	color: grey;
  }

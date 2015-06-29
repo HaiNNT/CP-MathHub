@@ -80,10 +80,6 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.ShareNum,
                     d => d.MapFrom(m => m.Sharers.Count)
                 )
-                //.ForMember(
-                //    s => s.Answers,
-                //    d => d.MapFrom(m => m.Answers)
-                //)
                 .ForMember(
                     s => s.Comments,
                     d => d.MapFrom(m => m.Comments)
@@ -102,6 +98,30 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                             .Where(u => u.Id == new CommonService(
                                                                     new CPMathHubModelContainer())
                                                                         .GetLoginUser().Id).Count() > 0)
+                )
+                .ForMember(
+                    s => s.VoteVM,
+                    d => d.MapFrom(m => Mapper.Map<Question, VoteViewModel>(m))
+                );
+
+            //Vote
+            Mapper.CreateMap<Question, VoteViewModel>()
+                .ForMember(
+                    s => s.Voted,
+                    d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
+                                                                    new CPMathHubModelContainer())
+                                                                        .GetLoginUser().Id).FirstOrDefault())
+                )
+                .ForMember(
+                    s => s.IsQuestion,
+                    d => d.MapFrom(m => true)
+                );
+            Mapper.CreateMap<Answer, VoteViewModel>()
+                .ForMember(
+                    s => s.Voted,
+                    d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
+                                                                    new CPMathHubModelContainer())
+                                                                        .GetLoginUser().Id).FirstOrDefault())
                 );
 
             //Create Question

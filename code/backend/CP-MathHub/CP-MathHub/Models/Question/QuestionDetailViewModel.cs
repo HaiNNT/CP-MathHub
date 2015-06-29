@@ -14,8 +14,6 @@ namespace CP_MathHub.Models.Question
         public DateTime CreatedDate { get; set; }
         public DateTime LastEditedDate { get; set; }
         public int View { get; set; }
-        public int VoteUp { get; set; }
-        public int VoteDown { get; set; }
         public int HintNum { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -24,6 +22,7 @@ namespace CP_MathHub.Models.Question
         public int BookmarkNum { get; set; }
         public int ShareNum { get; set; }
         public bool Bookmarked { get; set; }
+        public VoteViewModel VoteVM { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
 
         public AnswerViewModel AnswerVMs { get; set; }
