@@ -832,8 +832,7 @@ footer > .container > .row {
     border: 1px solid;
 	padding-left: 10px;
     position:relative;
- }
- 
+ } 
 .mh-create-input> div {
 	display: table-cell;
 }
