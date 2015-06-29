@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href="css/bootstrap.css" rel="stylesheet">
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/style-blog.css" rel="stylesheet">
 	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon">
+    <title></title>
 </head>
 
 <body>
@@ -605,29 +607,29 @@
 					<div class="mh-table-info-body">
 						<ul class="list-inline mh-list-tags mh-list-tags-left">	
 							<li>
-										<a href="#" class="mh-tag">
-											<i class="fa fa-circle"></i>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
 											<label>Lớp 6</label>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="mh-tag">
-											<i class="fa fa-circle"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
 											<label>Toán đố</label>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="mh-tag">
-											<i class="fa fa-circle"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
 											<label>Toán dễ</label>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="mh-tag">
-											<i class="fa fa-circle"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
 											<label>Toán khó</label>
-										</a>
-									</li>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -687,12 +689,12 @@
 							<h3>Tạo bài viết</h3>
 						</div>
 						<div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
-							<a href="#" class="btn btn-default active">
-								<i class="fa fa-home mh-home-button"></i> 
+							<a href="#" class="btn btn-default">
+                                <i class="fa fa-users mh-home-button"></i>
 								Bài viết cộng đồng
 							</a>
 							<a href="#" class="btn btn-default">
-								<i class="fa fa-child mh-home-button"></i>
+                                <i class="fa fa-user mh-home-button"></i>
 								Bài viết của tôi
 							</a>
 						</div>
@@ -701,18 +703,16 @@
 				<!-- Body content Mid: start  -->
 				<div class="mh-body-content-mid">
 					<form>
-						<div class="mh-body-title">
-							<span class="mh-body-label">Tiêu đề: </span><br/>
-							<input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-body-input">
+                        <div class="mh-create-title">
+                            <span class="mh-create-label">Tiêu đề: </span><br />
+                            <input type="text" placeholder=" Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-create-input">
 						</div>
 						<div class="mh-ckeditor">
-							<span class="mh-body-label">Nôi dung: </span><br/>
-							<form>
+                            <span class="mh-create-label">Nôi dung: </span><br/>
 								<textarea name="editor1" id="editor1" rows="15" cols="80">
-									<p>Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.</p> 
+									Hai chị em cách nhau 400 m và đang đi lại về phía nhau. Tốc độ của 2 chị em đều là 2m/s. Khi họ bắt đầu xuất phát, chú chó nhỏ từ chỗ chị chạy lại phía cậu em với tốc độ 3m/s, khi nó gặp cậu em lập tức quay lại chạy về phía người chị, cứ như thế chạy hết từ người này sang người kia cho đến khi 2 người gặp nhau.
 									Hãy tính quãng đường chú chó đã chạy?
 								</textarea>
-							</form>
 						</div>
 						<div class="mh-preview">
 							<button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
@@ -721,26 +721,34 @@
 								Hãy tính quãng đường chú chó đã chạy?
 							</div>
 						</div>
+						<div class="mh-create-privacy">
 						<div class="row">
-							<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 mh-blog-choice-title">
-								<span class="mh-body-label">Ai thấy bài viết của bạn: </span><br/>
+                                <div class="col-sm-6 col-md-5 col-lg-4">
+                                    <span class="mh-create-label">Ai thấy bài viết của bạn: </span>
+                                </div>
+                                <div class="col-sm-6 col-md-7 col-lg-8">
+                                    <select id="mh-mainpost-privacy">
+                                        <option>Tất cả</option>
+                                        <option>Bạn bè</option>
+                                        <option>Chỉ mình tôi</option>
+                                    </select>
+                                </div>
+                            </div>
+						</div>
+                        <div class="mh-create-day">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-5 col-lg-4">
+                                    <span class="mh-create-label">Chọn ngày đăng: </span>
+                                </div>
+                                <div class="col-sm-6 col-md-7 col-lg-8">
+                                    <input type="text" id="datepicker" />
 							</div>
-							<div class="dropdown col-xs-12 col-sm-6 col-md-7 col-lg-8 mh-blog-choice">
-							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								- - - - - Chọn - - - - -  
-								<span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a href="#">Mọi người</a></li>
-								<li><a href="#">Chỉ bạn bè</a></li>
-								<li><a href="#">Một mình tôi</a></li>
-							  </ul>
 							</div>
-							<input type="date"/> 
+                            
 						</div>
 						<div style="position: relative;">
-							<label class="mh-body-label">Gắn thẻ cho câu hỏi: </label><br />
-							<div class="mh-body-input mh-input-tag">
+                            <label class="mh-create-label">Gắn thẻ cho câu hỏi: </label><br />
+                            <div class="mh-create-input mh-input-tag">
 									<div>
 										<span class="mh-tag-item">										
 											<span>Lớp 6</span>
@@ -776,10 +784,10 @@
 							</ul>
 						</div>
 						<div>
-							<span class="mh-body-label">Mời bạn bè: </span><br/>
-							<input type="text" class="mh-body-input mh-input-tagFriend">
+                            <span class="mh-create-label">Mời bạn bè: </span><br/>
+                            <input type="text" class="mh-create-input mh-input-tagFriend">
 						</div>
-						<div class="mh-body-button">
+                        <div class="mh-create-div">
 							<button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
 						</div>
 					</form>
@@ -790,7 +798,7 @@
 	</div>	
 	<!--  footer: start -->
 	<footer>
-		<div class="container"">
+		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
 					<h2>Thông tin</h2>
@@ -833,6 +841,7 @@
 		</div>
 	</div>
 	<script src="js/jquery-1.11.3.js"></script>	
+    <script src="jquery-ui/jquery-ui.js"></script>	
 	<script src="js/bootstrap.js"></script>	
 	<!-- Make sure the path to CKEditor is correct. -->
 	<script src="ckeditor/ckeditor.js"></script>
@@ -848,5 +857,11 @@
 		  $( ".mh-preview-content" ).slideToggle( "slow" );
 		});
 	</script>
+    <script>
+        $(function () {
+            $("#mh-mainpost-privacy").selectmenu();
+            $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).datepicker("setDate" , new Date());
+        });
+    </script>
 </body>
 </html>
