@@ -1174,25 +1174,5 @@
 	<script src="js/jquery-1.11.3.js"></script>	
 	<script src="js/bootstrap.js"></script>	
 	<script src="js/responsiveCarousel-slideshow.min.js"></script>	
-	<script>
-	$(function(){
-		$('.crsl-items').carousel({
-			visible: 3,
-			itemMinWidth: 180,
-			itemEqualHeight: 370,
-			itemMargin: 12,
-		});	  
-		$("a[href=#]").on('click', function(e) {
-			e.preventDefault();
-		});		
-		var interval = setInterval(function(){slider.next();}, 4000);
-		$("#navbtns > a").each(function(){
-			$(this).click(function(){
-				clearInterval(interval); 
-				interval = setInterval(function(){slider.next();}, 4000);
-			});
-		});		
-	});
-	</script>;
 
 </body></html>
