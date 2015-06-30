@@ -66,7 +66,12 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeBookmarkTab = "Bookmark";
                 public const string HomeFriendTab = "Friend";
                 public const string HomeHotTab = "Hot";
+                public const string HomeFeatureTab = "Feature";
+                public const string HomeRecomendedTab = "Recomended";
                 public const string MyArticleTab = "Mine";
+
+                public const string GridView = "grid";
+                public const string ListView = "list";
             }
         }
         /// <summary>

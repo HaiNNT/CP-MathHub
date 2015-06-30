@@ -103,7 +103,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> SubcribedArticle(User user)
             {
-                return (a => a.Author.Followers.Contains(user));
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -114,7 +114,7 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> FriendArticle(User user)
             {
                 return (a => a.Author.ActiveRelationships.Where(m => m.TargetUserId == user.Id).Count() > 0
-                            && a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
+                            || a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -124,7 +124,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> BookmarkArticle(User user)
             {
-                return (a => a.BookmarkUsers.Contains(user));
+                return (a => a.BookmarkUsers.Where(m => m.Id == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -136,6 +136,26 @@ namespace CP_MathHub.Service.Helpers
                 return (a => a.Comments.Count > 2
                             && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 500
                             && (a.View > 500));
+            }
+
+            /// <summary>
+            /// Get feature Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> FeatureArticle()
+            {
+                return (a => a.Comments.Count > 1
+                            && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 1000
+                            && (a.View > 500));
+            }
+
+            /// <summary>
+            /// Get feature Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> RecomendedArticle(User user)
+            {
+                return (a => user.Followees.Where(m => m.Id == a.Author.Id).Count() > 0);
             }
 
             /// <summary>

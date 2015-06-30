@@ -26,7 +26,6 @@
             </div>
         </div>
     </div>
-    <a href="">
         <div class="content">
             @if (Model.Content.Length <= 113)
             {
@@ -37,7 +36,6 @@
                 @Html.Raw(Model.Content.Substring(0, 110) + "...")
             }
         </div>
-    </a>
     <div class="readmore">
         <a href="#">Read More »</a>
         <div style="clear: both;"></div>
@@ -48,7 +46,7 @@
                 <i class="fa fa-eye"></i>
             </div>
             <div>
-                171412
+                @Model.View
             </div>
         </a>
         <a href="" title="Lượt bình luận">
@@ -56,7 +54,7 @@
                 <i class="fa fa-comment"></i>
             </div>
             <div>
-                300
+                @Model.CommentNum
             </div>
         </a>
         <a href="" title="Lượt thích">
@@ -64,7 +62,7 @@
                 <i class="fa fa-thumbs-o-up"></i>
             </div>
             <div>
-                17141
+                @Model.Like
             </div>
         </a>
         <a href="" title="Lượt chia sẻ trên facebook">

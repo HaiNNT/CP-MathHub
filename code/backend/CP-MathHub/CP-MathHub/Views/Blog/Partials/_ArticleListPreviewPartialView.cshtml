@@ -1,0 +1,92 @@
+﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
+@using CP_MathHub.Service.Helpers
+<div class="mh-grid-content">
+    <div>
+        <div class="row">
+            <div class="col-xs-9 col-sm-10">
+                <a href="#">
+                    <div class="title">
+                        @Model.Title
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-3 col-sm-2 mh-blog-bookmark-setting">
+                <div class="row">
+                    <div class="col-xs-6 mh-blog-bookmark">
+                        <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'article')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+                        <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'article')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+                    </div>
+                    <div class="dropdown col-xs-6 mh-blog-setting">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Báo cáo vi phạm</a></li>
+                            <li><a href="#">Đóng bài viết</a></li>
+                            <li><a href="#">Chỉnh sửa bài viết</a></li>
+                            <li><a href="#">Xóa bài viết</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mh-blog-user">
+            <div class="row mh-row-time">
+                <span>@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, ViewBag.CreatedDateType)</span>
+            </div>
+            <div class="mh-row-info">
+                <a href="#">
+                    <img src="~/Content/img/user.jpg" class="mh-user-smallest">
+                </a>
+                <a href="#">
+                    <span>@Model.UserInfo.Username</span>
+                </a>
+                -
+                <span>@Model.UserInfo.Reputation</span>
+                <i class="fa fa-circle mh-reputation-icon"></i>
+            </div>
+        </div>
+        <div class="content">
+            @if (Model.Content.Length <= 680)
+            {
+                @Html.Raw(Model.Content)
+            }
+            else
+            {
+                @Html.Raw(Model.Content.Substring(0, 677) + "...")
+            }
+        </div>
+        <div class="readmore">
+            <a href="#">Read More »</a>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="row  blog-footer">
+        <div class="col-xs-12 col-md-5">
+            <a href="" title="Lượt xem">
+                <i class="fa fa-eye"></i>
+                @Model.View
+            </a>
+            <a href="" title="Lượt bình luận">
+                <i class="fa fa-comment"></i>
+                @Model.CommentNum
+            </a>
+            <a href="" title="Lượt thích">
+                <i class="fa fa-thumbs-o-up"></i>
+                @Model.Like
+            </a>
+            <a href="" title="Lượt chia sẻ trên facebook">
+                <i class="fa fa-facebook"></i>
+                1000
+            </a>
+        </div>
+        <div class="col-xs-12 col-md-7 mh-blog-tags">
+            <ul class="list-inline">                
+                @foreach (var tag in Model.Tags)
+                {
+                    <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,25 +1,52 @@
 ﻿<div class="mh-home">
     <div class="row">
-        <div class="col-xs-12 col-md-7 mh-home-tab">
-            <a href="@Url.Action("Index", new { @tab = "Home" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Home" ? "active" : "")">
-                <i class="fa fa-home mh-home-button"></i>
-            </a>          
-            <a class="btn btn-primary btn-sm">Đặc sắc</a>
-            <a class="btn btn-primary btn-sm">Đề xuất</a>
-            <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
-        </div>
-        <div class="col-xs-12 col-md-5 mh-page-search">
-            <form>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit" style="height: 34px;">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </form>
-        </div>
+        @if (ViewData["Type"] == "home")
+        {
+            <div class="col-xs-12 col-md-7 mh-home-tab">
+                <a href="@Url.Action("Index", new { @tab = "Home" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Home" ? "active" : "")">
+                    <i class="fa fa-home mh-home-button"></i>
+                </a>
+                <a href="@Url.Action("Index", new { @tab = "Feature" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Feature" ? "active" : "")">Đặc sắc</a>
+                <a href="@Url.Action("Index", new { @tab = "Recomended" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Recomended" ? "active" : "")">Đề xuất</a>
+                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+            </div>
+            <div class="col-xs-12 col-md-5 mh-page-search">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="col-xs-12 col-md-8 mh-home-tab">
+                <a href="@Url.Action("MyBlog", new { @tab = "Mine" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">
+                    <i class="fa fa-user mh-home-button"></i>
+                </a>
+                <a href="@Url.Action("MyBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Subcribe" ? "active" : "")">Subscribe Blog</a>
+                <a href="@Url.Action("MyBlog", new { @tab = "Bookmark" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích</a>
+                <a href="@Url.Action("MyBlog", new { @tab = "Friend" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Friend" ? "active" : "")">Bài viết bạn bè</a>
+                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+            </div>
+            <div class="col-xs-12 col-md-4 mh-page-search">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        }
+
     </div>
 </div>
-
