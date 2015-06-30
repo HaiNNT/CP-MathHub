@@ -865,6 +865,9 @@ footer > .container > .row {
 /*create: end */
 
 /* Comment: start */
+.mh-comment-div {
+    text-align: justify;
+}
 .mh-media-comment-input {
     height: 30px;
     padding: 10px;
@@ -878,30 +881,34 @@ footer > .container > .row {
 }
 .mh-media-comment-user {
     font-weight: bolder;
-    font-size:11pt;
 }
 .mh-media-see-more {
     margin-top: 10px;
 }
 /*  Setting comment: start */
-.mh-comment-setting {
-      position: absolute;
-    margin-right: 0px;
-    padding: 0px;
-    padding-left: 1px;
-}
-.mh-comment-setting > li > a:hover > i {
-    color: #333;
-} 
-.mh-comment-setting > li.open > a > i {
-	color: #333 !important;
-}
-.mh-comment-setting > li > ul > li >  a:hover {
-	background-color: #ccc;
+.media, .media-body {
+    overflow: inherit;
 }
 .mh-commet-edit {
     color: #A9A7A7;
     font-size: 10px;
+}
+.media-right > div > .dropdown-menu {
+    left: inherit;
+    right: 0;
+} 
+.media-right > div > a:hover > i {
+    color: #333;
+    cursor: pointer;
+}
+.media-right > div > ul> li> a:hover {
+    background-color: #ccc;
+}
+.media-right > div> a > i {
+    opacity: 0;
+}
+.mh-comment-div:hover > div > div> a > .mh-commet-edit{
+     opacity: 1;
 }
 /*  Setting comment: end */
 /* Comment: end */
