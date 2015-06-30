@@ -582,14 +582,16 @@
     <Content Include="Views\Question\Partials\_CommentItemPartialView.cshtml" />
     <Content Include="Views\Blog\Layouts\_BlogHomeLayout.cshtml" />
     <Content Include="Views\Blog\Views\BlogHomeView.cshtml" />
-    <Content Include="Views\Blog\Partials\_ArticleListPartialView.cshtml" />
-    <Content Include="Views\Blog\Partials\_ArticlePreviewPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleGridPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleGridPreviewPartialView.cshtml" />
     <Content Include="Views\Blog\Partials\_ArticleHotPartialView.cshtml" />
     <Content Include="Views\Blog\Layouts\_MyBlogLayout.cshtml" />
     <Content Include="Views\Blog\Views\MyBlogView.cshtml" />
     <Content Include="Views\Blog\Partials\_MyArticleListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Mockups\_NotificationMockup.cshtml" />
     <Content Include="Views\Blog\Partials\_NavPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleListPartialView.cshtml" />
+    <Content Include="Views\Blog\Partials\_ArticleListPreviewPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

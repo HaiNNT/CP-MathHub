@@ -28,7 +28,7 @@ namespace CP_MathHub.Controllers
         }
         // GET: Blog
         public ActionResult Index(string tab = Constant.Blog.String.HomeDefaultTab
-                                    , int page = 0)
+                                    , int page = 0, string view = Constant.Blog.String.GridView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
             List<Article> articles = bService.GetArticles(tab, skip);
@@ -62,19 +62,21 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
 
         //Get: MyBlog
         [HttpGet]
-        public ActionResult MyBlog(int page = 0)
+        public ActionResult MyBlog(string tab = Constant.Blog.String.MyArticleTab
+                                    , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
 
-            List<Article> articles = bService.GetArticles(Constant.Blog.String.MyArticleTab, skip);
+
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =
-                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>)
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
             foreach (ArticlePreviewViewModel q in articlePreviewVMs)
@@ -85,12 +87,14 @@ namespace CP_MathHub.Controllers
             if (page == 0)
             {
                 MyBlogViewModel myBlogVM = new MyBlogViewModel();
-                myBlogVM.articles = articlePreviewVMs;
+                ViewBag.Tab = tab;
+                ViewBag.System = "blog";
+                myBlogVM.Articles = articlePreviewVMs;
                 return View("Views/MyBlogView", myBlogVM);
             }
             else
             {
-                return PartialView("Partials/_MyArticleListPartialView", articlePreviewVMs);
+                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
             }
         }
     }

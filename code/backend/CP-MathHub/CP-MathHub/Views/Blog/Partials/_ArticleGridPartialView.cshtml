@@ -1,0 +1,8 @@
+﻿@model ICollection<ArticlePreviewViewModel>
+@using CP_MathHub.Models.Blog
+
+@foreach (ArticlePreviewViewModel article in Model)
+{
+    @Html.Partial("Partials/_ArticleGridPreviewPartialView", article, new ViewDataDictionary { { "Class", "mh-blog-new-contents col-xs-4" } });
+}
+

@@ -32,7 +32,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Article>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -41,7 +41,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.SubcribedArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -50,7 +50,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.FriendArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -59,7 +59,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.BookmarkArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -68,7 +68,25 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.HotArticle(),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Blog.String.HomeFeatureTab:
+                    list = dal.Repository<Article>()
+                                .Get(
+                                    ExpressionHelper.BlogHelper.FeatureArticle(),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Blog.String.HomeRecomendedTab:
+                    list = dal.Repository<Article>()
+                                .Get(
+                                    ExpressionHelper.BlogHelper.RecomendedArticle(user),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -77,7 +95,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.MyArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -85,7 +103,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Article>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;

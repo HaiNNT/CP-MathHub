@@ -36,6 +36,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     d => d.MapFrom(m => m.Sharers.Count)
                 )
                 .ForMember(
+                    s => s.CommentNum,
+                    d => d.MapFrom(m => m.Comments.Count)
+                )
+                .ForMember(
+                    s => s.Like,
+                    d => d.MapFrom(m => m.VoteUp)
+                )
+                .ForMember(
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
                 )
