@@ -164,6 +164,7 @@
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Models\Question\TagsPageViewModel.cs" />
     <Compile Include="Models\Question\UsersPageViewModel.cs" />
+    <Compile Include="Models\Question\VoteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -97,5 +97,24 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="answe"></param>
         void AnswerQuestion(Answer answe);
+
+        /// <summary>
+        /// Vote for an answer or a question
+        /// </summary>
+        /// <param name="vote"></param>
+        bool Vote(Vote vote);
+
+        /// <summary>
+        /// Get votes for a post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        List<Vote> GetVotes(int postId);
+
+        /// <summary>
+        /// Include user for vote
+        /// </summary>
+        /// <param name="votes"></param>
+        void IncludeUserForVotes(List<Vote> votes);
     }
 }

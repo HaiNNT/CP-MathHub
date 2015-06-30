@@ -287,6 +287,35 @@ function applyInfinityLoading() {
 }
 
 /*
+    Vote
+*/
+function vote(vote, postId, type) {
+    $.ajax({
+        dataType: "json",
+        method: "POST",
+        url: "/Question/Vote",
+        data: { postId: postId, type: type }
+    })
+      .done(function (msg) {
+          if (msg.result != "") {
+              $(vote).addClass("mh-voted");
+              var num = parseInt($(vote).parents(".mh-vote").find(".mh-vote-num").html());
+              if (msg.result == "up") {
+                  $(vote).parents(".mh-vote").find(".mh-vote-num").html(num + 1);
+              } else {
+                  $(vote).parents(".mh-vote").find(".mh-vote-num").html(num - 1);
+              }
+          } else {
+              alert("Bạn không thể bình chọn nhiều hơn 1 lần");
+          }
+      })
+      .fail(function () {
+          alert("fail error");
+      });
+
+}
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {

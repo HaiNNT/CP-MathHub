@@ -19,20 +19,20 @@
                     {
                         <p>Chưa có câu trả lời nào.</p>
                     }
-                    @foreach (Answer answer in @Model.Answers)
-                    {
+                    @for (int i = 0; i < Model.Answers.Count; i++)
+                    {                                               
                         <div class="mh-answer_hint-content">
                             <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", (answer.VoteUp - answer.VoteDown), new ViewDataDictionary { {"Check", (answer.Accepted ? "accepted" : "check")}})
+                                @Html.Partial("Partials/_VotePartialView", Model.VoteAnswerVMs.ElementAt(i))
                                 <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
                                     <div class="mh-answer_hint-detail-content">
-                                        @Html.Raw(answer.Content)
+                                        @Html.Raw(Model.Answers.ElementAt(i).Content)
                                     </div>
                                     <div class="mh-answer_hint-user_info">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
                                                 <div class="row">
-                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(answer.CreatedDate, "trả lời")</span>
+                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.Answers.ElementAt(i).CreatedDate, "trả lời")</span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
@@ -44,10 +44,10 @@
                                                     </div>
                                                     <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
                                                         <a href="#">
-                                                            <span class="mh-username">@answer.Author.Username</span>
+                                                            <span class="mh-username">@Model.Answers.ElementAt(i).Author.Username</span>
                                                         </a>
                                                         <div class="detail-reputat">
-                                                            <span>@answer.Author.Reputation</span>
+                                                            <span>@Model.Answers.ElementAt(i).Author.Reputation</span>
                                                             <i class="fa fa-circle mh-reputation-icon"></i>
                                                         </div>
                                                     </div>
@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentListPartialView", answer.Comments.ToList(), new ViewDataDictionary { { "PostId", answer.Id } })
+                                    @Html.Partial("Partials/_CommentListPartialView", Model.Answers.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id } })
                                 </div>
                             </div>
                         </div>
@@ -70,20 +70,20 @@
                     {
                         <p>Chưa có gợi ý nào.</p>
                     }
-                    @foreach (Answer hint in @Model.Hints)
-                    {
+                   @for (int i = 0; i < Model.Hints.Count; i++)
+                   {
                         <div class="mh-answer_hint-content">
                             <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", (hint.VoteUp - hint.VoteDown), new ViewDataDictionary { { "Check", "hint" } })
+                                @Html.Partial("Partials/_VotePartialView", Model.VoteHintVMs.ElementAt(i))
                                 <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
                                     <div class="mh-answer_hint-detail-content">
-                                        @Html.Raw(hint.Content)
+                                        @Html.Raw(Model.Hints.ElementAt(i).Content)
                                     </div>
                                     <div class="mh-answer_hint-user_info">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
                                                 <div class="row">
-                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(hint.CreatedDate, "gợi ý")</span>
+                                                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.Hints.ElementAt(i).CreatedDate, "gợi ý")</span>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
@@ -95,10 +95,10 @@
                                                     </div>
                                                     <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
                                                         <a href="#">
-                                                            <span class="mh-username">@hint.Author.Username</span>
+                                                            <span class="mh-username">@Model.Hints.ElementAt(i).Author.Username</span>
                                                         </a>
                                                         <div class="detail-reputat">
-                                                            <span>@hint.Author.Reputation</span>
+                                                            <span>@Model.Hints.ElementAt(i).Author.Reputation</span>
                                                             <i class="fa fa-circle mh-reputation-icon"></i>
                                                         </div>
                                                     </div>
@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @Html.Partial("Partials/_CommentListPartialView", hint.Comments.ToList(), new ViewDataDictionary { { "PostId", hint.Id } })
+                                    @Html.Partial("Partials/_CommentListPartialView", Model.Hints.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id } })
                                 </div>
                             </div>
                         </div>

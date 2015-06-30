@@ -123,6 +123,7 @@ namespace CP_MathHub.Controllers
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
             Question question = qService.GetQuestion(id);
             qService.IncludeUserForComments(question.Comments.ToList());
+            qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
             //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
             //        .ToList();
@@ -338,6 +339,30 @@ namespace CP_MathHub.Controllers
 
             qService.AnswerQuestion(answer);
             return RedirectToAction("Detail", new { id = questionId });
+        }
+
+        //Post: Question/Vote
+        [HttpPost]
+        public ActionResult Vote(int postId, VoteEnum type )
+        {
+            Vote vote = new Vote();
+            vote.PostId = postId;
+            vote.VotedDate = DateTime.Now;
+            vote.Type = type;
+            vote.UserId = cService.GetLoginUser().Id;
+            bool check = qService.Vote(vote);
+            if (check && type == VoteEnum.VoteUp)
+            {
+                return Json(new { result = "up" });
+            }
+            else if (check && type == VoteEnum.VoteDown)
+            {
+                return Json(new { result = "down" });
+            }
+            else
+            {
+                return Json(new { result = "" });
+            }
         }
 
     }
