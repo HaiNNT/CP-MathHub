@@ -1,0 +1,66 @@
+/* Top menu: start */
+#mh-header  {
+	background-color: #027602;
+}
+#mh-nav-link > li > a:hover {
+    background-color: #035203;
+    border: #035203;
+    color: #fff !important;
+}
+.mh-notification > li.dropdown > a {
+    color: #035203;
+}
+.mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
+    color: #fff;
+    background-color: #027602;
+}
+.mh-notification > li.open > a {
+	color: #fff !important;
+    background-color: #027602 !important;
+}
+#mh-nav-user > li.open > a {
+	color: #fff !important;
+    background-color: #027602 !important;
+}
+.mh-navbar-toggle:hover, .mh-navbar-toggle:focus  {
+	background-color: #0873D7 !important;
+}
+.mh-active > a {
+	background-color: #035203!important;
+    border: #035203 !important;
+}
+.mh-notification > li > a > .badge {
+	background-color: #EC2424;
+	color: #FFFFFF;
+}
+/* Top menu: end */
+footer { 
+	background-color: #033803;
+}
+/*  Mid: start    */
+.mh-home-tab > h4 {
+    font-weight: bold;
+}
+.mh-topics {
+    margin-top: 10px;
+}
+.mh-topic {
+    border: 1px solid silver;
+    padding: 15px;
+    margin-top: -1px;
+}
+.mh-topic-body {
+}
+.mh-topic .media-body, .mh-topic .media-left {
+    vertical-align: middle;
+}
+.mh-discussion-quantity {
+    width: 40%;
+}
+.mh-discussion-last-day-post {
+    width: 60%;
+}
+.mh-discussion-quantity, .mh-discussion-last-day-post {
+    height: 80px;
+}
+/*  Mid: end    */

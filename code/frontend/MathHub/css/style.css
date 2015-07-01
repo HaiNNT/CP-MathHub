@@ -727,6 +727,13 @@ footer > .container > .row {
 }
 /*  Home page: end */
 /*  Image user: start */
+.mh-image-picture {
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
 .mh-user-image {
 	width: 60px;
 	height: 60px;
