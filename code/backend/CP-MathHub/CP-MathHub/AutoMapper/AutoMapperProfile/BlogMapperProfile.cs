@@ -15,13 +15,13 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
 {
     public class BlogMapperProfile : Profile
     {
-         /// <summary>
+        /// <summary>
         /// Config profile for System AutoMapper
         /// </summary>
         protected override void Configure()
         {
-            // Article Preview      
-            Mapper.CreateMap<Article, ArticlePreviewViewModel>()                
+            #region Article Preview
+            Mapper.CreateMap<Article, ArticlePreviewViewModel>()
                 .ForMember(
                     s => s.ReportNum,
                     d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
@@ -58,6 +58,25 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                                                     new CPMathHubModelContainer())
                                                                         .GetLoginUser().Id).Count() > 0)
                 );
+            #endregion
+
+            #region Aricle Create
+
+            Mapper.CreateMap<ArticleCreateViewModel, Article>()
+               .ForMember(
+                   s => s.CreatedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+                .ForMember(
+                   s => s.LastViewed,
+                   d => d.MapFrom(m => DateTime.Now)
+               )
+               .ForMember(
+                   s => s.LastEditedDate,
+                   d => d.MapFrom(m => DateTime.Now)
+               );
+
+            #endregion
         }
     }
 }

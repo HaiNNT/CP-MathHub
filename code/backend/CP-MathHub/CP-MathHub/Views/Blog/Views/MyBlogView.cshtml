@@ -13,11 +13,11 @@
         </div>
         <div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
             <a href="@Url.Action("Index")" class="btn btn-default">
-                <i class="fa fa-home mh-home-button"></i>
+                <i class="fa fa-users mh-home-button"></i>
                 Bài viết cộng đồng
             </a>
             <a href="@Url.Action("MyBlog")" class="btn btn-default active">
-                <i class="fa fa-child mh-home-button"></i>
+                <i class="fa fa-user mh-home-button"></i>
                 Bài viết của tôi
             </a>
         </div>
@@ -35,7 +35,7 @@
     </button>
 </div>
 
-<div class="mh-grid-contents" id="list-articles">
+<div class="mh-list-contents" id="list-articles">
     @Html.Partial("Partials/_ArticleListPartialView", Model.Articles)
 </div>
 

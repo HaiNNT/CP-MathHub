@@ -66,7 +66,7 @@ namespace CP_MathHub.Controllers
             }
         }
 
-        //Get: MyBlog
+        //Get: Blog/MyBlog
         [HttpGet]
         public ActionResult MyBlog(string tab = Constant.Blog.String.MyArticleTab
                                     , int page = 0, string view = Constant.Blog.String.ListView)
@@ -95,6 +95,35 @@ namespace CP_MathHub.Controllers
             else
             {
                 return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+            }
+        }
+
+        //Get: Blog/Create
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewBag.System = "blog";
+            return View("Views/BlogCreateView");
+        }
+
+        //Post: Blog/Create
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Create(ArticleCreateViewModel model)
+        {
+            Article article = new Article();
+            article = Mapper.Map<ArticleCreateViewModel, Article>(model);
+            article.UserId = cService.GetLoginUser().Id;
+            article.Tags = cService.GetTags(model.TagIds);
+
+            bService.InsertArticle(article);
+            //Console.WriteLine(questionVM.Tags[0]);
+            if (article.Id != 0)
+            {
+                return RedirectToAction("MyBlog");
+            }
+            else
+            {
+                return View("Views/Error");
             }
         }
     }

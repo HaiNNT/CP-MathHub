@@ -23,7 +23,7 @@
                 </form>
             </div>
         }
-        else
+        else if(ViewData["Type"] == "mine")
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
                 <a href="@Url.Action("MyBlog", new { @tab = "Mine" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">
@@ -32,6 +32,26 @@
                 <a href="@Url.Action("MyBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Subcribe" ? "active" : "")">Subscribe Blog</a>
                 <a href="@Url.Action("MyBlog", new { @tab = "Bookmark" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích</a>
                 <a href="@Url.Action("MyBlog", new { @tab = "Friend" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Friend" ? "active" : "")">Bài viết bạn bè</a>
+                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+            </div>
+            <div class="col-xs-12 col-md-4 mh-page-search">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="col-xs-12 col-md-8 mh-home-tab">
+                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của HaiNNT</a>
+                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích của HaiNNT</a>
                 <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">

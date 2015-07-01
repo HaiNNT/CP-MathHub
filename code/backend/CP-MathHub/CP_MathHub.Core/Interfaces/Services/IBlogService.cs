@@ -18,6 +18,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<Article> GetArticles(string tab, int skip);
 
-
+        /// <summary>
+        /// Insert Article
+        /// </summary>
+        /// <param name="article"></param>
+        void InsertArticle(Article article);
     }
 }

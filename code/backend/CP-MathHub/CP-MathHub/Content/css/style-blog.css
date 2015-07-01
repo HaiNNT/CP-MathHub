@@ -158,38 +158,38 @@
 }
 /*Page view: end*/
 /* My blog: start */
-.mh-grid-content {
+.mh-list-content {
 	margin: 15px 0;
 }
-.mh-grid-content > div{
+.mh-list-content > div{
   border: 1px solid #ccc;
   padding: 15px;
 }
-.mh-grid-content > .blog-footer{
+.mh-list-content > .blog-footer{
   border-top: 0px;
   padding: 5px 15px;
 }
-.mh-grid-content .title {
+.mh-list-content .title {
 	font-size: 17pt;
 	font-weight: bold;
 	color: #337ab7;
 }	
-.mh-grid-content > div > .row > div > a:hover {
+.mh-list-content > div > .row > div > a:hover {
 	text-decoration: none;
 }
-.mh-grid-content .content {
+.mh-list-content .content {
 	text-align: justify;
 	font-size: 13pt;
 }
-.mh-grid-content  .readmore {
+.mh-list-content  .readmore {
 	text-align: right;
 }
-.mh-grid-content  .blog-footer {
+.mh-list-content  .blog-footer {
 	background-color: #EFEDED;
 	width: 100%;
 	margin: 0px;
 }
-.mh-grid-content .blog-footer > div >  a {
+.mh-list-content .blog-footer > div >  a {
 	color: #969696;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #fff;
@@ -201,42 +201,42 @@
 	border-right: 1px dotted silver;
 	text-align: center;
 }
-.mh-grid-content .blog-footer > div > a:last-child {
+.mh-list-content .blog-footer > div > a:last-child {
 	border-right: 0px !important;
 	padding-right: 0px;
 }
-.mh-grid-content  .blog-footer > div > a   i {
+.mh-list-content  .blog-footer > div > a   i {
 	font-size: 16px;
 	text-shadow: 0px 1px 0px #fff;
 	margin-right: 3px;
 	vertical-align: baseline;
 }
-.mh-grid-content  .blog-footer > div > a:hover {
+.mh-list-content  .blog-footer > div > a:hover {
 	text-decoration: none;
 	color: #000;
 }
-.mh-grid-content  .blog-footer > .col-xs-12.col-md-5{ 
+.mh-list-content  .blog-footer > .col-xs-12.col-md-5{ 
 	padding: 0px;
 	padding-top: 12px;
 }
-.mh-grid-content  .blog-footer > .mh-blog-tags {
+.mh-list-content  .blog-footer > .mh-blog-tags {
 	text-align: right;
 	padding: 0px;
 }
-.mh-grid-content  .blog-footer > .mh-blog-tags > ul {
+.mh-list-content  .blog-footer > .mh-blog-tags > ul {
 	margin-top: 10px;
 }
-.mh-grid-content .mh-blog-user > .mh-row-time {
+.mh-list-content .mh-blog-user > .mh-row-time {
 	font-size: 10pt;
 	color: #A9A9A9;
 	padding: 5px 30px 0px 15px
 }
-.mh-grid-content .mh-blog-user > .mh-row-info > .user {
+.mh-list-content .mh-blog-user > .mh-row-info > .user {
 	padding-left: 0px;
 	font-size: 11pt;
 	margin-top: 5px;
 }
-.mh-grid-content .mh-blog-user {
+.mh-list-content .mh-blog-user {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
@@ -246,17 +246,17 @@
 .mh-blog-tags > ul > li {
 	margin-bottom: 5px;
 }
-.mh-blog-bookmark-setting  {
-	margin-top: 7px;
+.mh-blog-setting > ul {
+    margin-right: 0px;
+    padding: 0px;
+} 
+.mh-blog-setting > ul > li > a:hover > i {
+    color: #333;
+} 
+.mh-blog-setting > ul > li.open > a > i {
+	color: #333 !important;
 }
-.mh-blog-bookmark-setting  .mh-blog-bookmark {
-	padding: 0;
-	font-size: 15pt;
-}
-.mh-blog-bookmark-setting  .mh-blog-setting {
-	padding: 0;
-}
-.mh-blog-bookmark-setting ul > li > a:hover {
+.mh-blog-setting > ul > li > ul > li >  a:hover {
 	background-color: #ccc;
 }
 /* My blog: end */
@@ -265,6 +265,21 @@
 }
 .mh-body-content-mid  .row > .mh-blog-choice-title, .mh-body-content-mid  .row > .mh-blog-choice {
 	padding: 0;
+}
+.mh-create-privacy, .mh-create-day {
+    margin: 20px 0;
+}
+.mh-create-privacy .col-md-5.col-lg-4.col-sm-6, .mh-create-privacy .col-md-7.col-lg-8.col-sm-6, .mh-create-day .col-md-5.col-lg-4.col-sm-6, .mh-create-day .col-md-7.col-lg-8.col-sm-6 {
+    padding: 0px;
+}
+#mh-mainpost-privacy {
+    width: 28%;
+}
+.mh-list-content .mh-comment-like:hover {
+    text-decoration: none;
+}
+.mh-list-content > div {
+    margin-top: -1px;
 }
 	/* Mid: end */	
 /*Body: end*/

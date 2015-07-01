@@ -748,6 +748,13 @@ footer > .container > .row {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.mh-user-small {
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .mh-user-icon {
     width: 30px;
     height: 30px;
@@ -832,8 +839,8 @@ footer > .container > .row {
     border: 1px solid;
 	padding-left: 10px;
     position:relative;
- }
- 
+ } 
+
 .mh-create-input> div {
 	display: table-cell;
 }
@@ -857,3 +864,71 @@ footer > .container > .row {
 	text-align: right;
  }
 /*create: end */
+
+/* Comment: start */
+.mh-comment-div {
+    text-align: justify;
+}
+.mh-media-comment-input {
+    height: 30px;
+    padding: 10px 20px 10px 10px;
+    width: 100%;
+}
+.mh-media-reply-input {
+    height: 22px;
+    padding: 5px 15px 5px 5px;
+    width: 100%;
+    font-size: 10pt;
+}
+.mh-comment-input-send {
+    position: relative;
+}
+.mh-commnet-send {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+.mh-rely-send {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 10pt;
+}
+.mh-media-comment-user {
+    font-weight: bolder;
+}
+.mh-media-see-more {
+    margin-top: 10px;
+}
+/*  Setting comment: start */
+.media, .media-body {
+    overflow: inherit;
+}
+.mh-commet-edit {
+    color: #A9A7A7;
+    font-size: 10px;
+}
+.media-right > div > .dropdown-menu {
+    left: inherit;
+    right: 0;
+} 
+.media-right > div > a:hover > i {
+    color: #333;
+    cursor: pointer;
+}
+.media-right > div > ul> li> a:hover {
+    background-color: #ccc;
+}
+.media-right > div> a > i {
+    opacity: 0;
+}
+.mh-comment-div:hover > div > div> a > .mh-commet-edit{
+     opacity: 1;
+}
+/*  Setting comment: end */
+/* Comment: end */
+.mh-post-setting {
+    font-weight: bolder;
+    font-size: 12pt;
+    color: #A9A7A7;
+}

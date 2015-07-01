@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.System = "blog";
+}
+<div class="row">
+    <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+        @RenderSection("LeftPanel", true)
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section" style="border-right: 0;">
+        @RenderBody()
+    </div>
+</div>
