@@ -26,7 +26,8 @@ namespace CP_MathHub.Service.Services
             user.Reputation = 23142;
             //return user;
             //return dal.Repository<User>().GetById(55);
-            return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == 55);
+            Random rnd = new Random();
+            return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == 56);
 
         }
     }

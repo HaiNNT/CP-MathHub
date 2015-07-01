@@ -466,6 +466,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\style-blog.css" />
+    <Content Include="Content\css\style-discussion.css" />
     <Content Include="Content\css\style-question.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles-slideshow.css" />
@@ -619,6 +620,8 @@
     <Content Include="Views\Blog\Views\BlogDetailView.cshtml" />
     <Content Include="Views\Blog\Layouts\_BlogCreateLayuot.cshtml" />
     <Content Include="Views\Blog\Views\BlogCreateView.cshtml" />
+    <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

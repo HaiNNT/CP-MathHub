@@ -11,5 +11,10 @@ namespace CP_MathHub.Models.Common
         public string Username { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Content { get; set; }
+        public string Liked { get; set; }
+        public string Avatar { get; set; }
+        public int Like { get; set; }
+
+        public ICollection<CommentViewModel> Comments { get; set; }
     }
 }

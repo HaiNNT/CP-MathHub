@@ -3,7 +3,7 @@
 
 @foreach (ArticlePreviewViewModel article in Model)
 {
-    @Html.Partial("Partials/_ArticleListPreviewPartialView", article, new ViewDataDictionary { { "Class", "mh-blog-new-contents col-xs-4" } });
+    @Html.Partial("Partials/_ArticleListPreviewPartialView", article);
 }
 
 
