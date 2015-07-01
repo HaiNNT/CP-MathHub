@@ -110,5 +110,10 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+
+        public void InsertArticle(Article article){
+            dal.Repository<Article>().Insert(article);
+            dal.Save();
+        }
     }
 }

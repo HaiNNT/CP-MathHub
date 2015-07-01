@@ -22,6 +22,7 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/script").Include(
                       "~/Content/js/infinity-loading.js",
                       "~/Content/ckeditor/ckeditor.js",
+                      "~/Content/jquery-ui/jquery-ui.js",
                       "~/Content/js/auto-complete.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/questionjs").Include(
@@ -33,6 +34,7 @@ namespace CP_MathHub
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
+                      "~/Content/jquery-ui/jquery-ui.css",
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style.css"));
 
