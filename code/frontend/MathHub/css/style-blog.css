@@ -301,6 +301,7 @@
 	background-color: #EFEDED;
 	width: 100%;
 	margin: 0px;
+    margin-bottom: -1px;
 }
 .mh-show-detail-content .blog-footer > div >  a {
 	color: #969696;
@@ -358,6 +359,9 @@
     font-size: 15pt;
   vertical-align: top;
 }
+.mh-pre-comment {
+      margin-bottom: -1px;
+}
 /* Detail BLog: end */
 .mh-body-content-mid  .row {
 	margin: 20px 0px;
@@ -372,7 +376,7 @@
     padding: 0px;
 }
 #mh-mainpost-privacy {
-    width: 28%;
+    width: 29.5%;
 }
 .mh-list-content .mh-comment-like:hover {
     text-decoration: none;

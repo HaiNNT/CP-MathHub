@@ -933,3 +933,6 @@ footer > .container > .row {
     font-size: 12pt;
     color: #A9A7A7;
 }
+.hasDatepicker{
+    padding: 5px;
+}
