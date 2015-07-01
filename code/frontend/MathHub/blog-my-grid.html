@@ -1,0 +1,1353 @@
+﻿<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/styles-slideshow.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style-blog.css" rel="stylesheet">
+	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon">
+    <title></title>
+</head>
+
+<body>
+	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+					<span class="fa fa-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<img id="mh-logo" alt="Brand" src="img/logo-blog.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="mh-header-collapse">
+				<ul class="nav navbar-nav" id="mh-nav-link">
+					<li><a href="#">Hỏi Đáp</a></li>
+					<li class="mh-active"><a href="#">Bài Viết <span class="sr-only">(current)</span></a></li>
+					<li><a href="#">Thảo Luận</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" id="mh-nav-user">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							Thanh Hải
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Thông tin cá nhân</a></li>
+							<li><a href="#">Thiết lập quyền riêng tư</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Đăng xuất</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg"></a></li>					
+				</ul>
+				<!-- Notification: start -->
+				<ul class="nav navbar-nav navbar-right mh-notification">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-group"></i>
+							<span class="badge badge-default">3</span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<h3>Lời mời kết bạn</h3>
+								<a href="#" class="mh-notification-setting">Cài đặt</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="mh-notification-body">
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+									<div class="row" id="mh-notifi-friend">
+										<div class="col-xs-6 media">
+											<div class="media-left">
+												<a href="#">
+													<img src="img/user.jpg" alt="..." class="mh-user-image"> 
+												</a>	
+											</div>
+											<div class="media-body">
+												<a>
+													<span class="media-heading" id="mh-notifi-user-name">User</span>
+												</a>	
+											</div>
+										</div>
+										<div class="col-xs-6 mh-notifi-friend-button">
+											<button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+											<button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<a href="#" class="mh-see-all">Xem tất cả</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-comments"></i>
+							<span class="badge badge-default">3</span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<h3>Tin nhắn</h3>
+								<a href="#" class="mh-notification-setting">Gửi tin nhắn mới</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="mh-notification-body">
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User</span><br>
+												<span class="mh-notifi-content"> sao? bạn nói gì</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<a href="#" class="mh-see-all">Xem tất cả</a>
+							</li>		
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-globe"></i>
+							<span class="badge badge-default">3</span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<h3>Thông báo</h3>
+								<a href="#" class="mh-notification-setting">Cài đặt</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<div class="mh-notification-body">
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+									<div>
+										<a href="#">
+											<div class="media">
+											  <div class="media-left">
+												  <img src="img/user.jpg" alt="..." class="mh-user-image"> 
+											  </div>
+											  <div class="media-body">
+												<span class="media-heading">User
+													<span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+												</span><br>
+												<span class="mh-time">58 phút trước</span>
+											  </div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#" class="mh-see-all">Xem tất cả</a>
+							</li>
+						</ul>
+					</li>
+				</ul><!-- Notification: end -->	
+<!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Tìm kiếm">
+						<i class="fa fa-search"></i>
+					</div>
+				</form> -->
+				
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</header>	
+	<div class="container mh-body">
+		<div class="row">
+			<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+				<div class="mh-profile row">
+					<a href="#"><img src="img/user.jpg" class="mh-user-image"></a>
+					<div class="">
+						<a href="">Văn Tâm</a>
+						<div class="detail-reputation">
+							<span>1432</span>
+							<i class="fa fa-circle mh-reputation-icon"></i>
+						</div>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Hoạt động</div>
+					<div class="mh-table-info-body">
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>	
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Tags yêu thích</div>
+					<div class="mh-table-info-body">
+						<ul class="list-inline mh-list-tags mh-list-tags-left">	
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+											<label>Lớp 6</label>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+											<label>Toán đố</label>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+											<label>Toán dễ</label>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="mh-tag">
+									<i class="fa fa-circle"></i>
+											<label>Toán khó</label>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="mh-table-info">
+					<div class="mh-table-info-title">Theo dõi</div>
+					<div class="mh-table-info-body">
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+						<a href="#">
+							<div class="row mh-table-info-row">
+								<div class="col-sm-3 col-md-3">
+									<img src="img/user.jpg" class="mh-user-icon">
+								</div>
+								<div class="col-sm-6 col-md-6 mh-table-info-body-letter">
+									Inbox
+								</div>
+								<div class="col-sm-3 col-md-3 mh-table-info-num">
+									<span class="badge mh-num-icon">42</span>
+								</div>
+							</div>	
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- Mid: start -->
+			<div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+				<!-- mh-top-content: start -->
+				<div class="mh-top-content">
+					<div class="row">
+						<div class="col-xs-12 col-md-5 col-lg-3 mh-content-page-name">
+							<h3></h3>
+						</div>
+						<div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+							<a href="#" class="btn btn-default">
+                                <i class="fa fa-users mh-home-button"></i>
+								Bài viết cộng đồng
+							</a>
+                            <a href="#" class="btn btn-default active">
+                                <i class="fa fa-user mh-home-button"></i>
+                                Bài viết của tôi
+                            </a>
+						</div>
+					</div>
+				</div><!-- mh-top-content: end -->
+				<!-- mh-homet: start -->
+				<div class="mh-home">
+					<div class="row">
+						<div class="col-xs-12 col-md-8 mh-home-tab">
+							<a class="btn btn-primary btn-sm active">
+                                <i class="fa fa-user mh-home-button"></i>
+							</a>
+							<a class="btn btn-primary btn-sm">Subscribe Blog</a>
+							<a class="btn btn-primary btn-sm">Bài viết yêu thích</a>
+							<a class="btn btn-primary btn-sm">Bài viết bạn bè</a>
+							<a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+						</div>
+						<div class="col-xs-12 col-md-4 mh-page-search">
+							<form>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Tìm kiếm...">
+									<span class="input-group-btn">
+										<button class="btn btn-primary" type="submit" style="height: 34px;">
+											<i class="fa fa-search"></i>
+										</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div><!-- mh-homet: end -->
+				<!-- Page view: start -->
+				<div class="mh-page-view">
+					<button title="Lưới" type="button" class="btn btn-default" onclick="location.href = 'link...'">
+						<i class="fa fa-th-large"></i>
+					</button>
+					<button title="Danh sách" type="button" class="btn btn-default active">
+						<i class="fa fa-th-list"></i>
+					</button>
+				</div>
+				<!-- Page view: end -->
+				<!--  contend-body: start -->
+                <div class="mh-grid">
+                    <div class="mh-grid-body">
+                        <div class="row">
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 mh-grid-contents">
+                                <a href="">
+                                    <div class="title">
+                                        Blaise Pascal (19/6/1623)
+                                    </div>
+                                </a>
+                                <div class="mh-blog-user">
+                                    <div class="row mh-row-time">
+                                        <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                                    </div>
+                                    <div class="row mh-row-info">
+                                        <div class="col-xs-2">
+                                            <a href="#">
+                                                <img src="img/user.jpg" class="mh-user-smallest">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-10 user">
+                                            <a href="#">
+                                                <span>HaiNNT</span>
+                                            </a>
+                                            -
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                                </div>
+                                <div class="readmore">
+                                    <a href="#">Xem thêm »</a>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <div class="blog-footer">
+                                    <a href="" title="Lượt xem">
+                                        <div>
+                                            <i class="fa fa-eye"></i>
+                                        </div>
+                                        <div>
+                                            171412
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt bình luận">
+                                        <div>
+                                            <i class="fa fa-comment"></i>
+                                        </div>
+                                        <div>
+                                            300
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt thích">
+                                        <div>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </div>
+                                        <div>
+                                            17141
+                                        </div>
+                                    </a>
+                                    <a href="" title="Lượt chia sẻ trên facebook">
+                                        <div>
+                                            <i class="fa fa-facebook"></i>
+                                        </div>
+                                        <div>
+                                            1000
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!--  contend-body: end -->
+			</div> <!-- Mid: end -->
+			<!-- Right: start -->
+			<div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
+				<div class="mh-banner">					
+					<a href="#">
+						<img src="img/CTV.jpg">
+					</a>	
+				</div>
+				<div class="mh-btn">
+					<a href="#" class="btn btn-success">Tạo bài viết</a>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các thảo luận <span class="mh-hot">hot<span></span></span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Tại sao con số 0 lại là 1 phát minh vĩ đại?
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-info mh-panel-recommend">
+					<div class="panel-heading">Các bài viết <span class="mh-hot">hot</span></div>
+					<div class="panel-body mh-panel-recommend-body">
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="mh-panel-recommend-row">
+							<a href="#">
+								<div class="row">
+									<div class="col-md-1 mh-panel-recommend-icon">
+										<i class="fa fa-circle"></i>
+									</div>
+									<div class="col-md-11 mh-panel-recommend-title">
+										Định lí Pytago và áp dụng vào bài toán thực tế!
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div> <!-- Right: end -->
+		</div>
+	</div>	
+	<!--  footer: start -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
+					<h2>Thông tin</h2>
+					<div class="mh-footer-info-content">
+						<p>
+						 MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
+						</p>
+						<p>
+							MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
+					<h2>Social media</h2>
+					<a href="#">
+						<img src="img/icon-facebook.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-google.ico">
+					</a>
+					<a href="#">
+						<img src="img/icon-twitter.ico">
+					</a>	
+				</div>
+				<div class="col-xs-12 col-sm-4 col-md-4 mh-footer-contact">
+					<h2>Liên hệ</h2>
+					<address class="margin-bottom-40">
+						Địa chỉ 1: 137 Nguyễn Thị Thập, Quận Liên Chiểu, TP. Đà Nẵng.<br>
+						Địa chỉ 2: Lầu 2. Tòa nhà Innovation, lô 24, Công viên phần mềm Quang Trung, P.Tân Chánh Hiệp, Quận 12, TP. Hồ Chí Minh.<br>
+						Phone: 0000 000 000<br>
+						Email: <a href="#">info@gmail.com</a>
+					</address>
+				</div>	
+			</div>
+		</div>
+	</footer><!--  footer: end -->
+	<div class="mh-copyright">
+		<div class="mh-copyright-content">
+			2015 &copy; Handsome Team - All Rights Reserved
+		</div>
+	</div>
+	<script src="js/jquery-1.11.3.js"></script>	
+	<script src="js/bootstrap.js"></script>	
+	<script src="js/responsiveCarousel-slideshow.min.js"></script>	
+
+</body></html>
