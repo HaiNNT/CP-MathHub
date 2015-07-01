@@ -885,14 +885,15 @@ footer > .container > .row {
 }
 .mh-commnet-send {
     position: absolute;
-    top: 7px;
-    right: 7px;
+    top: 8px;
+    right: 8px;
+    font-size: 10pt;
 }
 .mh-rely-send {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    font-size: 10pt;
+    top: 5px;
+    right: 5px;
+    font-size: 9pt;
 }
 .mh-media-comment-user {
     font-weight: bolder;
