@@ -84,8 +84,12 @@
 	font-weight: bold;
 	min-height: 54px;
 	color: #337ab7;
+    padding-right: 0px;
 }
-.mh-grid-contents >a:hover {
+.mh-grid-contents > .row> .title > i {
+    vertical-align: top;
+}
+.mh-grid-contents > div > div >a:hover {
 	text-decoration: none;
 }
 .mh-grid-contents .content {
@@ -173,6 +177,7 @@
 	font-size: 17pt;
 	font-weight: bold;
 	color: #337ab7;
+    padding-right: 0px;
 }	
 .mh-list-content > div > .row > div > a:hover {
 	text-decoration: none;

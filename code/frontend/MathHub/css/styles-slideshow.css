@@ -128,11 +128,20 @@ html[xmlns] .clearfix { display: block; }
 	color: #000;
 	text-decoration: none;
 }	
-.mh-slideshow-contents .title {
+.mh-slideshow-contents > .row> .title > i {
+    vertical-align: top;
+    font-size: 14pt;
+}
+.mh-slideshow-contents .title > a{
 	font-size: 14pt;
 	color: #D33030;
 	font-weight: bold;
 	min-height: 54px;
+    padding-right: 0px;
+}
+.mh-slideshow-contents .title > a:hover {
+    color: #A30808;
+    text-decoration: none;
 }
 .mh-read-more {
 	text-align: right;
