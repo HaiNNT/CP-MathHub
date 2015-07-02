@@ -41,26 +41,43 @@ footer {
 .mh-home-tab > h4 {
     font-weight: bold;
 }
+/*Topic: start*/
 .mh-topics {
-    margin-top: 10px;
+    margin: 10px 0px;
+    border: 1px solid silver;
+    padding: 10px;
 }
 .mh-topic {
     border: 1px solid silver;
-    padding: 15px;
-    margin-top: -1px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
-.mh-topic-body {
+.mh-topic:last-child {
+    margin-bottom: 0px;
+}
+.mh-topic:hover {
+    box-shadow: #027602 1px 1px 0px 2px;
+}
+.mh-topic > div > .col-sm-5 {
+    padding-right:0px;
 }
 .mh-topic .media-body, .mh-topic .media-left {
     vertical-align: middle;
 }
-.mh-discussion-quantity {
-    width: 40%;
+.mh-topic .media-heading {
+    font-weight: bold;
 }
-.mh-discussion-last-day-post {
-    width: 60%;
+.mh-topic .media .media-body > a:hover, .mh-topic .col-xs-12 a:hover {
+    text-decoration: none;
+}
+.mh-discussion-quantity {
+    width: 30%;
 }
 .mh-discussion-quantity, .mh-discussion-last-day-post {
     height: 80px;
 }
+.mh-topic .mh-discussion-last-time-user h5 {
+    margin: 5px 0px 0px 0px;
+}
+/*Topic: end*/
 /*  Mid: end    */
