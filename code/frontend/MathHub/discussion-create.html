@@ -8,8 +8,8 @@
     <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	<link href="css/style-blog.css" rel="stylesheet">
-	<link href="img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon">
+    <link href="css/style-discussion.css" rel="stylesheet">
+    <link href="img/favicon-discussion.ico" rel="shorcut icon" type="image/x-icon">
     <title></title>
 </head>
 
@@ -32,7 +32,7 @@
 					<span class="fa fa-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">
-					<img id="mh-logo" alt="Brand" src="img/logo-blog.png">
+                    <img id="mh-logo" alt="Brand" src="img/logo-discussion.png">
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="mh-header-collapse">
@@ -685,21 +685,30 @@
 				<!-- mh-top-content: start -->
 				<div class="mh-top-content">
 					<div class="row">
-						<div class="col-xs-12 col-md-5 col-lg-3 mh-content-page-name">
-							<h3>Tạo bài viết</h3>
-						</div>
-						<div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
-							<a href="#" class="btn btn-default">
-                                <i class="fa fa-users mh-home-button"></i>
-								Bài viết cộng đồng
-							</a>
-							<a href="#" class="btn btn-default">
-                                <i class="fa fa-user mh-home-button"></i>
-								Bài viết của tôi
-							</a>
+						<div class="col-md-5 mh-content-title">
+							<h3>Tạo bài mới</h3>
 						</div>
 					</div>
 				</div><!-- mh-top-content: end -->
+                <div class="mh-home">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-7 mh-home-tab">
+                            <h4>Bài tập luyện thi đại học</h4>
+                        </div>
+                        <div class="col-xs-12 col-md-5 mh-page-search">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 				<!-- Body content Mid: start  -->
 				<div class="mh-body-content-mid">
 					<form>
@@ -734,17 +743,6 @@
                                     </select>
                                 </div>
                             </div>
-						</div>
-                        <div class="mh-create-day">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-5 col-lg-4">
-                                    <span class="mh-create-label">Chọn ngày đăng: </span>
-                                </div>
-                                <div class="col-sm-6 col-md-7 col-lg-8">
-                                    <input type="text" id="datepicker" />
-							</div>
-							</div>
-                            
 						</div>
 						<div style="position: relative;">
                             <label class="mh-create-label">Gắn thẻ cho bài viết: </label><br />
