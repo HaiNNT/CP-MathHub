@@ -870,6 +870,12 @@ footer > .container > .row {
  .mh-create-div {
 	text-align: right;
  }
+ .mh-create-privacy, .mh-create-day {
+    margin: 20px 0;
+}
+ #mh-mainpost-privacy {
+    width: 29.5%;
+}
 /*create: end */
 
 /* Comment: start */
