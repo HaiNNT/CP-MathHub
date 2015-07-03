@@ -96,5 +96,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="comment"></param>
         void CommentPost(Comment comment);
 
+        /// <summary>
+        /// Get comments of a post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        List<Comment> GetComments(int postId);
+
     }
 }

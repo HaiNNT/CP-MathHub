@@ -155,7 +155,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> RecomendedArticle(User user)
             {
-                return (a => user.Followees.Where(m => m.Id == a.Author.Id).Count() > 0);
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -165,6 +165,16 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> MyArticle(User user)
             {
                 return (a => a.UserId == user.Id);
+            }
+
+            /// <summary>
+            /// Get comments of an article lambda expression
+            /// </summary>
+            /// <param name="articleId"></param>
+            /// <returns></returns>
+            public static Expression<Func<Comment, bool>> CommentOfArticle(int articleId)
+            {
+                return (a => a.PostId == articleId);
             }
         }
     }

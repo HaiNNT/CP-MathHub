@@ -1,4 +1,5 @@
 ﻿@model CP_MathHub.Models.Blog.ArticleDetailViewModel
+@using CP_MathHub.Service.Helpers
 @{
     ViewBag.Title = Model.Title;
     ViewBag.MhPage = "blog-detail";
@@ -31,8 +32,9 @@
         <div>
             <div class="row">
                 <div class="col-xs-9 col-sm-10 title">
-                    <a href="">Blaise Pascal (19/6/1623)</a>
-                    <i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
+                    <a href="">@Model.Title</a>
+                    <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+                    <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
                 </div>
                 <div class="col-xs-3 col-sm-2 mh-blog-setting">
                     <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
@@ -52,34 +54,32 @@
             </div>
             <div class="mh-blog-user">
                 <div class="row mh-row-time">
-                    <span>đăng vào ngày 18 tháng 6 năm 2015 lúc 16:30</span>
+                    <span>@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, ViewBag.CreatedDateType)</span>
                 </div>
                 <div class="mh-row-info">
                     <a href="#">
-                        <img src="img/user.jpg" class="mh-user-icon">
+                        <img src="~/Content/img/user.jpg" class="mh-user-icon">
                     </a>
                     <a href="#">
-                        <span>HaiNNT</span>
+                        <span>@Model.UserInfo.Username</span>
                     </a>
                     -
-                    <span>612</span>
+                    <span>@Model.UserInfo.Reputation</span>
                     <i class="fa fa-circle mh-reputation-icon"></i>
                 </div>
             </div>
             <div class="content">
-                Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
-                <br />
-                Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi. Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.Suspendisse laoreet eu tortor vel dapibus. Etiam auctor nisl mattis, ornare nibh eu, lobortis leo. Sed congue mi.
+                @Html.Raw(Model.Content)
             </div>
         </div>
         <div class="row  blog-footer">
             <div class="col-xs-12 col-md-5">
                 <a href="" title="Lượt xem">
                     <i class="fa fa-eye"></i>
-                    171412
+                    @Model.View
                 </a>
                 <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
-                    <img src="img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
+                    <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
                     <div class="mh-share-facebook">
                         <div class="pluginCountButton pluginCountNum">
                             <span class="pluginCountTextConnected">123</span>
@@ -94,51 +94,88 @@
             </div>
             <div class="col-xs-12 col-md-7 mh-blog-tags">
                 <ul class="list-inline">
-                    <li>
-                        <a href="#" class="mh-tag">
-                            <i class="fa fa-circle"></i>
-                            <label>Lớp 6</label>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mh-tag">
-                            <i class="fa fa-circle"></i>
-                            <label>Toán đố</label>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mh-tag">
-                            <i class="fa fa-circle"></i>
-                            <label>Toán dễ</label>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="mh-tag">
-                            <i class="fa fa-circle"></i>
-                            <label>Toán khó</label>
-                        </a>
-                    </li>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                    }
                 </ul>
             </div>
         </div>
-        <div>
+        <div class="mh-pre-comment">
             <a href="">Thích</a>
             -
             <a href="">Bình luận</a>
             -
             <a href="" title="Lượt thích" class="mh-comment-like">
                 <i class="fa fa-thumbs-o-up"></i>
-                17141
+                @Model.Like
             </a>
             -
             <a href="" title="Lượt bình luận" class="mh-comment-like">
                 <i class="fa fa-comment"></i>
-                300
+                @Model.Comments.Count
             </a>
         </div>
-        
+        <div class="mh-user-comment">
+            <div class="media mh-input-commnent-div">
+                <div class="media-left">
+                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
+                </div>
+                <div class="media-body">
+                    <div class="mh-comment-input-send">
+                        <input type="text" class="mh-media-comment-input mh-input-comment" placeholder="Viết bình luận...">
+                        <input type="hidden" class="post-id" value="@Model.Id" />
+                        <input type="hidden" class="type" value="comment" />
+                        <a href=""><i class="fa fa-paper-plane mh-commnet-send"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.Comments.Count > 5)
+            {
+                <div class="mh-comment-list">
+                   @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.Take(5))
+                </div>
+                <div class="mh-comment-list-full hidden">
+                    @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
+                </div>
+                <div class="mh-media-see-more">
+                    <a class="mh-seemore-comment" onclick="seemore(this)">
+                        Xem @(Model.Comments.Count - 5) bình luận
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="mh-comment-list-full">
+                    @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
+                </div>
+            }
+
+        </div>
+
     </div>
 </div>
 
+<input id="system" type="hidden" value="@ViewBag.System" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
 
+
+
+@section LeftPanel
+{
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}
+@section RightPanel
+{
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}
 

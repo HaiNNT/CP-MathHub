@@ -1,11 +1,11 @@
 ﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
 @using CP_MathHub.Service.Helpers
-<div class="col-xs-4 mh-grid-contents">
+<div class="col-xs-4 @ViewData["Class"]">
     <div class="row">
         <div class="col-xs-9 col-sm-10 title">
-            <a href="">@(Model.Title.Length <= 40 ? Model.Title : Model.Title.Substring(0, 37) + "...")</a>
-            <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'article')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-            <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'article')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            <a title="@Model.Title" href="@Url.Action("Detail", new {id=Model.Id})">@(Model.Title.Length <= 39 ? Model.Title : Model.Title.Substring(0, 36) + "...")</a>
+            <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
         </div>
         <div class="col-xs-3 col-sm-2 mh-blog-setting">
             <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
@@ -44,21 +44,14 @@
         </div>
     </div>
     <div class="content">
-        @if (Model.Content.Length <= 113)
-        {
             @Html.Raw(Model.Content)
-        }
-        else
-        {
-            @Html.Raw(Model.Content.Substring(0, 110) + "...")
-        }
     </div>
     <div class="readmore">
-        <a href="#">Read More »</a>
+        <a href="@Url.Action("Detail", new {id=Model.Id})">Xem thêm »</a>
         <div style="clear: both;"></div>
     </div>
     <div class="blog-footer">
-        <a href="" title="Lượt xem">
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt xem">
             <div>
                 <i class="fa fa-eye"></i>
             </div>
@@ -66,7 +59,7 @@
                 @Model.View
             </div>
         </a>
-        <a href="" title="Lượt bình luận">
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt bình luận">
             <div>
                 <i class="fa fa-comment"></i>
             </div>
@@ -74,7 +67,7 @@
                 @Model.CommentNum
             </div>
         </a>
-        <a href="" title="Lượt thích">
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt thích">
             <div>
                 <i class="fa fa-thumbs-o-up"></i>
             </div>
@@ -82,7 +75,7 @@
                 @Model.Like
             </div>
         </a>
-        <a href="" title="Lượt chia sẻ trên facebook">
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt chia sẻ trên facebook">
             <div>
                 <i class="fa fa-facebook"></i>
             </div>

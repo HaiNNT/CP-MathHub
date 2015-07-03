@@ -17,9 +17,9 @@ namespace CP_MathHub.Entity
         public Group()
         {
             this.Participations = new HashSet<Participation>();
-            this.Articles = new HashSet<Article>();
             this.Series = new HashSet<Series>();
             this.Subscribers = new HashSet<User>();
+            this.Articles = new HashSet<Article>();
         }
     
         public int Id { get; set; }
@@ -28,8 +28,8 @@ namespace CP_MathHub.Entity
         public GroupTypeEnum Type { get; set; }
     
         public virtual ICollection<Participation> Participations { get; set; }
-        public virtual ICollection<Article> Articles { get; set; }
         public virtual ICollection<Series> Series { get; set; }
         public virtual ICollection<User> Subscribers { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

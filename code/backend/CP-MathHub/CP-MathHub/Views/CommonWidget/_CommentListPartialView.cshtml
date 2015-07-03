@@ -1,21 +1,7 @@
 ﻿@model ICollection<CP_MathHub.Models.Common.CommentViewModel>
-<div>
-    <div class="media">
-        <div class="media-left">
-            <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
-        </div>
-        <div class="media-body">
-            <div class="mh-comment-input-send">
-                <input type="text" class="mh-media-comment-input" placeholder="Viết bình luận...">
-                <a href=""><i class="fa fa-paper-plane mh-commnet-send"></i></a>
-            </div>
-        </div>
-    </div>
-    
+@using CP_MathHub.Models.Common
 
-    <div class="mh-media-see-more">
-        <a href="">
-            Xem thêm bình luận
-        </a>
-    </div>
-</div>
+@foreach (CommentViewModel model in Model)
+{
+    @Html.Partial("../CommonWidget/_CommentItemPartialView", model)
+}

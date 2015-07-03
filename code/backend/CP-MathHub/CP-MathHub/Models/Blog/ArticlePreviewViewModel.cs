@@ -20,6 +20,7 @@ namespace CP_MathHub.Models.Blog
         public int ShareNum { get; set; }
         public int CommentNum { get; set; }
         public int Like { get; set; }
+        public bool Liked { get; set; }
         public bool Bookmarked { get; set; }
 
         public UserInfoViewModel UserInfo { get; set; }

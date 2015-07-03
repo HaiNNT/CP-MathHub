@@ -47,7 +47,7 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "HỎI ĐÁP";
                 ViewBag.Tab = tab;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -57,6 +57,7 @@ namespace CP_MathHub.Controllers
             }
         }
 
+        //Get: Question/Tag
         public ActionResult Tag(string tag = "", int page = 0)
         {
             int skip = page * Constant.Question.Integer.PagingDefaultTake;
@@ -75,7 +76,7 @@ namespace CP_MathHub.Controllers
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -99,14 +100,15 @@ namespace CP_MathHub.Controllers
             {
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
-            ViewBag.TabParam = searchString;
+            
             if (page == 0)
             {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "Có " + qService.CountSearchResult(searchString)
                                         + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
                 ViewBag.Tab = Constant.Question.String.SearchTab;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.QuestionSystem;
+                ViewBag.TabParam = searchString;
                 questionHomeVM.Items = problemVms;
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -131,7 +133,7 @@ namespace CP_MathHub.Controllers
             AnswerViewModel answerVM = new AnswerViewModel();
             answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
             answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
-            ViewBag.System = "question";
+            ViewBag.System = Constant.String.QuestionSystem;
             questionDetailVM.AnswerVMs = answerVM;
             return View("Views/QuestionDetailView", questionDetailVM);
         }
@@ -140,7 +142,7 @@ namespace CP_MathHub.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.System = "question";
+            ViewBag.System = Constant.String.QuestionSystem;
             return View("Views/QuestionCreateView");
         }
 
@@ -174,7 +176,7 @@ namespace CP_MathHub.Controllers
             Question question = qService.GetQuestion(id);
 
             questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
-            ViewBag.System = "question";
+            ViewBag.System = Constant.String.QuestionSystem;
             return View("Views/QuestionEditView", questionEditVM);
         }
 
@@ -213,7 +215,6 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public bool Bookmark(int id)
         {
-            Question question = qService.GetQuestion(id);
             User user = cService.GetLoginUser();
             return cService.Bookmark(id, user);
         }
@@ -254,7 +255,7 @@ namespace CP_MathHub.Controllers
                 TagsPageViewModel model = new TagsPageViewModel();
                 model.Tab = tab;
                 model.ListTags = tags;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.QuestionSystem;
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
                 return View("Views/TagsPageView", model);
             }
@@ -288,7 +289,7 @@ namespace CP_MathHub.Controllers
                 model.Tab = tab;
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Question.String.HomeUserTab;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.QuestionSystem;
                 return View("Views/UsersPageView", model);
             }
             else

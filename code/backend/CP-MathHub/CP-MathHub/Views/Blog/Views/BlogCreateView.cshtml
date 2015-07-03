@@ -58,7 +58,7 @@
                     @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-8">              
-                    @Html.TextBoxFor(model => model.PublicDate, new { @id = "datepicker"})
+                    @Html.TextBoxFor(model => model.PublicDate, new { @id = "datepicker", @style="padding-left: 5px;"})
                     @Html.ValidationMessageFor(model => model.Content)
                 </div>
             </div>

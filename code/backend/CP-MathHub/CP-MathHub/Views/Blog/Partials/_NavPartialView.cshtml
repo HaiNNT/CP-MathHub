@@ -8,19 +8,20 @@
                 </a>
                 <a href="@Url.Action("Index", new { @tab = "Feature" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Feature" ? "active" : "")">Đặc sắc</a>
                 <a href="@Url.Action("Index", new { @tab = "Recomended" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Recomended" ? "active" : "")">Đề xuất</a>
-                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
             </div>
             <div class="col-xs-12 col-md-5 mh-page-search">
-                <form>
+                @using (Html.BeginForm("Search", "Blog", FormMethod.Get))
+                {
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
                     </div>
-                </form>
+                }
             </div>
         }
         else if(ViewData["Type"] == "mine")
@@ -35,36 +36,38 @@
                 <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">
-                <form>
+                @using (Html.BeginForm("Search", "Blog", FormMethod.Get))
+                {
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
                     </div>
-                </form>
+                }
             </div>
         }
         else
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
-                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của HaiNNT</a>
+                <a href="@Url.Action("UserBlog", new { @tab = "Mine" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của HaiNNT</a>
                 <a href="@Url.Action("UserBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích của HaiNNT</a>
                 <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">
-                <form>
+                @using (Html.BeginForm("Search", "Blog", FormMethod.Get))
+                {
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit" style="height: 34px;">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
                     </div>
-                </form>
+                }
             </div>
         }
 

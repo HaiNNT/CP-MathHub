@@ -926,6 +926,11 @@ footer > .container > .row {
 .mh-comment-div:hover > div > div> a > .mh-commet-edit{
      opacity: 1;
 }
+
+.mh-comment-list-full, .mh-comment-list {
+      margin-top: 10px;
+}
+
 /*  Setting comment: end */
 /* Comment: end */
 .mh-post-setting {

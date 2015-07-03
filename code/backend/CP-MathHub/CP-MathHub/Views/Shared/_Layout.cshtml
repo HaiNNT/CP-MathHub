@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using CP_MathHub.Core.Configuration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,17 +8,22 @@
     <title>@ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
-    @if (ViewBag.System == "question")
+    @if (ViewBag.System == Constant.String.QuestionSystem)
     {
         @Styles.Render("~/Content/question/css");
         <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     }
-    else if (ViewBag.System == "blog")
+    else if (ViewBag.System == Constant.String.BlogSystem)
     {
         @Styles.Render("~/Content/blog/css");
         <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
+    }
+    else
+    {
+        <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+        <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     }
     @*@Styles.Render("~/Content/question/css");*@
     @Scripts.Render("~/bundles/modernizr")
@@ -34,13 +40,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Question")">                   
-                    @if (ViewBag.System == "question")
+                    @if (ViewBag.System == Constant.String.QuestionSystem)
                     {
                         <img id="mh-logo" alt="Brand" src="~/Content/img/logoMain.png" />
                     }
-                    else if (ViewBag.System == "blog")
+                    else if (ViewBag.System == Constant.String.BlogSystem)
                     {
                         <img id="mh-logo" alt="Brand" src="~/Content/img/logo-blog.png" />
+                    }
+                    else
+                    {
+                        <img id="mh-logo" alt="Brand" src="~/Content/img/logoMain.png" />
                     }
                 </a>
             </div>
@@ -125,11 +135,11 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/script")
-    @if (ViewBag.System == "question")
+    @if (ViewBag.System == Constant.String.QuestionSystem)
     {
         @Scripts.Render("~/bundles/questionjs")
     }
-    else if (ViewBag.System == "blog")
+    else if (ViewBag.System == Constant.String.BlogSystem)
     {
         @Scripts.Render("~/bundles/blogjs")
     }

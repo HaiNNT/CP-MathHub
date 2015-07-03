@@ -55,7 +55,7 @@ namespace CP_MathHub.Controllers
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
                 ViewBag.Tab = tab;
-                ViewBag.System = "blog";
+                ViewBag.System = Constant.String.BlogSystem;
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
                 return View("Views/BlogHomeView", blogHomeVM);
@@ -88,7 +88,7 @@ namespace CP_MathHub.Controllers
             {
                 MyBlogViewModel myBlogVM = new MyBlogViewModel();
                 ViewBag.Tab = tab;
-                ViewBag.System = "blog";
+                ViewBag.System = Constant.String.BlogSystem;
                 myBlogVM.Articles = articlePreviewVMs;
                 return View("Views/MyBlogView", myBlogVM);
             }
@@ -98,12 +98,93 @@ namespace CP_MathHub.Controllers
             }
         }
 
+        //Get: Blog/Search
+        [HttpGet]
+        public ActionResult Search(string searchString, int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.SearchArticle(skip, searchString);
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+            if (page == 0)
+            {
+                BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
+                blogHomeVM.Name = "Có " + bService.CountSearchResult(searchString)
+                                        + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
+                ViewBag.Tab = Constant.Blog.String.HomeSearchTab;
+                ViewBag.System = Constant.String.BlogSystem;
+                ViewBag.TabParam = searchString;
+                blogHomeVM.Articles = articlePreviewVMs;
+                return View("Views/BlogHomeView", blogHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+            }
+        }
+
+        public ActionResult Tag(string tag = "", int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            //Tag tagEntity = cService.GetTag(tag);
+            List<Article> articles = bService.GetArticles(tag, skip);
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+
+            if (page == 0)
+            {
+                BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
+                blogHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
+                ViewBag.Tab = Constant.Blog.String.HomeTagTab;
+                ViewBag.System = Constant.String.BlogSystem;
+                ViewBag.TabParam = tag;
+                blogHomeVM.Articles = articlePreviewVMs;
+                return View("Views/BlogHomeView", blogHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+            }
+        }
+
+        //Get: Blog/Detail
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
+            Article article = bService.GetArticle(id);
+            bService.IncludeUserForComments(article.Comments.ToList());
+            bService.IncludeReplyForComments(article.Comments.ToList());
+
+            articleDetailVM = Mapper.Map<Article, ArticleDetailViewModel>(article);
+            //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
+            //        .ToList();
+
+
+            ViewBag.System = Constant.String.BlogSystem;
+
+            return View("Views/BlogDetailView", articleDetailVM);
+        }
+
         //Get: Blog/Create
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.System = "blog";
-            return View("Views/BlogCreateView");
+            ArticleCreateViewModel model = new ArticleCreateViewModel();
+            model.Privacy = MainPostPrivacyEnum.Everyone;
+            ViewBag.System = Constant.String.BlogSystem;
+            return View("Views/BlogCreateView", model);
         }
 
         //Post: Blog/Create
@@ -125,6 +206,49 @@ namespace CP_MathHub.Controllers
             {
                 return View("Views/Error");
             }
+        }
+
+        //Post: Blog/Bookmark
+        [HttpPost]
+        public bool Bookmark(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Bookmark(id, user);
+        }
+
+        //Post: Blog/PostComment
+        [HttpPost]
+        public ActionResult PostComment(int postId, string content, string type = "comment")
+        {
+            Comment comment = new Comment();
+            comment.Content = content;
+            comment.UserId = cService.GetLoginUser().Id;
+            comment.CreatedDate = DateTime.Now;
+            comment.LastEditedDate = comment.CreatedDate;
+            comment.PostId = postId;
+
+            cService.CommentPost(comment);
+            List<Comment> comments = cService.GetComments(postId);
+            ICollection<CommentViewModel> commentsVM;
+            switch (type)
+            {
+                case "comment":
+                    bService.IncludeUserForComments(comments);
+                    bService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                case "reply":
+                    bService.IncludeUserForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
+                default:
+                    bService.IncludeUserForComments(comments);
+                    bService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+            }
+
+
         }
     }
 }

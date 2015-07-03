@@ -20,11 +20,12 @@ namespace CP_MathHub.Models.Blog
         public int FollowNum { get; set; }
         public int BookmarkNum { get; set; }
         public int ShareNum { get; set; }
-        public bool Bookmarked { get; set; }
         public int Like { get; set; }
+        public bool Bookmarked { get; set; }
+        public bool Liked { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<CommentViewModel> Comments { get; set; }
         public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }
     }

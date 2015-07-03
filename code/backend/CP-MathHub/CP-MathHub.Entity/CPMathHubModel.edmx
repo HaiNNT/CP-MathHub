@@ -196,10 +196,6 @@
       <End Role="Participation" EntitySet="Participations" />
       <End Role="Group" EntitySet="Groups" />
     </AssociationSet>
-    <AssociationSet Name="GroupArticle" Association="CPMathHubModel.Store.GroupArticle">
-      <End Role="Group" EntitySet="Groups" />
-      <End Role="Article" EntitySet="Posts_Article" />
-    </AssociationSet>
     <AssociationSet Name="ReportUser" Association="CPMathHubModel.Store.ReportUser">
       <End Role="Report" EntitySet="Reports" />
       <End Role="User" EntitySet="Users" />
@@ -287,6 +283,10 @@
     <AssociationSet Name="UserActivity" Association="CPMathHubModel.Store.UserActivity">
       <End Role="User" EntitySet="Users" />
       <End Role="Activity" EntitySet="Activities" />
+    </AssociationSet>
+    <AssociationSet Name="GroupArticle" Association="CPMathHubModel.Store.GroupArticle">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Article" EntitySet="Posts_Article" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
@@ -677,9 +677,9 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="GroupId" Type="int" Nullable="false" />
     <Property Name="PublicDate" Type="datetime" Nullable="true" />
     <Property Name="SeriesId" Type="int" Nullable="true" />
+    <Property Name="GroupId" Type="int" Nullable="true" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts_Discussion">
@@ -1054,18 +1054,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="GroupArticle">
-    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="1" />
-    <End Role="Article" Type="CPMathHubModel.Store.Posts_Article" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Group">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Article">
-        <PropertyRef Name="GroupId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ReportUser">
     <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
@@ -1273,6 +1261,18 @@
       </Principal>
       <Dependent Role="Activity">
         <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupArticle">
+    <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="0..1" />
+    <End Role="Article" Type="CPMathHubModel.Store.Posts_Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="GroupId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1741,10 +1741,6 @@
             <End Role="Participation" EntitySet="Participations" />
             <End Role="Group" EntitySet="Groups" />
           </AssociationSet>
-          <AssociationSet Name="GroupArticle" Association="CPMathHubModel.GroupArticle">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Article" EntitySet="Posts" />
-          </AssociationSet>
           <EntitySet Name="ReputationRules" EntityType="CPMathHubModel.ReputationRule" />
           <EntitySet Name="Reports" EntityType="CPMathHubModel.Report" />
           <AssociationSet Name="ReportUser" Association="CPMathHubModel.ReportUser">
@@ -1830,6 +1826,10 @@
           <AssociationSet Name="UserActivity" Association="CPMathHubModel.UserActivity">
             <End Role="User" EntitySet="Users" />
             <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="GroupArticle" Association="CPMathHubModel.GroupArticle">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Article" EntitySet="Posts" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
@@ -1983,11 +1983,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityType Name="Article" BaseType="CPMathHubModel.MainPost" >
-          <NavigationProperty Name="Group" Relationship="CPMathHubModel.GroupArticle" FromRole="Article" ToRole="Group" />
-          <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="PublicDate" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Series" Relationship="CPMathHubModel.SeriesArticle" FromRole="Article" ToRole="Series" />
           <Property Name="SeriesId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Group" Relationship="CPMathHubModel.GroupArticle" FromRole="Article" ToRole="Group" />
+          <Property Name="GroupId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Discussion" BaseType="CPMathHubModel.MainPost" />
         <EntityType Name="Tag">
@@ -2031,10 +2031,10 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Participations" Relationship="CPMathHubModel.ParticipationGroup" FromRole="Group" ToRole="Participation" />
-          <NavigationProperty Name="Articles" Relationship="CPMathHubModel.GroupArticle" FromRole="Group" ToRole="Article" />
           <NavigationProperty Name="Series" Relationship="CPMathHubModel.SeriesGroup" FromRole="Group" ToRole="Series" />
           <Property Name="Type" Type="CPMathHubModel.GroupTypeEnum" Nullable="false" />
           <NavigationProperty Name="Subscribers" Relationship="CPMathHubModel.SubscribeGroup" FromRole="Group" ToRole="User" />
+          <NavigationProperty Name="Articles" Relationship="CPMathHubModel.GroupArticle" FromRole="Group" ToRole="Article" />
         </EntityType>
         <Association Name="BookmarkMainPost">
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="*" />
@@ -2438,18 +2438,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Participation">
-              <PropertyRef Name="GroupId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GroupArticle">
-          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="1" />
-          <End Type="CPMathHubModel.Article" Role="Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Article">
               <PropertyRef Name="GroupId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2865,6 +2853,18 @@
           </End>
           <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="1" />
         </Association>
+        <Association Name="GroupArticle">
+          <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2915,9 +2915,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Article)">
         <MappingFragment StoreEntitySet="Posts_Article">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
           <ScalarProperty Name="PublicDate" ColumnName="PublicDate" />
           <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Discussion)">

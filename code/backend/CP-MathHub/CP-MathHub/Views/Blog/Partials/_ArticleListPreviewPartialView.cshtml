@@ -53,25 +53,25 @@
             }
         </div>
         <div class="readmore">
-            <a href="#">Read More »</a>
+            <a href="#">Xem thêm »</a>
             <div style="clear: both;"></div>
         </div>
     </div>
     <div class="row  blog-footer">
         <div class="col-xs-12 col-md-5">
-            <a href="" title="Lượt xem">
+            <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt xem">
                 <i class="fa fa-eye"></i>
                 @Model.View
             </a>
-            <a href="" title="Lượt bình luận">
+            <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt bình luận">
                 <i class="fa fa-comment"></i>
                 @Model.CommentNum
             </a>
-            <a href="" title="Lượt thích">
+            <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt thích">
                 <i class="fa fa-thumbs-o-up"></i>
                 @Model.Like
             </a>
-            <a href="" title="Lượt chia sẻ trên facebook">
+            <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt chia sẻ trên facebook">
                 <i class="fa fa-facebook"></i>
                 1000
             </a>

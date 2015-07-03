@@ -9,70 +9,54 @@
         <div class="media-heading">
             <a href="" class="mh-media-comment-user">@Model.Username</a>
             <span>@Model.Content</span>
-        </div><br>
-        <a href="">Bỏ thích</a>
-        -
-        <a href="">Trả lời</a>
-        -
-        <a href="" title="Lượt thích" class="mh-comment-like">
-            <i class="fa fa-thumbs-o-up"></i>
-            @Model.Like
-        </a>
-        -
-        <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
-        @for (int i = 0; i < Model.Comments.Count && i < 5; i++ )
+        </div>
+        <div class="">
+            <a href="">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
+            -
+            <a href="">Trả lời</a>
+            -
+            <a href="" title="Lượt thích" class="mh-comment-like">
+                <i class="fa fa-thumbs-o-up"></i>
+                @Model.Like
+            </a>
+            -
+            <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+        </div>
+        @if (Model.Comments.Count > 3)
         {
-            <div class="media mh-comment-div">
-                <div class="media-left">
-                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
-                </div>
-                <div class="media-body">
-                    <div class="media-heading">
-                        <a href="" class="mh-media-comment-user">@Model.Comments.ElementAt(i).Username</a>
-                        <span>@@Model.Comments.ElementAt(i).Content</span>
-                    </div><br>
-                    <a href="">Bỏ thích</a>
-                    -
-                    <a href="" title="Lượt thích" class="mh-comment-like">
-                        <i class="fa fa-thumbs-o-up"></i>
-                        @@Model.Comments.ElementAt(i).Like
-                    </a>
-                    -
-                    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(@Model.Comments.ElementAt(i).CreatedDate, "bình luận")</span>
-                </div>
-                <div class="media-right">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                            <i class="fa fa-pencil mh-commet-edit"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Chỉnh sửa</a></li>
-                            <li><a href="#">Xóa</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="mh-comment-list">
+                @Html.Partial("../CommonWidget/_ReplyListPartialView", Model.Comments.Take(3).ToList())
             </div>
-        }
-        @if (Model.Comments.Count > 5)
-        {
+            <div class="mh-comment-list-full hidden">
+                @Html.Partial("../CommonWidget/_ReplyListPartialView", Model.Comments)
+            </div>
             <div class="mh-media-see-more">
-                <a href="">
-                    Xem @(Model.Comments.Count - 5) trả lời khác
+                <a class="mh-seemore-comment" onclick="seemore(this)">
+                    Xem thêm @(Model.Comments.Count - 3) trả lời
                 </a>
             </div>
         }
+        else
+        {
+            <div class="mh-comment-list-full">
+                @Html.Partial("../CommonWidget/_ReplyListPartialView", Model.Comments)
+            </div>
+        }
 
-        <div class="media">
+        <div class="media mh-input-commnent-div">
             <div class="media-left">
-                <img src="img/user.jpg" alt="..." class="mh-user-small">
+                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
             </div>
             <div class="media-body">
                 <div class="mh-comment-input-send">
-                    <input type="text" class="mh-media-reply-input" placeholder="Viết trả lời..." />
+                    <input type="text" class="mh-media-reply-input mh-input-comment" placeholder="Viết trả lời..." />
+                    <input type="hidden" class="post-id" value="@Model.Id"/>
+                    <input type="hidden" class="type" value="reply" />
                     <a href=""><i class="fa fa-paper-plane mh-rely-send"></i></a>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="media-right">
         <div class="dropdown">

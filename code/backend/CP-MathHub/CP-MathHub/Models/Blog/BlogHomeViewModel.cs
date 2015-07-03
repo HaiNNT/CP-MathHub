@@ -8,6 +8,7 @@ namespace CP_MathHub.Models.Blog
 {
     public class BlogHomeViewModel
     {
+        public string Name { get; set; }
         public ICollection<ArticlePreviewViewModel> HotArticles { get; set; }
         public ICollection<ArticlePreviewViewModel> Articles { get; set; }
 

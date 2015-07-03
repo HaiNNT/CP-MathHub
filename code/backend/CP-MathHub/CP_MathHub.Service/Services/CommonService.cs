@@ -322,5 +322,12 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Comment>().Insert(comment);
             dal.Save();
         }
+        public List<Comment> GetComments(int postId)
+        {
+            return dal.Repository<Comment>().Table
+                                            .Where(c => c.PostId == postId)
+                                            .OrderBy(c => c.CreatedDate)
+                                            .ToList();
+        }
     }
 }
