@@ -25,7 +25,7 @@
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Type", "user" } })
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Type", "user" } }, new ViewDataDictionary { {"UserId", Model.UserInfo.Id}, {"User", Model.UserInfo.Username}})
 
 <div class="mh-show-detail-contents">
     <div class="mh-show-detail-content">

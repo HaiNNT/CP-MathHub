@@ -52,8 +52,8 @@
         else
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
-                <a href="@Url.Action("UserBlog", new { @tab = "Mine" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của HaiNNT</a>
-                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích của HaiNNT</a>
+                <a href="@Url.Action("UserBlog", new { @tab = "Mine", @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của @ViewData["User"]</a>
+                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe", @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích của @ViewData["User"]</a>
                 <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">

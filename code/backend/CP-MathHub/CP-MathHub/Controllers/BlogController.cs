@@ -98,6 +98,38 @@ namespace CP_MathHub.Controllers
             }
         }
 
+        //Get: Blog/UserBlog
+        [HttpGet]
+        public ActionResult UserBlog(int userId = 1, string tab = Constant.Blog.String.MyArticleTab
+                                    , int page = 0, string view = Constant.Blog.String.ListView)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
+
+
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+
+            if (page == 0)
+            {
+                MyBlogViewModel myBlogVM = new MyBlogViewModel();
+                ViewBag.Tab = tab;
+                ViewBag.System = Constant.String.BlogSystem;
+                myBlogVM.Articles = articlePreviewVMs;
+                return View("Views/MyBlogView", myBlogVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+            }
+        }
+
         //Get: Blog/Search
         [HttpGet]
         public ActionResult Search(string searchString, int page = 0)
