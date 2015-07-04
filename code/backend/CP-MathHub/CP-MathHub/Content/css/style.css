@@ -727,6 +727,13 @@ footer > .container > .row {
 }
 /*  Home page: end */
 /*  Image user: start */
+.mh-image-picture {
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
 .mh-user-image {
 	width: 60px;
 	height: 60px;
@@ -863,6 +870,12 @@ footer > .container > .row {
  .mh-create-div {
 	text-align: right;
  }
+ .mh-create-privacy, .mh-create-day {
+    margin: 20px 0;
+}
+ #mh-mainpost-privacy {
+    width: 29.5%;
+}
 /*create: end */
 
 /* Comment: start */
@@ -937,4 +950,7 @@ footer > .container > .row {
     font-weight: bolder;
     font-size: 12pt;
     color: #A9A7A7;
+}
+.hasDatepicker{
+    padding: 5px;
 }

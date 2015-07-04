@@ -182,7 +182,8 @@ html[xmlns] .clearfix { display: block; }
 }
 .mh-slideshow-contents .content {
 	text-align: justify;
-	height: 100px;
+	max-height: 80px;
+    overflow-y: hidden;
 }
 .mh-slideshow-body >.slidernav > .clearfix > .previous {
 	position: absolute;

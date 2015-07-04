@@ -94,12 +94,14 @@
 }
 .mh-grid-contents .content {
 	text-align: justify;
-	height: 100px;
+		max-height: 80px;
+    overflow-y: hidden;
 }
-.mh-grid-contents  .readmore {
+.mh-grid-contents .readmore {
 	text-align: right;
+    margin-top: 10px;
 }
-.mh-grid-contents  .blog-footer {
+.mh-grid-contents .blog-footer {
 	height: 46px;
 	background-color: #EFEDED;
 	padding: 8px;
@@ -259,6 +261,9 @@
 .mh-blog-setting > ul {
     margin-right: 0px;
     padding: 0px;
+} 
+.mh-blog-setting > ul > li {
+    list-style-type: none;
 } 
 .mh-blog-setting > ul > li > a:hover > i {
     color: #333;
