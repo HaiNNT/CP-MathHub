@@ -19,6 +19,12 @@
         <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
     }
+    else if (ViewBag.System == "discussion")
+    {
+        @Styles.Render("~/Content/discussion/css");
+        <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+        <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+    }
     @*@Styles.Render("~/Content/question/css");*@
     @Scripts.Render("~/bundles/modernizr")
     @*<link rel="stylesheet" type="text/css" href="~/Content/css/style-question.css" />*@
@@ -42,6 +48,10 @@
                     {
                         <img id="mh-logo" alt="Brand" src="~/Content/img/logo-blog.png" />
                     }
+                    else if (ViewBag.System == "discussion")
+                    {
+                        <img id="mh-logo" alt="Brand" src="~/Content/img/logo-discussion.png" />
+                    }
                 </a>
             </div>
             @if (ViewBag.MhPage != "home") { 
@@ -53,7 +63,7 @@
                     <li>
                         <a href="@Url.Action("Index", "Blog")">Bài Viết</a>
                     </li>
-                    <li><a href="#">Thảo Luận</a></li>
+                    <li><a href="@Url.Action("Index", "Discussion")">Thảo Luận</a></li>
                 </ul>
                 @Html.Action("UserHeaderWidget", new { controller = "CommonWidget" })
                @Html.Partial("../CommonWidget/Mockups/_NotificationMockup")
@@ -132,7 +142,10 @@
     {
         @Scripts.Render("~/bundles/blogjs")
     }
-
+    else if (ViewBag.System == "discussion")
+    {
+        @Scripts.Render("~/bundles/discussionjs")
+    }
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -58,11 +58,27 @@ function getMoreMainPost(type) {
                     break;
             }
             break;
-        //case IL_TYPE_DISCUSSION:
-        //    list = $("#list-discussions");
-        //    url = "Discussion/Index";
-        //    data = { tab: "Newest", page: ++il_page }
-        //    break;
+        case IL_TYPE_DISCUSSION:
+            list = $("#list-discussions");
+            var tab = $("#tab").val();
+            switch (tab) {
+                case "Search":
+                    var searchString = $("#tab-param").val();
+                    url = "/Discussion/Search";
+                    data = { searchString: searchString, page: ++il_page };
+                    break;
+                case "Tag":
+                    var tag = $("#tab-param").val();
+                    url = "/Discussion/Tag";
+                    data = { tag: tag, page: ++il_page };
+                    break;
+                default:
+                    var tab = $("#tab").val();
+                    url = "/Discussion/Index";
+                    data = { tab: tab, page: ++il_page }
+                    break;
+            }
+            break;
         case IL_TYPE_ARTICLE:
             list = $("#list-articles");
             var tab = $("#tab").val();

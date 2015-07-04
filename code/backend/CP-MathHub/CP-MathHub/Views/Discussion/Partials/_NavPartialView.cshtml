@@ -1,0 +1,24 @@
+﻿<div class="mh-home">
+    <div class="row">
+        <div class="col-xs-12 col-md-7 mh-home-tab">
+            <h4>@ViewData["Title"]</h4>
+            @if (ViewBag.Tab != "Create")
+            {
+                <a href="@Url.Action("Create", "Discussion")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo Thảo Luận</a>
+            }
+        </div>
+        <div class="col-xs-12 col-md-5 mh-page-search">
+            @using (Html.BeginForm("Search", "Discussion", FormMethod.Get))
+            {
+                <div class="input-group">
+                    <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

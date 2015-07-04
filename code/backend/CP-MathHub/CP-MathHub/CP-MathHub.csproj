@@ -156,6 +156,8 @@
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
+    <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
+    <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
@@ -464,6 +466,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\style-blog.css" />
+    <Content Include="Content\css\style-discussion.css" />
     <Content Include="Content\css\style-question.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles-slideshow.css" />
@@ -478,6 +481,7 @@
     <Content Include="Content\img\icon-google.ico" />
     <Content Include="Content\img\icon-twitter.ico" />
     <Content Include="Content\img\logo-blog.png" />
+    <Content Include="Content\img\logo-discussion.png" />
     <Content Include="Content\img\logoMain.png" />
     <Content Include="Content\img\Question_Answer.png" />
     <Content Include="Content\img\social_fb_s.png" />
@@ -490,6 +494,7 @@
     <Content Include="Content\js\infinity-loading.js" />
     <Content Include="Content\js\responsiveCarousel-slideshow.js" />
     <Content Include="Content\js\script-blog.js" />
+    <Content Include="Content\js\script-discussion.js" />
     <Content Include="Content\js\script-question.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -590,6 +595,14 @@
     <Content Include="Views\Blog\Partials\_MyArticleListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Mockups\_NotificationMockup.cshtml" />
     <Content Include="Views\Blog\Partials\_NavPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_NavPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_TagListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_UsersPageLayout.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CommentListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CommentItemPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_UserListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Views\UsersPageView.cshtml" />
+    <Content Include="Views\Discussion\Views\TagsPageView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

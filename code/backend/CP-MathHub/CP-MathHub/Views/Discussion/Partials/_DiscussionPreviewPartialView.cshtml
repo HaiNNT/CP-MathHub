@@ -1,19 +1,71 @@
 ﻿@model CP_MathHub.Models.Discussion.DiscussionPreviewViewModel
 
-
-<h3>@Html.ActionLink(Model.Title, "Detail", "Discussion", new { Model.Id }, null)</h3><br />
-<ul>
-    @*<li>User:@Model.UserInfo.Username</li>*@
-    <li>Id:@Model.Id </li>
-    <li>Content: @Html.Raw(@Model.Content) </li>
-    <li>DateCreated: @Model.CreatedDate </li>
-    <li>UserId: @Model.UserId </li>
-    <li>ReportNum: @Model.ReportNum </li>
-</ul>
-<h4>Tag</h4>
-<ul>
-    @foreach (var tag in Model.Tags)
-    {
-        <li>@tag.Name</li>
-    }
-</ul>
+<div class="panel panel-warning mh-question-preview">
+    <div class="panel-heading">
+        <div class="row">
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-10 col-xs-12 mh-content">
+                <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
+                <div class="mh-sort-content">
+                    @{
+                        int length = Model.Title.Length > 50 ? 431 : 571;
+                        if (Model.Content.Length > length)
+                        {
+                            @Html.Raw(Model.Content.Substring(0, length - 1) + "...");
+                        }
+                        else
+                        {
+                            @Html.Raw(Model.Content);
+                        }
+                    }
+                </div>
+                <div class="mh-full-content hidden">
+                    @if (Model.Content.Length > length)
+                    {
+                        @Html.Raw(Model.Content)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            @if (Model.Content.Length > length)
+            {
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
+                    <a class="mh-seemore">Xem thêm...</a>
+                </div>
+            }
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report @(Model.Content.Length > length ? "hidden" : "")">
+                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+                    <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
+                    <div class="mh-share-facebook">
+                        <div class="pluginCountButton pluginCountNum">
+                            <span class="pluginCountTextConnected">123</span>
+                            <span class="pluginCountTextDisconnected">123</span>
+                        </div>
+                        <div class="pluginCountButtonNub">
+                            <s></s>
+                            <i></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
+                    <i class="fa fa-flag"></i> Báo vi phạm
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                <ul class="list-inline mh-list-tags mh-list-tags-right">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

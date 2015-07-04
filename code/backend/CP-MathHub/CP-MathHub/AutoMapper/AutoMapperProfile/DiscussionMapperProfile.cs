@@ -7,6 +7,8 @@ using System.Web;
 using CP_MathHub.Models.Discussion;
 using CP_MathHub.DAL;
 using AutoMapper;
+using CP_MathHub.Service.Services;
+using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
 {
@@ -17,13 +19,42 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            // Discussion Preview      
-            Mapper.CreateMap<Discussion, DiscussionPreviewViewModel>(
+            #region Discussion Preview
+            Mapper.CreateMap<Discussion, DiscussionPreviewViewModel>()
+                .ForMember(
+                    s => s.ReportNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
+                        .Table.Count(p => p.PostId == m.Id))
+                )
+                .ForMember(
+                    s => s.Tags,
+                    d => d.MapFrom(m => m.Tags)
+                )
+                .ForMember(
+                    s => s.UserInfo,
+                    d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 );
+            #endregion
 
-            // Discussion Detail
-            Mapper.CreateMap<Discussion, DiscussionDetailViewModel>(
+            #region Discussion Detail
+            Mapper.CreateMap<Discussion, DiscussionDetailViewModel>()
+                .ForMember(
+                    s => s.ReportNum,
+                    d => d.MapFrom(m => m.Reports.Count)
+                )
+                .ForMember(
+                    s => s.Comments,
+                    d => d.MapFrom(m => m.Comments)
+                )
+                .ForMember(
+                    s => s.Tags,
+                    d => d.MapFrom(m => m.Tags)
+                )
+                .ForMember(
+                    s => s.UserInfo,
+                    d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 );
+            #endregion
             //Create Question
             Mapper.CreateMap<DiscussionCreateViewModel, Discussion>()
                .ForMember(

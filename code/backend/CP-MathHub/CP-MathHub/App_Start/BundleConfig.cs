@@ -27,6 +27,9 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/questionjs").Include(
                       "~/Content/js/script-question.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/discussionjs").Include(
+                      "~/Content/js/script-discussion.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/blogjs").Include(
                       "~/Content/js/responsiveCarousel-slideshow.js",
                       "~/Content/js/script-blog.js"));
@@ -42,6 +45,8 @@ namespace CP_MathHub
             bundles.Add(new StyleBundle("~/Content/blog/css").Include(
                       "~/Content/css/style-blog.css",
                       "~/Content/css/styles-slideshow.css"));
+            bundles.Add(new StyleBundle("~/Content/discussion/css").Include(
+                      "~/Content/css/style-discussion.css"));
         }
     }
 }

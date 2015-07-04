@@ -1,0 +1,65 @@
+﻿@model CP_MathHub.Models.Discussion.UsersPageViewModel
+
+@{
+    ViewBag.Title = "Thành Viên";
+    ViewBag.MhPage = "discussion-users";
+    Layout = "~/Views/Discussion/Layouts/_UsersPageLayout.cshtml";
+}
+
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-4 mh-content-title">
+            <h3>Thành Viên</h3>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("Partials/_NavPartialView")
+<div class="mh-body-content-mid">
+    <div class="mh-body-tabs">
+        <ul class="nav nav-pills">
+            <li role="presentation" @(Model.Tab == "mod" ? "class=active" : "")>
+                @Html.ActionLink("Quản trị", "Users", new { @tab = "mod" })
+            </li>
+            <li role="presentation" @(Model.Tab == "expert" ? "class=active" : "")>
+                @Html.ActionLink("Chuyên gia", "Users", new { @tab = "expert" })
+            </li>
+            <li role="presentation" @(Model.Tab == "newuser" ? "class=active" : "")>
+                @Html.ActionLink("Thành viên mới", "Users", new { @tab = "newuser" })
+            </li>
+            <li role="presentation" @(Model.Tab == "reputation" ? "class=active" : "")>
+                @Html.ActionLink("Uy tín", "Users", new { @tab = "reputation" })
+            </li>
+        </ul>
+    </div>
+    <div class="mh-body-search">
+        <div class="row">
+            <div class="mh-search-title">
+                Tìm thành viên:
+            </div>
+            <div class="mh-search-control">
+                <input type="search" class="form-control" placeholder="Tìm kiếm..." id="mh-search-user">
+            </div>
+        </div>
+    </div>
+    <div class="mh-body-detail">
+        <!--  row: start -->
+        <div class="row" id="mh-list-user">
+            @Html.Partial("Partials/_UserListPartialView", Model.ListUsers)
+        </div>
+    </div>
+</div>
+
+
+<input id="tab" type="hidden" value="@Model.Tab" />
+<input id="system" type="hidden" value="user" />
+<input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+
+@section LeftPanel
+{
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}

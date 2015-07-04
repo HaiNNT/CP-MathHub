@@ -24,11 +24,20 @@ namespace CP_MathHub.Service.Services
             List<Discussion> list = new List<Discussion>();
             switch (homeTab)
             {
-                case Constant.Discussion.String.HomeNewestTab:
+                case Constant.Question.String.HomeNewestTab:
                     list = dal.Repository<Discussion>() // Get Question Repository
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
-                                    "", // Not Include any Property
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports", // Include Author Property
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Question.String.HomeHotTab:
+                    list = dal.Repository<Discussion>()
+                                .Get(
+                                    ExpressionHelper.DiscussionHelper.HotDiscussion(),// Get hot Question lambda expression
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
                                 ).ToList();
                     break;
@@ -36,19 +45,30 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Discussion>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
                                 ).ToList();
                     break;
             }
             return list;
         }
-        public List<Discussion> GetDiscussions(int authorId)
+        public List<Discussion> GetDiscussions(int authorId, int skip = 0)
         {
             return dal.Repository<Discussion>() //Get Question Repository
                 .Get(
                     (a => a.UserId > 0), //Filter Question by Author
-                    (p => p.OrderBy(s => s.CreatedDate)) //Order Question by CreatedDate
+                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                    skip
+                ).ToList();
+        }
+        public List<Discussion> GetDiscussions(int skip, string tagName)
+        {
+            return dal.Repository<Discussion>() //Get Question Repository
+                .Get(a => a.Tags.Where(t => t.Name == tagName).Count() > 0, //Contain tag
+                        (p => p.OrderBy(s => s.CreatedDate)),
+                        "Author,BookmarkUsers,Sharers,Tags,Reports",
+                        skip
                 ).ToList();
         }
 
@@ -67,23 +87,48 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Discussion>().Delete(discussion);
             dal.Save();
         }
-        public List<Discussion> SearchDiscussions(string searchString)
+        public List<Discussion> SearchDiscussions(string searchString, int skip)
         {
             List<Discussion> list = new List<Discussion>();
-            if (!String.IsNullOrEmpty(searchString))
+            if (searchString != null)
             {
-                list = dal.Repository<Discussion>()
-                               .Get(p => p.Title.Contains(searchString),
-                               (p => p.OrderBy(s => s.CreatedDate))
-                               ).ToList();
+                IEnumerable<Discussion> ienum = dal.Repository<Discussion>()
+                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,Tags,Reports",
+                                    skip
+                               );
+                ienum.Distinct();
+                list = ienum.ToList();
             }
             return list;
         }
+        public int CountSearchResult(string searchString)
+        {
+            return dal.Repository<Discussion>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+        }
+        public List<Comment> GetComments(int postId)
+        {
+            List<Comment> comments = dal.Repository<Comment>().Get(
+                    (c => c.PostId == postId),
+                    (c => c.OrderByDescending(m => m.CreatedDate)),
+                    "",
+                    0,
+                    0
+                ).ToList();
+            IncludeUserForComments(comments);
+            return comments;
+        }
+        public void IncludeUserForComments(List<Comment> comments)
+        {
+            foreach (Comment comment in comments)
+            {
+                comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
+            }
+        }
         public Discussion GetDiscussion(int id)
         {
-            Discussion discussion = new Discussion();
-            discussion = dal.Repository<Discussion>().GetById(id);
-            return discussion;
+            return dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
         }
     }
 }

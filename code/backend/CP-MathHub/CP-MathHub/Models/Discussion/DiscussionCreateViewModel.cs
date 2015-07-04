@@ -15,6 +15,7 @@ namespace CP_MathHub.Models.Discussion
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
-        public List<String> Tags { get; set; }
+        public List<int> TagIds { get; set; }
+        public MainPostPrivacyEnum Privacy { get; set; }
     }
 }

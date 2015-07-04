@@ -272,6 +272,7 @@ namespace CP_MathHub.Controllers
             Tag tag = new Tag();
             tag.Name = name;
             cService.InsertTag(tag);
+            ViewBag.System = "Question";
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
 

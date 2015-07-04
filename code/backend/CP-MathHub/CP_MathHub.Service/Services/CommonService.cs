@@ -45,10 +45,13 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(List<int> tagIds)
         {
             List<Tag> tags = new List<Tag>();
-            foreach (int id in tagIds)
+            if (tagIds != null)
             {
-                Tag tag = GetTag(id);
-                tags.Add(tag);
+                foreach (int id in tagIds)
+                {
+                    Tag tag = GetTag(id);
+                    tags.Add(tag);
+                }
             }
             return tags;
         }
