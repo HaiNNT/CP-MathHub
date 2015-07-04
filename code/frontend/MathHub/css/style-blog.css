@@ -258,22 +258,6 @@
 .mh-blog-tags > ul > li {
 	margin-bottom: 5px;
 }
-.mh-blog-setting > ul {
-    margin-right: 0px;
-    padding: 0px;
-} 
-.mh-blog-setting > ul > li {
-    list-style-type: none;
-} 
-.mh-blog-setting > ul > li > a:hover > i {
-    color: #333;
-} 
-.mh-blog-setting > ul > li.open > a > i {
-	color: #333 !important;
-}
-.mh-blog-setting > ul > li > ul > li >  a:hover {
-	background-color: #ccc;
-}
 /* Show List: end */
 /* Detail BLog: start */
 .mh-show-detail-content {
