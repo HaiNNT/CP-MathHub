@@ -37,6 +37,7 @@ namespace CP_MathHub.Core.Interfaces.Repository
         bool Update(TEntity entity);
         bool Delete(TEntity entity);
         bool Delete(int id);
+        IRepository<TEntity> Include(string includeProperties);
         IQueryable<TEntity> Table { get; }
     }
 }

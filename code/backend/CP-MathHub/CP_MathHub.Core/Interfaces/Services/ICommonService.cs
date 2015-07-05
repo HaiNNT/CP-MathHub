@@ -18,11 +18,26 @@ namespace CP_MathHub.Core.Interfaces.Services
         Tag GetTag(string name);
 
         /// <summary>
+        /// Get all tag 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        List<Tag> GetTags(int skip);
+
+        /// <summary>
         /// Get tag by Id
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         Tag GetTag(int id);
+
+        /// <summary>
+        /// Search Tags
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Tag> SearchTags(string searchString, int skip);
 
         /// <summary>
         /// Get list of tag by list tag id
@@ -95,6 +110,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="comment"></param>
         void CommentPost(Comment comment);
+
+        /// <summary>
+        /// Get comments of a post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        List<Comment> GetComments(int postId);
 
     }
 }

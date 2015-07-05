@@ -6,9 +6,9 @@
 
 var il_page = 0;
 var il_ready = false;
-var IL_TYPE_QUESTION = "question";
-var IL_TYPE_ARTICLE = "blog";
-var IL_TYPE_DISCUSSION = "discussion";
+var IL_TYPE_QUESTION = "Question";
+var IL_TYPE_ARTICLE = "Blog";
+var IL_TYPE_DISCUSSION = "Discussion";
 var IL_TYPE_USER = "user";
 var IL_TYPE_TAG = "tag";
 var IL_TYPE_SEARCH_USER = "searchuser";

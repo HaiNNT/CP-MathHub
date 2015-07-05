@@ -14,11 +14,11 @@ namespace CP_MathHub.Entity
     
     public partial class Article : MainPost
     {
-        public int GroupId { get; set; }
         public Nullable<System.DateTime> PublicDate { get; set; }
         public Nullable<int> SeriesId { get; set; }
+        public Nullable<int> GroupId { get; set; }
     
-        public virtual Group Group { get; set; }
         public virtual Series Series { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

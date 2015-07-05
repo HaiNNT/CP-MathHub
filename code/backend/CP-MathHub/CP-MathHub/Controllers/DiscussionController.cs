@@ -27,58 +27,45 @@ namespace CP_MathHub.Controllers
         }
         // GET: Discussion
         [HttpGet]
-        public ActionResult Index(string tab = Constant.Discussion.String.HomeDefaultTab, int page = 0)
+        public ActionResult Index(int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Discussion> discussions = dService.GetDiscussions(tab, skip);
-
-            ICollection<DiscussionPreviewViewModel> discussionsPreviewVms =
-                discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
+            List<Tag> tags = cService.GetTags(skip);
+            ICollection<DiscussionCategoryViewModel> discussioncategoryVM =
+                tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
                 .ToList();
 
-            foreach (DiscussionPreviewViewModel d in discussionsPreviewVms)
-            {
-                d.UserInfo.CreateMainPostDate = d.CreatedDate;
-            }
             if (page == 0)
             {
                 DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
                 discussionHomeVM.Name = "THẢO LUẬN";
-                ViewBag.Tab = tab;
-                ViewBag.System = "discussion";
-                discussionHomeVM.Items = discussionsPreviewVms;
+                ViewBag.System = Constant.String.DiscussionSystem;
+                discussionHomeVM.Items = discussioncategoryVM;
                 return View("Views/DiscussionHomeView", discussionHomeVM);
             }
             else
             {
-                return PartialView("Partials/_DiscussionListPartialView", discussionsPreviewVms);
+                return PartialView("Partials/_DiscussionListTagPartialView", discussioncategoryVM);
             }
         }
         //Tag
-        public ActionResult Tag(string tag = "", int page = 0)
+        public ActionResult Tag(int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Discussion> discussions = dService.GetDiscussions(skip, tag);
-            ICollection<DiscussionPreviewViewModel> discussionPreviewVMs =
-                    discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
+            List<Tag> tags = cService.GetTags(skip);
+            ICollection<DiscussionCategoryViewModel> tagpageVMs =
+                    tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
                     .ToList();
-            foreach (DiscussionPreviewViewModel q in discussionPreviewVMs)
-            {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
-            }
-            ViewBag.TabParam = tag;
             if (page == 0)
             {
                 DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
-                discussionHomeVM.Name = "Thảo luận có thẻ \"" + tag + "\"";
-                ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
-                ViewBag.System = "discussion";
-                discussionHomeVM.Items = discussionPreviewVMs;
-                return View("Views/QuestionHomeView", discussionHomeVM);
+                ViewBag.System = Constant.String.DiscussionSystem;
+                discussionHomeVM.Items = tagpageVMs;
+                return View("Views/DiscussionHomeView", discussionHomeVM);
             }
             else
             {
-                return PartialView("Partials/_DiscussionListPartialView", discussionPreviewVMs);
+                return PartialView("Partials/_DiscussionListTagPartialView", tagpageVMs);
             }
         }
         //Get: Discussion/Search
@@ -86,29 +73,23 @@ namespace CP_MathHub.Controllers
         public ActionResult Search(string searchString, int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Discussion> discussions = dService.SearchDiscussions(searchString.Trim(), skip);
+            List<Tag> tags = cService.SearchTags(searchString.Trim(), skip);
 
-            ICollection<DiscussionPreviewViewModel> discussionVms =
-                discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
+            ICollection<DiscussionCategoryViewModel> tagVms =
+                tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
                 .ToList();
-            foreach (DiscussionPreviewViewModel q in discussionVms)
-            {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
-            }
             ViewBag.TabParam = searchString;
             if (page == 0)
             {
                 DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
-                discussionHomeVM.Name = "Có " + dService.CountSearchResult(searchString)
-                                        + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
                 ViewBag.Tab = Constant.Discussion.String.SearchTab;
-                ViewBag.System = "discussion";
-                discussionHomeVM.Items = discussionVms;
+                ViewBag.System = Constant.String.DiscussionSystem;
+                discussionHomeVM.Items = tagVms;
                 return View("Views/DiscussionHomeView", discussionHomeVM);
             }
             else
             {
-                return PartialView("Partials/_DiscussionListPartialView", discussionVms);
+                return PartialView("Partials/_DiscussionListTagPartialView", tagVms);
             }
         }
         //Get: Discussion/Detail
@@ -120,15 +101,17 @@ namespace CP_MathHub.Controllers
             dService.IncludeUserForComments(discussion.Comments.ToList());
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
             discussionDetailVM.Comments = dService.GetComments(discussion.Id);
-            ViewBag.System = "discussion";
+            ViewBag.System = Constant.String.DiscussionSystem;
             return View("Views/DiscussionDetailView", discussionDetailVM);
         }
         //Get: Discussion/Create
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.System = "discussion";
-            return View("Views/DiscussionCreateView");
+            ViewBag.System = Constant.String.DiscussionSystem;
+            DiscussionCreateViewModel model = new DiscussionCreateViewModel();
+            model.Privacy = MainPostPrivacyEnum.Everyone;
+            return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create
         [HttpPost, ValidateInput(false)]
@@ -155,7 +138,7 @@ namespace CP_MathHub.Controllers
             DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
             Discussion discussion = dService.GetDiscussion(id);
             discussionEditVM = Mapper.Map<Discussion, DiscussionEditViewModel>(discussion);
-            ViewBag.System = "discussion";
+            ViewBag.System = Constant.String.DiscussionSystem;
             return View("Views/DiscussionEditView", discussionEditVM);
         }
         //Post: Discussion/Edit
@@ -221,7 +204,7 @@ namespace CP_MathHub.Controllers
                 TagsPageViewModel model = new TagsPageViewModel();
                 model.Tab = tab;
                 model.ListTags = tags;
-                ViewBag.System = "question";
+                ViewBag.System = Constant.String.DiscussionSystem;
                 ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
                 return View("Views/TagsPageView", model);
             }
@@ -238,7 +221,7 @@ namespace CP_MathHub.Controllers
             Tag tag = new Tag();
             tag.Name = name;
             cService.InsertTag(tag);
-            ViewBag.System = "Discussion";
+            ViewBag.System = Constant.String.DiscussionSystem;
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
         //Get: Discussion/Users
@@ -254,7 +237,7 @@ namespace CP_MathHub.Controllers
                 model.Tab = tab;
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Discussion.String.HomeUserTab;
-                ViewBag.System = "discussion";
+                ViewBag.System = Constant.String.DiscussionSystem;
                 return View("Views/UsersPageView", model);
             }
             else

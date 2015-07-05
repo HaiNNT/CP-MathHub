@@ -1,7 +1,7 @@
 ﻿@using CP_MathHub.Models.Discussion
 @model DiscussionHomeViewModel
 @{
-    ViewBag.Title = ViewBag.Tab;
+    ViewBag.Title = "Thảo Luận";
     ViewBag.MhPage = "discussion-home";
     ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Discussion/Layouts/_DiscussionHomeLayout.cshtml";
@@ -21,7 +21,7 @@
 <input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
 
-@Html.Partial("Partials/_DiscussionListPartialView", Model.Items)
+@Html.Partial("Partials/_DiscussionListTagPartialView", Model.Items)
 
 @section LeftPanel
 {

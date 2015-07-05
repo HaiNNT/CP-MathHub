@@ -1,0 +1,87 @@
+﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
+@using CP_MathHub.Service.Helpers
+<div class="col-xs-4 @ViewData["Class"]">
+    <div class="row">
+        <div class="col-xs-9 col-sm-10 title">
+            <a title="@Model.Title" href="@Url.Action("Detail", new {id=Model.Id})">@(Model.Title.Length <= 39 ? Model.Title : Model.Title.Substring(0, 36) + "...")</a>
+            <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+        </div>
+        <div class="col-xs-3 col-sm-2 mh-blog-setting">
+            <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <i class="fa fa-angle-down mh-post-setting"></i>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="">Báo cáo vi phạm</a></li>
+                        <li><a href="">Chỉnh sửa bài viết</a></li>
+                        <li><a href="">Đóng bài viết</a></li>
+                        <li><a href="">Xóa bài viết</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mh-blog-user">
+        <div class="row mh-row-time">
+            <span>@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, ViewBag.CreatedDateType)</span>
+        </div>
+        <div class="row mh-row-info">
+            <div class="col-xs-2">
+                <a href="#">
+                    <img src="~/Content/img/user.jpg" class="mh-user-smallest">
+                </a>
+            </div>
+            <div class="col-xs-10 user">
+                <a href="#">
+                    <span>@Model.UserInfo.Username</span>
+                </a>
+                -
+                <span>@Model.UserInfo.Reputation</span>
+                <i class="fa fa-circle mh-reputation-icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+            @Html.Raw(Model.Content)
+    </div>
+    <div class="readmore">
+        <a href="@Url.Action("Detail", new {id=Model.Id})">Xem thêm »</a>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="blog-footer">
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt xem">
+            <div>
+                <i class="fa fa-eye"></i>
+            </div>
+            <div>
+                @Model.View
+            </div>
+        </a>
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt bình luận">
+            <div>
+                <i class="fa fa-comment"></i>
+            </div>
+            <div>
+                @Model.CommentNum
+            </div>
+        </a>
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt thích">
+            <div>
+                <i class="fa fa-thumbs-o-up"></i>
+            </div>
+            <div>
+                @Model.Like
+            </div>
+        </a>
+        <a href="@Url.Action("Detail", new {id=Model.Id})" title="Lượt chia sẻ trên facebook">
+            <div>
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div>
+                1000
+            </div>
+        </a>
+    </div>
+</div>

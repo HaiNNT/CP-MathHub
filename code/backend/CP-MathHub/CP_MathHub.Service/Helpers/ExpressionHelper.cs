@@ -124,7 +124,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> SubcribedArticle(User user)
             {
-                return (a => a.Author.Followers.Contains(user));
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -135,7 +135,7 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> FriendArticle(User user)
             {
                 return (a => a.Author.ActiveRelationships.Where(m => m.TargetUserId == user.Id).Count() > 0
-                            && a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
+                            || a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -145,7 +145,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> BookmarkArticle(User user)
             {
-                return (a => a.BookmarkUsers.Contains(user));
+                return (a => a.BookmarkUsers.Where(m => m.Id == user.Id).Count() > 0);
             }
 
             /// <summary>
@@ -160,12 +160,42 @@ namespace CP_MathHub.Service.Helpers
             }
 
             /// <summary>
+            /// Get feature Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> FeatureArticle()
+            {
+                return (a => a.Comments.Count > 1
+                            && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 1000
+                            && (a.View > 500));
+            }
+
+            /// <summary>
+            /// Get feature Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> RecomendedArticle(User user)
+            {
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
+            }
+
+            /// <summary>
             /// Get my Article lambda expression
             /// </summary>
             /// <returns></returns>
             public static Expression<Func<Article, bool>> MyArticle(User user)
             {
                 return (a => a.UserId == user.Id);
+            }
+
+            /// <summary>
+            /// Get comments of an article lambda expression
+            /// </summary>
+            /// <param name="articleId"></param>
+            /// <returns></returns>
+            public static Expression<Func<Comment, bool>> CommentOfArticle(int articleId)
+            {
+                return (a => a.PostId == articleId);
             }
         }
     }

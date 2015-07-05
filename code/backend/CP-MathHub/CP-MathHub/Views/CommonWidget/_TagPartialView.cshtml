@@ -1,9 +1,7 @@
 ﻿@model CP_MathHub.Entity.Tag
 
-
-    <a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name })" class="mh-tag">
-        <i class="fa fa-circle"></i>
-        <label>@Model.Name</label>
-        <span class="hidden">@Model.Id</span>
-    </a>
-
+<a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name })" class="mh-tag">
+    <i class="fa fa-circle"></i>
+    <label>@Model.Name</label>
+    <span class="hidden">@Model.Id</span>
+</a>

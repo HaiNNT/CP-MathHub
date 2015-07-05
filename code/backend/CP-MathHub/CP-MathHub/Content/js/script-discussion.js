@@ -215,6 +215,12 @@ function searchTag() {
         timeout = setTimeout(load, 1000);
     });
 }
+/*
+	Apply select menu
+*/
+function initSelectMenu() {
+    $("#mh-mainpost-privacy").selectmenu();
+}
 
 /*
     Search users
@@ -293,11 +299,11 @@ function applyInfinityLoading() {
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "discussion-home":
-            applyInfinityLoading();
             seeMore();
             break;
         case "discussion-create":
             togglePreview();
+            initSelectMenu();
             initCkeditor(true);
             break;
         case "discussion-tags":

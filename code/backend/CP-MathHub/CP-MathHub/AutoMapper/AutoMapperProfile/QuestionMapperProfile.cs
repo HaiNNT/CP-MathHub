@@ -20,7 +20,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            // Question Preview      
+            #region Question Preview
             Mapper.CreateMap<Question, QuestionPreviewViewModel>()
                 .ForMember(
                     s => s.AnswerNum,
@@ -60,8 +60,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                                                     new CPMathHubModelContainer())
                                                                         .GetLoginUser().Id).Count() > 0)
                 );
+            #endregion
 
-            //Question Detail
+            #region Question Detail
             Mapper.CreateMap<Question, QuestionDetailViewModel>()
                 //.ForMember(
                 //    s => s.ReportNum,
@@ -103,8 +104,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.VoteVM,
                     d => d.MapFrom(m => Mapper.Map<Question, VoteViewModel>(m))
                 );
+            #endregion
 
-            //Vote
+            #region Vote
             Mapper.CreateMap<Question, VoteViewModel>()
                 .ForMember(
                     s => s.Voted,
@@ -123,8 +125,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                                                     new CPMathHubModelContainer())
                                                                         .GetLoginUser().Id).FirstOrDefault())
                 );
+            #endregion
 
-            //Create Question
+            #region Create Question
             Mapper.CreateMap<QuestionCreateViewModel, Question>()
                .ForMember(
                    s => s.CreatedDate,
@@ -135,10 +138,6 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    d => d.MapFrom(m => MainPostPrivacyEnum.Everyone)
                )
                 .ForMember(
-                   s => s.UserId,
-                   d => d.MapFrom(m => 93)
-               )
-                .ForMember(
                    s => s.LastViewed,
                    d => d.MapFrom(m => DateTime.Now)
                )
@@ -146,9 +145,12 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
                );
+            #endregion
 
-            //Edit Question Get
+            #region Edit Question Get
             Mapper.CreateMap<Question, QuestionEditViewModel>();
+            #endregion
+
         }
     }
 }

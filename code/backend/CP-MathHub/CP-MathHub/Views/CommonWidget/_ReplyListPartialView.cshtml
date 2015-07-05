@@ -1,0 +1,41 @@
+﻿@using CP_MathHub.Models.Common
+@using CP_MathHub.Service.Helpers
+@model ICollection<CommentViewModel>
+
+
+
+@foreach (CommentViewModel reply in Model)
+{
+    <div class="media mh-comment-div">
+        <div class="media-left">
+            <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
+        </div>
+        <div class="media-body">
+            <div class="media-heading">
+                <a href="" class="mh-media-comment-user">@reply.Username</a>
+                <span>@reply.Content</span>
+            </div>
+            <div>
+                <a href="">Bỏ thích</a>
+                -
+                <a href="" title="Lượt thích" class="mh-comment-like">
+                    <i class="fa fa-thumbs-o-up"></i>
+                    @reply.Like
+                </a>
+                -
+                <span class="mh-time">@MhHtmlHelper.PostCreatedTime(reply.CreatedDate, "bình luận")</span>
+            </div>
+        </div>
+        <div class="media-right">
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
+                    <i class="fa fa-pencil mh-commet-edit"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Chỉnh sửa</a></li>
+                    <li><a href="#">Xóa</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}

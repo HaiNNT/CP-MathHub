@@ -58,14 +58,14 @@
 .mh-home .mh-page-search {
 	margin-bottom: 0px;
 }
-.mh-blog-new-body {
+.mh-grid-body {
 	padding: 5px;
 }
-.mh-blog-new-body > .row {
+.mh-grid-body > .row {
 	margin: 0px;
 }
 /* Home Blog*/
-.mh-blog-new-contents {
+.mh-grid-contents {
   border: 1px solid #ccc;
   height: 321px;
   width: 205px;
@@ -75,27 +75,33 @@
   margin-top: 10px;
 }
 /*	
-.mh-blog-new-contents:nth-child(3n) {
+.mh-grid-contents:nth-child(3n) {
   margin-right: 0px;
 }
 */
-.mh-blog-new-contents .title {
+.mh-grid-contents .title {
 	font-size: 14pt;
 	font-weight: bold;
 	min-height: 54px;
 	color: #337ab7;
+    padding-right: 0px;
 }
-.mh-blog-new-contents >a:hover {
+.mh-grid-contents > .row> .title > i {
+    vertical-align: top;
+}
+.mh-grid-contents > div > div >a:hover {
 	text-decoration: none;
 }
-.mh-blog-new-contents .content {
+.mh-grid-contents .content {
 	text-align: justify;
-	height: 100px;
+		max-height: 80px;
+    overflow-y: hidden;
 }
-.mh-blog-new-contents  .readmore {
+.mh-grid-contents .readmore {
 	text-align: right;
+    margin-top: 10px;
 }
-.mh-blog-new-contents  .blog-footer {
+.mh-grid-contents .blog-footer {
 	height: 46px;
 	background-color: #EFEDED;
 	padding: 8px;
@@ -105,7 +111,7 @@
 	left: 0px;
 	width: 100%;
 }
-.mh-blog-new-contents  .blog-footer > a {
+.mh-grid-contents  .blog-footer > a {
 	color: #969696;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #fff;
@@ -117,17 +123,17 @@
 	border-right: 1px dotted silver;
 	text-align: center;
 }
-.mh-blog-new-contents  .blog-footer > a:last-child {
+.mh-grid-contents  .blog-footer > a:last-child {
 	border-right: 0px !important;
 	padding-right: 0px;
 }
-.mh-blog-new-contents  .blog-footer > a   i {
+.mh-grid-contents  .blog-footer > a   i {
 	font-size: 16px;
 	text-shadow: 0px 1px 0px #fff;
 	margin-right: 3px;
 	vertical-align: baseline;
 }
-.mh-blog-new-contents  .blog-footer > a:hover {
+.mh-grid-contents  .blog-footer > a:hover {
 	text-decoration: none;
 	color: #000;
 }
@@ -157,39 +163,40 @@
 	color: #00aaf1;
 }
 /*Page view: end*/
-/* My blog: start */
-.mh-grid-content {
+/* Show List: start */
+.mh-list-content {
 	margin: 15px 0;
 }
-.mh-grid-content > div{
+.mh-list-content > div{
   border: 1px solid #ccc;
   padding: 15px;
 }
-.mh-grid-content > .blog-footer{
+.mh-list-content > .blog-footer{
   border-top: 0px;
   padding: 5px 15px;
 }
-.mh-grid-content .title {
+.mh-list-content .title {
 	font-size: 17pt;
 	font-weight: bold;
 	color: #337ab7;
+    padding-right: 0px;
 }	
-.mh-grid-content > div > .row > div > a:hover {
+.mh-list-content > div > .row > div > a:hover {
 	text-decoration: none;
 }
-.mh-grid-content .content {
+.mh-list-content .content {
 	text-align: justify;
 	font-size: 13pt;
 }
-.mh-grid-content  .readmore {
+.mh-list-content  .readmore {
 	text-align: right;
 }
-.mh-grid-content  .blog-footer {
+.mh-list-content  .blog-footer {
 	background-color: #EFEDED;
 	width: 100%;
 	margin: 0px;
 }
-.mh-grid-content .blog-footer > div >  a {
+.mh-list-content .blog-footer > div >  a {
 	color: #969696;
 	font-weight: bold;
 	text-shadow: 0px 1px 0px #fff;
@@ -200,45 +207,50 @@
 	background: url(../img/line_boxIcon.gif) no-repeat right;
 	border-right: 1px dotted silver;
 	text-align: center;
+    vertical-align: middle;
 }
-.mh-grid-content .blog-footer > div > a:last-child {
+.mh-list-content .blog-footer > div > a:last-child {
 	border-right: 0px !important;
 	padding-right: 0px;
 }
-.mh-grid-content  .blog-footer > div > a   i {
+.mh-list-content  .blog-footer > div > a   i {
 	font-size: 16px;
 	text-shadow: 0px 1px 0px #fff;
 	margin-right: 3px;
 	vertical-align: baseline;
 }
-.mh-grid-content  .blog-footer > div > a:hover {
+.mh-list-content  .blog-footer > div > a:hover {
 	text-decoration: none;
 	color: #000;
 }
-.mh-grid-content  .blog-footer > .col-xs-12.col-md-5{ 
+.mh-list-content  .blog-footer > .col-xs-12.col-md-5{ 
 	padding: 0px;
 	padding-top: 12px;
 }
-.mh-grid-content  .blog-footer > .mh-blog-tags {
+.mh-list-content  .blog-footer > .mh-blog-tags {
 	text-align: right;
 	padding: 0px;
 }
-.mh-grid-content  .blog-footer > .mh-blog-tags > ul {
+.mh-list-content  .blog-footer > .mh-blog-tags > ul {
 	margin-top: 10px;
 }
-.mh-grid-content .mh-blog-user > .mh-row-time {
+.mh-list-content .mh-blog-user > .mh-row-time {
 	font-size: 10pt;
 	color: #A9A9A9;
 	padding: 5px 30px 0px 15px
 }
-.mh-grid-content .mh-blog-user > .mh-row-info > .user {
+.mh-list-content .mh-blog-user > .mh-row-info > .user {
 	padding-left: 0px;
 	font-size: 11pt;
 	margin-top: 5px;
 }
-.mh-grid-content .mh-blog-user {
+.mh-list-content .mh-blog-user {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.mh-list-content> div> .row> .title > i {
+    font-size: 15pt;
+  vertical-align: top;
 }
 .mh-blog-tags .mh-tag {
 	margin-bottom: 5px;
@@ -246,25 +258,130 @@
 .mh-blog-tags > ul > li {
 	margin-bottom: 5px;
 }
-.mh-blog-bookmark-setting  {
-	margin-top: 7px;
+.mh-blog-setting > ul {
+    margin-right: 0px;
+    padding: 0px;
+} 
+.mh-blog-setting > ul > li {
+    list-style-type: none;
+} 
+.mh-blog-setting > ul > li > a:hover > i {
+    color: #333;
+} 
+.mh-blog-setting > ul > li.open > a > i {
+	color: #333 !important;
 }
-.mh-blog-bookmark-setting  .mh-blog-bookmark {
-	padding: 0;
-	font-size: 15pt;
-}
-.mh-blog-bookmark-setting  .mh-blog-setting {
-	padding: 0;
-}
-.mh-blog-bookmark-setting ul > li > a:hover {
+.mh-blog-setting > ul > li > ul > li >  a:hover {
 	background-color: #ccc;
 }
-/* My blog: end */
+/* Show List: end */
+/* Detail BLog: start */
+.mh-show-detail-content {
+	margin: 15px 0;
+}
+.mh-show-detail-content > div{
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+.mh-show-detail-content > .blog-footer{
+  border-top: 0px;
+  padding: 5px 15px;
+}
+.mh-show-detail-content .title {
+	font-size: 17pt;
+	font-weight: bold;
+	color: #337ab7;
+}	
+.mh-show-detail-content > div > .row > div > a:hover {
+	text-decoration: none;
+}
+.mh-show-detail-content .content {
+	text-align: justify;
+	font-size: 13pt;
+}
+.mh-show-detail-content  .readmore {
+	text-align: right;
+}
+.mh-show-detail-content  .blog-footer {
+	background-color: #EFEDED;
+	width: 100%;
+	margin: 0px;
+    margin-bottom: -1px;
+}
+.mh-show-detail-content .blog-footer > div >  a {
+	color: #969696;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px #fff;
+	margin-right: 3px;
+	padding-right: 7px;
+	display: inline-block;
+	font-size: 11px;
+	background: url(../img/line_boxIcon.gif) no-repeat right;
+	border-right: 1px dotted silver;
+	text-align: center;
+    vertical-align: middle;
+}
+.mh-show-detail-content .blog-footer > div > a:last-child {
+	border-right: 0px !important;
+	padding-right: 0px;
+}
+.mh-show-detail-content  .blog-footer > div > a   i {
+	font-size: 16px;
+	text-shadow: 0px 1px 0px #fff;
+	margin-right: 3px;
+	vertical-align: baseline;
+}
+.mh-show-detail-content  .blog-footer > div > a:hover {
+	text-decoration: none;
+	color: #000;
+}
+.mh-show-detail-content  .blog-footer > .col-xs-12.col-md-5{ 
+	padding: 0px;
+	padding-top: 12px;
+}
+.mh-show-detail-content .blog-footer > .mh-blog-tags {
+	text-align: right;
+	padding: 0px;
+}
+.mh-show-detail-content  .blog-footer > .mh-blog-tags > ul {
+	margin-top: 10px;
+}
+.mh-show-detail-content .mh-blog-user > .mh-row-time {
+	font-size: 10pt;
+	color: #A9A9A9;
+	padding: 5px 30px 0px 15px
+}
+.mh-show-detail-content .mh-blog-user > .mh-row-info > .user {
+	padding-left: 0px;
+	font-size: 11pt;
+	margin-top: 5px;
+}
+.mh-show-detail-content .mh-blog-user {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.mh-show-detail-content> div> .row> .title > i {
+    font-size: 15pt;
+  vertical-align: top;
+}
+.mh-pre-comment {
+      margin-bottom: -1px;
+}
+/* Detail BLog: end */
 .mh-body-content-mid  .row {
 	margin: 20px 0px;
 }
 .mh-body-content-mid  .row > .mh-blog-choice-title, .mh-body-content-mid  .row > .mh-blog-choice {
 	padding: 0;
+}
+.mh-create-privacy .col-md-5.col-lg-4.col-sm-6, .mh-create-privacy .col-md-7.col-lg-8.col-sm-6, .mh-create-day .col-md-5.col-lg-4.col-sm-6, .mh-create-day .col-md-7.col-lg-8.col-sm-6 {
+    padding: 0px;
+}
+.mh-list-content .mh-comment-like:hover {
+    text-decoration: none;
+}
+.mh-list-content > div {
+    margin-top: -1px;
 }
 	/* Mid: end */	
 /*Body: end*/

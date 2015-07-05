@@ -72,5 +72,11 @@ namespace CP_MathHub.DAL
             }
             return (Repository<TEnity>)repositories[type];
         }
+
+        public void TurnOffLazzyLoading()
+        {
+            context.Configuration.LazyLoadingEnabled = false;
+            context.Configuration.ProxyCreationEnabled = false;
+        }
     }
 }

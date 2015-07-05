@@ -28,7 +28,7 @@
         <AssociationConnector Association="CPMathHubModel.TagMainPost" />
         <AssociationConnector Association="CPMathHubModel.FavoriteTag" />
         <AssociationConnector Association="CPMathHubModel.CreateTag" />
-        <EntityTypeShape EntityType="CPMathHubModel.Group" Width="1.5" PointX="0.75" PointY="11.625" />
+        <EntityTypeShape EntityType="CPMathHubModel.Group" Width="1.5" PointX="0.5" PointY="11.25" />
         <AssociationConnector Association="CPMathHubModel.BookmarkMainPost" />
         <AssociationConnector Association="CPMathHubModel.FollowMainPost" />
         <EntityTypeShape EntityType="CPMathHubModel.Invitation" Width="1.5" PointX="9" PointY="7.75" />
@@ -63,10 +63,9 @@
         <AssociationConnector Association="CPMathHubModel.EditedContentPost" />
         <AssociationConnector Association="CPMathHubModel.NotificationUser" />
         <AssociationConnector Association="CPMathHubModel.PrivacySettingUser" />
-        <EntityTypeShape EntityType="CPMathHubModel.Participation" Width="1.5" PointX="3.25" PointY="11.75" />
+        <EntityTypeShape EntityType="CPMathHubModel.Participation" Width="1.5" PointX="3.5" PointY="11.75" />
         <AssociationConnector Association="CPMathHubModel.ParticipationUser" />
         <AssociationConnector Association="CPMathHubModel.ParticipationGroup" />
-        <AssociationConnector Association="CPMathHubModel.GroupArticle" />
         <EntityTypeShape EntityType="CPMathHubModel.ReputationRule" Width="2" PointX="9.5" PointY="11" />
         <InheritanceConnector EntityType="CPMathHubModel.MainPost" />
         <InheritanceConnector EntityType="CPMathHubModel.Article" />
@@ -100,14 +99,7 @@
         <AssociationConnector Association="CPMathHubModel.SeriesGroup" />
         <EntityTypeShape EntityType="CPMathHubModel.ProfileHistory" Width="1.5" PointX="11.875" PointY="14.75" />
         <AssociationConnector Association="CPMathHubModel.ProfileHistoryUser" />
-        <AssociationConnector Association="CPMathHubModel.SubscribeGroup" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="11.640625" />
-          <ConnectorPoint PointX="3.0885416666666665" PointY="11.640625" />
-          <ConnectorPoint PointX="3.2552083333333335" PointY="11.640625" />
-          <ConnectorPoint PointX="6.3502557291666673" PointY="11.640625" />
-          <ConnectorPoint PointX="6.5169223958333333" PointY="11.640625" />
-          <ConnectorPoint PointX="6.617183125" PointY="11.640625" />
-          <ConnectorPoint PointX="6.617183125" PointY="8.441630859375" />
+        <AssociationConnector Association="CPMathHubModel.SubscribeGroup" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="CPMathHubModel.Follow" />
         <AssociationConnector Association="CPMathHubModel.InvitedUser" />
@@ -116,6 +108,7 @@
         <AssociationConnector Association="CPMathHubModel.LocationLocation" />
         <AssociationConnector Association="CPMathHubModel.LocationProfile" />
         <AssociationConnector Association="CPMathHubModel.UserActivity" />
+        <AssociationConnector Association="CPMathHubModel.GroupArticle" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

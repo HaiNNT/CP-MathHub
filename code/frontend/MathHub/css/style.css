@@ -727,6 +727,13 @@ footer > .container > .row {
 }
 /*  Home page: end */
 /*  Image user: start */
+.mh-image-picture {
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
 .mh-user-image {
 	width: 60px;
 	height: 60px;
@@ -744,6 +751,13 @@ footer > .container > .row {
 .mh-user-smallest {
     width: 16px;
     height: 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.mh-user-small {
+    width: 22px;
+    height: 22px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -833,6 +847,7 @@ footer > .container > .row {
 	padding-left: 10px;
     position:relative;
  } 
+
 .mh-create-input> div {
 	display: table-cell;
 }
@@ -855,4 +870,87 @@ footer > .container > .row {
  .mh-create-div {
 	text-align: right;
  }
+ .mh-create-privacy, .mh-create-day {
+    margin: 20px 0;
+}
+ #mh-mainpost-privacy {
+    width: 29.5%;
+}
 /*create: end */
+
+/* Comment: start */
+.mh-comment-div {
+    text-align: justify;
+}
+.mh-media-comment-input {
+    height: 30px;
+    padding: 10px 20px 10px 10px;
+    width: 100%;
+}
+.mh-media-reply-input {
+    height: 22px;
+    padding: 5px 15px 5px 5px;
+    width: 100%;
+    font-size: 10pt;
+}
+.mh-comment-input-send {
+    position: relative;
+}
+.mh-commnet-send {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 10pt;
+}
+.mh-rely-send {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 9pt;
+}
+.mh-media-comment-user {
+    font-weight: bolder;
+}
+.mh-media-see-more {
+    margin-top: 10px;
+}
+/*  Setting comment: start */
+.media, .media-body {
+    overflow: inherit;
+}
+.mh-commet-edit {
+    color: #A9A7A7;
+    font-size: 10px;
+}
+.media-right > div > .dropdown-menu {
+    left: inherit;
+    right: 0;
+} 
+.media-right > div > a:hover > i {
+    color: #333;
+    cursor: pointer;
+}
+.media-right > div > ul> li> a:hover {
+    background-color: #ccc;
+}
+.media-right > div> a > i {
+    opacity: 0;
+}
+.mh-comment-div:hover > div > div> a > .mh-commet-edit{
+     opacity: 1;
+}
+
+.mh-comment-list-full, .mh-comment-list {
+      margin-top: 10px;
+}
+
+/*  Setting comment: end */
+/* Comment: end */
+.mh-post-setting {
+    font-weight: bolder;
+    font-size: 12pt;
+    color: #A9A7A7;
+}
+.hasDatepicker{
+    padding: 5px;
+}

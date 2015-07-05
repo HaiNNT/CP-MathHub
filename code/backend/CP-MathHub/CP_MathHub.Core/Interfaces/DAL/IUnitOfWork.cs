@@ -12,5 +12,6 @@ namespace CP_MathHub.Core.Interfaces.DAL
         void Save();
         IRepository<TEntity> Repository<TEntity>() where TEntity : class;
         void Dispose(bool disposed);
+        void TurnOffLazzyLoading();
     }
 }

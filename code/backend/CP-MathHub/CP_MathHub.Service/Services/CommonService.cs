@@ -122,6 +122,20 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        //Get All Tags
+        public List<Tag> GetTags(int skip)
+        {
+            List<Tag> list = new List<Tag>();
+            list = dal.Repository<Tag>()
+                                .Get(
+                                (p=>p.MainPosts.OfType<Discussion>().Count() > 0),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Discussion.Integer.TagPagingDefaultTake
+                                ).ToList();
+            return list;
+        }
         public List<Tag> GetTags(int skip, string tab)
         {
             List<Tag> list = new List<Tag>();
@@ -182,6 +196,24 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
+        //Search Tag
+        public List<Tag> SearchTags(string searchString, int skip)
+        {
+            List<Tag> list = new List<Tag>();
+            if (searchString != null)
+            {
+                IEnumerable<Tag> ienum = dal.Repository<Tag>()
+                               .Get(a => a.Name.ToLower().Contains(searchString.ToLower()),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Name",
+                                    skip
+                               );
+                ienum.Distinct();
+                list = ienum.ToList();
+            }
+            return list;
+        }
+
         public bool Bookmark(int id, User user)
         {
             MainPost post = dal.Repository<MainPost>().GetById(id);
@@ -324,6 +356,13 @@ namespace CP_MathHub.Service.Services
         {
             dal.Repository<Comment>().Insert(comment);
             dal.Save();
+        }
+        public List<Comment> GetComments(int postId)
+        {
+            return dal.Repository<Comment>().Table
+                                            .Where(c => c.PostId == postId)
+                                            .OrderBy(c => c.CreatedDate)
+                                            .ToList();
         }
     }
 }

@@ -1,0 +1,7 @@
+﻿@model ICollection<CP_MathHub.Models.Common.CommentViewModel>
+@using CP_MathHub.Models.Common
+
+@foreach (CommentViewModel model in Model)
+{
+    @Html.Partial("../CommonWidget/_CommentItemPartialView", model)
+}

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/24/2015 18:50:48
+-- Date Created: 07/02/2015 21:45:04
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -722,9 +722,9 @@ GO
 
 -- Creating table 'Posts_Article'
 CREATE TABLE [dbo].[Posts_Article] (
-    [GroupId] int  NOT NULL,
     [PublicDate] datetime  NULL,
     [SeriesId] int  NULL,
+    [GroupId] int  NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -1587,21 +1587,6 @@ ON [dbo].[Participations]
     ([GroupId]);
 GO
 
--- Creating foreign key on [GroupId] in table 'Posts_Article'
-ALTER TABLE [dbo].[Posts_Article]
-ADD CONSTRAINT [FK_GroupArticle]
-    FOREIGN KEY ([GroupId])
-    REFERENCES [dbo].[Groups]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_GroupArticle'
-CREATE INDEX [IX_FK_GroupArticle]
-ON [dbo].[Posts_Article]
-    ([GroupId]);
-GO
-
 -- Creating foreign key on [ReporterId] in table 'Reports'
 ALTER TABLE [dbo].[Reports]
 ADD CONSTRAINT [FK_ReportUser]
@@ -1912,6 +1897,21 @@ GO
 CREATE INDEX [IX_FK_UserActivity]
 ON [dbo].[Activities]
     ([User_Id]);
+GO
+
+-- Creating foreign key on [GroupId] in table 'Posts_Article'
+ALTER TABLE [dbo].[Posts_Article]
+ADD CONSTRAINT [FK_GroupArticle]
+    FOREIGN KEY ([GroupId])
+    REFERENCES [dbo].[Groups]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GroupArticle'
+CREATE INDEX [IX_FK_GroupArticle]
+ON [dbo].[Posts_Article]
+    ([GroupId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'

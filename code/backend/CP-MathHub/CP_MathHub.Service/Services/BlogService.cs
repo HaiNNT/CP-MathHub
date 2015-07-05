@@ -32,7 +32,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Article>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -41,7 +41,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.SubcribedArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -50,7 +50,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.FriendArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -59,7 +59,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.BookmarkArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -68,7 +68,25 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.HotArticle(),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Blog.String.HomeFeatureTab:
+                    list = dal.Repository<Article>()
+                                .Get(
+                                    ExpressionHelper.BlogHelper.FeatureArticle(),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Blog.String.HomeRecomendedTab:
+                    list = dal.Repository<Article>()
+                                .Get(
+                                    ExpressionHelper.BlogHelper.RecomendedArticle(user),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -77,7 +95,7 @@ namespace CP_MathHub.Service.Services
                                 .Get(
                                     ExpressionHelper.BlogHelper.MyArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
@@ -85,12 +103,59 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Article>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
             }
             return list;
+        }
+
+        public Article GetArticle(int id)
+        {
+            return dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
+        }
+
+        public void InsertArticle(Article article){
+            dal.Repository<Article>().Insert(article);
+            dal.Save();
+        }
+
+        public List<Article> SearchArticle(int skip, string searchString)
+        {
+            List<Article> list = new List<Article>();
+            if (searchString != null)
+            {
+                IEnumerable<Article> ienum = dal.Repository<Article>()
+                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip
+                               );
+                ienum.Distinct();
+                list = ienum.ToList();
+            }
+            return list;
+        }
+
+        public int CountSearchResult(string searchString)
+        {
+            return dal.Repository<Article>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+        }
+
+        public void IncludeReplyForComments(List<Comment> comments)
+        {
+            foreach (Comment comment in comments)
+            {
+                IncludeUserForComments(comment.Comments.ToList());
+            }
+        }
+        public void IncludeUserForComments(List<Comment> comments)
+        {
+            foreach (Comment comment in comments)
+            {
+                comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
+            }
         }
     }
 }

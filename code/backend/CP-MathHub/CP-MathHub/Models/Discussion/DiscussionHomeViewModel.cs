@@ -8,6 +8,6 @@ namespace CP_MathHub.Models.Discussion
     public class DiscussionHomeViewModel
     {
         public string Name { get; set; }
-        public ICollection<DiscussionPreviewViewModel> Items { get; set; }
+        public ICollection<DiscussionCategoryViewModel> Items { get; set; }
     }
 }

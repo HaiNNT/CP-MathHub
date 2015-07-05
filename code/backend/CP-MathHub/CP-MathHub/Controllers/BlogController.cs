@@ -28,7 +28,7 @@ namespace CP_MathHub.Controllers
         }
         // GET: Blog
         public ActionResult Index(string tab = Constant.Blog.String.HomeDefaultTab
-                                    , int page = 0)
+                                    , int page = 0, string view = Constant.Blog.String.GridView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
             List<Article> articles = bService.GetArticles(tab, skip);
@@ -55,26 +55,28 @@ namespace CP_MathHub.Controllers
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
                 ViewBag.Tab = tab;
-                ViewBag.System = "blog";
+                ViewBag.System = Constant.String.BlogSystem;
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
             {
-                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
 
-        //Get: MyBlog
+        //Get: Blog/MyBlog
         [HttpGet]
-        public ActionResult MyBlog(int page = 0)
+        public ActionResult MyBlog(string tab = Constant.Blog.String.MyArticleTab
+                                    , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
 
-            List<Article> articles = bService.GetArticles(Constant.Blog.String.MyArticleTab, skip);
+
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =
-                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>)
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
             foreach (ArticlePreviewViewModel q in articlePreviewVMs)
@@ -85,13 +87,200 @@ namespace CP_MathHub.Controllers
             if (page == 0)
             {
                 MyBlogViewModel myBlogVM = new MyBlogViewModel();
-                myBlogVM.articles = articlePreviewVMs;
+                ViewBag.Tab = tab;
+                ViewBag.System = Constant.String.BlogSystem;
+                myBlogVM.Articles = articlePreviewVMs;
                 return View("Views/MyBlogView", myBlogVM);
             }
             else
             {
-                return PartialView("Partials/_MyArticleListPartialView", articlePreviewVMs);
+                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
             }
+        }
+
+        //Get: Blog/UserBlog
+        [HttpGet]
+        public ActionResult UserBlog(int userId = 1, string tab = Constant.Blog.String.MyArticleTab
+                                    , int page = 0, string view = Constant.Blog.String.ListView)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
+
+
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+
+            if (page == 0)
+            {
+                MyBlogViewModel myBlogVM = new MyBlogViewModel();
+                ViewBag.Tab = tab;
+                ViewBag.System = Constant.String.BlogSystem;
+                myBlogVM.Articles = articlePreviewVMs;
+                return View("Views/MyBlogView", myBlogVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+            }
+        }
+
+        //Get: Blog/Search
+        [HttpGet]
+        public ActionResult Search(string searchString, int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.SearchArticle(skip, searchString);
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+            if (page == 0)
+            {
+                BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
+                blogHomeVM.Name = "Có " + bService.CountSearchResult(searchString)
+                                        + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
+                ViewBag.Tab = Constant.Blog.String.HomeSearchTab;
+                ViewBag.System = Constant.String.BlogSystem;
+                ViewBag.TabParam = searchString;
+                blogHomeVM.Articles = articlePreviewVMs;
+                return View("Views/BlogHomeView", blogHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+            }
+        }
+
+        public ActionResult Tag(string tag = "", int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            //Tag tagEntity = cService.GetTag(tag);
+            List<Article> articles = bService.GetArticles(tag, skip);
+            ICollection<ArticlePreviewViewModel> articlePreviewVMs =
+                    articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                    .ToList();
+            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+
+            if (page == 0)
+            {
+                BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
+                blogHomeVM.Name = "Câu hỏi có thẻ \"" + tag + "\"";
+                ViewBag.Tab = Constant.Blog.String.HomeTagTab;
+                ViewBag.System = Constant.String.BlogSystem;
+                ViewBag.TabParam = tag;
+                blogHomeVM.Articles = articlePreviewVMs;
+                return View("Views/BlogHomeView", blogHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+            }
+        }
+
+        //Get: Blog/Detail
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
+            Article article = bService.GetArticle(id);
+            bService.IncludeUserForComments(article.Comments.ToList());
+            bService.IncludeReplyForComments(article.Comments.ToList());
+
+            articleDetailVM = Mapper.Map<Article, ArticleDetailViewModel>(article);
+            //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
+            //        .ToList();
+
+
+            ViewBag.System = Constant.String.BlogSystem;
+
+            return View("Views/BlogDetailView", articleDetailVM);
+        }
+
+        //Get: Blog/Create
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ArticleCreateViewModel model = new ArticleCreateViewModel();
+            model.Privacy = MainPostPrivacyEnum.Everyone;
+            ViewBag.System = Constant.String.BlogSystem;
+            return View("Views/BlogCreateView", model);
+        }
+
+        //Post: Blog/Create
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Create(ArticleCreateViewModel model)
+        {
+            Article article = new Article();
+            article = Mapper.Map<ArticleCreateViewModel, Article>(model);
+            article.UserId = cService.GetLoginUser().Id;
+            article.Tags = cService.GetTags(model.TagIds);
+
+            bService.InsertArticle(article);
+            //Console.WriteLine(questionVM.Tags[0]);
+            if (article.Id != 0)
+            {
+                return RedirectToAction("MyBlog");
+            }
+            else
+            {
+                return View("Views/Error");
+            }
+        }
+
+        //Post: Blog/Bookmark
+        [HttpPost]
+        public bool Bookmark(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Bookmark(id, user);
+        }
+
+        //Post: Blog/PostComment
+        [HttpPost]
+        public ActionResult PostComment(int postId, string content, string type = "comment")
+        {
+            Comment comment = new Comment();
+            comment.Content = content;
+            comment.UserId = cService.GetLoginUser().Id;
+            comment.CreatedDate = DateTime.Now;
+            comment.LastEditedDate = comment.CreatedDate;
+            comment.PostId = postId;
+
+            cService.CommentPost(comment);
+            List<Comment> comments = cService.GetComments(postId);
+            ICollection<CommentViewModel> commentsVM;
+            switch (type)
+            {
+                case "comment":
+                    bService.IncludeUserForComments(comments);
+                    bService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                case "reply":
+                    bService.IncludeUserForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
+                default:
+                    bService.IncludeUserForComments(comments);
+                    bService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+            }
+
+
         }
     }
 }

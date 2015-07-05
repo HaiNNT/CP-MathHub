@@ -1,8 +1,61 @@
 ﻿@model CP_MathHub.Models.Blog.MyBlogViewModel
 @{
-    ViewBag.Title = "MyBlogView";
+    ViewBag.Title = ViewBag.Tab;
+    ViewBag.MhPage = "blog-my";
+    ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Blog/Layouts/_MyBlogLayout.cshtml";
 }
 
-<h2>MyBlogView</h2>
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
+            <h3></h3>
+        </div>
+        <div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+            <a href="@Url.Action("Index")" class="btn btn-default">
+                <i class="fa fa-users mh-home-button"></i>
+                Bài viết cộng đồng
+            </a>
+            <a href="@Url.Action("MyBlog")" class="btn btn-default active">
+                <i class="fa fa-user mh-home-button"></i>
+                Bài viết của tôi
+            </a>
+        </div>
+    </div>
+</div>
 
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Type", "mine" } })
+
+<div class="mh-page-view">
+    <button title="Lưới" type="button" class="btn btn-default" onclick="">
+        <i class="fa fa-th-large"></i>
+    </button>
+    <button title="Danh sách" type="button" class="btn btn-default active">
+        <i class="fa fa-th-list"></i>
+    </button>
+</div>
+
+<div class="mh-list-contents" id="list-articles">
+    @Html.Partial("Partials/_ArticleListPartialView", Model.Articles)
+</div>
+
+<input id="tab" type="hidden" value="@ViewBag.Tab" />
+<input id="system" type="hidden" value="@ViewBag.System" />
+<input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+@section LeftPanel
+{
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}
+@section RightPanel
+{
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}
