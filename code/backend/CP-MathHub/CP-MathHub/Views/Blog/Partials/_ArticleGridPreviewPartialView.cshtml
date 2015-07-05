@@ -7,25 +7,13 @@
             <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
             <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
         </div>
-        <div class="col-xs-3 col-sm-2 mh-blog-setting">
-            <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="fa fa-angle-down mh-post-setting"></i>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="">Báo cáo vi phạm</a></li>
-                        <li><a href="">Chỉnh sửa bài viết</a></li>
-                        <li><a href="">Đóng bài viết</a></li>
-                        <li><a href="">Xóa bài viết</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+
+        @Html.Partial("../CommonWidget/_PostSettingPartialView")
+
     </div>
     <div class="mh-blog-user">
         <div class="row mh-row-time">
-            <span>@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, ViewBag.CreatedDateType)</span>
+            <span>@Html.PostCreatedTime(Model.CreatedDate, (string)ViewBag.CreatedDateType)</span>
         </div>
         <div class="row mh-row-info">
             <div class="col-xs-2">
@@ -44,7 +32,7 @@
         </div>
     </div>
     <div class="content">
-            @Html.Raw(Model.Content)
+        @Html.Raw(Model.Content)
     </div>
     <div class="readmore">
         <a href="@Url.Action("Detail", new {id=Model.Id})">Xem thêm »</a>

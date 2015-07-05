@@ -58,11 +58,15 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.BlogSystem;
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
+                blogHomeVM.View = view;
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
             {
-                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+                if (view == Constant.Blog.String.GridView)
+                    return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+                else
+                    return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
             }
         }
 
@@ -90,11 +94,16 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = tab;
                 ViewBag.System = Constant.String.BlogSystem;
                 myBlogVM.Articles = articlePreviewVMs;
+                myBlogVM.View = view;
+                //myBlogVM.Url = Request.Url.PathAndQuery;
                 return View("Views/MyBlogView", myBlogVM);
             }
             else
             {
-                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                if (view == Constant.Blog.String.ListView)
+                    return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                else
+                    return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
 
@@ -104,7 +113,7 @@ namespace CP_MathHub.Controllers
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
-            List<Article> articles = bService.GetArticles(tab, skip);
+            List<Article> articles = bService.GetArticles(userId, tab, skip);
 
 
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =
@@ -203,7 +212,7 @@ namespace CP_MathHub.Controllers
             //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
             //        .ToList();
 
-
+            bService.IncreaseViewArticle(article);
             ViewBag.System = Constant.String.BlogSystem;
 
             return View("Views/BlogDetailView", articleDetailVM);

@@ -10,17 +10,17 @@
             <a href="" class="mh-media-comment-user">@Model.Username</a>
             <span>@Model.Content</span>
         </div>
-        <div class="">
+        <div>
             <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
-            -
+            <span class="mh-comment-separator">-</span>
             <a href="">Trả lời</a>
             -
             <a href="" title="Lượt thích" class="mh-comment-like">
                 <i class="fa fa-thumbs-o-up"></i>
-                @Model.Like
+                <span class="like">@Model.Like</span>
             </a>
             -
-            <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+            <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
         </div>
         @if (Model.Comments.Count > 3)
         {

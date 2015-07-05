@@ -1,0 +1,48 @@
+﻿@using CP_MathHub.Entity
+@using CP_MathHub.Service.Helpers
+<div class="col-xs-3 col-sm-2 mh-posts-setting">
+    <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="fa fa-angle-down mh-post-setting-icon"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a data-toggle="modal" data-target="#report-post">
+                        Báo cáo vi phạm
+                    </a>
+                </li>
+                <li><a href="#">Chỉnh sửa bài viết</a></li>
+                <li><a href="">Đóng bài viết</a></li>
+                <li><a href="">Xóa bài viết</a></li>
+            </ul>
+            <div>
+                <!-- Modal: start -->
+                <div id="report-post" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mh-radio">
+                                    @Html.RadioListForReporttypeEnum("reportName")
+                                </div>
+                                <div class="mh-report-cause">
+                                    <label>Mô tả:</label><br />
+                                    <input type="text" placeholder="Nhập mô tả..." />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Modal: end -->
+            </div>
+        </li>
+    </ul>
+</div>
+
