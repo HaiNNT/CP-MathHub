@@ -29,6 +29,14 @@ function hotArticleSlideShow(){
 				interval = setInterval(function () { slider.next(); }, 5000);
 			});
 		});
+		$(".mh-blog-setting").each(function () {
+		    $(this).mouseenter(function () {
+		        clearInterval(interval);
+		    });
+		    $(this).mouseleave(function () {
+		        interval = setInterval(function () { slider.next(); }, 5000);
+		    });
+		});
 }
 
 /*
@@ -152,6 +160,32 @@ function unBookmark(id, type) {
 	  })
 	  .fail(function () {
 		  alert("fail error");
+	  });
+}
+
+/*
+  Like a main post
+*/
+function like(id, like) {
+    var url = "/Blog/Like";
+    var data = { id: id };
+    like = $(like);
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+	  .done(function (msg) {
+	      if (msg) {
+	          like.html("Bỏ thích");
+	          like.attr("onclick", "unLike(" + id + ",this)");
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
 	  });
 }
 

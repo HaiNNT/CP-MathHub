@@ -142,8 +142,10 @@ namespace CP_MathHub.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            QuestionCreateViewModel model = new QuestionCreateViewModel();
+            model.Privacy = MainPostPrivacyEnum.Everyone;
             ViewBag.System = Constant.String.QuestionSystem;
-            return View("Views/QuestionCreateView");
+            return View("Views/QuestionCreateView", model);
         }
 
         //Post: Question/Create
@@ -322,6 +324,13 @@ namespace CP_MathHub.Controllers
 
             cService.CommentPost(comment);
             return PartialView("Partials/_CommentItemPartialView", comment);
+        }
+
+        //Post: Question/EditComment
+        [HttpPost]
+        public ActionResult EditComment()
+        {
+            return null;
         }
 
         //Post: Question/AnswerQuestion

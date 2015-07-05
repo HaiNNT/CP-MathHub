@@ -73,10 +73,23 @@ namespace CP_MathHub.Core.Interfaces.Services
         bool Bookmark(int id, User user);
 
         /// <summary>
+        /// Like/Unlike a MainPost
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool Like(int id, int userId);
+
+        /// <summary>
         /// Get an entity User that logging in with current session
         /// </summary>
         /// <returns></returns>
         User GetLoginUser();
+
+        /// <summary>
+        /// Get an entity User by id
+        /// </summary>
+        /// <returns></returns>
+        User GetUser(int userId);
 
         /// <summary>
         /// Get list user by Name with tab filter
@@ -102,6 +115,14 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="postId"></param>
         /// <returns></returns>
         List<Comment> GetComments(int postId);
+
+        /// <summary>
+        /// Get Vote by post and user
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Vote GetVote(int postId, int userId);
 
     }
 }

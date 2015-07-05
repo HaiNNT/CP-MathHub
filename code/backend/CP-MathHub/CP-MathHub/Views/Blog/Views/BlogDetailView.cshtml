@@ -102,7 +102,7 @@
             </div>
         </div>
         <div class="mh-pre-comment">
-            <a href="">Thích</a>
+            <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
             -
             <a href="">Bình luận</a>
             -

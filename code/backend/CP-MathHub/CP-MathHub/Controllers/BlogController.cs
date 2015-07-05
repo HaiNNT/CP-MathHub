@@ -100,7 +100,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/UserBlog
         [HttpGet]
-        public ActionResult UserBlog(int userId = 1, string tab = Constant.Blog.String.MyArticleTab
+        public ActionResult UserBlog(int userId, string tab = Constant.Blog.String.MyArticleTab
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
@@ -281,6 +281,14 @@ namespace CP_MathHub.Controllers
             }
 
 
+        }
+
+        //Post: Blog/Like
+        [HttpPost]
+        public bool Like(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Like(id, user.Id);
         }
     }
 }
