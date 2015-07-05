@@ -1,7 +1,8 @@
 ﻿@model CP_MathHub.Models.Blog.MyBlogViewModel
+@using CP_MathHub.Core.Configuration
 @{
     ViewBag.Title = ViewBag.Tab;
-    ViewBag.MhPage = "blog-my";
+    ViewBag.MhPage = Constant.String.BlogMyPage;
     ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Blog/Layouts/_MyBlogLayout.cshtml";
 }
@@ -24,20 +25,34 @@
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Type", "mine" } })
+@Html.Partial("Partials/_NavPartialView")
 
 <div class="mh-page-view">
-    <button title="Lưới" type="button" class="btn btn-default" onclick="">
+    <a href="@Url.Action("MyBlog", new { @tab = ViewBag.Tab, @view = Constant.Blog.String.GridView })" title="Lưới" class="btn btn-default @(Model.View == Constant.Blog.String.GridView ? "active" : "")">
         <i class="fa fa-th-large"></i>
-    </button>
-    <button title="Danh sách" type="button" class="btn btn-default active">
+    </a>
+    <a href="@Url.Action("MyBlog", new { @tab = ViewBag.Tab, @view = Constant.Blog.String.ListView })" title="Danh sách" class="btn btn-default @(Model.View == Constant.Blog.String.ListView ? "active" : "")">
         <i class="fa fa-th-list"></i>
-    </button>
+    </a>
 </div>
 
-<div class="mh-list-contents" id="list-articles">
-    @Html.Partial("Partials/_ArticleListPartialView", Model.Articles)
-</div>
+@if (Model.View == Constant.Blog.String.ListView)
+{
+    <div class="mh-list-contents" id="list-articles">
+        @Html.Partial("Partials/_ArticleListPartialView", Model.Articles)
+    </div>
+}
+else
+{
+    <div class="mh-grid">
+        <div class="mh-grid-body">
+            <div class="row" id="list-articles">
+                @Html.Partial("Partials/_ArticleGridPartialView", Model.Articles)
+            </div>
+        </div>
+    </div>
+}
+
 
 <input id="tab" type="hidden" value="@ViewBag.Tab" />
 <input id="system" type="hidden" value="@ViewBag.System" />

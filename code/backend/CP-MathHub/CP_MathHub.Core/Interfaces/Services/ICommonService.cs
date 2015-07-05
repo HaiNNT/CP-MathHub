@@ -73,7 +73,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         bool Bookmark(int id, User user);
 
         /// <summary>
-        /// Like/Unlike a MainPost
+        /// Like/Unlike a Post
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

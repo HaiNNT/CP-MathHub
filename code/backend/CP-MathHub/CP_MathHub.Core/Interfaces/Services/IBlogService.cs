@@ -66,5 +66,17 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="comments"></param>
         void IncludeUserForComments(List<Comment> comments);
 
+        /// <summary>
+        /// Update an Article
+        /// </summary>
+        /// <param name="article"></param>
+        void UpdateArticle(Article article);
+
+        /// <summary>
+        /// Increase view num
+        /// </summary>
+        /// <param name="article"></param>
+        void IncreaseViewArticle(Article article);
+
     }
 }

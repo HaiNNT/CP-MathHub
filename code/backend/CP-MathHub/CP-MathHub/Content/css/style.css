@@ -950,11 +950,50 @@ footer > .container > .row {
 
 /*  Setting comment: end */
 /* Comment: end */
-.mh-post-setting {
+/* post setting: start*/
+.mh-post-setting-icon {
     font-weight: bolder;
     font-size: 12pt;
     color: #A9A7A7;
 }
+.mh-posts-setting > ul {
+    margin-right: 0px;
+    padding: 0px;
+} 
+.mh-posts-setting > ul > li {
+    list-style-type: none;
+} 
+.mh-posts-setting > ul > li > a:hover > i {
+    color: #333;
+} 
+.mh-posts-setting > ul > li.open > a > i {
+	color: #333 !important;
+}
+.mh-posts-setting > ul > li > ul > li >  a:hover {
+	background-color: #ccc;
+}
+.mh-posts-setting > ul > li > ul > li > a {
+    cursor: pointer;
+}
+/* Report popup*/
+.mh-report-cause > input {
+    padding: 5px;
+    width: 100%;
+}
+.modal-content {
+    color: #000;
+}
+/* Report popup*/
+/* post setting: end*/
+/*Create date:*/
 .hasDatepicker{
     padding: 5px;
+}
+/*Create date:*/
+.mh-comment-separator {
+    vertical-align: middle;
+    font-size: 7px;
+}
+.mh-comment-like:hover {
+    text-decoration: none;
 }

@@ -20,10 +20,10 @@
                 -
                 <a href="" title="Lượt thích" class="mh-comment-like">
                     <i class="fa fa-thumbs-o-up"></i>
-                    @reply.Like
+                    <span class="like">@reply.Like</span>
                 </a>
                 -
-                <span class="mh-time">@MhHtmlHelper.PostCreatedTime(reply.CreatedDate, "bình luận")</span>
+                <span class="mh-time">@Html.PostCreatedTime(reply.CreatedDate, "trả lời")</span>
             </div>
         </div>
         <div class="media-right">

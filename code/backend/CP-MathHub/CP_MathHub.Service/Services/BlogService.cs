@@ -21,7 +21,6 @@ namespace CP_MathHub.Service.Services
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
         }
-
         public List<Article> GetArticles(string tab, int skip)
         {
             User user = cService.GetLoginUser();
@@ -110,7 +109,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public List<Article> GetArticles(int userId, string tab, int skip)
         {
             User user = cService.GetUser(userId);
@@ -147,17 +145,14 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public Article GetArticle(int id)
         {
             return dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
         }
-
         public void InsertArticle(Article article){
             dal.Repository<Article>().Insert(article);
             dal.Save();
         }
-
         public List<Article> SearchArticle(int skip, string searchString)
         {
             List<Article> list = new List<Article>();
@@ -174,12 +169,10 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public int CountSearchResult(string searchString)
         {
             return dal.Repository<Article>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
         }
-
         public void IncludeReplyForComments(List<Comment> comments)
         {
             foreach (Comment comment in comments)
@@ -193,6 +186,16 @@ namespace CP_MathHub.Service.Services
             {
                 comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
+        }
+        public void UpdateArticle(Article article)
+        {
+            dal.Repository<Article>().Update(article);
+            dal.Save();
+        }
+        public void IncreaseViewArticle(Article article)
+        {
+            ++article.View;
+            UpdateArticle(article);
         }
     }
 }
