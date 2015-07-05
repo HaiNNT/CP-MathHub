@@ -16,7 +16,7 @@
                 <span>@reply.Content</span>
             </div>
             <div>
-                <a href="">Bỏ thích</a>
+                <a class="mh-like" onclick="like(@reply.Id, this)">@(reply.Liked ? "Bỏ thích" : "Thích")</a>
                 -
                 <a href="" title="Lượt thích" class="mh-comment-like">
                     <i class="fa fa-thumbs-o-up"></i>

@@ -17,6 +17,8 @@ namespace CP_MathHub.Core.Configuration
             public const string BlogSystem = "Blog";
             public const string DiscussionSystem = "Discussion";
             public const string AdminSystem = "Admin";
+
+            public const string QuestionHomePage = "question-home";
         }
 
         /// <summary>

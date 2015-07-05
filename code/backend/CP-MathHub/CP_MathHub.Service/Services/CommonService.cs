@@ -229,9 +229,32 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
+        public bool Like(int id, int userId)
+        {
+            if (GetVote(id, userId) == default(Vote))
+            {
+                Vote vote = new Vote();
+                vote.PostId = id;
+                vote.Type = VoteEnum.VoteUp;
+                vote.UserId = userId;
+                vote.VotedDate = DateTime.Now;
+                dal.Repository<Vote>().Insert(vote);
+
+                MainPost post = dal.Repository<MainPost>().GetById(id);
+                ++post.VoteUp;
+                dal.Repository<MainPost>().Update(post);
+                dal.Save();
+                return true;
+            }          
+            return false;
+        }
         public User GetLoginUser()
         {
             return aService.GetLoginUser();
+        }
+        public User GetUser(int userId)
+        {
+            return aService.GetUser(userId);
         }
         public List<User> GetUsers(int skip, string tab)
         {
@@ -363,6 +386,10 @@ namespace CP_MathHub.Service.Services
                                             .Where(c => c.PostId == postId)
                                             .OrderBy(c => c.CreatedDate)
                                             .ToList();
+        }
+        public Vote GetVote(int postId, int userId)
+        {
+            return dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
         }
     }
 }

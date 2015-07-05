@@ -29,5 +29,10 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == 56);
 
         }
+
+        public User GetUser(int userId)
+        {
+            return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == userId);
+        }
     }
 }

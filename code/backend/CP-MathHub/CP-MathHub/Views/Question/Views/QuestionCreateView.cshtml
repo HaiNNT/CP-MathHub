@@ -34,6 +34,16 @@
 
             </div>
         </div>
+        <div class="mh-create-privacy">
+            <div class="row">
+                <div class="col-sm-6 col-md-5 col-lg-4">
+                    @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
+                </div>
+                <div class="col-sm-6 col-md-7 col-lg-8">
+                    @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
+                </div>
+            </div>
+        </div>
         <div id="mh-input-tag-div">
             <label class="mh-create-label">Gắn thẻ cho câu hỏi: </label><br />
 
