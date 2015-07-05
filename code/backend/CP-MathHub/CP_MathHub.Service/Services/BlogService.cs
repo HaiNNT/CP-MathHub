@@ -194,5 +194,15 @@ namespace CP_MathHub.Service.Services
                 comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
         }
+        public void UpdateArticle(Article article)
+        {
+            dal.Repository<Article>().Update(article);
+            dal.Save();
+        }
+        public void IncreaseViewArticle(Article article)
+        {
+            ++article.View;
+            UpdateArticle(article);
+        }
     }
 }

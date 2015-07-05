@@ -196,22 +196,35 @@ namespace CP_MathHub.Service.Services
         }
         public bool Like(int id, int userId)
         {
-            if (GetVote(id, userId) == default(Vote))
+            try
             {
-                Vote vote = new Vote();
-                vote.PostId = id;
-                vote.Type = VoteEnum.VoteUp;
-                vote.UserId = userId;
-                vote.VotedDate = DateTime.Now;
-                dal.Repository<Vote>().Insert(vote);
+                Vote vote = GetVote(id, userId);
+                if (vote == default(Vote))
+                {
+                    vote = new Vote();
+                    vote.PostId = id;
+                    vote.Type = VoteEnum.VoteUp;
+                    vote.UserId = userId;
+                    vote.VotedDate = DateTime.Now;
+                    dal.Repository<Vote>().Insert(vote);
 
-                MainPost post = dal.Repository<MainPost>().GetById(id);
-                ++post.VoteUp;
-                dal.Repository<MainPost>().Update(post);
-                dal.Save();
-                return true;
-            }          
-            return false;
+                    Post post = dal.Repository<Post>().GetById(id);
+                    ++post.VoteUp;
+                    dal.Repository<Post>().Update(post);
+                    dal.Save();
+                    return true;
+                }
+                else
+                {
+                    dal.Repository<Vote>().Delete(vote);
+                    dal.Save();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
         public User GetLoginUser()
         {
@@ -307,7 +320,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<User>()
                                 .Get(
                                     Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Expert").Body, 
+                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Expert").Body,
                                                                         ExpressionHelper.UserHelper.ContainName(name).Body)),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
@@ -319,7 +332,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<User>()
                                 .Get(
                                      Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Moderator").Body, 
+                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Moderator").Body,
                                                                         ExpressionHelper.UserHelper.ContainName(name).Body)),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",

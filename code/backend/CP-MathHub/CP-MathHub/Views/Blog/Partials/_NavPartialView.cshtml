@@ -1,7 +1,7 @@
 ﻿@using CP_MathHub.Core.Configuration
 <div class="mh-home">
     <div class="row">
-        @if (ViewBag.MhPage == "blog-home")
+        @if (ViewBag.MhPage == Constant.String.BlogHomePage || ViewData["Page"] == Constant.String.BlogHomePage)
         {
             <div class="col-xs-12 col-md-7 mh-home-tab">
                 <a href="@Url.Action("Index", new { @tab = Constant.Blog.String.HomeHomeTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeHomeTab ? "active" : "")">
@@ -27,7 +27,7 @@
                 }
             </div>
         }
-        else if(ViewBag.MhPage == "blog-my")
+        else if (ViewBag.MhPage == Constant.String.BlogMyPage || ViewData["Page"] == Constant.String.BlogMyPage)
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
                 <a href="@Url.Action("MyBlog", new { @tab = Constant.Blog.String.MyArticleTab})" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.MyArticleTab ? "active" : "")">
@@ -55,7 +55,7 @@
                 }
             </div>
         }
-        else if (ViewBag.MhPage == "blog-detail")
+        else if (ViewBag.MhPage == Constant.String.BlogDetailPage || ViewData["Page"] == Constant.String.BlogDetailPage)
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
                 <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.MyArticleTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.MyArticleTab ? "active" : "")">Bài viết của @ViewData["User"]</a>

@@ -29,7 +29,7 @@ function hotArticleSlideShow(){
 				interval = setInterval(function () { slider.next(); }, 5000);
 			});
 		});
-		$(".mh-blog-setting").each(function () {
+		$(".mh-posts-setting").each(function () {
 		    $(this).mouseenter(function () {
 		        clearInterval(interval);
 		    });
@@ -178,8 +178,10 @@ function like(id, like) {
     })
 	  .done(function (msg) {
 	      if (msg) {
-	          like.html("Bỏ thích");
-	          like.attr("onclick", "unLike(" + id + ",this)");
+	          if(like.html() == "Thích")
+	              like.html("Bỏ thích");
+	          else
+	              like.html("Thích");
 	      } else {
 	          alert("false");
 	      }
@@ -259,6 +261,29 @@ function commentPost() {
 	});
 }
 
+/*
+    Get facebook share number
+*/
+function getFacebookShareNum() {
+    $(".mh-share-num").each(function () {
+        var item = $(this);
+        var url = "http://graph.facebook.com/";
+        var id = item.attr("mh-url");
+        $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "json",
+            data: {id : id}
+        })
+     .done(function (msg) {
+         item.html(msg.shares);
+     })
+     .fail(function () {
+         alert("fail error");
+     });
+    });
+}
+
 $(document).ready(function () {
 	switch ($("#mh-page").val()) {
 		case "blog-home":
@@ -273,6 +298,7 @@ $(document).ready(function () {
 			break;
 	    case "blog-detail":
 	        commentPost();
+	        getFacebookShareNum();
 			break;
 		default:
 			hotArticleSlideShow();

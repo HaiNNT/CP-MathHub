@@ -1,8 +1,9 @@
 ﻿@model CP_MathHub.Models.Blog.ArticleDetailViewModel
 @using CP_MathHub.Service.Helpers
+@using CP_MathHub.Core.Configuration
 @{
     ViewBag.Title = Model.Title;
-    ViewBag.MhPage = "blog-detail";
+    ViewBag.MhPage = Constant.String.BlogDetailPage;
     ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Blog/Layouts/_BlogDetailLayout.cshtml";
 }
@@ -25,7 +26,7 @@
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Type", "user" } }, new ViewDataDictionary { {"UserId", Model.UserInfo.Id}, {"User", Model.UserInfo.Username}})
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary {{"Page", ViewBag.MhPage}, {"UserId", Model.UserInfo.Id}, {"User", Model.UserInfo.Username}})
 
 <div class="mh-show-detail-contents">
     <div class="mh-show-detail-content">
@@ -36,18 +37,62 @@
                     <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
                     <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
                 </div>
-                <div class="col-xs-3 col-sm-2 mh-blog-setting">
+                <div class="col-xs-3 col-sm-2 mh-posts-setting">
                     <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-angle-down mh-post-setting"></i>
+                                <i class="fa fa-angle-down mh-post-setting-icon"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">Báo cáo vi phạm</a></li>
-                                <li><a href="">Chỉnh sửa bài viết</a></li>
+                                <li>
+                                    <a data-toggle="modal" data-target="#report-post">
+                                        Báo cáo vi phạm
+                                    </a>
+                                </li>
+                                <li><a href="#">Chỉnh sửa bài viết</a></li>
                                 <li><a href="">Đóng bài viết</a></li>
                                 <li><a href="">Xóa bài viết</a></li>
                             </ul>
+                            <div>
+                                <!-- Modal: start -->
+                                <div id="report-post" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                    <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> Bà xã em number 1
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox"> Milu sủa gâu gâu
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox"> hello world
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox"> The world is shit
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox"> Lý do khác
+                                                    </label><br />
+                                                </div>
+                                                <div class="mh-report-cause">
+                                                    <label>Mô tả:</label><br />
+                                                    <input type="text" placeholder="Nhập mô tả..." />
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- Modal: end -->
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -78,12 +123,12 @@
                     <i class="fa fa-eye"></i>
                     @Model.View
                 </a>
-                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=https://www.google.com/">
                     <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
                     <div class="mh-share-facebook">
                         <div class="pluginCountButton pluginCountNum">
-                            <span class="pluginCountTextConnected">123</span>
-                            <span class="pluginCountTextDisconnected">123</span>
+                            <span mh-url="https://www.google.com/" class="mh-share-num pluginCountTextConnected">123</span>
+                            <span mh-url="https://www.google.com/" class="mh-share-num pluginCountTextDisconnected">123</span>
                         </div>
                         <div class="pluginCountButtonNub">
                             <s></s>

@@ -1,7 +1,8 @@
 ﻿@model CP_MathHub.Models.Question.QuestionEditViewModel
+           @using CP_MathHub.Core.Configuration
 @{
     ViewBag.Title = "Chỉnh Sửa " + Model.Title;
-    ViewBag.MhPage = "question-edit";
+    ViewBag.MhPage = Constant.String.QuestionCreatePage;
     Layout = "~/Views/Question/Layouts/_QuestionEditLayout.cshtml";
 }
 
