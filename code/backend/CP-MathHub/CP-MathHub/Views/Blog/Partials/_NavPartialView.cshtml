@@ -1,14 +1,17 @@
-﻿<div class="mh-home">
+﻿@using CP_MathHub.Core.Configuration
+<div class="mh-home">
     <div class="row">
-        @if (ViewData["Type"] == "home")
+        @if (ViewBag.MhPage == "blog-home")
         {
             <div class="col-xs-12 col-md-7 mh-home-tab">
-                <a href="@Url.Action("Index", new { @tab = "Home" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Home" ? "active" : "")">
+                <a href="@Url.Action("Index", new { @tab = Constant.Blog.String.HomeHomeTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeHomeTab ? "active" : "")">
                     <i class="fa fa-home mh-home-button"></i>
                 </a>
-                <a href="@Url.Action("Index", new { @tab = "Feature" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Feature" ? "active" : "")">Đặc sắc</a>
-                <a href="@Url.Action("Index", new { @tab = "Recomended" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Recomended" ? "active" : "")">Đề xuất</a>
-                <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                <a href="@Url.Action("Index", new { @tab = Constant.Blog.String.HomeFeatureTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeFeatureTab ? "active" : "")">Đặc sắc</a>
+                <a href="@Url.Action("Index", new { @tab = Constant.Blog.String.HomeRecomendedTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeRecomendedTab ? "active" : "")">Đề xuất</a>
+                @if (ViewBag.MhPage != "blog-create") {
+                    <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                }
             </div>
             <div class="col-xs-12 col-md-5 mh-page-search">
                 @using (Html.BeginForm("Search", "Blog", FormMethod.Get))
@@ -24,16 +27,19 @@
                 }
             </div>
         }
-        else if(ViewData["Type"] == "mine")
+        else if(ViewBag.MhPage == "blog-my")
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
-                <a href="@Url.Action("MyBlog", new { @tab = "Mine" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">
+                <a href="@Url.Action("MyBlog", new { @tab = Constant.Blog.String.MyArticleTab})" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.MyArticleTab ? "active" : "")">
                     <i class="fa fa-user mh-home-button"></i>
                 </a>
-                <a href="@Url.Action("MyBlog", new { @tab = "Subcribe" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Subcribe" ? "active" : "")">Subscribe Blog</a>
-                <a href="@Url.Action("MyBlog", new { @tab = "Bookmark" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích</a>
-                <a href="@Url.Action("MyBlog", new { @tab = "Friend" })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Friend" ? "active" : "")">Bài viết bạn bè</a>
-                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                <a href="@Url.Action("MyBlog", new { @tab = Constant.Blog.String.HomeSubcribeTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeSubcribeTab ? "active" : "")">Subscribe Blog</a>
+                <a href="@Url.Action("MyBlog", new { @tab = Constant.Blog.String.HomeBookmarkTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeBookmarkTab ? "active" : "")">Bài viết yêu thích</a>
+                <a href="@Url.Action("MyBlog", new { @tab = Constant.Blog.String.HomeFriendTab })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeFriendTab ? "active" : "")">Bài viết bạn bè</a>
+                @if (ViewBag.MhPage != "blog-create")
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                }
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">
                 @using (Html.BeginForm("Search", "Blog", FormMethod.Get))
@@ -49,12 +55,15 @@
                 }
             </div>
         }
-        else
+        else if (ViewBag.MhPage == "blog-detail")
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
-                <a href="@Url.Action("UserBlog", new { @tab = "Mine", @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Mine" ? "active" : "")">Bài viết của @ViewData["User"]</a>
-                <a href="@Url.Action("UserBlog", new { @tab = "Subcribe", @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == "Bookmark" ? "active" : "")">Bài viết yêu thích của @ViewData["User"]</a>
-                <a class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.MyArticleTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.MyArticleTab ? "active" : "")">Bài viết của @ViewData["User"]</a>
+                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.HomeBookmarkTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeBookmarkTab ? "active" : "")">Bài viết yêu thích của @ViewData["User"]</a>
+                @if (ViewBag.MhPage != "blog-create")
+                {
+                    <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>
+                }
             </div>
             <div class="col-xs-12 col-md-4 mh-page-search">
                 @using (Html.BeginForm("Search", "Blog", FormMethod.Get))

@@ -14,5 +14,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         User GetLoginUser();
+
+        /// <summary>
+        /// Get an entity User by id
+        /// </summary>
+        /// <returns></returns>
+        User GetUser(int userId);
     }
 }

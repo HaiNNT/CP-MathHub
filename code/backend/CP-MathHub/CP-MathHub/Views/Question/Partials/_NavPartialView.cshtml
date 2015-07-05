@@ -1,12 +1,13 @@
-﻿<div class="mh-home">
+﻿@using CP_MathHub.Core.Configuration
+<div class="mh-home">
     <div class="row">
         <div class="col-xs-12 col-md-7 mh-home-tab">
-            @Html.ActionLink("Mới nhất", "Index", new { @tab = "Newest" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Newest" ? "active" : "") })
-            @Html.ActionLink("Hot", "Index", new { @tab = "Hot" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Hot" ? "active" : "") })
-            @Html.ActionLink("Chưa trả lời", "Index", new { @tab = "Unanswered" }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Unanswered" ? "active" : "") })
-            @Html.ActionLink("Thẻ", "Tags", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "Tag" ? "active" : "") })
-            @Html.ActionLink("Người dùng", "Users", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == "User" ? "active" : "") })
-            @if (ViewBag.Tab != "Create") { 
+            @Html.ActionLink("Mới nhất", "Index", new { @tab = Constant.Question.String.HomeNewestTab }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeNewestTab ? "active" : "") })
+            @Html.ActionLink("Hot", "Index", new { @tab = Constant.Question.String.HomeHotTab }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeHotTab ? "active" : "") })
+            @Html.ActionLink("Chưa trả lời", "Index", new { @tab = Constant.Question.String.HomeUnAnsweredTab }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeUnAnsweredTab ? "active" : "") })
+            @Html.ActionLink("Thẻ", "Tags", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeTagTab ? "active" : "") })
+            @Html.ActionLink("Người dùng", "Users", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeUserTab ? "active" : "") })
+            @if (ViewBag.MhPage != "question-create") { 
                 <a href="@Url.Action("Create", "Question")" class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
             }
         </div>
