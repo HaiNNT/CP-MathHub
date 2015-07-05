@@ -11,6 +11,7 @@ using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Discussion;
 using CP_MathHub.Entity;
 using AutoMapper;
+using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.Controllers
 {
@@ -278,7 +279,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Discussion/PostComment
         [HttpPost]
-        public ActionResult PostComment(int postId, string content = "")
+        public ActionResult PostComment(int postId, string content, string type = "comment")
         {
             Comment comment = new Comment();
             comment.Content = content;
@@ -288,7 +289,25 @@ namespace CP_MathHub.Controllers
             comment.PostId = postId;
 
             cService.CommentPost(comment);
-            return PartialView("Partials/_CommentItemPartialView", comment);
+            List<Comment> comments = cService.GetComments(postId);
+            ICollection<CommentViewModel> commentsVM;
+            switch (type)
+            {
+                case "comment":
+                    dService.IncludeUserForComments(comments);
+                    dService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                case "reply":
+                    dService.IncludeUserForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
+                default:
+                    dService.IncludeUserForComments(comments);
+                    dService.IncludeReplyForComments(comments);
+                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+            }
         }
         //Post: Blog/Like
         [HttpPost]

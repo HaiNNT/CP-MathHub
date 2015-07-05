@@ -279,8 +279,6 @@ namespace CP_MathHub.Controllers
                     commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
                     return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
             }
-
-
         }
 
         //Post: Blog/Like

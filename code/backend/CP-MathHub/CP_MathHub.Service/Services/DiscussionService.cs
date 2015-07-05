@@ -145,6 +145,13 @@ namespace CP_MathHub.Service.Services
                 comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
         }
+        public void IncludeReplyForComments(List<Comment> comments)
+        {
+            foreach (Comment comment in comments)
+            {
+                IncludeUserForComments(comment.Comments.ToList());
+            }
+        }
         public Discussion GetDiscussion(int id)
         {
             return dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");

@@ -94,6 +94,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         Discussion GetDiscussion(int id);
 
         /// <summary>
+        /// Include replys for comments
+        /// </summary>
+        /// <param name="comments"></param>
+        void IncludeReplyForComments(List<Comment> comments);
+
+        /// <summary>
         /// <summary>
         /// Delete Discussion
         /// </summary>
