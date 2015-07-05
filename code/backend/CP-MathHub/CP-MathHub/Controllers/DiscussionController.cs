@@ -48,6 +48,28 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_DiscussionListTagPartialView", discussioncategoryVM);
             }
         }
+        //Get: CategoryIndex
+        public ActionResult CategoryIndex(int tagId, int page = 0)
+        {
+            int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
+            List<Discussion> discussions = dService.GetDiscussionCategorys(tagId,skip);
+            ICollection<DiscussionTagPreviewViewModel> discussionTagPreviewVM =
+                discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
+                .ToList();
+
+            if (page == 0)
+            {
+                DiscussionTagHomeViewModel discussionTagHomeVM = new DiscussionTagHomeViewModel();
+                discussionTagHomeVM.Name = "THẢO LUẬN";
+                ViewBag.System = Constant.String.DiscussionSystem;
+                discussionTagHomeVM.Items = discussionTagPreviewVM;
+                return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
+            }
+            else
+            {
+                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionTagPreviewVM);
+            }
+        }
         //Tag
         public ActionResult Tag(int page = 0)
         {
@@ -267,6 +289,13 @@ namespace CP_MathHub.Controllers
 
             cService.CommentPost(comment);
             return PartialView("Partials/_CommentItemPartialView", comment);
+        }
+        //Post: Blog/Like
+        [HttpPost]
+        public bool Like(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Like(id, user.Id);
         }
     }
 }

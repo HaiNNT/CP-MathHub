@@ -22,6 +22,14 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Discussion> GetDiscussions(int authorId, int skip = 0);
 
         /// <summary>
+        /// Get discusstionCategorys
+        /// </summary>
+        /// <param name="tagId"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Discussion> GetDiscussionCategorys(int tagId, int skip);
+
+        /// <summary>
         /// Get lastest discussion
         /// </summary>
         /// <param name="skip"></param>

@@ -33,10 +33,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.PostNum,
                     d => d.MapFrom(m => m.MainPosts.OfType<Discussion>().Count())
                  )
-                 //.ForMember(
-                 //s => s.UserName,
-                 //d=>d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id).Author.Username)
-                 //)
+                 .ForMember(
+                 s => s.UserName,
+                 d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).Username)
+                 )
                  .ForMember(
                     s => s.Discussion,
                     d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id)))

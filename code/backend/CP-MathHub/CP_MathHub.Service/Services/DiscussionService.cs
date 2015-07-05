@@ -72,6 +72,16 @@ namespace CP_MathHub.Service.Services
                     skip
                 ).ToList();
         }
+        public List<Discussion> GetDiscussionCategorys(int tagId, int skip)
+        {
+            return dal.Repository<Discussion>() //Get Question Repository
+                .Get(
+                    (a => a.Tags.Where(t=>t.Id == tagId).Count()>0), //Filter Question by Author
+                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                    skip
+                ).ToList();
+        }
         public List<Discussion> GetDiscussions(int skip, string tagName)
         {
             return dal.Repository<Discussion>() //Get Question Repository

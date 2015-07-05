@@ -8,6 +8,7 @@ namespace CP_MathHub.Models.Discussion
 {
     public class DiscussionCategoryViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int PostNum { get; set; }
         public string UserName { get; set; }

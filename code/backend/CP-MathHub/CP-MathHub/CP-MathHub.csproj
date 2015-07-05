@@ -159,6 +159,8 @@
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionTagHomeViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionTagPreviewViewModel.cs" />
     <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
     <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
@@ -636,6 +638,10 @@
     <Content Include="Views\Discussion\Partials\_NavPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_TagListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_UserListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionTagHomeView.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionTagHomeLayout.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
