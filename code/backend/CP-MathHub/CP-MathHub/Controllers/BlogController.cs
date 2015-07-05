@@ -113,7 +113,7 @@ namespace CP_MathHub.Controllers
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
-            List<Article> articles = bService.GetArticles(tab, skip);
+            List<Article> articles = bService.GetArticles(userId, tab, skip);
 
 
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =

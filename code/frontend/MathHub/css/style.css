@@ -545,6 +545,10 @@ display: none;
     cursor: pointer;
 }
 
+.mh-like {
+    cursor: pointer;
+}
+
 /* Mid: end */
 
 /* Left: start */

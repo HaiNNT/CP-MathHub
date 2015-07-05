@@ -216,6 +216,8 @@ namespace CP_MathHub.Service.Services
                 }
                 else
                 {
+                    Post post = dal.Repository<Post>().GetById(id);
+                    post.VoteUp = post.VoteUp > 0 ? --post.VoteUp : 0;
                     dal.Repository<Vote>().Delete(vote);
                     dal.Save();
                     return true;

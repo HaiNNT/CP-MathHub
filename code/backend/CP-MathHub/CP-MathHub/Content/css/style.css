@@ -990,3 +990,10 @@ footer > .container > .row {
     padding: 5px;
 }
 /*Create date:*/
+.mh-comment-separator {
+    vertical-align: middle;
+    font-size: 7px;
+}
+.mh-comment-like:hover {
+    text-decoration: none;
+}

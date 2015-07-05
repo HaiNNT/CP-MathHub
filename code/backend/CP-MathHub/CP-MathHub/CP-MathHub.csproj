@@ -623,6 +623,7 @@
     <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_ReplyListPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
