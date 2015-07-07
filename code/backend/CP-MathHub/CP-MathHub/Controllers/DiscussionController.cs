@@ -35,7 +35,6 @@ namespace CP_MathHub.Controllers
             ICollection<DiscussionCategoryViewModel> discussioncategoryVM =
                 tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
                 .ToList();
-
             if (page == 0)
             {
                 DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
@@ -50,18 +49,23 @@ namespace CP_MathHub.Controllers
             }
         }
         //Get: CategoryIndex
-        public ActionResult CategoryIndex(int tagId, int page = 0)
+        public ActionResult CategoryIndex(string tag, int tagId, int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Discussion> discussions = dService.GetDiscussionCategorys(tagId,skip);
+            List<Discussion> discussions = dService.GetDiscussionCategorys(tagId, skip);
             ICollection<DiscussionTagPreviewViewModel> discussionTagPreviewVM =
                 discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-
+            foreach (DiscussionTagPreviewViewModel q in discussionTagPreviewVM)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
             if (page == 0)
             {
                 DiscussionTagHomeViewModel discussionTagHomeVM = new DiscussionTagHomeViewModel();
-                discussionTagHomeVM.Name = "THẢO LUẬN";
+                discussionTagHomeVM.Name = tag;
+                ViewBag.Tab = Constant.Discussion.String.HomeCategoryTab;
+                ViewBag.TabParam = tagId;
                 ViewBag.System = Constant.String.DiscussionSystem;
                 discussionTagHomeVM.Items = discussionTagPreviewVM;
                 return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
@@ -72,23 +76,32 @@ namespace CP_MathHub.Controllers
             }
         }
         //Tag
-        public ActionResult Tag(int page = 0)
+        public ActionResult Tag(string tag, int tagId, int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Tag> tags = cService.GetTags(skip);
-            ICollection<DiscussionCategoryViewModel> tagpageVMs =
-                    tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
+            //Tag tagEntity = cService.GetTag(tag);
+            List<Discussion> discussions = dService.GetDiscussionCategorys(tagId, skip);
+            ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
+                    discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
+            foreach (DiscussionTagPreviewViewModel q in discussionPreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
+
             if (page == 0)
             {
-                DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
+                DiscussionTagHomeViewModel tagHomeVM = new DiscussionTagHomeViewModel();
+                tagHomeVM.Name = "Thảo luận có thẻ \"" + tag + "\"";
+                ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
-                discussionHomeVM.Items = tagpageVMs;
-                return View("Views/DiscussionHomeView", discussionHomeVM);
+                ViewBag.TabParam = tagId;
+                tagHomeVM.Items = discussionPreviewVMs;
+                return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
             else
             {
-                return PartialView("Partials/_DiscussionListTagPartialView", tagpageVMs);
+                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionPreviewVMs);
             }
         }
         //Get: Discussion/Search
@@ -96,23 +109,29 @@ namespace CP_MathHub.Controllers
         public ActionResult Search(string searchString, int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Tag> tags = cService.SearchTags(searchString.Trim(), skip);
+            List<Discussion> discussions = dService.SearchDiscussions(skip, searchString);
+            ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
+                     discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
+                     .ToList();
+            foreach (DiscussionTagPreviewViewModel q in discussionPreviewVMs)
+            {
+                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+            }
 
-            ICollection<DiscussionCategoryViewModel> tagVms =
-                tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
-                .ToList();
-            ViewBag.TabParam = searchString;
             if (page == 0)
             {
-                DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
-                ViewBag.Tab = Constant.Discussion.String.SearchTab;
+                DiscussionTagHomeViewModel tagHomeVM = new DiscussionTagHomeViewModel();
+                tagHomeVM.Name = "Có " + dService.CountSearchResult(searchString)
+                                       + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
+                ViewBag.Tab = Constant.Discussion.String.HomeSearchTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
-                discussionHomeVM.Items = tagVms;
-                return View("Views/DiscussionHomeView", discussionHomeVM);
+                ViewBag.TabParam = searchString;
+                tagHomeVM.Items = discussionPreviewVMs;
+                return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
             else
             {
-                return PartialView("Partials/_DiscussionListTagPartialView", tagVms);
+                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionPreviewVMs);
             }
         }
         //Get: Discussion/Detail
@@ -122,9 +141,15 @@ namespace CP_MathHub.Controllers
             DiscussionDetailViewModel discussionDetailVM = new DiscussionDetailViewModel();
             Discussion discussion = dService.GetDiscussion(id);
             dService.IncludeUserForComments(discussion.Comments.ToList());
+            dService.IncludeReplyForComments(discussion.Comments.ToList());
+
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
-            discussionDetailVM.Comments = dService.GetComments(discussion.Id);
+
+            discussionDetailVM.UserInfo.CreateMainPostDate = discussionDetailVM.CreatedDate;
+            discussionDetailVM.Name = "THẢO LUẬN";
+            dService.IncreaseViewDiscussion(discussion);
             ViewBag.System = Constant.String.DiscussionSystem;
+
             return View("Views/DiscussionDetailView", discussionDetailVM);
         }
         //Get: Discussion/Create

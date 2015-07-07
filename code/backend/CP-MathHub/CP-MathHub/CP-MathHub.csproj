@@ -479,6 +479,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\blog.png" />
     <Content Include="Content\img\CTV.jpg" />
+    <Content Include="Content\img\daiso.jpg" />
     <Content Include="Content\img\discussion.png" />
     <Content Include="Content\img\favicon-blog.ico" />
     <Content Include="Content\img\favicon-discussion.ico" />
@@ -642,7 +643,7 @@
     <Content Include="Views\Discussion\Layouts\_DiscussionTagHomeLayout.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
-  <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -53,7 +53,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        List<Discussion> SearchDiscussions(string searchString, int skip);
+        List<Discussion> SearchDiscussions(int skip, string searchString);
 
         /// <summary>
         /// Count search result
@@ -105,5 +105,17 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="discussion"></param>
         void DeleteDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Update Discussion
+        /// </summary>
+        /// <param name="discussion"></param>
+        void UpdateDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Increase View
+        /// </summary>
+        /// <param name="discussion"></param>
+        void IncreaseViewDiscussion(Discussion discussion);
     }
 }

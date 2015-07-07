@@ -1,7 +1,26 @@
 ﻿@model CP_MathHub.Entity.Tag
 
-<a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name })" class="mh-tag">
-    <i class="fa fa-circle"></i>
-    <label>@Model.Name</label>
-    <span class="hidden">@Model.Id</span>
-</a>
+@if (ViewBag.System == CP_MathHub.Core.Configuration.Constant.String.QuestionSystem)
+{
+    <a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name })" class="mh-tag">
+        <i class="fa fa-circle"></i>
+        <label>@Model.Name</label>
+        <span class="hidden">@Model.Id</span>
+    </a>
+}
+else if (ViewBag.System == CP_MathHub.Core.Configuration.Constant.String.BlogSystem)
+{
+    <a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name })" class="mh-tag">
+        <i class="fa fa-circle"></i>
+        <label>@Model.Name</label>
+        <span class="hidden">@Model.Id</span>
+    </a>
+}
+else if (ViewBag.System == CP_MathHub.Core.Configuration.Constant.String.DiscussionSystem)
+{
+    <a href="@Url.Action("Tag", ViewBag.System, new { tag = Model.Name, tagId = Model.Id })" class="mh-tag">
+        <i class="fa fa-circle"></i>
+        <label>@Model.Name</label>
+        <span class="hidden">@Model.Id</span>
+    </a>
+}

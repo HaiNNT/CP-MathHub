@@ -5,20 +5,90 @@
  */
 
 /*
+    Global Varialble
+*/
+var commentReady = true;
+
+/*
   Init see more discussion event listening 
 */
-function seeMore() {
-    $(".mh-seemore").each(function () {
-        $(this).click(function () {
-            $(this).parent().addClass("hidden");
-            var parent = $($(this).parents(".mh-discussion-preview")[0]);
-            parent.find(".mh-sort-content").addClass("hidden");
-            parent.find(".mh-full-content").removeClass("hidden");
-            parent.find(".mh-social-report").removeClass("hidden");
+function seeMore(item) {
+
+    $(item).parent().addClass("hidden");
+    $(item).parent().siblings(".mh-full-content").removeClass("hidden");
+
+}
+
+/*
+  Like a main post
+*/
+function like(id, like) {
+    var url = "/Discussion/Like";
+    var data = { id: id };
+    like = $(like);
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+	  .done(function (msg) {
+	      if (msg) {
+	          if (like.html() == "Thích") {
+	              like.html("Bỏ thích");
+	              var num = parseInt(like.siblings(".mh-comment-like").find(".like").text());
+	              like.siblings(".mh-comment-like").find(".like").text(++num);
+	          }
+	          else {
+	              like.html("Thích");
+	              var num = parseInt(like.siblings(".mh-comment-like").find(".like").text());
+	              like.siblings(".mh-comment-like").find(".like").text(num > 0 ? --num : 0);
+	          }
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
+}
+/*
+  Comment a post
+*/
+function commentPost() {
+    $(".mh-input-comment").each(function () {
+        var input = $(this);
+        var list = $(input.parents(".mh-input-commnent-div").siblings(".mh-comment-list-full"));
+        input.keypress(function (e) {
+            if (e.keyCode === 13 && commentReady) {
+                commentReady = false;
+                var content = input.val();
+                var postId = input.siblings(".post-id").val();
+                var type = input.siblings(".type").val();
+                console.log(content);
+                console.log(postId);
+                $.ajax({
+                    method: "Post",
+                    url: "/Discussion/PostComment",
+                    data: { postId: postId, content: content, type: type }
+                })
+				.done(function (msg) {
+				    if (msg != "\n") {
+				        list.html("");
+				        list.append($(msg));
+				        input.val("");
+				        commentPost();
+				        commentReady = true;
+				    }
+				})
+				.fail(function (msg) {
+				    console.log(msg);
+				    alert(msg);
+				});
+            }
         });
     });
 }
-
 /*
   Init see more comment event listening 
 */
@@ -256,30 +326,35 @@ function searchUser() {
     Comment for a post
 */
 function commentPost() {
-    $(".mh-form-input-comment").each(function () {
+    $(".mh-input-comment").each(function () {
         var input = $(this);
-        var list = $(input.parent().siblings(".mh-comment-list")[2]);
+        var list = $(input.parents(".mh-input-commnent-div").siblings(".mh-comment-list-full"));
         input.keypress(function (e) {
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13 && commentReady) {
+                commentReady = false;
                 var content = input.val();
-                var postId = input.siblings(".mh-post-id").val();
+                var postId = input.siblings(".post-id").val();
+                var type = input.siblings(".type").val();
                 console.log(content);
                 console.log(postId);
                 $.ajax({
                     method: "Post",
-                    url: "/discussion/PostComment",
-                    data: { postId: postId, content: content }
+                    url: "/Discussion/PostComment",
+                    data: { postId: postId, content: content, type: type }
                 })
-                .done(function (msg) {
-                    if (msg != "\n") {
-                        list.append($(msg));
-                        input.val("");
-                    }
-                })
-                .fail(function (msg) {
-                    console.log(msg);
-                    alert(msg);
-                });
+				.done(function (msg) {
+				    if (msg != "\n") {
+				        list.html("");
+				        list.append($(msg));
+				        input.val("");
+				        commentPost();
+				        commentReady = true;
+				    }
+				})
+				.fail(function (msg) {
+				    console.log(msg);
+				    alert(msg);
+				});
             }
         });
     });
@@ -298,8 +373,7 @@ function applyInfinityLoading() {
 */
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
-        case "discussion-home":
-            seeMore();
+        case "discussion-home":   
             break;
         case "discussion-create":
             togglePreview();
@@ -315,13 +389,13 @@ $(document).ready(function () {
             searchUser();
             break;
         case "discussion-detail":
-            initCkeditor(false);
             commentPost();
-            seeMoreComment();
+            break;
+        case "discussion-category":
+            commentPost();
+            applyInfinityLoading();
             break;
         default:
-            applyInfinityLoading();
-            seeMore();
             break;
     }
 });

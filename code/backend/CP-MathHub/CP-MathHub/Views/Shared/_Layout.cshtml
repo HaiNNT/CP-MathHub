@@ -86,7 +86,15 @@
                                 }
                             </a>
                         </li>
-                        <li class="@(ViewBag.System == Constant.String.DiscussionSystem ? "mh-active" : "")"><a href="#">Thảo Luận</a></li>
+                        <li class="@(ViewBag.System == Constant.String.DiscussionSystem ? "mh-active" : "")">
+                            <a href="@Url.Action("Index", "Discussion")">
+                                Thảo Luận
+                                @if (ViewBag.System == Constant.String.DiscussionSystem)
+                                {
+                                    <span class="sr-only">(current)</span>
+                                }
+                            </a>
+                        </li>
                     </ul>
                     @Html.Action("UserHeaderWidget", new { controller = "CommonWidget" })
                     @Html.Partial("../CommonWidget/Mockups/_NotificationMockup")

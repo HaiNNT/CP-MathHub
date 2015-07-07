@@ -29,6 +29,8 @@ namespace CP_MathHub.Core.Configuration
             public const string BlogCreatePage = "blog-create";
             public const string BlogMyPage = "blog-my";
 
+            public const string DiscussionDetailPage = "discussion-detail";
+
         }
 
         /// <summary>
@@ -112,13 +114,14 @@ namespace CP_MathHub.Core.Configuration
             public static class String
             {
                 //Home Tab Constant
+                public const string HomeCategoryTab = "CategoryIndex";
                 public const string HomeTagTab = "Tag";
                 public const string HomeDefaultTab = "Newest";
                 public const string HomeNewestTab = "Newest";
                 public const string HomeUserTab = "Users";
                 public const string HomeHomeTab = "Home";
                 public const string HomeHotTab = "Hot";
-                public const string SearchTab = "Search";
+                public const string HomeSearchTab = "Search";
                 //User Tab Constant
                 public const string UserReputationTab = "reputation";
                 //Tag Tab Constant

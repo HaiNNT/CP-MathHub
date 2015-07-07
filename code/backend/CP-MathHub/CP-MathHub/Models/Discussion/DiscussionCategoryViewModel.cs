@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CP_MathHub.Entity;
+using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.Models.Discussion
 {

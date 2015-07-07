@@ -70,7 +70,12 @@ function getMoreMainPost(type) {
                 case "Tag":
                     var tag = $("#tab-param").val();
                     url = "/Discussion/Tag";
-                    data = { tag: tag, page: ++il_page };
+                    data = { tagId: tag, page: ++il_page };
+                    break;
+                case "CategoryIndex":
+                    var tag = $("#tab-param").val();
+                    url = "/Discussion/CategoryIndex";
+                    data = { tagId: tag, page: ++il_page };
                     break;
                 default:
                     var tab = $("#tab").val();
@@ -157,12 +162,15 @@ function getMoreMainPost(type) {
       .done(function (msg) {
           list.append(msg);
           if (type != IL_TYPE_ARTICLE)
-            seeMore();
+              seeMore();
+          if (type == IL_TYPE_DISCUSSION)
+              commentPost();
           if(msg != "\n")
             il_ready = true;
       })
       .fail(function () {
-          --il_page;
+          --il_page; 9 -
+          ;;;;;;;;;;;;;;
           alert("error");
       });
 }

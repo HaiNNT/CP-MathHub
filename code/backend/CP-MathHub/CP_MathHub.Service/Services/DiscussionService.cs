@@ -106,7 +106,7 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Discussion>().Delete(discussion);
             dal.Save();
         }
-        public List<Discussion> SearchDiscussions(string searchString, int skip)
+        public List<Discussion> SearchDiscussions(int skip, string searchString)
         {
             List<Discussion> list = new List<Discussion>();
             if (searchString != null)
@@ -114,7 +114,7 @@ namespace CP_MathHub.Service.Services
                 IEnumerable<Discussion> ienum = dal.Repository<Discussion>()
                                .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,Tags,Reports",
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                );
                 ienum.Distinct();
@@ -155,6 +155,16 @@ namespace CP_MathHub.Service.Services
         public Discussion GetDiscussion(int id)
         {
             return dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
+        }
+        public void UpdateDiscussion(Discussion discussion)
+        {
+            dal.Repository<Discussion>().Update(discussion);
+            dal.Save();
+        }
+        public void IncreaseViewDiscussion(Discussion discussion)
+        {
+            ++discussion.View;
+            UpdateDiscussion(discussion);
         }
     }
 }

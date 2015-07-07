@@ -79,12 +79,27 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             #region Discussion Detail
             Mapper.CreateMap<Discussion, DiscussionDetailViewModel>()
                 .ForMember(
-                    s => s.ReportNum,
-                    d => d.MapFrom(m => m.Reports.Count)
+                        s => s.ReportNum,
+                    d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
+                        .Table.Count(p => p.PostId == m.Id))
                 )
                 .ForMember(
-                    s => s.Comments,
-                    d => d.MapFrom(m => m.Comments)
+                    s => s.BookmarkNum,
+                    d => d.MapFrom(m => m.BookmarkUsers.Count)
+                )
+                .ForMember(
+                    s => s.CommentNum,
+                    d => d.MapFrom(m => m.Comments.Count)
+                )
+                .ForMember(
+                    s => s.Like,
+                    d => d.MapFrom(m => m.VoteUp)
+                )
+                .ForMember(
+                    s => s.Liked,
+                    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+                                                                    new CPMathHubModelContainer())
+                                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
                 )
                 .ForMember(
                     s => s.Tags,
@@ -93,6 +108,13 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 .ForMember(
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
+                )
+                .ForMember(
+                    s => s.Bookmarked,
+                    d => d.MapFrom(m => m.BookmarkUsers
+                                            .Where(u => u.Id == new CommonService(
+                                                                    new CPMathHubModelContainer())
+                                                                        .GetLoginUser().Id).Count() > 0)
                 );
             #endregion
             //Create Question

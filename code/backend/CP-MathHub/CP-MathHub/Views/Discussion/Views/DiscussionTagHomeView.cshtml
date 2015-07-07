@@ -1,41 +1,41 @@
 ﻿@using CP_MathHub.Models.Discussion
 @model DiscussionTagHomeViewModel
 @{
-    ViewBag.Title = "Thảo Luận";
-    ViewBag.MhPage = "discussion-home";
+    ViewBag.Title = @Model.Name;
+    ViewBag.MhPage = "discussion-category";
     ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Discussion/Layouts/_DiscussionTagHomeLayout.cshtml";
 }
 <div class="mh-top-content">
     <div class="row">
         <div class="col-md-10 mh-content-title">
-            <h3>@Model.Name</h3>
+            <h3>THẢO LUẬN</h3>
         </div>
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", "Bài tập luyện thi đại" } })
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", @Model.Name}})
 
 <input id="tab" type="hidden" value="@ViewBag.Tab" />
 <input id="system" type="hidden" value="@ViewBag.System" />
 <input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-<div class="mh-discussion-posts">
+<div class="mh-discussion-posts" id="list-discussions">
     @Html.Partial("Partials/_DiscussionListCategoryPartialView", Model.Items)
 </div>
-    @section LeftPanel
+@section LeftPanel
 {
-        @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
-        @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
-            @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
-        @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
-    }
-    @section RightPanel
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}
+@section RightPanel
 {
-        @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
-        @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
-            <hr />
-            @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
-            <hr />
-            @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
-    }
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}
