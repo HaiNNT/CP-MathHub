@@ -1,0 +1,64 @@
+﻿@model CP_MathHub.Models.Discussion.TagsPageViewModel
+@{
+    ViewBag.Title = "Thẻ";
+    ViewBag.MhPage = "discussion-tags";
+    Layout = "~/Views/Discussion/Layouts/_TagsPageLayout.cshtml";
+}
+
+
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-4 mh-content-title">
+            <h3>Thành Viên</h3>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("Partials/_NavPartialView")
+<div class="mh-body-content-mid">
+    <div class="mh-body-tabs">
+        <ul class="nav nav-pills">
+            <li role="presentation" @(Model.Tab == "newtag" ? "class=active" : "")>
+                @Html.ActionLink("Thẻ mới", "Tags", new { @tab = "newtag" })
+            </li>
+            <li role="presentation" @(Model.Tab == "name" ? "class=active" : "")>
+                @Html.ActionLink("Tên", "Tags", new { @tab = "name" })
+            </li>
+            <li role="presentation" @(Model.Tab == "popular" ? "class=active" : "")>
+                @Html.ActionLink("Phổ biến", "Tags", new { @tab = "popular" })
+            </li>
+        </ul>
+    </div>
+    <div class="mh-body-search">
+        <div class="row">
+            <div class="mh-search-title">
+                Tìm thành viên:
+            </div>
+            <div class="mh-search-control">
+                <input type="search" class="form-control" placeholder="Tìm kiếm..." id="mh-search-tag">
+            </div>
+        </div>
+    </div>
+    <div class="mh-body-detail">
+        <!--  row: start -->
+        <div class="row" id="mh-list-tag">
+            @Html.Partial("Partials/_TagListPartialView", Model.ListTags)
+        </div>
+    </div>
+</div>
+
+
+<input id="tab" type="hidden" value="@Model.Tab" />
+<input id="system" type="hidden" value="tag" />
+<input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+
+@section LeftPanel
+{
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}
+
+

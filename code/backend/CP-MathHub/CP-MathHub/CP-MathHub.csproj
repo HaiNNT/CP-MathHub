@@ -153,11 +153,16 @@
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
     <Compile Include="Models\Common\UserInfoViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionCategoryViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionDetailViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionTagHomeViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionTagPreviewViewModel.cs" />
+    <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
+    <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
@@ -474,13 +479,16 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\blog.png" />
     <Content Include="Content\img\CTV.jpg" />
+    <Content Include="Content\img\daiso.jpg" />
     <Content Include="Content\img\discussion.png" />
     <Content Include="Content\img\favicon-blog.ico" />
+    <Content Include="Content\img\favicon-discussion.ico" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\icon-facebook.ico" />
     <Content Include="Content\img\icon-google.ico" />
     <Content Include="Content\img\icon-twitter.ico" />
     <Content Include="Content\img\logo-blog.png" />
+    <Content Include="Content\img\logo-discussion.png" />
     <Content Include="Content\img\logoMain.png" />
     <Content Include="Content\img\Question_Answer.png" />
     <Content Include="Content\img\social_fb_s.png" />
@@ -514,6 +522,7 @@
     <Content Include="Content\js\infinity-loading.js" />
     <Content Include="Content\js\responsiveCarousel-slideshow.js" />
     <Content Include="Content\js\script-blog.js" />
+    <Content Include="Content\js\script-discussion.js" />
     <Content Include="Content\js\script-question.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -623,6 +632,17 @@
     <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_ReplyListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionListTagPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionTagPreviewPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CommentItemPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CommentListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_NavPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_TagListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_UserListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionTagHomeView.cshtml" />
+    <Content Include="Views\Discussion\Layouts\_DiscussionTagHomeLayout.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -45,10 +45,13 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(List<int> tagIds)
         {
             List<Tag> tags = new List<Tag>();
-            foreach (int id in tagIds)
+            if (tagIds != null)
             {
-                Tag tag = GetTag(id);
-                tags.Add(tag);
+                foreach (int id in tagIds)
+                {
+                    Tag tag = GetTag(id);
+                    tags.Add(tag);
+                }
             }
             return tags;
         }
@@ -119,6 +122,20 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        //Get All Tags
+        public List<Tag> GetTags(int skip)
+        {
+            List<Tag> list = new List<Tag>();
+            list = dal.Repository<Tag>()
+                                .Get(
+                                (p=>p.MainPosts.OfType<Discussion>().Count() > 0),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "MainPosts",
+                                    skip,
+                                    Constant.Discussion.Integer.TagPagingDefaultTake
+                                ).ToList();
+            return list;
+        }
         public List<Tag> GetTags(int skip, string tab)
         {
             List<Tag> list = new List<Tag>();
@@ -179,6 +196,24 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
+        //Search Tag
+        public List<Tag> SearchTags(string searchString, int skip)
+        {
+            List<Tag> list = new List<Tag>();
+            if (searchString != null)
+            {
+                IEnumerable<Tag> ienum = dal.Repository<Tag>()
+                               .Get(a => a.Name.ToLower().Contains(searchString.ToLower()),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Name",
+                                    skip
+                               );
+                ienum.Distinct();
+                list = ienum.ToList();
+            }
+            return list;
+        }
+
         public bool Bookmark(int id, User user)
         {
             MainPost post = dal.Repository<MainPost>().GetById(id);
@@ -370,6 +405,25 @@ namespace CP_MathHub.Service.Services
         public Vote GetVote(int postId, int userId)
         {
             return dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
+        }
+        public bool CreateReport(Report report)
+        {
+            Report r = GetReport(report.PostId, report.ReporterId);
+            if (r == default(Report))
+            {
+                dal.Repository<Report>().Insert(report);
+                dal.Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public Report GetReport(int? postId, int reporterId)
+        {
+            return dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
         }
     }
 }

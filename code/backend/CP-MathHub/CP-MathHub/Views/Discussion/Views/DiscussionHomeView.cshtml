@@ -1,37 +1,38 @@
 ﻿@using CP_MathHub.Models.Discussion
 @model DiscussionHomeViewModel
 @{
-    ViewBag.Title = "DiscussionHomeView";
+    ViewBag.Title = "Thảo Luận";
+    ViewBag.MhPage = "discussion-home";
+    ViewBag.CreatedDateType = "đăng";
     Layout = "~/Views/Discussion/Layouts/_DiscussionHomeLayout.cshtml";
 }
-
-<h2>DiscussionHomeView</h2>
-
-@using (Html.BeginForm("Search", "Discussion", FormMethod.Get))
-{
-    <div>
-        Title: @Html.TextBox("searchString") <br />
-        <input type="submit" value="Search" />
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-10 mh-content-title">
+            <h3>@Model.Name</h3>
+        </div>
     </div>
-}
+</div>
 
-@{
-    <h3>@Model.Name</h3>
-    @Html.Partial("Partials/_DiscussionListPartialView", @Model.Items);
-}
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary {{"Title", "Các chủ đề"}})
+
+<input id="tab" type="hidden" value="@ViewBag.Tab" />
+<input id="system" type="hidden" value="@ViewBag.System" />
+<input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+
+@Html.Partial("Partials/_DiscussionListTagPartialView", Model.Items)
 
 @section LeftPanel
 {
-    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.GroupWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
 }
 @section RightPanel
 {
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
     @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })

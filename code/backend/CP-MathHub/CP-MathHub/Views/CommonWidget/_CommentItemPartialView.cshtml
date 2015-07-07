@@ -59,14 +59,6 @@
 
     </div>
     <div class="media-right">
-        <div class="dropdown">
-            <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                <i class="fa fa-pencil mh-commet-edit"></i>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Chỉnh sửa</a></li>
-                <li><a href="#">Xóa</a></li>
-            </ul>
-        </div>
+        @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "comment" } })
     </div>
 </div>

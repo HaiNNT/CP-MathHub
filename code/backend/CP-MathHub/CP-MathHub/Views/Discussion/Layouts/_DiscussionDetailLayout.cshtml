@@ -1,9 +1,15 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<nav class="grid_3 leftpanel">@RenderSection("LeftPanel", true)</nav>
-<div class="grid_6">
-    @RenderBody()
+<div class="row">
+    <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+        @RenderSection("LeftPanel", true)
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+        @RenderBody()
+    </div>
+    <div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
+        @RenderSection("RightPanel", true)
+    </div>
 </div>
-<nav class="grid_3 rightpanel">@RenderSection("RightPanel", true)</nav>
 

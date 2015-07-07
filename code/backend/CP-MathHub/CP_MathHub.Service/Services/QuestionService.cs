@@ -165,8 +165,7 @@ namespace CP_MathHub.Service.Services
                     0
                 ).ToList();
             IncludeUserForComments(comments);
-            return comments;
-            
+            return comments;         
         }
         public void IncludeCommentForAnswers(List<Answer> answers)
         {

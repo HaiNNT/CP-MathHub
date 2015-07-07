@@ -58,11 +58,32 @@ function getMoreMainPost(type) {
                     break;
             }
             break;
-        //case IL_TYPE_DISCUSSION:
-        //    list = $("#list-discussions");
-        //    url = "Discussion/Index";
-        //    data = { tab: "Newest", page: ++il_page }
-        //    break;
+        case IL_TYPE_DISCUSSION:
+            list = $("#list-discussions");
+            var tab = $("#tab").val();
+            switch (tab) {
+                case "Search":
+                    var searchString = $("#tab-param").val();
+                    url = "/Discussion/Search";
+                    data = { searchString: searchString, page: ++il_page };
+                    break;
+                case "Tag":
+                    var tag = $("#tab-param").val();
+                    url = "/Discussion/Tag";
+                    data = { tagId: tag, page: ++il_page };
+                    break;
+                case "CategoryIndex":
+                    var tag = $("#tab-param").val();
+                    url = "/Discussion/CategoryIndex";
+                    data = { tagId: tag, page: ++il_page };
+                    break;
+                default:
+                    var tab = $("#tab").val();
+                    url = "/Discussion/Index";
+                    data = { tab: tab, page: ++il_page }
+                    break;
+            }
+            break;
         case IL_TYPE_ARTICLE:
             list = $("#list-articles");
             var tab = $("#tab").val();
@@ -77,10 +98,20 @@ function getMoreMainPost(type) {
                     url = "/Blog/Tag";
                     data = { tag: tag, page: ++il_page };
                     break;
+                case "Mine", "Bookmark", "Subcribe", "Friend":
+                    var view = $("#view").val();
+                    url = "/Blog/MyBlog";
+                    data = { tab: tab, page: ++il_page, view: view }
+                    break;
+                case "User", "UserBookmark":
+                    var view = $("#view").val();
+                    url = "/Blog/UserBlog";
+                    data = { tab: tab, page: ++il_page, view: view }
+                    break;
                 default:
-                    var tab = $("#tab").val();
+                    var view = $("#view").val();
                     url = "/Blog/Index";
-                    data = { tab: tab, page: ++il_page }
+                    data = { tab: tab, page: ++il_page, view: view }
                     break;
             }
             break;
@@ -140,13 +171,13 @@ function getMoreMainPost(type) {
     })
       .done(function (msg) {
           list.append(msg);
-          if (type != IL_TYPE_ARTICLE)
-            seeMore();
+          if (type == IL_TYPE_DISCUSSION)
+              commentPost();
           if(msg != "\n")
             il_ready = true;
       })
       .fail(function () {
-          --il_page;
+          --il_page; 
           alert("error");
       });
 }

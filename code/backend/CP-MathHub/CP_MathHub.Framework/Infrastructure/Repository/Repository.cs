@@ -105,6 +105,16 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             return true;
         }
 
+        public IRepository<TEntity> Include(string includeProperties)
+        {
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                dbSet.Include(includeProperty);
+            }
+            return this;
+        }
+
         public IQueryable<TEntity> Table
         {
             get

@@ -18,11 +18,26 @@ namespace CP_MathHub.Core.Interfaces.Services
         Tag GetTag(string name);
 
         /// <summary>
+        /// Get all tag 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        List<Tag> GetTags(int skip);
+
+        /// <summary>
         /// Get tag by Id
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         Tag GetTag(int id);
+
+        /// <summary>
+        /// Search Tags
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Tag> SearchTags(string searchString, int skip);
 
         /// <summary>
         /// Get list of tag by list tag id
@@ -123,6 +138,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         Vote GetVote(int postId, int userId);
+
+        /// <summary>
+        /// Create a report
+        /// </summary>
+        /// <param name="report"></param>
+        bool CreateReport(Report report);
 
     }
 }

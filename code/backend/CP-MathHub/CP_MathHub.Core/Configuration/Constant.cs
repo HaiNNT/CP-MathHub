@@ -29,6 +29,8 @@ namespace CP_MathHub.Core.Configuration
             public const string BlogCreatePage = "blog-create";
             public const string BlogMyPage = "blog-my";
 
+            public const string DiscussionDetailPage = "discussion-detail";
+
         }
 
         /// <summary>
@@ -91,6 +93,8 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeSearchTab = "Search";
                 public const string HomeTagTab = "Tag";
                 public const string MyArticleTab = "Mine";
+                public const string UserArticleTab = "User";
+                public const string UserBookmarkTab = "UserBookmark";
 
                 public const string GridView = "grid";
                 public const string ListView = "list";
@@ -104,16 +108,29 @@ namespace CP_MathHub.Core.Configuration
             public static class Integer
             {
                 public const int PagingDefaultTake = 10;
+                public const int CategoryDefaultLoad = 5;
+                public const int TagPagingDefaultTake = 30;
+                public const int UserPagingDefaultTake = 30;
 
             }
 
             public static class String
             {
                 //Home Tab Constant
+                public const string HomeCategoryTab = "CategoryIndex";
+                public const string HomeTagTab = "Tag";
                 public const string HomeDefaultTab = "Newest";
                 public const string HomeNewestTab = "Newest";
-                public const string HomeUnAnsweredTab = "Unanswered";
+                public const string HomeUserTab = "Users";
+                public const string HomeHomeTab = "Home";
                 public const string HomeHotTab = "Hot";
+                public const string HomeSearchTab = "Search";
+                //User Tab Constant
+                public const string UserReputationTab = "reputation";
+                //Tag Tab Constant
+                public const string TagNewTab = "newtag";
+                public const string TagPopularTab = "popular";
+                public const string TagNameTab = "name";
             }
 
         }

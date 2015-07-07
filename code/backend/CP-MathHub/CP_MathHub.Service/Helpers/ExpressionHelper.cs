@@ -62,6 +62,27 @@ namespace CP_MathHub.Service.Helpers
                 return (a => a.OrderByDescending(m => m.Accepted).OrderByDescending(m => (m.VoteUp - m.VoteDown)));
             }
         }
+        public class DiscussionHelper
+        {
+            /// <summary>
+            /// Get hot Discussion lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Discussion, bool>> HotDiscussion()
+            {
+                return (q => q.Comments.Count > 2
+                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
+                            && (q.View > 500));
+            }
+            /// <summary>
+            /// Get order answer by vote and accepted
+            /// </summary>
+            /// <returns></returns>
+            public static Func<IQueryable<Answer>, IOrderedQueryable<Answer>> OrderUsefulAnswer()
+            {
+                return (a => a.OrderByDescending(m => m.Accepted).OrderByDescending(m => (m.VoteUp - m.VoteDown)));
+            }
+        }
         public class UserHelper
         {
             /// <summary>

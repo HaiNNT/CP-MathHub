@@ -127,6 +127,7 @@ namespace CP_MathHub.Controllers
             qService.IncludeUserForComments(question.Comments.ToList());
             qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
+            questionDetailVM.UserInfo.CreateMainPostDate = question.CreatedDate;
             //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
             //        .ToList();
 
@@ -275,6 +276,7 @@ namespace CP_MathHub.Controllers
             Tag tag = new Tag();
             tag.Name = name;
             cService.InsertTag(tag);
+            ViewBag.System = "Question";
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
 

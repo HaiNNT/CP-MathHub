@@ -109,7 +109,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/UserBlog
         [HttpGet]
-        public ActionResult UserBlog(int userId, string tab = Constant.Blog.String.MyArticleTab
+        public ActionResult UserBlog(int userId, string tab = Constant.Blog.String.UserArticleTab
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
@@ -131,11 +131,15 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = tab;
                 ViewBag.System = Constant.String.BlogSystem;
                 myBlogVM.Articles = articlePreviewVMs;
+                myBlogVM.View = view;
                 return View("Views/MyBlogView", myBlogVM);
             }
             else
             {
-                return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                if (view == Constant.Blog.String.ListView)
+                    return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
+                else
+                    return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
 
@@ -288,8 +292,6 @@ namespace CP_MathHub.Controllers
                     commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
                     return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
             }
-
-
         }
 
         //Post: Blog/Like
@@ -298,6 +300,20 @@ namespace CP_MathHub.Controllers
         {
             User user = cService.GetLoginUser();
             return cService.Like(id, user.Id);
+        }
+
+        //Post: Blog/Report
+        [HttpPost]
+        public bool Report(int postId, string description, ReportTypeEnum reportName = ReportTypeEnum.Other)
+        {
+            Report report = new Report();
+            report.Description = description;
+            report.PostId = postId;
+            report.ReportedDate = DateTime.Now;
+            report.ReporterId = cService.GetLoginUser().Id;
+            report.Type = reportName;
+
+            return cService.CreateReport(report);
         }
     }
 }

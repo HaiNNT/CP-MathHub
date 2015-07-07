@@ -1,0 +1,37 @@
+﻿@model List<CP_MathHub.Entity.Comment>
+@using CP_MathHub.Service.Helpers
+<div class="panel-body mh-comment">
+    <div class="mh-comment-detail">
+        <div class="mh-comment-list">
+            @for (int i = 0; i < Model.Count && i < 3; i++)
+            {
+                @Html.Partial("Partials/_CommentItemPartialView", @Model.ElementAt(i))
+            }
+        </div>
+        <div class="mh-comment-list hidden">
+            @for (int i = 3; i < Model.Count; i++)
+            {
+                @Html.Partial("Partials/_CommentItemPartialView", @Model.ElementAt(i))
+            }
+        </div>
+        <div class="mh-comment-list">
+
+        </div>
+
+        @if (Model.Count < 4)
+        {
+            <div>
+                <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
+                <input type="hidden" value="@ViewData["PostId"]" class="mh-post-id" />
+            </div>
+        }
+        else
+        {
+            <a class="mh-seemore-comment">Xem thêm @(Model.Count > 3 ? (Model.Count - 3) + " " : " ")bình luận</a>
+            <div class="hidden">
+                <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
+                <input type="hidden" value="@ViewData["PostId"]" class="mh-post-id" />
+            </div>
+        }
+    </div>
+</div>

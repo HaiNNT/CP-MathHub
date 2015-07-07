@@ -6,6 +6,7 @@ using AutoMapper;
 using Profile = AutoMapper.Profile;
 using CP_MathHub.Entity;
 using CP_MathHub.Models.Common;
+using CP_MathHub.Models.Discussion;
 using CP_MathHub.DAL;
 using CP_MathHub.Service.Services;
 
@@ -22,6 +23,24 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             Mapper.CreateMap<User, UserInfoViewModel>();
             Mapper.CreateMap<User, ProfileWidgetViewModel>();
             Mapper.CreateMap<User, UserHeaderViewModel>();
+            //Tag
+            Mapper.CreateMap<Tag, DiscussionCategoryViewModel>()
+                .ForMember(
+                    s => s.Name,
+                    d => d.MapFrom(m=>m.Name)
+                )
+                .ForMember(
+                    s => s.PostNum,
+                    d => d.MapFrom(m => m.MainPosts.OfType<Discussion>().Count())
+                 )
+                 .ForMember(
+                 s => s.UserName,
+                 d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).Username)
+                 )
+                 .ForMember(
+                    s => s.Discussion,
+                    d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id)))
+                 ;
       
             //Comment
             Mapper.CreateMap<Comment, CommentViewModel>()

@@ -16,10 +16,31 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Discussion> GetDiscussions(string homeTab, int skip = 0);
 
         /// <summary>
-        /// Get Questions by Author
+        /// Get Discussions by Author
         /// </summary>
         /// <returns></returns>
-        List<Discussion> GetDiscussions(int authorId);
+        List<Discussion> GetDiscussions(int authorId, int skip = 0);
+
+        /// <summary>
+        /// Get discusstionCategorys
+        /// </summary>
+        /// <param name="tagId"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Discussion> GetDiscussionCategorys(int tagId, int skip);
+
+        /// <summary>
+        /// Get lastest discussion
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        Discussion GetLastestDiscussion(int tagid);
+
+        /// <summary>
+        /// Get Discussions by Tag
+        /// </summary>
+        /// <returns></returns>
+        List<Discussion> GetDiscussions(int skip, string tagName);
 
         /// <summary>
         /// Insert a Discussion
@@ -28,17 +49,42 @@ namespace CP_MathHub.Core.Interfaces.Services
         void InsertDiscussion(Discussion discusssion);
 
         /// <summary>
-        /// Search Discussions
+        /// Search Questions
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        List<Discussion> SearchDiscussions(string searchString);
+        List<Discussion> SearchDiscussions(int skip, string searchString);
+
+        /// <summary>
+        /// Count search result
+        /// </summary>
+        /// <param name="searchString"></param>
+        /// <returns></returns>
+        int CountSearchResult(string searchString);
+
+        /// <summary>
+        /// Get Comments of Post
+        /// </summary>
+        /// <returns></returns>
+        //List<Comment> GetComments(int postId);
 
         /// <summary>
         /// Edit Discussion
         /// </summary>
         /// <param name="discussion"></param>
         void EditDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Get Comments of Post
+        /// </summary>
+        /// <returns></returns>
+        List<Comment> GetComments(int postId);
+
+        /// <summary>
+        /// Add author for comments
+        /// </summary>
+        /// <param name="comments"></param>
+        void IncludeUserForComments(List<Comment> comments);
 
         /// <summary>
         /// Get A Discussion
@@ -48,10 +94,28 @@ namespace CP_MathHub.Core.Interfaces.Services
         Discussion GetDiscussion(int id);
 
         /// <summary>
+        /// Include replys for comments
+        /// </summary>
+        /// <param name="comments"></param>
+        void IncludeReplyForComments(List<Comment> comments);
+
+        /// <summary>
         /// <summary>
         /// Delete Discussion
         /// </summary>
         /// <param name="discussion"></param>
         void DeleteDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Update Discussion
+        /// </summary>
+        /// <param name="discussion"></param>
+        void UpdateDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Increase View
+        /// </summary>
+        /// <param name="discussion"></param>
+        void IncreaseViewDiscussion(Discussion discussion);
     }
 }
