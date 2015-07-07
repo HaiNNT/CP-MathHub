@@ -139,5 +139,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         Vote GetVote(int postId, int userId);
 
+        /// <summary>
+        /// Create a report
+        /// </summary>
+        /// <param name="report"></param>
+        bool CreateReport(Report report);
+
     }
 }

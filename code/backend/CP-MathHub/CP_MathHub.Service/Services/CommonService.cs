@@ -406,5 +406,24 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
         }
+        public bool CreateReport(Report report)
+        {
+            Report r = GetReport(report.PostId, report.ReporterId);
+            if (r == default(Report))
+            {
+                dal.Repository<Report>().Insert(report);
+                dal.Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public Report GetReport(int? postId, int reporterId)
+        {
+            return dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
+        }
     }
 }

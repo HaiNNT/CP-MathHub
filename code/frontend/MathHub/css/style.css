@@ -997,3 +997,76 @@ footer > .container > .row {
 .mh-comment-like:hover {
     text-decoration: none;
 }
+/* Chat: start */
+.mh-chat {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1030;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #EFF3F8;
+    background-color: #EFF3F8;
+    border-top: 1px solid #C0C0C0;
+    padding-right: 5px;
+}
+.mh-chat ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+.mh-chat-area-content-full {
+    width: 200px;
+    /*display: none;*/
+}
+.mh-chat-area-content-full ul {
+    padding: 0px;
+    padding-left: 7px;
+}
+.mh-chat-area-content-full .media-body, .mh-chat-area-content .media-right {
+    vertical-align: middle;
+}
+.mh-chat-area-content .media-right {
+    padding: 0px;
+}
+.mh-chat-area-content ul {
+    padding: 0px;
+    padding-left: 7px;
+}
+.mh-chat-area-content-full a:hover {
+    text-decoration: none;
+}
+.mh-chat-status {
+    font-size: 8px;
+    color: #0F9D28;
+}
+.mh-chat-status-off {
+    font-size: 8px;
+    color: #9197a3;
+}
+.mh-chat-area-content-footer {
+    border-top: 1px solid #fff;
+    background-color: #fff;
+    text-align: center;
+    height: 27px;
+    position: relative;
+}
+.mh-chat-area-content-footer .mh-chat-area-search {
+    position: absolute;
+    left: 5px;
+    bottom: 6px;
+    z-index: 100;
+}
+.mh-chat-area-content-footer .mh-chat-area-input {
+    width: 90%;
+    float: left;
+    padding: 6px 0px 6px 25px;
+    height: 27px;
+    border: 0px;
+}
+.mh-chat-area-setting {
+    padding-top: 7px;
+    color: #000;
+}
+.mh-chat-area-setting:hover {
+    color: #337ab7;
+}
+/* Chat: end */

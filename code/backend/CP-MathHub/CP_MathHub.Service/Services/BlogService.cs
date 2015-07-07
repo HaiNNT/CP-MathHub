@@ -114,8 +114,8 @@ namespace CP_MathHub.Service.Services
             User user = cService.GetUser(userId);
             List<Article> list = new List<Article>();
             switch (tab)
-            {                              
-                case Constant.Blog.String.HomeBookmarkTab:
+            {
+                case Constant.Blog.String.UserBookmarkTab:
                     list = dal.Repository<Article>()
                                 .Get(
                                     ExpressionHelper.BlogHelper.BookmarkArticle(user),
@@ -123,8 +123,8 @@ namespace CP_MathHub.Service.Services
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
-                    break;               
-                case Constant.Blog.String.MyArticleTab:
+                    break;
+                case Constant.Blog.String.UserArticleTab:
                     list = dal.Repository<Article>()
                                 .Get(
                                     ExpressionHelper.BlogHelper.MyArticle(user),

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/05/2015 12:08:33
+-- Date Created: 07/06/2015 15:37:57
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -595,7 +595,7 @@ CREATE TABLE [dbo].[Reports] (
     [Type] int  NOT NULL,
     [ReporterId] int  NOT NULL,
     [UserId] int  NULL,
-    [PostId] int  NOT NULL,
+    [PostId] int  NULL,
     [Description] nvarchar(max)  NULL
 );
 GO

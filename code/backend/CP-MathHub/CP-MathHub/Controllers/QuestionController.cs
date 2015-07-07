@@ -127,6 +127,7 @@ namespace CP_MathHub.Controllers
             qService.IncludeUserForComments(question.Comments.ToList());
             qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
+            questionDetailVM.UserInfo.CreateMainPostDate = question.CreatedDate;
             //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
             //        .ToList();
 

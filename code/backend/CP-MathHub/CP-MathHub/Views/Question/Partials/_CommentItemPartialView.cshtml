@@ -4,5 +4,5 @@
 <div class="mh-comment-content">
     <span>@Model.Content</span><br />
     <a href="#">@Model.Author.Username</a>
-    <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+    <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
 </div>

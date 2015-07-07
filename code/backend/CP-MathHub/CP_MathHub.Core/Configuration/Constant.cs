@@ -93,6 +93,8 @@ namespace CP_MathHub.Core.Configuration
                 public const string HomeSearchTab = "Search";
                 public const string HomeTagTab = "Tag";
                 public const string MyArticleTab = "Mine";
+                public const string UserArticleTab = "User";
+                public const string UserBookmarkTab = "UserBookmark";
 
                 public const string GridView = "grid";
                 public const string ListView = "list";
