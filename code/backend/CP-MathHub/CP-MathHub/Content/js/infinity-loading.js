@@ -77,10 +77,20 @@ function getMoreMainPost(type) {
                     url = "/Blog/Tag";
                     data = { tag: tag, page: ++il_page };
                     break;
+                case "Mine", "Bookmark", "Subcribe", "Friend":
+                    var view = $("#view").val();
+                    url = "/Blog/MyBlog";
+                    data = { tab: tab, page: ++il_page, view: view }
+                    break;
+                case "User", "UserBookmark":
+                    var view = $("#view").val();
+                    url = "/Blog/UserBlog";
+                    data = { tab: tab, page: ++il_page, view: view }
+                    break;
                 default:
-                    var tab = $("#tab").val();
+                    var view = $("#view").val();
                     url = "/Blog/Index";
-                    data = { tab: tab, page: ++il_page }
+                    data = { tab: tab, page: ++il_page, view: view }
                     break;
             }
             break;
@@ -140,8 +150,6 @@ function getMoreMainPost(type) {
     })
       .done(function (msg) {
           list.append(msg);
-          if (type != IL_TYPE_ARTICLE)
-            seeMore();
           if(msg != "\n")
             il_ready = true;
       })

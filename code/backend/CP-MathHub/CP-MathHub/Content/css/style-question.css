@@ -74,6 +74,10 @@
 .mh-question-preview .mh-username {
 	font-size: 12pt;
 }
+.mh-sort-content {
+    max-height: 125px;
+    overflow-y: hidden;
+}
 /*QA default: end*/
 /* QA detail: start */
  .mh-vote {

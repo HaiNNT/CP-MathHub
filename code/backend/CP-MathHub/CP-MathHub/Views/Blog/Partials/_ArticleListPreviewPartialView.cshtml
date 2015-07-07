@@ -3,14 +3,16 @@
 <div class="mh-list-content">
     <div>
         <div class="row">
-            <div class="col-xs-9 col-sm-10 title">
+            <div class="col-xs-11 title">
                 <a href="@Url.Action("Detail", new { @id = Model.Id })">
                     @Model.Title
                 </a>
                 <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'article')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
                 <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'article')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
             </div>
-            @Html.Partial("../CommonWidget/_PostSettingPartialView")
+            <div class="col-xs-1">
+                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "mainpost" } })
+            </div>
         </div>
         <div class="mh-blog-user">
             <div class="row mh-row-time">

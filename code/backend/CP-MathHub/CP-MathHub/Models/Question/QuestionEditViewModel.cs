@@ -16,5 +16,8 @@ namespace CP_MathHub.Models.Question
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
+        public MainPostPrivacyEnum Privacy { get; set; }
+        public List<int> TagIds { get; set; }
+        public List<int> Invitations { get; set; }
     }
 }

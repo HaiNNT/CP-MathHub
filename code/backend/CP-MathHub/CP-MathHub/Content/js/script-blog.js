@@ -13,30 +13,33 @@ var commentReady = true;
 	Init Slide show
 */
 function hotArticleSlideShow() {
-    $('.crsl-items').carousel({
-        visible: 3,
-        itemMinWidth: 180,
-        itemEqualHeight: 370,
-        itemMargin: 12,
-    });
-    $("a[href=#]").on('click', function (e) {
-        e.preventDefault();
-    });
-    var interval = setInterval(function () { slider.next(); }, 5000);
-    $("#navbtns > a").each(function () {
-        $(this).click(function () {
-            clearInterval(interval);
-            interval = setInterval(function () { slider.next(); }, 5000);
+    if ($(".crsl-items").length > 0) {
+        $('.crsl-items').carousel({
+            visible: 3,
+            itemMinWidth: 180,
+            itemEqualHeight: 370,
+            itemMargin: 12,
         });
-    });
-    $(".mh-posts-setting").each(function () {
-        $(this).mouseenter(function () {
-            clearInterval(interval);
+        $("a[href=#]").on('click', function (e) {
+            e.preventDefault();
         });
-        $(this).mouseleave(function () {
-            interval = setInterval(function () { slider.next(); }, 5000);
+        var interval = setInterval(function () { slider.next(); }, 5000);
+        $("#navbtns > a").each(function () {
+            $(this).click(function () {
+                clearInterval(interval);
+                interval = setInterval(function () { slider.next(); }, 5000);
+            });
         });
-    });
+
+        $(".mh-slideshow-contents .mh-posts-setting").each(function () {
+            $(this).mouseenter(function () {
+                clearInterval(interval);
+            });
+            $(this).mouseleave(function () {
+                interval = setInterval(function () { slider.next(); }, 5000);
+            });
+        });
+    }
 }
 
 /*
@@ -288,6 +291,20 @@ function getFacebookShareNum() {
          alert("fail error");
      });
     });
+}
+
+/*
+    Send report
+*/
+function sendReport(id) {
+    var formId = "#report-form-" + id;
+    $.post('/Blog/Report', $(formId).serialize())
+        .done(function (msg) {
+            console.log(msg);
+        })
+         .fail(function () {
+             alert("fail error");
+         });
 }
 
 $(document).ready(function () {

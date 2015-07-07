@@ -550,7 +550,7 @@
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="ReporterId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="true" />
-    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Images">
@@ -1215,7 +1215,7 @@
   </Association>
   <Association Name="ReportPost">
     <End Role="Report" Type="CPMathHubModel.Store.Reports" Multiplicity="*" />
-    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="1">
+    <End Role="Post" Type="CPMathHubModel.Store.Posts" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <ReferentialConstraint>
@@ -2521,7 +2521,7 @@
           <NavigationProperty Name="User" Relationship="CPMathHubModel.ReportedUser" FromRole="Report" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Post" Relationship="CPMathHubModel.ReportPost" FromRole="Report" ToRole="Post" />
-          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="PostId" Type="Int32" Nullable="true" />
           <Property Name="Description" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="ReportUser">
@@ -2807,7 +2807,7 @@
         </Association>
         <Association Name="ReportPost">
           <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
-          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="1" >
+          <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="0..1" >
             <OnDelete Action="Cascade" />
           </End>
           <ReferentialConstraint>

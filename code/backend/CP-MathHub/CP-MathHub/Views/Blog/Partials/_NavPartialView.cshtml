@@ -58,8 +58,8 @@
         else if (ViewBag.MhPage == Constant.String.BlogDetailPage || ViewData["Page"] == Constant.String.BlogDetailPage)
         {
             <div class="col-xs-12 col-md-8 mh-home-tab">
-                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.MyArticleTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.MyArticleTab ? "active" : "")">Bài viết của @ViewData["User"]</a>
-                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.HomeBookmarkTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.HomeBookmarkTab ? "active" : "")">Bài viết yêu thích của @ViewData["User"]</a>
+                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.UserArticleTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.UserArticleTab ? "active" : "")">Bài viết của @ViewData["User"]</a>
+                <a href="@Url.Action("UserBlog", new { @tab = Constant.Blog.String.UserBookmarkTab, @userId = ViewData["UserId"] })" class="btn btn-primary btn-sm @(ViewBag.Tab == Constant.Blog.String.UserBookmarkTab ? "active" : "")">Bài viết yêu thích của @ViewData["User"]</a>
                 @if (ViewBag.MhPage != "blog-create")
                 {
                     <a href="@Url.Action("Create")" class="btn btn-success btn-sm hidden-md hidden-lg">Tạo bài viết</a>

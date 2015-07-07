@@ -31,18 +31,30 @@ namespace CP_MathHub.Service.Helpers
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
 
-        public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name)
+        public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)
         {
             string html = "";
-
-            html += RadioForEnum(ReportTypeEnum.Other, "Lý do khác", name);
-            html += RadioForEnum(ReportTypeEnum.ClonedAccount, "Sử dụng tài khoản giả", name);
-            html += RadioForEnum(ReportTypeEnum.DuplicateQuestion, "Câu hỏi trùng", name);
-            html += RadioForEnum(ReportTypeEnum.SpamAnswer, "Trả lời spam", name);
-            html += RadioForEnum(ReportTypeEnum.SpamComment, "Bình luận spam", name);
-            html += RadioForEnum(ReportTypeEnum.SpamQuestion, "Câu hỏi spam", name);
+            switch (type)
+            {
+                case "question":
+                    html += RadioForEnum(ReportTypeEnum.DuplicateQuestion, "Câu hỏi trùng", name);
+                    html += RadioForEnum(ReportTypeEnum.SpamQuestion, "Câu hỏi spam", name);
+                    html += RadioForEnum(ReportTypeEnum.WrongMainPostPosition, "Sai vị trí", name);
+                    break;
+                case "answer":
+                    html += RadioForEnum(ReportTypeEnum.SpamAnswer, "Trả lời spam", name);
+                    break;
+                case "mainpost":
+                    html += RadioForEnum(ReportTypeEnum.WrongMainPostPosition, "Sai vị trí", name);
+                    break;
+                case "comment":
+                    html += RadioForEnum(ReportTypeEnum.SpamComment, "Bình luận spam", name);
+                    break;
+                default:
+                    break;
+            }
             html += RadioForEnum(ReportTypeEnum.Swearing, "Sử dụng từ ngữ không phù hợp", name);
-            html += RadioForEnum(ReportTypeEnum.WrongMainPostPosition, "Sai vị trí", name); 
+            html += RadioForEnum(ReportTypeEnum.Other, "Lý do khác", name);
 
             return MvcHtmlString.Create(html);
         }

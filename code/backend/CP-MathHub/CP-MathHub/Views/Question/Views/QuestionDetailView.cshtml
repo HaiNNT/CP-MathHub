@@ -23,7 +23,7 @@
     <div class="panel panel-success mh-question-preview">
         <div class="panel-heading">
             <div class="row">
-                @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+                @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo)
                 <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
                 <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
             </div>

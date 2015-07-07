@@ -7,31 +7,28 @@
 /*
   Init see more question event listening 
 */
-function seeMore() {
-    $(".mh-seemore").each(function () {
-        $(this).click(function () {
-            $(this).parent().addClass("hidden");
-            var parent = $($(this).parents(".mh-question-preview")[0]);
+function seeMore(item) {
+    $(item).click(function () {
+        $(item).parent().addClass("hidden");
+        var parent = $($(item).parents(".mh-question-preview")[0]);
             parent.find(".mh-sort-content").addClass("hidden");
             parent.find(".mh-full-content").removeClass("hidden");
             parent.find(".mh-social-report").removeClass("hidden");
-        });
-    });
+        }); 
 }
 
 /*
   Init see more comment event listening 
 */
-function seeMoreComment() {
-    $(".mh-seemore-comment").each(function () {
-        $(this).click(function () {
-            $(this).addClass("hidden");
-            $(this).siblings(".hidden").each(function () {
+function seeMoreComment(item) {
+
+    $(item).click(function () {
+        $(item).addClass("hidden");
+        $(item).siblings(".hidden").each(function () {
                 $(this).removeClass("hidden");
             });
 
         });
-    });
 }
 
 /*
@@ -322,7 +319,7 @@ $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "question-home":
             applyInfinityLoading();
-            seeMore();
+            //seeMore();
             break;
         case "question-create":
             togglePreview();
@@ -339,11 +336,11 @@ $(document).ready(function () {
         case "question-detail":
             initCkeditor(false);
             commentPost();
-            seeMoreComment();
+            //seeMoreComment();
             break;
         default:
             applyInfinityLoading();
-            seeMore();
+            //seeMore();
             break;
     }
 });

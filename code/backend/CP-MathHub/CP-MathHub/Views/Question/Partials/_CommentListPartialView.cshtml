@@ -27,7 +27,7 @@
         }
         else
         {
-            <a class="mh-seemore-comment">Xem thêm @(Model.Count > 3 ? (Model.Count - 3) + " " : " ")bình luận</a>
+            <a onclick="seeMoreComment(this)" class="mh-seemore-comment">Xem thêm @(Model.Count > 3 ? (Model.Count - 3) + " " : " ")bình luận</a>
             <div class="hidden">
                 <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
                 <input type="hidden" value="@ViewData["PostId"]" class="mh-post-id" />

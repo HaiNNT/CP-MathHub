@@ -9,6 +9,7 @@ namespace CP_MathHub.Models.Question
 {
     public class QuestionCreateViewModel
     {
+        public int Id { get; set; }
         [Required]
         [StringLength(100, MinimumLength = 10)]
         public string Title { get; set; }

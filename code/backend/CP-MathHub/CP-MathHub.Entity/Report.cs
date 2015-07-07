@@ -19,7 +19,7 @@ namespace CP_MathHub.Entity
         public ReportTypeEnum Type { get; set; }
         public int ReporterId { get; set; }
         public Nullable<int> UserId { get; set; }
-        public int PostId { get; set; }
+        public Nullable<int> PostId { get; set; }
         public string Description { get; set; }
     
         public virtual User Reporter { get; set; }
