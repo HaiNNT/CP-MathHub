@@ -14,19 +14,20 @@ namespace CP_MathHub.Service.Services
 {
     public class DiscussionService : IDiscussionService
     {
-         private IUnitOfWork dal;
-         private ICommonService cService;
+        private IUnitOfWork dal;
+        private ICommonService cService;
         public DiscussionService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
         }
-        public Discussion GetLastestDiscussion(int tagid){
+        public Discussion GetLastestDiscussion(int tagid)
+        {
             Discussion discussion = dal.Repository<Discussion>().Include("Author").Table
                                                  .Where(p => p.Tags.Where(t => t.Id == tagid).Count() > 0)
                                                  .Distinct()
                                                  .OrderByDescending(t => t.CreatedDate)
-                                                 .FirstOrDefault();                
+                                                 .FirstOrDefault();
             return discussion;
         }
         public List<Discussion> GetDiscussions(string homeTab, int skip = 0)
@@ -76,7 +77,7 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Discussion>() //Get Question Repository
                 .Get(
-                    (a => a.Tags.Where(t=>t.Id == tagId).Count()>0), //Filter Question by Author
+                    (a => a.Tags.Where(t => t.Id == tagId).Count() > 0), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip

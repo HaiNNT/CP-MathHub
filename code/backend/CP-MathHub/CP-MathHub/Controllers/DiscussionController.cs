@@ -28,25 +28,20 @@ namespace CP_MathHub.Controllers
         }
         // GET: Discussion
         [HttpGet]
-        public ActionResult Index(int page = 0)
+        public ActionResult Index()
         {
-            int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Tag> tags = cService.GetTags(skip);
+            //int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
+            List<Tag> tags = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
             ICollection<DiscussionCategoryViewModel> discussioncategoryVM =
                 tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
                 .ToList();
-            if (page == 0)
-            {
-                DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
-                discussionHomeVM.Name = "THẢO LUẬN";
-                ViewBag.System = Constant.String.DiscussionSystem;
-                discussionHomeVM.Items = discussioncategoryVM;
-                return View("Views/DiscussionHomeView", discussionHomeVM);
-            }
-            else
-            {
-                return PartialView("Partials/_DiscussionListTagPartialView", discussioncategoryVM);
-            }
+
+            DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
+            discussionHomeVM.Name = "THẢO LUẬN";
+            ViewBag.System = Constant.String.DiscussionSystem;
+            discussionHomeVM.Items = discussioncategoryVM;
+            return View("Views/DiscussionHomeView", discussionHomeVM);
+
         }
         //Get: CategoryIndex
         public ActionResult CategoryIndex(string tag, int tagId, int page = 0)
