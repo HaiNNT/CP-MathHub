@@ -329,6 +329,7 @@ function commentPost() {
     $(".mh-input-comment").each(function () {
         var input = $(this);
         var list = $(input.parents(".mh-input-commnent-div").siblings(".mh-comment-list-full"));
+        var commentNum = parseInt(input.parents(".mh-discussion-post").find(".comment").text());
         input.keypress(function (e) {
             if (e.keyCode === 13 && commentReady) {
                 commentReady = false;
@@ -346,6 +347,7 @@ function commentPost() {
 				    if (msg != "\n") {
 				        list.html("");
 				        list.append($(msg));
+				        input.parents(".mh-discussion-post").find(".comment").text(++commentNum);
 				        input.val("");
 				        commentPost();
 				        commentReady = true;
