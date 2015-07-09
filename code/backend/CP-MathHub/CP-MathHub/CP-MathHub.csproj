@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
+    <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
     <Compile Include="Models\Blog\BlogHomeViewModel.cs" />
     <Compile Include="Models\Blog\ArticlePreviewViewModel.cs" />
     <Compile Include="Models\Blog\MyBlogViewModel.cs" />

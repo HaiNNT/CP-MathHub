@@ -375,9 +375,14 @@ function applyInfinityLoading() {
 */
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
-        case "discussion-home":   
+        case "discussion-home":
             break;
         case "discussion-create":
+            togglePreview();
+            initSelectMenu();
+            initCkeditor(true);
+            break;
+        case "discussion-edit":
             togglePreview();
             initSelectMenu();
             initCkeditor(true);
