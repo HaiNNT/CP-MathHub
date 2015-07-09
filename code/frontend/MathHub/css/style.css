@@ -1116,7 +1116,7 @@ footer {
 /* Chat: start */
 .mh-chat {
     position: fixed;
-    right: 7px;
+    right: 0px;
     bottom: 0px;
     max-height: calc(100vh - 51px);
     padding-bottom: 30px;
@@ -1127,7 +1127,7 @@ footer {
 }
 .mh-chat .mh-chat-left {
     float: left;
-    width: 50px;
+    width: 40px;
     transition: 0.3s width;
     background-color: #EFF3F8;
     padding-left: 3px;
@@ -1159,11 +1159,13 @@ footer {
 .mh-chat-status-icon-on {
     font-size: 10px;
     color: #0F9D28;
+    padding-top: 8px;
 }
 
 .mh-chat-status-icon-off {
     font-size: 10px;
     color: #9197a3;
+    padding-top: 8px;
 }
 
 .mh-chat-footer {
@@ -1184,16 +1186,16 @@ footer {
 .mh-chat-footer-left {
     background-color: #fff;
     height: 27px;
-    padding-left: 10px;
+    padding-left: 5px;
     float: left;
-    width: 50px;
+    width: 40px;
     transition: 0.3s width;
 }
 
 .mh-chat-footer-right {
     background-color: #fff;
-    height: 23px;
-    width: 32px;
+    height: 27px;
+    width: 25px;
     float: right;
 }
 
@@ -1214,6 +1216,7 @@ footer {
 
 .mh-chat-area-setting {
     cursor: pointer;
+    margin-top: 7px;
 }
 
 .mh-chat-footer-right ul {
@@ -1224,4 +1227,88 @@ footer {
 .mh-chat .dropup > ul > li > a:hover {
     background-color: #ccc;
 }
+/*Chat popup: start*/
+.mh-chat-popup {
+    z-index: 1000;
+}
+.mh-chat-popup {
+    position: fixed;
+    bottom: 0px;
+    right: 220px;
+    display: block;
+    height: 290px;
+    width: 265px;
+    border: 1px solid #C08484;
+    background-color: #eff3f8;
+}
+.mh-chat-popup-head {
+    position: relative;
+    zoom: 1;
+    height: 27px;
+    width: 100%;
+    background-color: #BD5555;
+}
+.mh-chat-popup-name {
+    float: left;
+}
+.mh-chat-popup-name h4 {
+    font-weight: bold;
+    margin: 0px;
+    padding: 3px 10px;
+}
+.mh-chat-popup-name h4 .mh-chat-status-icon-on, .mh-chat-popup-name h4 .mh-chat-status-icon-off {
+    padding: 0px;
+}
+.mh-chat-popup-name a {
+    color: #fff;
+    font-size: 14px;
+}
+.mh-chat-popup-button-head {
+    float: right;
+    width: 73px;
+}
+.mh-chat-popup-button-head a:hover, mh-chat-popup-button-head a:focus {
+    text-decoration: none;
+}
+.mh-chat-popup-head-icon {
+    font-size: 14px;
+    color: #DDBDBD;
+    padding: 5px 3px;
+}
+.mh-chat-popup-body {
+    position: relative;
+}
+.mh-chat-popup-content {
+    overflow: hidden;
+    height: 232px;
+    width: 100%;
+    background-color: #eff3f8;
+}
+.mh-chat-popup-inputs {
+    position: relative;
+    border-top: 2px solid #CD9E9E;
+    height: 27px;
+    width: 100%;
+    background-color: #fff;
+}
+.mh-chat-popup-input{
+    position: relative;
+    width: 100%;
+    height: 26px;
+    padding: 4px 26px 5px 5px;
+    border: 0;
+}
+.mh-chat-popup-input:focus {
+    outline: none;
+}
+.mh-chat-popup-footer-icon {
+    position: absolute;
+    bottom: 4px;
+    z-index: 1;
+    right: 7px;
+    font-size: 17px;
+    color: #ccc;
+    font-weight: bold;
+}
+/*Chat popup: start*/
 /* Chat: end */
