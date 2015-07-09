@@ -1236,17 +1236,16 @@ footer {
     bottom: 0px;
     right: 220px;
     display: block;
-    height: 290px;
     width: 265px;
     border: 1px solid #C08484;
     background-color: #eff3f8;
+    max-height: calc(100vh - 51px);
 }
 .mh-chat-popup-head {
-    position: relative;
-    zoom: 1;
     height: 27px;
     width: 100%;
     background-color: #BD5555;
+    cursor: pointer;
 }
 .mh-chat-popup-name {
     float: left;
@@ -1275,11 +1274,67 @@ footer {
     color: #DDBDBD;
     padding: 5px 3px;
 }
+.mh-chat-popup-head-icon:hover, .mh-chat-popup-head-icon:focus {
+    color: #fff;
+}
+.mh-chat-popup-setting-show {
+    position: absolute;
+    right: 25px;
+    top: 27px;
+    margin-bottom: 2px;
+    list-style: none;
+    background-color: #F5F5F5;
+    z-index: 1000;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.mh-chat-popup-setting-show  li a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.mh-chat-popup-setting-show  li a:hover {
+    background-color: #ccc;
+}
+.mh-chat-popup-add-friend {
+    position: absolute;
+    left: 0;
+    padding: 0px 5px 3px 5px;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+.mh-chat-popup-input-add-more {
+    padding: 4px 3px 4px 3px;
+    font-size: 12px;
+    width: 83%;
+    height: 22px;
+}
+.mh-chat-popup-input-add-more:focus {
+    outline: none;
+}
+.mh-chat-popup-button-add-done {
+    padding: 1px 3px;
+    margin-top: 2px;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 12px;
+}
 .mh-chat-popup-body {
-    position: relative;
 }
 .mh-chat-popup-content {
-    overflow: hidden;
     height: 232px;
     width: 100%;
     background-color: #eff3f8;

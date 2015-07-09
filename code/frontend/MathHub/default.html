@@ -1305,10 +1305,10 @@
                 <input type="text" placeholder="Tìm kiếm..." class="mh-chat-area-input">
             </div>
             <div class="dropup mh-chat-footer-right">
-                <a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a id="chatsetting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog mh-chat-area-setting"></i>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <ul class="dropdown-menu" aria-labelledby="chatsetting">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
@@ -1327,22 +1327,30 @@
                     </h4>
                 </div>
                 <div class="mh-chat-popup-button-head">
-                    <a href="">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
                         <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
                     </a>
-                    <a href="">
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
                         <i class="fa fa-cog mh-chat-popup-head-icon"></i>
                     </a>
-                    <a href="">
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
                         <i class="fa fa-close mh-chat-popup-head-icon"></i>
                     </a>
                 </div>
                 <div style="clear:both"></div>
             </div>
             <div class="mh-chat-popup-body">
-                <div class="mh-chat-popup-content">
-
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
                 </div>
+                <div class="mh-chat-popup-content"></div>
                 <div class="mh-chat-popup-inputs">
                     <input type="text" class="mh-chat-popup-input" />
                     <a>
@@ -1399,5 +1407,36 @@
     </div>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script>
+        $(".mh-chat-popup-head").click(function () {
+            $(".mh-chat-popup-body").slideToggle("fast");
+        });
+        $(".mh-chat-popup-add-friend-icon").each(function () {
+            $(this).click(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(".mh-chat-popup-add-friend").removeClass("hidden");
+                $(".mh-chat-popup-add-friend").slideToggle("normal");
+            });
+        });
+        $(".mh-chat-popup-setting").each(function () {
+            $(this).click(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                var item = $(this).siblings(".mh-chat-popup-setting-show");
+                if (item.hasClass("hidden")) {
+                    item.removeClass("hidden");
+                } else {
+                    item.addClass("hidden");
+                }
+            });
+        });
+        $("body").click(function (event) {
+            $(".mh-chat-popup-setting-show").addClass("hidden");
+        });
+        $(function () {
+            $('[data-toggle="tooltip"],.mh-chat-popup-setting').tooltip()
+        });
+    </script>
 </body>
 </html>
