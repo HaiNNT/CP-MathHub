@@ -1228,18 +1228,20 @@ footer {
     background-color: #ccc;
 }
 /*Chat popup: start*/
-.mh-chat-popup {
-    z-index: 1000;
+.mh-chat-popups {
+    /*width: 855px;*/
 }
 .mh-chat-popup {
+    z-index: 1000;
+    float: right;
     position: fixed;
     bottom: 0px;
-    right: 220px;
     display: block;
     width: 265px;
     border: 1px solid #C08484;
     background-color: #eff3f8;
     max-height: calc(100vh - 51px);
+    margin-left: 13px;
 }
 .mh-chat-popup-head {
     height: 27px;

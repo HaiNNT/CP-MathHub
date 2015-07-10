@@ -21,11 +21,10 @@
 	float: left;
 }
 
-.mh-question-preview > .panel-heading > div > i {
+.mh-question-preview > .panel-heading > .mh-user-info > .mh-posts-setting {
     position: absolute;
-    top: 25%;
-    left: 90%;
-    font-size: 15pt;
+    top: 0;
+    right: 0;
 }
 
 .mh-question-preview > .panel-body > div {
@@ -270,5 +269,9 @@
 .mh-tag-times {
 	font-size: 9pt;
 	color: #444;
+}
+.mh-content .mh-bookmark-icon {
+    vertical-align: top;
+    font-size: 15pt;
 }
   /* QA Tag: end */
