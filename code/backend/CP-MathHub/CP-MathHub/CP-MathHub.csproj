@@ -628,7 +628,7 @@
     <Content Include="Views\Blog\Partials\_ArticleListPreviewPartialView.cshtml" />
     <Content Include="Views\Blog\Layouts\_BlogDetailLayout.cshtml" />
     <Content Include="Views\Blog\Views\BlogDetailView.cshtml" />
-    <Content Include="Views\Blog\Layouts\_BlogCreateLayuot.cshtml" />
+    <Content Include="Views\Blog\Layouts\_BlogCreateLayout.cshtml" />
     <Content Include="Views\Blog\Views\BlogCreateView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
@@ -645,6 +645,8 @@
     <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
+    <Content Include="Views\Blog\Views\BlogEditView.cshtml" />
+    <Content Include="Views\Blog\Layouts\_BlogEditLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

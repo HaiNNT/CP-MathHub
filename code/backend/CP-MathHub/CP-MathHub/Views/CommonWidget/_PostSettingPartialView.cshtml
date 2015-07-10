@@ -14,15 +14,21 @@
             @switch ((string)@ViewData["PostType"])
             {
                 case "question":
+                    <li><a href="@Url.Action("Edit", "Question", new { @id = @ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
+                    <li><a href="">Đóng câu hỏi</a></li>
                     break;
-                case "mainpost":
-                    <li><a href="#">Chỉnh sửa bài viết</a></li>
-                    <li><a href="">Đóng bài viết</a></li>
-                    <li><a href="">Xóa bài viết</a></li>
+                case "discussion":
+                    <li><a href="@Url.Action("Edit", "Discussion", new { @id = @ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
+                    <li><a href="">Đóng thảo luận</a></li>
+                    break;
+                case "blog":
+                <li><a href="@Url.Action("Edit", "Blog", new { @id = @ViewData["PostId"] })">Chỉnh sửa bài viết</a></li>
+                <li><a href="">Đóng bài viết</a></li>
+                <li><a href="">Xóa bài viết</a></li>
                     break;
                 case "comment":
-                    <li><a href="#">Chỉnh sửa</a></li>
-                    <li><a href="">Xóa</a></li>
+                    @*<li><a href="@Url.Action("EditComment", "CommonWidget", new { @id = @ViewData["PostId"]})">Chỉnh sửa</a></li>
+                    <li><a href="">Xóa</a></li>*@
                     break;
                 default:
                     break;

@@ -402,6 +402,10 @@ namespace CP_MathHub.Service.Services
                                             .OrderBy(c => c.CreatedDate)
                                             .ToList();
         }
+        public Comment GetComment(int id)
+        {
+            return dal.Repository<Comment>().GetById(id);
+        }
         public Vote GetVote(int postId, int userId)
         {
             return dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();

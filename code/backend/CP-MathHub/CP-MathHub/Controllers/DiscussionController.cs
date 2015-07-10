@@ -331,12 +331,20 @@ namespace CP_MathHub.Controllers
                     return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
             }
         }
-        //Post: Blog/Like
+        //Post: Discussion/Like
         [HttpPost]
         public bool Like(int id)
         {
             User user = cService.GetLoginUser();
             return cService.Like(id, user.Id);
         }
+        //Post: Discussion/Bookmark
+        [HttpPost]
+        public bool Bookmark(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Bookmark(id, user);
+        }
+
     }
 }

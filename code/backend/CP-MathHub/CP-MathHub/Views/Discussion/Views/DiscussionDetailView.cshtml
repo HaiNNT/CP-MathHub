@@ -14,12 +14,19 @@
         </div>
     </div>
 </div>
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", "Bài tập luyện thi đại học" } })
+@Html.Partial("Partials/_NavPartialView")
 <div class="mh-discussion-posts">
     <div class="panel panel-info mh-discussion-post">
         <div class="panel-heading">
             <div class="row">
                 @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+                <div class="col-xs-11 title">
+                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                </div>
+                <div class="col-xs-1">
+                    @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "discussion" } })
+                </div>
             </div>
         </div>
         <div class="panel-body">

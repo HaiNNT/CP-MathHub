@@ -252,7 +252,39 @@ namespace CP_MathHub.Controllers
                 return View("Views/Error");
             }
         }
+        //Get: Blog/Edit
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            ArticleEditViewModel articleEditVM = new ArticleEditViewModel();
+            Article article = bService.GetArticle(id);
+            articleEditVM = Mapper.Map<Article, ArticleEditViewModel>(article);
+            ViewBag.System = Constant.String.BlogSystem;
+            return View("Views/BlogEditView", articleEditVM);
+        }
+        //Post: Blog/Edit
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Edit(ArticleEditViewModel articleEditVM)
+        {
+            Article article = bService.GetArticle(articleEditVM.Id);
 
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = article.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = article.Id;
+            editedlog.UserId = article.UserId;
+
+            article.Title = articleEditVM.Title;
+            article.Content = articleEditVM.Content;
+            article.Privacy = articleEditVM.Privacy;
+
+            article.LastEditedDate = editedlog.CreatedDate;
+            article.EditedContents.Add(editedlog);
+
+            bService.UpdateArticle(article);
+
+            return RedirectToAction("Detail", new { id = article.Id });
+        }
         //Post: Blog/Bookmark
         [HttpPost]
         public bool Bookmark(int id)
