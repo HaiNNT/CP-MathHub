@@ -176,6 +176,15 @@ footer {
 .mh-discussion-post >.mh-user-comment {
     padding: 15px;
 }
+.mh-discussion-post .mh-bookmark-icon {
+  vertical-align: top;
+  font-size: 13pt;
+}
+.mh-discussion-post > .panel-heading > .mh-user-info > .mh-posts-setting {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 /*QA default: end*/
 /* Panel: end*/
 /*  Mid: end    */

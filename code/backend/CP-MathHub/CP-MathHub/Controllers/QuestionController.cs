@@ -199,7 +199,7 @@ namespace CP_MathHub.Controllers
         }
 
         //Post: Question/Edit
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [Authorize]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
@@ -213,6 +213,8 @@ namespace CP_MathHub.Controllers
 
             question.Title = questionVM.Title;
             question.Content = questionVM.Content;
+            question.Privacy = questionVM.Privacy;
+
             question.LastEditedDate = editedlog.CreatedDate;
             question.EditedContents.Add(editedlog);
 

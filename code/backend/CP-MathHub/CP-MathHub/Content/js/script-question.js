@@ -277,6 +277,14 @@ function commentPost() {
 }
 
 /*
+	Apply select menu
+*/
+function initSelectMenu() {
+    $("#mh-mainpost-privacy").selectmenu();
+}
+
+
+/*
     Apply Infinity loading
 */
 function applyInfinityLoading() {
@@ -323,6 +331,12 @@ $(document).ready(function () {
             break;
         case "question-create":
             togglePreview();
+            initSelectMenu();
+            initCkeditor(true);
+            break
+        case "question-edit":
+            togglePreview();
+            initSelectMenu();
             initCkeditor(true);
             break;
         case "question-tags":

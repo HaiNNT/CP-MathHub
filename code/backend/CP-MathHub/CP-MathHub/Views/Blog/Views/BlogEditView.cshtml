@@ -1,20 +1,29 @@
-﻿@model CP_MathHub.Models.Question.QuestionEditViewModel
+﻿@model CP_MathHub.Models.Blog.ArticleEditViewModel
 @using CP_MathHub.Core.Configuration
 @{
-    ViewBag.Title = "Chỉnh sửa câu hỏi";
-    ViewBag.MhPage = Constant.String.QuestionEditPage;
-    Layout = "~/Views/Question/Layouts/_QuestionEditLayout.cshtml";
+    ViewBag.Title = "Chỉnh sửa bài viết";
+    ViewBag.MhPage = Constant.String.BlogEditPage;
+    Layout = "~/Views/Blog/Layouts/_BlogEditLayout.cshtml";
 }
 <div class="mh-top-content">
     <div class="row">
-        <div class="col-md-4 mh-content-title">
-            <h3>Chỉnh sửa câu hỏi</h3>
+        <div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
+            <h3>Chỉnh sửa bài viết</h3>
+        </div>
+        <div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+            <a href="@Url.Action("Index")" class="btn btn-default">
+                <i class="fa fa-users mh-home-button"></i>
+                Bài viết cộng đồng
+            </a>
+            <a href="@Url.Action("MyBlog")" class="btn btn-default">
+                <i class="fa fa-user mh-home-button"></i>
+                Bài viết của tôi
+            </a>
         </div>
     </div>
 </div>
-@Html.Partial("Partials/_NavPartialView")
 <div class="mh-body-content-mid">
-    @using (Html.BeginForm("Edit", "Question", FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Blog", FormMethod.Post))
     {
         <div class="mh-body-title">
             @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
@@ -23,7 +32,7 @@
         </div>
         <div class="mh-ckeditor">
             @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
-            @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
+            @Html.TextAreaFor(model => model.Content, new { @class = "editor", @id = "editor1", @rows = "15", @cols = "80" })
             @Html.ValidationMessageFor(model => model.Content)
         </div>
         <div class="mh-preview">
@@ -38,6 +47,17 @@
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-8">
                     @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
+                </div>
+            </div>
+        </div>
+        <div class="mh-create-day">
+            <div class="row">
+                <div class="col-sm-6 col-md-5 col-lg-4" disable="true">
+                    @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
+                </div>
+                <div class="col-sm-6 col-md-7 col-lg-8">
+                    @Html.TextBoxFor(model => model.CreatedDate, new { @id = "datepicker", @style = "padding-left: 5px;" , @disabled = "true"})
+                    @Html.ValidationMessageFor(model => model.Content)
                 </div>
             </div>
         </div>

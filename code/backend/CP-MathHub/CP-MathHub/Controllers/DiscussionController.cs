@@ -185,7 +185,7 @@ namespace CP_MathHub.Controllers
             return View("Views/DiscussionEditView", discussionEditVM);
         }
         //Post: Discussion/Edit
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(DiscussionEditViewModel discussionEditVM)
         {
             Discussion discussion = dService.GetDiscussion(discussionEditVM.Id);
@@ -198,6 +198,8 @@ namespace CP_MathHub.Controllers
 
             discussion.Title = discussionEditVM.Title;
             discussion.Content = discussionEditVM.Content;
+            discussion.Privacy = discussionEditVM.Privacy;
+
             discussion.LastEditedDate = editedlog.CreatedDate;
             discussion.EditedContents.Add(editedlog);
 
@@ -329,12 +331,20 @@ namespace CP_MathHub.Controllers
                     return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
             }
         }
-        //Post: Blog/Like
+        //Post: Discussion/Like
         [HttpPost]
         public bool Like(int id)
         {
             User user = cService.GetLoginUser();
             return cService.Like(id, user.Id);
         }
+        //Post: Discussion/Bookmark
+        [HttpPost]
+        public bool Bookmark(int id)
+        {
+            User user = cService.GetLoginUser();
+            return cService.Bookmark(id, user);
+        }
+
     }
 }

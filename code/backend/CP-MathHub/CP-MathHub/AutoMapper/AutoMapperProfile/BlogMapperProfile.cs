@@ -129,6 +129,17 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                                                     .GetLoginUser().Id).Count() > 0)
             );
             #endregion
+            #region Article Edit
+            Mapper.CreateMap<Article, ArticleEditViewModel>()
+               .ForMember(
+                   s => s.Privacy,
+                   d => d.MapFrom(m => m.Privacy)
+               )
+               .ForMember(
+                   s => s.CreatedDate,
+                   d => d.MapFrom(m => m.CreatedDate)
+               );
+            #endregion
         }
     }
 }

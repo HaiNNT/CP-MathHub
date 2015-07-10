@@ -1,44 +1,69 @@
 ﻿@model CP_MathHub.Models.Discussion.DiscussionEditViewModel
 @{
     ViewBag.Title = "DiscusionEditView";
+    ViewBag.MhPage = "discussion-edit";
     Layout = "~/Views/Discussion/Layouts/_DiscussionEditLayout.cshtml";
 }
-
-<h2>DiscussionEditView</h2>
-@using (Html.BeginForm("Edit", "Discussion", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.Label("Title", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { @Value = Model.Title })
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-4 mh-content-title">
+            <h3>Chỉnh Sửa</h3>
+        </div>
+    </div>
+</div>
+<div class="mh-body-content-mid">
+    @using (Html.BeginForm("Edit", "Discussion", FormMethod.Post))
+    {
+        <div class="mh-body-title">
+            @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
+            @Html.TextBoxFor(m => m.Title, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
             @Html.ValidationMessageFor(model => model.Title)
         </div>
-    </div>
-    <div class="form-group">
-        @Html.Label("Content", new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Content, new { @Value = Model.Content })
+        <div class="mh-ckeditor">
+            @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
+            @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
             @Html.ValidationMessageFor(model => model.Content)
         </div>
-    </div>
-    @Html.HiddenFor(model => model.Id)
-    <button type="submit">Edit</button>
-}
+        <div class="mh-preview">
+            <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
+            <div class="mh-preview-content">
+            </div>
+        </div>
+        <div class="mh-create-privacy">
+            <div class="row">
+                <div class="col-sm-6 col-md-5 col-lg-4">
+                    @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
+                </div>
+                <div class="col-sm-6 col-md-7 col-lg-8">
+                    @Html.EnumDropDownListFor(m=>m.Privacy, new { @id = "mh-mainpost-privacy" })
+                </div>
+            </div>
+        </div>
+        @*<div id="mh-input-tag-div">
+            <label class="mh-create-label">Gắn thêm thẻ cho thảo luận: </label><br />
+            <div class="mh-create-input mh-input-tag">
+                <div id="mh-tag-list"></div>
+                <div><input type="text" id="mh-input-tag" /></div>
+                <i id="mh-create-tag" class="fa fa-plus-square" onclick="createTag()"></i>
+            </div>
+            <ul id="mh-tag-autocomplete-list"></ul>
+        </div>
+        <div id="mh-input-invite-div">
+            <label class="mh-create-label">Mời bạn bè: </label><br />
+            <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
+            <span class="mh-tag-list"></span>
+            <ul id="mh-invite-autocomplete-list"></ul>
+        </div>*@
+        <div class="mh-create-div">
+            <button type="submit" class="btn btn-success btn-lg mh-create-button">Cập Nhật</button>
+        </div>
+    }
+</div><!-- Body content Mid: end  -->
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
 @section LeftPanel
 {
-    @*@Html.Action(MVC.CommonWidget.ProfileWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.FavoriteTagWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.GroupWidget())
-        <hr />
-        @Html.Action(MVC.CommonWidget.SubscriptionWidget())*@
-}
-@section RightPanel
-{
-    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
 }
