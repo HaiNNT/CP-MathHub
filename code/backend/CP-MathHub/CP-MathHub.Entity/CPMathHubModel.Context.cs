@@ -33,7 +33,7 @@ namespace CP_MathHub.Entity
         public virtual DbSet<Invitation> Invitations { get; set; }
         public virtual DbSet<Vote> Votes { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Assessment> Assessments { get; set; }
+        public virtual DbSet<Accessment> Accessments { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Privilege> Privileges { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
@@ -55,5 +55,7 @@ namespace CP_MathHub.Entity
         public virtual DbSet<Series> Series { get; set; }
         public virtual DbSet<ProfileHistory> ProfileHistories { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<UserClaim> UserClaims { get; set; }
+        public virtual DbSet<UserLogin> UserLogins { get; set; }
     }
 }

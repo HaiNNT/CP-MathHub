@@ -38,7 +38,7 @@
         <AssociationConnector Association="CPMathHubModel.VotePost" />
         <AssociationConnector Association="CPMathHubModel.VoteUser" />
         <EntityTypeShape EntityType="CPMathHubModel.Role" Width="1.5" PointX="11.375" PointY="5.25" />
-        <EntityTypeShape EntityType="CPMathHubModel.Assessment" Width="1.75" PointX="9.875" PointY="1.75" />
+        <EntityTypeShape EntityType="CPMathHubModel.Accessment" Width="1.75" PointX="9.875" PointY="1.75" />
         <AssociationConnector Association="CPMathHubModel.AssessmentUser" />
         <AssociationConnector Association="CPMathHubModel.AssessmentRole" />
         <EntityTypeShape EntityType="CPMathHubModel.Function" Width="1.5" PointX="14.25" PointY="4.625" />
@@ -109,6 +109,10 @@
         <AssociationConnector Association="CPMathHubModel.LocationProfile" />
         <AssociationConnector Association="CPMathHubModel.UserActivity" />
         <AssociationConnector Association="CPMathHubModel.GroupArticle" />
+        <EntityTypeShape EntityType="CPMathHubModel.UserClaim" Width="1.5" PointX="0.75" PointY="15.875" />
+        <AssociationConnector Association="CPMathHubModel.UserUserClaim" />
+        <EntityTypeShape EntityType="CPMathHubModel.UserLogin" Width="1.5" PointX="9" PointY="17.625" />
+        <AssociationConnector Association="CPMathHubModel.UserUserLogin" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

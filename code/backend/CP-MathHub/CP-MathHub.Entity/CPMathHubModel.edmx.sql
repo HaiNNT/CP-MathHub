@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/06/2015 15:37:57
+-- Date Created: 07/10/2015 15:31:21
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -69,10 +69,10 @@ IF OBJECT_ID(N'[dbo].[FK_VoteUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Votes] DROP CONSTRAINT [FK_VoteUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AssessmentUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Assessments] DROP CONSTRAINT [FK_AssessmentUser];
+    ALTER TABLE [dbo].[Accessments] DROP CONSTRAINT [FK_AssessmentUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AssessmentRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Assessments] DROP CONSTRAINT [FK_AssessmentRole];
+    ALTER TABLE [dbo].[Accessments] DROP CONSTRAINT [FK_AssessmentRole];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FunctionRole_Function]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FunctionRole] DROP CONSTRAINT [FK_FunctionRole_Function];
@@ -194,6 +194,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_GroupArticle]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Article] DROP CONSTRAINT [FK_GroupArticle];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserUserClaim]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserClaims] DROP CONSTRAINT [FK_UserUserClaim];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserUserLogin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserLogins] DROP CONSTRAINT [FK_UserUserLogin];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
 GO
@@ -241,8 +247,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Roles];
 GO
-IF OBJECT_ID(N'[dbo].[Assessments]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Assessments];
+IF OBJECT_ID(N'[dbo].[Accessments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Accessments];
 GO
 IF OBJECT_ID(N'[dbo].[Functions]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Functions];
@@ -306,6 +312,12 @@ IF OBJECT_ID(N'[dbo].[ProfileHistories]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Locations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Locations];
+GO
+IF OBJECT_ID(N'[dbo].[UserClaims]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserClaims];
+GO
+IF OBJECT_ID(N'[dbo].[UserLogins]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserLogins];
 GO
 IF OBJECT_ID(N'[dbo].[Posts_Comment]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Posts_Comment];
@@ -376,12 +388,20 @@ GO
 -- Creating table 'Users'
 CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Username] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL,
-    [Reputation] int  NOT NULL,
-    [CreatedDate] datetime  NOT NULL,
-    [Status] int  NOT NULL,
+    [UserName] nvarchar(256)  NOT NULL,
+    [PasswordHash] nvarchar(256)  NULL,
+    [Email] nvarchar(256)  NULL,
+    [Reputation] int  NULL,
+    [CreatedDate] datetime  NULL,
+    [Status] int  NULL,
+    [EmailConfirmed] bit  NOT NULL,
+    [SecurityStamp] nvarchar(max)  NULL,
+    [PhoneNumber] nvarchar(max)  NULL,
+    [PhoneNumberConfirmed] bit  NOT NULL,
+    [TwoFactorEnabled] bit  NOT NULL,
+    [LockoutEndDateUtc] datetime  NULL,
+    [LockoutEnabled] bit  NOT NULL,
+    [AccessFailedCount] int  NOT NULL,
     [Avatar_Id] int  NULL
 );
 GO
@@ -444,16 +464,16 @@ GO
 -- Creating table 'Roles'
 CREATE TABLE [dbo].[Roles] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(256)  NOT NULL,
+    [Description] nvarchar(max)  NULL
 );
 GO
 
--- Creating table 'Assessments'
-CREATE TABLE [dbo].[Assessments] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+-- Creating table 'Accessments'
+CREATE TABLE [dbo].[Accessments] (
     [UserId] int  NOT NULL,
     [RoleId] int  NOT NULL,
-    [AssessedDate] datetime  NOT NULL,
+    [AccessedDate] datetime  NOT NULL,
     [ExpireDate] datetime  NOT NULL
 );
 GO
@@ -689,6 +709,23 @@ CREATE TABLE [dbo].[Locations] (
 );
 GO
 
+-- Creating table 'UserClaims'
+CREATE TABLE [dbo].[UserClaims] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [ClaimType] nvarchar(max)  NULL,
+    [ClaimValue] nvarchar(max)  NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserLogins'
+CREATE TABLE [dbo].[UserLogins] (
+    [LoginProvider] nvarchar(128)  NOT NULL,
+    [ProviderKey] nvarchar(128)  NOT NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
 -- Creating table 'Posts_Comment'
 CREATE TABLE [dbo].[Posts_Comment] (
     [PostId] int  NOT NULL,
@@ -858,10 +895,10 @@ ADD CONSTRAINT [PK_Roles]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Assessments'
-ALTER TABLE [dbo].[Assessments]
-ADD CONSTRAINT [PK_Assessments]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+-- Creating primary key on [UserId], [RoleId] in table 'Accessments'
+ALTER TABLE [dbo].[Accessments]
+ADD CONSTRAINT [PK_Accessments]
+    PRIMARY KEY CLUSTERED ([UserId], [RoleId] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Functions'
@@ -988,6 +1025,18 @@ GO
 ALTER TABLE [dbo].[Locations]
 ADD CONSTRAINT [PK_Locations]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'UserClaims'
+ALTER TABLE [dbo].[UserClaims]
+ADD CONSTRAINT [PK_UserClaims]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [LoginProvider], [ProviderKey], [UserId] in table 'UserLogins'
+ALTER TABLE [dbo].[UserLogins]
+ADD CONSTRAINT [PK_UserLogins]
+    PRIMARY KEY CLUSTERED ([LoginProvider], [ProviderKey], [UserId] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Posts_Comment'
@@ -1321,8 +1370,8 @@ ON [dbo].[Votes]
     ([UserId]);
 GO
 
--- Creating foreign key on [UserId] in table 'Assessments'
-ALTER TABLE [dbo].[Assessments]
+-- Creating foreign key on [UserId] in table 'Accessments'
+ALTER TABLE [dbo].[Accessments]
 ADD CONSTRAINT [FK_AssessmentUser]
     FOREIGN KEY ([UserId])
     REFERENCES [dbo].[Users]
@@ -1330,14 +1379,8 @@ ADD CONSTRAINT [FK_AssessmentUser]
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_AssessmentUser'
-CREATE INDEX [IX_FK_AssessmentUser]
-ON [dbo].[Assessments]
-    ([UserId]);
-GO
-
--- Creating foreign key on [RoleId] in table 'Assessments'
-ALTER TABLE [dbo].[Assessments]
+-- Creating foreign key on [RoleId] in table 'Accessments'
+ALTER TABLE [dbo].[Accessments]
 ADD CONSTRAINT [FK_AssessmentRole]
     FOREIGN KEY ([RoleId])
     REFERENCES [dbo].[Roles]
@@ -1347,7 +1390,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AssessmentRole'
 CREATE INDEX [IX_FK_AssessmentRole]
-ON [dbo].[Assessments]
+ON [dbo].[Accessments]
     ([RoleId]);
 GO
 
@@ -1913,6 +1956,36 @@ GO
 CREATE INDEX [IX_FK_GroupArticle]
 ON [dbo].[Posts_Article]
     ([GroupId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'UserClaims'
+ALTER TABLE [dbo].[UserClaims]
+ADD CONSTRAINT [FK_UserUserClaim]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserUserClaim'
+CREATE INDEX [IX_FK_UserUserClaim]
+ON [dbo].[UserClaims]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'UserLogins'
+ALTER TABLE [dbo].[UserLogins]
+ADD CONSTRAINT [FK_UserUserLogin]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserUserLogin'
+CREATE INDEX [IX_FK_UserUserLogin]
+ON [dbo].[UserLogins]
+    ([UserId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'

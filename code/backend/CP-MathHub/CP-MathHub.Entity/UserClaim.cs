@@ -12,19 +12,13 @@ namespace CP_MathHub.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class UserClaim
     {
-        public Role()
-        {
-            this.Assessments = new HashSet<Accessment>();
-            this.Functions = new HashSet<Function>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+        public int UserId { get; set; }
     
-        public virtual ICollection<Accessment> Assessments { get; set; }
-        public virtual ICollection<Function> Functions { get; set; }
+        public virtual User User { get; set; }
     }
 }

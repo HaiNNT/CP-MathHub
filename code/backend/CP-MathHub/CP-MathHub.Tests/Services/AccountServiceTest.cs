@@ -14,7 +14,7 @@ namespace CP_MathHub.Tests.Services
             AccountService service = new AccountService(new CPMathHubModelContainer());
             User user = service.GetLoginUser();
             Assert.IsNotNull(user);
-            Assert.IsFalse(user.Username == "");
+            Assert.IsFalse(user.UserName == "");
         }
     }
 }

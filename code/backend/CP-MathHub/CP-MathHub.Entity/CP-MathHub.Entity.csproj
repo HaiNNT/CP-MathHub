@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accessment.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Activity.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
@@ -61,9 +64,6 @@
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Article.cs">
-      <DependentUpon>CPMathHubModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Assessment.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Attendance.cs">
@@ -208,7 +208,13 @@
     <Compile Include="User.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserClaim.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserFriendship.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogin.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserStatusEnum.cs">
