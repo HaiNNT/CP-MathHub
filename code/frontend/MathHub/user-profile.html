@@ -690,45 +690,60 @@
                     <div>
                         <h3>Thông tin cơ bản</h3>
                         <div class="mh-profile-info">
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Họ tên</label>
+                            <form >
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Họ tên</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Thân Văn Tâm</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Thân Văn Tâm" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Thân Văn Tâm">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-6">
-                                    <span>Thân Văn Tâm</span>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Giới tính</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Nam</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Nam" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Nam">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-3">
-                                    <a href="">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Ngày sinh</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">13/10/1993</span>
+                                        <input type="text" class="mh-profile-input-edit" value="13/10/1993" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="13/10/1993">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Giới tính</label>
-                                </div>
-                                <div class="col-xs-6">
-                                    <span>Nam</span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <a href="">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Ngày sinh</label>
-                                </div>
-                                <div class="col-xs-6">
-                                    <span>13/10/1993</span>
-                                </div>
-                                <div class="col-xs-3">
-                                    <a href="">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div>
@@ -1238,35 +1253,53 @@
     </div>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/bootstrap.js"></script>
-    <!--<script>
-        $(".mh-chat-popup-head").click(function () {
-            $(this).siblings(".mh-chat-popup-body").toggle();
-            //$(".mh-chat-popup-body").slideToggle("fast");
-        });
-        $(".mh-chat-popup-add-friend-icon").click(function () {
+    <script>
+        $(".mh-profile-edit-button").click(function () {
                 event.preventDefault();
-                event.stopPropagation();
-                //var item = $(this).siblings(".mh-chat-popup-add-friend");
-                $(this).parents(".mh-chat-popup").find(".mh-chat-popup-add-friend").toggle();
+                $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
+                $(".mh-profile-edit-button").toggle();
+                $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").toggle();
+                $(this).siblings().toggle();
+                
         });
-        $(".mh-chat-popup-setting").each(function () {
-            $(this).click(function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                var item = $(this).siblings(".mh-chat-popup-setting-show");
-                if (item.hasClass("hidden")) {
-                    item.removeClass("hidden");
-                } else {
-                    item.addClass("hidden");
-                }
-            });
+        $(".mh-profile-cancel").click(function () {
+            $(this).toggle();
+            var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+            input.toggle();
+            input.val($(this).val());
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
+            $(this).siblings().toggle();
+            $(".mh-profile-edit-button").show();
+            
         });
-        $("body").click(function (event) {
-            $(".mh-chat-popup-setting-show").addClass("hidden");
-        });
-        $(function () {
-            $('[data-toggle="tooltip"],.mh-chat-popup-setting').tooltip()
-        });
-    </script>-->
+        //$(".mh-chat-popup-head").click(function () {
+        //    $(this).siblings(".mh-chat-popup-body").toggle();
+        //    //$(".mh-chat-popup-body").slideToggle("fast");
+        //});
+        //$(".mh-chat-popup-add-friend-icon").click(function () {
+        //        event.preventDefault();
+        //        event.stopPropagation();
+        //        //var item = $(this).siblings(".mh-chat-popup-add-friend");
+        //        $(this).parents(".mh-chat-popup").find(".mh-chat-popup-add-friend").toggle();
+        //});
+        //$(".mh-chat-popup-setting").each(function () {
+        //    $(this).click(function (event) {
+        //        event.preventDefault();
+        //        event.stopPropagation();
+        //        var item = $(this).siblings(".mh-chat-popup-setting-show");
+        //        if (item.hasClass("hidden")) {
+        //            item.removeClass("hidden");
+        //        } else {
+        //            item.addClass("hidden");
+        //        }
+        //    });
+        //});
+        //$("body").click(function (event) {
+        //    $(".mh-chat-popup-setting-show").addClass("hidden");
+        //});
+        //$(function () {
+        //    $('[data-toggle="tooltip"],.mh-chat-popup-setting').tooltip()
+        //});
+    </script>
 </body>
 </html>
