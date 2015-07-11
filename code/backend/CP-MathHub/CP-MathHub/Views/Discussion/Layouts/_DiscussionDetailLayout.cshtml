@@ -2,12 +2,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
-        @RenderSection("LeftPanel", true)
-    </div>
-    <div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
-        @RenderBody()
-    </div>
+    @if (Request.IsAuthenticated)
+    {
+        <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+            @RenderSection("LeftPanel", true)
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        @RenderSection("LeftPanel", false)
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 mh-mid-section">
+            @RenderBody()
+        </div>
+    }
     <div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
         @RenderSection("RightPanel", true)
     </div>

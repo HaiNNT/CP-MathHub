@@ -13,7 +13,7 @@ using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.Service.Services
 {
-    public class CommonService : ICommonService
+    public class CommonService : ICommonService, IDisposable
     {
         private IUnitOfWork dal;
         private AccountService aService;
@@ -22,6 +22,19 @@ namespace CP_MathHub.Service.Services
             dal = new MathHubUoW(context);
             aService = new AccountService(context);
 
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         public Tag GetTag(string name)
         {
@@ -213,7 +226,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public bool Bookmark(int id, User user)
         {
             MainPost post = dal.Repository<MainPost>().GetById(id);
@@ -393,6 +405,34 @@ namespace CP_MathHub.Service.Services
         public void CommentPost(Comment comment)
         {
             dal.Repository<Comment>().Insert(comment);
+            EditedLog log = new EditedLog();
+            log.PostId = comment.Id;
+            log.UserId = comment.UserId;
+            log.Content = comment.Content;
+            log.CreatedDate = comment.CreatedDate;
+            dal.Repository<EditedLog>().Insert(log);
+            dal.Save();
+        }
+        public Comment UpdateComment(Comment c, int userId)
+        {
+            Comment comment = dal.Repository<Comment>().GetById(c.Id);
+            comment.Content = c.Content;
+            comment.LastEditedDate = DateTime.Now;
+            dal.Repository<Comment>().Update(comment);
+            EditedLog log = new EditedLog();
+            log.PostId = comment.Id;
+            log.UserId = comment.UserId;
+            log.Content = comment.Content;
+            log.CreatedDate = comment.CreatedDate;
+            dal.Repository<EditedLog>().Insert(log);
+            dal.Save();
+            return comment;
+        }
+        public void DisableComment(int postId)
+        {
+            MainPost post = dal.Repository<MainPost>().GetById(postId);
+            post.Status = PostStatusEnum.Closed;
+            dal.Repository<MainPost>().Update(post);
             dal.Save();
         }
         public List<Comment> GetComments(int postId)

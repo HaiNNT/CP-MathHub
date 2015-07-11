@@ -1,94 +1,93 @@
 ﻿@using CP_MathHub.Models.Question
 @model QuestionDetailViewModel
 @using CP_MathHub.Core.Configuration
-    @{
-        ViewBag.Title = Model.Title;
-        ViewBag.MhPage = Constant.String.QuestionDetailPage;
-        ViewBag.CreatedDateType = "hỏi";
-        Layout = "~/Views/Question/Layouts/_QuestionDetailLayout.cshtml";
-    }
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MhPage = Constant.String.QuestionDetailPage;
+    ViewBag.CreatedDateType = "hỏi";
+    Layout = "~/Views/Question/Layouts/_QuestionDetailLayout.cshtml";
+}
 
-    <div class="mh-top-content">
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-md-10 mh-content-title">
+            <h3>Câu Hỏi</h3>
+        </div>
+    </div>
+</div>
+@Html.Partial("Partials/_NavPartialView")
+<div class="panel panel-success mh-question-preview">
+    <div class="panel-heading">
+        <div class="mh-user-info">
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" } })
+        </div>
+    </div>
+    <div class="panel-body">
         <div class="row">
-            <div class="col-md-10 mh-content-title">
-                <h3>Câu Hỏi</h3>
-            </div>
-        </div>
-    </div>
-
-    @Html.Partial("Partials/_NavPartialView")
-
-    <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-
-    <div class="panel panel-success mh-question-preview">
-        <div class="panel-heading">
-            <div class="mh-user-info">
-                @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
-                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" } })
-            </div>
-            </div>
-        <div class="panel-body">
-            <div class="row">
-                @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
-                <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
-                    <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
-                    <div>
-                        @Html.Raw(Model.Content)
-                    </div>
+            @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
+            <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
+                <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
+                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                <div>
+                    @Html.Raw(Model.Content)
                 </div>
             </div>
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report">
-                    <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
-                        <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
-                        <div class="mh-share-facebook">
-                            <div class="pluginCountButton pluginCountNum">
-                                <span class="pluginCountTextConnected">123</span>
-                                <span class="pluginCountTextDisconnected">123</span>
-                            </div>
-                            <div class="pluginCountButtonNub">
-                                <s></s>
-                                <i></i>
-                            </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report">
+                <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
+                    <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
+                    <div class="mh-share-facebook">
+                        <div class="pluginCountButton pluginCountNum">
+                            <span class="pluginCountTextConnected">123</span>
+                            <span class="pluginCountTextDisconnected">123</span>
                         </div>
-                    </a>
-                    <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
-                        <i class="fa fa-flag"></i> Báo vi phạm
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
-                    <ul class="list-inline mh-list-tags mh-list-tags-right">
-                        @foreach (var tag in Model.Tags)
-                        {
-                            <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
-                        }
-                    </ul>
-                </div>
+                        <div class="pluginCountButtonNub">
+                            <s></s>
+                            <i></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
+                    <i class="fa fa-flag"></i> Báo vi phạm
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
+                <ul class="list-inline mh-list-tags mh-list-tags-right">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                    }
+                </ul>
             </div>
         </div>
-        @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id } })
     </div>
+    @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id } })
+</div>
 
-    @Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
-    @Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
-
-    @section LeftPanel
+@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
+@Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+@section LeftPanel
 {
+    @if (Request.IsAuthenticated)
+    {
         @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
         @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
             @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
         @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
     }
-    @section RightPanel
+}
+@section RightPanel
 {
-        @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
-        @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
-            <hr />
-            @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
-            <hr />
-            @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
-    }
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}

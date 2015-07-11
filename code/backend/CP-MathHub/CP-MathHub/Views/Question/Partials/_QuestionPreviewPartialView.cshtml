@@ -1,11 +1,9 @@
 ﻿@model CP_MathHub.Models.Question.QuestionPreviewViewModel
-
 <div class="panel panel-warning mh-question-preview">
     <div class="panel-heading">
-        <div class="row">
+        <div class="mh-user-info">
             @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
-            <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-            <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" } })
         </div>
     </div>
     <div class="panel-body">
@@ -42,12 +40,14 @@
             </div>
             <div class="col-md-10 col-xs-12 mh-content">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
+                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;
                         if (Model.Content.Length > length)
                         {
-                            @Html.Raw(Model.Content);
+                            @Html.Raw(Model.Content);                      
                         }
                         else
                         {
@@ -69,7 +69,7 @@
             @if (Model.Content.Length > length)
             {
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                    <a onclick="seeMore(this)" class="mh-seemore">Xem thêm...</a>
+                    <a onclick="seeMore(this)" class="mh-seemore">Xem thêm</a>
                 </div>
             }
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report @(Model.Content.Length > length ? "hidden" : "")">

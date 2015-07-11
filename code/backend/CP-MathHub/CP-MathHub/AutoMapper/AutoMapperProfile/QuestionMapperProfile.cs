@@ -53,13 +53,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
-                .ForMember(
-                    s => s.Bookmarked,
-                    d => d.MapFrom(m => m.BookmarkUsers
-                                            .Where(u => u.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).Count() > 0)
-                );
+                //.ForMember(
+                //    s => s.Bookmarked,
+                //    d => d.MapFrom(m => m.BookmarkUsers
+                //                            .Where(u => u.Id == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id).Count() > 0)
+                //)
+                ;
             #endregion
 
             #region Question Detail
@@ -93,38 +94,39 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
-                .ForMember(
-                    s => s.Bookmarked,
-                    d => d.MapFrom(m => m.BookmarkUsers
-                                            .Where(u => u.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).Count() > 0)
-                )
-                .ForMember(
-                    s => s.VoteVM,
-                    d => d.MapFrom(m => Mapper.Map<Question, VoteViewModel>(m))
-                );
+                //.ForMember(
+                //    s => s.Bookmarked,
+                //    d => d.MapFrom(m => m.BookmarkUsers
+                //                            .Where(u => u.Id == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id).Count() > 0)
+                //)
+                //.ForMember(
+                //    s => s.VoteVM,
+                //    d => d.MapFrom(m => Mapper.Map<Question, VoteViewModel>(m))
+                //)
+                ;
             #endregion
 
             #region Vote
-            Mapper.CreateMap<Question, VoteViewModel>()
-                .ForMember(
-                    s => s.Voted,
-                    d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).FirstOrDefault())
-                )
-                .ForMember(
-                    s => s.IsQuestion,
-                    d => d.MapFrom(m => true)
-                );
-            Mapper.CreateMap<Answer, VoteViewModel>()
-                .ForMember(
-                    s => s.Voted,
-                    d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).FirstOrDefault())
-                );
+            //Mapper.CreateMap<Question, VoteViewModel>()
+            //    .ForMember(
+            //        s => s.Voted,
+            //        d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
+            //                                                        new CPMathHubModelContainer())
+            //                                                            .GetLoginUser().Id).FirstOrDefault())
+            //    )
+            //    .ForMember(
+            //        s => s.IsQuestion,
+            //        d => d.MapFrom(m => true)
+            //    );
+            //Mapper.CreateMap<Answer, VoteViewModel>()
+            //    .ForMember(
+            //        s => s.Voted,
+            //        d => d.MapFrom(m => m.Votes.Where(u => u.User.Id == new CommonService(
+            //                                                        new CPMathHubModelContainer())
+            //                                                            .GetLoginUser().Id).FirstOrDefault())
+            //    );
             #endregion
 
             #region Create Question

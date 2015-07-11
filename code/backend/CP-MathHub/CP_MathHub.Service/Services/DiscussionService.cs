@@ -12,7 +12,7 @@ using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.Service.Services
 {
-    public class DiscussionService : IDiscussionService
+    public class DiscussionService : IDiscussionService, IDisposable
     {
         private IUnitOfWork dal;
         private ICommonService cService;
@@ -20,6 +20,20 @@ namespace CP_MathHub.Service.Services
         {
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         public Discussion GetLastestDiscussion(int tagid)
         {

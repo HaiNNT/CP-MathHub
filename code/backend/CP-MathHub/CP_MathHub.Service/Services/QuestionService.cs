@@ -12,12 +12,26 @@ using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.Service.Services
 {
-    public class QuestionService : IQuestionService
+    public class QuestionService : IQuestionService, IDisposable
     {
         private IUnitOfWork dal;
         public QuestionService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         public List<Question> GetQuestions(string homeTab, int skip = 0)
         {

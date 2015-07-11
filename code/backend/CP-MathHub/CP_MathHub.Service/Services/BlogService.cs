@@ -12,7 +12,7 @@ using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.Service.Services
 {
-    public class BlogService : IBlogService
+    public class BlogService : IBlogService, IDisposable
     {
         private IUnitOfWork dal;
         private ICommonService cService;
@@ -20,6 +20,19 @@ namespace CP_MathHub.Service.Services
         {
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         public List<Article> GetArticles(string tab, int skip)
         {
