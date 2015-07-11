@@ -43,7 +43,7 @@ namespace CP_MathHub.DAL
             context.SaveChanges();
         }
 
-        public virtual void Dispose(bool disposed)
+        protected virtual void Dispose(bool disposed)
         {
             if (!this.disposed)
             {

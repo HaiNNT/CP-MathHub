@@ -13,7 +13,7 @@ using CP_MathHub.Service.Helpers;
 
 namespace CP_MathHub.Service.Services
 {
-    public class CommonService : ICommonService
+    public class CommonService : ICommonService, IDisposable
     {
         private IUnitOfWork dal;
         private AccountService aService;
@@ -22,6 +22,19 @@ namespace CP_MathHub.Service.Services
             dal = new MathHubUoW(context);
             aService = new AccountService(context);
 
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         public Tag GetTag(string name)
         {
@@ -213,7 +226,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-
         public bool Bookmark(int id, User user)
         {
             MainPost post = dal.Repository<MainPost>().GetById(id);

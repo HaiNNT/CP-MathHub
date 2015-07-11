@@ -12,13 +12,29 @@ using CP_MathHub.Entity;
 
 namespace CP_MathHub.Service.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService : IAccountService, IDisposable
     {
         private IUnitOfWork dal;
         public AccountService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);   
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dal.Dispose();
+            }
+
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         public User GetLoginUser()
         {
             User user = new User();
@@ -34,5 +50,6 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == userId);
         }
+
     }
 }
