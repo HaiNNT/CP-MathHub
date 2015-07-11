@@ -273,6 +273,13 @@ function commentPost() {
 }
 
 /*
+    Edit comment
+*/
+function editComment(id) {
+
+}
+
+/*
     Get facebook share number
 */
 function getFacebookShareNum() {

@@ -125,6 +125,18 @@ namespace CP_MathHub.Core.Interfaces.Services
         void CommentPost(Comment comment);
 
         /// <summary>
+        /// Update a comment
+        /// </summary>
+        /// <param name="comment"></param>
+        Comment UpdateComment(Comment comment, int userId);
+
+        /// <summary>
+        /// Disable comments
+        /// </summary>
+        /// <param name="postId"></param>
+        void DisableComment(int postId);
+
+        /// <summary>
         /// Get comments of a post
         /// </summary>
         /// <param name="postId"></param>
@@ -137,8 +149,8 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="id"></param>
         /// <returns></returns>
         Comment GetComment(int id);
+
         /// <summary>
-        /// 
         /// Get Vote by post and user
         /// </summary>
         /// <param name="postId"></param>

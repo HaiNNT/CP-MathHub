@@ -405,6 +405,34 @@ namespace CP_MathHub.Service.Services
         public void CommentPost(Comment comment)
         {
             dal.Repository<Comment>().Insert(comment);
+            EditedLog log = new EditedLog();
+            log.PostId = comment.Id;
+            log.UserId = comment.UserId;
+            log.Content = comment.Content;
+            log.CreatedDate = comment.CreatedDate;
+            dal.Repository<EditedLog>().Insert(log);
+            dal.Save();
+        }
+        public Comment UpdateComment(Comment c, int userId)
+        {
+            Comment comment = dal.Repository<Comment>().GetById(c.Id);
+            comment.Content = c.Content;
+            comment.LastEditedDate = DateTime.Now;
+            dal.Repository<Comment>().Update(comment);
+            EditedLog log = new EditedLog();
+            log.PostId = comment.Id;
+            log.UserId = comment.UserId;
+            log.Content = comment.Content;
+            log.CreatedDate = comment.CreatedDate;
+            dal.Repository<EditedLog>().Insert(log);
+            dal.Save();
+            return comment;
+        }
+        public void DisableComment(int postId)
+        {
+            MainPost post = dal.Repository<MainPost>().GetById(postId);
+            post.Status = PostStatusEnum.Closed;
+            dal.Repository<MainPost>().Update(post);
             dal.Save();
         }
         public List<Comment> GetComments(int postId)
