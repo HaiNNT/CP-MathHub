@@ -1,0 +1,48 @@
+.mh-home > .row {
+    border-bottom: 1px solid #C1C1C1;
+    margin-top: -5px;
+}
+.mh-body-profile h3 {
+    border-bottom: 1px solid #C1C1C1;
+    margin-bottom: 0;
+    padding-bottom: 5px
+}
+.mh-body-profile a {
+    float: right;
+}
+.mh-body-profile a:hover, .mh-body-profile a:focus {
+    text-decoration: none;
+}
+.mh-profile-info-row {
+    border-bottom: 1px solid #C1C1C1;
+    margin: 0;
+    padding: 8px 0 2px 0;
+}
+form:last-child .mh-profile-info-row {
+    border-bottom: 0;
+}
+.mh-profile-edit {
+    display: none;
+}
+.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit {
+    display: block;
+}
+.mh-profile-input-edit {
+    display: none;
+    padding: 10px 5px;
+    height: 23px;
+    margin-top: -2px;
+}
+.mh-profile-save-change{
+    display: none;
+    padding: 3px 6px;
+    float: right;
+    margin-top: -4px;
+}
+.mh-profile-cancel {
+    display: none;
+    float: right;
+    padding: 3px 6px;
+    margin-left: 5px;
+    margin-top: -4px;
+}
