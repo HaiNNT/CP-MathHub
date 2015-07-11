@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using CP_MathHub.Framework.Controllers;
 using CP_MathHub.Core.Interfaces.Services;
 using CP_MathHub.Core.Configuration;
@@ -38,9 +40,12 @@ namespace CP_MathHub.Controllers
             ICollection<QuestionPreviewViewModel> questionPreviewVMs =
                     questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
-            foreach (QuestionPreviewViewModel q in questionPreviewVMs)
+            for (int i = 0; i < questionPreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    questionPreviewVMs.ElementAt(i).Bookmarked = questions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == Int32.Parse(User.Identity.GetUserId())).Count() > 0;
             }
             if (page == 0)
             {
@@ -106,7 +111,7 @@ namespace CP_MathHub.Controllers
             {
                 q.UserInfo.CreateMainPostDate = q.CreatedDate;
             }
-            
+
             if (page == 0)
             {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
@@ -137,12 +142,13 @@ namespace CP_MathHub.Controllers
             qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
             questionDetailVM.UserInfo.CreateMainPostDate = question.CreatedDate;
-            //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
-            //        .ToList();
-
-            AnswerViewModel answerVM = new AnswerViewModel();
-            answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
-            answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
+            questionDetailVM.Bookmarked = question.BookmarkUsers
+                                               .Where(u => u.Id == Int32.Parse(User.Identity.GetUserId())).Count() > 0;
+            questionDetailVM.VoteVM = new VoteViewModel(question, Int32.Parse(User.Identity.GetUserId()));
+            AnswerViewModel answerVM = new AnswerViewModel(qService, id, Int32.Parse(User.Identity.GetUserId()));
+            //answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
+    
+            //answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
             ViewBag.System = Constant.String.QuestionSystem;
             questionDetailVM.AnswerVMs = answerVM;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
@@ -170,7 +176,7 @@ namespace CP_MathHub.Controllers
 
             Question question = new Question();
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
-            question.UserId = cService.GetLoginUser().Id;
+            question.UserId = Int32.Parse(User.Identity.GetUserId());
             question.Tags = cService.GetTags(questionVM.TagIds);
 
             qService.InsertQuestion(question);
@@ -238,7 +244,7 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public bool Bookmark(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
             return cService.Bookmark(id, user);
         }
 
@@ -343,11 +349,11 @@ namespace CP_MathHub.Controllers
         //Post: Question/PostComment
         [HttpPost]
         [Authorize]
-        public ActionResult PostComment( int postId, string content = "")
+        public ActionResult PostComment(int postId, string content = "")
         {
             Comment comment = new Comment();
             comment.Content = content;
-            comment.UserId = cService.GetLoginUser().Id;
+            comment.UserId = Int32.Parse(User.Identity.GetUserId());
             comment.CreatedDate = DateTime.Now;
             comment.LastEditedDate = comment.CreatedDate;
             comment.PostId = postId;
@@ -371,7 +377,7 @@ namespace CP_MathHub.Controllers
         {
             Answer answer = new Answer();
             answer.Content = content;
-            answer.UserId = cService.GetLoginUser().Id;
+            answer.UserId = Int32.Parse(User.Identity.GetUserId());
             answer.CreatedDate = DateTime.Now;
             answer.LastEditedDate = answer.CreatedDate;
             answer.QuestionId = questionId;
@@ -386,13 +392,13 @@ namespace CP_MathHub.Controllers
         //Post: Question/Vote
         [HttpPost]
         [Authorize]
-        public ActionResult Vote(int postId, VoteEnum type )
+        public ActionResult Vote(int postId, VoteEnum type)
         {
             Vote vote = new Vote();
             vote.PostId = postId;
             vote.VotedDate = DateTime.Now;
             vote.Type = type;
-            vote.UserId = cService.GetLoginUser().Id;
+            vote.UserId = Int32.Parse(User.Identity.GetUserId());
             bool check = qService.Vote(vote);
             if (check && type == VoteEnum.VoteUp)
             {

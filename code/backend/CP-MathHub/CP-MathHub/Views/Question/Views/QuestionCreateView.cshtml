@@ -67,11 +67,13 @@
         }
     </div><!-- Body content Mid: end  -->
     <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-
-    @section LeftPanel
+@section LeftPanel
 {
+    @if (Request.IsAuthenticated)
+    {
         @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
         @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
             @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
         @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
     }
+}

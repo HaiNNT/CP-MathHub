@@ -8,13 +8,11 @@
   Init see more question event listening 
 */
 function seeMore(item) {
-    $(item).click(function () {
-        $(item).parent().addClass("hidden");
-        var parent = $($(item).parents(".mh-question-preview")[0]);
-            parent.find(".mh-sort-content").addClass("hidden");
-            parent.find(".mh-full-content").removeClass("hidden");
-            parent.find(".mh-social-report").removeClass("hidden");
-        }); 
+    $(item).parent().addClass("hidden");
+    var parent = $($(item).parents(".mh-question-preview")[0]);
+    parent.find(".mh-sort-content").addClass("hidden");
+    parent.find(".mh-full-content").removeClass("hidden");
+    parent.find(".mh-social-report").removeClass("hidden");
 }
 
 /*
@@ -25,10 +23,10 @@ function seeMoreComment(item) {
     $(item).click(function () {
         $(item).addClass("hidden");
         $(item).siblings(".hidden").each(function () {
-                $(this).removeClass("hidden");
-            });
-
+            $(this).removeClass("hidden");
         });
+
+    });
 }
 
 /*
@@ -248,7 +246,7 @@ function searchUser() {
 */
 function commentPost() {
     $(".mh-form-input-comment").each(function () {
-        var input = $(this);       
+        var input = $(this);
         var list = $(input.parent().siblings(".mh-comment-list")[2]);
         input.keypress(function (e) {
             if (e.keyCode === 13) {
