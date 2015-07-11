@@ -22,7 +22,7 @@ namespace CP_MathHub.Service.Services
         public User GetLoginUser()
         {
             User user = new User();
-            user.Username = "Văn Tâm";
+            user.UserName = "Văn Tâm";
             user.Reputation = 23142;
             //return user;
             //return dal.Repository<User>().GetById(55);

@@ -23,7 +23,7 @@ namespace CP_MathHub.Entity
             this.FollowPosts = new HashSet<MainPost>();
             this.InviteInvitations = new HashSet<Invitation>();
             this.Votes = new HashSet<Vote>();
-            this.Assessments = new HashSet<Assessment>();
+            this.Assessments = new HashSet<Accessment>();
             this.Privileges = new HashSet<Privilege>();
             this.Attendances = new HashSet<Attendance>();
             this.SharedMainPosts = new HashSet<MainPost>();
@@ -41,15 +41,25 @@ namespace CP_MathHub.Entity
             this.Followers = new HashSet<User>();
             this.Followees = new HashSet<User>();
             this.InvitedInvitations = new HashSet<Invitation>();
+            this.UserClaims = new HashSet<UserClaim>();
+            this.UserLogins = new HashSet<UserLogin>();
         }
     
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string UserName { get; set; }
+        public string PasswordHash { get; set; }
         public string Email { get; set; }
-        public int Reputation { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public UserStatusEnum Status { get; set; }
+        public Nullable<int> Reputation { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<UserStatusEnum> Status { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
     
         public virtual ICollection<Post> Posts { get; set; }
         public virtual Profile Profile { get; set; }
@@ -59,7 +69,7 @@ namespace CP_MathHub.Entity
         public virtual ICollection<MainPost> FollowPosts { get; set; }
         public virtual ICollection<Invitation> InviteInvitations { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
-        public virtual ICollection<Assessment> Assessments { get; set; }
+        public virtual ICollection<Accessment> Assessments { get; set; }
         public virtual ICollection<Privilege> Privileges { get; set; }
         public virtual ICollection<Attendance> Attendances { get; set; }
         public virtual ICollection<MainPost> SharedMainPosts { get; set; }
@@ -80,5 +90,7 @@ namespace CP_MathHub.Entity
         public virtual ICollection<User> Followees { get; set; }
         public virtual ICollection<Invitation> InvitedInvitations { get; set; }
         public virtual Activity Activity { get; set; }
+        public virtual ICollection<UserClaim> UserClaims { get; set; }
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
     }
 }

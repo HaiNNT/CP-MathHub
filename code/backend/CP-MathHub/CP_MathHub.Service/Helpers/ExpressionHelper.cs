@@ -100,7 +100,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<User, bool>> ContainName(string name)
             {
-                return (u => u.Username.ToLower().Contains(name.ToLower()));
+                return (u => u.UserName.ToLower().Contains(name.ToLower()));
             }
         }
         public class TagHelper

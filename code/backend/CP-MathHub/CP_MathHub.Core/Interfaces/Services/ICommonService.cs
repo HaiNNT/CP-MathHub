@@ -132,6 +132,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Comment> GetComments(int postId);
 
         /// <summary>
+        /// Get comment by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Comment GetComment(int id);
+        /// <summary>
+        /// 
         /// Get Vote by post and user
         /// </summary>
         /// <param name="postId"></param>

@@ -35,7 +35,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                  )
                  .ForMember(
                  s => s.UserName,
-                 d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).Username)
+                 d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).UserName)
                  )
                  .ForMember(
                     s => s.Discussion,
@@ -46,7 +46,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             Mapper.CreateMap<Comment, CommentViewModel>()
                 .ForMember(
                     s => s.Username,
-                    d => d.MapFrom(m => m.Author.Username)
+                    d => d.MapFrom(m => m.Author.UserName)
                 )
                 .ForMember(
                     s => s.Avatar,

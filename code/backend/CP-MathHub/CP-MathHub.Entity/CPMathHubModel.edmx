@@ -14,7 +14,7 @@
     <EntitySet Name="Invitations" EntityType="CPMathHubModel.Store.Invitations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Votes" EntityType="CPMathHubModel.Store.Votes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Roles" EntityType="CPMathHubModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Assessments" EntityType="CPMathHubModel.Store.Assessments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accessments" EntityType="CPMathHubModel.Store.Accessments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Functions" EntityType="CPMathHubModel.Store.Functions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Privileges" EntityType="CPMathHubModel.Store.Privileges" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Messages" EntityType="CPMathHubModel.Store.Messages" store:Type="Tables" Schema="dbo" />
@@ -36,6 +36,8 @@
     <EntitySet Name="Series" EntityType="CPMathHubModel.Store.Series" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProfileHistories" EntityType="CPMathHubModel.Store.ProfileHistories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Locations" EntityType="CPMathHubModel.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserClaims" EntityType="CPMathHubModel.Store.UserClaims" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserLogins" EntityType="CPMathHubModel.Store.UserLogins" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Comment" EntityType="CPMathHubModel.Store.Posts_Comment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_MainPost" EntityType="CPMathHubModel.Store.Posts_MainPost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Question" EntityType="CPMathHubModel.Store.Posts_Question" store:Type="Tables" Schema="dbo" />
@@ -121,11 +123,11 @@
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="AssessmentUser" Association="CPMathHubModel.Store.AssessmentUser">
-      <End Role="Assessment" EntitySet="Assessments" />
+      <End Role="Assessment" EntitySet="Accessments" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="AssessmentRole" Association="CPMathHubModel.Store.AssessmentRole">
-      <End Role="Assessment" EntitySet="Assessments" />
+      <End Role="Assessment" EntitySet="Accessments" />
       <End Role="Role" EntitySet="Roles" />
     </AssociationSet>
     <AssociationSet Name="FK_FunctionRole_Function" Association="CPMathHubModel.Store.FK_FunctionRole_Function">
@@ -288,6 +290,14 @@
       <End Role="Group" EntitySet="Groups" />
       <End Role="Article" EntitySet="Posts_Article" />
     </AssociationSet>
+    <AssociationSet Name="UserUserClaim" Association="CPMathHubModel.Store.UserUserClaim">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserClaim" EntitySet="UserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="UserUserLogin" Association="CPMathHubModel.Store.UserUserLogin">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserLogin" EntitySet="UserLogins" />
+    </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
       <End Role="Comment" EntitySet="Posts_Comment" />
@@ -331,12 +341,20 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Reputation" Type="int" Nullable="false" />
-    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
-    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="PasswordHash" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="Reputation" Type="int" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="true" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="Avatar_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Profiles">
@@ -399,16 +417,17 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
-  <EntityType Name="Assessments">
+  <EntityType Name="Accessments">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="RoleId" Type="int" Nullable="false" />
-    <Property Name="AssessedDate" Type="datetime" Nullable="false" />
+    <Property Name="AccessedDate" Type="datetime" Nullable="false" />
     <Property Name="ExpireDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Functions">
@@ -641,6 +660,25 @@
     <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ParentId" Type="int" Nullable="false" />
     <Property Name="Profile_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts_Comment">
     <Key>
@@ -882,7 +920,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AssessmentUser">
-    <End Role="Assessment" Type="CPMathHubModel.Store.Assessments" Multiplicity="*" />
+    <End Role="Assessment" Type="CPMathHubModel.Store.Accessments" Multiplicity="*" />
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -896,7 +934,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AssessmentRole">
-    <End Role="Assessment" Type="CPMathHubModel.Store.Assessments" Multiplicity="*" />
+    <End Role="Assessment" Type="CPMathHubModel.Store.Accessments" Multiplicity="*" />
     <End Role="Role" Type="CPMathHubModel.Store.Roles" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -1274,6 +1312,30 @@
       </Principal>
       <Dependent Role="Article">
         <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUserClaim">
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="UserClaim" Type="CPMathHubModel.Store.UserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUserLogin">
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <End Role="UserLogin" Type="CPMathHubModel.Store.UserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogin">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1666,13 +1728,13 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="Roles" EntityType="CPMathHubModel.Role" />
-          <EntitySet Name="Assessments" EntityType="CPMathHubModel.Assessment" />
+          <EntitySet Name="Accessments" EntityType="CPMathHubModel.Accessment" />
           <AssociationSet Name="AssessmentUser" Association="CPMathHubModel.AssessmentUser">
-            <End Role="Assessment" EntitySet="Assessments" />
+            <End Role="Assessment" EntitySet="Accessments" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="AssessmentRole" Association="CPMathHubModel.AssessmentRole">
-            <End Role="Assessment" EntitySet="Assessments" />
+            <End Role="Assessment" EntitySet="Accessments" />
             <End Role="Role" EntitySet="Roles" />
           </AssociationSet>
           <EntitySet Name="Functions" EntityType="CPMathHubModel.Function" />
@@ -1832,6 +1894,16 @@
             <End Role="Group" EntitySet="Groups" />
             <End Role="Article" EntitySet="Posts" />
           </AssociationSet>
+          <EntitySet Name="UserClaims" EntityType="CPMathHubModel.UserClaim" />
+          <AssociationSet Name="UserUserClaim" Association="CPMathHubModel.UserUserClaim">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserClaim" EntitySet="UserClaims" />
+          </AssociationSet>
+          <EntitySet Name="UserLogins" EntityType="CPMathHubModel.UserLogin" />
+          <AssociationSet Name="UserUserLogin" Association="CPMathHubModel.UserUserLogin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserLogin" EntitySet="UserLogins" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
           <Documentation>
@@ -1874,11 +1946,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Posts" Relationship="CPMathHubModel.PostUser" FromRole="User" ToRole="Post" />
-          <Property Name="Username" Type="String" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="Reputation" Type="Int32" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="true" MaxLength="256" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="true" MaxLength="256" Unicode="true" />
+          <Property Name="Reputation" Type="Int32" Nullable="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Profile" Relationship="CPMathHubModel.ProfileUser" FromRole="User" ToRole="Profile" />
           <NavigationProperty Name="FavoriteTags" Relationship="CPMathHubModel.FavoriteTag" FromRole="User" ToRole="Tag" />
           <NavigationProperty Name="Tags" Relationship="CPMathHubModel.CreateTag" FromRole="User" ToRole="Tag" />
@@ -1903,11 +1975,21 @@
           <NavigationProperty Name="EditedContents" Relationship="CPMathHubModel.EditedContentUser" FromRole="User" ToRole="EditedContent" />
           <NavigationProperty Name="ProfileHistories" Relationship="CPMathHubModel.ProfileHistoryUser" FromRole="User" ToRole="ProfileHistory" />
           <NavigationProperty Name="SubscribedGroups" Relationship="CPMathHubModel.SubscribeGroup" FromRole="User" ToRole="Group" />
-          <Property Name="Status" Type="CPMathHubModel.UserStatusEnum" Nullable="false" />
+          <Property Name="Status" Type="CPMathHubModel.UserStatusEnum" Nullable="true" />
           <NavigationProperty Name="Followers" Relationship="CPMathHubModel.Follow" FromRole="Follower" ToRole="Followee" />
           <NavigationProperty Name="Followees" Relationship="CPMathHubModel.Follow" FromRole="Followee" ToRole="Follower" />
           <NavigationProperty Name="InvitedInvitations" Relationship="CPMathHubModel.InvitedUser" FromRole="User" ToRole="Invitation" />
           <NavigationProperty Name="Activity" Relationship="CPMathHubModel.UserActivity" FromRole="User" ToRole="Activity" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityStamp" Type="String" Nullable="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Nullable="true" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserClaims" Relationship="CPMathHubModel.UserUserClaim" FromRole="User" ToRole="UserClaim" />
+          <NavigationProperty Name="UserLogins" Relationship="CPMathHubModel.UserUserLogin" FromRole="User" ToRole="UserLogin" />
           </EntityType>
         <Association Name="PostUser">
           <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="*" />
@@ -2125,24 +2207,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" />
           <NavigationProperty Name="Assessments" Relationship="CPMathHubModel.AssessmentRole" FromRole="Role" ToRole="Assessment" />
           <NavigationProperty Name="Functions" Relationship="CPMathHubModel.FunctionRole" FromRole="Role" ToRole="Function" />
+          <Property Name="Description" Type="String" Nullable="true" />
         </EntityType>
-        <EntityType Name="Assessment">
+        <EntityType Name="Accessment">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.AssessmentUser" FromRole="Assessment" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="CPMathHubModel.AssessmentRole" FromRole="Assessment" ToRole="Role" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="AssessedDate" Type="DateTime" Nullable="false" />
+          <Property Name="AccessedDate" Type="DateTime" Nullable="false" />
           <Property Name="ExpireDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="AssessmentUser">
-          <End Type="CPMathHubModel.Assessment" Role="Assessment" Multiplicity="*" />
+          <End Type="CPMathHubModel.Accessment" Role="Assessment" Multiplicity="*" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
@@ -2156,7 +2239,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="AssessmentRole">
-          <End Type="CPMathHubModel.Assessment" Role="Assessment" Multiplicity="*" />
+          <End Type="CPMathHubModel.Accessment" Role="Assessment" Multiplicity="*" />
           <End Type="CPMathHubModel.Role" Role="Role" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>
@@ -2867,6 +2950,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" Nullable="true" />
+          <Property Name="ClaimValue" Type="String" Nullable="true" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.UserUserClaim" FromRole="UserClaim" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserUserClaim">
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.UserClaim" Role="UserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserLogin" >
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.UserUserLogin" FromRole="UserLogin" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserUserLogin">
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
+          <End Type="CPMathHubModel.UserLogin" Role="UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2932,12 +3060,20 @@
       <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Reputation" ColumnName="Reputation" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -3005,16 +3141,16 @@
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Assessments">
-      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Assessment)">
-        <MappingFragment StoreEntitySet="Assessments">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="Accessments">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Accessment)">
+        <MappingFragment StoreEntitySet="Accessments">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-          <ScalarProperty Name="AssessedDate" ColumnName="AssessedDate" />
+          <ScalarProperty Name="AccessedDate" ColumnName="AccessedDate" />
           <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -3262,6 +3398,25 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.UserClaim)">
+        <MappingFragment StoreEntitySet="UserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.UserLogin)">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

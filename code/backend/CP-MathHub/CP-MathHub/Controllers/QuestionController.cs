@@ -49,6 +49,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = tab;
                 ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -78,6 +81,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
                 ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -110,6 +116,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.QuestionSystem;
                 ViewBag.TabParam = searchString;
                 questionHomeVM.Items = problemVms;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
             else
@@ -136,11 +145,15 @@ namespace CP_MathHub.Controllers
             answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
             ViewBag.System = Constant.String.QuestionSystem;
             questionDetailVM.AnswerVMs = answerVM;
+            var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+            cookie.Expires.AddHours(1);
+            Response.Cookies.Add(cookie);
             return View("Views/QuestionDetailView", questionDetailVM);
         }
 
         // GET: Question/Create
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             QuestionCreateViewModel model = new QuestionCreateViewModel();
@@ -151,6 +164,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/Create
         [HttpPost, ValidateInput(false)]
+        [Authorize]
         public ActionResult Create(QuestionCreateViewModel questionVM)
         {
 
@@ -173,6 +187,7 @@ namespace CP_MathHub.Controllers
 
         //GET: Question/Edit
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             QuestionEditViewModel questionEditVM = new QuestionEditViewModel();
@@ -184,7 +199,8 @@ namespace CP_MathHub.Controllers
         }
 
         //Post: Question/Edit
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
+        [Authorize]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
             Question question = qService.GetQuestion(questionVM.Id);
@@ -197,6 +213,8 @@ namespace CP_MathHub.Controllers
 
             question.Title = questionVM.Title;
             question.Content = questionVM.Content;
+            question.Privacy = questionVM.Privacy;
+
             question.LastEditedDate = editedlog.CreatedDate;
             question.EditedContents.Add(editedlog);
 
@@ -207,6 +225,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/Delete
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Question question = qService.GetQuestion(id);
@@ -216,6 +235,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/Bookmark
         [HttpPost]
+        [Authorize]
         public bool Bookmark(int id)
         {
             User user = cService.GetLoginUser();
@@ -260,6 +280,9 @@ namespace CP_MathHub.Controllers
                 model.ListTags = tags;
                 ViewBag.System = Constant.String.QuestionSystem;
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/TagsPageView", model);
             }
             else
@@ -271,6 +294,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/CreateTag
         [HttpPost]
+        [Authorize]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -294,6 +318,9 @@ namespace CP_MathHub.Controllers
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Question.String.HomeUserTab;
                 ViewBag.System = Constant.String.QuestionSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/UsersPageView", model);
             }
             else
@@ -315,6 +342,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/PostComment
         [HttpPost]
+        [Authorize]
         public ActionResult PostComment( int postId, string content = "")
         {
             Comment comment = new Comment();
@@ -330,6 +358,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/EditComment
         [HttpPost]
+        [Authorize]
         public ActionResult EditComment()
         {
             return null;
@@ -337,6 +366,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/AnswerQuestion
         [HttpPost, ValidateInput(false)]
+        [Authorize]
         public ActionResult AnswerQuestion(int questionId, string content = "", AnswerEnum type = AnswerEnum.Answer)
         {
             Answer answer = new Answer();
@@ -355,6 +385,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Question/Vote
         [HttpPost]
+        [Authorize]
         public ActionResult Vote(int postId, VoteEnum type )
         {
             Vote vote = new Vote();

@@ -321,6 +321,12 @@ $(document).ready(function () {
             initSelectMenu();
             initDateTimePicker();
             break;
+        case "blog-edit":
+            togglePreview();
+            initCkeditor(true);
+            initSelectMenu();
+            initDateTimePicker();
+            break;
         case "blog-detail":
             commentPost();
             //getFacebookShareNum();

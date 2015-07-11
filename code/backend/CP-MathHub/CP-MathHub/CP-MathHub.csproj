@@ -54,7 +54,34 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -125,17 +152,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Account\" />
-    <Folder Include="Views\Account\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\BlogMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\CommonMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\QuestionMapperProfile.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommonWidgetController.cs" />
     <Compile Include="Controllers\DiscussionController.cs" />
@@ -144,8 +172,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507100331103_InitialCreate.cs" />
+    <Compile Include="Migrations\201507100331103_InitialCreate.Designer.cs">
+      <DependentUpon>201507100331103_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
+    <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
     <Compile Include="Models\Blog\BlogHomeViewModel.cs" />
     <Compile Include="Models\Blog\ArticlePreviewViewModel.cs" />
     <Compile Include="Models\Blog\MyBlogViewModel.cs" />
@@ -627,7 +663,7 @@
     <Content Include="Views\Blog\Partials\_ArticleListPreviewPartialView.cshtml" />
     <Content Include="Views\Blog\Layouts\_BlogDetailLayout.cshtml" />
     <Content Include="Views\Blog\Views\BlogDetailView.cshtml" />
-    <Content Include="Views\Blog\Layouts\_BlogCreateLayuot.cshtml" />
+    <Content Include="Views\Blog\Layouts\_BlogCreateLayout.cshtml" />
     <Content Include="Views\Blog\Views\BlogCreateView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
@@ -644,6 +680,23 @@
     <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\DisplayEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Blog\Views\BlogEditView.cshtml" />
+    <Content Include="Views\Blog\Layouts\_BlogEditLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -676,6 +729,11 @@
       <Project>{b20c4cc4-dd7a-4c8f-a3a6-b13c950a021e}</Project>
       <Name>CP_MathHub.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507100331103_InitialCreate.resx">
+      <DependentUpon>201507100331103_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

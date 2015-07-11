@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP_MathHub.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace CP_MathHub.Models.Discussion
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
+        public MainPostPrivacyEnum Privacy { get; set; }
     }
 }

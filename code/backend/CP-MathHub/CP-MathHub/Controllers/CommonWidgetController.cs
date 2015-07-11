@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using CP_MathHub.Framework.Controllers;
 using CP_MathHub.Core.Interfaces.Services;
 using CP_MathHub.Core.Configuration;
@@ -10,6 +13,7 @@ using CP_MathHub.Service.Services;
 using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Question;
 using CP_MathHub.Models.Common;
+using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
 using AutoMapper;
 
@@ -20,25 +24,45 @@ namespace CP_MathHub.Controllers
     {
         private ICommonService cService;
         private CPMathHubModelContainer context;
+        //private ApplicationUserManager uManager;
 
         public CommonWidgetController()
         {
             context = new CPMathHubModelContainer();
             cService = new CommonService(context);
+            //UserManager = userManager;
         }
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return uManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        uManager = value;
+        //    }
+        //}
 
         #region User Widget
         public virtual ActionResult ProfileWidget()
         {
-            User user = cService.GetLoginUser();
-            ProfileWidgetViewModel profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
-
+            ProfileWidgetViewModel profileWidgetVm = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
+                profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
+            }
             return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
         }
         public virtual ActionResult UserHeaderWidget()
         {
-            User user = cService.GetLoginUser();
-            UserHeaderViewModel userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
+            UserHeaderViewModel userHeaderVM = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
+                userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
+            }
 
             return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);
         }

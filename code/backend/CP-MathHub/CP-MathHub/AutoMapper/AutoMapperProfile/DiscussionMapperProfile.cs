@@ -117,7 +117,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                                                                         .GetLoginUser().Id).Count() > 0)
                 );
             #endregion
-            //Create Question
+            #region Create
             Mapper.CreateMap<DiscussionCreateViewModel, Discussion>()
                .ForMember(
                    s => s.CreatedDate,
@@ -139,9 +139,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
                );
-            //Edit Discussion Get
-            Mapper.CreateMap<Discussion, DiscussionEditViewModel>(
-                );
+            #endregion
+            #region Edit
+            Mapper.CreateMap<Discussion, DiscussionEditViewModel>()
+               .ForMember(
+                   s => s.Privacy,
+                   d => d.MapFrom(m => m.Privacy)
+               );
+            #endregion
         }
     }
 }

@@ -22,17 +22,18 @@
 
     <div class="panel panel-success mh-question-preview">
         <div class="panel-heading">
-            <div class="row">
-                @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo)
-                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            <div class="mh-user-info">
+                @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" } })
             </div>
-        </div>
+            </div>
         <div class="panel-body">
             <div class="row">
                 @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
                 <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
-                    <a href="#">@Model.Title</a>
+                    <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
+                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
                     <div>
                         @Html.Raw(Model.Content)
                     </div>
