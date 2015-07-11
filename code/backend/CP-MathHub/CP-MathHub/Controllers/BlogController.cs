@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using CP_MathHub.Framework.Controllers;
 using CP_MathHub.Core.Interfaces.Services;
 using CP_MathHub.Core.Configuration;
@@ -38,9 +40,12 @@ namespace CP_MathHub.Controllers
                     articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
-            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -49,9 +54,12 @@ namespace CP_MathHub.Controllers
                 ICollection<ArticlePreviewViewModel> articleHotPreviewVMs =
                         articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                         .ToList();
-                foreach (ArticlePreviewViewModel q in articleHotPreviewVMs)
+                for (int i = 0; i < articlePreviewVMs.Count; i++)
                 {
-                    q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                    articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                    if (Request.IsAuthenticated)
+                        articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
                 ViewBag.Tab = tab;
@@ -83,9 +91,12 @@ namespace CP_MathHub.Controllers
                     articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
-            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -120,9 +131,12 @@ namespace CP_MathHub.Controllers
                     articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
-            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -213,9 +227,8 @@ namespace CP_MathHub.Controllers
             bService.IncludeReplyForComments(article.Comments.ToList());
 
             articleDetailVM = Mapper.Map<Article, ArticleDetailViewModel>(article);
-            //questionDetailVM.CommentVMs = question.Comments.Select(Mapper.Map<Comment, CommentViewModel>)
-            //        .ToList();
-
+            articleDetailVM.Bookmarked = article.BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             bService.IncreaseViewArticle(article);
             ViewBag.System = Constant.String.BlogSystem;
 
@@ -289,7 +302,7 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public bool Bookmark(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Bookmark(id, user);
         }
 

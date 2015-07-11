@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System.Web.Mvc;
 using CP_MathHub.Framework.Controllers;
 using CP_MathHub.Core.Interfaces.Services;
@@ -51,9 +53,12 @@ namespace CP_MathHub.Controllers
             ICollection<DiscussionTagPreviewViewModel> discussionTagPreviewVM =
                 discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-            foreach (DiscussionTagPreviewViewModel q in discussionTagPreviewVM)
+            for (int i = 0; i < discussionTagPreviewVM.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                discussionTagPreviewVM.ElementAt(i).UserInfo.CreateMainPostDate = discussionTagPreviewVM.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    discussionTagPreviewVM.ElementAt(i).Bookmarked = discussions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             if (page == 0)
             {
@@ -141,6 +146,8 @@ namespace CP_MathHub.Controllers
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
 
             discussionDetailVM.UserInfo.CreateMainPostDate = discussionDetailVM.CreatedDate;
+            discussionDetailVM.Bookmarked = discussion.BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             discussionDetailVM.Name = "THẢO LUẬN";
             dService.IncreaseViewDiscussion(discussion);
             ViewBag.System = Constant.String.DiscussionSystem;
@@ -342,7 +349,7 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public bool Bookmark(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Bookmark(id, user);
         }
 
