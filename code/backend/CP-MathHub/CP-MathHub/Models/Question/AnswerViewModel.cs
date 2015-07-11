@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CP_MathHub.Entity;
 using AutoMapper;
+using CP_MathHub.Core.Interfaces.Services;
 namespace CP_MathHub.Models.Question
 {
     public class AnswerViewModel
@@ -12,19 +13,29 @@ namespace CP_MathHub.Models.Question
         public ICollection<Answer> Hints { get; set; }
         public ICollection<VoteViewModel> VoteAnswerVMs
         {
-            get
-            {
-                return Answers.Select(Mapper.Map<Answer, VoteViewModel>).ToList();
-            }
-            set { }
+            get;
+            set;
         }
         public ICollection<VoteViewModel> VoteHintVMs
         {
-            get
+            get;
+            set;
+        }
+
+        public AnswerViewModel(IQuestionService qService, int questionId, int userId = default(int))
+        {
+            Answers = qService.GetAnswers(questionId, AnswerEnum.Answer);
+            Hints = qService.GetAnswers(questionId, AnswerEnum.Hint);
+            VoteAnswerVMs = new List<VoteViewModel>();
+            foreach (Answer a in Answers)
             {
-                return Hints.Select(Mapper.Map<Answer, VoteViewModel>).ToList();
+                VoteAnswerVMs.Add(new VoteViewModel(a, userId));
             }
-            set { }
+            VoteHintVMs = new List<VoteViewModel>();
+            foreach (Answer h in Hints)
+            {
+                VoteHintVMs.Add(new VoteViewModel(h, userId));
+            }
         }
     }
 }

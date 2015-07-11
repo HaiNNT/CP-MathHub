@@ -13,10 +13,8 @@ var commentReady = true;
   Init see more discussion event listening 
 */
 function seeMore(item) {
-
     $(item).parent().addClass("hidden");
     $(item).parent().siblings(".mh-full-content").removeClass("hidden");
-
 }
 
 /*

@@ -174,13 +174,15 @@
 </div>
 <input id="system" type="hidden" value="@ViewBag.System" />
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-
 @section LeftPanel
 {
-    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
-    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
-        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
-    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+        @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+            @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+        @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+    }
 }
 @section RightPanel
 {
