@@ -80,8 +80,17 @@ footer {
     margin: 5px 0px 0px 0px;
 }
 /*Topic: end*/
+/* mh-home: start */
+.mh-home-tab h4 {
+    float: left;
+    margin-right: 5px;
+}
+#mh-mainpost-theme {
+    width: 81%;
+}
+/* mh-home: end */
 /* Panel: start */
-/* QA default: start */
+/* Diss default: start */
 .mh-discussion-post {
 	margin-top: 5px;
 }
@@ -185,6 +194,6 @@ footer {
   top: 0;
   right: 0;
 }
-/*QA default: end*/
+/*Diss default: end*/
 /* Panel: end*/
 /*  Mid: end    */

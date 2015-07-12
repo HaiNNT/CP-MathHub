@@ -14,14 +14,6 @@
 </head>
 
 <body>
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "http://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 	<header class="navbar navbar-default navbar-fixed-top" id="mh-header">
 		<div class="container">
 			<div class="navbar-header">
@@ -693,7 +685,13 @@
                 <div class="mh-home">
                     <div class="row">
                         <div class="col-xs-12 col-md-7 mh-home-tab">
-                            <h4>Bài tập luyện thi đại học</h4>
+                            <h4>Chủ đề: </h4>
+                            <select id="mh-mainpost-theme">
+                                <option>Chủ đề 1</option>
+                                <option>Chủ đề 2</option>
+                                <option>Chủ đề 3</option>
+                                <option>...</option>
+                            </select>
                         </div>
                         <div class="col-xs-12 col-md-5 mh-page-search">
                             <form>
@@ -858,7 +856,8 @@
     <script>
         $(function () {
             $("#mh-mainpost-privacy").selectmenu();
-            $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).datepicker("setDate" , new Date());
+            $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).datepicker("setDate", new Date());
+            $("#mh-mainpost-theme").selectmenu();
         });
     </script>
 </body>

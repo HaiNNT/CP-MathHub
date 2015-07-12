@@ -1055,8 +1055,19 @@ footer {
 .mh-comment-list-full, .mh-comment-list {
     margin-top: 10px;
 }
-
+.dropdown-menu > li > a {
+    cursor: pointer;
+}
 /*  Setting comment: end */
+/*Edit comment: start*/
+.mh-comment-edit-textarea {
+    display: none;
+}
+.mh-note {
+    display: none;
+    font-size: 9px;
+}
+/*Edit comment: end*/
 /* Comment: end */
 /* post setting: start*/
 .mh-post-setting-icon {
