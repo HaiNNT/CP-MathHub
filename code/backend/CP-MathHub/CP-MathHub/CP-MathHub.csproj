@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile\AccountMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\BlogMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\CommonMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
+    <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
@@ -508,6 +511,7 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\style-blog.css" />
     <Content Include="Content\css\style-discussion.css" />
+    <Content Include="Content\css\style-profile.css" />
     <Content Include="Content\css\style-question.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles-slideshow.css" />
@@ -559,6 +563,7 @@
     <Content Include="Content\js\responsiveCarousel-slideshow.js" />
     <Content Include="Content\js\script-blog.js" />
     <Content Include="Content\js\script-discussion.js" />
+    <Content Include="Content\js\script-profile.js" />
     <Content Include="Content\js\script-question.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -697,6 +702,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Blog\Views\BlogEditView.cshtml" />
     <Content Include="Views\Blog\Layouts\_BlogEditLayout.cshtml" />
+    <Content Include="Views\Account\Layouts\_ProfileLayout.cshtml" />
+    <Content Include="Views\Account\Views\ProfileView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

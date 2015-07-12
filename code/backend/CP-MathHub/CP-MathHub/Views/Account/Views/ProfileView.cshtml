@@ -1,0 +1,173 @@
+﻿@using CP_MathHub.Models.Account
+@model ProfileViewModel
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Service.Helpers
+@{
+    ViewBag.Title = Model.UserName;
+    ViewBag.MhPage = Constant.String.ProfilePage;
+    Layout = "~/Views/Account/Layouts/_ProfileLayout.cshtml";
+}
+
+<div class="mh-home">
+    <div class="row">
+        <div class="col-xs-12 col-md-7 mh-home-tab">
+            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+            <a class="btn btn-danger btn-sm">
+                Bạn bè
+                <span class="badge mh-num-icon">42</span>
+            </a>
+            <a class="btn btn-danger btn-sm">Hoạt động</a>
+        </div>
+    </div>
+</div>
+<div class="mh-body-profile">
+    <div>
+        <h3>Thông tin cơ bản</h3>
+        <div class="mh-profile-info">
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            {
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-3">
+                        <label>Họ tên</label>
+                    </div>
+                    <div class="col-xs-5">
+                        <span class="mh-profile-span-edit">@Model.Profile.FullName</span>
+                        <input type="text" class="mh-profile-input-edit" value="@Model.Profile.FullName" />
+                        <input type="hidden" name="Property" value="FullName" />
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.FullName" mh-type="text">Hủy</button>
+                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            }
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            {
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-3">
+                        <label>Giới tính</label>
+                    </div>
+                    <div class="col-xs-5">
+                        <span class="mh-profile-span-edit">@(Model.Profile.Gender != null ? Constant.Account.Dictionary.GenderName[(int)Model.Profile.Gender] : "")</span>
+                        @*<label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Nam
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Nữ
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio3" value="3" /> Khác
+                        </label>*@
+                        @Html.RadioListForGenderEnum("Gender", Model.Profile.Gender)
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            }
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            {
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-3">
+                        <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-xs-5">
+                        <span class="mh-profile-span-edit">13-10-1993</span>
+                        <input type="text" class="mh-profile-input-edit" value="13-10-1993" id="datepicker" />
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="datetime">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="13-10-1993" mh-type="datetime">Hủy</button>
+                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <h3>Thông tin liên hệ</h3>
+        @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+        {
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Địa chỉ</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.Address</span>
+                    <input type="text" class="mh-profile-input-edit" value="@Model.Profile.Address" />
+                </div>
+                <div class="col-xs-4">
+                    <a href="" class="mh-profile-edit-button" mh-type="text">
+                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                    </a>
+                    <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Address" mh-type="text">Hủy</button>
+                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+        {
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Số điện thoại</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.PhoneNumber</span>
+                    <input type="text" class="mh-profile-input-edit" value="@Model.PhoneNumber" />
+                </div>
+                <div class="col-xs-4">
+                    <a href="" class="mh-profile-edit-button" mh-type="text">
+                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                    </a>
+                    <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.PhoneNumber" mh-type="text">Hủy</button>
+                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+        {
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Email</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Email</span>
+                    <input type="text" class="mh-profile-input-edit" value="@Model.Email" />
+                </div>
+                <div class="col-xs-4">
+                    <a href="" class="mh-profile-edit-button" mh-type="text">
+                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                    </a>
+                    <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Email" mh-type="text">Hủy</button>
+                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section LeftPanel
+{
+    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+}
+
+@section RightPanel
+{
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+}
