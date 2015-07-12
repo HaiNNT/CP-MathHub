@@ -196,4 +196,31 @@ footer {
 }
 /*Diss default: end*/
 /* Panel: end*/
+/*Ðãng nhanh: start*/
+.mh-create-fast {
+    border: 1px solid #C1C1C1;
+    padding: 15px;
+}
+.mh-create-fast .mh-create-title {
+    margin-top: 5px;
+}
+.mh-create-fast h4 {
+    font-weight: bold;
+    margin: 0;
+}
+.mh-create-fast .mh-create-input {
+    height: 20px;
+    font-size: 10pt;
+    font-weight: normal;
+    margin-bottom: 5px;
+    padding: 12px 6px;
+}
+.mh-create-fast .mh-create-button {
+    width: 190px;
+    margin: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    border-radius: 0;
+}
+/*Ðãng nhanh: end*/
 /*  Mid: end    */
