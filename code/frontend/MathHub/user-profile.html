@@ -1284,6 +1284,7 @@
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
             $(".mh-profile-edit-button").toggle();
             // save, cancel, input hiện
+            $(this).siblings().toggle();
             switch ($(this).attr("mh-type")) {
                 case "text":
                     $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").toggle();
@@ -1302,7 +1303,7 @@
                 default:
                     break;
             }           
-            $(this).siblings().toggle();           
+                     
         });
         $(".mh-profile-cancel").click(function () {
             //nút cancel: ẩn 
