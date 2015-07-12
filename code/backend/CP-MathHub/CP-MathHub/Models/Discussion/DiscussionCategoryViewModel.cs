@@ -15,5 +15,6 @@ namespace CP_MathHub.Models.Discussion
         public string UserName { get; set; }
         public string Image { get; set; }
         public MainPost Discussion { get; set; }
+        public string Description { get; set; }
     }
 }

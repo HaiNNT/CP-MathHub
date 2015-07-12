@@ -161,6 +161,7 @@ namespace CP_MathHub.Controllers
             ViewBag.System = Constant.String.DiscussionSystem;
             DiscussionCreateViewModel model = new DiscussionCreateViewModel();
             model.Privacy = MainPostPrivacyEnum.Everyone;
+            model.TagList = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
             return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create
