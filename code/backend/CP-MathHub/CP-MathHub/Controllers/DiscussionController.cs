@@ -169,6 +169,15 @@ namespace CP_MathHub.Controllers
         {
             Discussion discussion = new Discussion();
             discussion = Mapper.Map<DiscussionCreateViewModel, Discussion>(discussionCreateVM);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = discussion.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = discussion.Id;
+            editedlog.UserId = discussion.UserId;
+            discussion.LastEditedDate = editedlog.CreatedDate;
+            discussion.EditedContents.Add(editedlog);
+
             discussion.UserId = cService.GetLoginUser().Id;
             discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
             dService.InsertDiscussion(discussion);
@@ -312,7 +321,7 @@ namespace CP_MathHub.Controllers
         {
             Comment comment = new Comment();
             comment.Content = content;
-            comment.UserId = cService.GetLoginUser().Id;
+            comment.UserId = User.Identity.GetUserId<int>();
             comment.CreatedDate = DateTime.Now;
             comment.LastEditedDate = comment.CreatedDate;
             comment.PostId = postId;

@@ -276,10 +276,10 @@ body {
     margin: 0px 10px;
 }
 
-    .mh-user-info > a > div {
-        width: 70%;
-        float: left;
-    }
+.mh-user-info > a > div {
+    width: 70%;
+    float: left;
+}
 
 .mh-mid-section > .mh-top-content > .row {
     border-bottom: 1px solid #C1C1C1;

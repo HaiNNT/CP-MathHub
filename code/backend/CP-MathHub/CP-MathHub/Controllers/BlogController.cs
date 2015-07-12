@@ -251,6 +251,15 @@ namespace CP_MathHub.Controllers
         {
             Article article = new Article();
             article = Mapper.Map<ArticleCreateViewModel, Article>(model);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = article.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = article.Id;
+            editedlog.UserId = article.UserId;
+            article.LastEditedDate = editedlog.CreatedDate;
+            article.EditedContents.Add(editedlog);
+
             article.UserId = cService.GetLoginUser().Id;
             article.Tags = cService.GetTags(model.TagIds);
 
