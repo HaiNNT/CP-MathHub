@@ -17,7 +17,7 @@ namespace CP_MathHub.Service.Services
         private IUnitOfWork dal;
         public AccountService(CPMathHubModelContainer context)
         {
-            dal = new MathHubUoW(context);   
+            dal = new MathHubUoW(context);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -46,9 +46,17 @@ namespace CP_MathHub.Service.Services
 
         }
 
-        public User GetUser(int userId)
+        public User GetUser(int userId, string include = "")
         {
-            return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == userId);
+            return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
+        }
+
+        public void CreateProfile(int userId)
+        {
+            Profile profile = new Profile();
+            profile.User = GetUser(userId);
+            dal.Repository<Profile>().Insert(profile);
+            dal.Save();
         }
 
     }

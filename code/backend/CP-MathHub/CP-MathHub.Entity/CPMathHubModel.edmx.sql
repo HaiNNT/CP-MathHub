@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/10/2015 15:31:21
+-- Date Created: 07/12/2015 17:28:15
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -409,15 +409,15 @@ GO
 -- Creating table 'Profiles'
 CREATE TABLE [dbo].[Profiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FullName] nvarchar(max)  NOT NULL,
+    [FullName] nvarchar(max)  NULL,
     [School] nvarchar(max)  NULL,
-    [Birthday] datetime  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
+    [Birthday] datetime  NULL,
+    [Address] nvarchar(max)  NULL,
     [Facebook] nvarchar(max)  NULL,
     [Summary] nvarchar(max)  NULL,
     [ViewPoint] nvarchar(max)  NULL,
     [Gender] int  NULL,
-    [Education] int  NOT NULL,
+    [Education] int  NULL,
     [User_Id] int  NOT NULL
 );
 GO

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CP_MathHub.Entity;
 
 namespace CP_MathHub.Core.Configuration
 {
@@ -17,6 +18,8 @@ namespace CP_MathHub.Core.Configuration
             public const string BlogSystem = "Blog";
             public const string DiscussionSystem = "Discussion";
             public const string AdminSystem = "Admin";
+
+            public const string ProfilePage = "profile";
 
             public const string QuestionHomePage = "question-home";
             public const string QuestionDetailPage = "question-detail";
@@ -135,6 +138,15 @@ namespace CP_MathHub.Core.Configuration
                 public const string TagNameTab = "name";
             }
 
+        }
+
+        public static class Account
+        {
+            public class Dictionary
+            {
+                public static Dictionary<int, string> GenderName = new Dictionary<int, string> { { 1, "Nam" }, { 2, "Nữ" }, { 0, "Khác" } };
+
+            }
         }
     }
 }

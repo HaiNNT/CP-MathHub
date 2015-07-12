@@ -19,6 +19,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get an entity User by id
         /// </summary>
         /// <returns></returns>
-        User GetUser(int userId);
+        User GetUser(int userId, string include = "");
+
+        /// <summary>
+        /// Create Profile
+        /// </summary>
+        /// <param name="userId"></param>
+        void CreateProfile(int userId);
     }
 }
