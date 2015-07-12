@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-profile.css" rel="stylesheet">
@@ -680,7 +681,7 @@
                             <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
                             <a class="btn btn-danger btn-sm">
                                 Bạn bè
-                                <span>40</span>
+                                <span class="badge mh-num-icon">42</span>
                             </a>
                             <a class="btn btn-danger btn-sm">Hoạt động</a>
                         </div>
@@ -700,10 +701,10 @@
                                         <input type="text" class="mh-profile-input-edit" value="Thân Văn Tâm" />
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="" class="mh-profile-edit-button">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
                                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                         </a>
-                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Thân Văn Tâm">Hủy</button>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Thân Văn Tâm" mh-type="text">Hủy</button>
                                         <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                     </div>
                                 </div>
@@ -715,13 +716,21 @@
                                     </div>
                                     <div class="col-xs-5">
                                         <span class="mh-profile-span-edit">Nam</span>
-                                        <input type="text" class="mh-profile-input-edit" value="Nam" />
+                                        <label class="radio-inline">    
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Nam
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Nữ
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio3" value="3" /> Khác
+                                        </label>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="" class="mh-profile-edit-button">
+                                        <a href="" class="mh-profile-edit-button" mh-type="radio">
                                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                         </a>
-                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Nam">Hủy</button>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
                                         <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                     </div>
                                 </div>
@@ -732,14 +741,14 @@
                                         <label>Ngày sinh</label>
                                     </div>
                                     <div class="col-xs-5">
-                                        <span class="mh-profile-span-edit">13/10/1993</span>
-                                        <input type="text" class="mh-profile-input-edit" value="13/10/1993" />
+                                        <span class="mh-profile-span-edit">13-10-1993</span>
+                                        <input type="text" class="mh-profile-input-edit" value="13-10-1993" id="datepicker" />
                                     </div>
                                     <div class="col-xs-4">
-                                        <a href="" class="mh-profile-edit-button">
+                                        <a href="" class="mh-profile-edit-button" mh-type="datetime">
                                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                         </a>
-                                        <button type="button" class="btn btn-default mh-profile-cancel" value="13/10/1993">Hủy</button>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="13-10-1993" mh-type="datetime">Hủy</button>
                                         <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                     </div>
                                 </div>
@@ -748,47 +757,60 @@
                     </div>
                     <div>
                         <h3>Thông tin liên hệ</h3>
-                        <div class="mh-profile-info">
+                        <form>
                             <div class="row mh-profile-info-row">
                                 <div class="col-xs-3">
                                     <label>Địa chỉ</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <span>Đà Nẵng</span>
+                                <div class="col-xs-5">
+                                    <span class="mh-profile-span-edit">Đà Nẵng</span>
+                                    <input type="text" class="mh-profile-input-edit" value="Đà Nẵng" />
                                 </div>
-                                <div class="col-xs-3">
-                                    <a href="">
+                                <div class="col-xs-4">
+                                    <a href="" class="mh-profile-edit-button" mh-type="text">
                                         <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                     </a>
+                                    <button type="button" class="btn btn-default mh-profile-cancel" value="Đà Nẵng" mh-type="text">Hủy</button>
+                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                 </div>
                             </div>
+                        </form>
+                        <form>
                             <div class="row mh-profile-info-row">
                                 <div class="col-xs-3">
                                     <label>Số điện thoại</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <span></span>
+                                <div class="col-xs-5">
+                                    <span class="mh-profile-span-edit">01227527757</span>
+                                    <input type="text" class="mh-profile-input-edit" value="01227527757"  />
                                 </div>
-                                <div class="col-xs-3">
-                                    <a href="">
+                                <div class="col-xs-4">
+                                    <a href="" class="mh-profile-edit-button" mh-type="text">
                                         <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                     </a>
+                                    <button type="button" class="btn btn-default mh-profile-cancel" value="01227527757" mh-type="text">Hủy</button>
+                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                 </div>
                             </div>
+                        </form>
+                        <form>
                             <div class="row mh-profile-info-row">
                                 <div class="col-xs-3">
                                     <label>Email</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <span>tamtv93@gmail.com</span>
+                                <div class="col-xs-5">
+                                    <span class="mh-profile-span-edit">tamtv93@gmail.com</span>
+                                    <input type="text" class="mh-profile-input-edit" value="tamtv93@gmail.com" />
                                 </div>
-                                <div class="col-xs-3">
-                                    <a href="">
+                                <div class="col-xs-4">
+                                    <a href="" class="mh-profile-edit-button" mh-type="text">
                                         <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                                     </a>
+                                    <button type="button" class="btn btn-default mh-profile-cancel" value="tamtv93@gmail.com" mh-type="text">Hủy</button>
+                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1252,24 +1274,76 @@
         </div>
     </div>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>	
     <script src="js/bootstrap.js"></script>
     <script>
         $(".mh-profile-edit-button").click(function () {
-                event.preventDefault();
-                $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
-                $(".mh-profile-edit-button").toggle();
-                $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").toggle();
-                $(this).siblings().toggle();
-                
+            // thẻ a (chỉnh sửa)
+            event.preventDefault();
+            // mh-profile-span-edit, thẻ a (chỉnh sửa): ẩn
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
+            $(".mh-profile-edit-button").toggle();
+            // save, cancel, input hiện
+            $(this).siblings().toggle();
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").toggle();
+                    break;
+                case "radio":
+                    //radio button: hiện
+                    $(this).parents(".mh-profile-info-row").find(".radio-inline").toggle();
+                    break;
+                case "datetime":
+                    var input = $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit");
+                    var strDate = input.val();
+                    var date = new Date(strDate.split("-")[2], strDate.split("-")[1]-1, strDate.split("-")[0]);
+                    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", date);
+                    input.toggle();
+                    break;
+                default:
+                    break;
+            }           
+                     
         });
         $(".mh-profile-cancel").click(function () {
+            //nút cancel: ẩn 
             $(this).toggle();
-            var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
-            input.toggle();
-            input.val($(this).val());
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    // Khung input: quay về giá trị ban đầu + ẩn
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                case "radio":
+                    var radios = $(this).parents(".mh-profile-info-row").find(".mh-radio");
+                    var val = $(this).val();
+                    radios.each(function () {
+                        radio = this;
+                        if ($(radio).val() == val) {
+                            $(radio).prop("checked", true);
+                        } else {
+                            $(radio).removeAttr("checked");
+                        }
+                    });
+                    break;
+                case "datetime":
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                default:
+                    break;
+            }
+            
+            // mh-profile-span-edit: hiện
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
+            //Nút save: ẩn
             $(this).siblings().toggle();
+            //thẻ a: hiện
             $(".mh-profile-edit-button").show();
+            //radio button: ẩn
+            $(this).parents(".mh-profile-info-row").find(".radio-inline").toggle();
             
         });
         //$(".mh-chat-popup-head").click(function () {

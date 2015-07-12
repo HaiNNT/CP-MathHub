@@ -319,33 +319,58 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
-            Comment comment = new Comment();
-            comment.Content = content;
-            comment.UserId = cService.GetLoginUser().Id;
-            comment.CreatedDate = DateTime.Now;
-            comment.LastEditedDate = comment.CreatedDate;
-            comment.PostId = postId;
-
-            cService.CommentPost(comment);
-            List<Comment> comments = cService.GetComments(postId);
-            ICollection<CommentViewModel> commentsVM;
-            switch (type)
+            if (bService.GetArticle(postId).Status != PostStatusEnum.Closed)
             {
-                case "comment":
-                    bService.IncludeUserForComments(comments);
-                    bService.IncludeReplyForComments(comments);
-                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
-                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
-                case "reply":
-                    bService.IncludeUserForComments(comments);
-                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
-                    return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
-                default:
-                    bService.IncludeUserForComments(comments);
-                    bService.IncludeReplyForComments(comments);
-                    commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
-                    return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                Comment comment = new Comment();
+                comment.Content = content;
+                comment.UserId = cService.GetLoginUser().Id;
+                comment.CreatedDate = DateTime.Now;
+                comment.LastEditedDate = comment.CreatedDate;
+                comment.PostId = postId;
+
+                cService.CommentPost(comment);
+                List<Comment> comments = cService.GetComments(postId);
+                ICollection<CommentViewModel> commentsVM;
+                switch (type)
+                {
+                    case "comment":
+                        bService.IncludeUserForComments(comments);
+                        bService.IncludeReplyForComments(comments);
+                        commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                        return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                    case "reply":
+                        bService.IncludeUserForComments(comments);
+                        commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                        return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
+                    default:
+                        bService.IncludeUserForComments(comments);
+                        bService.IncludeReplyForComments(comments);
+                        commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
+                        return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
+                }
             }
+            return null;
+        }
+
+        //Post: Blog/EditComment
+        [HttpPost]
+        public ActionResult EditComment(int id, string content)
+        {
+            Comment comment = new Comment();
+            comment.Id = id;
+            comment.Content = content;
+            comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
+            CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
+
+            return PartialView("../CommonWidget/_CommentItemPartialView", model);
+        }
+
+        //Get: Blog/DisableComment
+        [HttpPost]
+        public bool DisableComment(int id)
+        {
+            cService.DisableComment(id);
+            return true;
         }
 
         //Post: Blog/Like

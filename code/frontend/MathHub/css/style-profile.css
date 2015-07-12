@@ -46,3 +46,9 @@ form:last-child .mh-profile-info-row {
     margin-left: 5px;
     margin-top: -4px;
 }
+.radio-inline {
+    display: none;
+}
+.ui-datepicker {
+    z-index: 2000;
+}
