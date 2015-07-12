@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using CP_MathHub.Models.Account;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -9,20 +8,34 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CP_MathHub.Framework.Controllers;
+using CP_MathHub.Core.Interfaces.Services;
+using CP_MathHub.Core.Configuration;
+using CP_MathHub.Service.Services;
+using CP_MathHub.Service.Helpers;
+using CP_MathHub.Models.Account;
+using CP_MathHub.Entity;
+using AutoMapper;
 
 namespace CP_MathHub.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
+        private IAccountService aService;
+        private CPMathHubModelContainer context;
         public AccountController()
         {
+            context = new CPMathHubModelContainer();
+            aService = new AccountService(context);
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            context = new CPMathHubModelContainer();
+            aService = new AccountService(context);
         }
 
         private ApplicationUserManager _userManager;
@@ -160,6 +173,7 @@ namespace CP_MathHub.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
+                    aService.CreateProfile(user.Id);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -456,6 +470,21 @@ namespace CP_MathHub.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+        #endregion
+
+        #region Profile
+
+        //Get: /Account/MyProfile
+        public ActionResult MyProfile()
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
+            ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+
+
+            return View("Views/ProfileView", model);
+        }
+
         #endregion
     }
 }

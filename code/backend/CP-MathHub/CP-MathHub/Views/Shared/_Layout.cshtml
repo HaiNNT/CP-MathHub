@@ -27,6 +27,7 @@
     }
     else
     {
+        @Styles.Render("~/Content/profile/css");
         <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     }
@@ -168,6 +169,10 @@
     else if (ViewBag.System == Constant.String.DiscussionSystem)
     {
         @Scripts.Render("~/bundles/discussionjs")
+    }
+    else
+    {
+        @Scripts.Render("~/bundles/profilejs")
     }
     @RenderSection("scripts", required: false)
 </body>

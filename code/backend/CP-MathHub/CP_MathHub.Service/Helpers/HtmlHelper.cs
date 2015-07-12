@@ -59,6 +59,15 @@ namespace CP_MathHub.Service.Helpers
             return MvcHtmlString.Create(html);
         }
 
+        public static MvcHtmlString RadioListForGenderEnum(this HtmlHelper htmlHelper, string name, GenderEnum? gender = default(GenderEnum))
+        {
+            string html = "";
+                html += InlineRadioForEnum(GenderEnum.Male, "Nam", name, gender == GenderEnum.Male);
+                html += InlineRadioForEnum(GenderEnum.Female, "Nữ", name, gender == GenderEnum.Female);
+                html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other);
+            return MvcHtmlString.Create(html);
+        }
+
         private static string RadioForEnum(Enum mhEnum, string display, string name)
         {
             var div = new TagBuilder("div");
@@ -68,11 +77,27 @@ namespace CP_MathHub.Service.Helpers
             input.MergeAttribute("type", "radio");
             input.MergeAttribute("name", name);
             input.MergeAttribute("id", name + 1);
-            input.MergeAttribute("value", mhEnum.ToString());
+            input.MergeAttribute("value", mhEnum.ToString());           
 
             label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
             div.InnerHtml = label.ToString(TagRenderMode.Normal);
             return div.ToString(TagRenderMode.Normal);
+        }
+
+        private static string InlineRadioForEnum(Enum mhEnum, string display, string name, bool check = false)
+        {
+            var label = new TagBuilder("label");
+            label.MergeAttribute("class", "radio-inline");
+            var input = new TagBuilder("input");
+            input.MergeAttribute("type", "radio");
+            input.MergeAttribute("name", name);
+            input.MergeAttribute("id", name + 1);
+            input.MergeAttribute("value", mhEnum.ToString());
+            if (check)
+                input.MergeAttribute("checked", "checked");
+
+            label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
+            return label.ToString(TagRenderMode.Normal);
         }
     }
 }

@@ -362,15 +362,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="School" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Birthday" Type="datetime" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" Nullable="true" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Facebook" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Summary" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ViewPoint" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Gender" Type="int" Nullable="true" />
-    <Property Name="Education" Type="int" Nullable="false" />
+    <Property Name="Education" Type="int" Nullable="true" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tags">
@@ -2008,16 +2008,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="true" />
           <Property Name="School" Type="String" Nullable="true" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="true" />
+          <Property Name="Address" Type="String" Nullable="true" />
           <Property Name="Facebook" Type="String" Nullable="true" />
           <Property Name="Summary" Type="String" Nullable="true" />
           <Property Name="ViewPoint" Type="String" Nullable="true" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.ProfileUser" FromRole="Profile" ToRole="User" />
           <Property Name="Gender" Type="CPMathHubModel.GenderEnum" Nullable="true" />
-          <Property Name="Education" Type="CPMathHubModel.EducationEnum" Nullable="false" />
+          <Property Name="Education" Type="CPMathHubModel.EducationEnum" Nullable="true" />
           <NavigationProperty Name="Location" Relationship="CPMathHubModel.LocationProfile" FromRole="Profile" ToRole="Location" />
         </EntityType>
         <Association Name="ProfileUser">
