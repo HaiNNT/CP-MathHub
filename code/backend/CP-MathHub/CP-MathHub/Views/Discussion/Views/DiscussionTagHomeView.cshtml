@@ -35,7 +35,7 @@
 }
 @section RightPanel
 {
-    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup", new ViewDataDictionary {{"tagId", Model.Id}, {"System",ViewBag.System}})
     @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })

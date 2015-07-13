@@ -45,7 +45,7 @@ namespace CP_MathHub.Controllers
                 questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
                     questionPreviewVMs.ElementAt(i).Bookmarked = questions.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == Int32.Parse(User.Identity.GetUserId())).Count() > 0;
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             if (page == 0)
             {
@@ -143,9 +143,9 @@ namespace CP_MathHub.Controllers
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
             questionDetailVM.UserInfo.CreateMainPostDate = question.CreatedDate;
             questionDetailVM.Bookmarked = question.BookmarkUsers
-                                               .Where(u => u.Id == Int32.Parse(User.Identity.GetUserId())).Count() > 0;
-            questionDetailVM.VoteVM = new VoteViewModel(question, Int32.Parse(User.Identity.GetUserId()));
-            AnswerViewModel answerVM = new AnswerViewModel(qService, id, Int32.Parse(User.Identity.GetUserId()));
+                                               .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+            questionDetailVM.VoteVM = new VoteViewModel(question, User.Identity.GetUserId<int>());
+            AnswerViewModel answerVM = new AnswerViewModel(qService, id, User.Identity.GetUserId<int>());
             //answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
     
             //answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
@@ -176,7 +176,15 @@ namespace CP_MathHub.Controllers
 
             Question question = new Question();
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
-            question.UserId = Int32.Parse(User.Identity.GetUserId());
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = question.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = question.Id;
+            editedlog.UserId = question.UserId;
+            question.LastEditedDate = editedlog.CreatedDate;
+            question.EditedContents.Add(editedlog);
+
+            question.UserId = User.Identity.GetUserId<int>();
             question.Tags = cService.GetTags(questionVM.TagIds);
 
             qService.InsertQuestion(question);
@@ -244,7 +252,7 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public bool Bookmark(int id)
         {
-            User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Bookmark(id, user);
         }
 

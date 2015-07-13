@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System.Web.Mvc;
 using CP_MathHub.Framework.Controllers;
 using CP_MathHub.Core.Interfaces.Services;
@@ -51,9 +53,12 @@ namespace CP_MathHub.Controllers
             ICollection<DiscussionTagPreviewViewModel> discussionTagPreviewVM =
                 discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-            foreach (DiscussionTagPreviewViewModel q in discussionTagPreviewVM)
+            for (int i = 0; i < discussionTagPreviewVM.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                discussionTagPreviewVM.ElementAt(i).UserInfo.CreateMainPostDate = discussionTagPreviewVM.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    discussionTagPreviewVM.ElementAt(i).Bookmarked = discussions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             if (page == 0)
             {
@@ -62,6 +67,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = Constant.Discussion.String.HomeCategoryTab;
                 ViewBag.TabParam = tagId;
                 ViewBag.System = Constant.String.DiscussionSystem;
+                discussionTagHomeVM.Id = tagId;
                 discussionTagHomeVM.Items = discussionTagPreviewVM;
                 return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
             }
@@ -141,6 +147,8 @@ namespace CP_MathHub.Controllers
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
 
             discussionDetailVM.UserInfo.CreateMainPostDate = discussionDetailVM.CreatedDate;
+            discussionDetailVM.Bookmarked = discussion.BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             discussionDetailVM.Name = "THẢO LUẬN";
             dService.IncreaseViewDiscussion(discussion);
             ViewBag.System = Constant.String.DiscussionSystem;
@@ -149,11 +157,13 @@ namespace CP_MathHub.Controllers
         }
         //Get: Discussion/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int tagId = 0)
         {
             ViewBag.System = Constant.String.DiscussionSystem;
             DiscussionCreateViewModel model = new DiscussionCreateViewModel();
             model.Privacy = MainPostPrivacyEnum.Everyone;
+            model.TagList = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
+            model.tagId = tagId;
             return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create
@@ -162,6 +172,15 @@ namespace CP_MathHub.Controllers
         {
             Discussion discussion = new Discussion();
             discussion = Mapper.Map<DiscussionCreateViewModel, Discussion>(discussionCreateVM);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = discussion.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.PostId = discussion.Id;
+            editedlog.UserId = discussion.UserId;
+            discussion.LastEditedDate = editedlog.CreatedDate;
+            discussion.EditedContents.Add(editedlog);
+
             discussion.UserId = cService.GetLoginUser().Id;
             discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
             dService.InsertDiscussion(discussion);
@@ -305,7 +324,7 @@ namespace CP_MathHub.Controllers
         {
             Comment comment = new Comment();
             comment.Content = content;
-            comment.UserId = cService.GetLoginUser().Id;
+            comment.UserId = User.Identity.GetUserId<int>();
             comment.CreatedDate = DateTime.Now;
             comment.LastEditedDate = comment.CreatedDate;
             comment.PostId = postId;
@@ -342,7 +361,7 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public bool Bookmark(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Bookmark(id, user);
         }
 

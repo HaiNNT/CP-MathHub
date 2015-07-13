@@ -17,5 +17,7 @@ namespace CP_MathHub.Models.Discussion
         public string Content { get; set; }
         public List<int> TagIds { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
+        public IEnumerable<Tag> TagList { get; set; }
+        public int tagId { get; set; }
     }
 }
