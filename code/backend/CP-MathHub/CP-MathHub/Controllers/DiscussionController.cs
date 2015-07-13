@@ -67,6 +67,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = Constant.Discussion.String.HomeCategoryTab;
                 ViewBag.TabParam = tagId;
                 ViewBag.System = Constant.String.DiscussionSystem;
+                discussionTagHomeVM.Id = tagId;
                 discussionTagHomeVM.Items = discussionTagPreviewVM;
                 return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
             }
@@ -156,12 +157,13 @@ namespace CP_MathHub.Controllers
         }
         //Get: Discussion/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int tagId = 0)
         {
             ViewBag.System = Constant.String.DiscussionSystem;
             DiscussionCreateViewModel model = new DiscussionCreateViewModel();
             model.Privacy = MainPostPrivacyEnum.Everyone;
             model.TagList = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
+            model.tagId = tagId;
             return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create

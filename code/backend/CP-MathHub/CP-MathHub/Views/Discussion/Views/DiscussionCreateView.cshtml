@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-7 mh-home-tab">
             <h4>Chủ đề: </h4>
-            @Html.DropDownListFor(n => n.TagList.ElementAt(0).Id, new SelectList( Model.TagList, "Id", "Name"), new { @id = "mh-mainpost-privacy", @onchange = "selectCategory(this)"})
+            @Html.DropDownListFor(n => @*n.TagList.ElementAt(0).Id*@ n.tagId, new SelectList( Model.TagList, "Id", "Name"), new { @id = "mh-mainpost-privacy", @onchange = "selectCategory(this)"})
         </div>
         <div class="col-xs-12 col-md-5 mh-page-search">
             <form>
