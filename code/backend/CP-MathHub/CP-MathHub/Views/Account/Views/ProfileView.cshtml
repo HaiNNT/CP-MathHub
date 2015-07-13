@@ -162,20 +162,3 @@
         }
     </div>
 </div>
-@section LeftPanel
-{
-    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
-    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
-        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
-    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
-}
-
-@section RightPanel
-{
-    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
-    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
-        <hr />
-        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
-}

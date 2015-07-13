@@ -6,6 +6,10 @@ body {
     background: #eff3f8;
 }
 
+a {
+    cursor: pointer;
+}
+
 .panel-footer {
     min-height: 46px;
 }
@@ -37,11 +41,11 @@ body {
     font-size: 12pt;
 }
 
-    #mh-nav-link > li > a:hover {
-        background-color: #752B20;
-        border: #752B20;
-        color: #fff !important;
-    }
+#mh-nav-link > li > a:hover {
+    background-color: #752B20;
+    border: #752B20;
+    color: #fff !important;
+}
 
 
 #mh-logo {
@@ -56,9 +60,9 @@ body {
     border-color: #fff !important;
 }
 
-    .mh-navbar-toggle:hover, .mh-navbar-toggle:focus {
-        background-color: #D45F4D !important;
-    }
+.mh-navbar-toggle:hover, .mh-navbar-toggle:focus {
+    background-color: #D45F4D !important;
+}
 
 .navbar-default .mh-navbar-toggle .icon-bar {
     background-color: #fff;
@@ -73,109 +77,109 @@ body {
     margin-left: 0px;
 }
 
-    .mh-notification > li.dropdown > a {
-        color: #752B20;
-        padding: 13px 10px;
-        font-size: 17pt;
-    }
+.mh-notification > li.dropdown > a {
+    color: #752B20;
+    padding: 13px 10px;
+    font-size: 17pt;
+}
 
-        .mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
-            color: #fff;
-            background-color: #A52A2A;
-        }
+.mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
+    color: #fff;
+    background-color: #A52A2A;
+}
 
-    .mh-notification > li.open > a {
-        color: #fff !important;
-        background-color: #A52A2A !important;
-    }
+.mh-notification > li.open > a {
+    color: #fff !important;
+    background-color: #A52A2A !important;
+}
 
-    .mh-notification > li > a > .badge {
-        position: absolute;
-        top: 5px;
-        left: -2px;
-        background-color: #FFFFFF;
-        color: #D32727;
-        border-radius: 3px;
-        padding: 3px 4px;
-    }
+.mh-notification > li > a > .badge {
+    position: absolute;
+    top: 5px;
+    left: -2px;
+    background-color: #FFFFFF;
+    color: #D32727;
+    border-radius: 3px;
+    padding: 3px 4px;
+}
 
-    .mh-notification > .dropdown > ul {
-        padding: 10px;
-        width: 430px;
-        background-color: #fff !important;
-    }
+.mh-notification > .dropdown > ul {
+    padding: 10px;
+    width: 430px;
+    background-color: #fff !important;
+}
 
-        .mh-notification > .dropdown > ul > li > h3 {
-            font-size: 10pt;
-            display: inline-block;
-            margin: 0;
-            font-weight: bold;
-        }
+.mh-notification > .dropdown > ul > li > h3 {
+    font-size: 10pt;
+    display: inline-block;
+    margin: 0;
+    font-weight: bold;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-notification-setting {
-            display: inline-block;
-            font-size: 10pt;
-            padding: 0;
-            float: right;
-            color: #337ab7;
-        }
+.mh-notification > .dropdown > ul > li > .mh-notification-setting {
+    display: inline-block;
+    font-size: 10pt;
+    padding: 0;
+    float: right;
+    color: #337ab7;
+}
 
-            .mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
-                color: #3b5998;
-                text-decoration: underline;
-            }
+.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
+    color: #3b5998;
+    text-decoration: underline;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-see-all {
-            text-align: center;
-            color: #337ab7;
-            font-size: 10pt;
-            font-weight: bold;
-        }
+.mh-notification > .dropdown > ul > li > .mh-see-all {
+    text-align: center;
+    color: #337ab7;
+    font-size: 10pt;
+    font-weight: bold;
+}
 
-            .mh-notification > .dropdown > ul > li > .mh-see-all:hover {
-                color: #3b5998;
-                text-decoration: underline;
-            }
+.mh-notification > .dropdown > ul > li > .mh-see-all:hover {
+    color: #3b5998;
+    text-decoration: underline;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-notification-body {
-            max-height: 460px;
-            overflow-y: scroll;
-        }
+.mh-notification > .dropdown > ul > li > .mh-notification-body {
+    max-height: 460px;
+    overflow-y: scroll;
+}
 
-    .mh-notification > li > ul > li > div > div {
-        border-bottom: 1px solid #e5e5e5;
-    }
+.mh-notification > li > ul > li > div > div {
+    border-bottom: 1px solid #e5e5e5;
+}
 
-        .mh-notification > li > ul > li > div > div:hover, #mh-nav-user > li > ul > li > a:hover {
-            background-color: #eceef4;
-        }
+.mh-notification > li > ul > li > div > div:hover, #mh-nav-user > li > ul > li > a:hover {
+    background-color: #eceef4;
+}
 
-    .mh-notification .media {
-        margin: 0px;
-        padding: 5px 0;
-    }
+.mh-notification .media {
+    margin: 0px;
+    padding: 5px 0;
+}
 
-    .mh-notification > li > ul > li > div > div > a .media-body {
-        font-weight: bolder;
-        color: #000;
-    }
+.mh-notification > li > ul > li > div > div > a .media-body {
+    font-weight: bolder;
+    color: #000;
+}
 
-        .mh-notification > li > ul > li > div > div > a .media-body .row {
-            padding: 10px 0;
-        }
+.mh-notification > li > ul > li > div > div > a .media-body .row {
+    padding: 10px 0;
+}
 
-        .mh-notification > li > ul > li > div > div > a .media-body .mh-notifi-info {
-            padding-top: 8px;
-        }
+.mh-notification > li > ul > li > div > div > a .media-body .mh-notifi-info {
+    padding-top: 8px;
+}
 
-    .mh-notification > li > ul > li > div > div > a:hover {
-        text-decoration: none;
-    }
+.mh-notification > li > ul > li > div > div > a:hover {
+    text-decoration: none;
+}
 
-    .mh-notification .mh-notifi-content {
-        font-size: 10pt;
-        font-weight: normal;
-    }
+.mh-notification .mh-notifi-content {
+    font-size: 10pt;
+    font-weight: normal;
+}
 
 .mh-notification-body #mh-notifi-friend {
     margin: 0px;
@@ -199,9 +203,9 @@ body {
     padding: 18px 0 0 0;
 }
 
-    .mh-notification .mh-notifi-friend-button .mh-request-button {
-        font-size: 9pt;
-    }
+.mh-notification .mh-notifi-friend-button .mh-request-button {
+    font-size: 9pt;
+}
 /*  Notification: end */
 .dropdown-menu {
     background-color: #F5F5F5;
@@ -230,11 +234,11 @@ body {
     position: relative;
 }
 
-    #mh-search-header i {
-        position: absolute;
-        top: 32%;
-        right: 25px;
-    }
+#mh-search-header i {
+    position: absolute;
+    top: 32%;
+    right: 25px;
+}
 
 .mh-body {
     margin-top: 50px;
@@ -276,10 +280,10 @@ body {
     margin: 0px 10px;
 }
 
-    .mh-user-info > a > div {
-        width: 70%;
-        float: left;
-    }
+.mh-user-info > a > div {
+    width: 70%;
+    float: left;
+}
 
 .mh-mid-section > .mh-top-content > .row {
     border-bottom: 1px solid #C1C1C1;
@@ -296,9 +300,9 @@ body {
     padding-right: 15px;
 }
 
-    .mh-home-tab > a {
-        margin-bottom: 5px;
-    }
+.mh-home-tab > a {
+    margin-bottom: 5px;
+}
 
 .mh-bookmark-icon {
     color: #C4C4C4;
@@ -328,34 +332,34 @@ body {
     position: relative;
 }
 
-    .mh-tag > i {
-        font-size: 9px;
-        position: absolute;
-        top: 5px;
-    }
+.mh-tag > i {
+    font-size: 9px;
+    position: absolute;
+    top: 5px;
+}
 
-    .mh-tag > label {
-        margin-left: 15px;
-    }
+.mh-tag > label {
+    margin-left: 15px;
+}
 
-    .mh-tag:hover, .mh-tag:focus {
-        text-decoration: none !important;
-        background-color: #1BA9AE !important;
-        color: #fff !important;
-    }
+.mh-tag:hover, .mh-tag:focus {
+    text-decoration: none !important;
+    background-color: #1BA9AE !important;
+    color: #fff !important;
+}
 
 .mh-list-tags {
     margin: 0px;
     padding: 0px;
 }
 
-    .mh-list-tags > i {
-        color: #17A8EC;
-    }
+.mh-list-tags > i {
+    color: #17A8EC;
+}
 
-    .mh-list-tags li {
-        margin-bottom: 5px;
-    }
+.mh-list-tags li {
+    margin-bottom: 5px;
+}
 
 .mh-list-tags-right {
     text-align: right;
@@ -370,66 +374,66 @@ body {
     margin: 40px auto;
 }
 
-    .mh-tabs > input {
-        position: absolute;
-        z-index: 1000;
-        height: 40px;
-        left: 0px;
-        top: 0px;
-        opacity: 0;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-        filter: alpha(opacity=0);
-        cursor: pointer;
-    }
+.mh-tabs > input {
+    position: absolute;
+    z-index: 1000;
+    height: 40px;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
 
-    .mh-tabs input.mh-tab-2 {
-        left: 120px;
-    }
+.mh-tabs input.mh-tab-2 {
+    left: 120px;
+}
 
-    .mh-tabs label {
-        background: white;
-        background: -moz-linear-gradient(top, #white 0%, #4e8c8a 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#white), color-stop(100%,#4e8c8a));
-        background: -webkit-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: -o-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: -ms-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: linear-gradient(top, #white 0%,#4e8c8a 100%);
-        font-size: 15px;
-        line-height: 40px;
-        height: 40px;
-        position: relative;
-        padding: 0 20px;
-        float: left;
-        display: block;
-        color: #385c5b;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
-        /* box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1); */
-        cursor: pointer;
-    }
+.mh-tabs label {
+    background: white;
+    background: -moz-linear-gradient(top, #white 0%, #4e8c8a 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#white), color-stop(100%,#4e8c8a));
+    background: -webkit-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: -o-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: -ms-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: linear-gradient(top, #white 0%,#4e8c8a 100%);
+    font-size: 15px;
+    line-height: 40px;
+    height: 40px;
+    position: relative;
+    padding: 0 20px;
+    float: left;
+    display: block;
+    color: #385c5b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+    /* box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1); */
+    cursor: pointer;
+}
 
-        .mh-tabs label:after {
-            content: '';
-            background: #fff;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            display: block;
-        }
+.mh-tabs label:after {
+    content: '';
+    background: #fff;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    display: block;
+}
 
-    .mh-tabs input:hover + label {
-        background: #EEEEEE;
-    }
+.mh-tabs input:hover + label {
+    background: #EEEEEE;
+}
 
-    .mh-tabs label:first-of-type {
-        z-index: 4;
-        box-shadow: 2px 0 2px rgba(0,0,0,0.1);
-    }
+.mh-tabs label:first-of-type {
+    z-index: 4;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+}
 
 .mh-tab-label-2 {
     z-index: 3;
@@ -456,18 +460,18 @@ body {
     margin-top: -6px;
 }
 
-    .mh-tab-content > div {
-        top: 0;
-        left: 0;
-        padding: 15px 20px;
-        z-index: 1;
-        display: none;
-        -webkit-transition: opacity linear 0.1s;
-        -moz-transition: opacity linear 0.1s;
-        -o-transition: opacity linear 0.1s;
-        -ms-transition: opacity linear 0.1s;
-        transition: opacity linear 0.1s;
-    }
+.mh-tab-content > div {
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    z-index: 1;
+    display: none;
+    -webkit-transition: opacity linear 0.1s;
+    -moz-transition: opacity linear 0.1s;
+    -o-transition: opacity linear 0.1s;
+    -ms-transition: opacity linear 0.1s;
+    transition: opacity linear 0.1s;
+}
 
 .mh-tabs input.mh-tab-selector-1:checked ~ .mh-tab-content .mh-tab-content-1,
 .mh-tabs input.mh-tab-selector-2:checked ~ .mh-tab-content .mh-tab-content-2 {
@@ -525,9 +529,9 @@ body {
     display: none;
 }
 
-    .mh-preview-content img, .mh-content img {
-        vertical-align: baseline !important;
-    }
+.mh-preview-content img, .mh-content img {
+    vertical-align: baseline !important;
+}
 
 .mh-tag-list {
     position: absolute;
@@ -543,14 +547,14 @@ body {
     color: #fff;
 }
 
-    .mh-tag-item > span {
-        margin-right: 5px;
-    }
+.mh-tag-item > span {
+    margin-right: 5px;
+}
 
-    .mh-tag-item > i:hover {
-        color: #B91B1B;
-        cursor: pointer;
-    }
+.mh-tag-item > i:hover {
+    color: #B91B1B;
+    cursor: pointer;
+}
 
 #mh-create-tag {
     position: absolute;
@@ -576,20 +580,20 @@ body {
     z-index: 100;
 }
 
-    #mh-tag-autocomplete-list > li {
-        list-style-type: none;
-        padding: 5px;
-        border-bottom: 1px solid;
-        margin-bottom: -1px;
-    }
+#mh-tag-autocomplete-list > li {
+    list-style-type: none;
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: -1px;
+}
 
-        #mh-tag-autocomplete-list > li > label {
-            color: #3271FF;
-        }
+#mh-tag-autocomplete-list > li > label {
+    color: #3271FF;
+}
 
-        #mh-tag-autocomplete-list > li > span {
-            display: none;
-        }
+#mh-tag-autocomplete-list > li > span {
+    display: none;
+}
 
 .mh-seemore, .mh-seemore-comment {
     cursor: pointer;
@@ -607,26 +611,26 @@ body {
     /*margin: 0px;*/
 }
 
-    .mh-profile > a {
-        width: 60px;
-        float: left;
-        margin-left: 10%;
-    }
+.mh-profile > a {
+    width: 60px;
+    float: left;
+    margin-left: 10%;
+}
 
-    .mh-profile > div {
-        width: 50%;
-        float: left;
-        margin-left: 10px;
-        margin-top: 5px;
-    }
+.mh-profile > div {
+    width: 50%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
 
-        .mh-profile > div > a {
-            font-size: 15pt;
-        }
+.mh-profile > div > a {
+    font-size: 15pt;
+}
 
-        .mh-profile > div > div > span {
-            font-size: 11pt;
-        }
+.mh-profile > div > div > span {
+    font-size: 11pt;
+}
 
 .mh-table-info a {
     text-decoration: none;
@@ -634,11 +638,11 @@ body {
     font-weight: normal;
 }
 
-    .mh-table-info a:hover {
-    }
+.mh-table-info a:hover {
+}
 
 .mh-table-info {
-    padding: 10px;
+    padding: 5px 2px;
     margin: 10px 0;
 }
 
@@ -683,18 +687,18 @@ body {
     border-radius: 5px;
 }
 
-    .mh-banner a, .mh-banner img {
-        width: 100%;
-    }
+.mh-banner a, .mh-banner img {
+    width: 100%;
+}
 
 .mh-btn {
     margin: 0 0 20px 0;
 }
 
-    .mh-btn a {
-        width: 100%;
-        font-size: 15pt;
-    }
+.mh-btn a {
+    width: 100%;
+    font-size: 15pt;
+}
 
 .mh-panel-recommend-body {
     padding: 5px 10px;
@@ -711,9 +715,9 @@ body {
     padding: 3px 0px;
 }
 
-    .mh-panel-recommend-row i {
-        font-size: 9pt;
-    }
+.mh-panel-recommend-row i {
+    font-size: 9pt;
+}
 
 .mh-panel-recommend-icon {
     padding-right: 0;
@@ -732,9 +736,9 @@ footer {
     color: #fff;
 }
 
-    footer > .container > .row {
-        padding: 0px 10px;
-    }
+footer > .container > .row {
+    padding: 0px 10px;
+}
 
 .mh-footer-info {
     text-align: justify;
@@ -748,9 +752,9 @@ footer {
     text-align: center;
 }
 
-    .mh-footer-social a:hover {
-        opacity: 0.7;
-    }
+.mh-footer-social a:hover {
+    opacity: 0.7;
+}
 
 .mh-copyright-content {
     text-align: center;
@@ -800,10 +804,10 @@ footer {
     color: #454545;
 }
 
-    .mh-home-link > a:hover, .mh-home-link > a:focus {
-        text-decoration: none;
-        color: #000;
-    }
+.mh-home-link > a:hover, .mh-home-link > a:focus {
+    text-decoration: none;
+    color: #000;
+}
 /*  Home page: end */
 /*  Image user: start */
 .mh-image-picture {
@@ -896,20 +900,20 @@ footer {
     z-index: 2;
 }
 
-    .pluginCountButtonNub s, .pluginCountButtonNub i {
-        border-color: transparent #9197a3;
-        border-style: solid;
-        border-width: 4px 5px 4px 0;
-        display: block;
-        position: relative;
-        top: 1px;
-    }
+.pluginCountButtonNub s, .pluginCountButtonNub i {
+    border-color: transparent #9197a3;
+    border-style: solid;
+    border-width: 4px 5px 4px 0;
+    display: block;
+    position: relative;
+    top: 1px;
+}
 
-    .pluginCountButtonNub i {
-        border-right-color: #fff;
-        left: 2px;
-        top: -7px;
-    }
+.pluginCountButtonNub i {
+    border-right-color: #fff;
+    left: 2px;
+    top: -7px;
+}
 /*  Share fb: end */
 .mh-social-report {
     margin-bottom: 7px;
@@ -943,20 +947,20 @@ footer {
     position: relative;
 }
 
-    .mh-create-input > div {
-        display: table-cell;
-    }
+.mh-create-input > div {
+    display: table-cell;
+}
 
-        .mh-create-input > div > input {
-            border: 0px;
-            margin-left: 5px;
-            margin-top: 3px;
-            width: 100%;
-        }
+.mh-create-input > div > input {
+    border: 0px;
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 100%;
+}
 
-            .mh-create-input > div > input:focus {
-                outline: none;
-            }
+.mh-create-input > div > input:focus {
+    outline: none;
+}
 
 .mh-create-button {
     width: 230px;
@@ -1095,25 +1099,25 @@ footer {
     padding: 0px;
 }
 
-    .mh-posts-setting > ul > li {
-        list-style-type: none;
-    }
+.mh-posts-setting > ul > li {
+    list-style-type: none;
+}
 
-        .mh-posts-setting > ul > li > a:hover > i {
-            color: #333;
-        }
+.mh-posts-setting > ul > li > a:hover > i {
+    color: #333;
+}
 
-        .mh-posts-setting > ul > li.open > a > i {
-            color: #333 !important;
-        }
+.mh-posts-setting > ul > li.open > a > i {
+    color: #333 !important;
+}
 
-        .mh-posts-setting > ul > li > ul > li > a:hover {
-            background-color: #ccc;
-        }
+.mh-posts-setting > ul > li > ul > li > a:hover {
+    background-color: #ccc;
+}
 
-        .mh-posts-setting > ul > li > ul > li > a {
-            cursor: pointer;
-        }
+.mh-posts-setting > ul > li > ul > li > a {
+    cursor: pointer;
+}
 /* Report popup*/
 .mh-report-cause > input {
     padding: 5px;

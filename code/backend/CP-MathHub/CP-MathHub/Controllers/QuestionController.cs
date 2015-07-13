@@ -176,18 +176,20 @@ namespace CP_MathHub.Controllers
 
             Question question = new Question();
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
-            EditedLog editedlog = new EditedLog();
-            editedlog.Content = question.Content;
-            editedlog.CreatedDate = DateTime.Now;
-            editedlog.PostId = question.Id;
-            editedlog.UserId = question.UserId;
-            question.LastEditedDate = editedlog.CreatedDate;
-            question.EditedContents.Add(editedlog);
-
+            question.CreatedDate = DateTime.Now;
+            question.LastEditedDate = question.CreatedDate;
             question.UserId = User.Identity.GetUserId<int>();
             question.Tags = cService.GetTags(questionVM.TagIds);
-
             qService.InsertQuestion(question);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = question.Content;
+            editedlog.CreatedDate = question.LastEditedDate;
+            editedlog.PostId = question.Id;
+            editedlog.UserId = question.UserId;
+
+            question.EditedContents.Add(editedlog);
+            qService.EditQuestion(question);
             //Console.WriteLine(questionVM.Tags[0]);
             if (question.Id != 0)
             {

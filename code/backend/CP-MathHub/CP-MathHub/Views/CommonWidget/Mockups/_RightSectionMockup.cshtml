@@ -6,7 +6,7 @@
 @if (ViewBag.System != null)
 {
     <div class="mh-btn">
-        <a href="@Url.Action("Create", ViewBag.System, new { @tagId = (ViewData["tagId"] != null? ViewData["tagId"] : "0")})" class="btn btn-success">@(ViewBag.System == "Question" ? "Đặt câu hỏi" : @ViewBag.System == "Blog" ? "Tạo bài viết" : "Tạo thảo luận")</a>
+        <a href="@Url.Action("Create", ViewBag.System)" class="btn btn-success">@(ViewBag.System == "Question" ? "Đặt câu hỏi" : @ViewBag.System == "Blog" ? "Tạo bài viết" : "Tạo thảo luận")</a>
         @*@if (@ViewBag.System == "Discussion")
         {
             @if (@ViewBag.MhPage == "discussion-home")

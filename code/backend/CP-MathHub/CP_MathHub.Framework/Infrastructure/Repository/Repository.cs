@@ -40,7 +40,7 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "",
             int skip = 0,
-            int take = Constant.Question.Integer.PagingDefaultTake)
+            int take = Constant.Integer.DefaultTake)
         {
             IQueryable<TEntity> query = dbSet;
             query = query.AsNoTracking();

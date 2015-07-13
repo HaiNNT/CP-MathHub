@@ -705,6 +705,7 @@
     <Content Include="Views\Blog\Layouts\_BlogEditLayout.cshtml" />
     <Content Include="Views\Account\Layouts\_ProfileLayout.cshtml" />
     <Content Include="Views\Account\Views\ProfileView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_FavoriteTagWidget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

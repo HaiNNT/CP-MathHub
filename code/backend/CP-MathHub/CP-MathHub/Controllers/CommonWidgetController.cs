@@ -22,14 +22,16 @@ namespace CP_MathHub.Controllers
     [ChildActionOnly]
     public partial class CommonWidgetController : BaseController
     {
-        private ICommonService cService;
         private CPMathHubModelContainer context;
+        private ICommonService cService;
+        private IAccountService aService;
         //private ApplicationUserManager uManager;
 
         public CommonWidgetController()
         {
             context = new CPMathHubModelContainer();
             cService = new CommonService(context);
+            aService = new AccountService(context);
             //UserManager = userManager;
         }
         //public ApplicationUserManager UserManager
@@ -50,7 +52,7 @@ namespace CP_MathHub.Controllers
             ProfileWidgetViewModel profileWidgetVm = null;
             if (User.Identity.IsAuthenticated)
             {
-                User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
+                User user = cService.GetUser(User.Identity.GetUserId<int>());
                 profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
             }
             return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
@@ -60,18 +62,18 @@ namespace CP_MathHub.Controllers
             UserHeaderViewModel userHeaderVM = null;
             if (User.Identity.IsAuthenticated)
             {
-                User user = cService.GetUser(Int32.Parse(User.Identity.GetUserId()));
+                User user = cService.GetUser(User.Identity.GetUserId<int>());
                 userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
             }
 
             return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);
         }
 
-        //public virtual ActionResult FavoriteTagWidget()
-        //{
-        //    ICollection<Tag> tags = _userQueryService.GetLoginFavoriteTag().ToList();
-        //    return PartialView("_FavoriteTagWidget", tags);
-        //}
+        public virtual ActionResult FavoriteTagWidget()
+        {
+            ICollection<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
+            return PartialView("Widgets/_FavoriteTagWidget", tags);
+        }
 
         //public virtual ActionResult GroupWidget()
         //{

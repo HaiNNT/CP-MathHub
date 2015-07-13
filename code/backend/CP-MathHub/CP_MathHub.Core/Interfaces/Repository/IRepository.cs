@@ -25,7 +25,7 @@ namespace CP_MathHub.Core.Interfaces.Repository
         /// <param name="orderBy">sort condition</param>
         /// <param name="includeProperties">eager propertise loading</param>
         /// <param name="skip">skip to specific index, default = 0</param>
-        /// <param name="take">take specific number of entities, default = 10</param>
+        /// <param name="take">take specific number of entities, default = Constant.Integer.DefaultTake, 0 for load all entities</param>
         /// <returns></returns>
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
