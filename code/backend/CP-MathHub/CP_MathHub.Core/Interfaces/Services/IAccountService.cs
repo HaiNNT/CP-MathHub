@@ -22,6 +22,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         User GetUser(int userId, string include = "");
 
         /// <summary>
+        /// Update User
+        /// </summary>
+        /// <param name="user"></param>
+        void UpdateUser(User user);
+
+        /// <summary>
         /// Create Profile
         /// </summary>
         /// <param name="userId"></param>

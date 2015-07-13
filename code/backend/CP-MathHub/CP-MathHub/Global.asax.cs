@@ -7,6 +7,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using System.Reflection;
+using CP_MathHub.Helper;
+using CP_MathHub.Models.Account;
 
 namespace CP_MathHub
 {
@@ -30,6 +32,9 @@ namespace CP_MathHub
 
             // Initialize AutoMapper with each instance of the profiles found.
             Mapper.Initialize(a => profiles.ToList().ForEach(a.AddProfile));
+
+            // Initalize Binding Helper for binding model
+            ModelBinders.Binders.Add(typeof(ProfileViewModel), new BindingHelper());
         }
     }
 }

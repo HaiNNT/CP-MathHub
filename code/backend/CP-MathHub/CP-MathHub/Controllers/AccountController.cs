@@ -15,6 +15,7 @@ using CP_MathHub.Service.Services;
 using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
+using CP_MathHub.Helper;
 using AutoMapper;
 
 namespace CP_MathHub.Controllers
@@ -483,6 +484,40 @@ namespace CP_MathHub.Controllers
 
 
             return View("Views/ProfileView", model);
+        }
+
+        //Post: /Account/UpdateProfile
+        [HttpPost]
+        public ActionResult UpdateProfile([ModelBinder(typeof(BindingHelper))]ProfileViewModel model, string Property)
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
+
+            switch (Property)
+            {
+                case "FullName":
+                    user.Profile.FullName = model.Profile.FullName;
+                    break;
+                case "Gender":
+                    user.Profile.Gender = model.Profile.Gender;
+                    break;
+                case "BirthDay":
+                    user.Profile.Birthday = model.Profile.Birthday != null ? model.Profile.Birthday : DateTime.Now;
+                    break;
+                case "Address":
+                    user.Profile.Address = model.Profile.Address;
+                    break;
+                case "PhoneNumber":
+                    user.PhoneNumber = model.PhoneNumber;
+                    break;
+                case "Email":
+                    user.Email = model.Email;
+                    break;
+                default:
+                    break;
+            }
+            aService.UpdateUser(user);
+            return RedirectToAction("MyProfile");
         }
 
         #endregion

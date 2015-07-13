@@ -51,6 +51,12 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
         }
 
+        public void UpdateUser(User user)
+        {
+            dal.Repository<User>().Update(user);
+            dal.Save();
+        }
+
         public void CreateProfile(int userId)
         {
             Profile profile = new Profile();
