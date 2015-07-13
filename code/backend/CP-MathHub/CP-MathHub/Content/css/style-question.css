@@ -1,25 +1,25 @@
 /* QA default: start */
 .mh-question-preview {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 .mh-user-info > a {
-    width: 40px;
-    float: left;
+	width: 40px;
+	float: left;
     margin: 0px 10px;
 }
 
 .mh-question-preview > .panel-heading > div {
-    position: relative;
+	position: relative;
 }
 
 .mh-question-preview .mh-username {
-    font-size: 12pt;
+	font-size: 12pt;
 }
 
 .mh-user-info > a > div {
     width: 70%;
-    float: left;
+	float: left;
 }
 
 .mh-question-preview > .panel-heading > .mh-user-info > .mh-posts-setting {
@@ -33,75 +33,75 @@
     padding-right: 15px;
 }
 
-    .mh-question-preview > .panel-body > div > .mh-info {
-        background-color: #fcf8e3;
-        border: 1px solid #faebcc;
-        padding: 0;
-        text-align: center;
-        margin-bottom: 5px;
-    }
+.mh-question-preview > .panel-body > div > .mh-info {
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	padding: 0;
+	text-align: center;
+	margin-bottom: 5px;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-info > div {
-            padding: 5px 0px;
-        }
+.mh-question-preview > .panel-body > div > .mh-info > div {
+	padding: 5px 0px;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-info h2 {
-            margin: 0px;
-        }
+.mh-question-preview > .panel-body > div > .mh-info h2 {
+	margin: 0px;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
-            width: 84%;
-            margin-left: 8%;
-            background-color: #FCD7A3;
-        }
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num {
+    width: 84%;
+    margin-left: 8%;
+    background-color: #FCD7A3;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
-            background-color: #FCD7A3;
-        }
+.mh-question-preview > .panel-body > div > .mh-info .mh-sm-answer-num {
+    background-color: #FCD7A3;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
-            margin: 0px;
-            text-align: center;
-        }
+.mh-question-preview > .panel-body > div > .mh-info .mh-answer-num > h2 {
+	margin: 0px;
+	text-align: center;
+}
 
-    .mh-question-preview > .panel-body > div > .mh-content > a {
-        font-size: 17pt;
-    }
+.mh-question-preview > .panel-body > div > .mh-content > a {
+	font-size: 17pt;
+}
 
-        .mh-question-preview > .panel-body > div > .mh-content > a:hover {
-            text-decoration: none;
-        }
+.mh-question-preview > .panel-body > div > .mh-content > a:hover {
+	text-decoration: none;
+}
 
 .mh-question-preview .mh-username {
-    font-size: 12pt;
+	font-size: 12pt;
 }
 /*QA default: end*/
 /* QA detail: start */
-.mh-vote {
-    padding: 0px;
-    text-align: center;
-}
+ .mh-vote {
+	padding: 0px;
+	text-align: center;
+ }
+ 
+ .mh-voted {
+     color: #07c !important;
+ }
 
-.mh-voted {
-    color: #07c !important;
-}
+ .mh-vote i {
+	color: grey;
+ }
 
-.mh-vote i {
-    color: grey;
-}
-
-    .mh-vote i:hover {
-        color: black;
-    }
+ .mh-vote i:hover {
+	color: black;
+ }
 
 .mh-vote-icon {
-    font-size: 25pt;
+	font-size: 25pt;
     cursor: pointer;
 }
 
 .mh-check-icon {
-    font-size: 25pt;
-    padding-top: 10px;
+	font-size: 25pt;
+	padding-top: 10px;
 }
 
 .mh-checked {
@@ -109,58 +109,58 @@
 }
 
 .mh-vote-num {
-    font-size: 19pt;
+	font-size: 19pt;
 }
 
 .mh-vote-down {
-    margin-top: -5px;
+	margin-top: -5px;
 }
 
 .mh-content-detail {
-    max-height: none;
-    overflow-y: auto;
-    text-align: justify;
+	max-height: none;
+	overflow-y: auto;
+	text-align: justify;
 }
 
 .mh-question-preview > .panel-body > div > .mh-content-detail > a {
-    font-size: 17pt;
-    font-weight: bolder;
+	font-size: 17pt;
+	font-weight: bolder;
 }
 
-    .mh-question-preview > .panel-body > div > .mh-content-detail > a:hover {
-        text-decoration: none;
-    }
+.mh-question-preview > .panel-body > div > .mh-content-detail > a:hover {
+	text-decoration: none;
+}
 
 .mh-comment-content {
-    padding: 5px 0px;
-    border-bottom: 1px solid silver;
+	padding: 5px 0px;
+	border-bottom: 1px solid silver;
 }
 
 .panel-body.mh-comment > .mh-comment-detail {
-    padding: 5px 20px;
-    background-color: ghostwhite;
+	padding: 5px 20px;
+	background-color: ghostwhite;
 }
 
 .mh-rely {
-    padding: 0 10px;
+	padding: 0 10px;
 }
 
 .mh-rely-detail {
-    padding: 0 10px;
-    border-left: 2px solid #dcdee3;
+	padding: 0 10px;
+	border-left: 2px solid #dcdee3;
 }
 
 .mh-rely-rely {
-    margin-top: 10px;
-    width: 90%;
+	margin-top: 10px;
+	width: 90%;
 }
 
 .mh-answer_hint-content {
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 .mh-answer_hint-content-row {
-    border-bottom: 1px solid silver;
+	border-bottom: 1px solid silver;
 }
 
 .mh-answer_hint-detail {
@@ -170,155 +170,155 @@
 }
 
 .mh-form-input-comment {
-    margin: 5px 0px;
-    width: 100%;
+	margin: 5px 0px;
+	width: 100%;
     padding: 5px;
 }
 
 .mh-answer-avatar {
-    padding: 0;
+	padding: 0;
 }
 
 .mh-answer-username {
-    padding: 0;
+	padding: 0;
 }
 
 .mh-answer_hint-user_info {
-    border-bottom: 1px solid silver;
-    padding-bottom: 5px;
-    padding-left: 20px;
+	border-bottom: 1px solid silver;
+	padding-bottom: 5px;
+	padding-left: 20px;
 }
 
 .mh-post-Ans_Hint {
-    /* margin: 15px;
+	/* margin: 15px;
 	text-align: center; */
 }
 
 .mh-post-Ans_Hint-button {
-    margin-top: 10px;
-    text-align: center;
+	margin-top: 10px;
+	text-align: center;
 }
 
 .mh-sort-content {
     height: 145px;
     overflow-y: hidden;
 }
-/* QA detail: end */
-/* QA User: start */
+ /* QA detail: end */
+ /* QA User: start */
 .mh-body-tabs {
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 15px;
+	border-bottom: 1px solid #e0e0e0;
+	margin-bottom: 15px;
 }
 
-    .mh-body-tabs > ul > li {
-        float: right;
-    }
+.mh-body-tabs > ul > li {
+	float: right;
+}
 
-        .mh-body-tabs > ul > li.active > a {
-            background-color: #fff;
-            color: #222;
-            border-top: 2px solid #FF9900;
-            border-left: 1px solid #e0e0e0;
-            border-right: 1px solid #e0e0e0;
-        }
+.mh-body-tabs > ul > li.active > a {
+	background-color: #fff;
+	color: #222;
+	border-top: 2px solid #FF9900;	
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+}
 
-            .mh-body-tabs > ul > li.active > a:hover {
-                background-color: #fff;
-                color: #000;
-            }
+.mh-body-tabs > ul > li.active > a:hover {
+	background-color: #fff;
+	color: #000;	
+}
 
-        .mh-body-tabs > ul > li > a {
-            color: #777;
-            border-radius: 0px;
-            font-size: 10pt;
-            margin-left: 8px;
-            padding: 5px 10px;
-            margin-bottom: -1px;
-            z-index: 5;
-        }
+.mh-body-tabs > ul > li > a {
+	color: #777;
+	border-radius: 0px;
+	font-size: 10pt;
+	margin-left: 8px;
+	padding: 5px 10px;
+	margin-bottom: -1px;
+	z-index: 5;
+}
 
-            .mh-body-tabs > ul > li > a:hover {
-                background-color: #fff;
-                border-top: 2px solid #FF9900;
-                border-left: 1px solid #e0e0e0;
-                border-right: 1px solid #e0e0e0;
-            }
+.mh-body-tabs > ul > li > a:hover {
+	background-color: #fff;
+	border-top: 2px solid #FF9900;	
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+}
 
 .mh-body-search {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .mh-body-detail > .row {
-    padding: 0 15px;
+	padding: 0 15px;
 }
 
 .mh-body-detail-image {
-    padding-right: 0;
+	padding-right: 0;
 }
 
 .mh-body-detail-info {
-    padding-left: 0;
-    color: #888;
+	padding-left: 0;
+	color: #888;
 }
 
-    .mh-body-detail-info a {
-        color: #07c;
-    }
+.mh-body-detail-info a {
+	color: #07c;
+}
 
-        .mh-body-detail-info a:hover {
-            color: #30a7fc;
-            text-decoration: none;
-        }
+.mh-body-detail-info a:hover {
+	color: #30a7fc;
+	text-decoration: none;
+}
 
 .mh-user-item {
-    float: left;
-    width: 230px;
-    margin-bottom: 10px;
-    height: 80px;
+	float: left;
+	width: 230px;
+	margin-bottom: 10px;
+	height: 80px;
 }
 
 .mh-search-title {
-    float: left;
-    margin-left: 15px;
-    height: 34px;
-    padding-top: 5px;
+	float: left;
+	margin-left: 15px;
+	height: 34px;
+	padding-top: 5px;
 }
 
 .mh-search-control {
-    float: left;
-    width: 240px;
-    margin-left: 15px;
+	float: left;
+	width: 240px;
+	margin-left: 15px;
 }
-/* QA User: end */
-/* QA Tag: start */
+  /* QA User: end */
+  /* QA Tag: start */
 .mh-tag-page {
-    padding: 7px;
-    float: left;
-    width: 226px;
-    height: 103px;
-    color: #888;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    background-color: rgb(234, 240, 245);
+	padding: 7px;
+	float: left;
+	width: 226px;
+	height: 103px;
+	color: #888;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	background-color: rgb(234, 240, 245);
 }
 
 .mh-tag-name {
-    padding-bottom: 3px;
+	padding-bottom: 3px;
 }
 
 .mh-tag-content {
-    height: 54px;
-    overflow-y: hidden;
-    font-size: 10pt;
+	height: 54px;
+	overflow-y: hidden;
+	  font-size: 10pt;
 }
 
 .mh-tag-times {
-    font-size: 9pt;
-    color: #444;
+	font-size: 9pt;
+	color: #444;
 }
 
 .mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon {
     vertical-align: top;
     font-size: 13pt;
 }
-/* QA Tag: end */
+  /* QA Tag: end */
