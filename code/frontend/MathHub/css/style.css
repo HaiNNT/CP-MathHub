@@ -1067,6 +1067,20 @@ footer {
     display: none;
     font-size: 9px;
 }
+.mh-comment-history-edit {
+    font-size: 10pt;
+    color: #A9A9A9;
+}
+.mh-comment-history-edit:hover {
+    cursor: pointer;
+    color: #A9A9A9;
+}
+.modal-body .mh-comment-div {
+    border-bottom: 1px solid #E5E5E5;
+}
+.modal-body .mh-comment-div:last-child {
+    border-bottom: 0;
+}
 /*Edit comment: end*/
 /* Comment: end */
 /* post setting: start*/
