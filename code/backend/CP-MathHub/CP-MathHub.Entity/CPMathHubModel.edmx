@@ -532,6 +532,7 @@
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="PostId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Participations">
     <Key>
@@ -2451,6 +2452,7 @@
           <Property Name="PostId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.EditedContentUser" FromRole="EditedContent" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="EditedContentPost">
           <End Type="CPMathHubModel.EditedLog" Role="EditedContent" Multiplicity="*" />
@@ -3262,6 +3264,7 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="PostId" ColumnName="PostId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -82,6 +82,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.LastViewed,
                    d => d.MapFrom(m => DateTime.Now)
                )
+               .ForMember(
+                   s => s.Status,
+                   d => d.MapFrom(m => PostStatusEnum.Active)
+               )
                //.ForMember(
                //    s => s.PublicDate,
                //    d => d.MapFrom(m => m.PublicDate)

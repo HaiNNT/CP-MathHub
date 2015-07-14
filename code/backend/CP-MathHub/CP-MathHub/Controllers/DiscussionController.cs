@@ -199,6 +199,10 @@ namespace CP_MathHub.Controllers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             discussionDetailVM.Name = "THẢO LUẬN";
             dService.IncreaseViewDiscussion(discussion);
+            List<EditedLog> editedlogs = dService.GetEditedLog(id);
+            //ICollection<DiscussionEditedLogViewModel> discussioneditedlogVM =
+            //    editedlogs.Select(Mapper.Map<EditedLog, DiscussionEditedLogViewModel>) // Using Mapper with Collection
+            //    .ToList();
             ViewBag.System = Constant.String.DiscussionSystem;
 
             return View("Views/DiscussionDetailView", discussionDetailVM);
@@ -223,6 +227,7 @@ namespace CP_MathHub.Controllers
             discussion.LastEditedDate = DateTime.Now;
             discussion.UserId = User.Identity.GetUserId<int>();
             discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
+            discussion.Status = CP_MathHub.Entity.PostStatusEnum.Active;
             dService.InsertDiscussion(discussion);
 
             EditedLog editedlog = new EditedLog();

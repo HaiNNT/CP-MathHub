@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/12/2015 17:28:15
--- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 07/14/2015 23:04:40
+-- Generated from EDMX file: C:\Users\Nguyen\Desktop\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -577,7 +577,8 @@ CREATE TABLE [dbo].[EditedLogs] (
     [Content] nvarchar(max)  NOT NULL,
     [CreatedDate] datetime  NOT NULL,
     [PostId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Title] nvarchar(max)  NULL
 );
 GO
 
