@@ -136,8 +136,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    d => d.MapFrom(m => DateTime.Now)
                )
                .ForMember(
-                   s => s.Privacy,
-                   d => d.MapFrom(m => MainPostPrivacyEnum.Everyone)
+                   s => s.Status,
+                   d => d.MapFrom(m => PostStatusEnum.Active)
                )
                 .ForMember(
                    s => s.LastViewed,

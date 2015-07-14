@@ -13,7 +13,7 @@
         }
     </div>
     <div>
-        <span class="mh-vote-num">@(Model.VoteUp - Model.VoteDown)</span>
+        <span class="mh-vote-num">@Html.VoteNumer(Model.VoteUp - Model.VoteDown)</span>
     </div>
     <div>
         @if (Model.Voted == null)

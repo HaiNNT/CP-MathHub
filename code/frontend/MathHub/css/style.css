@@ -1117,6 +1117,11 @@ footer > .container > .row {
     color: #A9A7A7;
 }
 
+.mh-posts-setting .dropdown-menu {
+      right: 0;
+  left: auto;
+}
+
 .mh-posts-setting > ul {
     margin-right: 0px;
     padding: 0px;

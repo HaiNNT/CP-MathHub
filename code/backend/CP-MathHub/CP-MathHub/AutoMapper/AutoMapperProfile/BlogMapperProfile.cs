@@ -54,16 +54,21 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     d => d.MapFrom(m => m.Tags)
                 )
                 .ForMember(
+                    s => s.Status,
+                    d => d.MapFrom(m => PostStatusEnum.Active)
+                )
+                .ForMember(
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
-                .ForMember(
-                    s => s.Bookmarked,
-                    d => d.MapFrom(m => m.BookmarkUsers
-                                            .Where(u => u.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).Count() > 0)
-                );
+                //.ForMember(
+                //    s => s.Bookmarked,
+                //    d => d.MapFrom(m => m.BookmarkUsers
+                //                            .Where(u => u.Id == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id).Count() > 0)
+                //);
+                ;
             #endregion
 
             #region Aricle Create
@@ -73,10 +78,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.CreatedDate,
                    d => d.MapFrom(m => DateTime.Now)
                )
-                .ForMember(
+               .ForMember(
                    s => s.LastViewed,
                    d => d.MapFrom(m => DateTime.Now)
                )
+               //.ForMember(
+               //    s => s.PublicDate,
+               //    d => d.MapFrom(m => m.PublicDate)
+               //)
                .ForMember(
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
@@ -132,6 +141,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //);
             ;
             #endregion
+
             #region Article Edit
             Mapper.CreateMap<Article, ArticleEditViewModel>()
                .ForMember(

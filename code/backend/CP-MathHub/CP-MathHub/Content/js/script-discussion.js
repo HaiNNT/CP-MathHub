@@ -105,25 +105,13 @@ function seeMoreComment() {
 /*
   Bookmark a main post
 */
-function bookmark(id, type) {
+function bookmark(id) {
     var url = "";
     var data = { id: id };
     var bookmarked = "#bookmarked-" + id;
     var bookmark = "#bookmark-" + id;
-    switch (type) {
-        case "discussion":
-            url = "/discussion/Bookmark";
-            break;
-            //case "article":
-
-            //    break;
-            //case "discussion":
-
-            //    break;
-        default:
-
-            break;
-    }
+    url = "/Discussion/Bookmark";
+    
     $.ajax({
         method: "POST",
         url: url,
@@ -145,25 +133,13 @@ function bookmark(id, type) {
 /*
   Unbookmark a main post
 */
-function unBookmark(id, type) {
+function unBookmark(id) {
     var url = "";
     var data = { id: id };
     var bookmarked = "#bookmarked-" + id;
     var bookmark = "#bookmark-" + id;
-    switch (type) {
-        case "discussion":
-            url = "/discussion/Bookmark";
-            break;
-            //case "article":
+    url = "/discussion/Bookmark";
 
-            //    break;
-            //case "discussion":
-
-            //    break;
-        default:
-
-            break;
-    }
     $.ajax({
         method: "POST",
         url: url,
@@ -239,7 +215,7 @@ function createTag() {
     var name = $("#mh-input-tag").val();
     $.ajax({
         method: "POST",
-        url: "/discussion/CreateTag",
+        url: "/Discussion/CreateTag",
         data: { name: name }
     })
       .done(function (msg) {

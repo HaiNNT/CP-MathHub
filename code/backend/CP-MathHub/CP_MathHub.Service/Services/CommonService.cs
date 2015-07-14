@@ -196,14 +196,14 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        public bool InsertTag(Tag tag)
+        public bool InsertTag(Tag tag, int userId)
         {
             if (GetTag(tag.Name) != null)
             {
                 return false;
             }
             tag.CreatedDate = DateTime.Now;
-            tag.UserId = GetLoginUser().Id;
+            tag.UserId = userId;
             tag.Description = "";
             dal.Repository<Tag>().Insert(tag);
             dal.Save();
@@ -432,6 +432,13 @@ namespace CP_MathHub.Service.Services
         {
             MainPost post = dal.Repository<MainPost>().GetById(postId);
             post.Status = PostStatusEnum.Closed;
+            dal.Repository<MainPost>().Update(post);
+            dal.Save();
+        }
+        public void EnableComment(int postId)
+        {
+            MainPost post = dal.Repository<MainPost>().GetById(postId);
+            post.Status = PostStatusEnum.Active;
             dal.Repository<MainPost>().Update(post);
             dal.Save();
         }

@@ -58,7 +58,9 @@ namespace CP_MathHub.Controllers
             {
                 discussionTagPreviewVM.ElementAt(i).UserInfo.CreateMainPostDate = discussionTagPreviewVM.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    discussionTagPreviewVM.ElementAt(i).Bookmarked = discussions.ElementAt(i).BookmarkUsers
+                    discussionTagPreviewVM.ElementAt(i).Bookmarked =  
+                        discussionTagPreviewVM.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                        && discussions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             if (page == 0)
@@ -121,9 +123,14 @@ namespace CP_MathHub.Controllers
             ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
                     discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
-            foreach (DiscussionTagPreviewViewModel q in discussionPreviewVMs)
+            for (int i = 0; i < discussionPreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                discussionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = discussionPreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    discussionPreviewVMs.ElementAt(i).Bookmarked =
+                        discussionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        && discussions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -150,9 +157,14 @@ namespace CP_MathHub.Controllers
             ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
                      discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
                      .ToList();
-            foreach (DiscussionTagPreviewViewModel q in discussionPreviewVMs)
+            for (int i = 0; i < discussionPreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                discussionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = discussionPreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    discussionPreviewVMs.ElementAt(i).Bookmarked =
+                        discussionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        && discussions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -249,7 +261,7 @@ namespace CP_MathHub.Controllers
             editedlog.Content = discussion.Content;
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = discussion.Id;
-            editedlog.UserId = discussion.UserId;
+            editedlog.UserId = User.Identity.GetUserId<int>();
 
             discussion.Title = discussionEditVM.Title;
             discussion.Content = discussionEditVM.Content;
@@ -320,7 +332,7 @@ namespace CP_MathHub.Controllers
         {
             Tag tag = new Tag();
             tag.Name = name;
-            cService.InsertTag(tag);
+            cService.InsertTag(tag, User.Identity.GetUserId<int>());
             ViewBag.System = Constant.String.DiscussionSystem;
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
@@ -386,11 +398,41 @@ namespace CP_MathHub.Controllers
                     return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
             }
         }
+
+        //Post: Discussion/EditComment
+        [HttpPost]
+        public ActionResult EditComment(int id, string content)
+        {
+            Comment comment = new Comment();
+            comment.Id = id;
+            comment.Content = content;
+            comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
+            CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
+
+            return PartialView("../CommonWidget/_CommentItemPartialView", model);
+        }
+
+        //Get: Discussion/DisableComment
+        [HttpGet]
+        public ActionResult DisableComment(int id)
+        {
+            cService.DisableComment(id);
+            return RedirectToAction("Detail", new { @id = id });
+        }
+
+        //Get: Discussion/EnableComment
+        [HttpGet]
+        public ActionResult EnableComment(int id)
+        {
+            cService.EnableComment(id);
+            return RedirectToAction("Detail", new { @id = id });
+        }
+
         //Post: Discussion/Like
         [HttpPost]
         public bool Like(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Like(id, user.Id);
         }
         //Post: Discussion/Bookmark

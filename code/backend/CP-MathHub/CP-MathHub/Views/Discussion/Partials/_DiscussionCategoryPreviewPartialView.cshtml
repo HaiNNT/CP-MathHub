@@ -1,4 +1,6 @@
 ﻿@model CP_MathHub.Models.Discussion.DiscussionTagPreviewViewModel
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 <div class="panel panel-info mh-discussion-post">
     <div class="panel-heading">
         <div class="mh-user-info">
@@ -10,8 +12,12 @@
         <div class="row">
             <div class="mh-content-detail">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                @if (User.Identity.GetUserId<int>() != Model.UserId)
+                {
+                    <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+                    <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+
+                }
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;

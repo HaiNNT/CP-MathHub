@@ -1,6 +1,8 @@
 ﻿@model CP_MathHub.Models.Discussion.DiscussionDetailViewModel
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Service.Helpers
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 @{
     ViewBag.Title = Model.Title;
     ViewBag.MhPage = Constant.String.DiscussionDetailPage;
@@ -19,16 +21,19 @@
     <div class="panel panel-info mh-discussion-post">
         <div class="panel-heading">
             <div class="mh-user-info">
-                @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)   
-                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "discussion" } })           
+                @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "discussion" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
             </div>
         </div>
         <div class="panel-body">
             <div class="row">
                 <div class="mh-content-detail">
                     <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                    @if (User.Identity.GetUserId<int>() != Model.UserId)
+                    {
+                        <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'discussion')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                        <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'discussion')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                    }
                     <div class="mh-sort-content">
                         @{
                             int length = Model.Title.Length > 50 ? 431 : 571;
@@ -36,7 +41,7 @@
                             {
                                 @Html.Raw(Model.Content);
                             <br />
-                            <a onclick="seeMore(this)" class="mh-seemore">Xem thêm</a>
+                            <a onclick="@("seeMore(this)")" class="mh-seemore">Xem thêm</a>
                             }
                             else
                             {
@@ -135,41 +140,50 @@
                 <span class="comment">@Model.Comments.Count</span>
             </a>
         </div>
-        <div class="mh-user-comment">
-            <div class="media mh-input-commnent-div">
-                <div class="media-left">
-                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
-                </div>
-                <div class="media-body">
-                    <div class="mh-comment-input-send">
-                        <input type="text" class="mh-media-comment-input mh-input-comment" placeholder="Viết bình luận...">
-                        <input type="hidden" class="post-id" value="@Model.Id" />
-                        <input type="hidden" class="type" value="comment" />
-                        <a href=""><i class="fa fa-paper-plane mh-commnet-send"></i></a>
+        @if (Model.Status == CP_MathHub.Entity.PostStatusEnum.Active)
+        {
+            <div class="mh-user-comment">
+                <div class="media mh-input-commnent-div">
+                    <div class="media-left">
+                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
+                    </div>
+                    <div class="media-body">
+                        <div class="mh-comment-input-send">
+                            <input type="text" class="mh-media-comment-input mh-input-comment" placeholder="Viết bình luận...">
+                            <input type="hidden" class="post-id" value="@Model.Id" />
+                            <input type="hidden" class="type" value="comment" />
+                            <a href=""><i class="fa fa-paper-plane mh-commnet-send"></i></a>
+                        </div>
                     </div>
                 </div>
+                @if (Model.Comments.Count > 5)
+                {
+                    <div class="mh-comment-list">
+                        @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.OrderBy(m => m.CreatedDate).ToList().Take(5))
+                    </div>
+                    <div class="mh-comment-list-full hidden">
+                        @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.OrderBy(m => m.CreatedDate).ToList())
+                    </div>
+                    <div class="mh-media-see-more">
+                        <a class="mh-seemore-comment" onclick="@("seemore(this)")">
+                            Xem @(Model.Comments.Count - 5) bình luận
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="mh-comment-list-full">
+                        @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.OrderBy(m => m.CreatedDate).ToList())
+                    </div>
+                }
             </div>
-            @if (Model.Comments.Count > 5)
-            {
-                <div class="mh-comment-list">
-                    @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.Take(5))
-                </div>
-                <div class="mh-comment-list-full hidden">
-                    @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
-                </div>
-                <div class="mh-media-see-more">
-                    <a class="mh-seemore-comment" onclick="seemore(this)">
-                        Xem @(Model.Comments.Count - 5) bình luận
-                    </a>
-                </div>
-            }
-            else
-            {
-                <div class="mh-comment-list-full">
-                    @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
-                </div>
-            }
-        </div>
+        }
+        else
+        {
+            <div class="mh-user-comment">
+                Chức năng bình luận đã khóa
+            </div>
+        }
     </div>
 </div>
 <input id="system" type="hidden" value="@ViewBag.System" />

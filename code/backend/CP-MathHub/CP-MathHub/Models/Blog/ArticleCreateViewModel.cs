@@ -15,6 +15,7 @@ namespace CP_MathHub.Models.Blog
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
+        [DataType(DataType.Date)]
         public DateTime PublicDate { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
         public List<int> TagIds { get; set; }

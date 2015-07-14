@@ -1,14 +1,20 @@
 ﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
 @using CP_MathHub.Service.Helpers
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 <div class="col-xs-4 @ViewData["Class"]">
     <div class="row">
         <div class="col-xs-9 col-sm-10 title">
             <a title="@Model.Title" href="@Url.Action("Detail", new {id=Model.Id})">@(Model.Title.Length <= 39 ? Model.Title : Model.Title.Substring(0, 36) + "...")</a>
-            <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-            <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+            @if (User.Identity.GetUserId<int>() != Model.UserId)
+            {
+                <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+                <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
+
+            }
         </div>
         <div class="col-xs-3 col-sm-2">
-            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "mainpost" } })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "blog" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
         </div>
     </div>
     <div class="mh-blog-user">

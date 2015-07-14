@@ -1,6 +1,8 @@
 ﻿@using CP_MathHub.Models.Question
 @model QuestionDetailViewModel
 @using CP_MathHub.Core.Configuration
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 @{
     ViewBag.Title = Model.Title;
     ViewBag.MhPage = Constant.String.QuestionDetailPage;
@@ -28,8 +30,11 @@
             @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
             <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                @if (User.Identity.GetUserId<int>() != Model.UserId)
+                {
+                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                }
                 <div>
                     @Html.Raw(Model.Content)
                 </div>
