@@ -191,6 +191,7 @@ namespace CP_MathHub.Controllers
             question.LastEditedDate = question.CreatedDate;
             question.UserId = User.Identity.GetUserId<int>();
             question.Tags = cService.GetTags(questionVM.TagIds);
+            question.Status = PostStatusEnum.Active;
             qService.InsertQuestion(question);
 
             EditedLog editedlog = new EditedLog();
