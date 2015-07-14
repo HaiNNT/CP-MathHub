@@ -106,7 +106,7 @@
             <div class="media-body">
                 <div class="mh-comment-input-send">
                     <input type="text" class="mh-media-reply-input mh-input-comment" placeholder="Viết trả lời..." />
-                    <input type="hidden" class="post-id" value="@Model.Id"/>
+                    <input type="hidden" class="post-id" value="@Model.Id" />
                     <input type="hidden" class="type" value="reply" />
                     <a href=""><i class="fa fa-paper-plane mh-rely-send"></i></a>
                 </div>
@@ -115,6 +115,8 @@
 
     </div>
     <div class="media-right">
-        @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "comment" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
+        @if (Request.IsAuthenticated) {
+            Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "comment" }, { "Status", Model.Status }, { "UserId", Model.UserId } });
+        }
     </div>
 </div>

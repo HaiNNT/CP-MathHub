@@ -709,6 +709,7 @@
     <Content Include="Views\CommonWidget\Widgets\_FavoriteTagWidget.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscustionEditedLogPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_BookmarkPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

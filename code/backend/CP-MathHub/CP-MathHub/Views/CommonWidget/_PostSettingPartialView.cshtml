@@ -2,6 +2,7 @@
 @using CP_MathHub.Service.Helpers
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.Owin;
+@if (Request.IsAuthenticated) { 
 <div class="dropdown mh-posts-setting">
     <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
         <i class="fa fa-chevron-down mh-commet-edit"></i>
@@ -86,3 +87,4 @@
         </div><!-- Modal: end -->
     </div>
 </div>
+}

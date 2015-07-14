@@ -207,10 +207,14 @@ namespace CP_MathHub.Controllers
             dService.IncludeReplyForComments(discussion.Comments.ToList());
 
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
-
+            foreach (CommentViewModel m in discussionDetailVM.Comments)
+            {
+                m.Liked = m.Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
+            }
             discussionDetailVM.UserInfo.CreateMainPostDate = discussionDetailVM.CreatedDate;
             discussionDetailVM.Bookmarked = discussion.BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+            discussionDetailVM.Liked = discussion.Votes.Where(d => d.UserId == User.Identity.GetUserId<int>()).Count() > 0;
             discussionDetailVM.Name = "THẢO LUẬN";
             dService.IncreaseViewDiscussion(discussion);
             List<EditedLog> editedlogs = dService.GetEditedLog(id);

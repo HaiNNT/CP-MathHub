@@ -34,12 +34,15 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     d => d.MapFrom(m => m.MainPosts.OfType<Discussion>().Count())
                  )
                  .ForMember(
-                 s => s.UserName,
-                 d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).UserName)
+                    s => s.Discussion,
+                    d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id))
                  )
                  .ForMember(
-                    s => s.Discussion,
-                    d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id)))
+                     s => s.UserName,
+                     //d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).UserName)
+                     d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id).Author.UserName)
+                 )
+
                  ;
       
             //Comment
@@ -56,12 +59,12 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Like,
                     d => d.MapFrom(m => m.VoteUp)
                 )
-                .ForMember(
-                    s => s.Liked,
-                    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
-                )
+                //.ForMember(
+                //    s => s.Liked,
+                //    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                //)
                 .ForMember(
                     s => s.Comments,
                     d => d.MapFrom(m => m.Comments.Select(Mapper.Map<Comment, CommentViewModel>))

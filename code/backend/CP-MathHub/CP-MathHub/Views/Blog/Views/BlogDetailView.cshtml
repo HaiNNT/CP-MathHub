@@ -33,11 +33,7 @@
             <div class="row">
                 <div class="col-xs-11 title">
                     <a href="">@Model.Title</a>
-                    @if (User.Identity.GetUserId<int>() != Model.UserId)
-                    {
-                        <i onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon bookmarked-@Model.Id @(Model.Bookmarked ? "":"hidden")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-                        <i onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon bookmark-@Model.Id @(Model.Bookmarked ? "hidden" : "")" title="Có @Model.BookmarkNum người đánh dấu câu hỏi này"></i>
-                    }
+                    @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
                 </div>
                 <div class="col-xs-1">
                     @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "blog" }, { "Status", Model.Status }, { "UserId", Model.UserId } })

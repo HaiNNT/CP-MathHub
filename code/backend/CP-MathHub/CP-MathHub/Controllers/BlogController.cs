@@ -273,8 +273,13 @@ namespace CP_MathHub.Controllers
             bService.IncludeReplyForComments(article.Comments.ToList());
 
             articleDetailVM = Mapper.Map<Article, ArticleDetailViewModel>(article);
+            foreach (CommentViewModel m in articleDetailVM.Comments)
+            {
+                m.Liked = m.Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
+            }
             articleDetailVM.Bookmarked = article.BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+            articleDetailVM.Liked = article.Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
             bService.IncreaseViewArticle(article);
             ViewBag.System = Constant.String.BlogSystem;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);

@@ -14,7 +14,7 @@
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", @Model.Name } })
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Name", @Model.Name } })
 
 <input id="tab" type="hidden" value="@ViewBag.Tab" />
 <input id="system" type="hidden" value="@ViewBag.System" />

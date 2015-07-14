@@ -42,6 +42,7 @@ namespace CP_MathHub.Service.Services
                                                  .Distinct()
                                                  .OrderByDescending(t => t.CreatedDate)
                                                  .FirstOrDefault();
+            discussion.Author = cService.GetUser(discussion.UserId);
             return discussion;
         }
         public List<Discussion> GetDiscussions(string homeTab, int skip = 0)
@@ -181,7 +182,9 @@ namespace CP_MathHub.Service.Services
         }
         public Discussion GetDiscussion(int id)
         {
-            return dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
+            Discussion discussion = dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
+            discussion.Author = cService.GetUser(discussion.UserId);
+            return discussion;
         }
         public void UpdateDiscussion(Discussion discussion)
         {
