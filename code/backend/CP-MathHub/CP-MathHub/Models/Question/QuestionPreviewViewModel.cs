@@ -23,6 +23,7 @@ namespace CP_MathHub.Models.Question
         public int ReportNum { get; set; }
         public int ShareNum { get; set; }
         public bool Bookmarked { get; set; }
+        public Nullable<PostStatusEnum> Status { get; set; }
         public VoteViewModel VoteVM { get; set; }
         public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }

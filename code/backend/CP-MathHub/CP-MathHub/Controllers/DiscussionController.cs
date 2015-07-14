@@ -42,6 +42,9 @@ namespace CP_MathHub.Controllers
             discussionHomeVM.Name = "THẢO LUẬN";
             ViewBag.System = Constant.String.DiscussionSystem;
             discussionHomeVM.Items = discussioncategoryVM;
+            var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+            cookie.Expires.AddHours(1);
+            Response.Cookies.Add(cookie);
             return View("Views/DiscussionHomeView", discussionHomeVM);
 
         }
@@ -72,6 +75,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.DiscussionSystem;
                 discussionTagHomeVM.Id = tagId;
                 discussionTagHomeVM.Items = discussionTagPreviewVM;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
             }
             else
@@ -80,6 +86,7 @@ namespace CP_MathHub.Controllers
             }
         }
         //Post: CategoryIndex
+        [Authorize]
         [HttpPost, ValidateInput(false)]
         public ActionResult CategoryIndex(DiscussionTagHomeViewModel discussionTagHomeVM, int tagId)
         {
@@ -142,6 +149,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.DiscussionSystem;
                 ViewBag.TabParam = tagId;
                 tagHomeVM.Items = discussionPreviewVMs;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
             else
@@ -177,6 +187,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.DiscussionSystem;
                 ViewBag.TabParam = searchString;
                 tagHomeVM.Items = discussionPreviewVMs;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
             else
@@ -205,11 +218,14 @@ namespace CP_MathHub.Controllers
             //    editedlogs.Select(Mapper.Map<EditedLog, DiscussionEditedLogViewModel>) // Using Mapper with Collection
             //    .ToList();
             ViewBag.System = Constant.String.DiscussionSystem;
-
+            var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+            cookie.Expires.AddHours(1);
+            Response.Cookies.Add(cookie);
             return View("Views/DiscussionDetailView", discussionDetailVM);
         }
         //Get: Discussion/Create
         [HttpGet]
+        [Authorize]
         public ActionResult Create(int tagId = 0)
         {
             ViewBag.System = Constant.String.DiscussionSystem;
@@ -220,6 +236,7 @@ namespace CP_MathHub.Controllers
             return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create
+        [Authorize]
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(DiscussionCreateViewModel discussionCreateVM)
         {
@@ -254,6 +271,7 @@ namespace CP_MathHub.Controllers
         }
         //Get: Discussion/Edit
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
@@ -263,6 +281,7 @@ namespace CP_MathHub.Controllers
             return View("Views/DiscussionEditView", discussionEditVM);
         }
         //Post: Discussion/Edit
+        [Authorize]
         [HttpPost, ValidateInput(false)]
         public ActionResult Edit(DiscussionEditViewModel discussionEditVM)
         {
@@ -295,6 +314,7 @@ namespace CP_MathHub.Controllers
             return View("Views/DiscussionEditedView", discussioneditedlogVM); ;
         }
         //Discussion/Delete
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Discussion discussion = dService.GetDiscussion(id);
@@ -338,6 +358,9 @@ namespace CP_MathHub.Controllers
                 model.ListTags = tags;
                 ViewBag.System = Constant.String.DiscussionSystem;
                 ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/TagsPageView", model);
             }
             else
@@ -348,6 +371,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Discussion/CreateTags
         [HttpPost]
+        [Authorize]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -370,6 +394,9 @@ namespace CP_MathHub.Controllers
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Discussion.String.HomeUserTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
+                                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/UsersPageView", model);
             }
             else
@@ -388,6 +415,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Discussion/PostComment
         [HttpPost]
+        [Authorize]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
             Comment comment = new Comment();
@@ -421,6 +449,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Discussion/EditComment
         [HttpPost]
+        [Authorize]
         public ActionResult EditComment(int id, string content)
         {
             Comment comment = new Comment();
@@ -434,6 +463,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Discussion/DisableComment
         [HttpGet]
+        [Authorize]
         public ActionResult DisableComment(int id)
         {
             cService.DisableComment(id);
@@ -442,6 +472,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Discussion/EnableComment
         [HttpGet]
+        [Authorize]
         public ActionResult EnableComment(int id)
         {
             cService.EnableComment(id);
@@ -450,6 +481,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Discussion/Like
         [HttpPost]
+        [Authorize]
         public bool Like(int id)
         {
             User user = cService.GetUser(User.Identity.GetUserId<int>());
@@ -457,6 +489,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Discussion/Bookmark
         [HttpPost]
+        [Authorize]
         public bool Bookmark(int id)
         {
             User user = cService.GetUser(User.Identity.GetUserId<int>());

@@ -69,6 +69,9 @@ namespace CP_MathHub.Controllers
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
                 blogHomeVM.View = view;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
@@ -82,6 +85,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/MyBlog
         [HttpGet]
+        [Authorize]
         public ActionResult MyBlog(string tab = Constant.Blog.String.MyArticleTab
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
@@ -152,6 +156,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.BlogSystem;
                 myBlogVM.Articles = articlePreviewVMs;
                 myBlogVM.View = view;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/MyBlogView", myBlogVM);
             }
             else
@@ -193,6 +200,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = searchString;
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.View = view;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
@@ -230,6 +240,9 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.BlogSystem;
                 ViewBag.TabParam = tag;
                 blogHomeVM.Articles = articlePreviewVMs;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
@@ -240,6 +253,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/CreateTags
         [HttpPost]
+        [Authorize]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -263,12 +277,15 @@ namespace CP_MathHub.Controllers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             bService.IncreaseViewArticle(article);
             ViewBag.System = Constant.String.BlogSystem;
-
+            var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+            cookie.Expires.AddHours(1);
+            Response.Cookies.Add(cookie);
             return View("Views/BlogDetailView", articleDetailVM);
         }
 
         //Get: Blog/CreateCreate
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             ArticleCreateViewModel model = new ArticleCreateViewModel();
@@ -279,6 +296,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/Create
         [HttpPost, ValidateInput(false)]
+        [Authorize]
         public ActionResult Create(ArticleCreateViewModel model)
         {
             Article article = new Article();
@@ -308,6 +326,7 @@ namespace CP_MathHub.Controllers
         }
         //Get: Blog/Edit
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(int id)
         {
             ArticleEditViewModel articleEditVM = new ArticleEditViewModel();
@@ -317,6 +336,7 @@ namespace CP_MathHub.Controllers
             return View("Views/BlogEditView", articleEditVM);
         }
         //Post: Blog/Edit
+        [Authorize]
         [HttpPost, ValidateInput(false)]
         public ActionResult Edit(ArticleEditViewModel articleEditVM)
         {
@@ -341,6 +361,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Blog/Bookmark
         [HttpPost]
+        [Authorize]
         public bool Bookmark(int id)
         {
             User user = cService.GetUser(User.Identity.GetUserId<int>());
@@ -349,6 +370,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/PostComment
         [HttpPost]
+        [Authorize]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
             if (bService.GetArticle(postId).Status != PostStatusEnum.Closed)
@@ -387,6 +409,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/EditComment
         [HttpPost]
+        [Authorize]
         public ActionResult EditComment(int id, string content)
         {
             Comment comment = new Comment();
@@ -400,6 +423,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/DisableComment
         [HttpGet]
+        [Authorize]
         public ActionResult DisableComment(int id)
         {
             cService.DisableComment(id);
@@ -408,6 +432,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/EnableComment
         [HttpGet]
+        [Authorize]
         public ActionResult EnableComment(int id)
         {
             cService.EnableComment(id);
@@ -416,6 +441,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/Like
         [HttpPost]
+        [Authorize]
         public bool Like(int id)
         {
             User user = cService.GetUser(User.Identity.GetUserId<int>());
@@ -424,6 +450,7 @@ namespace CP_MathHub.Controllers
 
         //Post: Blog/Report
         [HttpPost]
+        [Authorize]
         public bool Report(int postId, string description, ReportTypeEnum reportName = ReportTypeEnum.Other)
         {
             Report report = new Report();
