@@ -44,7 +44,9 @@ namespace CP_MathHub.Controllers
             {
                 questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    questionPreviewVMs.ElementAt(i).Bookmarked = questions.ElementAt(i).BookmarkUsers
+                    questionPreviewVMs.ElementAt(i).Bookmarked = 
+                        questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                        && questions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             if (page == 0)
@@ -74,9 +76,14 @@ namespace CP_MathHub.Controllers
             ICollection<QuestionPreviewViewModel> questionPreviewVMs =
                     questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
-            foreach (QuestionPreviewViewModel q in questionPreviewVMs)
+            for (int i = 0; i < questionPreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    questionPreviewVMs.ElementAt(i).Bookmarked =
+                        questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        && questions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
             ViewBag.TabParam = tag;
             if (page == 0)
@@ -104,14 +111,18 @@ namespace CP_MathHub.Controllers
             int skip = page * Constant.Question.Integer.PagingDefaultTake;
             List<Question> questions = qService.SearchQuestion(searchString.Trim(), skip);
 
-            ICollection<QuestionPreviewViewModel> problemVms =
+            ICollection<QuestionPreviewViewModel> questionPreviewVMs =
                 questions.Select(Mapper.Map<Question, QuestionPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-            foreach (QuestionPreviewViewModel q in problemVms)
+            for (int i = 0; i < questionPreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    questionPreviewVMs.ElementAt(i).Bookmarked =
+                        questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        && questions.ElementAt(i).BookmarkUsers
+                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
-
             if (page == 0)
             {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
@@ -120,7 +131,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = Constant.Question.String.SearchTab;
                 ViewBag.System = Constant.String.QuestionSystem;
                 ViewBag.TabParam = searchString;
-                questionHomeVM.Items = problemVms;
+                questionHomeVM.Items = questionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
@@ -128,7 +139,7 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_QuestionListPartialView", problemVms);
+                return PartialView("Partials/_QuestionListPartialView", questionPreviewVMs);
             }
         }
 
@@ -315,8 +326,8 @@ namespace CP_MathHub.Controllers
         {
             Tag tag = new Tag();
             tag.Name = name;
-            cService.InsertTag(tag);
-            ViewBag.System = "Question";
+            cService.InsertTag(tag, User.Identity.GetUserId<int>());
+            ViewBag.System = Constant.String.QuestionSystem;
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
 

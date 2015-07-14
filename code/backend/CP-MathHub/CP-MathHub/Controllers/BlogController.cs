@@ -58,7 +58,9 @@ namespace CP_MathHub.Controllers
                 {
                     articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
                     if (Request.IsAuthenticated)
-                        articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
+                        articlePreviewVMs.ElementAt(i).Bookmarked = 
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                            && articles.ElementAt(i).BookmarkUsers
                                                     .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
@@ -84,7 +86,7 @@ namespace CP_MathHub.Controllers
                                     , int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
-            List<Article> articles = bService.GetArticles(tab, skip);
+            List<Article> articles = bService.GetArticles(tab, skip, User.Identity.GetUserId<int>());
 
 
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =
@@ -95,8 +97,10 @@ namespace CP_MathHub.Controllers
             {
                 articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                    articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                            && articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -135,8 +139,10 @@ namespace CP_MathHub.Controllers
             {
                 articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                    articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                            && articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -159,7 +165,7 @@ namespace CP_MathHub.Controllers
 
         //Get: Blog/Search
         [HttpGet]
-        public ActionResult Search(string searchString, int page = 0)
+        public ActionResult Search(string searchString, int page = 0, string view = Constant.Blog.String.ListView)
         {
             int skip = page * Constant.Blog.Integer.PagingDefaultTake;
             List<Article> articles = bService.SearchArticle(skip, searchString);
@@ -167,10 +173,16 @@ namespace CP_MathHub.Controllers
                     articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
 
-            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                            && articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
+
             if (page == 0)
             {
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
@@ -180,11 +192,15 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.BlogSystem;
                 ViewBag.TabParam = searchString;
                 blogHomeVM.Articles = articlePreviewVMs;
+                blogHomeVM.View = view;
                 return View("Views/BlogHomeView", blogHomeVM);
             }
             else
             {
-                return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+                if (view == Constant.Blog.String.GridView)
+                    return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
+                else
+                    return PartialView("Partials/_ArticleListPartialView", articlePreviewVMs);
             }
         }
 
@@ -196,9 +212,14 @@ namespace CP_MathHub.Controllers
             ICollection<ArticlePreviewViewModel> articlePreviewVMs =
                     articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                     .ToList();
-            foreach (ArticlePreviewViewModel q in articlePreviewVMs)
+            for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                q.UserInfo.CreateMainPostDate = q.CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                if (Request.IsAuthenticated)
+                    articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                            && articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -215,6 +236,17 @@ namespace CP_MathHub.Controllers
             {
                 return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
+        }
+
+        //Post: Blog/CreateTags
+        [HttpPost]
+        public ActionResult CreateTag(string name)
+        {
+            Tag tag = new Tag();
+            tag.Name = name;
+            cService.InsertTag(tag, User.Identity.GetUserId<int>());
+            ViewBag.System = Constant.String.BlogSystem;
+            return PartialView("../CommonWidget/_TagPartialView", tag);
         }
 
         //Get: Blog/Detail
@@ -251,19 +283,19 @@ namespace CP_MathHub.Controllers
         {
             Article article = new Article();
             article = Mapper.Map<ArticleCreateViewModel, Article>(model);
-
-            EditedLog editedlog = new EditedLog();
-            editedlog.Content = article.Content;
-            editedlog.CreatedDate = DateTime.Now;
-            editedlog.PostId = article.Id;
-            editedlog.UserId = article.UserId;
-            article.LastEditedDate = editedlog.CreatedDate;
-            article.EditedContents.Add(editedlog);
-
-            article.UserId = cService.GetLoginUser().Id;
+            article.UserId = User.Identity.GetUserId<int>();
             article.Tags = cService.GetTags(model.TagIds);
 
             bService.InsertArticle(article);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = article.Content;
+            editedlog.CreatedDate = article.LastEditedDate;
+            editedlog.PostId = article.Id;
+            editedlog.UserId = article.UserId;
+            article.EditedContents.Add(editedlog);
+
+            bService.UpdateArticle(article);
             //Console.WriteLine(questionVM.Tags[0]);
             if (article.Id != 0)
             {
@@ -294,7 +326,7 @@ namespace CP_MathHub.Controllers
             editedlog.Content = article.Content;
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = article.Id;
-            editedlog.UserId = article.UserId;
+            editedlog.UserId = User.Identity.GetUserId<int>();
 
             article.Title = articleEditVM.Title;
             article.Content = articleEditVM.Content;
@@ -323,12 +355,13 @@ namespace CP_MathHub.Controllers
             {
                 Comment comment = new Comment();
                 comment.Content = content;
-                comment.UserId = cService.GetLoginUser().Id;
+                comment.UserId = User.Identity.GetUserId<int>();
                 comment.CreatedDate = DateTime.Now;
                 comment.LastEditedDate = comment.CreatedDate;
                 comment.PostId = postId;
 
-                cService.CommentPost(comment);
+                cService.CommentPost(comment);               
+
                 List<Comment> comments = cService.GetComments(postId);
                 ICollection<CommentViewModel> commentsVM;
                 switch (type)
@@ -366,18 +399,26 @@ namespace CP_MathHub.Controllers
         }
 
         //Get: Blog/DisableComment
-        [HttpPost]
-        public bool DisableComment(int id)
+        [HttpGet]
+        public ActionResult DisableComment(int id)
         {
             cService.DisableComment(id);
-            return true;
+            return RedirectToAction("Detail", new {@id = id });
+        }
+
+        //Get: Blog/EnableComment
+        [HttpGet]
+        public ActionResult EnableComment(int id)
+        {
+            cService.EnableComment(id);
+            return RedirectToAction("Detail", new { @id = id });
         }
 
         //Post: Blog/Like
         [HttpPost]
         public bool Like(int id)
         {
-            User user = cService.GetLoginUser();
+            User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Like(id, user.Id);
         }
 
@@ -389,7 +430,7 @@ namespace CP_MathHub.Controllers
             report.Description = description;
             report.PostId = postId;
             report.ReportedDate = DateTime.Now;
-            report.ReporterId = cService.GetLoginUser().Id;
+            report.ReporterId = User.Identity.GetUserId<int>();
             report.Type = reportName;
 
             return cService.CreateReport(report);

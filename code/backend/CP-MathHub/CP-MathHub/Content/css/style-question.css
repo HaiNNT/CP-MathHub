@@ -132,10 +132,28 @@
 }
 
 .mh-comment-content {
-	padding: 5px 0px;
-	border-bottom: 1px solid silver;
+	padding: 5px 15px 5px 0px;
+	border-bottom: 1px solid #E5E5E5;
+    position: relative;
 }
-
+.modal-body .mh-comment-content:last-child {
+    border-bottom: 0;
+}
+.mh-comment-content .mh-commet-edit {
+    opacity: 0;
+}
+.mh-comment-content:hover .mh-commet-edit {
+    opacity: 1;
+}
+.mh-comment-content .mh-commet-edit:hover {
+    color: #000;
+}
+.mh-comment-content .dropdown {
+    position: absolute;
+    top:0;
+    right:0;
+    cursor: pointer;
+}
 .panel-body.mh-comment > .mh-comment-detail {
 	padding: 5px 20px;
 	background-color: ghostwhite;
@@ -157,6 +175,7 @@
 
 .mh-answer_hint-content {
 	padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .mh-answer_hint-content-row {
@@ -164,9 +183,26 @@
 }
 
 .mh-answer_hint-detail {
+    position: relative;
+    padding-right: 20px;
 }
 
 .mh-answer_hint-detail-content {
+    text-align: justify;
+}
+.mh-answer_hint-detail .dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.mh-answer_hint-detail > div > a > i  {
+    opacity: 0;
+}
+.mh-answer_hint-detail:hover > div > a > i {
+    opacity: 1;
+}
+.mh-answer_hint-edit-textarea {
+    margin-bottom: 5px;
 }
 
 .mh-form-input-comment {
@@ -184,11 +220,21 @@
 }
 
 .mh-answer_hint-user_info {
-	border-bottom: 1px solid silver;
+	border-bottom: 1px solid #E5E5E5;
 	padding-bottom: 5px;
 	padding-left: 20px;
 }
 
+.modal-body .mh-answer_hint-user_info{
+    border-bottom: 0px;
+}
+.modal-body .mh-answer_hint-detail {
+    border-bottom: 1px solid #E5E5E5;
+    margin-top: 15px;
+}
+.modal-body .mh-answer_hint-detail:last-child {
+    border-bottom: 0px;
+}
 .mh-post-Ans_Hint {
 	/* margin: 15px;
 	text-align: center; */
@@ -202,6 +248,9 @@
 .mh-sort-content {
     height: 145px;
     overflow-y: hidden;
+}
+.mh-answer_hint-edit-textarea, .mh-note-answer_hint {
+    display: none;
 }
  /* QA detail: end */
  /* QA User: start */

@@ -31,6 +31,19 @@ namespace CP_MathHub.Service.Helpers
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
 
+        public static string VoteNumer(this HtmlHelper html, int? vote)
+        {
+            if (vote == default(int))
+            {
+                return "0";
+            }
+            if (Math.Abs(vote.Value) > 1000)
+            {
+                return vote / 1000 + "K";
+            }
+            return vote+"";
+        }
+
         public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)
         {
             string html = "";

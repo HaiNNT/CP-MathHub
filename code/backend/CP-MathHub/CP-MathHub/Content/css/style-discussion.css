@@ -224,3 +224,12 @@ footer {
 }
 /*Ðãng nhanh: end*/
 /*  Mid: end    */
+.modal-body .mh-content-detail {
+    border-bottom: 1px solid #E5E5E5;
+}
+.modal-body .mh-content-detail:last-child {
+    border-bottom: 0px;
+}
+.modal-body .mh-content-detail h3 {
+    color: #337ab7;
+}

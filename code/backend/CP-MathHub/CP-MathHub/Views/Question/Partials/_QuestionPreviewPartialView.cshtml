@@ -1,4 +1,6 @@
 ﻿@model CP_MathHub.Models.Question.QuestionPreviewViewModel
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 <div class="panel panel-warning mh-question-preview">
     <div class="panel-heading">
         <div class="mh-user-info">
@@ -40,8 +42,11 @@
             </div>
             <div class="col-md-10 col-xs-12 mh-content">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id, 'question')" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id,  'question')" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                @if (User.Identity.GetUserId<int>() != Model.UserId)
+                {
+                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
+                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
+                }
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;

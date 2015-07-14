@@ -32,25 +32,13 @@ function seeMoreComment(item) {
 /*
   Bookmark a main post
 */
-function bookmark(id, type) {
+function bookmark(id) {
     var url = "";
     var data = { id: id };
     var bookmarked = "#bookmarked-" + id;
     var bookmark = "#bookmark-" + id;
-    switch (type) {
-        case "question":
-            url = "/Question/Bookmark";
-            break;
-            //case "article":
+    url = "/Question/Bookmark";
 
-            //    break;
-            //case "discussion":
-
-            //    break;
-        default:
-
-            break;
-    }
     $.ajax({
         method: "POST",
         url: url,
@@ -72,25 +60,13 @@ function bookmark(id, type) {
 /*
   Unbookmark a main post
 */
-function unBookmark(id, type) {
+function unBookmark(id) {
     var url = "";
     var data = { id: id };
     var bookmarked = "#bookmarked-" + id;
     var bookmark = "#bookmark-" + id;
-    switch (type) {
-        case "question":
-            url = "/Question/Bookmark";
-            break;
-            //case "article":
+    url = "/Question/Bookmark";
 
-            //    break;
-            //case "discussion":
-
-            //    break;
-        default:
-
-            break;
-    }
     $.ajax({
         method: "POST",
         url: url,

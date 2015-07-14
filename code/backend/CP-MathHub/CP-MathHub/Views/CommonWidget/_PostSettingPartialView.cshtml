@@ -1,37 +1,60 @@
 ﻿@using CP_MathHub.Entity
 @using CP_MathHub.Service.Helpers
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 <div class="dropdown mh-posts-setting">
     <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
         <i class="fa fa-chevron-down mh-commet-edit"></i>
     </a>
     <ul class="dropdown-menu" role="menu">
-        <li>
-            <a data-toggle="modal" data-target="#report-post-@ViewData["PostId"]">
-                Báo cáo vi phạm
-            </a>
-        </li>
-        @switch ((string)@ViewData["PostType"])
+        @if (User.Identity.GetUserId<int>() != (int)ViewData["UserId"])
         {
-            case "question":
-                <li><a href="@Url.Action("Edit", "Question", new { @id = ViewData["PostId"] })">Chỉnh sửa câu hỏi</a></li>
-                <li><a href="@Url.Action("Close", "Question", new { @id = ViewData["PostId"] })">Đóng câu hỏi</a></li>
-                break;
-            case "discussion":
-                <li><a href="@Url.Action("Edit", "Discussion", new { @id = ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
-                <li><a href="@Url.Action("DisableComment", "Discussion", new { @id = ViewData["PostId"] })">Khóa bình luận</a></li>
-                break;
-            case "blog":
-                <li><a href="@Url.Action("Edit", "Blog", new { @id = ViewData["PostId"] })">Chỉnh sửa bài viết</a></li>
-                <li><a href="@Url.Action("DisableComment", "Blog", new { @id = ViewData["PostId"] })">Khóa bình luận</a></li>
-                <li><a href="@Url.Action("Delete", "Blog", new { @id = ViewData["PostId"] })">Xóa bài viết</a></li>
-                break;
-            case "comment":
-                <li><a onclick='editComment(ViewData["PostId"])'>Chỉnh sửa</a></li>
-                <li><a onclick='deleteComment(ViewData["PostId"])'>Xóa</a></li>
-                break;
-            default:
-                break;
+            <li>
+                <a data-toggle="modal" data-target="#report-post-@ViewData["PostId"]">
+                    Báo cáo vi phạm
+                </a>
+            </li>
         }
+        else
+        {
+            switch ((string)@ViewData["PostType"])
+            {
+                case "question":
+                    <li><a href="@Url.Action("Edit", "Question", new { @id = ViewData["PostId"] })">Chỉnh sửa câu hỏi</a></li>
+                    <li><a href="@Url.Action("Close", "Question", new { @id = ViewData["PostId"] })">Đóng câu hỏi</a></li>
+                    break;
+                case "discussion":
+                    <li><a href="@Url.Action("Edit", "Discussion", new { @id = ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
+                    if ((CP_MathHub.Entity.PostStatusEnum)ViewData["Status"] == CP_MathHub.Entity.PostStatusEnum.Active)
+                    {
+                        <li><a href="@Url.Action("DisableComment", "Discussion", new { @id = ViewData["PostId"] })">Khóa bình luận</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("EnableComment", "Discussion", new { @id = ViewData["PostId"] })">Mở khóa bình luận</a></li>
+                    }
+                    break;
+                case "blog":
+                <li><a href="@Url.Action("Edit", "Blog", new { @id = ViewData["PostId"] })">Chỉnh sửa bài viết</a></li>
+                    if ((CP_MathHub.Entity.PostStatusEnum)ViewData["Status"] == CP_MathHub.Entity.PostStatusEnum.Active)
+                    {
+                        <li><a href="@Url.Action("DisableComment", "Blog", new { @id = ViewData["PostId"] })">Khóa bình luận</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("EnableComment", "Blog", new { @id = ViewData["PostId"] })">Mở khóa bình luận</a></li>
+                    }
+                    <li><a href="@Url.Action("Delete", "Blog", new { @id = ViewData["PostId"] })">Xóa bài viết</a></li>
+                    break;
+                case "comment":
+                    <li><a onclick="@("editComment(ViewData[\"PostId\"])")">Chỉnh sửa</a></li>
+                    <li><a onclick="@("deleteComment(ViewData[\"PostId\"])")">Xóa</a></li>
+                    break;
+                default:
+                    break;
+            }
+        }
+
     </ul>
     <div class="mh-violate-report">
         <!-- Modal: start -->
