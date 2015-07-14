@@ -142,8 +142,8 @@ function bookmark(id) {
 /*
   Unbookmark a main post
 */
-function unBookmark(id, type) {
-    var url = "/Question/Bookmark";
+function unBookmark(id) {
+    var url = "/Blog/Bookmark";
     var data = { id: id };
     var bookmarked = ".bookmarked-" + id;
     var bookmark = ".bookmark-" + id;

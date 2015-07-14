@@ -1084,8 +1084,18 @@ footer > .container > .row {
     display: none;
     font-size: 9px;
 }
-.mh-comment-history-edit {
+.mh-post-content-history-edit {
     font-size: 10pt;
+    color: #A9A9A9;
+    margin-left: 5px;
+}
+.mh-post-content-history-edit:hover {
+    font-size: 10pt;
+    color: #A9A9A9;
+    margin-left: 5px;
+}
+.mh-comment-history-edit {
+    cursor: pointer;
     color: #A9A9A9;
 }
 .mh-comment-history-edit:hover {
@@ -1105,6 +1115,11 @@ footer > .container > .row {
     font-weight: bolder;
     font-size: 12pt;
     color: #A9A7A7;
+}
+
+.mh-posts-setting .dropdown-menu {
+      right: 0;
+  left: auto;
 }
 
 .mh-posts-setting > ul {

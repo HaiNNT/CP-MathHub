@@ -78,7 +78,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Insert a new tag
         /// </summary>
         /// <returns></returns>
-        bool InsertTag(Tag tag);
+        bool InsertTag(Tag tag, int userId);
 
         /// <summary>
         /// Bookmark/UnBookmark a MainPost
@@ -135,6 +135,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="postId"></param>
         void DisableComment(int postId);
+
+        /// <summary>
+        /// Enable comments
+        /// </summary>
+        /// <param name="postId"></param>
+        void EnableComment(int postId);
 
         /// <summary>
         /// Get comments of a post

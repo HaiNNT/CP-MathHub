@@ -34,9 +34,13 @@ namespace CP_MathHub.Service.Services
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        public List<Article> GetArticles(string tab, int skip)
+        public List<Article> GetArticles(string tab, int skip, int userId = 0)
         {
-            User user = cService.GetLoginUser();
+            User user = new User();
+            if (userId != 0)
+            {
+                user = cService.GetUser(userId);
+            }           
             List<Article> list = new List<Article>();
             switch (tab)
             {

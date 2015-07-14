@@ -66,6 +66,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Comments,
                     d => d.MapFrom(m => m.Comments.Select(Mapper.Map<Comment, CommentViewModel>))
                 )
+                //.ForMember(
+                //    d => d.UserId,
+                //    s => s.MapFrom(m => m.UserId)
+                //)
+                //.ForMember(
+                //    d => d.Status,
+                //    s => s.MapFrom(m => m.Status)
+                //)
                 ;
         }
     }
