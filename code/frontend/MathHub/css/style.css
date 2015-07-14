@@ -1058,7 +1058,7 @@ footer > .container > .row {
     opacity: 0;
 }
 
-.mh-comment-div:hover > div > div > a > .mh-commet-edit {
+.mh-comment-div:hover > div > div > a > .mh-commet-edit, .mh-comment-div > div > .open > a > .mh-commet-edit {
     opacity: 1;
 }
 
