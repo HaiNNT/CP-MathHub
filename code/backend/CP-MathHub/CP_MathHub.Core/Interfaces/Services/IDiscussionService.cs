@@ -63,6 +63,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountSearchResult(string searchString);
 
         /// <summary>
+        /// Get Edited Log
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        List<EditedLog> GetEditedLog(int postId, int skip = 0);
+
+        /// <summary>
         /// Get Comments of Post
         /// </summary>
         /// <returns></returns>

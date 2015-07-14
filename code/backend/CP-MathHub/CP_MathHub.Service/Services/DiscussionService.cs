@@ -94,7 +94,19 @@ namespace CP_MathHub.Service.Services
                     (a => a.Tags.Where(t => t.Id == tagId).Count() > 0), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
-                    skip
+                    skip,
+                    5
+                ).ToList();
+        }
+        public List<EditedLog> GetEditedLog(int postId, int skip = 0)
+        {
+            return dal.Repository<EditedLog>()
+                .Get(
+                (a => a.PostId == postId),
+                (p => p.OrderBy(s => s.CreatedDate)),
+                "",
+                skip,
+                0
                 ).ToList();
         }
         public List<Discussion> GetDiscussions(int skip, string tagName)

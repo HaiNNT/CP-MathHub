@@ -142,7 +142,7 @@
 .mh-comment-content .mh-commet-edit {
     opacity: 0;
 }
-.mh-comment-content:hover .mh-commet-edit {
+.mh-comment-content:hover .mh-commet-edit, .mh-comment-content > .open > a > .mh-commet-edit {
     opacity: 1;
 }
 .mh-comment-content .mh-commet-edit:hover {
@@ -198,7 +198,7 @@
 .mh-answer_hint-detail > div > a > i  {
     opacity: 0;
 }
-.mh-answer_hint-detail:hover > div > a > i {
+.mh-answer_hint-detail:hover > div > a > i, .mh-answer_hint-detail > .open > a > i {
     opacity: 1;
 }
 .mh-answer_hint-edit-textarea {

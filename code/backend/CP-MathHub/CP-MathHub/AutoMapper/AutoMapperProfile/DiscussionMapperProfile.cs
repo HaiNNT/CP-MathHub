@@ -147,6 +147,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    d => d.MapFrom(m => m.Privacy)
                );
             #endregion
+            #region EditedLog
+            Mapper.CreateMap<EditedLog, DiscussionEditedLogViewModel>();
+            #endregion
         }
     }
 }
