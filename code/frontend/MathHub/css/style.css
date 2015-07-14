@@ -810,6 +810,13 @@ footer > .container > .row {
 }
 /*  Home page: end */
 /*  Image user: start */
+.mh-image-user-profile {
+    width: 145px;
+    height: 145px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .mh-image-picture {
     width: 80px;
     height: 80px;
