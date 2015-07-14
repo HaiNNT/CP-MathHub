@@ -208,18 +208,23 @@ namespace CP_MathHub.Controllers
         {
             Discussion discussion = new Discussion();
             discussion = Mapper.Map<DiscussionCreateViewModel, Discussion>(discussionCreateVM);
+            discussion.LastEditedDate = DateTime.Now;
+            discussion.UserId = User.Identity.GetUserId<int>();
+            discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
+            dService.InsertDiscussion(discussion);
 
             EditedLog editedlog = new EditedLog();
             editedlog.Content = discussion.Content;
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = discussion.Id;
             editedlog.UserId = discussion.UserId;
-            discussion.LastEditedDate = editedlog.CreatedDate;
-            discussion.EditedContents.Add(editedlog);
 
-            discussion.UserId = User.Identity.GetUserId<int>();
-            discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
-            dService.InsertDiscussion(discussion);
+
+            discussion.EditedContents.Add(editedlog);
+            
+
+            dService.EditDiscussion(discussion);
+            
             if (discussion.Id != 0)
             {
                 return RedirectToAction("Index");
@@ -261,6 +266,15 @@ namespace CP_MathHub.Controllers
             dService.EditDiscussion(discussion);
 
             return RedirectToAction("Detail", new { id = discussion.Id });
+        }
+        //Get: Discussion/EditedLog
+        public ActionResult EditedLog(int postId)
+        {
+            List<EditedLog> editedlogs = dService.GetEditedLog(postId);
+            ICollection<DiscussionEditedLogViewModel> discussioneditedlogVM =
+                editedlogs.Select(Mapper.Map<EditedLog, DiscussionEditedLogViewModel>) // Using Mapper with Collection
+                .ToList();
+            return View("Views/DiscussionEditedView", discussioneditedlogVM); ;
         }
         //Discussion/Delete
         public ActionResult Delete(int id)

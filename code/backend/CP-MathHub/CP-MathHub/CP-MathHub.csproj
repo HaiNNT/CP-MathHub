@@ -196,6 +196,7 @@
     <Compile Include="Models\Discussion\DiscussionCategoryViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionDetailViewModel.cs" />
+    <Compile Include="Models\Discussion\DiscussionEditedLogViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
@@ -706,6 +707,7 @@
     <Content Include="Views\Account\Layouts\_ProfileLayout.cshtml" />
     <Content Include="Views\Account\Views\ProfileView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FavoriteTagWidget.cshtml" />
+    <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
