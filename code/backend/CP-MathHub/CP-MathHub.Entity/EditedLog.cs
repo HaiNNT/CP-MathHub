@@ -19,6 +19,7 @@ namespace CP_MathHub.Entity
         public System.DateTime CreatedDate { get; set; }
         public int PostId { get; set; }
         public int UserId { get; set; }
+        public string Title { get; set; }
     
         public virtual Post Post { get; set; }
         public virtual User User { get; set; }

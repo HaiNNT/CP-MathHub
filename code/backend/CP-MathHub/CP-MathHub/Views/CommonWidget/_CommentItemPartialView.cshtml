@@ -6,11 +6,11 @@
         <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
     </div>
     <div class="media-body">
-        <div class="media-heading">
+        <div class="media-heading mh-comment-content">
             <a href="" class="mh-media-comment-user">@Model.Username</a>
             <span>@Model.Content</span>
         </div>
-        <div>
+        <div class="mh-comment-acitvity">
             <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
             <span class="mh-comment-separator">-</span>
             <a href="">Trả lời</a>
@@ -21,7 +21,63 @@
             </a>
             -
             <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+            -
+            <a data-toggle="modal" data-target="#history-edit-1" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+            <div id="history-edit-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Lịch sử chỉnh sửa</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="media mh-comment-div">
+                                <div class="media-left">
+                                    <img src="img/user.jpg" alt="..." class="mh-user-small">
+                                </div>
+                                <div class="media-body">
+                                    <span class="media-heading mh-comment-content">
+                                        <a href="" class="mh-media-comment-user">User</a>
+                                        <span>1 Tại sao đường tròn lại tập hợp một chuỗi các đường...</span>
+                                    </span>
+                                    <div class="mh-comment-acitvity">
+                                        <span class="mh-time">58 phút trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mh-comment-history-see-more">
+                                <a href="" data-toggle="tooltip" data-placement="top" title="1 được ẩn đi">...</a>
+                            </div>
+                            <div class="media mh-comment-div">
+                                <div class="media-left">
+                                    <img src="img/user.jpg" alt="..." class="mh-user-small">
+                                </div>
+                                <div class="media-body">
+                                    <span class="media-heading mh-comment-content">
+                                        <a href="" class="mh-media-comment-user">User</a>
+                                        <span>1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? 1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường...</span>
+                                        <a href="">Xem thêm</a>
+                                    </span>
+                                    <div class="mh-comment-acitvity">
+                                        <span class="mh-time">58 phút trước</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <textarea class="form-control mh-comment-edit-textarea" rows="3">1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</textarea>
+        <span class="mh-note">
+            Nhấn ESC để để
+            <button type="button" class="mh-note-close-button" value="1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?">
+                hủy
+            </button>
+        </span>
         @if (Model.Comments.Count > 3)
         {
             <div class="mh-comment-list">
