@@ -14,12 +14,33 @@
     </div>
 </div>
 
-@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", @Model.Name}})
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Title", @Model.Name } })
 
 <input id="tab" type="hidden" value="@ViewBag.Tab" />
 <input id="system" type="hidden" value="@ViewBag.System" />
 <input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+<div class="row">
+    @using (Html.BeginForm("CategoryIndex", "Discussion", FormMethod.Post))
+    {
+        <div class="mh-create-fast">
+            <h4>Đăng nhanh</h4>
+            <div class="mh-create-title">
+                @*<input type="text" placeholder="Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-create-input">*@
+                @Html.TextBoxFor(m => m.Tile, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
+                @Html.ValidationMessageFor(model => model.Tile)
+            </div>
+            <div class="mh-ckeditor">
+                @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "fast-editor", @rows = "15", @cols = "80" })
+                @Html.ValidationMessageFor(model => model.Content)
+            </div>
+            <input type="hidden" name="tagId" value="@Model.Id" />
+            <div class="mh-create-div">
+                <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+            </div>
+        </div>
+    }
+</div>
 <div class="mh-discussion-posts" id="list-discussions">
     @Html.Partial("Partials/_DiscussionListCategoryPartialView", Model.Items)
 </div>
@@ -35,7 +56,7 @@
 }
 @section RightPanel
 {
-    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup", new ViewDataDictionary {{"tagId", Model.Id}, {"System",ViewBag.System}})
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup", new ViewDataDictionary { { "tagId", Model.Id }, { "System", ViewBag.System } })
     @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })

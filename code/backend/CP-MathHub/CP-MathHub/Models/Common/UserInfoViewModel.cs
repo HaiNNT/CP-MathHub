@@ -13,6 +13,6 @@ namespace CP_MathHub.Models.Common
         public int Id { get; set; }
         public DateTime CreateMainPostDate { get; set; }
 
-        public Image Avatar { get; set; }
+        //public Image Avatar { get; set; }
     }
 }
