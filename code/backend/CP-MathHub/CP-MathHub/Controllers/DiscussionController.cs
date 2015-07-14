@@ -92,6 +92,7 @@ namespace CP_MathHub.Controllers
             discussion.Tags.Add(cService.GetTag(tagId));
             discussion.UserId = User.Identity.GetUserId<int>();
             discussion.LastViewed = DateTime.Now;
+            discussion.Status = PostStatusEnum.Active;
             dService.InsertDiscussion(discussion);
 
             EditedLog editedlog = new EditedLog();
@@ -107,7 +108,7 @@ namespace CP_MathHub.Controllers
             
             if (discussion.Id != 0)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail", new {@id = discussion.Id });
             }
             else
             {
@@ -244,7 +245,7 @@ namespace CP_MathHub.Controllers
             
             if (discussion.Id != 0)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail", new { @id = discussion.Id });
             }
             else
             {
