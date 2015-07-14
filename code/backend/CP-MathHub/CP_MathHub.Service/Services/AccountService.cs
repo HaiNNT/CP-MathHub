@@ -51,12 +51,81 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
         }
 
+        public void UpdateUser(User user)
+        {
+            dal.Repository<User>().Update(user);
+            dal.Save();
+        }
+
         public void CreateProfile(int userId)
         {
             Profile profile = new Profile();
             profile.User = GetUser(userId);
             dal.Repository<Profile>().Insert(profile);
             dal.Save();
+        }
+
+        public int CountFriend(int userId)
+        {
+            int result = dal.Repository<UserFriendship>().Table
+                .Count(u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend);
+            return result;
+        }
+
+        public int CountFollower(User user)
+        {
+            int result = dal.Repository<User>().Table
+                .Count(u => u.Followees.Contains(user));
+            return result;
+        }
+
+        public int CountFollowee(User user)
+        {
+            int result = dal.Repository<User>().Table
+                .Count(u => u.Followers.Contains(user));
+            return result;
+        }
+
+        public List<User> GetFriends(int userId, int skip = 0, int take = Constant.Integer.DefaultTake)
+        {
+            List<UserFriendship> friendShips = dal.Repository<UserFriendship>().Get(
+                    (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
+                    , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                    , "User,TargetUser"
+                    , skip
+                    , take).ToList();
+            List<User> friends = new List<User>();
+            foreach (UserFriendship friendShip in friendShips)
+            {
+                if (friendShip.TargetUserId == userId)
+                {
+                    friends.Add(friendShip.User);
+                }
+                else
+                {
+                    friends.Add(friendShip.TargetUser);
+                }
+            }
+            return friends;
+        }
+
+        public List<Tag> GetFavoriteTags(int userId)
+        {
+            List<Tag> tags = new List<Tag>();
+            List<MainPost> posts = dal.Repository<MainPost>().Get(
+                    (m => m.UserId == userId),
+                    null,
+                    "Tags",
+                    0,
+                    0
+                ).ToList();
+            foreach(MainPost post in posts){
+                foreach(Tag tag in post.Tags){
+                    if (!tags.Contains(tag))
+                        tags.Add(tag);
+                }
+            }
+            return tags;
         }
 
     }

@@ -33,37 +33,7 @@
         </a>
     </div>
 </div>
-<div class="mh-table-info">
-    <div class="mh-table-info-title">Tags yêu thích</div>
-    <div class="mh-table-info-body">
-        <ul class="list-inline mh-list-tags mh-list-tags-left">
-            <li>
-                <a href="#" class="mh-tag">
-                    <i class="fa fa-circle"></i>
-                    <label>Lớp 6</label>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="mh-tag">
-                    <i class="fa fa-circle"></i>
-                    <label>Toán đố</label>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="mh-tag">
-                    <i class="fa fa-circle"></i>
-                    <label>Toán dễ</label>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="mh-tag">
-                    <i class="fa fa-circle"></i>
-                    <label>Toán khó</label>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
 <div class="mh-table-info">
     <div class="mh-table-info-title">Theo dõi</div>
     <div class="mh-table-info-body">

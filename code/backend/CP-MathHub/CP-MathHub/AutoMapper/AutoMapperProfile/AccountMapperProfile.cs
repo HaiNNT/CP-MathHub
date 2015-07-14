@@ -6,6 +6,7 @@ using AutoMapper;
 using Profile = AutoMapper.Profile;
 using CP_MathHub.Entity;
 using CP_MathHub.Models.Account;
+using CP_MathHub.Service.Services;
 
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
@@ -17,7 +18,11 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            Mapper.CreateMap<User, ProfileViewModel>();
+            Mapper.CreateMap<User, ProfileViewModel>()
+                .ForMember(
+                    d => d.FriendNumber,
+                    s => s.MapFrom(m => new AccountService(new CPMathHubModelContainer()).CountFriend(m.Id))
+                );
         }
     }
 }

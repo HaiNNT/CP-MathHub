@@ -23,8 +23,8 @@ $(document).ready(function () {
             case "datetime":
                 var input = $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit");
                 var strDate = input.val();
-                var date = new Date(strDate.split("-")[2], strDate.split("-")[1] - 1, strDate.split("-")[0]);
-                $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", date);
+                //var date = new Date(strDate.split("-")[2], strDate.split("-")[1] - 1, strDate.split("-")[0]);
+                $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", strDate);
                 input.toggle();
                 break;
             default:

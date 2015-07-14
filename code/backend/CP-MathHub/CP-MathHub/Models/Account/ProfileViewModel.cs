@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using CP_MathHub.Entity;
+using CP_MathHub.Helper;
 
 namespace CP_MathHub.Models.Account
 {
@@ -20,8 +22,6 @@ namespace CP_MathHub.Models.Account
         public virtual ICollection<Tag> FavoriteTags { get; set; }
         public virtual ICollection<Accessment> Assessments { get; set; }
         public virtual ICollection<Privilege> Privileges { get; set; }
-        public virtual ICollection<UserFriendship> ActiveRelationships { get; set; }
-        public virtual ICollection<UserFriendship> PassiveRelationship { get; set; }
         public virtual PrivacySetting PrivacySetting { get; set; }
         public virtual Image Avatar { get; set; }
 
@@ -30,6 +30,8 @@ namespace CP_MathHub.Models.Account
         public virtual ICollection<User> Followers { get; set; }
         public virtual ICollection<User> Followees { get; set; }
         public virtual Activity Activity { get; set; }
+
+        public int FriendNumber { get; set; }
 
     }
 }
