@@ -810,6 +810,13 @@ footer > .container > .row {
 }
 /*  Home page: end */
 /*  Image user: start */
+.mh-image-user-profile {
+    width: 145px;
+    height: 145px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .mh-image-picture {
     width: 80px;
     height: 80px;
@@ -1051,7 +1058,7 @@ footer > .container > .row {
     opacity: 0;
 }
 
-.mh-comment-div:hover > div > div > a > .mh-commet-edit {
+.mh-comment-div:hover > div > div > a > .mh-commet-edit, .mh-comment-div > div > .open > a > .mh-commet-edit {
     opacity: 1;
 }
 
