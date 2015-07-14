@@ -288,6 +288,7 @@ function searchTag() {
 */
 function initSelectMenu() {
     $("#mh-mainpost-privacy").selectmenu();
+    $("#mh-mainpost-theme").selectmenu();
 }
 
 /*
@@ -367,7 +368,13 @@ function applyInfinityLoading() {
     il_ready = true;
 }
 
-
+/*
+    Select Category
+*/
+function selectCategory(select) {
+    var value = $(select).val();
+    $("#category-input").val(value);
+}
 /*
     Init all necessary fucntions
 */

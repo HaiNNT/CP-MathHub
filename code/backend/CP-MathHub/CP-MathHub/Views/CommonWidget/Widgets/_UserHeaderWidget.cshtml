@@ -11,13 +11,13 @@
                     @Model.Username
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Thông tin cá nhân</a></li>
+                    <li><a href="@Url.Action("MyProfile","Account")">Thông tin cá nhân</a></li>
                     <li><a href="#">Thiết lập quyền riêng tư</a></li>
                     <li class="divider"></li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
                 </ul>
             </li>
-            <li><a href="#"><img class="mh-user-icon" alt="User Icon" src="~/Content/img/user.jpg" /></a></li>
+            <li><a href="@Url.Action("MyProfile","Account")"><img class="mh-user-icon" alt="User Icon" src="~/Content/img/user.jpg" /></a></li>
         </ul>
     }
 

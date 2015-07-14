@@ -1,0 +1,21 @@
+﻿@model ICollection<CP_MathHub.Entity.Tag>
+@using CP_MathHub.Entity
+<div class="mh-table-info">
+    <div class="mh-table-info-title">Thẻ yêu thích</div>
+    <div class="mh-table-info-body">
+        @if (Model.Count > 0)
+        {
+            <ul class="list-inline mh-list-tags mh-list-tags-left">
+                @foreach (Tag tag in Model)
+                {
+                    <li>@Html.Partial("../CommonWidget/_TagPartialView", tag)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <span>Bạn chưa yêu thích thẻ nào</span> 
+        }
+
+    </div>
+</div>

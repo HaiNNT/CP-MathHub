@@ -12,6 +12,9 @@ namespace CP_MathHub.Core.Configuration
     /// </summary>
     public static class Constant
     {
+        /// <summary>
+        /// Constant String for all Systems
+        /// </summary>
         public static class String
         {
             public const string QuestionSystem = "Question";
@@ -36,6 +39,13 @@ namespace CP_MathHub.Core.Configuration
 
             public const string DiscussionDetailPage = "discussion-detail";
 
+        }
+        /// <summary>
+        /// Constant Int for all Systems
+        /// </summary>
+        public static class Integer
+        {
+            public const int DefaultTake = 10;
         }
 
         /// <summary>

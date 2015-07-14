@@ -8,6 +8,7 @@
 	float: left;
     margin: 0px 10px;
 }
+
 .mh-question-preview > .panel-heading > div {
 	position: relative;
 }
@@ -35,7 +36,7 @@
 .mh-question-preview > .panel-body > div > .mh-info {
 	background-color: #fcf8e3;
 	border: 1px solid #faebcc;
-	padding:0;
+	padding: 0;
 	text-align: center;
 	margin-bottom: 5px;
 }
@@ -70,6 +71,7 @@
 .mh-question-preview > .panel-body > div > .mh-content > a:hover {
 	text-decoration: none;
 }
+
 .mh-question-preview .mh-username {
 	font-size: 12pt;
 }
@@ -87,39 +89,48 @@
  .mh-vote i {
 	color: grey;
  }
+
  .mh-vote i:hover {
 	color: black;
  }
+
 .mh-vote-icon {
 	font-size: 25pt;
     cursor: pointer;
 }
+
 .mh-check-icon {
 	font-size: 25pt;
 	padding-top: 10px;
 }
+
 .mh-checked {
     color: green;
 }
+
 .mh-vote-num {
 	font-size: 19pt;
 }
+
 .mh-vote-down {
 	margin-top: -5px;
 }
+
 .mh-content-detail {
 	max-height: none;
 	overflow-y: auto;
 	text-align: justify;
 }
-.mh-question-preview > .panel-body > div > .mh-content-detail  > a {
+
+.mh-question-preview > .panel-body > div > .mh-content-detail > a {
 	font-size: 17pt;
 	font-weight: bolder;
 }
 
-.mh-question-preview > .panel-body > div > .mh-content-detail  > a:hover {
+.mh-question-preview > .panel-body > div > .mh-content-detail > a:hover {
 	text-decoration: none;
 }
+
 .mh-comment-content {
 	padding: 5px 15px 5px 0px;
 	border-bottom: 1px solid #E5E5E5;
@@ -147,28 +158,35 @@
 	padding: 5px 20px;
 	background-color: ghostwhite;
 }
+
 .mh-rely {
-	padding:0 10px;
+	padding: 0 10px;
 }
+
 .mh-rely-detail {
-	padding:0 10px;
+	padding: 0 10px;
 	border-left: 2px solid #dcdee3;
 }
+
 .mh-rely-rely {
 	margin-top: 10px;
 	width: 90%;
 }
+
 .mh-answer_hint-content {
 	padding-bottom: 10px;
     padding-right: 10px;
 }
+
 .mh-answer_hint-content-row {
 	border-bottom: 1px solid silver;
 }
+
 .mh-answer_hint-detail {
     position: relative;
     padding-right: 20px;
 }
+
 .mh-answer_hint-detail-content {
     text-align: justify;
 }
@@ -186,29 +204,40 @@
 .mh-answer_hint-edit-textarea {
     margin-bottom: 5px;
 }
+
 .mh-form-input-comment {
 	margin: 5px 0px;
 	width: 100%;
     padding: 5px;
 }
+
 .mh-answer-avatar {
 	padding: 0;
 }
+
 .mh-answer-username {
 	padding: 0;
 }
+
 .mh-answer_hint-user_info {
 	border-bottom: 1px solid #E5E5E5;
 	padding-bottom: 5px;
 	padding-left: 20px;
 }
+
 .mh-post-Ans_Hint {
 	/* margin: 15px;
 	text-align: center; */
 }
+
 .mh-post-Ans_Hint-button {
 	margin-top: 10px;
 	text-align: center;
+}
+
+.mh-sort-content {
+    height: 145px;
+    overflow-y: hidden;
 }
 .mh-answer_hint-edit-textarea, .mh-note-answer_hint {
     display: none;
@@ -219,62 +248,75 @@
 	border-bottom: 1px solid #e0e0e0;
 	margin-bottom: 15px;
 }
-.mh-body-tabs > ul> li{
+
+.mh-body-tabs > ul > li {
 	float: right;
 }
-.mh-body-tabs > ul> li.active > a{
+
+.mh-body-tabs > ul > li.active > a {
 	background-color: #fff;
 	color: #222;
 	border-top: 2px solid #FF9900;	
 	border-left: 1px solid #e0e0e0;
 	border-right: 1px solid #e0e0e0;
 }
-.mh-body-tabs > ul> li.active > a:hover{
+
+.mh-body-tabs > ul > li.active > a:hover {
 	background-color: #fff;
 	color: #000;	
 }
-.mh-body-tabs > ul> li > a{
+
+.mh-body-tabs > ul > li > a {
 	color: #777;
 	border-radius: 0px;
 	font-size: 10pt;
-	margin-left:8px;
+	margin-left: 8px;
 	padding: 5px 10px;
 	margin-bottom: -1px;
 	z-index: 5;
 }
-.mh-body-tabs  > ul> li > a:hover {
+
+.mh-body-tabs > ul > li > a:hover {
 	background-color: #fff;
 	border-top: 2px solid #FF9900;	
 	border-left: 1px solid #e0e0e0;
 	border-right: 1px solid #e0e0e0;
 }
+
 .mh-body-search {
 	margin-bottom: 15px;
 }
+
 .mh-body-detail > .row {
 	padding: 0 15px;
 }
+
 .mh-body-detail-image {
 	padding-right: 0;
 }
+
 .mh-body-detail-info {
 	padding-left: 0;
 	color: #888;
 }
+
 .mh-body-detail-info a {
 	color: #07c;
 }
+
 .mh-body-detail-info a:hover {
 	color: #30a7fc;
 	text-decoration: none;
 }
+
 .mh-user-item {
 	float: left;
 	width: 230px;
 	margin-bottom: 10px;
 	height: 80px;
 }
-.mh-search-title{
+
+.mh-search-title {
 	float: left;
 	margin-left: 15px;
 	height: 34px;
@@ -298,19 +340,23 @@
 	margin-right: 5px;
 	background-color: rgb(234, 240, 245);
 }
+
 .mh-tag-name {
 	padding-bottom: 3px;
 }
+
 .mh-tag-content {
 	height: 54px;
 	overflow-y: hidden;
 	  font-size: 10pt;
 }
+
 .mh-tag-times {
 	font-size: 9pt;
 	color: #444;
 }
-.mh-content .mh-bookmark-icon {
+
+.mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon {
     vertical-align: top;
     font-size: 13pt;
 }

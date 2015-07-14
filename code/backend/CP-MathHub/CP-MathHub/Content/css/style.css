@@ -41,11 +41,11 @@ a {
     font-size: 12pt;
 }
 
-    #mh-nav-link > li > a:hover {
-        background-color: #752B20;
-        border: #752B20;
-        color: #fff !important;
-    }
+#mh-nav-link > li > a:hover {
+    background-color: #752B20;
+    border: #752B20;
+    color: #fff !important;
+}
 
 
 #mh-logo {
@@ -60,9 +60,9 @@ a {
     border-color: #fff !important;
 }
 
-    .mh-navbar-toggle:hover, .mh-navbar-toggle:focus {
-        background-color: #D45F4D !important;
-    }
+.mh-navbar-toggle:hover, .mh-navbar-toggle:focus {
+    background-color: #D45F4D !important;
+}
 
 .navbar-default .mh-navbar-toggle .icon-bar {
     background-color: #fff;
@@ -77,109 +77,109 @@ a {
     margin-left: 0px;
 }
 
-    .mh-notification > li.dropdown > a {
-        color: #752B20;
-        padding: 13px 10px;
-        font-size: 17pt;
-    }
+.mh-notification > li.dropdown > a {
+    color: #752B20;
+    padding: 13px 10px;
+    font-size: 17pt;
+}
 
-        .mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
-            color: #fff;
-            background-color: #A52A2A;
-        }
+.mh-notification > li.dropdown > a:hover, .mh-notification > li.dropdown > a:focus {
+    color: #fff;
+    background-color: #A52A2A;
+}
 
-    .mh-notification > li.open > a {
-        color: #fff !important;
-        background-color: #A52A2A !important;
-    }
+.mh-notification > li.open > a {
+    color: #fff !important;
+    background-color: #A52A2A !important;
+}
 
-    .mh-notification > li > a > .badge {
-        position: absolute;
-        top: 5px;
-        left: -2px;
-        background-color: #FFFFFF;
-        color: #D32727;
-        border-radius: 3px;
-        padding: 3px 4px;
-    }
+.mh-notification > li > a > .badge {
+    position: absolute;
+    top: 5px;
+    left: -2px;
+    background-color: #FFFFFF;
+    color: #D32727;
+    border-radius: 3px;
+    padding: 3px 4px;
+}
 
-    .mh-notification > .dropdown > ul {
-        padding: 10px;
-        width: 430px;
-        background-color: #fff !important;
-    }
+.mh-notification > .dropdown > ul {
+    padding: 10px;
+    width: 430px;
+    background-color: #fff !important;
+}
 
-        .mh-notification > .dropdown > ul > li > h3 {
-            font-size: 10pt;
-            display: inline-block;
-            margin: 0;
-            font-weight: bold;
-        }
+.mh-notification > .dropdown > ul > li > h3 {
+    font-size: 10pt;
+    display: inline-block;
+    margin: 0;
+    font-weight: bold;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-notification-setting {
-            display: inline-block;
-            font-size: 10pt;
-            padding: 0;
-            float: right;
-            color: #337ab7;
-        }
+.mh-notification > .dropdown > ul > li > .mh-notification-setting {
+    display: inline-block;
+    font-size: 10pt;
+    padding: 0;
+    float: right;
+    color: #337ab7;
+}
 
-            .mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
-                color: #3b5998;
-                text-decoration: underline;
-            }
+.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
+    color: #3b5998;
+    text-decoration: underline;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-see-all {
-            text-align: center;
-            color: #337ab7;
-            font-size: 10pt;
-            font-weight: bold;
-        }
+.mh-notification > .dropdown > ul > li > .mh-see-all {
+    text-align: center;
+    color: #337ab7;
+    font-size: 10pt;
+    font-weight: bold;
+}
 
-            .mh-notification > .dropdown > ul > li > .mh-see-all:hover {
-                color: #3b5998;
-                text-decoration: underline;
-            }
+.mh-notification > .dropdown > ul > li > .mh-see-all:hover {
+    color: #3b5998;
+    text-decoration: underline;
+}
 
-        .mh-notification > .dropdown > ul > li > .mh-notification-body {
-            max-height: 460px;
-            overflow-y: scroll;
-        }
+.mh-notification > .dropdown > ul > li > .mh-notification-body {
+    max-height: 460px;
+    overflow-y: scroll;
+}
 
-    .mh-notification > li > ul > li > div > div {
-        border-bottom: 1px solid #e5e5e5;
-    }
+.mh-notification > li > ul > li > div > div {
+    border-bottom: 1px solid #e5e5e5;
+}
 
-        .mh-notification > li > ul > li > div > div:hover, #mh-nav-user > li > ul > li > a:hover {
-            background-color: #eceef4;
-        }
+.mh-notification > li > ul > li > div > div:hover, #mh-nav-user > li > ul > li > a:hover {
+    background-color: #eceef4;
+}
 
-    .mh-notification .media {
-        margin: 0px;
-        padding: 5px 0;
-    }
+.mh-notification .media {
+    margin: 0px;
+    padding: 5px 0;
+}
 
-    .mh-notification > li > ul > li > div > div > a .media-body {
-        font-weight: bolder;
-        color: #000;
-    }
+.mh-notification > li > ul > li > div > div > a .media-body {
+    font-weight: bolder;
+    color: #000;
+}
 
-        .mh-notification > li > ul > li > div > div > a .media-body .row {
-            padding: 10px 0;
-        }
+.mh-notification > li > ul > li > div > div > a .media-body .row {
+    padding: 10px 0;
+}
 
-        .mh-notification > li > ul > li > div > div > a .media-body .mh-notifi-info {
-            padding-top: 8px;
-        }
+.mh-notification > li > ul > li > div > div > a .media-body .mh-notifi-info {
+    padding-top: 8px;
+}
 
-    .mh-notification > li > ul > li > div > div > a:hover {
-        text-decoration: none;
-    }
+.mh-notification > li > ul > li > div > div > a:hover {
+    text-decoration: none;
+}
 
-    .mh-notification .mh-notifi-content {
-        font-size: 10pt;
-        font-weight: normal;
-    }
+.mh-notification .mh-notifi-content {
+    font-size: 10pt;
+    font-weight: normal;
+}
 
 .mh-notification-body #mh-notifi-friend {
     margin: 0px;
@@ -203,9 +203,9 @@ a {
     padding: 18px 0 0 0;
 }
 
-    .mh-notification .mh-notifi-friend-button .mh-request-button {
-        font-size: 9pt;
-    }
+.mh-notification .mh-notifi-friend-button .mh-request-button {
+    font-size: 9pt;
+}
 /*  Notification: end */
 .dropdown-menu {
     background-color: #F5F5F5;
@@ -234,11 +234,11 @@ a {
     position: relative;
 }
 
-    #mh-search-header i {
-        position: absolute;
-        top: 32%;
-        right: 25px;
-    }
+#mh-search-header i {
+    position: absolute;
+    top: 32%;
+    right: 25px;
+}
 
 .mh-body {
     margin-top: 50px;
@@ -280,10 +280,10 @@ a {
     margin: 0px 10px;
 }
 
-    .mh-user-info > a > div {
-        width: 70%;
-        float: left;
-    }
+.mh-user-info > a > div {
+    width: 70%;
+    float: left;
+}
 
 .mh-mid-section > .mh-top-content > .row {
     border-bottom: 1px solid #C1C1C1;
@@ -300,9 +300,9 @@ a {
     padding-right: 15px;
 }
 
-    .mh-home-tab > a {
-        margin-bottom: 5px;
-    }
+.mh-home-tab > a {
+    margin-bottom: 5px;
+}
 
 .mh-bookmark-icon {
     color: #C4C4C4;
@@ -332,34 +332,34 @@ a {
     position: relative;
 }
 
-    .mh-tag > i {
-        font-size: 9px;
-        position: absolute;
-        top: 5px;
-    }
+.mh-tag > i {
+    font-size: 9px;
+    position: absolute;
+    top: 5px;
+}
 
-    .mh-tag > label {
-        margin-left: 15px;
-    }
+.mh-tag > label {
+    margin-left: 15px;
+}
 
-    .mh-tag:hover, .mh-tag:focus {
-        text-decoration: none !important;
-        background-color: #1BA9AE !important;
-        color: #fff !important;
-    }
+.mh-tag:hover, .mh-tag:focus {
+    text-decoration: none !important;
+    background-color: #1BA9AE !important;
+    color: #fff !important;
+}
 
 .mh-list-tags {
     margin: 0px;
     padding: 0px;
 }
 
-    .mh-list-tags > i {
-        color: #17A8EC;
-    }
+.mh-list-tags > i {
+    color: #17A8EC;
+}
 
-    .mh-list-tags li {
-        margin-bottom: 5px;
-    }
+.mh-list-tags li {
+    margin-bottom: 5px;
+}
 
 .mh-list-tags-right {
     text-align: right;
@@ -374,66 +374,66 @@ a {
     margin: 40px auto;
 }
 
-    .mh-tabs > input {
-        position: absolute;
-        z-index: 1000;
-        height: 40px;
-        left: 0px;
-        top: 0px;
-        opacity: 0;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-        filter: alpha(opacity=0);
-        cursor: pointer;
-    }
+.mh-tabs > input {
+    position: absolute;
+    z-index: 1000;
+    height: 40px;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
 
-    .mh-tabs input.mh-tab-2 {
-        left: 120px;
-    }
+.mh-tabs input.mh-tab-2 {
+    left: 120px;
+}
 
-    .mh-tabs label {
-        background: white;
-        background: -moz-linear-gradient(top, #white 0%, #4e8c8a 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#white), color-stop(100%,#4e8c8a));
-        background: -webkit-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: -o-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: -ms-linear-gradient(top, #white 0%,#4e8c8a 100%);
-        background: linear-gradient(top, #white 0%,#4e8c8a 100%);
-        font-size: 15px;
-        line-height: 40px;
-        height: 40px;
-        position: relative;
-        padding: 0 20px;
-        float: left;
-        display: block;
-        color: #385c5b;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
-        /* box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1); */
-        cursor: pointer;
-    }
+.mh-tabs label {
+    background: white;
+    background: -moz-linear-gradient(top, #white 0%, #4e8c8a 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#white), color-stop(100%,#4e8c8a));
+    background: -webkit-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: -o-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: -ms-linear-gradient(top, #white 0%,#4e8c8a 100%);
+    background: linear-gradient(top, #white 0%,#4e8c8a 100%);
+    font-size: 15px;
+    line-height: 40px;
+    height: 40px;
+    position: relative;
+    padding: 0 20px;
+    float: left;
+    display: block;
+    color: #385c5b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+    /* box-shadow: 2px 0 2px rgba(0,0,0,0.1), -2px 0 2px rgba(0,0,0,0.1); */
+    cursor: pointer;
+}
 
-        .mh-tabs label:after {
-            content: '';
-            background: #fff;
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            display: block;
-        }
+.mh-tabs label:after {
+    content: '';
+    background: #fff;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    display: block;
+}
 
-    .mh-tabs input:hover + label {
-        background: #EEEEEE;
-    }
+.mh-tabs input:hover + label {
+    background: #EEEEEE;
+}
 
-    .mh-tabs label:first-of-type {
-        z-index: 4;
-        box-shadow: 2px 0 2px rgba(0,0,0,0.1);
-    }
+.mh-tabs label:first-of-type {
+    z-index: 4;
+    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+}
 
 .mh-tab-label-2 {
     z-index: 3;
@@ -460,18 +460,18 @@ a {
     margin-top: -6px;
 }
 
-    .mh-tab-content > div {
-        top: 0;
-        left: 0;
-        padding: 15px 20px;
-        z-index: 1;
-        display: none;
-        -webkit-transition: opacity linear 0.1s;
-        -moz-transition: opacity linear 0.1s;
-        -o-transition: opacity linear 0.1s;
-        -ms-transition: opacity linear 0.1s;
-        transition: opacity linear 0.1s;
-    }
+.mh-tab-content > div {
+    top: 0;
+    left: 0;
+    padding: 15px 20px;
+    z-index: 1;
+    display: none;
+    -webkit-transition: opacity linear 0.1s;
+    -moz-transition: opacity linear 0.1s;
+    -o-transition: opacity linear 0.1s;
+    -ms-transition: opacity linear 0.1s;
+    transition: opacity linear 0.1s;
+}
 
 .mh-tabs input.mh-tab-selector-1:checked ~ .mh-tab-content .mh-tab-content-1,
 .mh-tabs input.mh-tab-selector-2:checked ~ .mh-tab-content .mh-tab-content-2 {
@@ -529,9 +529,9 @@ a {
     display: none;
 }
 
-    .mh-preview-content img, .mh-content img {
-        vertical-align: baseline !important;
-    }
+.mh-preview-content img, .mh-content img {
+    vertical-align: baseline !important;
+}
 
 .mh-tag-list {
     position: absolute;
@@ -547,14 +547,14 @@ a {
     color: #fff;
 }
 
-    .mh-tag-item > span {
-        margin-right: 5px;
-    }
+.mh-tag-item > span {
+    margin-right: 5px;
+}
 
-    .mh-tag-item > i:hover {
-        color: #B91B1B;
-        cursor: pointer;
-    }
+.mh-tag-item > i:hover {
+    color: #B91B1B;
+    cursor: pointer;
+}
 
 #mh-create-tag {
     position: absolute;
@@ -580,20 +580,20 @@ a {
     z-index: 100;
 }
 
-    #mh-tag-autocomplete-list > li {
-        list-style-type: none;
-        padding: 5px;
-        border-bottom: 1px solid;
-        margin-bottom: -1px;
-    }
+#mh-tag-autocomplete-list > li {
+    list-style-type: none;
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: -1px;
+}
 
-        #mh-tag-autocomplete-list > li > label {
-            color: #3271FF;
-        }
+#mh-tag-autocomplete-list > li > label {
+    color: #3271FF;
+}
 
-        #mh-tag-autocomplete-list > li > span {
-            display: none;
-        }
+#mh-tag-autocomplete-list > li > span {
+    display: none;
+}
 
 .mh-seemore, .mh-seemore-comment {
     cursor: pointer;
@@ -611,26 +611,26 @@ a {
     /*margin: 0px;*/
 }
 
-    .mh-profile > a {
-        width: 60px;
-        float: left;
-        margin-left: 10%;
-    }
+.mh-profile > a {
+    width: 60px;
+    float: left;
+    margin-left: 10%;
+}
 
-    .mh-profile > div {
-        width: 50%;
-        float: left;
-        margin-left: 10px;
-        margin-top: 5px;
-    }
+.mh-profile > div {
+    width: 50%;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
 
-        .mh-profile > div > a {
-            font-size: 15pt;
-        }
+.mh-profile > div > a {
+    font-size: 15pt;
+}
 
-        .mh-profile > div > div > span {
-            font-size: 11pt;
-        }
+.mh-profile > div > div > span {
+    font-size: 11pt;
+}
 
 .mh-table-info a {
     text-decoration: none;
@@ -638,11 +638,11 @@ a {
     font-weight: normal;
 }
 
-    .mh-table-info a:hover {
-    }
+.mh-table-info a:hover {
+}
 
 .mh-table-info {
-    padding: 10px;
+    padding: 5px 2px;
     margin: 10px 0;
 }
 
@@ -687,18 +687,18 @@ a {
     border-radius: 5px;
 }
 
-    .mh-banner a, .mh-banner img {
-        width: 100%;
-    }
+.mh-banner a, .mh-banner img {
+    width: 100%;
+}
 
 .mh-btn {
     margin: 0 0 20px 0;
 }
 
-    .mh-btn a {
-        width: 100%;
-        font-size: 15pt;
-    }
+.mh-btn a {
+    width: 100%;
+    font-size: 15pt;
+}
 
 .mh-panel-recommend-body {
     padding: 5px 10px;
@@ -715,9 +715,9 @@ a {
     padding: 3px 0px;
 }
 
-    .mh-panel-recommend-row i {
-        font-size: 9pt;
-    }
+.mh-panel-recommend-row i {
+    font-size: 9pt;
+}
 
 .mh-panel-recommend-icon {
     padding-right: 0;
@@ -736,9 +736,9 @@ footer {
     color: #fff;
 }
 
-    footer > .container > .row {
-        padding: 0px 10px;
-    }
+footer > .container > .row {
+    padding: 0px 10px;
+}
 
 .mh-footer-info {
     text-align: justify;
@@ -752,9 +752,9 @@ footer {
     text-align: center;
 }
 
-    .mh-footer-social a:hover {
-        opacity: 0.7;
-    }
+.mh-footer-social a:hover {
+    opacity: 0.7;
+}
 
 .mh-copyright-content {
     text-align: center;
@@ -804,10 +804,10 @@ footer {
     color: #454545;
 }
 
-    .mh-home-link > a:hover, .mh-home-link > a:focus {
-        text-decoration: none;
-        color: #000;
-    }
+.mh-home-link > a:hover, .mh-home-link > a:focus {
+    text-decoration: none;
+    color: #000;
+}
 /*  Home page: end */
 /*  Image user: start */
 .mh-image-picture {
@@ -900,20 +900,20 @@ footer {
     z-index: 2;
 }
 
-    .pluginCountButtonNub s, .pluginCountButtonNub i {
-        border-color: transparent #9197a3;
-        border-style: solid;
-        border-width: 4px 5px 4px 0;
-        display: block;
-        position: relative;
-        top: 1px;
-    }
+.pluginCountButtonNub s, .pluginCountButtonNub i {
+    border-color: transparent #9197a3;
+    border-style: solid;
+    border-width: 4px 5px 4px 0;
+    display: block;
+    position: relative;
+    top: 1px;
+}
 
-    .pluginCountButtonNub i {
-        border-right-color: #fff;
-        left: 2px;
-        top: -7px;
-    }
+.pluginCountButtonNub i {
+    border-right-color: #fff;
+    left: 2px;
+    top: -7px;
+}
 /*  Share fb: end */
 .mh-social-report {
     margin-bottom: 7px;
@@ -947,20 +947,20 @@ footer {
     position: relative;
 }
 
-    .mh-create-input > div {
-        display: table-cell;
-    }
+.mh-create-input > div {
+    display: table-cell;
+}
 
-        .mh-create-input > div > input {
-            border: 0px;
-            margin-left: 5px;
-            margin-top: 3px;
-            width: 100%;
-        }
+.mh-create-input > div > input {
+    border: 0px;
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 100%;
+}
 
-            .mh-create-input > div > input:focus {
-                outline: none;
-            }
+.mh-create-input > div > input:focus {
+    outline: none;
+}
 
 .mh-create-button {
     width: 230px;
@@ -1034,9 +1034,14 @@ footer {
     font-size: 10px;
 }
 
-.dropdown-menu {
+.media-right > div > .dropdown-menu {
     left: inherit;
     right: 0;
+}
+
+.media-right > div > a:hover > i {
+    color: #333;
+    cursor: pointer;
 }
 
 .media-right > div > ul > li > a:hover {
@@ -1054,8 +1059,33 @@ footer {
 .mh-comment-list-full, .mh-comment-list {
     margin-top: 10px;
 }
-
+.dropdown-menu > li > a {
+    cursor: pointer;
+}
 /*  Setting comment: end */
+/*Edit comment: start*/
+.mh-comment-edit-textarea {
+    display: none;
+}
+.mh-note {
+    display: none;
+    font-size: 9px;
+}
+.mh-comment-history-edit {
+    font-size: 10pt;
+    color: #A9A9A9;
+}
+.mh-comment-history-edit:hover {
+    cursor: pointer;
+    color: #A9A9A9;
+}
+.modal-body .mh-comment-div {
+    border-bottom: 1px solid #E5E5E5;
+}
+.modal-body .mh-comment-div:last-child {
+    border-bottom: 0;
+}
+/*Edit comment: end*/
 /* Comment: end */
 /* post setting: start*/
 .mh-post-setting-icon {
@@ -1064,16 +1094,28 @@ footer {
     color: #A9A7A7;
 }
 
-.mh-posts-setting > a:hover > i {
-    color: #333;
-    cursor: pointer;
+.mh-posts-setting > ul {
+    margin-right: 0px;
+    padding: 0px;
 }
 
-.mh-posts-setting ul > li > a:hover {
+.mh-posts-setting > ul > li {
+    list-style-type: none;
+}
+
+.mh-posts-setting > ul > li > a:hover > i {
+    color: #333;
+}
+
+.mh-posts-setting > ul > li.open > a > i {
+    color: #333 !important;
+}
+
+.mh-posts-setting > ul > li > ul > li > a:hover {
     background-color: #ccc;
 }
 
-.mh-posts-setting ul > li > a {
+.mh-posts-setting > ul > li > ul > li > a {
     cursor: pointer;
 }
 /* Report popup*/
@@ -1103,87 +1145,256 @@ footer {
 /* Chat: start */
 .mh-chat {
     position: fixed;
-    right: 0;
-    bottom: 0;
-    z-index: 1030;
-    border-left: 1px solid #C0C0C0;
-    border-right: 1px solid #EFF3F8;
+    right: 0px;
+    bottom: 0px;
+    max-height: calc(100vh - 51px);
+    padding-bottom: 30px;
     background-color: #EFF3F8;
+    overflow-y: scroll;
     border-top: 1px solid #C0C0C0;
-    padding-right: 5px;
+    border-left: 1px solid #C0C0C0;
+}
+.mh-chat .mh-chat-left {
+    float: left;
+    width: 40px;
+    transition: 0.3s width;
+    background-color: #EFF3F8;
+    padding-left: 3px;
 }
 
-    .mh-chat ul {
-        list-style-type: none;
-        margin-top: 10px;
-    }
-
-.mh-chat-area-content-full {
-    width: 200px;
-    /*display: none;*/
+.mh-chat:hover .mh-chat-left {
+    transition-delay: 0.5s;
+    width: 170px;
 }
 
-    .mh-chat-area-content-full ul {
-        padding: 0px;
-        padding-left: 7px;
-    }
-
-    .mh-chat-area-content-full .media-body, .mh-chat-area-content .media-right {
-        vertical-align: middle;
-    }
-
-.mh-chat-area-content .media-right {
-    padding: 0px;
+.mh-chat .mh-chat-right {
+    float: right;
+    background-color: #EFF3F8;
+    z-index: 1002;
 }
 
-.mh-chat-area-content ul {
-    padding: 0px;
-    padding-left: 7px;
+.mh-chat .mh-chat-left span {
+    padding-left: 5px;
 }
 
-.mh-chat-area-content-full a:hover {
-    text-decoration: none;
+.mh-chat-user, .mh-chat-status {
+    height: 30px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-.mh-chat-status {
-    font-size: 8px;
+.mh-chat-status-icon-on {
+    font-size: 10px;
     color: #0F9D28;
+    padding-top: 8px;
 }
 
-.mh-chat-status-off {
-    font-size: 8px;
+.mh-chat-status-icon-off {
+    font-size: 10px;
     color: #9197a3;
+    padding-top: 8px;
 }
 
-.mh-chat-area-content-footer {
-    border-top: 1px solid #fff;
+.mh-chat-footer {
+    position: fixed;
+    bottom: 0px;
+}
+
+.mh-chat:hover .mh-chat-footer-left {
+    transition-delay: 0.5s;
+    width: 170px;
+}
+
+.mh-chat:hover .mh-chat-area-input  {
+    transition-delay: 0.5s;
+    width: 85%;
+}
+
+.mh-chat-footer-left {
     background-color: #fff;
-    text-align: center;
     height: 27px;
-    position: relative;
+    padding-left: 5px;
+    float: left;
+    width: 40px;
+    transition: 0.3s width;
 }
 
-    .mh-chat-area-content-footer .mh-chat-area-search {
-        position: absolute;
-        left: 5px;
-        bottom: 6px;
-        z-index: 100;
-    }
+.mh-chat-footer-right {
+    background-color: #fff;
+    height: 27px;
+    width: 25px;
+    float: right;
+}
 
-    .mh-chat-area-content-footer .mh-chat-area-input {
-        width: 90%;
-        float: left;
-        padding: 6px 0px 6px 25px;
-        height: 27px;
-        border: 0px;
-    }
+.mh-chat-area-input {
+    width: 0px;
+    height: 26px;
+    padding: 6px 6px 6px 12px;
+    border: 0px;
+    transition: 0.3s width;
+}
+
+.mh-chat-area-input:focus {
+    outline: none;
+}
+
+.mh-chat-area-search {
+}
 
 .mh-chat-area-setting {
-    padding-top: 7px;
-    color: #000;
+    cursor: pointer;
+    margin-top: 7px;
 }
 
-    .mh-chat-area-setting:hover {
-        color: #337ab7;
-    }
+.mh-chat-footer-right ul {
+    left: inherit;
+    right: 0;
+}
+
+.mh-chat .dropup > ul > li > a:hover {
+    background-color: #ccc;
+}
+/*Chat popup: start*/
+.mh-chat-popups {
+    /*width: 855px;*/
+}
+.mh-chat-popup {
+    z-index: 1000;
+    float: right;
+    position: fixed;
+    bottom: 0px;
+    display: block;
+    width: 265px;
+    border: 1px solid #C08484;
+    background-color: #eff3f8;
+    max-height: calc(100vh - 51px);
+    margin-left: 13px;
+}
+.mh-chat-popup-head {
+    height: 27px;
+    width: 100%;
+    background-color: #BD5555;
+    cursor: pointer;
+}
+.mh-chat-popup-name {
+    float: left;
+}
+.mh-chat-popup-name h4 {
+    font-weight: bold;
+    margin: 0px;
+    padding: 3px 10px;
+}
+.mh-chat-popup-name h4 .mh-chat-status-icon-on, .mh-chat-popup-name h4 .mh-chat-status-icon-off {
+    padding: 0px;
+}
+.mh-chat-popup-name a {
+    color: #fff;
+    font-size: 14px;
+}
+.mh-chat-popup-button-head {
+    float: right;
+    width: 73px;
+}
+.mh-chat-popup-button-head a:hover, mh-chat-popup-button-head a:focus {
+    text-decoration: none;
+}
+.mh-chat-popup-head-icon {
+    font-size: 14px;
+    color: #DDBDBD;
+    padding: 5px 3px;
+}
+.mh-chat-popup-head-icon:hover, .mh-chat-popup-head-icon:focus {
+    color: #fff;
+}
+.mh-chat-popup-setting-show {
+    position: absolute;
+    right: 25px;
+    top: 27px;
+    margin-bottom: 2px;
+    list-style: none;
+    background-color: #F5F5F5;
+    z-index: 1000;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.mh-chat-popup-setting-show  li a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.mh-chat-popup-setting-show  li a:hover {
+    background-color: #ccc;
+}
+.mh-chat-popup-add-friend {
+    position: absolute;
+    left: 0;
+    padding: 0px 5px 3px 5px;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+.mh-chat-popup-input-add-more {
+    padding: 4px 3px 4px 3px;
+    font-size: 12px;
+    width: 83%;
+    height: 22px;
+}
+.mh-chat-popup-input-add-more:focus {
+    outline: none;
+}
+.mh-chat-popup-button-add-done {
+    padding: 1px 3px;
+    margin-top: 2px;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 12px;
+}
+.mh-chat-popup-body {
+}
+.mh-chat-popup-content {
+    height: 232px;
+    width: 100%;
+    background-color: #eff3f8;
+}
+.mh-chat-popup-inputs {
+    position: relative;
+    border-top: 2px solid #CD9E9E;
+    height: 27px;
+    width: 100%;
+    background-color: #fff;
+}
+.mh-chat-popup-input{
+    position: relative;
+    width: 100%;
+    height: 26px;
+    padding: 4px 26px 5px 5px;
+    border: 0;
+}
+.mh-chat-popup-input:focus {
+    outline: none;
+}
+.mh-chat-popup-footer-icon {
+    position: absolute;
+    bottom: 4px;
+    z-index: 1;
+    right: 7px;
+    font-size: 17px;
+    color: #ccc;
+    font-weight: bold;
+}
+/*Chat popup: start*/
 /* Chat: end */
