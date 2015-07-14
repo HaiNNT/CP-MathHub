@@ -1094,12 +1094,10 @@ footer > .container > .row {
 .mh-post-content-history-edit {
     font-size: 10pt;
     color: #A9A9A9;
-    margin-left: 5px;
 }
 .mh-post-content-history-edit:hover {
     font-size: 10pt;
     color: #A9A9A9;
-    margin-left: 5px;
 }
 .mh-comment-history-edit {
     cursor: pointer;
@@ -1114,6 +1112,9 @@ footer > .container > .row {
 }
 .modal-body .mh-comment-div:last-child {
     border-bottom: 0;
+}
+.modal-body .mh-content-detail > .row {
+    margin: 0px;
 }
 /*Edit comment: end*/
 /* Comment: end */
