@@ -53,10 +53,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
                 )
-                .ForMember(
-                    s => s.Status,
-                    d => d.MapFrom(m => PostStatusEnum.Active)
-                )
+                //.ForMember(
+                //    s => s.Status,
+                //    d => d.MapFrom(m => PostStatusEnum.Active)
+                //)
                 .ForMember(
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
