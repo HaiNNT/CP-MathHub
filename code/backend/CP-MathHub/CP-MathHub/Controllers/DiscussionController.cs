@@ -46,6 +46,7 @@ namespace CP_MathHub.Controllers
 
         }
         //Get: CategoryIndex
+        [HttpGet]
         public ActionResult CategoryIndex(string tag, int tagId, int page = 0)
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
@@ -74,6 +75,41 @@ namespace CP_MathHub.Controllers
             else
             {
                 return PartialView("Partials/_DiscussionListCategoryPartialView", discussionTagPreviewVM);
+            }
+        }
+        //Post: CategoryIndex
+        [HttpPost, ValidateInput(false)]
+        public ActionResult CategoryIndex(DiscussionTagHomeViewModel discussionTagHomeVM, int tagId)
+        {
+            Discussion discussion = new Discussion();
+            discussion.Title = discussionTagHomeVM.Tile;
+            discussion.Content = discussionTagHomeVM.Content;
+            discussion.CreatedDate = DateTime.Now;
+            discussion.LastEditedDate = discussion.CreatedDate;
+            discussion.Privacy = MainPostPrivacyEnum.Everyone;
+            discussion.Tags.Add(cService.GetTag(tagId));
+            discussion.UserId = User.Identity.GetUserId<int>();
+            discussion.LastViewed = DateTime.Now;
+            dService.InsertDiscussion(discussion);
+
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = discussion.Content;
+            editedlog.CreatedDate = discussion.LastEditedDate;
+            editedlog.PostId = discussion.Id;
+            editedlog.UserId = discussion.UserId;
+
+            discussion.EditedContents.Add(editedlog);
+            dService.EditDiscussion(discussion);
+            
+            //discussion.Tags = cService.GetTags(discussionTagHomeVM.TagIds);
+            
+            if (discussion.Id != 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Views/Error");
             }
         }
         //Tag
@@ -181,7 +217,7 @@ namespace CP_MathHub.Controllers
             discussion.LastEditedDate = editedlog.CreatedDate;
             discussion.EditedContents.Add(editedlog);
 
-            discussion.UserId = cService.GetLoginUser().Id;
+            discussion.UserId = User.Identity.GetUserId<int>();
             discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
             dService.InsertDiscussion(discussion);
             if (discussion.Id != 0)

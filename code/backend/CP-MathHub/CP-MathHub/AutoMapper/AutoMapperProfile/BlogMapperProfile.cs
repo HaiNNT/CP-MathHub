@@ -119,15 +119,18 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             )
             .ForMember(
                 s => s.UserInfo,
-                d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
-            )
-            .ForMember(
-                s => s.Bookmarked,
-                d => d.MapFrom(m => m.BookmarkUsers
-                                        .Where(u => u.Id == new CommonService(
+                d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(new CommonService(
                                                                 new CPMathHubModelContainer())
-                                                                    .GetLoginUser().Id).Count() > 0)
-            );
+                                                                    .GetUser(m.UserId)))
+            )
+                //.ForMember(
+                //    s => s.Bookmarked,
+                //    d => d.MapFrom(m => m.BookmarkUsers
+                //                            .Where(u => u.Id == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id).Count() > 0)
+                //);
+            ;
             #endregion
             #region Article Edit
             Mapper.CreateMap<Article, ArticleEditViewModel>()

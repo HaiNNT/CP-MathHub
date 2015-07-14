@@ -200,13 +200,34 @@ function initCkeditor(preview) {
         list.push($(this).attr("id"));
     });
     for (var item in list) {
-        CKEDITOR.replace(list[item]);
-        if (preview) {
-            CKEDITOR.instances[list[item]].on('change', function () {
-                var content = CKEDITOR.instances[list[item]].getData();
-                $(".mh-preview-content").html("");
-                $(".mh-preview-content").append($(content));
+        if (list[item] == "fast-editor") {
+            CKEDITOR.replace('fast-editor', {
+                //removePlugins: 'smiley, image, specialchar, eqneditor, dialog, '
+                toolbar: [
+                { name: 'document', items: ['Source', '-', 'Preview'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
+                {
+                    name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv',
+                        '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                },
+                { name: 'insert', items: ['Image', 'Table', 'Smiley', 'SpecialChar'] },
+                '/',
+                { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'tools', items: ['Maximize', 'ShowBlocks', '-', 'EqnEditor'] }
+                ],
+                height: 100
             });
+        }
+        else {
+            CKEDITOR.replace(list[item]);
+            if (preview) {
+                CKEDITOR.instances[list[item]].on('change', function () {
+                    var content = CKEDITOR.instances[list[item]].getData();
+                    $(".mh-preview-content").html("");
+                    $(".mh-preview-content").append($(content));
+                });
+            }
         }
     }
 }
@@ -405,6 +426,7 @@ $(document).ready(function () {
             break;
         case "discussion-category":
             commentPost();
+            initCkeditor(true);
             applyInfinityLoading();
             break;
         default:

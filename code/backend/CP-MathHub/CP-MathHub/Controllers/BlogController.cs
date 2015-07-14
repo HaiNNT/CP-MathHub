@@ -235,7 +235,7 @@ namespace CP_MathHub.Controllers
             return View("Views/BlogDetailView", articleDetailVM);
         }
 
-        //Get: Blog/Create
+        //Get: Blog/CreateCreate
         [HttpGet]
         public ActionResult Create()
         {
