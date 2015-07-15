@@ -1437,3 +1437,30 @@ footer > .container > .row {
 }
 /*Chat popup: start*/
 /* Chat: end */
+/* Tag: start */
+.mh-tag-page {
+	padding: 7px;
+	float: left;
+	width: 226px;
+	height: 103px;
+	color: #888;
+	margin-bottom: 3px;
+	margin-right: 5px;
+	background-color: rgb(234, 240, 245);
+}
+
+.mh-tag-name {
+	padding-bottom: 3px;
+}
+
+.mh-tag-content {
+	height: 54px;
+	overflow-y: hidden;
+	  font-size: 10pt;
+}
+
+.mh-tag-times {
+	font-size: 9pt;
+	color: #444;
+}
+/* Tag: end */
