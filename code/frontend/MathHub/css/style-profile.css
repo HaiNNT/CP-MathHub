@@ -26,10 +26,10 @@
     /*border-bottom: 1px solid #C1C1C1;*/
     margin-top: -5px;
 }
-.mh-profile-body-content {
+.mh-body-profile {
     margin-top: 20px;
 }
-.mh-profile-body-content h3 {
+.mh-body-profile h3 {
     border-bottom: 1px solid #C1C1C1;
     margin-bottom: 0;
     padding-bottom: 5px;
@@ -37,13 +37,13 @@
 }
 .mh-profile-user-info {
 }
-.mh-profile-body-content a {
+.mh-body-profile .mh-profile-info .mh-profile-info-row a {
     float: right;
 }
 .mh-profile-info-row .col-xs-5 a {
     float: left;
 }
-.mh-profile-body-content a:hover, .mh-profile-body-content a:focus {
+.mh-body-profile a:hover, .mh-body-profile a:focus {
     text-decoration: none;
 }
 .mh-profile-info-row {
@@ -57,7 +57,7 @@ form:last-child .mh-profile-info-row {
 .mh-profile-edit, .mh-pass-edit {
     display: none;
 }
-.mh-profile-body-content .mh-profile-info-row:hover .mh-profile-edit, .mh-profile-body-content .mh-profile-info-row:hover .mh-pass-edit {
+.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit, .mh-body-profile .mh-profile-info-row:hover .mh-pass-edit {
     display: block;
 }
 .mh-profile-input-edit {
@@ -97,5 +97,40 @@ form:last-child .mh-profile-info-row {
     text-align: right;
     margin-top: 19px;
     margin-bottom: 10px;
+}
+.mh-body-profile .tab-content {
+    border: 1px solid #DDD;
+    border-top: 0;
+    padding: 15px;
+}
+.mh-profile-friend {
+    height: 100px;
+    max-width: 447px;
+    border: 1px solid #E9EAED;
+    float: left;
+    margin-left: 15px;
+}
+.mh-profile-friend .media-body, .mh-profile-friend .media-right {
+    vertical-align: middle;
+}
+.mh-profile-friend .media-body h5 {
+    font-weight: bold;
+    margin-top: 5px;
+}
+.mh-profile-friend .media-right .dropdown-menu > li:hover{
+    background-color: #ccc;
+}
+.tab-content .media:first-child {
+      margin-top: 15px;
+}
+.mh-profile-friend .media-right .btn-group {
+    margin-right: 5px;
+}
+.mh-profile-friend .media-body span {
+    font-size: 12px;
+    color: #ccc;
+}
+.mh-profile-friend-quantity {
+    color: #ccc;
 }
 /*User friend: end*/

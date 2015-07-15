@@ -204,9 +204,10 @@ footer {
 .mh-create-fast .mh-create-title {
     margin-top: 5px;
 }
-.mh-create-fast h4 {
-    font-weight: bold;
-    margin: 0;
+.mh-create-fast button {
+    /*font-weight: bold;
+    margin: 0;*/
+    width: 100%;
 }
 .mh-create-fast .mh-create-input {
     height: 20px;

@@ -602,32 +602,350 @@
                         </div>
                     </div>
                 </div>
-                <div class="mh-profile-body-content">
+                <div class="mh-body-profile">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active">
-                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <a href="#all-friend" aria-controls="all-friend" role="tab" data-toggle="tab">
                                 Tất cả bạn bè
-                                <span>40</span>
+                                <span class="mh-profile-friend-quantity">40</span>
                             </a>
                         </li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                        <li role="presentation">
+                            <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
+                                Người theo dõi bạn
+                                <span class="mh-profile-friend-quantity">40</span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#followee" aria-controls="followee" role="tab" data-toggle="tab">
+                                Bạn đang theo dõi
+                                <span class="mh-profile-friend-quantity">40</span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
-                            aaaaaaaaaaaaaaaaaaa
+                        <div role="tabpanel" class="tab-pane active" id="all-friend">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>
+                                        Kết quả cho:
+                                        <span>abc</span>
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
-                            bbbbbbbbbbbb
+                        <div role="tabpanel" class="tab-pane" id="follower">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>
+                                        Kết quả cho:
+                                        <span>abc</span>
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                        <span>đang theo dõi bạn</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-user-plus"></i>
+                                                Thêm bạn
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                        <span>đang theo dõi bạn</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                        <span>đang theo dõi bạn</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="messages">
-                            cccccccccccccc
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="settings">
-                            dddddddddddd
+                        <div role="tabpanel" class="tab-pane" id="followee">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>
+                                        Kết quả cho:
+                                        <span>abc</span>
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1001,7 +1319,7 @@
     <script src="js/jquery-1.11.3.js"></script>
     <script src="jquery-ui/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script>
+    <!--<script>
         $(".mh-profile-edit-button").click(function () {
             // thẻ a (chỉnh sửa)
             event.preventDefault();
@@ -1095,6 +1413,6 @@
             //an
             $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
         });
-    </script>
+    </script>-->
 </body>
 </html>

@@ -811,8 +811,8 @@ footer > .container > .row {
 /*  Home page: end */
 /*  Image user: start */
 .mh-image-user-profile {
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 4px;

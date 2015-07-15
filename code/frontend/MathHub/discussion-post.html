@@ -703,7 +703,23 @@
                 </div>
                 <form>
                     <div class="mh-create-fast">
-                        <h4>Đăng nhanh</h4>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Đăng nhanh
+                        </button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="well">
+                                <div class="mh-create-title">
+                                    <input type="text" placeholder="Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-create-input">
+                                </div>
+                                <div class="mh-ckeditor">
+                                    <textarea name="editor1" id="editor1" rows="15" cols="80"></textarea>
+                                </div>
+                                <div class="mh-create-div">
+                                    <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<h4>Đăng nhanh</h4>
                         <div class="mh-create-title">
                             <input type="text" placeholder="Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-create-input">
                         </div>
@@ -714,7 +730,7 @@
                         </div>
                         <div class="mh-create-div">
                             <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
-                        </div>
+                        </div>-->
                     </div>
                 </form>
                 <div class="mh-discussion-posts">
@@ -5304,7 +5320,7 @@
                 { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike'] },
                 { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv',
                 '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-                { name: 'insert', items: ['Image', 'Table', 'Smiley', 'SpecialChar'] },
+                { name: 'insert', items: ['Image', 'Smiley', 'SpecialChar'] },
 		        '/',
                 { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
 	            { name: 'colors', items: ['TextColor', 'BGColor'] },

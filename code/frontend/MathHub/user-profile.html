@@ -572,7 +572,10 @@
                 <div class="mh-top-content">
                     <div class="row">
                         <div class="col-xs-12 mh-content-title">
-                            <h2>Thông tin cá nhân</h2>
+                            <h2>
+                                <i class="fa fa-user"></i>
+                                Thông tin cá nhân
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -589,7 +592,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mh-profile-body-content">
+                <div class="mh-body-profile">
                     <div class="row mh-profile-user-info">
                         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
                             <img src="img/user.jpg" class="mh-image-user-profile" />
@@ -1244,7 +1247,7 @@
             event.preventDefault();
             // mh-profile-span-edit, thẻ a (chỉnh sửa): ẩn
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").hide();
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-edit-button").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
             $(".mh-profile-edit-button").hide();
             // save, cancel, input hiện
             $(this).siblings().show();
@@ -1308,7 +1311,7 @@
 
             // mh-profile-span-edit: hiện
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").show();
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-edit-button").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
             //Nút save: ẩn
             $(this).siblings().hide();
             //thẻ a: hiện
@@ -1319,18 +1322,18 @@
         $(".mh-pass-edit-button").click(function () {
             //an
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span").hide();
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-edit-button").hide();
-            $(this).parents(".mh-profile-body-content").find(".mh-profile-edit-button").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").hide();
             //hien
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-change").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").show();
         });
         $(".mh-pass-cancel").click(function () {
             //hien
             $(this).parents(".mh-profile-info-row").find(".mh-profile-span").show();
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-edit-button").show();
-            $(this).parents(".mh-profile-body-content").find(".mh-profile-edit-button").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").show();
             //an
-            $(this).parents(".mh-profile-body-content").find(".mh-pass-change").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
         });
     </script>
 </body>
