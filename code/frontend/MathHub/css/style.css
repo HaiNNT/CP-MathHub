@@ -1091,6 +1091,8 @@ footer > .container > .row {
 .mh-note {
     display: none;
     font-size: 9px;
+    text-align: right;
+    margin-bottom: 5px;
 }
 .mh-post-content-history-edit {
     font-size: 10pt;

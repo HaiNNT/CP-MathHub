@@ -2,9 +2,10 @@
       border-right: 0px;
       margin-right: 0px;
 }
-.mh-mid-section > .mh-top-content > .row {
+/*.mh-mid-section > .mh-top-content > .row {
       border-bottom: 0px;
-}
+      margin: 0px;
+}*/
 .mh-left-section {
     padding: 0px;
     margin-top: 60px;
@@ -22,25 +23,27 @@
     color: #5b9bd1;
 }
 .mh-home > .row {
-    border-bottom: 1px solid #C1C1C1;
+    /*border-bottom: 1px solid #C1C1C1;*/
     margin-top: -5px;
 }
-.mh-body-profile h3 {
+.mh-profile-body-content {
+    margin-top: 20px;
+}
+.mh-profile-body-content h3 {
     border-bottom: 1px solid #C1C1C1;
     margin-bottom: 0;
     padding-bottom: 5px;
     font-weight: bold;
 }
 .mh-profile-user-info {
-    margin-top: 10px;
 }
-.mh-body-profile a {
+.mh-profile-body-content a {
     float: right;
 }
 .mh-profile-info-row .col-xs-5 a {
     float: left;
 }
-.mh-body-profile a:hover, .mh-body-profile a:focus {
+.mh-profile-body-content a:hover, .mh-profile-body-content a:focus {
     text-decoration: none;
 }
 .mh-profile-info-row {
@@ -54,7 +57,7 @@ form:last-child .mh-profile-info-row {
 .mh-profile-edit, .mh-pass-edit {
     display: none;
 }
-.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit, .mh-body-profile .mh-profile-info-row:hover .mh-pass-edit {
+.mh-profile-body-content .mh-profile-info-row:hover .mh-profile-edit, .mh-profile-body-content .mh-profile-info-row:hover .mh-pass-edit {
     display: block;
 }
 .mh-profile-input-edit {
@@ -88,3 +91,11 @@ form:last-child .mh-profile-info-row {
 .mh-profile-select-edit {
     display: none;
 }
+
+/* User friend: start */
+.mh-content-top-button {
+    text-align: right;
+    margin-top: 19px;
+    margin-bottom: 10px;
+}
+/*User friend: end*/
