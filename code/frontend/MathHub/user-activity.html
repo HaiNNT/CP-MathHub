@@ -1,0 +1,1402 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-profile.css" rel="stylesheet">
+    <link href="img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+    <title></title>
+</head>
+<body>
+    <header class="navbar navbar-default navbar-fixed-top" id="mh-header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed mh-navbar-toggle" data-toggle="collapse" data-target="#mh-header-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bar"></span>
+                    <span class="fa fa-bar"></span>
+                    <span class="fa fa-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img id="mh-logo" alt="Brand" src="img/logoMain.png">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="mh-header-collapse">
+                <ul class="nav navbar-nav" id="mh-nav-link">
+                    <li><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Bài Viết</a></li>
+                    <li><a href="#">Thảo Luận</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="mh-nav-user">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Thanh Hải
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Thông tin cá nhân</a></li>
+                            <li><a href="#">Thiết lập quyền riêng tư</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img class="mh-user-icon" alt="User Icon" src="img/user.jpg" /></a></li>
+                </ul>
+                <!-- Notification: start -->
+                <ul class="nav navbar-nav navbar-right mh-notification">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-group"></i>
+                            <span class="badge badge-default">3</span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <h3>Lời mời kết bạn</h3>
+                                <a href="#" class="mh-notification-setting">Cài đặt</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="mh-notification-body">
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="mh-notifi-friend">
+                                        <div class="col-xs-6 media">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a>
+                                                    <span class="media-heading" id="mh-notifi-user-name">User</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 mh-notifi-friend-button">
+                                            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+                                            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="mh-see-all">Xem tất cả</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-comments"></i>
+                            <span class="badge badge-default">3</span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <h3>Tin nhắn</h3>
+                                <a href="#" class="mh-notification-setting">Gửi tin nhắn mới</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="mh-notification-body">
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">User</span><br />
+                                                    <span class="mh-notifi-content"> sao? bạn nói gì</span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="mh-see-all">Xem tất cả</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-globe"></i>
+                            <span class="badge badge-default">3</span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <h3>Thông báo</h3>
+                                <a href="#" class="mh-notification-setting">Cài đặt</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="mh-notification-body">
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="img/user.jpg" alt="..." class="mh-user-image">
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-heading">
+                                                        User
+                                                        <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span>
+                                                    </span><br />
+                                                    <span class="mh-time">58 phút trước</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" class="mh-see-all">Xem tất cả</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul><!-- Notification: end -->
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </header>
+    <div class="container mh-body">
+        <div class="row">
+            <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Thông tin cá nhân
+                    </div>
+                </a>
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Bạn bè
+                        <span class="badge mh-num-icon">42</span>
+                    </div>
+                </a>
+                <a class="mh-profile-menu-button active">
+                    <div class="mh-profile-menu-div">
+                        Hoạt động
+                    </div>
+                </a>
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Quyền riêng tư
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section">
+                <div class="mh-top-content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-3 mh-content-title">
+                            <h2>
+                                <i class="fa fa-globe"></i>
+                                Hoạt động
+                            </h2>
+                        </div>
+                        <!--<div class="col-xs-12 col-sm-7 col-md-9 mh-content-top-button">
+                            <a class="btn btn-default" href="#" role="button">
+                                <span class="badge mh-num-icon">42</span>
+                                Lời mời kết bạn
+                            </a>
+                            <a class="btn btn-default" href="#" role="button">
+                                <i class="fa fa-user-plus"></i>
+                                Tìm bạn
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="mh-home">
+                    <div class="row">
+                        <div class="visible-xs mh-home-tab">
+                            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+                            <a class="btn btn-danger btn-sm">
+                                Bạn bè
+                                <span class="badge mh-num-icon">42</span>
+                            </a>
+                            <a class="btn btn-danger btn-sm">Hoạt động</a>
+                            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mh-body-profile">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#all-post" aria-controls="all-post" role="tab" data-toggle="tab">
+                                Bài đăng
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">
+                                Thẻ yêu thích
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#reputations" aria-controls="reputations" role="tab" data-toggle="tab">
+                                Điểm thưởng
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">
+                                Hoạt động
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="all-post">
+                            <div class="row">
+                                <div class="mh-profile-posts">
+                                    <h4>
+                                        Câu hỏi
+                                        <span>(2)</span>
+                                    </h4>
+                                    <div class="mh-profile-post">
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Vì sao trái đất hình tròn mà không phải hình elip?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã hỏi:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mh-profile-posts">
+                                    <h4>
+                                        Trả lời
+                                        <span>(2)</span>
+                                    </h4>
+                                    <div class="mh-profile-post">
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã trả lời:
+                                            <a href="">Vì sao trái đất hình tròn mà không phải hình elip?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã trả lời:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mh-profile-posts">
+                                    <h4>
+                                        Bài viết
+                                        <span>(2)</span>
+                                    </h4>
+                                    <div class="mh-profile-post">
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã đăng bài viết:
+                                            <a href="">Vì sao trái đất hình tròn mà không phải hình elip?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã đăng bài viết:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mh-profile-posts">
+                                    <h4>
+                                        Thảo luận
+                                        <span>(2)</span>
+                                    </h4>
+                                    <div class="mh-profile-post">
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã đăng thảo luận:
+                                            <a href="">Vì sao trái đất hình tròn mà không phải hình elip?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-square"></i>
+                                            Bạn đã đăng thảo luận:
+                                            <a href="">Tại sao hệ số PI của kim tử tháp Ai Cập lại chính xác đến nổi khoa học ngày nay còn chưa bì kịp?</a><br />
+                                            <span class="mh-profile-time">vào lúc 17:00 ngày 20 tháng 5 năm 2015</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tags">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>
+                                        Kết quả cho:
+                                        <span>abc</span>
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row mh-profile-tag-favourite">
+                                <div class="mh-tag-page">
+                                    <div class="mh-tag-name">
+                                        <a href="#" title="Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến..." class="mh-tag">Đại số</a>
+                                        x 1000
+                                    </div>
+                                    <div class="mh-tag-content">
+                                        Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến...
+                                    </div>
+                                    <div class="mh-tag-times">
+                                        dùng 1 trong ngày. 7 trong tuần
+                                    </div>
+                                </div>
+                                <div class="mh-tag-page">
+                                    <div class="mh-tag-name">
+                                        <a href="#" title="Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến..." class="mh-tag">Đại số</a>
+                                        x 1000
+                                    </div>
+                                    <div class="mh-tag-content">
+                                        Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến...
+                                    </div>
+                                    <div class="mh-tag-times">
+                                        dùng 1 trong ngày. 7 trong tuần
+                                    </div>
+                                </div>
+                                <div class="mh-tag-page">
+                                    <div class="mh-tag-name">
+                                        <a href="#" title="Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến..." class="mh-tag">Đại số</a>
+                                        x 1000
+                                    </div>
+                                    <div class="mh-tag-content">
+                                        Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến...
+                                    </div>
+                                    <div class="mh-tag-times">
+                                        dùng 1 trong ngày. 7 trong tuần
+                                    </div>
+                                </div>
+                                <div class="mh-tag-page">
+                                    <div class="mh-tag-name">
+                                        <a href="#" title="Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến..." class="mh-tag">Đại số</a>
+                                        x 1000
+                                    </div>
+                                    <div class="mh-tag-content">
+                                        Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến...
+                                    </div>
+                                    <div class="mh-tag-times">
+                                        dùng 1 trong ngày. 7 trong tuần
+                                    </div>
+                                </div>
+                                <div class="mh-tag-page">
+                                    <div class="mh-tag-name">
+                                        <a href="#" title="Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến..." class="mh-tag">Đại số</a>
+                                        x 1000
+                                    </div>
+                                    <div class="mh-tag-content">
+                                        Đại số là một ngành toán học nghiên cứu một cách trừu tượng hệ thống số đếm và các phép tính giữa chúng, bao gồm cả một số chủ đề cao cấp như lý thuyết nhóm, vành, trường, lý thuyết bất biến...
+                                    </div>
+                                    <div class="mh-tag-times">
+                                        dùng 1 trong ngày. 7 trong tuần
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="reputations">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h4>
+                                        Kết quả cho:
+                                        <span>abc</span>
+                                    </h4>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media mh-profile-friend">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="mh-image-user-profile" src="img/user-icon.png" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Bạn đang theo dõi</span>
+                                        <h5 class="media-heading">Thân Văn Tâm</h5>
+                                    </div>
+                                    <div class="media-right">
+                                        <!-- Single button -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-check"></i>
+                                                Bạn bè
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Action</a></li>
+                                                <li><a href="#">Another action</a></li>
+                                                <li><a href="#">Something else here</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="activity" class="tab-pane">
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <!-- Chat: start -->
+    <!--<div class="mh-chat">
+        <div class="mh-chat-left">
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 1</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 2</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 3</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 4</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 5</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 6</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 7</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 8</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 9</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 10</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 11</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 12</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 1</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 2</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 3</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 4</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 5</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 6</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 7</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 8</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 9</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 10</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 11</span>
+            </div>
+            <div class="mh-chat-user">
+                <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                <span>Văn Tâm 12</span>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="mh-chat-right">
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-off"></i>
+            </div>
+            <div class="mh-chat-status">
+                <i class="fa fa-circle mh-chat-status-icon-on"></i>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="mh-chat-footer">
+            <div class="mh-chat-footer-left">
+                <i class="fa fa-search mh-chat-area-search"></i>
+                <input type="text" placeholder="Tìm kiếm..." class="mh-chat-area-input">
+            </div>
+            <div class="dropup mh-chat-footer-right">
+                <a id="chatsetting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog mh-chat-area-setting"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="chatsetting">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mh-chat-popups">
+        <div class="mh-chat-popup" style="right: 220px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content"></div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mh-chat-popup" style="right: 497px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content"></div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mh-chat-popup" style="right: 774px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content"></div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- Chat: end -->
+    <!--  footer: start -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 mh-footer-info">
+                    <h2>Thông tin</h2>
+                    <div class="mh-footer-info-content">
+                        <p>
+                            MathHub là trang web về TOÁN HỌC tại VIỆT NAM. Trang web gồm có ba hệ thống chính là: Hỏi đáp, Blog, Thảo luận. Trang web muốn tạo môi trường cho người dùng làm chủ hệ thống, người dùng sẽ tự tạo mạng lưới của mình, thảo luận với các câu hỏi, blog, chủ đề... liên quan đến toán học.
+                        </p>
+                        <p>
+                            MathHub mong muốn sẽ trở thành một trang web chuyên giải đáp các thắc mắc về toán học và giúp cho toán học tại Việt Nam trở nên dễ dàng hơn.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 mh-footer-social">
+                    <h2>Social media</h2>
+                    <a href="#">
+                        <img src="img/icon-facebook.ico">
+                    </a>
+                    <a href="#">
+                        <img src="img/icon-google.ico">
+                    </a>
+                    <a href="#">
+                        <img src="img/icon-twitter.ico">
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 mh-footer-contact">
+                    <h2>Liên hệ</h2>
+                    <address class="margin-bottom-40">
+                        Địa chỉ 1: 137 Nguyễn Thị Thập, Quận Liên Chiểu, TP. Đà Nẵng.<br>
+                        Địa chỉ 2: Lầu 2. Tòa nhà Innovation, lô 24, Công viên phần mềm Quang Trung, P.Tân Chánh Hiệp, Quận 12, TP. Hồ Chí Minh.<br>
+                        Phone: 0000 000 000<br>
+                        Email: <a href="#">info@gmail.com</a>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer><!--  footer: end -->
+    <div class="mh-copyright">
+        <div class="mh-copyright-content">
+            2015 &copy; Handsome Team - All Rights Reserved
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!--<script>
+        $(".mh-profile-edit-button").click(function () {
+            // thẻ a (chỉnh sửa)
+            event.preventDefault();
+            // mh-profile-span-edit, thẻ a (chỉnh sửa): ẩn
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+            $(".mh-profile-edit-button").hide();
+            // save, cancel, input hiện
+            $(this).siblings().show();
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").show();
+                    break;
+                case "radio":
+                    //radio button: hiện
+                    $(this).parents(".mh-profile-info-row").find(".radio-inline").show();
+                    break;
+                case "datetime":
+                    var input = $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit");
+                    var strDate = input.val();
+                    var date = new Date(strDate.split("-")[2], strDate.split("-")[1] - 1, strDate.split("-")[0]);
+                    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", date);
+                    input.toggle();
+                    break;
+                case "select":
+                    $(this).parents(".mh-profile-info-row").find(".mh-profile-select-edit").show();
+                    break;
+                default:
+                    break;
+            }
+        });
+        $(".mh-profile-cancel").click(function () {
+            //nút cancel: ẩn
+            $(this).hide();
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    // Khung input: quay về giá trị ban đầu + ẩn
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.hide();
+                    input.val($(this).val());
+                    break;
+                case "radio":
+                    var radios = $(this).parents(".mh-profile-info-row").find(".mh-radio");
+                    var val = $(this).val();
+                    radios.each(function () {
+                        radio = this;
+                        if ($(radio).val() == val) {
+                            $(radio).prop("checked", true);
+                        } else {
+                            $(radio).removeAttr("checked");
+                        }
+                    });
+                    break;
+                case "datetime":
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                case "select":
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-select-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                default:
+                    break;
+            }
+
+            // mh-profile-span-edit: hiện
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+            //Nút save: ẩn
+            $(this).siblings().hide();
+            //thẻ a: hiện
+            $(".mh-profile-edit-button").show();
+            //radio button: ẩn
+            $(this).parents(".mh-profile-info-row").find(".radio-inline").hide();
+        });
+        $(".mh-pass-edit-button").click(function () {
+            //an
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").hide();
+            //hien
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").show();
+        });
+        $(".mh-pass-cancel").click(function () {
+            //hien
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").show();
+            //an
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
+        });
+    </script>-->
+</body>
+</html>

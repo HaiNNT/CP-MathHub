@@ -28,6 +28,7 @@
 }
 .mh-body-profile {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .mh-body-profile h3 {
     border-bottom: 1px solid #C1C1C1;
@@ -130,7 +131,29 @@ form:last-child .mh-profile-info-row {
     font-size: 12px;
     color: #ccc;
 }
-.mh-profile-friend-quantity {
+.mh-profile-friend-quantity, .mh-profile-time {
     color: #ccc;
 }
 /*User friend: end*/
+/* User activity: start */
+.mh-profile-posts {
+    max-width: 447px;
+    float: left;
+    margin:7px 0px 7px 15px;
+}
+.mh-profile-posts h4 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}
+.mh-profile-post {
+    height: 300px;
+    overflow-y: scroll;
+}
+.mh-profile-tag-favourite {
+    margin-left: -10px;
+}
+.mh-tag-page {
+    margin-top: 3px;
+    width: 224px;
+}
+/*  User activity: end*/
