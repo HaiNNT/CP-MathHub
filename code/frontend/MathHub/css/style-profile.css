@@ -2,9 +2,10 @@
       border-right: 0px;
       margin-right: 0px;
 }
-.mh-mid-section > .mh-top-content > .row {
+/*.mh-mid-section > .mh-top-content > .row {
       border-bottom: 0px;
-}
+      margin: 0px;
+}*/
 .mh-left-section {
     padding: 0px;
     margin-top: 60px;
@@ -22,8 +23,11 @@
     color: #5b9bd1;
 }
 .mh-home > .row {
-    border-bottom: 1px solid #C1C1C1;
+    /*border-bottom: 1px solid #C1C1C1;*/
     margin-top: -5px;
+}
+.mh-body-profile {
+    margin-top: 20px;
 }
 .mh-body-profile h3 {
     border-bottom: 1px solid #C1C1C1;
@@ -32,9 +36,8 @@
     font-weight: bold;
 }
 .mh-profile-user-info {
-    margin-top: 10px;
 }
-.mh-body-profile a {
+.mh-body-profile .mh-profile-info .mh-profile-info-row a {
     float: right;
 }
 .mh-profile-info-row .col-xs-5 a {
@@ -88,3 +91,46 @@ form:last-child .mh-profile-info-row {
 .mh-profile-select-edit {
     display: none;
 }
+
+/* User friend: start */
+.mh-content-top-button {
+    text-align: right;
+    margin-top: 19px;
+    margin-bottom: 10px;
+}
+.mh-body-profile .tab-content {
+    border: 1px solid #DDD;
+    border-top: 0;
+    padding: 15px;
+}
+.mh-profile-friend {
+    height: 100px;
+    max-width: 447px;
+    border: 1px solid #E9EAED;
+    float: left;
+    margin-left: 15px;
+}
+.mh-profile-friend .media-body, .mh-profile-friend .media-right {
+    vertical-align: middle;
+}
+.mh-profile-friend .media-body h5 {
+    font-weight: bold;
+    margin-top: 5px;
+}
+.mh-profile-friend .media-right .dropdown-menu > li:hover{
+    background-color: #ccc;
+}
+.tab-content .media:first-child {
+      margin-top: 15px;
+}
+.mh-profile-friend .media-right .btn-group {
+    margin-right: 5px;
+}
+.mh-profile-friend .media-body span {
+    font-size: 12px;
+    color: #ccc;
+}
+.mh-profile-friend-quantity {
+    color: #ccc;
+}
+/*User friend: end*/
