@@ -28,6 +28,10 @@ namespace CP_MathHub.Service.Helpers
             {
                 return type + " " + (int)period.TotalHours + " tiếng trước";
             }
+            if ((int)period.TotalHours >= 24 && (int)period.TotalHours < 48)
+            {
+                return type + " " + "hôm qua" + " lúc " + time.ToShortTimeString();
+            }
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
 

@@ -436,5 +436,15 @@ namespace CP_MathHub.Controllers
             }
         }
 
+        //Post: Question/EditedLog
+        [HttpPost]
+        public ActionResult EditedLog(int id, string type)
+        {
+            List<EditedLog> logs = new List<EditedLog>();
+            logs = cService.GetEditedLog(id);
+            ViewBag.Type = type;
+            return PartialView("../CommonWidget/_EditedLogPartialView", logs);
+        }
+
     }
 }

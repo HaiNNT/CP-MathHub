@@ -53,6 +53,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
+                .ForMember(
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
+                )
                 //.ForMember(
                 //    s => s.Bookmarked,
                 //    d => d.MapFrom(m => m.BookmarkUsers
@@ -93,6 +97,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 .ForMember(
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
+                )
+                .ForMember(
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
                 )
                 //.ForMember(
                 //    s => s.Bookmarked,

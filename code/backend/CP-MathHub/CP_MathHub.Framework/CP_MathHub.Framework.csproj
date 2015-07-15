@@ -50,12 +50,12 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Infrastructure\Repository\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filter\" />
     <Folder Include="Infrastructure\AutoMapper\" />
     <Folder Include="Infrastructure\StructureMap\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CP-MathHub.Entity\CP-MathHub.Entity.csproj">

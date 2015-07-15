@@ -61,8 +61,8 @@ namespace CP_MathHub.Controllers
             {
                 discussionTagPreviewVM.ElementAt(i).UserInfo.CreateMainPostDate = discussionTagPreviewVM.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    discussionTagPreviewVM.ElementAt(i).Bookmarked =  
-                        discussionTagPreviewVM.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                    discussionTagPreviewVM.ElementAt(i).Bookmarked =
+                        discussionTagPreviewVM.ElementAt(i).UserId != User.Identity.GetUserId<int>()
                         && discussions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
@@ -110,12 +110,12 @@ namespace CP_MathHub.Controllers
 
             discussion.EditedContents.Add(editedlog);
             dService.EditDiscussion(discussion);
-            
+
             //discussion.Tags = cService.GetTags(discussionTagHomeVM.TagIds);
-            
+
             if (discussion.Id != 0)
             {
-                return RedirectToAction("Detail", new {@id = discussion.Id });
+                return RedirectToAction("Detail", new { @id = discussion.Id });
             }
             else
             {
@@ -176,6 +176,7 @@ namespace CP_MathHub.Controllers
                         discussionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
                         && discussions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                discussionPreviewVMs.ElementAt(i).Liked = discussions.ElementAt(i).Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -260,10 +261,10 @@ namespace CP_MathHub.Controllers
 
 
             discussion.EditedContents.Add(editedlog);
-            
+
 
             dService.EditDiscussion(discussion);
-            
+
             if (discussion.Id != 0)
             {
                 return RedirectToAction("Detail", new { @id = discussion.Id });
@@ -308,15 +309,7 @@ namespace CP_MathHub.Controllers
 
             return RedirectToAction("Detail", new { id = discussion.Id });
         }
-        //Get: Discussion/EditedLog
-        public ActionResult EditedLog(int postId)
-        {
-            List<EditedLog> editedlogs = dService.GetEditedLog(postId);
-            ICollection<DiscussionEditedLogViewModel> discussioneditedlogVM =
-                editedlogs.Select(Mapper.Map<EditedLog, DiscussionEditedLogViewModel>) // Using Mapper with Collection
-                .ToList();
-            return View("Views/DiscussionEditedView", discussioneditedlogVM); ;
-        }
+
         //Discussion/Delete
         [Authorize]
         public ActionResult Delete(int id)
@@ -398,7 +391,7 @@ namespace CP_MathHub.Controllers
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Discussion.String.HomeUserTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
-                                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
                 return View("Views/UsersPageView", model);
@@ -498,6 +491,16 @@ namespace CP_MathHub.Controllers
         {
             User user = cService.GetUser(User.Identity.GetUserId<int>());
             return cService.Bookmark(id, user);
+        }
+
+        //Post: Discussion/EditedLog
+        [HttpPost]
+        public ActionResult EditedLog(int id, string type)
+        {
+            List<EditedLog> logs = new List<EditedLog>();
+            logs = cService.GetEditedLog(id);
+            ViewBag.Type = type;
+            return PartialView("../CommonWidget/_EditedLogPartialView", logs);
         }
 
     }

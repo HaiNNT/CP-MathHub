@@ -154,7 +154,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Comment GetComment(int id);
+        Comment GetComment(int id, string include = "");
 
         /// <summary>
         /// Get Vote by post and user
@@ -170,5 +170,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="report"></param>
         bool CreateReport(Report report);
 
+        /// <summary>
+        /// Get edited logs
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        List<EditedLog> GetEditedLog(int postId);
     }
 }

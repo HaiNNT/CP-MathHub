@@ -228,7 +228,7 @@ function initSelectMenu() {
 */
 function seemore(obj) {
     $(obj).addClass("hidden");
-    $(obj).parent().siblings(".mh-comment-list-full").removeClass("hidden");
+    $(obj).parent().siblings(".hidden").removeClass("hidden");
     $(obj).parent().siblings(".mh-comment-list").addClass("hidden");
 }
 
@@ -246,8 +246,6 @@ function commentPost() {
                 var content = input.val();
                 var postId = input.siblings(".post-id").val();
                 var type = input.siblings(".type").val();
-                console.log(content);
-                console.log(postId);
                 $.ajax({
                     method: "Post",
                     url: "/Blog/PostComment",
@@ -261,6 +259,7 @@ function commentPost() {
 				        input.val("");
 				        commentPost();
 				        commentReady = true;
+				        editComment();
 				    }
 				})
 				.fail(function (msg) {
@@ -275,8 +274,44 @@ function commentPost() {
 /*
     Edit comment
 */
-function editComment(id) {
+function editComment() {
+    $(".mh-comment-edit-textarea").each(function () {
+        var input = $(this);
+        input.keypress(function (e) {
+            if (e.keyCode === 13 && commentReady) {
+                var content = input.val();
+                var id = input.attr("comment-id");
+                $.ajax({
+                    method: "Post",
+                    url: "/Blog/EditComment",
+                    data: { id: id, content: content }
+                })
+				.done(function (msg) {
+				    if (msg) {
+				        $("#comment-content-" + id).html(content);
+				        input.parent().find(".edited-button").removeClass("hidden");
+				        closeEdit();
+				    }
+				})
+				.fail(function (msg) {
+				    console.log(msg);
+				    alert(msg);
+				});
+            }
+        });
+    });
+}
 
+/*
+    Enable edit
+*/
+function editPost(item) {
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-content").toggle();
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-acitvity").toggle();
+    $(item).parents(".mh-comment-list").find(".mh-commet-edit").toggle();
+    //Hiện
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-edit-textarea").toggle();
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-note").toggle();
 }
 
 /*
@@ -316,6 +351,48 @@ function sendReport(id) {
          });
 }
 
+/*
+    Load edited logs
+*/
+function loadEditedLog(id, type) {
+    var history = $("#history-edit");
+    history.html("");
+    $.ajax({
+        method: "POST",
+        url: "/Blog/EditedLog",
+        data: { id: id, type: type }
+    })
+     .done(function (msg) {
+         history.html(msg);
+         $('[data-toggle="tooltip"]').tooltip();
+     })
+     .fail(function () {
+         alert("fail error");
+     });
+}
+
+/*
+    Close edit 
+*/
+function closeEdit() {
+    //Hiện
+    $(".mh-comment-content").show();
+    $(".mh-comment-acitvity").show();
+    $(".mh-commet-edit").show();
+    //Ẩn
+    $(".mh-note").hide();
+    //Ẩn + set về giá trị ban đầu
+    var inputs = $(".mh-comment-edit-textarea");
+    inputs.each(function () {
+        var input = $(this);
+        var val = input.siblings(".mh-note").find("button").val();
+        input.val(val);
+        input.hide();
+    });
+    //input.hide();
+    //input.val($(this).val());
+}
+
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "blog-home":
@@ -335,6 +412,7 @@ $(document).ready(function () {
             initDateTimePicker();
             break;
         case "blog-detail":
+            editComment();
             commentPost();
             //getFacebookShareNum();
             break;
