@@ -26,6 +26,6 @@ namespace CP_MathHub.Models.Discussion
         public ICollection<CommentViewModel> Comments { get; set; }
         public UserInfoViewModel UserInfo { get; set; }
         public ICollection<Tag> Tags { get; set; }
-        public ICollection<DiscussionEditedLogViewModel> EditedLog { get; set; }
+        //public ICollection<DiscussionEditedLogViewModel> EditedLog { get; set; }
     }
 }

@@ -22,7 +22,7 @@
     <div class="panel-heading">
         <div class="mh-user-info">
             @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
-            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" } })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, {"Status", Model.Status}, {"UserId", Model.UserId} })
         </div>
     </div>
     <div class="panel-body">
@@ -30,11 +30,7 @@
             @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
             <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                @if (User.Identity.GetUserId<int>() != Model.UserId)
-                {
-                    <i id="bookmarked-@Model.Id" onclick="unBookmark(@Model.Id)" class="fa fa-star mh-bookmarked-icon @(Model.Bookmarked ? "":"hidden")"></i>
-                    <i id="bookmark-@Model.Id" onclick="bookmark(@Model.Id)" class="fa fa-star-o mh-bookmark-icon @(Model.Bookmarked ? "hidden" : "")"></i>
-                }
+                @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
                 <div>
                     @Html.Raw(Model.Content)
                 </div>

@@ -118,8 +118,8 @@ function initCkeditor(preview) {
 function bookmark(id) {
     var url = "/Blog/Bookmark";
     var data = { id: id };
-    var bookmarked = ".bookmarked-" + id;
-    var bookmark = ".bookmark-" + id;
+    var bookmarked = "#bookmarked-" + id;
+    var bookmark = "#bookmark-" + id;
 
     $.ajax({
         method: "POST",

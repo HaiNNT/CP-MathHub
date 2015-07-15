@@ -164,7 +164,9 @@ namespace CP_MathHub.Service.Services
         }
         public Article GetArticle(int id)
         {
-            return dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
+            Article article = dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
+            article.Author = cService.GetUser(article.UserId);
+            return article;
         }
         public void InsertArticle(Article article){
             dal.Repository<Article>().Insert(article);

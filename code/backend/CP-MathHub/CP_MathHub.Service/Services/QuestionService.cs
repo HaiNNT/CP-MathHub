@@ -15,9 +15,11 @@ namespace CP_MathHub.Service.Services
     public class QuestionService : IQuestionService, IDisposable
     {
         private IUnitOfWork dal;
+        private ICommonService cService;
         public QuestionService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);
+            cService = new CommonService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
@@ -96,7 +98,9 @@ namespace CP_MathHub.Service.Services
         }
         public Question GetQuestion(int id)
         {
-            return dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
+            Question question = dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
+            question.Author = cService.GetUser(question.UserId);
+            return question;
         }
         public void InsertQuestion(Question question)
         {

@@ -106,56 +106,54 @@ function seeMoreComment() {
   Bookmark a main post
 */
 function bookmark(id) {
-    var url = "";
+    var url = "/Discussion/Bookmark";
     var data = { id: id };
-    var bookmarked = "#bookmarked-" + id;
-    var bookmark = "#bookmark-" + id;
-    url = "/Discussion/Bookmark";
-    
+    var bookmarked = ".bookmarked-" + id;
+    var bookmark = ".bookmark-" + id;
+
     $.ajax({
         method: "POST",
         url: url,
         data: data
     })
-      .done(function (msg) {
-          if (msg) {
-              $(bookmark).addClass("hidden");
-              $(bookmarked).removeClass("hidden");
-          } else {
-              alert("false");
-          }
-      })
-      .fail(function () {
-          alert("fail error");
-      });
+	  .done(function (msg) {
+	      if (msg) {
+	          $(bookmark).each(function () { $(this).addClass("hidden"); });
+	          $(bookmarked).each(function () { $(this).removeClass("hidden"); });
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
 }
 
 /*
   Unbookmark a main post
 */
 function unBookmark(id) {
-    var url = "";
+    var url = "/Discussion/Bookmark";
     var data = { id: id };
-    var bookmarked = "#bookmarked-" + id;
-    var bookmark = "#bookmark-" + id;
-    url = "/discussion/Bookmark";
+    var bookmarked = ".bookmarked-" + id;
+    var bookmark = ".bookmark-" + id;
 
     $.ajax({
         method: "POST",
         url: url,
         data: data
     })
-      .done(function (msg) {
-          if (msg) {
-              $(bookmarked).addClass("hidden");
-              $(bookmark).removeClass("hidden");
-          } else {
-              alert("false");
-          }
-      })
-      .fail(function () {
-          alert("fail error");
-      });
+	  .done(function (msg) {
+	      if (msg) {
+	          $(bookmark).each(function () { $(this).removeClass("hidden"); });
+	          $(bookmarked).each(function () { $(this).addClass("hidden"); });
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
 }
 
 /*

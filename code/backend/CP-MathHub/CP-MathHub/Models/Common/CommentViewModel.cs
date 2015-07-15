@@ -19,5 +19,6 @@ namespace CP_MathHub.Models.Common
         public Nullable<PostStatusEnum> Status { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
+        public ICollection<Vote> Votes { get; set; }
     }
 }

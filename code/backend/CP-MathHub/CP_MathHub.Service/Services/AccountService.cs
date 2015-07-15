@@ -121,11 +121,11 @@ namespace CP_MathHub.Service.Services
                 ).ToList();
             foreach(MainPost post in posts){
                 foreach(Tag tag in post.Tags){
-                    if (!tags.Contains(tag))
+                    if (tags.Where(t => t.Id == tag.Id).Count() == 0)
                         tags.Add(tag);
                 }
             }
-            return tags;
+            return tags.Skip(0).Take(5).ToList();
         }
 
     }

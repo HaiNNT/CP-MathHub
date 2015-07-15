@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+
+@if (User.Identity.GetUserId<int>() != (int)ViewData["UserId"] && Request.IsAuthenticated)
+{
+    <i onclick="unBookmark(@((int)ViewData["Id"]))" class="fa fa-star mh-bookmarked-icon bookmarked-@((int)ViewData["Id"]) @((bool)ViewData["Bookmarked"] ? "":"hidden")"></i>
+    <i onclick="bookmark(@((int)ViewData["Id"]))" class="fa fa-star-o mh-bookmark-icon bookmark-@((int)ViewData["Id"]) @((bool)ViewData["Bookmarked"] ? "hidden" : "")"></i>
+}

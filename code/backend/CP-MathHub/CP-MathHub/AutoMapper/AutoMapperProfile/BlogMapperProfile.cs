@@ -116,12 +116,12 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 s => s.Like,
                 d => d.MapFrom(m => m.VoteUp)
             )
-            .ForMember(
-                    s => s.Liked,
-                    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
-                )
+            //.ForMember(
+            //        s => s.Liked,
+            //        d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+            //                                                        new CPMathHubModelContainer())
+            //                                                            .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+            //    )
             .ForMember(
                 s => s.Tags,
                 d => d.MapFrom(m => m.Tags)
