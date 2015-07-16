@@ -331,6 +331,7 @@ namespace CP_MathHub.Controllers
             editedlog.CreatedDate = article.LastEditedDate;
             editedlog.PostId = article.Id;
             editedlog.UserId = article.UserId;
+            editedlog.Title = article.Title;
             article.EditedContents.Add(editedlog);
 
             bService.UpdateArticle(article);
@@ -363,9 +364,10 @@ namespace CP_MathHub.Controllers
             Article article = bService.GetArticle(articleEditVM.Id);
 
             EditedLog editedlog = new EditedLog();
-            editedlog.Content = article.Content;
+            editedlog.Content = articleEditVM.Content;
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = article.Id;
+            editedlog.Title = articleEditVM.Title;
             editedlog.UserId = User.Identity.GetUserId<int>();
 
             article.Title = articleEditVM.Title;

@@ -206,20 +206,22 @@ footer {
   top: 0;
   right: 0;
 }
+
 /*Diss default: end*/
 /* Panel: end*/
 /*Ðãng nhanh: start*/
 .mh-create-fast {
-  border-bottom: 1px solid #C1C1C1;
   border-top: 1px solid #C1C1C1;
+  border-bottom: 1px solid #C1C1C1;
   padding: 15px;
 }
 .mh-create-fast .mh-create-title {
     margin-top: 5px;
 }
-.mh-create-fast h4 {
-    font-weight: bold;
-    margin: 0;
+.mh-create-fast button {
+    /*font-weight: bold;
+    margin: 0;*/
+    width: 100%;
 }
 .mh-create-fast .mh-create-input {
     height: 20px;
@@ -237,12 +239,4 @@ footer {
 }
 /*Ðãng nhanh: end*/
 /*  Mid: end    */
-.modal-body .mh-content-detail {
-    border-bottom: 1px solid #E5E5E5;
-}
-.modal-body .mh-content-detail:last-child {
-    border-bottom: 0px;
-}
-.modal-body .mh-content-detail h3 {
-    color: #337ab7;
-}
+

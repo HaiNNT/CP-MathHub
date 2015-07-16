@@ -9,7 +9,7 @@
             <a href="#">
                 <span class="mh-username">@Model.Username</span>
             </a>
-            <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewBag.CreatedDateType)</span>
+            <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewData["CreatedDateType"])</span>
             <span class="@((bool)ViewData["Edited"] ? "" : "hidden") edited-button">
                 -
                 <a onclick="loadEditedLog(@ViewData["PostId"],@("\"MainPost\""))" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>

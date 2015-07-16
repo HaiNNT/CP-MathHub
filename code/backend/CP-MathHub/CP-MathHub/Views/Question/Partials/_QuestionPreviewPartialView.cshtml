@@ -2,7 +2,7 @@
 <div class="panel panel-warning mh-question-preview">
     <div class="panel-heading">
         <div class="mh-user-info">
-            @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo, new ViewDataDictionary { { "PostId", Model.Id }, { "Edited", Model.Edited } })
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo, new ViewDataDictionary { { "PostId", Model.Id }, { "Edited", Model.Edited }, { "CreatedDateType", ViewBag.CreatedDateType } })
             @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, {"Status", Model.Status}, {"UserId", Model.UserId} })
         </div>
     </div>

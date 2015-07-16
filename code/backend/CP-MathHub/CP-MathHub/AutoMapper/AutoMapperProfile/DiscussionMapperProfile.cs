@@ -19,24 +19,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            #region Discussion Preview
+            #region Preview Discussion
             Mapper.CreateMap<Discussion, DiscussionPreviewViewModel>()
-                .ForMember(
-                    s => s.ReportNum,
-                    d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
-                        .Table.Count(p => p.PostId == m.Id))
-                )
-                .ForMember(
-                    s => s.Tags,
-                    d => d.MapFrom(m => m.Tags)
-                )
-                .ForMember(
-                    s => s.UserInfo,
-                    d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
-                );
-            #endregion
-            #region Discussion Category Preview
-            Mapper.CreateMap<Discussion, DiscussionTagPreviewViewModel>()
                 .ForMember(
                     s => s.ReportNum,
                     d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
@@ -81,7 +65,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //)
                 ;
             #endregion
-            #region Discussion Detail
+
+            #region Detail Discussion
             Mapper.CreateMap<Discussion, DiscussionDetailViewModel>()
                 .ForMember(
                         s => s.ReportNum,
@@ -127,7 +112,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //)
                 ;
             #endregion
-            #region Create
+
+            #region Create Discussion
             Mapper.CreateMap<DiscussionCreateViewModel, Discussion>()
                .ForMember(
                    s => s.CreatedDate,
@@ -148,17 +134,24 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                .ForMember(
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
-               );
+               )
+               .ForMember(
+                   s => s.VoteUp,
+                   d => d.MapFrom(m => 0)
+               )
+               .ForMember(
+                   s => s.VoteDown,
+                   d => d.MapFrom(m => 0)
+               )
+               ;
             #endregion
-            #region Edit
+
+            #region Edit Discussion
             Mapper.CreateMap<Discussion, DiscussionEditViewModel>()
                .ForMember(
                    s => s.Privacy,
                    d => d.MapFrom(m => m.Privacy)
                );
-            #endregion
-            #region EditedLog
-            Mapper.CreateMap<EditedLog, DiscussionEditedLogViewModel>();
             #endregion
         }
     }
