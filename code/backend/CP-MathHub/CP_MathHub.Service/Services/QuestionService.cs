@@ -44,7 +44,7 @@ namespace CP_MathHub.Service.Services
                     list = dal.Repository<Question>() // Get Question Repository
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports", // Include Author Property
+                                    "Author,BookmarkUsers,Sharers,Tags", // Include Author Property
                                     skip
                                 ).ToList();
                     break;
