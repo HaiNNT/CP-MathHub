@@ -205,6 +205,7 @@
     <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
     <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
+    <Compile Include="Models\Question\HotQuestionViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
     <Compile Include="Models\Question\QuestionEditViewModel.cs" />

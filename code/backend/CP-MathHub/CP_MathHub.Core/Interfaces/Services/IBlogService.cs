@@ -46,7 +46,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="searchString"></param>
         /// <returns></returns>
         List<Article> SearchArticle(int skip, string searchString);
-
+        /// <summary>
+        /// Get Related Article
+        /// </summary>
+        /// <param name="article"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Article> GetRelatedArticles(Article article, int skip = 0);
         /// <summary>
         /// Count search result
         /// </summary>

@@ -61,7 +61,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.HomeHotTab:
                     list = dal.Repository<Discussion>()
                                 .Get(
-                                    ExpressionHelper.DiscussionHelper.HotDiscussion(),// Get hot Question lambda expression
+                                    ExpressionHelper.DiscussionHelper.HotDiscussion(),// Get hot Discussion lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -88,6 +88,16 @@ namespace CP_MathHub.Service.Services
                     skip
                 ).ToList();
         }
+        //public List<Discussion> GetRelatedDiscussions(int tagId, int skip = 0)
+        //{
+        //    return dal.Repository<Discussion>()
+        //        .Get(
+        //            (a=>a.Tags.Where(t=>t.Id == tagId).Count() > 0),
+        //            (p => p.OrderBy(s => s.CreatedDate)),
+        //            "Author,BookmarkUsers,Sharers,Tags,Reports",
+        //            skip
+        //        ).ToList();
+        //}
         public List<Discussion> GetDiscussionCategorys(int tagId, int skip)
         {
             return dal.Repository<Discussion>() //Get Question Repository

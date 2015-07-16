@@ -125,7 +125,21 @@ namespace CP_MathHub.Controllers
                     return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
-
+        //Get: Blog/HotArticle
+        public List<Article> GetHotArticle(string tab = Constant.Blog.String.HomeHotTab
+                                   , int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
+            return articles;
+        }
+        //Get: Blog/RelatedArticle
+        public List<Article> GetRelatedArticle(int id, int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetRelatedArticles(bService.GetArticle(id), skip);
+            return articles;
+        }
         //Get: Blog/UserBlog
         [HttpGet]
         public ActionResult UserBlog(int userId, string tab = Constant.Blog.String.UserArticleTab
