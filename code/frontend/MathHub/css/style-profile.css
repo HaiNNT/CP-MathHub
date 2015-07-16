@@ -156,4 +156,29 @@ form:last-child .mh-profile-info-row {
     margin-top: 3px;
     width: 224px;
 }
+#brands .row {
+    margin: 0px;
+}
+.mh-profile-brand {
+    float: left;
+    margin-right: 3px;
+}
+.mh-profile-brand-name {
+    font-weight: bold;
+    color: #9E21D2;
+}
+.mh-system-brand {
+    margin-top: 40px;
+}
+.mh-system-brand .row {
+    padding: 5px;
+}
+.mh-profile-activity {
+    padding: 5px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.mh-profile-activity:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0;
+}
 /*  User activity: end*/
