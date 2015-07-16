@@ -635,7 +635,7 @@
                                         <span class="mh-profile-span">Cập nhật khoảng 6 tháng trước</span>
                                     </div>
                                     <div class="col-xs-4">
-                                        <a class="mh-pass-edit-button" mh-type="password">
+                                        <a class="mh-profile-edit-button mh-pass-edit-button" mh-type="password">
                                             <i class="fa fa-pencil mh-pass-edit"> Chỉnh sửa</i>
                                         </a>
                                     </div>
@@ -730,145 +730,149 @@
                     </div>
                     <div>
                         <h3>Thông tin liên hệ</h3>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Địa chỉ</label>
+                        <div class="mh-profile-info">
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Địa chỉ</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Đà Nẵng</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Đà Nẵng" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Đà Nẵng" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">Đà Nẵng</span>
-                                    <input type="text" class="mh-profile-input-edit" value="Đà Nẵng" />
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Số điện thoại</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">01227527757</span>
+                                        <input type="text" class="mh-profile-input-edit" value="01227527757" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="01227527757" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="Đà Nẵng" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Facebook</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <a href="https://www.facebook.com/tam.gre.5" class="mh-profile-span-edit">https://www.facebook.com/tam.gre.5</a>
+                                        <input type="text" class="mh-profile-input-edit" value="https://www.facebook.com/tam.gre.5" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="https://www.facebook.com/tam.gre.5" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Số điện thoại</label>
-                                </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">01227527757</span>
-                                    <input type="text" class="mh-profile-input-edit" value="01227527757" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="01227527757" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Facebook</label>
-                                </div>
-                                <div class="col-xs-5">
-                                    <a href="https://www.facebook.com/tam.gre.5" class="mh-profile-span-edit">https://www.facebook.com/tam.gre.5</a>
-                                    <input type="text" class="mh-profile-input-edit" value="https://www.facebook.com/tam.gre.5" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="https://www.facebook.com/tam.gre.5" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                     <div>
                         <h3>Thông tin khác</h3>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Trường</label>
+                        <div class="mh-profile-info">
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Trường</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Phan Châu Trinh</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Phan Châu Trinh" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Phan Châu Trinh" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">Phan Châu Trinh</span>
-                                    <input type="text" class="mh-profile-input-edit" value="Phan Châu Trinh" />
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Trình độ</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Đại học</span>
+                                        <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
+                                        <select class="mh-profile-select-edit">
+                                            <option value="1">Cấp 1</option>
+                                            <option value="2">Cấp 2</option>
+                                            <option value="3">Cấp 3</option>
+                                            <option value="4">Trung cấp</option>
+                                            <option value="5">Cao đẳng</option>
+                                            <option value="6">Đại học</option>
+                                            <option value="7">Thac sĩ</option>
+                                            <option value="8">Tiến sĩ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="select">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="6" mh-type="select">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="Phan Châu Trinh" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Quan điểm</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Thích trai đẹp</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Thích trai đẹp" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Thích trai đẹp" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Trình độ</label>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-3">
+                                        <label>Giới thiệu</label>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mh-profile-span-edit">Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA</span>
+                                        <input type="text" class="mh-profile-input-edit" value="Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="text">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA" mh-type="text">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">Đại học</span>
-                                    <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
-                                    <select class="mh-profile-select-edit">
-                                        <option value="1">Cấp 1</option>
-                                        <option value="2">Cấp 2</option>
-                                        <option value="3">Cấp 3</option>
-                                        <option value="4">Trung cấp</option>
-                                        <option value="5">Cao đẳng</option>
-                                        <option value="6">Đại học</option>
-                                        <option value="7">Thac sĩ</option>
-                                        <option value="8">Tiến sĩ</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="select">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="6" mh-type="select">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Quan điểm</label>
-                                </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">Thích trai đẹp</span>
-                                    <input type="text" class="mh-profile-input-edit" value="Thích trai đẹp" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="Thích trai đẹp" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form>
-                            <div class="row mh-profile-info-row">
-                                <div class="col-xs-3">
-                                    <label>Giới thiệu</label>
-                                </div>
-                                <div class="col-xs-5">
-                                    <span class="mh-profile-span-edit">Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA</span>
-                                    <input type="text" class="mh-profile-input-edit" value="Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <a href="" class="mh-profile-edit-button" mh-type="text">
-                                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                                    </a>
-                                    <button type="button" class="btn btn-default mh-profile-cancel" value="Thông minh, đẹp trai, KHOAI TO, ĐẠI GIA" mh-type="text">Hủy</button>
-                                    <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
