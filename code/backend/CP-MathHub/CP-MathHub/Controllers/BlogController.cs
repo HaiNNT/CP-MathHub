@@ -125,7 +125,21 @@ namespace CP_MathHub.Controllers
                     return PartialView("Partials/_ArticleGridPartialView", articlePreviewVMs);
             }
         }
-
+        //Get: Blog/HotArticle
+        public List<Article> GetHotArticle(string tab = Constant.Blog.String.HomeHotTab
+                                   , int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetArticles(tab, skip);
+            return articles;
+        }
+        //Get: Blog/RelatedArticle
+        public List<Article> GetRelatedArticle(int id, int page = 0)
+        {
+            int skip = page * Constant.Blog.Integer.PagingDefaultTake;
+            List<Article> articles = bService.GetRelatedArticles(bService.GetArticle(id), skip);
+            return articles;
+        }
         //Get: Blog/UserBlog
         [HttpGet]
         public ActionResult UserBlog(int userId, string tab = Constant.Blog.String.UserArticleTab
@@ -379,7 +393,17 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
-            if (bService.GetArticle(postId).Status != PostStatusEnum.Closed)
+            PostStatusEnum status = PostStatusEnum.Active;
+            if (type == "comment")
+            {
+                status = bService.GetArticle(postId).Status.Value;
+            }
+            else
+            {
+                status = cService.GetComment(postId, "Post").Post.Status.Value;
+            }
+
+            if (status != PostStatusEnum.Closed)
             {
                 Comment comment = new Comment();
                 comment.Content = content;
@@ -416,15 +440,15 @@ namespace CP_MathHub.Controllers
         //Post: Blog/EditComment
         [HttpPost]
         [Authorize]
-        public ActionResult EditComment(int id, string content)
+        public bool EditComment(int id, string content)
         {
             Comment comment = new Comment();
             comment.Id = id;
             comment.Content = content;
             comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
-            CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
+            //CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
 
-            return PartialView("../CommonWidget/_CommentItemPartialView", model);
+            return true;
         }
 
         //Get: Blog/DisableComment
@@ -467,6 +491,16 @@ namespace CP_MathHub.Controllers
             report.Type = reportName;
 
             return cService.CreateReport(report);
+        }
+
+        //Post: Blog/EditedLog
+        [HttpPost]
+        public ActionResult EditedLog(int id, string type)
+        {
+            List<EditedLog> logs = new List<EditedLog>();
+            logs = cService.GetEditedLog(id);
+            ViewBag.Type = type;
+            return PartialView("../CommonWidget/_EditedLogPartialView", logs);
         }
     }
 }

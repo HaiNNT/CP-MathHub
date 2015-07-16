@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CP_MathHub;
 using CP_MathHub.Controllers;
+using CP_MathHub.Entity;
 
 namespace CP_MathHub.Tests.Controllers
 {
@@ -21,6 +22,13 @@ namespace CP_MathHub.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void GetHotQuestion()
+        {
+            QuestionController controller = new QuestionController();
+            List<Question> result = controller.GetHotQuestion() as List<Question>;
             Assert.IsNotNull(result);
         }
     }

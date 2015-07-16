@@ -4,7 +4,7 @@
 <div class="panel panel-info mh-discussion-post">
     <div class="panel-heading">
         <div class="mh-user-info">
-            @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo, new ViewDataDictionary {{"PostId",Model.Id}, {"Edited", Model.Edited} })
             @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "discussion" }, {"Status",Model.Status}, {"UserId",Model.UserId} })
         </div>
     </div>
@@ -19,8 +19,7 @@
                         if (Model.Content.Length > length)
                         {
                             @Html.Raw(Model.Content);
-                        <br />
-                        <a onclick="seeMore(this)" class="mh-seemore">Xem thêm</a>
+                        <a onclick="seemore(this)" class="mh-seemore">Xem thêm</a>
                         }
                         else
                         {

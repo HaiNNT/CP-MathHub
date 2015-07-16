@@ -22,6 +22,7 @@ namespace CP_MathHub.Models.Discussion
         public bool Bookmarked { get; set; }
         public int BookmarkNum { get; set; }
         public bool Liked { get; set; }
+        public bool Edited { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
         public ICollection<CommentViewModel> Comments { get; set; }
         public UserInfoViewModel UserInfo { get; set; }

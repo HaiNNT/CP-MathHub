@@ -11,9 +11,9 @@
             <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
         </div>
         <div class="media-body">
-            <div class="media-heading">
+            <div class="media-heading mh-comment-content">
                 <a href="" class="mh-media-comment-user">@reply.Username</a>
-                <span>@reply.Content</span>
+                <span id="comment-content-@(reply.Id)">@reply.Content</span>
             </div>
             <div>
                 <a class="mh-like" onclick="like(@reply.Id, this)">@(reply.Liked ? "Bỏ thích" : "Thích")</a>
@@ -24,10 +24,20 @@
                 </a>
                 -
                 <span class="mh-time">@Html.PostCreatedTime(reply.CreatedDate, "trả lời")</span>
+                <span class="@(reply.Edited ? "" : "hidden") edited-button">
+                    -
+                    <a onclick="loadEditedLog(@reply.Id,'Comment')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+                </span>
+            </div>
+            <textarea class="form-control mh-comment-edit-textarea" comment-id="@reply.Id" rows="3">@reply.Content</textarea>
+            <div class="mh-note">
+                <button onclick="@("closeEdit()")" type="button" class="mh-note-close-button" value="@reply.Content">
+                    hủy
+                </button>
             </div>
         </div>
         <div class="media-right">
-            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", reply.Id }, { "PostType", "comment" } })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", reply.Id }, { "PostType", "comment" }, { "Status", reply.Status }, { "UserId", reply.UserId } })
         </div>
     </div>
 }

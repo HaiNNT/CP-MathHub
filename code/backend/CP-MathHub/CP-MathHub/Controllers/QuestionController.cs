@@ -66,7 +66,14 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_QuestionListPartialView", questionPreviewVMs);
             }
         }
-
+        //Get: Question/HotQuestion
+        public List<Question> GetHotQuestion(string tab = Constant.Question.String.HomeHotTab
+                                   , int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.PagingDefaultTake;
+             List<Question>questions = qService.GetQuestions(tab, skip);
+             return questions;
+        }
         //Get: Question/Tag
         public ActionResult Tag(string tag = "", int page = 0)
         {
@@ -434,6 +441,16 @@ namespace CP_MathHub.Controllers
             {
                 return Json(new { result = "" });
             }
+        }
+
+        //Post: Question/EditedLog
+        [HttpPost]
+        public ActionResult EditedLog(int id, string type)
+        {
+            List<EditedLog> logs = new List<EditedLog>();
+            logs = cService.GetEditedLog(id);
+            ViewBag.Type = type;
+            return PartialView("../CommonWidget/_EditedLogPartialView", logs);
         }
 
     }

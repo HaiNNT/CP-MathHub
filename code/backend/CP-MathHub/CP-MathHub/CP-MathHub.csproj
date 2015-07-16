@@ -205,6 +205,7 @@
     <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
     <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
+    <Compile Include="Models\Question\HotQuestionViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
     <Compile Include="Models\Question\QuestionDetailViewModel.cs" />
     <Compile Include="Models\Question\QuestionEditViewModel.cs" />
@@ -710,6 +711,7 @@
     <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
     <Content Include="Views\Discussion\Partials\_DiscustionEditedLogPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_BookmarkPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_EditedLogPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

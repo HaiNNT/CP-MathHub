@@ -21,6 +21,7 @@ namespace CP_MathHub.Models.Question
         public int BookmarkNum { get; set; }
         public int ShareNum { get; set; }
         public bool Bookmarked { get; set; }
+        public bool Edited { get; set; }
         public VoteViewModel VoteVM { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
 

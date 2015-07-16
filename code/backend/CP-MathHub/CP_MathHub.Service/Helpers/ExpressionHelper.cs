@@ -70,7 +70,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Discussion, bool>> HotDiscussion()
             {
-                return (q => q.Comments.Count > 2
+                return (q => q.Comments.Count > 5
                             && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
                             && (q.View > 500));
             }
@@ -154,7 +154,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> HotArticle()
             {
-                return (a => a.Comments.Count > 2
+                return (a => a.Comments.Count > 5
                             && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 500
                             && (a.View > 500));
             }

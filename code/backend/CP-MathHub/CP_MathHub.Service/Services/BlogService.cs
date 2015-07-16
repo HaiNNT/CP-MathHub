@@ -40,7 +40,7 @@ namespace CP_MathHub.Service.Services
             if (userId != 0)
             {
                 user = cService.GetUser(userId);
-            }           
+            }
             List<Article> list = new List<Article>();
             switch (tab)
             {
@@ -151,24 +151,53 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                     list = dal.Repository<Article>()
-                                .Get(
-                                    ExpressionHelper.BlogHelper.MyArticle(user),
-                                    (p => p.OrderByDescending(s => s.CreatedDate)),
-                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
-                                    skip
-                                ).ToList();
+                    list = dal.Repository<Article>()
+                               .Get(
+                                   ExpressionHelper.BlogHelper.MyArticle(user),
+                                   (p => p.OrderByDescending(s => s.CreatedDate)),
+                                   "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                   skip
+                               ).ToList();
                     break;
             }
             return list;
         }
+        public List<Article> GetRelatedArticles(Article article, int skip = 0)
+        {
+            List<Article> result = new List<Article>();
+            List<List<Article>> biglist = new List<List<Article>>();
+            foreach (Tag t in article.Tags)
+            {
+                biglist.Add(dal.Repository<Article>()
+                    .Get(
+                        (a => a.Tags.Where(c => c.Id == t.Id).Count() > 0),
+                        null,
+                        "",
+                        0,
+                        0
+                    ).ToList());
+            }
+
+            foreach (List<Article> list in biglist)
+            {
+                foreach (Article a in list)
+                {
+                    if (!result.Contains(a))
+                        result.Add(a);
+                }
+            }
+
+            return result;
+        }
+
         public Article GetArticle(int id)
         {
             Article article = dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
             article.Author = cService.GetUser(article.UserId);
             return article;
         }
-        public void InsertArticle(Article article){
+        public void InsertArticle(Article article)
+        {
             dal.Repository<Article>().Insert(article);
             dal.Save();
         }

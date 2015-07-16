@@ -44,6 +44,8 @@
 <div class="mh-discussion-posts" id="list-discussions">
     @Html.Partial("Partials/_DiscussionListCategoryPartialView", Model.Items)
 </div>
+<div id="history-edit" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+</div>
 @section LeftPanel
 {
     @if (Request.IsAuthenticated)

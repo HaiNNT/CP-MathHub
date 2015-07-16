@@ -10,11 +10,12 @@
 var commentReady = true;
 
 /*
-  Init see more discussion event listening 
+	See more comments
 */
-function seeMore(item) {
-    $(item).parent().addClass("hidden");
-    $(item).parent().siblings(".mh-full-content").removeClass("hidden");
+function seemore(obj) {
+    $(obj).addClass("hidden");
+    $(obj).parent().siblings(".hidden").removeClass("hidden");
+    $(obj).parent().siblings(".mh-comment-list").addClass("hidden");
 }
 
 /*
@@ -50,43 +51,7 @@ function like(id, like) {
 	      alert("fail error");
 	  });
 }
-/*
-  Comment a post
-*/
-function commentPost() {
-    $(".mh-input-comment").each(function () {
-        var input = $(this);
-        var list = $(input.parents(".mh-input-commnent-div").siblings(".mh-comment-list-full"));
-        input.keypress(function (e) {
-            if (e.keyCode === 13 && commentReady) {
-                commentReady = false;
-                var content = input.val();
-                var postId = input.siblings(".post-id").val();
-                var type = input.siblings(".type").val();
-                console.log(content);
-                console.log(postId);
-                $.ajax({
-                    method: "Post",
-                    url: "/Discussion/PostComment",
-                    data: { postId: postId, content: content, type: type }
-                })
-				.done(function (msg) {
-				    if (msg != "\n") {
-				        list.html("");
-				        list.append($(msg));
-				        input.val("");
-				        commentPost();
-				        commentReady = true;
-				    }
-				})
-				.fail(function (msg) {
-				    console.log(msg);
-				    alert(msg);
-				});
-            }
-        });
-    });
-}
+
 /*
   Init see more comment event listening 
 */
@@ -345,6 +310,7 @@ function commentPost() {
 				        input.val("");
 				        commentPost();
 				        commentReady = true;
+				        editComment();
 				    }
 				})
 				.fail(function (msg) {
@@ -354,6 +320,92 @@ function commentPost() {
             }
         });
     });
+}
+
+/*
+    Edit comment
+*/
+function editComment() {
+    $(".mh-comment-edit-textarea").each(function () {
+        var input = $(this);
+        input.keypress(function (e) {
+            if (e.keyCode === 13 && commentReady) {
+                var content = input.val();
+                var id = input.attr("comment-id");
+                $.ajax({
+                    method: "Post",
+                    url: "/Blog/EditComment",
+                    data: { id: id, content: content }
+                })
+				.done(function (msg) {
+				    if (msg) {
+				        $("#comment-content-" + id).html(content);
+				        input.parent().find(".edited-button").removeClass("hidden");
+				        closeEdit();
+				    }
+				})
+				.fail(function (msg) {
+				    console.log(msg);
+				    alert(msg);
+				});
+            }
+        });
+    });
+}
+
+/*
+    Enable edit
+*/
+function editPost(item) {
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-content").toggle();
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-acitvity").toggle();
+    $(item).parents(".mh-comment-list").find(".mh-commet-edit").toggle();
+    //Hiện
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-edit-textarea").toggle();
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-note").toggle();
+}
+
+
+/*
+    Load edited logs
+*/
+function loadEditedLog(id, type) {
+    var history = $("#history-edit");
+    history.html("");
+    $.ajax({
+        method: "POST",
+        url: "/Blog/EditedLog",
+        data: { id: id, type: type }
+    })
+     .done(function (msg) {
+         history.html(msg);
+         $('[data-toggle="tooltip"]').tooltip();
+     })
+     .fail(function () {
+         alert("fail error");
+     });
+}
+
+/*
+    Close edit 
+*/
+function closeEdit() {
+    //Hiện
+    $(".mh-comment-content").show();
+    $(".mh-comment-acitvity").show();
+    $(".mh-commet-edit").show();
+    //Ẩn
+    $(".mh-note").hide();
+    //Ẩn + set về giá trị ban đầu
+    var inputs = $(".mh-comment-edit-textarea");
+    inputs.each(function () {
+        var input = $(this);
+        var val = input.siblings(".mh-note").find("button").val();
+        input.val(val);
+        input.hide();
+    });
+    //input.hide();
+    //input.val($(this).val());
 }
 
 /*
@@ -397,9 +449,11 @@ $(document).ready(function () {
             break;
         case "discussion-detail":
             commentPost();
+            editComment();
             break;
         case "discussion-category":
             commentPost();
+            editComment();
             initCkeditor(true);
             applyInfinityLoading();
             break;
