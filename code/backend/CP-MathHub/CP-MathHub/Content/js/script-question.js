@@ -293,6 +293,26 @@ function vote(vote, postId, type) {
 }
 
 /*
+    Load edited logs
+*/
+function loadEditedLog(id, type) {
+    var history = $("#history-edit");
+    history.html("");
+    $.ajax({
+        method: "POST",
+        url: "/Blog/EditedLog",
+        data: { id: id, type: type }
+    })
+     .done(function (msg) {
+         history.html(msg);
+         $('[data-toggle="tooltip"]').tooltip();
+     })
+     .fail(function () {
+         alert("fail error");
+     });
+}
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {

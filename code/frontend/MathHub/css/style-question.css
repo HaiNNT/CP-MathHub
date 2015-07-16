@@ -339,35 +339,8 @@
 	margin-left: 15px;
 }
   /* QA User: end */
-  /* QA Tag: start */
-.mh-tag-page {
-	padding: 7px;
-	float: left;
-	width: 226px;
-	height: 103px;
-	color: #888;
-	margin-bottom: 5px;
-	margin-right: 5px;
-	background-color: rgb(234, 240, 245);
-}
-
-.mh-tag-name {
-	padding-bottom: 3px;
-}
-
-.mh-tag-content {
-	height: 54px;
-	overflow-y: hidden;
-	  font-size: 10pt;
-}
-
-.mh-tag-times {
-	font-size: 9pt;
-	color: #444;
-}
-
 .mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon {
     vertical-align: top;
     font-size: 13pt;
 }
-  /* QA Tag: end */
+

@@ -449,9 +449,9 @@ namespace CP_MathHub.Service.Services
                                             .OrderBy(c => c.CreatedDate)
                                             .ToList();
         }
-        public Comment GetComment(int id)
+        public Comment GetComment(int id, string include = "")
         {
-            return dal.Repository<Comment>().GetById(id);
+            return dal.Repository<Comment>().Include(include).GetById(id);
         }
         public Vote GetVote(int postId, int userId)
         {
@@ -475,6 +475,18 @@ namespace CP_MathHub.Service.Services
         public Report GetReport(int? postId, int reporterId)
         {
             return dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
+        }
+        public List<EditedLog> GetEditedLog(int postId)
+        {
+            List<EditedLog> logs = new List<EditedLog>();
+            logs = dal.Repository<EditedLog>().Get(
+                    (e => e.PostId == postId),
+                    (e => e.OrderBy(m => m.CreatedDate)),
+                    "User,Post",
+                    0,
+                    0
+                ).ToList();
+            return logs;
         }
     }
 }

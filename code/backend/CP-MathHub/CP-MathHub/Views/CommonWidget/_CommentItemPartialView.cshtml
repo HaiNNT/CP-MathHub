@@ -8,7 +8,7 @@
     <div class="media-body">
         <div class="media-heading mh-comment-content">
             <a href="" class="mh-media-comment-user">@Model.Username</a>
-            <span>@Model.Content</span>
+            <span id="comment-content-@(Model.Id)">@Model.Content</span>
         </div>
         <div class="mh-comment-acitvity">
             <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
@@ -21,63 +21,17 @@
             </a>
             -
             <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
-            -
-            <a data-toggle="modal" data-target="#history-edit-1" class="mh-comment-history-edit">Đã chỉnh sửa</a>
-            <div id="history-edit-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                <div class="modal-dialog modal-md" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Lịch sử chỉnh sửa</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="media mh-comment-div">
-                                <div class="media-left">
-                                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
-                                </div>
-                                <div class="media-body">
-                                    <span class="media-heading mh-comment-content">
-                                        <a href="" class="mh-media-comment-user">User</a>
-                                        <span>1 Tại sao đường tròn lại tập hợp một chuỗi các đường...</span>
-                                    </span>
-                                    <div class="mh-comment-acitvity">
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mh-comment-history-see-more">
-                                <a href="" data-toggle="tooltip" data-placement="top" title="1 được ẩn đi">...</a>
-                            </div>
-                            <div class="media mh-comment-div">
-                                <div class="media-left">
-                                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
-                                </div>
-                                <div class="media-body">
-                                    <span class="media-heading mh-comment-content">
-                                        <a href="" class="mh-media-comment-user">User</a>
-                                        <span>1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? 1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường...</span>
-                                        <a href="">Xem thêm</a>
-                                    </span>
-                                    <div class="mh-comment-acitvity">
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <span class="@(Model.Edited ? "" : "hidden") edited-button">
+                -
+                <a onclick="loadEditedLog(@Model.Id,'Comment')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+            </span>
         </div>
-        <textarea class="form-control mh-comment-edit-textarea" rows="3">1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</textarea>
-        <span class="mh-note">
-            Nhấn ESC để để
-            <button type="button" class="mh-note-close-button" value="1 Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng? Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?">
+        <textarea class="form-control mh-comment-edit-textarea" comment-id="@Model.Id" rows="3">@Model.Content</textarea>
+        <div class="mh-note">
+            <button onclick="@("closeEdit()")" type="button" class="mh-note-close-button" value="@Model.Content">
                 hủy
             </button>
-        </span>
+        </div>
         @if (Model.Comments.Count > 3)
         {
             <div class="mh-comment-list">
@@ -87,9 +41,22 @@
                 @Html.Partial("../CommonWidget/_ReplyListPartialView", Model.Comments)
             </div>
             <div class="mh-media-see-more">
-                <a class="mh-seemore-comment" onclick="seemore(this)">
+                <a class="mh-seemore-comment" onclick="@("seemore(this)")">
                     Xem thêm @(Model.Comments.Count - 3) trả lời
                 </a>
+            </div>
+            <div class="media mh-input-commnent-div hidden">
+                <div class="media-left">
+                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
+                </div>
+                <div class="media-body">
+                    <div class="mh-comment-input-send">
+                        <input type="text" class="mh-media-reply-input mh-input-comment" placeholder="Viết trả lời..." />
+                        <input type="hidden" class="post-id" value="@Model.Id" />
+                        <input type="hidden" class="type" value="reply" />
+                        <a href=""><i class="fa fa-paper-plane mh-rely-send"></i></a>
+                    </div>
+                </div>
             </div>
         }
         else
@@ -97,26 +64,23 @@
             <div class="mh-comment-list-full">
                 @Html.Partial("../CommonWidget/_ReplyListPartialView", Model.Comments)
             </div>
-        }
-
-        <div class="media mh-input-commnent-div">
-            <div class="media-left">
-                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
-            </div>
-            <div class="media-body">
-                <div class="mh-comment-input-send">
-                    <input type="text" class="mh-media-reply-input mh-input-comment" placeholder="Viết trả lời..." />
-                    <input type="hidden" class="post-id" value="@Model.Id" />
-                    <input type="hidden" class="type" value="reply" />
-                    <a href=""><i class="fa fa-paper-plane mh-rely-send"></i></a>
+            <div class="media mh-input-commnent-div">
+                <div class="media-left">
+                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
+                </div>
+                <div class="media-body">
+                    <div class="mh-comment-input-send">
+                        <input type="text" class="mh-media-reply-input mh-input-comment" placeholder="Viết trả lời..." />
+                        <input type="hidden" class="post-id" value="@Model.Id" />
+                        <input type="hidden" class="type" value="reply" />
+                        <a href=""><i class="fa fa-paper-plane mh-rely-send"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
     </div>
     <div class="media-right">
-        @if (Request.IsAuthenticated) {
-            Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "comment" }, { "Status", Model.Status }, { "UserId", Model.UserId } });
-        }
+        @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "comment" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
     </div>
 </div>

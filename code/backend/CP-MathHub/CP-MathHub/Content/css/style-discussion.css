@@ -210,8 +210,9 @@ footer {
 /* Panel: end*/
 /*Ðãng nhanh: start*/
 .mh-create-fast {
-    border: 1px solid #C1C1C1;
-    padding: 15px;
+  border-bottom: 1px solid #C1C1C1;
+  border-top: 1px solid #C1C1C1;
+  padding: 15px;
 }
 .mh-create-fast .mh-create-title {
     margin-top: 5px;

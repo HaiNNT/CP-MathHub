@@ -17,6 +17,7 @@ namespace CP_MathHub.Models.Common
         public string Avatar { get; set; }
         public int Like { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
+        public bool Edited { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
         public ICollection<Vote> Votes { get; set; }

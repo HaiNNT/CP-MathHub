@@ -12,7 +12,7 @@ using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
 {
-    public class DiscussionMapperProfile :Profile
+    public class DiscussionMapperProfile : Profile
     {
         /// <summary>
         /// Config profile for System AutoMapper
@@ -54,11 +54,15 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Like,
                     d => d.MapFrom(m => m.VoteUp)
                 )
+                //.ForMember(
+                //    s => s.Liked,
+                //    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                //)
                 .ForMember(
-                    s => s.Liked,
-                    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
                 )
                 .ForMember(
                     s => s.Tags,
@@ -68,13 +72,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.UserInfo,
                     d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(m.Author))
                 )
-                .ForMember(
-                    s => s.Bookmarked,
-                    d => d.MapFrom(m => m.BookmarkUsers
-                                            .Where(u => u.Id == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id).Count() > 0)
-                );
+                //.ForMember(
+                //    s => s.Bookmarked,
+                //    d => d.MapFrom(m => m.BookmarkUsers
+                //                            .Where(u => u.Id == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id).Count() > 0)
+                //)
+                ;
             #endregion
             #region Discussion Detail
             Mapper.CreateMap<Discussion, DiscussionDetailViewModel>()
@@ -101,6 +106,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //                                                    new CPMathHubModelContainer())
                 //                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
                 //)
+                .ForMember(
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
+                )
                 .ForMember(
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
