@@ -201,6 +201,14 @@ footer {
     border: 1px solid #C1C1C1;
     padding: 15px;
 }
+.mh-create-fast > button {
+    border-radius: 0px;  
+}
+.mh-create-fast > div > div {
+    border-radius: 0px;  
+    border: 1px solid #2e6da4;
+    margin-top: -1px;
+}
 .mh-create-fast .mh-create-title {
     margin-top: 5px;
 }
@@ -227,9 +235,11 @@ footer {
 /*  Mid: end    */
 .modal-body .mh-content-detail {
     border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 15px;
 }
 .modal-body .mh-content-detail:last-child {
     border-bottom: 0px;
+    padding-bottom: 0;
 }
 .modal-body .mh-content-detail h3 {
     color: #337ab7;
