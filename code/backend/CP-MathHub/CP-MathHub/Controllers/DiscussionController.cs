@@ -34,8 +34,8 @@ namespace CP_MathHub.Controllers
         {
             //int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
             List<Tag> tags = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
-            ICollection<DiscussionCategoryViewModel> discussioncategoryVM =
-                tags.Select(Mapper.Map<Tag, DiscussionCategoryViewModel>) // Using Mapper with Collection
+            List<CategoryPreviewViewModel> discussioncategoryVM =
+                tags.Select(Mapper.Map<Tag, CategoryPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
 
             DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
@@ -54,8 +54,8 @@ namespace CP_MathHub.Controllers
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
             List<Discussion> discussions = dService.GetDiscussionCategorys(tagId, skip);
-            ICollection<DiscussionTagPreviewViewModel> discussionTagPreviewVM =
-                discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
+            List<DiscussionPreviewViewModel> discussionTagPreviewVM =
+                discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
             for (int i = 0; i < discussionTagPreviewVM.Count; i++)
             {
@@ -68,7 +68,7 @@ namespace CP_MathHub.Controllers
             }
             if (page == 0)
             {
-                DiscussionTagHomeViewModel discussionTagHomeVM = new DiscussionTagHomeViewModel();
+                CategoryViewModel discussionTagHomeVM = new CategoryViewModel();
                 discussionTagHomeVM.Name = tag;
                 ViewBag.Tab = Constant.Discussion.String.HomeCategoryTab;
                 ViewBag.TabParam = tagId;
@@ -82,13 +82,13 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionTagPreviewVM);
+                return PartialView("Partials/_DiscussionListPartialView", discussionTagPreviewVM);
             }
         }
         //Post: CategoryIndex
         [Authorize]
         [HttpPost, ValidateInput(false)]
-        public ActionResult CategoryIndex(DiscussionTagHomeViewModel discussionTagHomeVM, int tagId)
+        public ActionResult CategoryIndex(CategoryViewModel discussionTagHomeVM, int tagId)
         {
             Discussion discussion = new Discussion();
             discussion.Title = discussionTagHomeVM.Tile;
@@ -136,8 +136,8 @@ namespace CP_MathHub.Controllers
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
             //Tag tagEntity = cService.GetTag(tag);
             List<Discussion> discussions = dService.GetDiscussionCategorys(tagId, skip);
-            ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
-                    discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
+            List<DiscussionPreviewViewModel> discussionPreviewVMs =
+                    discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
                     .ToList();
             for (int i = 0; i < discussionPreviewVMs.Count; i++)
             {
@@ -151,7 +151,7 @@ namespace CP_MathHub.Controllers
 
             if (page == 0)
             {
-                DiscussionTagHomeViewModel tagHomeVM = new DiscussionTagHomeViewModel();
+                CategoryViewModel tagHomeVM = new CategoryViewModel();
                 tagHomeVM.Name = "Thảo luận có thẻ \"" + tag + "\"";
                 ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
@@ -164,7 +164,7 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionPreviewVMs);
+                return PartialView("Partials/_DiscussionListPartialView", discussionPreviewVMs);
             }
         }
         //Get: Discussion/Search
@@ -173,8 +173,8 @@ namespace CP_MathHub.Controllers
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
             List<Discussion> discussions = dService.SearchDiscussions(skip, searchString);
-            ICollection<DiscussionTagPreviewViewModel> discussionPreviewVMs =
-                     discussions.Select(Mapper.Map<Discussion, DiscussionTagPreviewViewModel>) // Using Mapper with Collection
+            List<DiscussionPreviewViewModel> discussionPreviewVMs =
+                     discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
                      .ToList();
             for (int i = 0; i < discussionPreviewVMs.Count; i++)
             {
@@ -189,7 +189,7 @@ namespace CP_MathHub.Controllers
 
             if (page == 0)
             {
-                DiscussionTagHomeViewModel tagHomeVM = new DiscussionTagHomeViewModel();
+                CategoryViewModel tagHomeVM = new CategoryViewModel();
                 tagHomeVM.Name = "Có " + dService.CountSearchResult(searchString)
                                        + " Kết Quả Tìm Kiếm Cho \"" + searchString + "\"";
                 ViewBag.Tab = Constant.Discussion.String.HomeSearchTab;
@@ -203,7 +203,7 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_DiscussionListCategoryPartialView", discussionPreviewVMs);
+                return PartialView("Partials/_DiscussionListPartialView", discussionPreviewVMs);
             }
         }
         //Get: Discussion/Detail
@@ -264,6 +264,7 @@ namespace CP_MathHub.Controllers
             EditedLog editedlog = new EditedLog();
             editedlog.Content = discussion.Content;
             editedlog.CreatedDate = DateTime.Now;
+            editedlog.Title = discussionCreateVM.Title;
             editedlog.PostId = discussion.Id;
             editedlog.UserId = discussion.UserId;
 
@@ -303,6 +304,7 @@ namespace CP_MathHub.Controllers
             EditedLog editedlog = new EditedLog();
             editedlog.Content = discussion.Content;
             editedlog.CreatedDate = DateTime.Now;
+            editedlog.Title = discussionEditVM.Title;
             editedlog.PostId = discussion.Id;
             editedlog.UserId = User.Identity.GetUserId<int>();
 

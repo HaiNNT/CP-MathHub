@@ -20,7 +20,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            #region Article Preview
+            #region Preview Article
             Mapper.CreateMap<Article, ArticlePreviewViewModel>()
                 .ForMember(
                     s => s.ReportNum,
@@ -44,11 +44,15 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     d => d.MapFrom(m => m.VoteUp)
                 )
                 .ForMember(
-                    s => s.Liked,
-                    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
-                                                                    new CPMathHubModelContainer())
-                                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
                 )
+                //.ForMember(
+                //    s => s.Liked,
+                //    d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+                //                                                    new CPMathHubModelContainer())
+                //                                                        .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                //)
                 .ForMember(
                     s => s.Tags,
                     d => d.MapFrom(m => m.Tags)
@@ -71,7 +75,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 ;
             #endregion
 
-            #region Aricle Create
+            #region Create Aricle
 
             Mapper.CreateMap<ArticleCreateViewModel, Article>()
                .ForMember(
@@ -93,11 +97,20 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                .ForMember(
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
-               );
+               )
+               .ForMember(
+                   s => s.VoteUp,
+                   d => d.MapFrom(m => 0)
+               )
+               .ForMember(
+                   s => s.VoteDown,
+                   d => d.MapFrom(m => 0)
+               )
+               ;
 
             #endregion
 
-            #region Article Detail
+            #region Detail Article
             Mapper.CreateMap<Article, ArticleDetailViewModel>()
             .ForMember(
                 s => s.ReportNum,
@@ -115,6 +128,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             .ForMember(
                 s => s.Like,
                 d => d.MapFrom(m => m.VoteUp)
+            )
+            .ForMember(
+                    s => s.Edited,
+                    d => d.MapFrom(m => m.EditedContents.Count > 1)
             )
             //.ForMember(
             //        s => s.Liked,
@@ -146,7 +163,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             ;
             #endregion
 
-            #region Article Edit
+            #region Edit Article
             Mapper.CreateMap<Article, ArticleEditViewModel>()
                .ForMember(
                    s => s.Privacy,

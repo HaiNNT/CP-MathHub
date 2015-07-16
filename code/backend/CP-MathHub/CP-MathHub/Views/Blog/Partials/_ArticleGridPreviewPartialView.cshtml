@@ -15,6 +15,10 @@
     <div class="mh-blog-user">
         <div class="row mh-row-time">
             <span>@Html.PostCreatedTime(Model.CreatedDate, (string)ViewBag.CreatedDateType)</span>
+            <span class="@(Model.Edited ? "" : "hidden") edited-button">
+                -
+                <a onclick="loadEditedLog(@Model.Id,@("\"MainPost\""))" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+            </span>
         </div>
         <div class="row mh-row-info">
             <div class="col-xs-2">

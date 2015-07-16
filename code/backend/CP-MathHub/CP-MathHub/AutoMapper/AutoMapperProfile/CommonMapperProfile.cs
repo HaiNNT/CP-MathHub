@@ -19,12 +19,14 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            //User
+            #region User
             Mapper.CreateMap<User, UserInfoViewModel>();
             Mapper.CreateMap<User, ProfileWidgetViewModel>();
             Mapper.CreateMap<User, UserHeaderViewModel>();
-            //Tag
-            Mapper.CreateMap<Tag, DiscussionCategoryViewModel>()
+            #endregion
+
+            #region Tag
+            Mapper.CreateMap<Tag, CategoryPreviewViewModel>()
                 .ForMember(
                     s => s.Name,
                     d => d.MapFrom(m=>m.Name)
@@ -44,8 +46,9 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                  )
 
                  ;
-      
-            //Comment
+            #endregion
+
+            #region Comment
             Mapper.CreateMap<Comment, CommentViewModel>()
                 .ForMember(
                     s => s.Username,
@@ -82,6 +85,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //    s => s.MapFrom(m => m.Status)
                 //)
                 ;
+            #endregion
         }
     }
 }

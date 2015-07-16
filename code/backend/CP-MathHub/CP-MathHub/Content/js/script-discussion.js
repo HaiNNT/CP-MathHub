@@ -19,6 +19,15 @@ function seemore(obj) {
 }
 
 /*
+    See more content
+*/
+function seemoreContent(obj) {
+    $(obj).parent().addClass("hidden");
+    $(obj).parent().siblings(".mh-sort-content").addClass("hidden");
+    $(obj).parent().siblings(".mh-full-content").removeClass("hidden");
+}
+
+/*
   Like a main post
 */
 function like(id, like) {
@@ -50,21 +59,6 @@ function like(id, like) {
 	  .fail(function () {
 	      alert("fail error");
 	  });
-}
-
-/*
-  Init see more comment event listening 
-*/
-function seeMoreComment() {
-    $(".mh-seemore-comment").each(function () {
-        $(this).click(function () {
-            $(this).addClass("hidden");
-            $(this).siblings(".hidden").each(function () {
-                $(this).removeClass("hidden");
-            });
-
-        });
-    });
 }
 
 /*

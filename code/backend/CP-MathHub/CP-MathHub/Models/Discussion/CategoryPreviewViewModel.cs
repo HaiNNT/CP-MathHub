@@ -7,7 +7,7 @@ using CP_MathHub.Models.Common;
 
 namespace CP_MathHub.Models.Discussion
 {
-    public class DiscussionCategoryViewModel
+    public class CategoryPreviewViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
