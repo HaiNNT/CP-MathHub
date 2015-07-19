@@ -203,6 +203,43 @@ form:last-child .mh-profile-info-row {
     padding-bottom: 0px;
     border-bottom: 0;
 }
+.mh-profile-chat-users {
+    border-right: 1px solid #E9EAED;
+}
+.mh-profile-chat-detail {
+    border-left: 1px solid #E9EAED;
+    margin-left: -1px;
+}
+.mh-profile-chat-detail .mh-profile-chat-top h4 {
+    margin-top: 0px;
+    padding-top: 10px;
+}
+.mh-profile-chat-top {
+    height: 40px;
+    border-bottom: 1px solid #E9EAED;
+}
+.mh-profile-chat-user {
+    height: 500px;
+    overflow-y: scroll;
+}
+.mh-profile-chat-user > div {
+    padding: 10px 5px;
+}
+.tab-content  #message .media:first-child {
+    margin-top: 0px;
+}
+.mh-profile-chat-user > div .media {
+    margin-top: 0px;
+}
+.mh-profile-chat-user > div:hover {
+    background-color: #ccc;
+}
+.mh-profile-chat-user a {
+    color: #000;
+}
+.mh-profile-chat-user .media-heading {
+    font-weight: bold;
+}
 /*  User activity: end*/
 .tab-pane {
     min-height: 300px;
