@@ -50,6 +50,15 @@ function applyInfinityLoading() {
 }
 
 /*
+    See more content
+*/
+function seemoreContent(obj) {
+    $(obj).parent().addClass("hidden");
+    $(obj).parent().siblings(".mh-sort-content").addClass("hidden");
+    $(obj).parent().siblings(".mh-full-content").removeClass("hidden");
+}
+
+/*
 	Create a tag 
 */
 function createTag() {

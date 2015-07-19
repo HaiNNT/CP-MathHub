@@ -1,5 +1,5 @@
 ﻿@using CP_MathHub.Models.Discussion
-@model DiscussionTagHomeViewModel
+@model CategoryViewModel
 @{
     ViewBag.Title = @Model.Name;
     ViewBag.MhPage = "discussion-category";
@@ -23,26 +23,32 @@
 <div class="row">
     @using (Html.BeginForm("CategoryIndex", "Discussion", FormMethod.Post))
     {
+
         <div class="mh-create-fast">
-            <h4>Đăng nhanh</h4>
-            <div class="mh-create-title">
-                @*<input type="text" placeholder="Nhập tiêu đề... (note: khi nhập có đề xuất)" class="mh-create-input">*@
-                @Html.TextBoxFor(m => m.Tile, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
-                @Html.ValidationMessageFor(model => model.Tile)
-            </div>
-            <div class="mh-ckeditor">
-                @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "fast-editor", @rows = "15", @cols = "80" })
-                @Html.ValidationMessageFor(model => model.Content)
-            </div>
-            <input type="hidden" name="tagId" value="@Model.Id" />
-            <div class="mh-create-div">
-                <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Đăng nhanh
+            </button>
+            <div class="collapse" id="collapseExample">
+                <div class="well">
+                    <div class="mh-create-title">
+                        @Html.TextBoxFor(m => m.Tile, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
+                        @Html.ValidationMessageFor(model => model.Tile)
+                    </div>
+                    <div class="mh-ckeditor">
+                        @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "fast-editor", @rows = "15", @cols = "80" })
+                        @Html.ValidationMessageFor(model => model.Content)
+                    </div>
+                    <input type="hidden" name="tagId" value="@Model.Id" />
+                    <div class="mh-create-div">
+                        <button type="submit" class="btn btn-success btn-lg mh-create-button">Đăng</button>
+                    </div>
+                </div>
             </div>
         </div>
     }
 </div>
 <div class="mh-discussion-posts" id="list-discussions">
-    @Html.Partial("Partials/_DiscussionListCategoryPartialView", Model.Items)
+    @Html.Partial("Partials/_DiscussionListPartialView", Model.Items)
 </div>
 <div id="history-edit" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 </div>

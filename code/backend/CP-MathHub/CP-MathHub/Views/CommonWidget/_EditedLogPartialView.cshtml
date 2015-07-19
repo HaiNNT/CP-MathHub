@@ -27,35 +27,35 @@
                             </div>
                         </div>
                         @for (int i = 1; i < Model.Count - 1; i++)
-                            {
-                            <div class="media mh-comment-div hidden">
-                                <div class="media-left">
-                                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
-                                </div>
-                                <div class="media-body">
-                                    <span class="media-heading mh-comment-content">
-                                        <a href="" class="mh-media-comment-user">@Model.ElementAt(i).User.UserName</a>
-                                        <span>@Model.ElementAt(i).Content</span>
-                                    </span>
-                                    <div class="mh-comment-acitvity">
-                                        <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "sửa")</span>
-                                    </div>
+                        {
+                        <div class="media mh-comment-div hidden">
+                            <div class="media-left">
+                                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-small">
+                            </div>
+                            <div class="media-body">
+                                <span class="media-heading mh-comment-content">
+                                    <a href="" class="mh-media-comment-user">@Model.ElementAt(i).User.UserName</a>
+                                    <span>@Model.ElementAt(i).Content</span>
+                                </span>
+                                <div class="mh-comment-acitvity">
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "chỉnh sửa")</span>
                                 </div>
                             </div>
-                            }
+                        </div>
+                        }
 
                         @if (Model.Count > 2)
-                            {
-                            <div class="mh-comment-history-see-more">
-                                <a onclick="@("showHiddenEditedLog(this)")" data-toggle="tooltip" data-placement="top" title="@(Model.Count - 2) được ẩn đi">...</a>
-                            </div>
-                            <script type="text/javascript">
-                                    function showHiddenEditedLog(item) {
-                                        $(item).parent().siblings(".hidden").removeClass("hidden");
-                                        $(item).parent().addClass("hidden");
-                                    }
-                            </script>
-                            }
+                        {
+                        <div class="mh-comment-history-see-more">
+                            <a onclick="@("showHiddenEditedLog(this)")" data-toggle="tooltip" data-placement="top" title="@(Model.Count - 2) được ẩn đi">...</a>
+                        </div>
+                        <script type="text/javascript">
+                                function showHiddenEditedLog(item) {
+                                    $(item).parent().siblings(".hidden").removeClass("hidden");
+                                    $(item).parent().addClass("hidden");
+                                }
+                        </script>
+                        }
 
                         <div class="media mh-comment-div">
                             <div class="media-left">
@@ -67,43 +67,48 @@
                                     <span>@Model.ElementAt(Model.Count - 1).Content</span>
                                 </span>
                                 <div class="mh-comment-acitvity">
-                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(Model.Count - 1).CreatedDate, "sửa")</span>
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(Model.Count - 1).CreatedDate, "chỉnh sửa")</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                         break;
                 case "MainPost":
-                   <div>
+                <div>
                     <div class="mh-content-detail">
-                        <h3>dasdasdasd</h3>
+                        <h3>@Model.ElementAt(0).Title</h3>
                         <div>
-                            <p>
-                                Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                            </p>
-                            <p>
-                                Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                còn lại hai bậc;
-                                <a href="#">Xem thêm</a>
-                            </p>
+                            <div class="mh-sort-content">
+                                @{
+                                    int length = Model.ElementAt(0).Title.Length > 50 ? 431 : 571;
+                                    @Html.Raw(Model.ElementAt(0).Content);
+                                }
+                            </div>
+                            @if (Model.ElementAt(0).Content.Length > length)
+                            {
+                                <div><a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a></div>
+                                <div class="mh-full-content hidden">
+                                    @Html.Raw(Model.ElementAt(0).Content)
+                                </div>
+                            }
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
                                 <div class="row">
-                                    <span class="mh-time">đăng vào ngày 18 tháng 6 lúc 16:30</span>
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(0).CreatedDate, "đăng")</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
                                         <a href="#">
-                                            <img src="img/user.jpg" class="mh-user-avatar">
+                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
                                         </a>
                                     </div>
                                     <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
                                         <a href="#">
-                                            <span class="mh-username">HaiNNT</span>
+                                            <span class="mh-username">@Model.ElementAt(0).User.UserName</span>
                                         </a>
                                         <div class="detail-reputat">
-                                            <span>612</span>
+                                            <span>@Model.ElementAt(0).User.Reputation</span>
                                             <i class="fa fa-circle mh-reputation-icon"></i>
                                         </div>
                                     </div>
@@ -111,52 +116,291 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mh-comment-history-see-more">
-                        <a href="" data-toggle="tooltip" data-placement="top" title="1 được ẩn đi">...</a>
-                    </div>
-                    <div class="mh-content-detail">
-                        <h3>Giải toán lớp 6</h3>
-                        <div>
-                            <p>
-                                Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                            </p>
-                            <p>
-                                Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                còn lại hai bậc;
-                                <a href="#">Xem thêm</a>
-                            </p>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                <div class="row">
-                                    <span class="mh-time">đăng vào ngày 18 tháng 6 lúc 16:30</span>
+                    @for (int i = 1; i < Model.Count - 1; i++)
+                    {
+                        <div class="mh-content-detail hidden">
+                            <h3>@Model.ElementAt(i).Title</h3>
+                            <div>
+                                <div class="mh-sort-content">
+                                    @{
+                                        length = Model.ElementAt(i).Title.Length > 50 ? 431 : 571;
+                                        @Html.Raw(Model.ElementAt(i).Content);
+                                    }
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                        <a href="#">
-                                            <img src="img/user.jpg" class="mh-user-avatar">
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                        <a href="#">
-                                            <span class="mh-username">HaiNNT</span>
-                                        </a>
-                                        <div class="detail-reputat">
-                                            <span>612</span>
-                                            <i class="fa fa-circle mh-reputation-icon"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                @if (Model.ElementAt(i).Content.Length > length)
+                                {
+                                    <div><a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a></div>
+                                    <div class="mh-full-content hidden">
 
+                                        @Html.Raw(Model.ElementAt(i).Content)
+
+                                    </div>
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                    <div class="row">
+                                        <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "chỉnh sửa")</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                            <a href="#">
+                                                <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                            <a href="#">
+                                                <span class="mh-username">@Model.ElementAt(i).User.UserName</span>
+                                            </a>
+                                            <div class="detail-reputat">
+                                                <span>@Model.ElementAt(i).User.Reputation</span>
+                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.Count > 2)
+                    {
+                        <div class="mh-comment-history-see-more">
+                            <a onclick="@("showHiddenEditedLog(this)")" data-toggle="tooltip" data-placement="top" title="@(Model.Count - 2) được ẩn đi">...</a>
+                        </div>
+                        <script type="text/javascript">
+                            function showHiddenEditedLog(item) {
+                                $(item).parent().siblings(".hidden").removeClass("hidden");
+                                $(item).parent().addClass("hidden");
+                            }
+                        </script>
+                    }
+                    <div class="mh-content-detail">
+                        <h3>@Model.ElementAt(Model.Count - 1).Title</h3>
+                        <div>
+                            <div class="mh-sort-content">
+                                @{
+                                    length = Model.ElementAt(Model.Count - 1).Title.Length > 50 ? 431 : 571;
+                                    @Html.Raw(Model.ElementAt(Model.Count - 1).Content);
+                                }
+                            </div>
+                            @if (Model.ElementAt(Model.Count - 1).Content.Length > length)
+                            {
+                                <div><a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a></div>
+                                <div class="mh-full-content hidden">
+
+                                    @Html.Raw(Model.ElementAt(Model.Count - 1).Content)
+
+                                </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                <div class="row">
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(Model.Count - 1).CreatedDate, "chỉnh sửa")</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                        <a href="#">
+                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                        <a href="#">
+                                            <span class="mh-username">@Model.ElementAt(Model.Count - 1).User.UserName</span>
+                                        </a>
+                                        <div class="detail-reputat">
+                                            <span>@Model.ElementAt(Model.Count - 1).User.Reputation</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                        break;
+                            break;
                 case "Answer":
-                        break;
+                <div>
+                    <div class="mh-content-detail">
+                        <h3>@Model.ElementAt(0).Title</h3>
+                        <div>
+                            <div class="mh-sort-content">
+                                @{
+                             length = Model.ElementAt(0).Title.Length > 50 ? 431 : 571;
+                                @Html.Raw(Model.ElementAt(0).Content);
+                                }
+                            </div>
+                            @if (Model.ElementAt(0).Content.Length > length)
+                            {
+                            <div><a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a></div>
+                            <div class="mh-full-content hidden">
+
+                                @Html.Raw(Model.ElementAt(0).Content)
+
+                            </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                <div class="row">
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(0).CreatedDate, "trả lời")</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                        <a href="#">
+                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                        <a href="#">
+                                            <span class="mh-username">@Model.ElementAt(0).User.UserName</span>
+                                        </a>
+                                        <div class="detail-reputat">
+                                            <span>@Model.ElementAt(0).User.Reputation</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @for (int i = 1; i < Model.Count - 1; i++)
+                    {
+                    <div class="mh-content-detail hidden">
+                        <h3>@Model.ElementAt(i).Title</h3>
+                        <div>
+                            <div class="mh-sort-content">
+                                @{
+                        length = Model.ElementAt(i).Title.Length > 50 ? 431 : 571;
+                                @Html.Raw(Model.ElementAt(i).Content);
+                                }
+                            </div>
+                            @if (Model.ElementAt(i).Content.Length > length)
+                                {
+                            <a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a>
+                            <div class="mh-full-content hidden">
+
+                                @Html.Raw(Model.ElementAt(i).Content)
+
+                            </div>
+                                }
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                <div class="row">
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "chỉnh sửa")</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                        <a href="#">
+                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                        <a href="#">
+                                            <span class="mh-username">@Model.ElementAt(i).User.UserName</span>
+                                        </a>
+                                        <div class="detail-reputat">
+                                            <span>@Model.ElementAt(i).User.Reputation</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    @if (Model.Count > 2)
+                    {
+                    <div class="mh-comment-history-see-more">
+                        <a onclick="@("showHiddenEditedLog(this)")" data-toggle="tooltip" data-placement="top" title="@(Model.Count - 2) được ẩn đi">...</a>
+                    </div>
+                    <script type="text/javascript">
+                            function showHiddenEditedLog(item) {
+                                $(item).parent().siblings(".hidden").removeClass("hidden");
+                                $(item).parent().addClass("hidden");
+                            }
+                    </script>
+                    }
+                    <div class="mh-content-detail">
+                        <h3>@Model.ElementAt(Model.Count - 1).Title</h3>
+                        <div>
+                            <div class="mh-sort-content">
+                                @{
+                    length = Model.ElementAt(Model.Count - 1).Title.Length > 50 ? 431 : 571;
+                                @Html.Raw(Model.ElementAt(Model.Count - 1).Content);
+                                }
+                            </div>
+                            @if (Model.ElementAt(Model.Count - 1).Content.Length > length)
+                            {
+                            <a onclick="seemoreContent(this)" class="mh-seemore">Xem thêm</a>
+                            <div class="mh-full-content hidden">
+
+                                @Html.Raw(Model.ElementAt(Model.Count - 1).Content)
+
+                            </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                <div class="row">
+                                    <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(Model.Count - 1).CreatedDate, "chỉnh sửa")</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                        <a href="#">
+                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                        <a href="#">
+                                            <span class="mh-username">@Model.ElementAt(Model.Count - 1).User.UserName</span>
+                                        </a>
+                                        <div class="detail-reputat">
+                                            <span>@Model.ElementAt(Model.Count - 1).User.Reputation</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            break;
                 case "QuestionComment":
-                        break;
+                <div>
+                    <div class="mh-comment-content">
+                        <span class="mh-comment-question-content">@Model.ElementAt(0).Content</span><br />
+                        <a href="#" class="mh-comment-question-username">@Model.ElementAt(0).User.UserName</a>
+                        <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(0).CreatedDate, "bình luận")</span>
+                    </div>
+                    @for (int i = 1; i < Model.Count - 1; i++)
+                        {
+                        <div class="mh-comment-content">
+                            <span class="mh-comment-question-content">@Model.ElementAt(i).Content</span><br />
+                            <a href="#" class="mh-comment-question-username">@Model.ElementAt(i).User.UserName</a>
+                            <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "chỉnh sửa")</span>
+                        </div>
+                        }
+                    @if (Model.Count > 2)
+                        {
+                        <div class="mh-comment-history-see-more">
+                            <a onclick="@("showHiddenEditedLog(this)")" data-toggle="tooltip" data-placement="top" title="@(Model.Count - 2) được ẩn đi">...</a>
+                        </div>
+                        <script type="text/javascript">
+                                function showHiddenEditedLog(item) {
+                                    $(item).parent().siblings(".hidden").removeClass("hidden");
+                                    $(item).parent().addClass("hidden");
+                                }
+                        </script>
+                        }
+                    <div class="mh-comment-content">
+                        <span class="mh-comment-question-content">@Model.ElementAt(Model.Count - 1).Content</span><br />
+                        <a href="#" class="mh-comment-question-username">@Model.ElementAt(Model.Count - 1).User.UserName</a>
+                        <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(Model.Count - 1).CreatedDate, "chỉnh sửa")</span>
+                    </div>
+                </div>
+                    break;
             }
 
 

@@ -5,4 +5,8 @@
     <span>@Model.Content</span><br />
     <a href="#">@Model.Author.UserName</a>
     <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
+    <span class="@(Model.EditedContents.Count > 1 ? "" : "hidden") edited-button">
+        -
+        <a onclick="loadEditedLog(@Model.Id,'CommentQuestion')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+    </span>
 </div>

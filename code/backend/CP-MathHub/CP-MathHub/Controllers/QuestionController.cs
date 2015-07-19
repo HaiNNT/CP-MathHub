@@ -206,6 +206,7 @@ namespace CP_MathHub.Controllers
             editedlog.CreatedDate = question.LastEditedDate;
             editedlog.PostId = question.Id;
             editedlog.UserId = question.UserId;
+            editedlog.Title = question.Title;
 
             question.EditedContents.Add(editedlog);
             qService.EditQuestion(question);
@@ -241,10 +242,11 @@ namespace CP_MathHub.Controllers
             Question question = qService.GetQuestion(questionVM.Id);
 
             EditedLog editedlog = new EditedLog();
-            editedlog.Content = question.Content;
+            editedlog.Content = questionVM.Content;
             editedlog.CreatedDate = DateTime.Now;
             editedlog.PostId = question.Id;
-            editedlog.UserId = question.UserId;
+            editedlog.UserId = User.Identity.GetUserId<int>();
+            editedlog.Title = questionVM.Title;
 
             question.Title = questionVM.Title;
             question.Content = questionVM.Content;

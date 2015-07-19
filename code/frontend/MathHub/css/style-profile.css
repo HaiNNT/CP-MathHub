@@ -106,6 +106,7 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-friend {
     height: 100px;
+    min-width: 324px;
     max-width: 447px;
     border: 1px solid #E9EAED;
     float: left;
@@ -133,6 +134,9 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-friend-quantity, .mh-profile-time {
     color: #ccc;
+}
+.mh-profile-follow_unfollow-button {
+    padding: 1px 3px;
 }
 /*User friend: end*/
 /* User activity: start */
@@ -182,3 +186,6 @@ form:last-child .mh-profile-info-row {
     border-bottom: 0;
 }
 /*  User activity: end*/
+.tab-pane {
+    min-height: 300px;
+}

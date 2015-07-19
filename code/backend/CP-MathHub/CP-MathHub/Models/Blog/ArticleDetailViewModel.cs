@@ -23,6 +23,7 @@ namespace CP_MathHub.Models.Blog
         public int Like { get; set; }
         public bool Bookmarked { get; set; }
         public bool Liked { get; set; }
+        public bool Edited { get; set; }
         public Nullable<PostStatusEnum> Status { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
 
