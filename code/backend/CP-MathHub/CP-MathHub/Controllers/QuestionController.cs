@@ -49,7 +49,7 @@ namespace CP_MathHub.Controllers
                         && questions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
-            if (page == 0)
+            if (page == 1)
             {
                 QuestionHomeViewModel questionHomeVM = new QuestionHomeViewModel();
                 questionHomeVM.Name = "HỎI ĐÁP";
