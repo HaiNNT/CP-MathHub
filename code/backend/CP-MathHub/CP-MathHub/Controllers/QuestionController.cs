@@ -57,7 +57,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(0);
+                cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
