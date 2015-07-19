@@ -79,13 +79,13 @@ namespace CP_MathHub.Service.Helpers
         public static MvcHtmlString RadioListForGenderEnum(this HtmlHelper htmlHelper, string name, GenderEnum? gender = default(GenderEnum))
         {
             string html = "";
-                html += InlineRadioForEnum(GenderEnum.Male, "Nam", name, gender == GenderEnum.Male);
-                html += InlineRadioForEnum(GenderEnum.Female, "Nữ", name, gender == GenderEnum.Female);
-                html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other);
+                html += InlineRadioForEnum(GenderEnum.Male, "Nam", name, gender == GenderEnum.Male, "mh-radio");
+                html += InlineRadioForEnum(GenderEnum.Female, "Nữ", name, gender == GenderEnum.Female, "mh-radio");
+                html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other, "mh-radio");
             return MvcHtmlString.Create(html);
         }
 
-        private static string RadioForEnum(Enum mhEnum, string display, string name)
+        private static string RadioForEnum(Enum mhEnum, string display, string name, string cssClass = "")
         {
             var div = new TagBuilder("div");
             div.MergeAttribute("class", "radio");
@@ -93,6 +93,7 @@ namespace CP_MathHub.Service.Helpers
             var input = new TagBuilder("input");
             input.MergeAttribute("type", "radio");
             input.MergeAttribute("name", name);
+            input.MergeAttribute("class", cssClass);
             input.MergeAttribute("id", name + 1);
             input.MergeAttribute("value", mhEnum.ToString());           
 
@@ -101,13 +102,14 @@ namespace CP_MathHub.Service.Helpers
             return div.ToString(TagRenderMode.Normal);
         }
 
-        private static string InlineRadioForEnum(Enum mhEnum, string display, string name, bool check = false)
+        private static string InlineRadioForEnum(Enum mhEnum, string display, string name, bool check = false, string cssClass = "")
         {
             var label = new TagBuilder("label");
             label.MergeAttribute("class", "radio-inline");
             var input = new TagBuilder("input");
             input.MergeAttribute("type", "radio");
             input.MergeAttribute("name", name);
+            input.MergeAttribute("class", cssClass);
             input.MergeAttribute("id", name + 1);
             input.MergeAttribute("value", mhEnum.ToString());
             if (check)

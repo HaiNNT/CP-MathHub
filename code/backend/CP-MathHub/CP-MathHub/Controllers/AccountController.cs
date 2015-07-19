@@ -30,7 +30,7 @@ namespace CP_MathHub.Controllers
             context = new CPMathHubModelContainer();
             aService = new AccountService(context);
         }
-
+        #region Authorization
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -413,6 +413,7 @@ namespace CP_MathHub.Controllers
         {
             return View();
         }
+        #endregion
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -512,6 +513,21 @@ namespace CP_MathHub.Controllers
                     break;
                 case "Email":
                     user.Email = model.Email;
+                    break;
+                case "Facebook":
+                    user.Profile.Facebook = model.Profile.Facebook;
+                    break;
+                case "School":
+                    user.Profile.School = model.Profile.School;
+                    break;
+                case "Education":
+                    user.Profile.Education = model.Profile.Education;
+                    break;
+                case "ViewPoint":
+                    user.Profile.ViewPoint = model.Profile.ViewPoint;
+                    break;
+                case "Summary":
+                    user.Profile.Summary = model.Profile.Summary;
                     break;
                 default:
                     break;

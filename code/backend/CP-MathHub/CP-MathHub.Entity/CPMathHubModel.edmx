@@ -2825,6 +2825,7 @@
           <Member Name="Master" Value="6" />
           <Member Name="Doctor" Value="7" />
           <Member Name="Professor" Value="8" />
+          <Member Name="Others" Value="0" />
         </EnumType>
         <EntityType Name="ProfileHistory">
           <Key>

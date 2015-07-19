@@ -155,6 +155,7 @@ namespace CP_MathHub.Core.Configuration
             public class Dictionary
             {
                 public static Dictionary<int, string> GenderName = new Dictionary<int, string> { { 1, "Nam" }, { 2, "Nữ" }, { 0, "Khác" } };
+                public static Dictionary<int, string> EducationName = new Dictionary<int, string> { { 1, "Cấp 1" }, { 2, "Cấp 2" }, { 3, "Cấp 3" }, { 4, "Sinh viên" }, { 5, "Cử nhân" }, { 6, "Thạc sĩ" }, { 7, "Tiến sĩ" }, { 8, "Giáo sư" }, { 0, "Khác" } };
 
             }
         }
