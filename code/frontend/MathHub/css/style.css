@@ -127,6 +127,7 @@ a {
 .mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
     color: #3b5998;
     text-decoration: underline;
+    background-color: #fff;
 }
 
 .mh-notification > .dropdown > ul > li > .mh-see-all {
@@ -139,13 +140,17 @@ a {
 .mh-notification > .dropdown > ul > li > .mh-see-all:hover {
     color: #3b5998;
     text-decoration: underline;
+    background-color: #fff;
 }
 
-.mh-notification > .dropdown > ul > li > .mh-notification-body {
-    max-height: 460px;
+.mh-notification > .dropdown > ul > li > .mh-request-friend {
     overflow-y: scroll;
+    max-height: 460px;   
 }
-
+.mh-notification > .dropdown > ul > li > .mh-notification-body {
+    overflow-y: scroll;
+    max-height: 460px;   
+}
 .mh-notification > li > ul > li > div > div {
     border-bottom: 1px solid #e5e5e5;
 }
@@ -181,29 +186,29 @@ a {
     font-weight: normal;
 }
 
-.mh-notification-body #mh-notifi-friend {
+.mh-request-friend .mh-request-friend-row {
     margin: 0px;
 }
 
-.mh-notification-body > #mh-notifi-friend .media-body {
+.mh-request-friend > .mh-request-friend-row .media-body {
     vertical-align: middle;
 }
 
-#mh-notifi-friend:hover {
+.mh-request-friend .mh-request-friend-row:hover {
     background-color: #fff;
 }
 
-#mh-notifi-user-name {
+.mh-request-user-name {
     font-weight: bold;
     cursor: pointer;
 }
 
-.mh-notification .mh-notifi-friend-button {
+.mh-notification .mh-request-friend-button {
     text-align: right;
     padding: 18px 0 0 0;
 }
 
-.mh-notification .mh-notifi-friend-button .mh-request-button {
+.mh-notification .mh-request-friend-button .mh-request-button {
     font-size: 9pt;
 }
 /*  Notification: end */

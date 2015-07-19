@@ -106,7 +106,7 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-friend {
     height: 100px;
-    min-width: 324px;
+    min-width: 416px;
     max-width: 447px;
     border: 1px solid #E9EAED;
     float: left;
@@ -138,6 +138,24 @@ form:last-child .mh-profile-info-row {
 .mh-profile-follow_unfollow-button {
     padding: 1px 3px;
 }
+.tab-pane .mh-request-friend-button {
+    margin-top: 28px;
+    text-align: right;
+}
+.tab-pane .mh-request-friend-row {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E9EAED;
+}
+.tab-pane .mh-request-friend-row:last-child {
+    border-bottom: 0px;
+}
+.mh-request-button {
+    margin-bottom: 5px;
+}
+.mh-request-see-more {
+    text-align: center;
+      border-top: 1px solid #E9EAED;
+} 
 /*User friend: end*/
 /* User activity: start */
 .mh-profile-posts {
