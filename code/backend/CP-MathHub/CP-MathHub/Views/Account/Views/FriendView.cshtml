@@ -46,19 +46,19 @@
         <li role="presentation" class="active">
             <a href="#all-friend" aria-controls="all-friend" role="tab" data-toggle="tab">
                 Tất cả bạn bè
-                <span class="mh-profile-friend-quantity">40</span>
+                <span class="mh-profile-friend-quantity">@Model.FriendNum</span>
             </a>
         </li>
         <li role="presentation">
             <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
                 Người theo dõi bạn
-                <span class="mh-profile-friend-quantity">40</span>
+                <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
             </a>
         </li>
         <li role="presentation">
             <a href="#followee" aria-controls="followee" role="tab" data-toggle="tab">
                 Bạn đang theo dõi
-                <span class="mh-profile-friend-quantity">40</span>
+                <span class="mh-profile-friend-quantity">@Model.FolloweeNum</span>
             </a>
         </li>
     </ul>

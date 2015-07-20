@@ -549,6 +549,9 @@ namespace CP_MathHub.Controllers
             {
                 FriendViewModel model = new FriendViewModel();
                 model.ListFollowers = followers;
+                model.FriendNum = aService.CountFriend(105);
+                model.FollowerNum = aService.CountFollower(105);
+                model.FolloweeNum = aService.CountFollowee(105);
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
                 ViewBag.System = Constant.String.AccountSystem;
