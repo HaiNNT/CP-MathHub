@@ -38,6 +38,13 @@
 }
 .mh-profile-user-info {
 }
+.mh-profile-user-info .mh-profile-info-row {
+    border-bottom: 0px;
+}
+.mh-profile-add-friend, .mh-profile-follow {
+    padding: 1px 3px;
+    margin-bottom: 3px;
+}
 .mh-body-profile .mh-profile-info-row .mh-profile-edit-button {
     float: right;
 }
@@ -55,10 +62,10 @@
 form:last-child .mh-profile-info-row {
     border-bottom: 0;
 }
-.mh-profile-edit, .mh-pass-edit {
+.mh-profile-edit {
     display: none;
 }
-.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit, .mh-body-profile .mh-profile-info-row:hover .mh-pass-edit {
+.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit {
     display: block;
 }
 .mh-profile-input-edit {
