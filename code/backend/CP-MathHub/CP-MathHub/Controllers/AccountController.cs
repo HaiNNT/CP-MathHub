@@ -17,6 +17,7 @@ using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
 using CP_MathHub.Helper;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace CP_MathHub.Controllers
 {
@@ -30,7 +31,7 @@ namespace CP_MathHub.Controllers
             context = new CPMathHubModelContainer();
             aService = new AccountService(context);
         }
-
+        #region Authorization
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -413,6 +414,7 @@ namespace CP_MathHub.Controllers
         {
             return View();
         }
+        #endregion
 
         #region Helpers
         // Used for XSRF protection when adding external logins
@@ -513,6 +515,21 @@ namespace CP_MathHub.Controllers
                 case "Email":
                     user.Email = model.Email;
                     break;
+                case "Facebook":
+                    user.Profile.Facebook = model.Profile.Facebook;
+                    break;
+                case "School":
+                    user.Profile.School = model.Profile.School;
+                    break;
+                case "Education":
+                    user.Profile.Education = model.Profile.Education;
+                    break;
+                case "ViewPoint":
+                    user.Profile.ViewPoint = model.Profile.ViewPoint;
+                    break;
+                case "Summary":
+                    user.Profile.Summary = model.Profile.Summary;
+                    break;
                 default:
                     break;
             }
@@ -520,6 +537,32 @@ namespace CP_MathHub.Controllers
             return RedirectToAction("MyProfile");
         }
 
+        #endregion
+        #region Friend
+        public ActionResult Friend(int userId=0, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab,skip);
+            List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
+            List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
+            if (page == 0)
+            {
+                FriendViewModel model = new FriendViewModel();
+                model.ListFollowers = followers;
+                model.ListFriends = friends;
+                model.ListFollowees = followees;
+                ViewBag.System = Constant.String.AccountSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                return View("Views/FriendView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_FriendListPartialView", friends);
+            }
+
+        }
         #endregion
     }
 }

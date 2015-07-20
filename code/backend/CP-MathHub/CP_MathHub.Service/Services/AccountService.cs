@@ -86,25 +86,46 @@ namespace CP_MathHub.Service.Services
             return result;
         }
 
-        public List<User> GetFriends(int userId, int skip = 0, int take = Constant.Integer.DefaultTake)
+        public List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake)
         {
-            List<UserFriendship> friendShips = dal.Repository<UserFriendship>().Get(
-                    (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
-                    , (u => u.OrderByDescending(m => m.LastChangeStatus))
-                    , "User,TargetUser"
-                    , skip
-                    , take).ToList();
             List<User> friends = new List<User>();
-            foreach (UserFriendship friendShip in friendShips)
+            switch (tab)
             {
-                if (friendShip.TargetUserId == userId)
-                {
-                    friends.Add(friendShip.User);
-                }
-                else
-                {
-                    friends.Add(friendShip.TargetUser);
-                }
+                case Constant.Account.String.AllFriendTab:
+                    List<UserFriendship> friendShips = dal.Repository<UserFriendship>().Get(
+                            (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User,TargetUser"
+                            , skip
+                            , take).ToList();
+                    foreach (UserFriendship friendShip in friendShips)
+                    {
+                        if (friendShip.TargetUserId == userId)
+                        {
+                            friends.Add(friendShip.User);
+                        }
+                        else
+                        {
+                            friends.Add(friendShip.TargetUser);
+                        }
+                    }
+                    break;
+                case Constant.Account.String.FollowerTab:
+                    friends = dal.Repository<User>().Get(
+                            ( u => u.Followees.Where(t => t.Id == userId).Count() >0)
+                            , (u => u.OrderByDescending(m => m.UserName))
+                            , ""
+                            , skip
+                            , take).ToList();
+                    break;
+                case Constant.Account.String.FolloweeTab:
+                    friends = dal.Repository<User>().Get(
+                            ( u => u.Followers.Where(t => t.Id == userId).Count() >0)
+                            , (u => u.OrderByDescending(m => m.UserName))
+                            , ""
+                            , skip
+                            , take).ToList();
+                    break;
             }
             return friends;
         }
@@ -119,8 +140,10 @@ namespace CP_MathHub.Service.Services
                     0,
                     0
                 ).ToList();
-            foreach(MainPost post in posts){
-                foreach(Tag tag in post.Tags){
+            foreach (MainPost post in posts)
+            {
+                foreach (Tag tag in post.Tags)
+                {
                     if (tags.Where(t => t.Id == tag.Id).Count() == 0)
                         tags.Add(tag);
                 }
