@@ -7,7 +7,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-question.css" rel="stylesheet">
     <link href="img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
     <title></title>
 </head>
@@ -40,6 +39,61 @@
     </header>
     <div class="container mh-body">
         <div class="row">
+            <div class="col-sm-2 col-md-3 col-lg-3"></div>
+            <div class="col-sm-8 col-md-6 col-lg-6 mh-login_register">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#login" aria-controls="register" role="tab" data-toggle="tab">Đăng nhập</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#register" aria-controls="profile" role="tab" data-toggle="tab">Đăng ký</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="login">
+                        <h3>Đăng nhập</h3>
+
+                        <div class="media mh-login_register-with">
+                            <a href="">
+                                <div class="media-left">
+                                    <i class="fa fa-facebook-official"></i>
+                                </div>
+                                <div class="media-body">
+                                    <span>Đăng nhập sử dụng Facebook</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mh-login_register-mathHub">
+                            <div class="media mh-login_register-with">
+                                <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="media-left">
+                                        <img src="img/icon_mathHub.png" class="mh-mathHub-icon" />
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Đăng nhập sử dụng tài khoản của MathHub</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="well">
+                                    <form>
+                                        <input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />
+                                        <i class="fa fa-user mh-login-mathHub-username-icon"></i>
+                                        <input type="text" placeholder="Mật khẩu" class="mh-login-mathHub-password" />
+                                        <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
+                                        <button type="button" class="btn btn-info">Đăng nhập</button>
+                                        <a href="">Quên mật khẩu</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="register">...</div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-md-3 col-lg-3"></div>
         </div>
     </div>
     <!--  footer: start -->
@@ -88,5 +142,8 @@
     </div>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script>
+
+    </script>
 </body>
 </html>
