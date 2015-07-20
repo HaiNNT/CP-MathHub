@@ -78,7 +78,19 @@ namespace CP_MathHub.Service.Services
                 .Count(u => u.Followees.Contains(user));
             return result;
         }
+        public int CountFollower(int userId)
+        {
+            int result = dal.Repository<User>().Table
+                .Count(u => u.Followers.Where(t => t.Id == userId).Count() > 0);
+            return result;
+        }
 
+        public int CountFollowee(int userId)
+        {
+            int result = dal.Repository<User>().Table
+                .Count(u => u.Followees.Where(t => t.Id == userId).Count() > 0);
+            return result;
+        }
         public int CountFollowee(User user)
         {
             int result = dal.Repository<User>().Table
