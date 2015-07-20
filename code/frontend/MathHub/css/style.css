@@ -161,7 +161,7 @@ a {
 
 .mh-notification .media {
     margin: 0px;
-    padding: 5px 0;
+    padding: 5px 0px 5px 5px;
 }
 
 .mh-notification > li > ul > li > div > div > a .media-body {
