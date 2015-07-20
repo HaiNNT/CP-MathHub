@@ -20,7 +20,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         /// </summary>
         protected override void Configure()
         {
-            #region Question Preview
+            #region Preview Question
             Mapper.CreateMap<Question, QuestionPreviewViewModel>()
                 .ForMember(
                     s => s.AnswerNum,
@@ -67,7 +67,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 ;
             #endregion
 
-            #region Question Detail
+            #region Detail Question
             Mapper.CreateMap<Question, QuestionDetailViewModel>()
                 //.ForMember(
                 //    s => s.ReportNum,
@@ -154,7 +154,16 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                .ForMember(
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
-               );
+               )
+               .ForMember(
+                   s => s.VoteUp,
+                   d => d.MapFrom(m => 0)
+               )
+               .ForMember(
+                   s => s.VoteDown,
+                   d => d.MapFrom(m => 0)
+               )
+               ;
             #endregion
 
             #region Edit Question Get

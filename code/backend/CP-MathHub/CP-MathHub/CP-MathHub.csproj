@@ -193,15 +193,13 @@
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
     <Compile Include="Models\Common\UserInfoViewModel.cs" />
-    <Compile Include="Models\Discussion\DiscussionCategoryViewModel.cs" />
+    <Compile Include="Models\Discussion\CategoryPreviewViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionDetailViewModel.cs" />
-    <Compile Include="Models\Discussion\DiscussionEditedLogViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionEditViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionHomeViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionPreviewViewModel.cs" />
-    <Compile Include="Models\Discussion\DiscussionTagHomeViewModel.cs" />
-    <Compile Include="Models\Discussion\DiscussionTagPreviewViewModel.cs" />
+    <Compile Include="Models\Discussion\CategoryViewModel.cs" />
     <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
     <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
@@ -677,8 +675,6 @@
     <Content Include="Views\CommonWidget\_CommentListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_CommentItemPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_ReplyListPartialView.cshtml" />
-    <Content Include="Views\Discussion\Partials\_DiscussionListTagPartialView.cshtml" />
-    <Content Include="Views\Discussion\Partials\_DiscussionTagPreviewPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CommentItemPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CommentListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_NavPartialView.cshtml" />
@@ -686,8 +682,6 @@
     <Content Include="Views\Discussion\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionTagHomeView.cshtml" />
     <Content Include="Views\Discussion\Layouts\_DiscussionTagHomeLayout.cshtml" />
-    <Content Include="Views\Discussion\Partials\_DiscussionCategoryPreviewPartialView.cshtml" />
-    <Content Include="Views\Discussion\Partials\_DiscussionListCategoryPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_PostSettingPartialView.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
@@ -710,7 +704,6 @@
     <Content Include="Views\Account\Views\ProfileView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FavoriteTagWidget.cshtml" />
     <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
-    <Content Include="Views\Discussion\Partials\_DiscustionEditedLogPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_BookmarkPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_EditedLogPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_FriendLayout.cshtml" />
@@ -718,6 +711,8 @@
     <Content Include="Views\Account\Partials\_FriendListPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_FollowerListPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_FolloweeListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CategoryListPartialView.cshtml" />
+    <Content Include="Views\Discussion\Partials\_CategoryPreviewPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

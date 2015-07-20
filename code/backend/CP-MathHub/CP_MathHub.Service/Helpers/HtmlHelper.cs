@@ -37,15 +37,15 @@ namespace CP_MathHub.Service.Helpers
 
         public static string VoteNumer(this HtmlHelper html, int? vote)
         {
-            if (vote == default(int))
+            if (vote == null)
             {
                 return "0";
             }
             if (Math.Abs(vote.Value) > 1000)
             {
-                return vote / 1000 + "K";
+                return vote.Value / 1000 + "K";
             }
-            return vote+"";
+            return vote.Value+"";
         }
 
         public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)

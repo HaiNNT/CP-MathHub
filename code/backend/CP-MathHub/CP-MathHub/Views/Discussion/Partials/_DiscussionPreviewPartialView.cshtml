@@ -1,46 +1,38 @@
 ﻿@model CP_MathHub.Models.Discussion.DiscussionPreviewViewModel
-
-<div class="panel panel-warning mh-question-preview">
+@using CP_MathHub.Models.Discussion
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
+<div class="panel panel-info mh-discussion-post">
     <div class="panel-heading">
-        <div class="row">
-            @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo)
+        <div class="mh-user-info">
+            @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo, new ViewDataDictionary { { "PostId", Model.Id }, { "Edited", Model.Edited }, { "CreatedDateType", ViewBag.CreatedDateType } })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "discussion" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
         </div>
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-10 col-xs-12 mh-content">
+            <div class="mh-content-detail">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
+                @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;
-                        if (Model.Content.Length > length)
-                        {
-                            @Html.Raw(Model.Content.Substring(0, length - 1) + "...");
-                        }
-                        else
-                        {
-                            @Html.Raw(Model.Content);
-                        }
+                        @Html.Raw(Model.Content);
                     }
                 </div>
-                <div class="mh-full-content hidden">
-                    @if (Model.Content.Length > length)
-                    {
+                @if (Model.Content.Length > length)
+                {
+                    <div><a onclick="@("seemoreContent(this)")" class="mh-seemore">Xem thêm</a></div>
+                    <div class="mh-full-content hidden">
                         @Html.Raw(Model.Content)
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
     <div class="panel-footer">
         <div class="row">
-            @if (Model.Content.Length > length)
-            {
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
-                    <a class="mh-seemore">Xem thêm...</a>
-                </div>
-            }
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report @(Model.Content.Length > length ? "hidden" : "")">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 mh-social-report">
                 <a target="_blank" title="Chia sẻ facebook" href="http://www.facebook.com/sharer.php?u=file:///D:/Capstone/CP-MathHub/code/frontend/MathHub/detail.html">
                     <img src="~/Content/img/social_fb_s.png" class="mh-share-facebook mh-share-facebook-button" alt="Chia sẻ facebook" />
                     <div class="mh-share-facebook">
@@ -54,9 +46,6 @@
                         </div>
                     </div>
                 </a>
-                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
-                    <i class="fa fa-flag"></i> Báo vi phạm
-                </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">
@@ -67,5 +56,52 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="mh-pre-comment">
+        <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
+        <span class="mh-comment-separator">-</span>
+        <a href="">Bình luận</a>
+        -
+        <a href="" class="mh-comment-like">
+            <i class="fa fa-thumbs-o-up"></i>
+            <span class="like">@Model.Like</span>
+            <i class="fa fa-comment"></i>
+            <span class="comment">@Model.Comments.Count</span>
+        </a>
+    </div>
+    <div class="mh-user-comment">
+        <div class="media mh-input-commnent-div">
+            <div class="media-left">
+                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
+            </div>
+            <div class="media-body">
+                <div class="mh-comment-input-send">
+                    <input type="text" class="mh-media-comment-input mh-input-comment" placeholder="Viết bình luận...">
+                    <input type="hidden" class="post-id" value="@Model.Id" />
+                    <input type="hidden" class="type" value="comment" />
+                    <a href=""><i class="fa fa-paper-plane mh-commnet-send"></i></a>
+                </div>
+            </div>
+        </div>
+        @if (Model.Comments.Count > 5)
+        {
+            <div class="mh-comment-list">
+                @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments.Take(5))
+            </div>
+            <div class="mh-comment-list-full hidden">
+                @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
+            </div>
+            <div class="mh-media-see-more">
+                <a class="mh-seemore-comment" onclick="seemore(this)">
+                    Xem @(Model.Comments.Count - 5) bình luận
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="mh-comment-list-full">
+                @Html.Partial("../CommonWidget/_CommentListPartialView", Model.Comments)
+            </div>
+        }
     </div>
 </div>
