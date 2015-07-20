@@ -17,6 +17,7 @@ using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
 using CP_MathHub.Helper;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace CP_MathHub.Controllers
 {
@@ -536,6 +537,32 @@ namespace CP_MathHub.Controllers
             return RedirectToAction("MyProfile");
         }
 
+        #endregion
+        #region Friend
+        public ActionResult Friend(int userId=0, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab,skip);
+            List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
+            List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
+            if (page == 0)
+            {
+                FriendViewModel model = new FriendViewModel();
+                model.ListFollowers = followers;
+                model.ListFriends = friends;
+                model.ListFollowees = followees;
+                ViewBag.System = Constant.String.AccountSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                return View("Views/FriendView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_FriendListPartialView", friends);
+            }
+
+        }
         #endregion
     }
 }

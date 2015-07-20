@@ -20,6 +20,7 @@ namespace CP_MathHub.Core.Configuration
             public const string QuestionSystem = "Question";
             public const string BlogSystem = "Blog";
             public const string DiscussionSystem = "Discussion";
+            public const string AccountSystem = "Account";
             public const string AdminSystem = "Admin";
 
             public const string ProfilePage = "profile";
@@ -38,6 +39,7 @@ namespace CP_MathHub.Core.Configuration
             public const string BlogMyPage = "blog-my";
 
             public const string DiscussionDetailPage = "discussion-detail";
+
 
         }
         /// <summary>
@@ -152,6 +154,14 @@ namespace CP_MathHub.Core.Configuration
 
         public static class Account
         {
+            public static class String
+            {
+                //Friend Tab Constant
+                public const string AllFriendTab = "allfriend";
+                public const string FollowerTab = "follower";
+                public const string FolloweeTab = "followee";
+            }
+
             public class Dictionary
             {
                 public static Dictionary<int, string> GenderName = new Dictionary<int, string> { { 1, "Nam" }, { 2, "Nữ" }, { 0, "Khác" } };
