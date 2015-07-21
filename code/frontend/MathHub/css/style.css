@@ -1508,14 +1508,21 @@ footer > .container > .row {
 }
 /* Tag: end */
 /* Login_register: start */
+.mh-login_register-body {
+    background: #eff3f8;
+    border: 0px;
+}
 .mh-login_register {
-    margin: 10px 0px;
+    margin: 50px 0px 35px 0px;
+    background-color: #e2e2e2;
+    padding: 15px;
 }
 .mh-login_register .tab-content {
     border: 1px solid #ddd;
     border-top: 0px;
     padding: 15px;
-    min-height: 400px;
+    min-height: 450px;
+    background-color: #fff;
 }
 .mh-login_register-with {
     padding: 5px 10px;
@@ -1577,7 +1584,7 @@ footer > .container > .row {
 }
 #register .mh-login-mathHub-password-icon1 {
     position: absolute;
-    bottom: 66px;
+    bottom: 105px;
     left: 28px;
     font-size: 20px;
 }
@@ -1590,7 +1597,22 @@ footer > .container > .row {
 .mh-login_register .nav-tabs li a {
     font-size: 22pt;
 }
-.mh-login-register-button {
-    text-align: right;
+.mh-login_register-pre-button .row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.mh-login_register-pre-button .checkbox {
+    float: left;
+}
+.mh-login_register-pre-button .checkbox input {
+    cursor: pointer;
+}
+.mh-login_register-forgot-password {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mh-login-register-button button {
+    width: 100%;
 }
 /* Login_register: end */
