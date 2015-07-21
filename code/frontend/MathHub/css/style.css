@@ -816,6 +816,14 @@ footer > .container > .row {
 /*  Home page: end */
 /*  Image user: start */
 .mh-image-user-profile {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px
+}
+.mh-image-user-profile-min-max {
     max-width: 100px;
     max-height: 100px;
     background-color: #fff;
@@ -1510,14 +1518,14 @@ footer > .container > .row {
 .mh-login_register-mathHub {
     margin-top: 15px;
 }
-.mh-login_register-mathHub .collapse .well{
+.mh-login_register-mathHub .well{
     border-radius: 0px;
     border: 1px solid #ddd;
     margin-top: -1px;
     background-color: #fff;
     position: relative;
 }
-.mh-login-mathHub-username, .mh-login-mathHub-password {
+.mh-login-mathHub-username, .mh-login-mathHub-password, .mh-login-mathHub-email {
     width: 100%;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -1534,5 +1542,29 @@ footer > .container > .row {
     top: 75px;
     left: 28px;
     font-size: 20px;
+}
+#register .mh-login-mathHub-password-icon {
+    position: absolute;
+    top: 119px;
+    left: 28px;
+    font-size: 20px;
+}
+#register .mh-login-mathHub-password-icon1 {
+    position: absolute;
+    bottom: 66px;
+    left: 28px;
+    font-size: 20px;
+}
+.mh-login-mathHub-email-icon {
+    position: absolute;
+    top: 74px;
+    left: 25px;
+    font-size: 20px;
+}
+.mh-login_register .nav-tabs li a {
+    font-size: 22pt;
+}
+.mh-login-register-button {
+    text-align: right;
 }
 /* Login_register: end */
