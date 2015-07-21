@@ -558,8 +558,59 @@
                     <div class="row mh-profile-user-info">
                         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
                             <img src="img/user.jpg" class="mh-image-user-profile" />
-                            <button type="button" class="btn btn-primary mh-profile-add-friend">Kết bạn</button>
-                            <button type="button" class="btn btn-success mh-profile-follow">Theo dõi</button>
+                            <!-- Nút kết bạn -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary mh-profile-friend-button">
+                                    <i class="fa fa-user-plus"></i>
+                                    Kết bạn
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-rss"></i>
+                                            Theo dõi
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-comments"></i>
+                                            Tin nhắn
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Nút sau khi kết bạn -->
+                            <!--<div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-check"></i>
+                                    Bạn bè
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-rss"></i>
+                                            Theo dõi
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-comments"></i>
+                                            Tin nhắn
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user-times"></i>
+                                            Hủy bạn bè
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>-->
                         </div>
                         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
                             <div class="row mh-profile-info-row">
