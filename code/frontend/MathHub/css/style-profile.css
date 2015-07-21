@@ -38,6 +38,9 @@
 }
 .mh-profile-user-info {
 }
+.mh-profile-user-info .mh-profie-friend-button-group {
+    margin-left: -10px;
+}
 .mh-profile-user-info .mh-profile-info-row {
     border-bottom: 0px;
 }
