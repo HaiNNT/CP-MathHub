@@ -536,7 +536,17 @@ namespace CP_MathHub.Controllers
             aService.UpdateUser(user);
             return RedirectToAction("MyProfile");
         }
+       
+        //Get: /Account/UserProfile
+        public ActionResult UserProfile(/*int UserId*/)
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(104, "Profile");
+            ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
 
+
+            return View("Views/UserProfileView", model);
+        }
         #endregion
         #region Friend
         public ActionResult Friend(int userId=0, int page = 0)
@@ -565,6 +575,17 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_FriendListPartialView", friends);
             }
 
+        }
+
+        public ActionResult SendFriendRequest(/*int userId, int targetUserId*/)
+        {
+            aService.SendFriendRequest(105, 102);
+            return RedirectToAction("UserProfile");
+        }
+        public ActionResult AcceptFriendRequest(/*int userId, int targetUserId*/)
+        {
+            aService.AcceptFriendRequest(102, 105);
+            return RedirectToAction("Friend");
         }
         #endregion
     }

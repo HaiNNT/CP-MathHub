@@ -77,6 +77,20 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake);
 
         /// <summary>
+        /// Send friend request
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="targetUserId"></param>
+        void SendFriendRequest(int userId, int targetUserId);
+
+        /// <summary>
+        /// Accept friend request
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="targetUserId"></param>
+        void AcceptFriendRequest(int userId, int targetUserId);
+
+        /// <summary>
         /// Get all tags that user participate in
         /// </summary>
         /// <param name="userId"></param>

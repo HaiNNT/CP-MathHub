@@ -38,6 +38,13 @@
 }
 .mh-profile-user-info {
 }
+.mh-profile-user-info .mh-profile-info-row {
+    border-bottom: 0px;
+}
+.mh-profile-add-friend, .mh-profile-follow {
+    padding: 1px 3px;
+    margin-bottom: 3px;
+}
 .mh-body-profile .mh-profile-info-row .mh-profile-edit-button {
     float: right;
 }
@@ -55,10 +62,10 @@
 form:last-child .mh-profile-info-row {
     border-bottom: 0;
 }
-.mh-profile-edit, .mh-pass-edit {
+.mh-profile-edit {
     display: none;
 }
-.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit, .mh-body-profile .mh-profile-info-row:hover .mh-pass-edit {
+.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit {
     display: block;
 }
 .mh-profile-input-edit {
@@ -106,6 +113,7 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-friend {
     height: 100px;
+    min-width: 416px;
     max-width: 447px;
     border: 1px solid #E9EAED;
     float: left;
@@ -134,6 +142,27 @@ form:last-child .mh-profile-info-row {
 .mh-profile-friend-quantity, .mh-profile-time {
     color: #ccc;
 }
+.mh-profile-follow_unfollow-button {
+    padding: 1px 3px;
+}
+.tab-pane .mh-request-friend-button {
+    margin-top: 28px;
+    text-align: right;
+}
+.tab-pane .mh-request-friend-row {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E9EAED;
+}
+.tab-pane .mh-request-friend-row:last-child {
+    border-bottom: 0px;
+}
+.mh-request-button {
+    margin-bottom: 5px;
+}
+.mh-request-see-more {
+    text-align: center;
+      border-top: 1px solid #E9EAED;
+} 
 /*User friend: end*/
 /* User activity: start */
 .mh-profile-posts {
@@ -156,4 +185,159 @@ form:last-child .mh-profile-info-row {
     margin-top: 3px;
     width: 224px;
 }
+#brands .row {
+    margin: 0px;
+}
+.mh-profile-brand {
+    float: left;
+    margin-right: 3px;
+}
+.mh-profile-brand-name {
+    font-weight: bold;
+    color: #9E21D2;
+}
+.mh-system-brand {
+    margin-top: 40px;
+}
+.mh-system-brand .row {
+    padding: 5px;
+}
+.mh-profile-activities .mh-profile-activity:hover {
+    background-color: #EFF2F5;
+}
+.mh-profile-activity {
+    padding: 5px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.mh-profile-activity:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0;
+}
+.mh-profile-notifications .mh-profile-notification:hover {
+    background-color: #EFF2F5;
+}
+.mh-profile-notification {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0px;
+}
+.mh-profile-notification a {
+    color: #000;
+    font-size: 12px;
+}
+.mh-profile-notification .media, .tab-content .media:first-child {
+    margin-top: 0;
+}
+.mh-profile-notification .media-heading {
+    font-weight: bold;
+}
+.mh-profile-notification  .mh-time {
+    font-size: 12px;
+}
+.mh-profile-notification:last-child {
+    border-bottom: 0px;
+}
+.mh-profile-chat-users {
+    border-right: 1px solid #E9EAED;
+}
+.mh-profile-chat-details {
+    border-left: 1px solid #E9EAED;
+    margin-left: -1px;
+}
+.mh-profile-chat-details .mh-profile-chat-top h4 {
+    margin-top: 0px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+.mh-profile-chat-top {
+    height: 40px;
+    border-bottom: 1px solid #E9EAED;
+}
+.mh-profile-chat-user {
+    height: 500px;
+    overflow-y: scroll;
+}
+.mh-profile-chat-user > div {
+    padding: 10px 5px;
+}
+.tab-content  #message .media:first-child {
+    margin-top: 0px;
+}
+.mh-profile-chat-user > div .media {
+    margin-top: 0px;
+}
+.mh-profile-chat-user a {
+    color: #000;
+}
+.mh-profile-chat-user > div:hover, .mh-profile-chat-user > .active {
+    background-color: #FF5F5F;
+}
+.mh-profile-chat-user > div:hover a, .mh-profile-chat-user > .active a {
+    color: #fff;
+}
+.mh-profile-chat-user > div:hover .mh-time, .mh-profile-chat-user > .active .mh-time {
+    color: #000;
+}
+.mh-profile-chat-user .media-heading{
+    font-weight: bold;
+}
+.mh-profile-chat-user .mh-new-message {
+    font-size: 10pt;
+    color: #5b9bd1;
+    float: right;
+}
+.mh-profile-chat-detail {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+.mh-profile-chat-detail .media, .media-body {
+    overflow: auto;
+}
+.mh-profile-chat-detail .media-body  .media-heading {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+.mh-profile-chat-detail .media-body span {
+    font-size: 13px;
+}
+.mh-profile-chat-detail .media-right {
+    font-size: 12px;
+    color: #ccc;
+}
+.mh-profile-chat-detail-divide {
+    margin-top: 15px;
+    border-top: 1px solid #E9EAED;
+    text-align: center;
+    font-size: 11px;
+}
+.mh-profile-chat-detail-divide-time {
+    position: relative;
+    top: -8px;
+    color: #ccc;
+    padding: 0 5px;
+    background-color: #fff;
+}
+.mh-profile-chat-footer {
+    padding: 10px;
+    border-top: 1px solid #E9EAED;
+    position: relative;
+}
+.mh-profile-chat-footer-textarea {
+    width: 100%;
+    padding: 10px 20px 10px 10px;
+}
+.mh-profile-chat-footer-smile {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #CBCBCB;
+    font-size: 12pt;
+}
+.mh-profile-chat-footer >  a:hover .mh-profile-chat-footer-smile {
+    color: #6E6E6E;
+}
 /*  User activity: end*/
+.tab-pane {
+    min-height: 300px;
+}

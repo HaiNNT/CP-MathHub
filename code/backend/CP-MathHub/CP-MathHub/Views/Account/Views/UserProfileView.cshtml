@@ -33,7 +33,17 @@
 <div class="mh-body-profile">
     <div class="row mh-profile-user-info">
         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
-            <img src="~/Content/img/user.jpg" class="mh-image-user-profile" />       
+            <img src="~/Content/img/user.jpg" class="mh-image-user-profile">
+            @using (Html.BeginForm("SendFriendRequest", "Account", FormMethod.Post))
+            {
+                <button type="button" class="btn btn-primary mh-profile-add-friend">Kết bạn</button>
+
+            }
+            @using (Html.BeginForm("FollowUser", "Account", FormMethod.Post))
+            {
+                <button type="button" class="btn btn-success mh-profile-follow">Theo dõi</button>
+
+            }
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -71,37 +81,6 @@
                     </div>
                 </div>
             }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Mật khẩu</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <a class="mh-pass-edit-button" mh-type="password">
-                            Thay đổi mật khẩu
-                        </a>
-                    </div>
-                    <div class="col-xs-9 mh-pass-change">
-                        <div>
-                            <lable>Mật khẩu hiện tại:</lable><br />
-                            <input type="text" />
-                        </div>
-                        <div>
-                            <lable>Mật khẩu mới:</lable><br />
-                            <input type="text" />
-                        </div>
-                        <div style="margin-bottom: 5px;">
-                            <lable>Nhập lại mật khẩu mới:</lable><br />
-                            <input type="text" />
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-primary mh-pass-save-change">Lưu thay đổi</button>
-                            <button type="button" class="btn btn-default mh-pass-cancel" mh-type="password">Hủy</button>                            
-                        </div>
-                    </div>
-                </div>
-            }
         </div>
     </div>
     <div>
@@ -118,13 +97,6 @@
                         @Html.TextBoxFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })
                         <input type="hidden" name="Property" value="FullName" />
                     </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.FullName" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
                 </div>
             }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -137,13 +109,6 @@
                         <span class="mh-profile-span-edit">@(Model.Profile.Gender != null ? Constant.Account.Dictionary.GenderName[(int)Model.Profile.Gender] : "")</span>
                         @Html.RadioListForGenderEnum("Profile.Gender", Model.Profile.Gender)
                         <input type="hidden" name="Property" value="Gender" />
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="radio">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Gender" mh-type="radio">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
@@ -158,13 +123,6 @@
                         @*@Html.TextBoxFor(m => m.Profile.Birthday, new { @class = "mh-profile-input-edit", @id = "datepicker"})*@
                         <input type="datetime" name="Profile.Birthday" class="mh-profile-input-edit" id="datepicker" value="@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")" />
                         <input type="hidden" name="Property" value="BirthDay" />
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="datetime">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")" mh-type="datetime">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
@@ -185,13 +143,6 @@
                         <input type="hidden" name="Property" value="Address" />
 
                     </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Address" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
                 </div>
             }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -205,13 +156,6 @@
                         @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "mh-profile-input-edit" })
                         <input type="hidden" name="Property" value="PhoneNumber" />
                     </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.PhoneNumber" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
                 </div>
             }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -224,13 +168,6 @@
                         <a href="@Model.Profile.Facebook" class="mh-profile-span-edit">@Model.Profile.Facebook</a>
                         @Html.TextBoxFor(m => m.Profile.Facebook, new { @class = "mh-profile-input-edit" })
                         <input type="hidden" name="Property" value="Facebook" />
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Facebook" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
@@ -250,13 +187,6 @@
                         @Html.TextBoxFor(m => m.Profile.School, new { @class = "mh-profile-input-edit" })
                         <input type="hidden" name="Property" value="School" />
                     </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.School" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
                 </div>
             }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -269,13 +199,6 @@
                         <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationName[(int)Model.Profile.Education] : "")</span>
                         @Html.EnumDropDownListFor(m => m.Profile.Education, new { @class = "mh-profile-select-edit" })
                         <input type="hidden" name="Property" value="Education" />
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="select">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Education" mh-type="select">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
@@ -290,13 +213,6 @@
                         @Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })
                         <input type="hidden" name="Property" value="ViewPoint" />
                     </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.ViewPoint" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
                 </div>
             }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -310,13 +226,6 @@
                         @Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })
                         @*<textarea rows="5" cols="8" class="mh-profile-input-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
                         <input type="hidden" name="Property" value="Summary" />
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="text">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Summary" mh-type="text">Hủy</button>
-                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
