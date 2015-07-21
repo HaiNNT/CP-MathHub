@@ -193,11 +193,12 @@ namespace CP_MathHub.Service.Services
                     0
                 ).ToList();
             IncludeUserForComments(comments);
-            return comments;         
+            return comments;
         }
         public void IncludeCommentForAnswers(List<Answer> answers)
         {
-            foreach(Answer answer in answers){
+            foreach (Answer answer in answers)
+            {
                 IncludeUserForComments(answer.Comments.ToList());
             }
         }
@@ -210,13 +211,37 @@ namespace CP_MathHub.Service.Services
         }
         public void AnswerQuestion(Answer answer)
         {
+            EditedLog editedlog = new EditedLog();
+            editedlog.Content = answer.Content;
+            editedlog.CreatedDate = DateTime.Now;
+            editedlog.UserId = answer.UserId;
+            answer.EditedContents.Add(editedlog);
             dal.Repository<Answer>().Insert(answer);
             dal.Save();
         }
+        public bool EditAnswer(Answer answer, int userId, bool hasPermission)
+        {
+            Answer a = dal.Repository<Answer>().GetById(answer.Id);
+            if (answer.UserId == userId || hasPermission)
+            {
+                a.Content = answer.Content;
+                a.LastEditedDate = DateTime.Now;
+
+                EditedLog editedlog = new EditedLog();
+                editedlog.Content = answer.Content;
+                editedlog.CreatedDate = a.LastEditedDate;
+                editedlog.UserId = userId;
+
+                a.EditedContents.Add(editedlog);
+                dal.Save();
+                return true;
+            }
+            return false;
+        }
         public bool Vote(Vote vote)
         {
-            if(dal.Repository<Vote>().Table.Where(v => v.UserId == vote.UserId && v.PostId == vote.PostId).Count() > 0)
-            {                
+            if (dal.Repository<Vote>().Table.Where(v => v.UserId == vote.UserId && v.PostId == vote.PostId).Count() > 0)
+            {
                 return false;
             }
             Post post = dal.Repository<Post>().GetById(vote.PostId);

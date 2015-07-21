@@ -96,7 +96,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Create answer for a question
         /// </summary>
         /// <param name="answe"></param>
-        void AnswerQuestion(Answer answe);
+        void AnswerQuestion(Answer answer);
+
+        /// <summary>
+        /// Edit an answer
+        /// </summary>
+        /// <param name="answer"></param>
+        bool EditAnswer(Answer answer, int userId, bool hasPermission);
 
         /// <summary>
         /// Vote for an answer or a question

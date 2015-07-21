@@ -328,7 +328,7 @@ function editComment() {
                 var id = input.attr("comment-id");
                 $.ajax({
                     method: "Post",
-                    url: "/Blog/EditComment",
+                    url: "/Discussion/EditComment",
                     data: { id: id, content: content }
                 })
 				.done(function (msg) {
@@ -352,7 +352,7 @@ function editComment() {
 */
 function editPost(item) {
     $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-content").toggle();
-    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-acitvity").toggle();
+    $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-activity").toggle();
     $(item).parents(".mh-comment-list").find(".mh-commet-edit").toggle();
     //Hiện
     $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-comment-edit-textarea").toggle();

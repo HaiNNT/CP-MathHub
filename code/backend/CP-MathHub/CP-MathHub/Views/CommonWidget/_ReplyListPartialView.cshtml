@@ -15,7 +15,7 @@
                 <a href="" class="mh-media-comment-user">@reply.Username</a>
                 <span id="comment-content-@(reply.Id)">@reply.Content</span>
             </div>
-            <div>
+            <div class="mh-comment-activity">
                 <a class="mh-like" onclick="like(@reply.Id, this)">@(reply.Liked ? "Bỏ thích" : "Thích")</a>
                 -
                 <a href="" title="Lượt thích" class="mh-comment-like">

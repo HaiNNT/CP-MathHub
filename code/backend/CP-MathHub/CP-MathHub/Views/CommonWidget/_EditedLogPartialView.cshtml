@@ -376,7 +376,7 @@
                     </div>
                     @for (int i = 1; i < Model.Count - 1; i++)
                         {
-                        <div class="mh-comment-content">
+                        <div class="mh-comment-content hidden">
                             <span class="mh-comment-question-content">@Model.ElementAt(i).Content</span><br />
                             <a href="#" class="mh-comment-question-username">@Model.ElementAt(i).User.UserName</a>
                             <span class="mh-time">@Html.PostCreatedTime(Model.ElementAt(i).CreatedDate, "chỉnh sửa")</span>
