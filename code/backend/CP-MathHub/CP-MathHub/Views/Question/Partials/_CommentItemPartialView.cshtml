@@ -2,11 +2,18 @@
 @using CP_MathHub.Service.Helpers
 
 <div class="mh-comment-content">
-    <span>@Model.Content</span><br />
-    <a href="#">@Model.Author.UserName</a>
+    <span id="comment-content-@Model.Id" class="mh-comment-question-content">@Model.Content</span><br />
+    <a href="#" class="mh-comment-question-username">@Model.Author.UserName</a>
     <span class="mh-time">@Html.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
-    <span class="@(Model.EditedContents.Count > 1 ? "" : "hidden") edited-button">
+    <span class="@(Model.EditedContents.Count > 1 ? "" : "hidden") edited-button mh-comment-history-edit">
         -
-        <a onclick="loadEditedLog(@Model.Id,'CommentQuestion')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+        <a onclick="loadEditedLog(@Model.Id,'QuestionComment')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
     </span>
+    <textarea class="form-control mh-comment-edit-textarea" comment-id="@Model.Id" rows="3">@Model.Content</textarea>
+    <div class="mh-note">
+        <button onclick="@("closeEditComment()")" type="button" class="mh-note-close-button" value="@Model.Content">
+            hủy
+        </button>
+    </div>
+    @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "commentQuestion" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
 </div>

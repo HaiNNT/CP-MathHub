@@ -457,15 +457,15 @@ namespace CP_MathHub.Controllers
         //Post: Discussion/EditComment
         [HttpPost]
         [Authorize]
-        public ActionResult EditComment(int id, string content)
+        public bool EditComment(int id, string content)
         {
             Comment comment = new Comment();
             comment.Id = id;
-            comment.Content = content;
+            comment.Content = content.Trim();
             comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
-            CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
+            //CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
 
-            return PartialView("../CommonWidget/_CommentItemPartialView", model);
+            return true;
         }
 
         //Get: Discussion/DisableComment

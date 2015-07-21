@@ -446,7 +446,7 @@ namespace CP_MathHub.Controllers
         {
             Comment comment = new Comment();
             comment.Id = id;
-            comment.Content = content;
+            comment.Content = content.Trim();
             comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
             //CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
 
