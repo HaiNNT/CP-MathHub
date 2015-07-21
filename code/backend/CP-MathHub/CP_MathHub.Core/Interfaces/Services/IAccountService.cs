@@ -49,6 +49,20 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountFollower(User user);
 
         /// <summary>
+        /// Count number of followers of User
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        int CountFollower(int userId);
+
+        /// <summary>
+        /// Count number of followees of User
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        int CountFollowee(int userId);
+
+        /// <summary>
         /// Count number of followees of User
         /// </summary>
         /// <param name="user"></param>
@@ -60,7 +74,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        List<User> GetFriends(int userId, int skip = 0, int take = Constant.Integer.DefaultTake);
+        List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake);
 
         /// <summary>
         /// Get all tags that user participate in

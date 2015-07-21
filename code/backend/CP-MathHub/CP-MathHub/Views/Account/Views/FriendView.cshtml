@@ -1,0 +1,166 @@
+﻿@using CP_MathHub.Models.Account
+@model FriendViewModel
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Service.Helpers
+@{
+    ViewBag.Title = "Friends";
+    Layout = "~/Views/Account/Layouts/_FriendLayout.cshtml";
+}
+
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-5 col-md-3 mh-content-title">
+            <h2>
+                <i class="fa fa-users"></i>
+                Bạn bè
+            </h2>
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-9 mh-content-top-button">
+            <a class="btn btn-default" href="#" role="button">
+                <span class="badge mh-num-icon">42</span>
+                Lời mời kết bạn
+            </a>
+            <a class="btn btn-default" href="#" role="button">
+                <i class="fa fa-user-plus"></i>
+                Tìm bạn
+            </a>
+        </div>
+    </div>
+</div>
+<div class="mh-home">
+    <div class="row">
+        <div class="visible-xs mh-home-tab">
+            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+            <a class="btn btn-danger btn-sm">
+                Bạn bè
+                <span class="badge mh-num-icon">42</span>
+            </a>
+            <a class="btn btn-danger btn-sm">Hoạt động</a>
+            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
+        </div>
+    </div>
+</div>
+<div class="mh-body-profile">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#all-friend" aria-controls="all-friend" role="tab" data-toggle="tab">
+                Tất cả bạn bè
+                <span class="mh-profile-friend-quantity">@Model.FriendNum</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
+                Người theo dõi bạn
+                <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#followee" aria-controls="followee" role="tab" data-toggle="tab">
+                Bạn đang theo dõi
+                <span class="mh-profile-friend-quantity">@Model.FolloweeNum</span>
+            </a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="all-friend">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        Tất cả bạn
+                    </h4>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @Html.Partial("Partials/_FriendListPartialView", Model.ListFriends)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="follower">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        Kết quả cho:
+                        <span>abc</span>
+                    </h4>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @Html.Partial("Partials/_FollowerListPartialView", Model.ListFollowers)
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="followee">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        Kết quả cho:
+                        <span>abc</span>
+                    </h4>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @Html.Partial("Partials/_FolloweeListPartialView", Model.ListFollowees)
+            </div>
+        </div>
+    </div>
+</div>
+@section LeftPanel
+{
+    <a class="mh-profile-menu-button active">
+        <div class="mh-profile-menu-div">
+            Thông tin cá nhân
+        </div>
+    </a>
+    <a class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Bạn bè
+            <span class="badge mh-num-icon">42</span>
+        </div>
+    </a>
+    <a class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Hoạt động
+        </div>
+    </a>
+    <a class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Quyền riêng tư
+        </div>
+    </a>
+}

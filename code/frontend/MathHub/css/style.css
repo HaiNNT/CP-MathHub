@@ -127,6 +127,7 @@ a {
 .mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
     color: #3b5998;
     text-decoration: underline;
+    background-color: #fff;
 }
 
 .mh-notification > .dropdown > ul > li > .mh-see-all {
@@ -139,13 +140,17 @@ a {
 .mh-notification > .dropdown > ul > li > .mh-see-all:hover {
     color: #3b5998;
     text-decoration: underline;
+    background-color: #fff;
 }
 
-.mh-notification > .dropdown > ul > li > .mh-notification-body {
-    max-height: 460px;
+.mh-notification > .dropdown > ul > li > .mh-request-friend {
     overflow-y: scroll;
+    max-height: 460px;   
 }
-
+.mh-notification > .dropdown > ul > li > .mh-notification-body {
+    overflow-y: scroll;
+    max-height: 460px;   
+}
 .mh-notification > li > ul > li > div > div {
     border-bottom: 1px solid #e5e5e5;
 }
@@ -156,7 +161,7 @@ a {
 
 .mh-notification .media {
     margin: 0px;
-    padding: 5px 0;
+    padding: 5px 0px 5px 5px;
 }
 
 .mh-notification > li > ul > li > div > div > a .media-body {
@@ -181,29 +186,29 @@ a {
     font-weight: normal;
 }
 
-.mh-notification-body #mh-notifi-friend {
+.mh-request-friend .mh-request-friend-row {
     margin: 0px;
 }
 
-.mh-notification-body > #mh-notifi-friend .media-body {
+.mh-request-friend > .mh-request-friend-row .media-body {
     vertical-align: middle;
 }
 
-#mh-notifi-friend:hover {
+.mh-request-friend .mh-request-friend-row:hover {
     background-color: #fff;
 }
 
-#mh-notifi-user-name {
+.mh-request-user-name {
     font-weight: bold;
     cursor: pointer;
 }
 
-.mh-notification .mh-notifi-friend-button {
+.mh-notification .mh-request-friend-button {
     text-align: right;
     padding: 18px 0 0 0;
 }
 
-.mh-notification .mh-notifi-friend-button .mh-request-button {
+.mh-notification .mh-request-friend-button .mh-request-button {
     font-size: 9pt;
 }
 /*  Notification: end */
@@ -863,6 +868,10 @@ footer > .container > .row {
     height: 30px;
     border: 1px solid silver;
 }
+.mh-mathHub-icon {
+    width: 24px;
+    height: 24px;
+}
 /*  Image user: end */
 /*  Share fb: start */
 .mh-social-report > a:hover {
@@ -1464,3 +1473,66 @@ footer > .container > .row {
 	color: #444;
 }
 /* Tag: end */
+/* Login_register: start */
+.mh-login_register {
+    margin: 10px 0px;
+}
+.mh-login_register .tab-content {
+    border: 1px solid #ddd;
+    border-top: 0px;
+    padding: 15px;
+    min-height: 400px;
+}
+.mh-login_register-with {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+.mh-login_register-with:hover {
+    background-color: #F7F7F7;
+}
+.mh-login_register-with:hover span {
+    color: #000;
+}
+.mh-login_register-with a:hover, .mh-login_register-with a:focus {
+    text-decoration: none;
+}
+.mh-login_register-with i {
+    font-size: 24px;
+    color: #3a5795;
+}
+.mh-login_register-with .media-body {
+    vertical-align: middle;
+}
+.mh-login_register-with  span {
+    font-size: 14px;
+    color: #888;
+}
+.mh-login_register-mathHub {
+    margin-top: 15px;
+}
+.mh-login_register-mathHub .collapse .well{
+    border-radius: 0px;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #fff;
+    position: relative;
+}
+.mh-login-mathHub-username, .mh-login-mathHub-password {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px 10px 5px 28px;
+}
+.mh-login-mathHub-username-icon {
+    position: absolute;
+    top: 31px;
+    left: 27px;
+    font-size: 20px;
+}
+.mh-login-mathHub-password-icon {
+    position: absolute;
+    top: 75px;
+    left: 28px;
+    font-size: 20px;
+}
+/* Login_register: end */

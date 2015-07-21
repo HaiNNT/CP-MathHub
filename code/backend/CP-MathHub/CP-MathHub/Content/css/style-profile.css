@@ -1,14 +1,48 @@
+.mh-mid-section {
+      border-right: 0px;
+      margin-right: 0px;
+}
+/*.mh-mid-section > .mh-top-content > .row {
+      border-bottom: 0px;
+      margin: 0px;
+}*/
+.mh-left-section {
+    padding: 0px;
+    margin-top: 60px;
+}
+.mh-profile-menu-button:hover {
+    text-decoration: none; 
+}
+.mh-profile-menu-div{
+    padding: 10px;
+    font-size: 12pt;
+    color: #678098
+}
+.mh-profile-menu-div:hover, a.active .mh-profile-menu-div {
+    background-color: #F2F6F9;
+    color: #5b9bd1;
+}
 .mh-home > .row {
-    border-bottom: 1px solid #C1C1C1;
+    /*border-bottom: 1px solid #C1C1C1;*/
     margin-top: -5px;
+}
+.mh-body-profile {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .mh-body-profile h3 {
     border-bottom: 1px solid #C1C1C1;
     margin-bottom: 0;
-    padding-bottom: 5px
+    padding-bottom: 5px;
+    font-weight: bold;
 }
-.mh-body-profile a {
+.mh-profile-user-info {
+}
+.mh-body-profile .mh-profile-info-row .mh-profile-edit-button {
     float: right;
+}
+.mh-profile-info-row .col-xs-5 a {
+    float: left;
 }
 .mh-body-profile a:hover, .mh-body-profile a:focus {
     text-decoration: none;
@@ -21,10 +55,10 @@
 form:last-child .mh-profile-info-row {
     border-bottom: 0;
 }
-.mh-profile-edit {
+.mh-profile-edit, .mh-pass-edit {
     display: none;
 }
-.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit {
+.mh-body-profile .mh-profile-info-row:hover .mh-profile-edit, .mh-body-profile .mh-profile-info-row:hover .mh-pass-edit {
     display: block;
 }
 .mh-profile-input-edit {
@@ -49,6 +83,77 @@ form:last-child .mh-profile-info-row {
 .radio-inline {
     display: none;
 }
+.mh-pass-change {
+    display: none;
+}
 .ui-datepicker {
     z-index: 2000;
 }
+.mh-profile-select-edit {
+    display: none;
+}
+
+/* User friend: start */
+.mh-content-top-button {
+    text-align: right;
+    margin-top: 19px;
+    margin-bottom: 10px;
+}
+.mh-body-profile .tab-content {
+    border: 1px solid #DDD;
+    border-top: 0;
+    padding: 15px;
+}
+.mh-profile-friend {
+    height: 100px;
+    max-width: 447px;
+    border: 1px solid #E9EAED;
+    float: left;
+    margin-left: 15px;
+}
+.mh-profile-friend .media-body, .mh-profile-friend .media-right {
+    vertical-align: middle;
+}
+.mh-profile-friend .media-body h5 {
+    font-weight: bold;
+    margin-top: 5px;
+}
+.mh-profile-friend .media-right .dropdown-menu > li:hover{
+    background-color: #ccc;
+}
+.tab-content .media:first-child {
+      margin-top: 15px;
+}
+.mh-profile-friend .media-right .btn-group {
+    margin-right: 5px;
+}
+.mh-profile-friend .media-body span {
+    font-size: 12px;
+    color: #ccc;
+}
+.mh-profile-friend-quantity, .mh-profile-time {
+    color: #ccc;
+}
+/*User friend: end*/
+/* User activity: start */
+.mh-profile-posts {
+    max-width: 447px;
+    float: left;
+    margin:7px 0px 7px 15px;
+}
+.mh-profile-posts h4 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}
+.mh-profile-post {
+    height: 300px;
+    overflow-y: scroll;
+}
+.mh-profile-tag-favourite {
+    margin-left: -10px;
+}
+.mh-tag-page {
+    margin-top: 3px;
+    width: 224px;
+}
+/*  User activity: end*/

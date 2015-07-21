@@ -20,6 +20,7 @@ namespace CP_MathHub.Entity
         Bachelor = 5,
         Master = 6,
         Doctor = 7,
-        Professor = 8
+        Professor = 8,
+        Others = 0
     }
 }

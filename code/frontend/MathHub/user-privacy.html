@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-question.css" rel="stylesheet">
+    <link href="css/style-profile.css" rel="stylesheet">
     <link href="img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
     <title></title>
 </head>
@@ -27,7 +28,7 @@
             </div>
             <div class="collapse navbar-collapse" id="mh-header-collapse">
                 <ul class="nav navbar-nav" id="mh-nav-link">
-                    <li class="mh-active"><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">Hỏi Đáp <span class="sr-only">(current)</span></a></li>
                     <li><a href="#">Bài Viết</a></li>
                     <li><a href="#">Thảo Luận</a></li>
                 </ul>
@@ -501,747 +502,212 @@
                         </ul>
                     </li>
                 </ul><!-- Notification: end -->
-                <!-- 				<form class="navbar-form navbar-right" id="mh-search-header" role="search">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm">
-                                        <i class="fa fa-search"></i>
-                                    </div>
-                                </form> -->
-
             </div><!-- /.navbar-collapse -->
         </div>
     </header>
     <div class="container mh-body">
         <div class="row">
             <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
-                <div class="mh-profile row">
-                    <a href="#"><img src="img/user.jpg" class="mh-user-image" /></a>
-                    <div class="">
-                        <a href="">Văn Tâm</a>
-                        <div class="detail-reputation">
-                            <span>1432</span>
-                            <i class="fa fa-circle mh-reputation-icon"></i>
-                        </div>
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Thông tin cá nhân
                     </div>
-                </div>
-                <div class="mh-table-info">
-                    <div class="mh-table-info-title">Hoạt động</div>
-                    <div class="mh-table-info-body">
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
+                </a>
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Bạn bè
+                        <span class="badge mh-num-icon">42</span>
                     </div>
-                </div>
-                <div class="mh-table-info">
-                    <div class="mh-table-info-title">Tags yêu thích</div>
-                    <div class="mh-table-info-body">
-                        <ul class="list-inline mh-list-tags mh-list-tags-left">
-                            <li>
-                                <a href="#" class="mh-tag">
-                                    <i class="fa fa-circle"></i>
-                                    <label>Lớp 6</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="mh-tag">
-                                    <i class="fa fa-circle"></i>
-                                    <label>Toán đố</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="mh-tag">
-                                    <i class="fa fa-circle"></i>
-                                    <label>Toán dễ</label>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="mh-tag">
-                                    <i class="fa fa-circle"></i>
-                                    <label>Toán khó</label>
-                                </a>
-                            </li>
-                        </ul>
+                </a>
+                <a class="mh-profile-menu-button">
+                    <div class="mh-profile-menu-div">
+                        Hoạt động
                     </div>
-                </div>
-                <div class="mh-table-info">
-                    <div class="mh-table-info-title">Theo dõi</div>
-                    <div class="mh-table-info-body">
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-3 col-md-3">
-                                    <img src="img/user.jpg" class="mh-user-icon">
-                                </div>
-                                <div class="col-sm-6 col-md-6 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-3 col-md-3">
-                                    <img src="img/user.jpg" class="mh-user-icon">
-                                </div>
-                                <div class="col-sm-6 col-md-6 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="row mh-table-info-row">
-                                <div class="col-sm-3 col-md-3">
-                                    <img src="img/user.jpg" class="mh-user-icon">
-                                </div>
-                                <div class="col-sm-6 col-md-6 mh-table-info-body-letter">
-                                    Inbox
-                                </div>
-                                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                                    <span class="badge mh-num-icon">42</span>
-                                </div>
-                            </div>
-                        </a>
+                </a>
+                <a class="mh-profile-menu-button active">
+                    <div class="mh-profile-menu-div">
+                        Quyền riêng tư
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-6  col-lg-7 mh-mid-section">
+            <div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section">
                 <div class="mh-top-content">
                     <div class="row">
-                        <div class="col-md-4 mh-content-title">
-                            <h3>HỎI ĐÁP</h3>
+                        <div class="col-xs-12 mh-content-title">
+                            <h2>
+                                <i class="fa fa-lock"></i>
+                                Cài đặt quyền riêng tư
+                            </h2>
                         </div>
                     </div>
                 </div>
                 <div class="mh-home">
                     <div class="row">
-                        <div class="col-xs-12 col-md-7 mh-home-tab">
-                            <a class="btn btn-danger btn-sm active">Mới nhất</a>
-                            <a class="btn btn-danger btn-sm">Hot</a>
-                            <a class="btn btn-danger btn-sm">Chưa trả lời</a>
-                            <a class="btn btn-danger btn-sm">Thẻ</a>
-                            <a class="btn btn-danger btn-sm">Người dùng</a>
-                            <a class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
+                        <div class="visible-xs mh-home-tab">
+                            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+                            <a class="btn btn-danger btn-sm">
+                                Bạn bè
+                                <span class="badge mh-num-icon">42</span>
+                            </a>
+                            <a class="btn btn-danger btn-sm">Hoạt động</a>
+                            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
                         </div>
-                        <div class="col-xs-12 col-md-5 mh-page-search">
+                    </div>
+                </div>
+                <div class="mh-body-profile">
+                    <div>
+                        <h3>Quyền riêng tư cơ bản</h3>
+                        <div class="mh-profile-info">
                             <form>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Bạn có nhận mail từ hệ thống?</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Có</span>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Ai có thể gửi lời mời kết bạn đến bạn?</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Mọi người</span>
+                                        <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
+                                        <select class="mh-profile-select-edit">
+                                            <option value="1">Mọi người</option>
+                                            <option value="2">Bạn của bạn bè</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="select">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="select">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Ai có thể thấy BLOG của bạn?</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Mọi người</span>
+                                        <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
+                                        <select class="mh-profile-select-edit">
+                                            <option value="1">Mọi người</option>
+                                            <option value="2">Bạn bè</option>
+                                            <option value="2">Chỉ mình tôi</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="select">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="select">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Cài đặt nhận thông báo</h3>
+                        <div class="mh-profile-info">
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Khi người dùng trả lời câu hỏi của bạn</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Có</span>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Khi người dùng bình luận các bài viết của bạn</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Có</span>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row mh-profile-info-row">
+                                    <div class="col-xs-5">
+                                        <label>Khi Bạn bị BANNED tài khoản</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <span class="mh-profile-span-edit">Có</span>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                                        </a>
+                                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-warning mh-question-preview">
-                    <div class="panel-heading">
-                        <div class="mh-user-info">
-                            <a href="#">
-                                <img src="img/user.jpg" class="mh-user-avatar">
-                            </a>
-                            <div>
-                                <div>
-                                    <a href="#">
-                                        <span class="mh-username">HaiNNT</span>
-                                    </a>
-                                    <span class="mh-time">vừa hỏi</span>
-                                    <span class="mh-comment-separator">-</span>
-                                    <a data-toggle="modal" data-target="#history-edit-2" class="mh-post-content-history-edit">Đã chỉnh sửa</a>
-                                    <!-- Modal: start -->
-                                    <div id="history-edit-2" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                                        <div class="modal-dialog modal-md" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Lịch sử chỉnh sửa</h4>
-                                                </div>
-                                                <div class="modal-body" style="padding-top: 0px;">
-                                                    <div class="mh-content-detail">
-                                                        <h3>dasdasdasd</h3>
-                                                        <div>
-                                                            <p>
-                                                                Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                                                            </p>
-                                                            <p>
-                                                                Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                                                còn lại hai bậc;
-                                                                <a href="#">Xem thêm</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                                <div class="row">
-                                                                    <span class="mh-time">đăng vào ngày 18 tháng 6 lúc 16:30</span>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                        <a href="#">
-                                                                            <img src="img/user.jpg" class="mh-user-avatar">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                                        <a href="#">
-                                                                            <span class="mh-username">HaiNNT</span>
-                                                                        </a>
-                                                                        <div class="detail-reputat">
-                                                                            <span>612</span>
-                                                                            <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mh-comment-history-see-more">
-                                                        <a href="" data-toggle="tooltip" data-placement="top" title="1 được ẩn đi">...</a>
-                                                    </div>
-                                                    <div class="mh-content-detail">
-                                                        <h3>Giải toán lớp 6</h3>
-                                                        <div>
-                                                            <p>
-                                                                Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                                                            </p>
-                                                            <p>
-                                                                Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                                                còn lại hai bậc;
-                                                                <a href="#">Xem thêm</a>
-                                                            </p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                                <div class="row">
-                                                                    <span class="mh-time">đăng vào ngày 18 tháng 6 lúc 16:30</span>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                        <a href="#">
-                                                                            <img src="img/user.jpg" class="mh-user-avatar">
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                                        <a href="#">
-                                                                            <span class="mh-username">HaiNNT</span>
-                                                                        </a>
-                                                                        <div class="detail-reputat">
-                                                                            <span>612</span>
-                                                                            <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- Modal: end -->
-                                </div>
-                                <div class="detail-reputation">
-                                    <span>612</span>
-                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                </div>
-                            </div>
-                            <div class="mh-posts-setting">
-                                <ul class="navbar-nav navbar-right" title="Chỉnh sửa">
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                            <i class="fa fa-angle-down mh-post-setting-icon"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a data-toggle="modal" data-target="#report-post">
-                                                    Báo cáo vi phạm
-                                                </a>
-                                            </li>
-                                            <li><a href="#">Chỉnh sửa bài viết</a></li>
-                                            <li><a href="">Đóng bài viết</a></li>
-                                            <li><a href="">Xóa bài viết</a></li>
-                                        </ul>
-                                        <div>
-                                            <!-- Modal: start -->
-                                            <div id="report-post" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                                <div class="modal-dialog modal-sm" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="mh-radio">
-                                                                <div class="radio">
-                                                                    <label>
-                                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                                        Option one is this and that&mdash;be sure to include why it's great
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label>
-                                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                                        Option two can be something else and selecting it will deselect option one
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio">
-                                                                    <label>
-                                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                                                        Option three is disabled
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mh-report-cause">
-                                                                <label>Mô tả:</label><br />
-                                                                <input type="text" placeholder="Nhập mô tả..." />
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                            <button type="button" class="btn btn-primary">Gửi báo cáo</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- Modal: end -->
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2 hidden-sm hidden-xs mh-info">
-                                <div>
-                                    <h2>16</h2>
-                                    <span>bình chọn</span>
-                                </div>
-                                <div class="mh-answer-num">
-                                    <h2>2</h2>
-                                    <span>câu trả lời</span>
-                                </div>
-                                <div>
-                                    <h2>123</h2>
-                                    <span>lượt xem</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg mh-info">
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>16</h4>
-                                        <span>bình chọn</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num">
-                                        <h4>2</h4>
-                                        <span>câu trả lời</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>123</h4>
-                                        <span>lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-xs-12 mh-content">
-                                <a href="#">Giải toán lớp 6</a>
-                                <i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
-                                <div>
-                                    <p>
-                                        Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                                    </p>
-                                    <p>
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                <a class="mh-seemore" href="#">Xem thêm...</a>
-                            </div>
-                            <div class="col-xs-12 col-sm-8 col-md-9">
-                                <ul class="list-inline mh-list-tags mh-list-tags-right">
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Lớp 6</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán đố</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán dễ</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán khó</label>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-warning mh-question-preview">
-                    <div class="panel-heading">
-                        <div class="mh-user-info">
-                            <a href="#">
-                                <img src="img/user.jpg" class="mh-user-avatar">
-                            </a>
-                            <div>
-                                <div>
-                                    <a href="#">
-                                        <span class="mh-username">HaiNNT</span>
-                                    </a>
-                                    <span class="mh-time">vừa hỏi</span>
-                                </div>
-                                <div class="detail-reputation">
-                                    <span>612</span>
-                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                </div>
-                            </div>
-                            <i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2 hidden-sm hidden-xs mh-info">
-                                <div>
-                                    <h2>16</h2>
-                                    <span>bình chọn</span>
-                                </div>
-                                <div class="mh-answer-num">
-                                    <h2>2</h2>
-                                    <span>câu trả lời</span>
-                                </div>
-                                <div>
-                                    <h2>123</h2>
-                                    <span>lượt xem</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg mh-info">
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>16</h4>
-                                        <span>bình chọn</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num">
-                                        <h4>2</h4>
-                                        <span>câu trả lời</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>123</h4>
-                                        <span>lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-xs-12 mh-content">
-                                <a href="#">Giải toán lớp 6</a>
-                                <div>
-                                    <p>
-                                        Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                                    </p>
-                                    <p>
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                <a class="mh-seemore" href="#">Xem thêm...</a>
-                            </div>
-                            <div class="col-xs-12 col-sm-8 col-md-9">
-                                <ul class="list-inline mh-list-tags mh-list-tags-right">
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Lớp 6</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán đố</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán dễ</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán khó</label>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-warning mh-question-preview">
-                    <div class="panel-heading">
-                        <div class="mh-user-info">
-                            <a href="#">
-                                <img src="img/user.jpg" class="mh-user-avatar">
-                            </a>
-                            <div>
-                                <div>
-                                    <a href="#">
-                                        <span class="mh-username">HaiNNT</span>
-                                    </a>
-                                    <span class="mh-time">vừa hỏi</span>
-                                </div>
-                                <div class="detail-reputation">
-                                    <span>612</span>
-                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                </div>
-                            </div>
-                            <i class="fa fa-star-o mh-bookmark-icon" title="Đánh dấu bài này"></i>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2 hidden-sm hidden-xs mh-info">
-                                <div>
-                                    <h2>16</h2>
-                                    <span>bình chọn</span>
-                                </div>
-                                <div class="mh-answer-num">
-                                    <h2>2</h2>
-                                    <span>câu trả lời</span>
-                                </div>
-                                <div>
-                                    <h2>123</h2>
-                                    <span>lượt xem</span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg mh-info">
-                                <div class="row">
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>16</h4>
-                                        <span>bình chọn</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num">
-                                        <h4>2</h4>
-                                        <span>câu trả lời</span>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4">
-                                        <h4>123</h4>
-                                        <span>lượt xem</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-10 col-xs-12 mh-content">
-                                <a href="#">Giải toán lớp 6</a>
-                                <div>
-                                    <p>
-                                        Bi và cậu bé hàng xóm rất thân thiết với nhau, Bi thường giải toán cho cậu bé. Một lần, Bi ra 1 câu hỏi:
-                                    </p>
-                                    <p>
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                        Có 1 dãy cầu thang rất dài. Nếu mỗi bước bước 2 bậc thì cuối cùng sẽ thừa lại 1 bậc; nếu mỗi bước bước ba bậc thì
-                                        còn lại hai bậc; mỗi bước bước 4 bậc thì còn lại 3 bậc; mỗi bước buớc 5 thì còn lại 4; mỗi bước bước 6 bậc thì còn lại 5 bậc;
-                                        mỗi bước 7 bậc thì vừa tròn. Hãy tính dãy cầu thang đó có it nhất bao nhiêu bậc?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-4 col-md-3">
-                                <a class="mh-seemore" href="#">Xem thêm...</a>
-                            </div>
-                            <div class="col-xs-12 col-sm-8 col-md-9">
-                                <ul class="list-inline mh-list-tags mh-list-tags-right">
-
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Lớp 6</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán đố</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán dễ</label>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="mh-tag">
-                                            <i class="fa fa-circle"></i>
-                                            <label>Toán khó</label>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <!-- Right: start -->
-            <div class="hidden-xs hidden-sm col-md-3 col-lg-3 mh-right-section">
-                <div class="mh-banner">
-                    <a href="#">
-                        <img src="img/CTV.jpg">
-                    </a>
-                </div>
-                <div class="mh-btn">
-                    <a href="#" class="btn btn-success">Đặt câu hỏi</a>
-                </div>
-                <div class="panel panel-info mh-panel-recommend">
-                    <div class="panel-heading">Các thảo luận <span class="mh-hot">hot</span></div>
-                    <div class="panel-body mh-panel-recommend-body">
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Tại sao con số 0 lại là 1 phát minh vĩ đại?
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Tại sao con số 0 lại là 1 phát minh vĩ đại?
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Tại sao con số 0 lại là 1 phát minh vĩ đại?
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-info mh-panel-recommend">
-                    <div class="panel-heading">Các bài viết <span class="mh-hot">hot</span></div>
-                    <div class="panel-body mh-panel-recommend-body">
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Định lí Pytago và áp dụng vào bài toán thực tế!
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Định lí Pytago và áp dụng vào bài toán thực tế!
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mh-panel-recommend-row">
-                            <a href="#">
-                                <div class="row">
-                                    <div class="col-md-1 mh-panel-recommend-icon">
-                                        <i class="fa fa-circle"></i>
-                                    </div>
-                                    <div class="col-md-11 mh-panel-recommend-title">
-                                        Định lí Pytago và áp dụng vào bài toán thực tế!
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- Right: end -->
-        </div>
+        </div>        
     </div>
     <!-- Chat: start -->
-    <div class="mh-chat">
+    <!--<div class="mh-chat">
         <div class="mh-chat-left">
             <div class="mh-chat-user">
                 <img class="mh-user-icon" src="img/user.jpg" alt="...">
@@ -1558,7 +1024,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- Chat: end -->
     <!--  footer: start -->
     <footer>
@@ -1605,35 +1071,101 @@
         </div>
     </div>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
     <script>
-        $(".mh-chat-popup-head").click(function () {
-            $(this).siblings(".mh-chat-popup-body").toggle();
-            //$(".mh-chat-popup-body").slideToggle("fast");
+        $(".mh-profile-edit-button").click(function () {
+            // thẻ a (chỉnh sửa)
+            event.preventDefault();
+            // mh-profile-span-edit, thẻ a (chỉnh sửa): ẩn
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+            $(".mh-profile-edit-button").hide();
+            // save, cancel, input hiện
+            $(this).siblings().show();
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit").show();
+                    break;
+                case "radio":
+                    //radio button: hiện
+                    $(this).parents(".mh-profile-info-row").find(".radio-inline").show();
+                    break;
+                case "datetime":
+                    var input = $(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit");
+                    var strDate = input.val();
+                    var date = new Date(strDate.split("-")[2], strDate.split("-")[1] - 1, strDate.split("-")[0]);
+                    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).datepicker("setDate", date);
+                    input.toggle();
+                    break;
+                case "select":
+                    $(this).parents(".mh-profile-info-row").find(".mh-profile-select-edit").show();
+                    break;
+                default:
+                    break;
+            }
         });
-        $(".mh-chat-popup-add-friend-icon").click(function () {
-                event.preventDefault();
-                event.stopPropagation();
-                //var item = $(this).siblings(".mh-chat-popup-add-friend");
-                $(this).parents(".mh-chat-popup").find(".mh-chat-popup-add-friend").toggle();
+        $(".mh-profile-cancel").click(function () {
+            //nút cancel: ẩn
+            $(this).hide();
+            switch ($(this).attr("mh-type")) {
+                case "text":
+                    // Khung input: quay về giá trị ban đầu + ẩn
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.hide();
+                    input.val($(this).val());
+                    break;
+                case "radio":
+                    var radios = $(this).parents(".mh-profile-info-row").find(".mh-radio");
+                    var val = $(this).val();
+                    radios.each(function () {
+                        radio = this;
+                        if ($(radio).val() == val) {
+                            $(radio).prop("checked", true);
+                        } else {
+                            $(radio).removeAttr("checked");
+                        }
+                    });
+                    break;
+                case "datetime":
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-input-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                case "select":
+                    var input = $($(this).parents(".mh-profile-info-row").find(".mh-profile-select-edit"));
+                    input.toggle();
+                    input.val($(this).val());
+                    break;
+                default:
+                    break;
+            }
+
+            // mh-profile-span-edit: hiện
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+            //Nút save: ẩn
+            $(this).siblings().hide();
+            //thẻ a: hiện
+            $(".mh-profile-edit-button").show();
+            //radio button: ẩn
+            $(this).parents(".mh-profile-info-row").find(".radio-inline").hide();
         });
-        $(".mh-chat-popup-setting").each(function () {
-            $(this).click(function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                var item = $(this).siblings(".mh-chat-popup-setting-show");
-                if (item.hasClass("hidden")) {
-                    item.removeClass("hidden");
-                } else {
-                    item.addClass("hidden");
-                }
-            });
+        $(".mh-pass-edit-button").click(function () {
+            //an
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").hide();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").hide();
+            //hien
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").show();
         });
-        $("body").click(function (event) {
-            $(".mh-chat-popup-setting-show").addClass("hidden");
-        });
-        $(function () {
-            $('[data-toggle="tooltip"],.mh-chat-popup-setting').tooltip()
+        $(".mh-pass-cancel").click(function () {
+            //hien
+            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").show();
+            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").show();
+            //an
+            $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
         });
     </script>
 </body>

@@ -152,7 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -181,6 +180,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\Account\FriendViewModel.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
@@ -533,6 +533,7 @@
     <Content Include="Content\img\logoMain.png" />
     <Content Include="Content\img\Question_Answer.png" />
     <Content Include="Content\img\social_fb_s.png" />
+    <Content Include="Content\img\user-icon.png" />
     <Content Include="Content\img\user.jpg" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -705,6 +706,11 @@
     <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
     <Content Include="Views\CommonWidget\_BookmarkPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_EditedLogPartialView.cshtml" />
+    <Content Include="Views\Account\Layouts\_FriendLayout.cshtml" />
+    <Content Include="Views\Account\Views\FriendView.cshtml" />
+    <Content Include="Views\Account\Partials\_FriendListPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_FollowerListPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_FolloweeListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CategoryListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Account\BannedPage.cshtml" />
