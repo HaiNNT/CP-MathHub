@@ -707,6 +707,7 @@
     <Content Include="Views\CommonWidget\_EditedLogPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CategoryListPartialView.cshtml" />
     <Content Include="Views\Discussion\Partials\_CategoryPreviewPartialView.cshtml" />
+    <Content Include="Views\Account\BannedPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

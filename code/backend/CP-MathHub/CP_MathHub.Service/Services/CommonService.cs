@@ -423,7 +423,7 @@ namespace CP_MathHub.Service.Services
             log.PostId = comment.Id;
             log.UserId = comment.UserId;
             log.Content = comment.Content;
-            log.CreatedDate = comment.CreatedDate;
+            log.CreatedDate = comment.LastEditedDate;
             dal.Repository<EditedLog>().Insert(log);
             dal.Save();
             return comment;

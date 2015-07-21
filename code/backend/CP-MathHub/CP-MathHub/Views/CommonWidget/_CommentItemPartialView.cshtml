@@ -10,7 +10,8 @@
             <a href="" class="mh-media-comment-user">@Model.Username</a>
             <span id="comment-content-@(Model.Id)">@Model.Content</span>
         </div>
-        <div class="mh-comment-acitvity">
+        @*<div class="mh-comment-activity">*@
+        <div class="mh-comment-activity">
             <a class="mh-like" onclick="like(@Model.Id, this)">@(Model.Liked ? "Bỏ thích" : "Thích")</a>
             <span class="mh-comment-separator">-</span>
             <a href="">Trả lời</a>

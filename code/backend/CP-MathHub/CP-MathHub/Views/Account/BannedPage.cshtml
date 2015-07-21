@@ -1,0 +1,13 @@
+﻿@model CP_MathHub.Entity.BanAccount
+@{
+    ViewBag.Title = "BannedPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tài Khoản Của Bạn Bị Khóa.</h2>
+<div>Bị khóa ngày: @Model.BannedDate</div>
+<div>Thời gian khóa: @Model.Duration ngày</div>
+<div>Phục hồi ngày: @Model.UnBanedDate</div>
+<div>Lý do: @Model.Description</div>
+
+
