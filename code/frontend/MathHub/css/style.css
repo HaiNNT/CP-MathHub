@@ -10,6 +10,28 @@ a {
     cursor: pointer;
 }
 
+.btn-login {
+  color: #000;
+  background-color: #F0F0F0;
+  border-color: #ccc;
+}
+
+.btn-login:hover {
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-register {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn-register:hover {
+  color: #fff;
+  background-color: #4cae4c;
+}
+
 .panel-footer {
     min-height: 46px;
 }
@@ -608,6 +630,10 @@ a {
     cursor: pointer;
 }
 
+.mh-sort-content {
+    max-height: 145px;
+    overflow-y: hidden;
+}
 /* Mid: end */
 
 /* Left: start */

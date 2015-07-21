@@ -32,6 +32,15 @@ namespace CP_MathHub.Models.Account
         public virtual Activity Activity { get; set; }
 
         public int FriendNumber { get; set; }
+        public FriendStatusEnum RequestStatus { get; set; }
+    }
 
+    public enum FriendStatusEnum : int
+    {
+        ActiveRequesting = 1,
+        Friend = 2,
+        Blocked = 3,
+        PasssiveRequesting = 4,
+        Stranger = 5
     }
 }

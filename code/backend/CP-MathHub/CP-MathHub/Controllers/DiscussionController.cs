@@ -33,7 +33,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Index()
         {
             //int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
-            List<Tag> tags = cService.GetTags(Constant.Discussion.Integer.CategoryDefaultLoad);
+            List<Tag> tags = cService.GetCategorys();
             List<CategoryPreviewViewModel> discussioncategoryVM =
                 tags.Select(Mapper.Map<Tag, CategoryPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
