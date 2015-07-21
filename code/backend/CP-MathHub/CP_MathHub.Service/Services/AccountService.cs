@@ -119,6 +119,14 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Update(friendship);
             dal.Save();
         }
+        public void CancelFriend(int userId, int targetUserId)
+        {
+            UserFriendship friendship = new UserFriendship();
+            friendship = dal.Repository<UserFriendship>().Table.Where(
+                (u => (u.TargetUserId == targetUserId || u.TargetUserId == userId) && (u.UserId == targetUserId || u.UserId == userId) && (u.Status == RelationshipEnum.Requesting || u.Status == RelationshipEnum.Friend))).FirstOrDefault();
+            dal.Repository<UserFriendship>().Delete(friendship);
+            dal.Save();
+        }
         public List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake)
         {
             List<User> friends = new List<User>();

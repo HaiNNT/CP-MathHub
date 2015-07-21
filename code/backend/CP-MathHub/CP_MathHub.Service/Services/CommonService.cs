@@ -136,16 +136,16 @@ namespace CP_MathHub.Service.Services
             return list;
         }
         //Get All Tags
-        public List<Tag> GetTags(int skip)
+        public List<Tag> GetCategorys()
         {
             List<Tag> list = new List<Tag>();
             list = dal.Repository<Tag>()
                                 .Get(
                                 (p=>p.MainPosts.OfType<Discussion>().Count() > 0),
-                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    (p => p.OrderByDescending(s => s.Id)),
                                     "MainPosts",
-                                    skip,
-                                    Constant.Discussion.Integer.TagPagingDefaultTake
+                                    0,
+                                    Constant.Discussion.Integer.CategoryDefaultLoad
                                 ).ToList();
             return list;
         }

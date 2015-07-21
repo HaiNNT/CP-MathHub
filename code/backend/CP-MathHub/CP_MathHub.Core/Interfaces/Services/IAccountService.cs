@@ -96,5 +96,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         List<Tag> GetFavoriteTags(int userId);
+
+        /// <summary>
+        /// Cancel friend request or cancel friend
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="targetUserId"></param>
+        void CancelFriend(int userId, int targetUserId);
     }
 }

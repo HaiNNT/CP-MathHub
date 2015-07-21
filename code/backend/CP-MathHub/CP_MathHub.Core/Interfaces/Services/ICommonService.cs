@@ -22,10 +22,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        List<Tag> GetTags(int skip);
+        List<Tag> GetCategorys();
 
         /// <summary>
-        /// Get tag by Id
+        /// Get category
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
