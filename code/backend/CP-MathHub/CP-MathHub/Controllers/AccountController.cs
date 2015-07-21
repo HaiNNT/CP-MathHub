@@ -416,6 +416,13 @@ namespace CP_MathHub.Controllers
         }
         #endregion
 
+        public ActionResult BannedPage()
+        {
+            Entity.User user = aService.GetUser(User.Identity.GetUserId<int>());
+            BanAccount model = user.BannedAccounts.Where(b => b.UnBanedDate > DateTime.Now).FirstOrDefault();
+            return View(model);
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

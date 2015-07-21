@@ -5,6 +5,11 @@
  */
 
 /*
+    Global Varialble
+*/
+var commentReady = true;
+
+/*
   Init see more question event listening 
 */
 function seeMore(item) {
@@ -19,14 +24,10 @@ function seeMore(item) {
   Init see more comment event listening 
 */
 function seeMoreComment(item) {
-
-    $(item).click(function () {
         $(item).addClass("hidden");
         $(item).siblings(".hidden").each(function () {
             $(this).removeClass("hidden");
         });
-
-    });
 }
 
 /*
@@ -300,7 +301,7 @@ function loadEditedLog(id, type) {
     history.html("");
     $.ajax({
         method: "POST",
-        url: "/Blog/EditedLog",
+        url: "/Question/EditedLog",
         data: { id: id, type: type }
     })
      .done(function (msg) {
@@ -310,6 +311,120 @@ function loadEditedLog(id, type) {
      .fail(function () {
          alert("fail error");
      });
+}
+
+/*
+    Show text box for edit comment
+*/
+function showEditComment(item) {
+    // Ẩn
+    $(item).parents(".mh-comment-content").find(".mh-comment-question-content").toggle();
+    $(item).parents(".mh-comment-content").find(".mh-comment-question-username").toggle();
+    $(item).parents(".mh-comment-content").find(".mh-time").toggle();
+    $(item).parents(".mh-comment").find(".mh-commet-edit").toggle();
+    $(item).parents(".mh-comment-content").find(".mh-comment-history-edit").toggle();
+    //Hiện
+    $(item).parents(".mh-comment-content").find(".mh-comment-edit-textarea").toggle();
+    $(item).parents(".mh-comment-content").find(".mh-note").toggle();
+}
+
+/*
+    Edit comment
+*/
+function editComment() {
+    $(".mh-comment-edit-textarea").each(function () {
+        var input = $(this);
+        input.keypress(function (e) {            
+            if (e.keyCode === 13 && commentReady) {
+                e.preventDefault();
+                var content = input.val();
+                var id = input.attr("comment-id");
+                $.ajax({
+                    method: "Post",
+                    url: "/Question/EditComment",
+                    data: { id: id, content: content }
+                })
+				.done(function (msg) {
+				    if (msg) {
+				        $("#comment-content-" + id).html(content);
+				        input.parent().find(".edited-button").removeClass("hidden");
+				        closeEditComment();
+				    }
+				})
+				.fail(function (msg) {
+				    console.log(msg);
+				    alert(msg);
+				});
+            }
+        });
+    });
+}
+
+/*
+    Show ckeditor for edit answer and hint
+*/
+function editAnswer(item) {
+    // Ẩn
+    $(item).parents(".mh-answer_hint-detail").find(".mh-answer_hint-detail-content").toggle();
+    $(item).parents(".mh-answer_hint-detail").find(".mh-answer_hint-user_info").toggle();
+    $(item).parents(".mh-answer_hint-content").find(".mh-commet-edit").toggle();
+    //Hiện
+    $(item).parents(".mh-answer_hint-detail").find(".mh-answer_hint-edit-textarea").toggle();
+    $(item).parents(".mh-answer_hint-detail").find(".mh-note-answer_hint").toggle();
+}
+
+/*
+    Close text box edit comment
+*/
+function closeEditComment() {
+    //Hiện
+    $(".mh-comment-question-content").show();
+    $(".mh-comment-question-username").show();
+    $(".mh-time").show();
+    $(".mh-commet-edit").show();
+    $(".mh-comment-history-edit").show();
+    //Ẩn
+    $(".mh-note").hide();
+    //Ẩn + set về giá trị ban đầu
+    var inputs = $(".mh-comment-edit-textarea");
+    inputs.each(function () {
+        var input = $(this);
+        var val = input.siblings(".mh-note").find("button").val();
+        input.val(val);
+        input.hide();
+    });
+    //input.hide();
+    //input.val($(this).val());
+}
+
+/*
+    Close ckeditor edit answer
+*/
+function closeEditAnswer() {
+    //Hiện
+    $(".mh-answer_hint-detail-content").show();
+    $(".mh-answer_hint-user_info").show();
+    $(".mh-commet-edit").show();
+    //Ẩn
+    $(".mh-note-answer_hint").hide();
+    //Ẩn + set về giá trị ban đầu
+    var list = [];
+    $(".mh-ckeditor-textarea").each(function () {
+        list.push($(this).attr("id"));
+    });
+    //inputs.each(function () {
+    //    var input = $(this);
+    //    CKEDITOR.instances[list[item]]
+    //    var val = input.siblings(".mh-note-answer_hint").find("button").val();
+    //    input.val(val);
+    //    input.hide();
+    //});
+    for (var item in list) {
+        //var data = $(list[item]).siblings(".mh-note-answer_hint").find("button").val();
+        CKEDITOR.instances[list[item]].setData();
+        $("#" + list[item]).parent().hide();
+    }
+
 }
 
 /*
@@ -342,6 +457,7 @@ $(document).ready(function () {
         case "question-detail":
             initCkeditor(false);
             commentPost();
+            editComment();
             //seeMoreComment();
             break;
         default:

@@ -178,6 +178,7 @@ namespace CP_MathHub.Controllers
         // GET: Question/Create
         [HttpGet]
         [Authorize]
+        [BannedUser]
         public ActionResult Create()
         {
             QuestionCreateViewModel model = new QuestionCreateViewModel();
@@ -240,23 +241,26 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
             Question question = qService.GetQuestion(questionVM.Id);
+            if (User.IsInRole("Expert") || User.Identity.GetUserId<int>() == question.UserId)
+            {
+                EditedLog editedlog = new EditedLog();
+                editedlog.Content = questionVM.Content;
+                editedlog.CreatedDate = DateTime.Now;
+                editedlog.PostId = question.Id;
+                editedlog.UserId = User.Identity.GetUserId<int>();
+                editedlog.Title = questionVM.Title;
 
-            EditedLog editedlog = new EditedLog();
-            editedlog.Content = questionVM.Content;
-            editedlog.CreatedDate = DateTime.Now;
-            editedlog.PostId = question.Id;
-            editedlog.UserId = User.Identity.GetUserId<int>();
-            editedlog.Title = questionVM.Title;
+                question.Title = questionVM.Title;
+                question.Content = questionVM.Content;
+                question.Privacy = questionVM.Privacy;
 
-            question.Title = questionVM.Title;
-            question.Content = questionVM.Content;
-            question.Privacy = questionVM.Privacy;
+                question.LastEditedDate = editedlog.CreatedDate;
+                question.EditedContents.Add(editedlog);
 
-            question.LastEditedDate = editedlog.CreatedDate;
-            question.EditedContents.Add(editedlog);
-
-            qService.EditQuestion(question);
-
+                qService.EditQuestion(question);
+                return RedirectToAction("Detail", new { id = question.Id });
+            }
+            //ViewBag.ErrorMessage = "Bạn không có quyền chỉnh sửa câu hỏi này";
             return RedirectToAction("Detail", new { id = question.Id });
         }
 
@@ -383,22 +387,29 @@ namespace CP_MathHub.Controllers
         public ActionResult PostComment(int postId, string content = "")
         {
             Comment comment = new Comment();
-            comment.Content = content;
+            comment.Content = content.Trim();
             comment.UserId = Int32.Parse(User.Identity.GetUserId());
             comment.CreatedDate = DateTime.Now;
             comment.LastEditedDate = comment.CreatedDate;
             comment.PostId = postId;
 
             cService.CommentPost(comment);
+            comment.Author = cService.GetUser(comment.UserId);
             return PartialView("Partials/_CommentItemPartialView", comment);
         }
 
         //Post: Question/EditComment
         [HttpPost]
         [Authorize]
-        public ActionResult EditComment()
+        public bool EditComment(int id, string content)
         {
-            return null;
+            Comment comment = new Comment();
+            comment.Id = id;
+            comment.Content = content.Trim();
+            comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
+            //CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
+
+            return true;
         }
 
         //Post: Question/AnswerQuestion
@@ -415,9 +426,22 @@ namespace CP_MathHub.Controllers
             answer.Type = type;
             answer.VoteDown = 0;
             answer.VoteUp = 0;
+            answer.Status = PostStatusEnum.Active;
 
             qService.AnswerQuestion(answer);
             return RedirectToAction("Detail", new { id = questionId });
+        }
+
+        //Post: /Question/EditAnswer
+        [HttpPost, ValidateInput(false)]
+        [Authorize]
+        public ActionResult EditAnswer(int id, string content)
+        {
+            Answer answer = new Answer();
+            answer.Content = content;
+            answer.Id = id;
+            qService.EditAnswer(answer, User.Identity.GetUserId<int>(), User.IsInRole("Expert"));
+            return RedirectToAction("Detail", new { id = answer.QuestionId });
         }
 
         //Post: Question/Vote
