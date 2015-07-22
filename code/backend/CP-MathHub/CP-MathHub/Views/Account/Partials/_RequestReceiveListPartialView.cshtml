@@ -1,0 +1,25 @@
+﻿@using CP_MathHub.Entity
+@model List<User>
+
+@foreach (User item in Model)
+{
+    <div class="row mh-request-friend-row">
+        <div class="col-xs-7 media">
+            <div class="media-left">
+                <a href="#">
+                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
+                </a>
+            </div>
+            <div class="media-body">
+                <a>
+                    <span class="media-heading mh-request-user-name">@item.UserName</span>
+                </a><br />
+                <span>Đang sinh sống tại: @item.Profile.Address</span>
+            </div>
+        </div>
+        <div class="col-xs-5 mh-request-friend-button">
+            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+        </div>
+    </div>
+}

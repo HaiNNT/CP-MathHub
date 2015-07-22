@@ -600,6 +600,7 @@ namespace CP_MathHub.Controllers
             List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab,skip);
             List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
             List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
+            List<User> requests = aService.GetFriends(105, Constant.Account.String.RequestTab, skip);
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -609,6 +610,7 @@ namespace CP_MathHub.Controllers
                 model.FolloweeNum = aService.CountFollowee(105);
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
+                model.ListRequested = requests;
                 ViewBag.System = Constant.String.AccountSystem;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
@@ -619,7 +621,6 @@ namespace CP_MathHub.Controllers
             {
                 return PartialView("Partials/_FriendListPartialView", friends);
             }
-
         }
         //Post: SendFriendRequest
         [HttpPost]
