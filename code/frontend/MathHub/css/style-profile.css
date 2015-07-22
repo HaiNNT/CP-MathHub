@@ -226,9 +226,9 @@ form:last-child .mh-profile-info-row {
     color: #000;
     font-size: 12px;
 }
-.mh-profile-notification .media, .tab-content .media:first-child {
+/*.mh-profile-notification .media, .tab-content .media:first-child {
     margin-top: 0;
-}
+}*/
 .mh-profile-notification .media-heading {
     font-weight: bold;
 }
