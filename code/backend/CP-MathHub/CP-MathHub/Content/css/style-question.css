@@ -363,7 +363,7 @@
 	margin-left: 15px;
 }
   /* QA User: end */
-.mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon {
+.mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon, .mh-content-detail .mh-bookmark-icon, .mh-content-detail .mh-bookmarked-icon {
     vertical-align: top;
     font-size: 13pt;
 }

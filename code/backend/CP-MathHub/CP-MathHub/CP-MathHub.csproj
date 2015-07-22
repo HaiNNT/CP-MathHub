@@ -689,6 +689,8 @@
     <Content Include="Views\Account\Partials\_UserDiscussionActivityPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserAnswerActivityPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_RecommendedMainPost.cshtml" />
+    <Content Include="Views\Account\Layouts\_TagsPageLayout.cshtml" />
+    <Content Include="Views\Account\Partials\_FavoriteTagsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -107,7 +107,6 @@ namespace CP_MathHub.Service.Services
                 .Count(u => u.Followers.Contains(user));
             return result;
         }
-
         public void SendFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
@@ -195,7 +194,7 @@ namespace CP_MathHub.Service.Services
             return friends;
         }
 
-        public List<Tag> GetFavoriteTags(int userId)
+        public List<Tag> GetFavoriteTags(int userId, int take = 0)
         {
             List<Tag> tags = new List<Tag>();
             List<MainPost> posts = dal.Repository<MainPost>().Get(
@@ -213,8 +212,14 @@ namespace CP_MathHub.Service.Services
                         tags.Add(tag);
                 }
             }
-            return tags.Skip(0).Take(5).ToList();
+            if(take == 0)
+            {
+                return tags;
+            }
+            else
+            {
+                return tags.Skip(0).Take(take).ToList();
+            }           
         }
-
     }
 }

@@ -35,6 +35,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Article> GetArticles(int authorId, int skip = 0);
 
         /// <summary>
+        /// Count article of user
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+        int CountUserArticle(int authorId);
+
+        /// <summary>
         /// Get an Article by id
         /// </summary>
         /// <param name="id"></param>

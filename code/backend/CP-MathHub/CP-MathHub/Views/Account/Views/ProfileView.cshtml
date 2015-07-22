@@ -33,7 +33,7 @@
 <div class="mh-body-profile">
     <div class="row mh-profile-user-info">
         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
-            <img src="~/Content/img/user.jpg" class="mh-image-user-profile" />       
+            <img src="~/Content/img/user.jpg" class="mh-image-user-profile" />
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
@@ -97,7 +97,7 @@
                         </div>
                         <div>
                             <button type="button" class="btn btn-primary mh-pass-save-change">Lưu thay đổi</button>
-                            <button type="button" class="btn btn-default mh-pass-cancel" mh-type="password">Hủy</button>                            
+                            <button type="button" class="btn btn-default mh-pass-cancel" mh-type="password">Hủy</button>
                         </div>
                     </div>
                 </div>
@@ -325,23 +325,23 @@
 </div>
 @section LeftPanel
 {
-    <a class="mh-profile-menu-button active">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("Friend")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Bạn bè
             <span class="badge mh-num-icon">42</span>
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Hoạt động
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Quyền riêng tư
         </div>

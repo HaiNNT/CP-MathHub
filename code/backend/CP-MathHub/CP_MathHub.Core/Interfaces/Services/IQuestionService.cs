@@ -31,6 +31,20 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Answer> GetAnswers(int authorId, int skip = 0);
 
         /// <summary>
+        /// Count question of user
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+        int CountUserQuestion(int authorId);
+
+        /// <summary>
+        /// Count answer of user
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+        int CountUserAnswer(int authorId);
+
+        /// <summary>
         /// Get Questions by Tag
         /// </summary>
         /// <returns></returns>
