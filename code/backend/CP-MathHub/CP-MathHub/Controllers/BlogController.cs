@@ -268,6 +268,7 @@ namespace CP_MathHub.Controllers
         //Post: Blog/CreateTags
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -305,6 +306,7 @@ namespace CP_MathHub.Controllers
         //Get: Blog/CreateCreate
         [HttpGet]
         [Authorize]
+        [BannedUser]
         public ActionResult Create()
         {
             ArticleCreateViewModel model = new ArticleCreateViewModel();
@@ -316,6 +318,7 @@ namespace CP_MathHub.Controllers
         //Post: Blog/Create
         [HttpPost, ValidateInput(false)]
         [Authorize]
+        [BannedUser]
         public ActionResult Create(ArticleCreateViewModel model)
         {
             Article article = new Article();
@@ -393,6 +396,7 @@ namespace CP_MathHub.Controllers
         //Post: Blog/PostComment
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
             PostStatusEnum status = PostStatusEnum.Active;

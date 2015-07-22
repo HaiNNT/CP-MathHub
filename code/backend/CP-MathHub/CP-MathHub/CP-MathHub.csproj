@@ -663,7 +663,6 @@
     <Content Include="Views\Blog\Partials\_ArticleHotPartialView.cshtml" />
     <Content Include="Views\Blog\Layouts\_MyBlogLayout.cshtml" />
     <Content Include="Views\Blog\Views\MyBlogView.cshtml" />
-    <Content Include="Views\Blog\Partials\_MyArticleListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Mockups\_NotificationMockup.cshtml" />
     <Content Include="Views\Blog\Partials\_NavPartialView.cshtml" />
     <Content Include="Views\Blog\Partials\_ArticleListPartialView.cshtml" />

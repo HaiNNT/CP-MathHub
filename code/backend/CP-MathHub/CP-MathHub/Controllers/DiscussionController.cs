@@ -88,6 +88,7 @@ namespace CP_MathHub.Controllers
         //Post: CategoryIndex
         [Authorize]
         [HttpPost, ValidateInput(false)]
+        [BannedUser]
         public ActionResult CategoryIndex(CategoryViewModel discussionTagHomeVM, int tagId)
         {
             Discussion discussion = new Discussion();
@@ -239,6 +240,7 @@ namespace CP_MathHub.Controllers
         //Get: Discussion/Create
         [HttpGet]
         [Authorize]
+        [BannedUser]
         public ActionResult Create(int tagId = 0)
         {
             ViewBag.System = Constant.String.DiscussionSystem;
@@ -250,6 +252,7 @@ namespace CP_MathHub.Controllers
         }
         //Post: Discussion/Create
         [Authorize]
+        [BannedUser]
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(DiscussionCreateViewModel discussionCreateVM)
         {
@@ -379,6 +382,7 @@ namespace CP_MathHub.Controllers
         //Post: Discussion/CreateTags
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -423,6 +427,7 @@ namespace CP_MathHub.Controllers
         //Post: Discussion/PostComment
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult PostComment(int postId, string content, string type = "comment")
         {
             Comment comment = new Comment();
