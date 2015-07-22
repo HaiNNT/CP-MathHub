@@ -109,7 +109,10 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Insert(friendship);
             dal.Save();
         }
+        public void GetFriendRequest(int userId, int targetUserId)
+        {
 
+        }
         public void AcceptFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
@@ -166,6 +169,21 @@ namespace CP_MathHub.Service.Services
                             , ""
                             , skip
                             , take).ToList();
+                    break;
+                case Constant.Account.String.RequestTab:
+                    List<UserFriendship> friendrequests = dal.Repository<UserFriendship>().Get(
+                            (u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User,TargetUser"
+                            , skip
+                            , take).ToList();
+                    foreach (UserFriendship friendShip in friendrequests)
+                    {
+                        if (friendShip.TargetUserId == userId)
+                        {
+                            friends.Add(friendShip.User);
+                        }
+                    }
                     break;
             }
             return friends;

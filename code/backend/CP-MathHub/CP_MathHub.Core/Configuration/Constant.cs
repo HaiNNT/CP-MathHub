@@ -160,6 +160,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string AllFriendTab = "allfriend";
                 public const string FollowerTab = "follower";
                 public const string FolloweeTab = "followee";
+                public const string RequestTab = "friendrequest";
             }
 
             public class Dictionary
