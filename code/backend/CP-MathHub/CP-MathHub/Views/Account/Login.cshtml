@@ -154,6 +154,7 @@
                         <div class="well">
                             @using (Html.BeginForm("Register", "Account", FormMethod.Post))
                             {
+                                @Html.AntiForgeryToken()
                                 <div>
                                     @*<input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />*@
                                     @Html.TextBoxFor(m => m.Username, new { @class = "mh-login-mathHub-username", @placeholder = "Tên đăng nhập" })
