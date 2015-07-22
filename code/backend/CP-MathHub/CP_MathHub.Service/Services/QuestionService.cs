@@ -229,10 +229,10 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Answer>().Insert(answer);
             dal.Save();
         }
-        public bool EditAnswer(Answer answer, int userId, bool hasPermission)
+        public Answer EditAnswer(Answer answer, int userId, bool hasPermission)
         {
             Answer a = dal.Repository<Answer>().GetById(answer.Id);
-            if (answer.UserId == userId || hasPermission)
+            if (a.UserId == userId || hasPermission)
             {
                 a.Content = answer.Content;
                 a.LastEditedDate = DateTime.Now;
@@ -244,9 +244,9 @@ namespace CP_MathHub.Service.Services
 
                 a.EditedContents.Add(editedlog);
                 dal.Save();
-                return true;
+                return a;
             }
-            return false;
+            return a;
         }
         public bool Vote(Vote vote)
         {
@@ -280,6 +280,23 @@ namespace CP_MathHub.Service.Services
             {
                 vote.User = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == vote.UserId);
             }
+        }
+        public void IncreaseViewQuestion(Question question)
+        {
+            question.View++;
+            EditQuestion(question);
+        }
+        public bool Accept(int answerId)
+        {
+            Answer answer = dal.Repository<Answer>().GetById(answerId);
+            if (dal.Repository<Answer>().Table.Count(m => m.QuestionId == answer.QuestionId && m.Accepted == true) > 0 && !dal.Repository<Answer>().GetById(answerId).Accepted)
+            {
+                return false;
+            }
+            answer.Accepted = !answer.Accepted;
+            dal.Repository<Answer>().Update(answer);
+            dal.Save();
+            return true;
         }
     }
 }

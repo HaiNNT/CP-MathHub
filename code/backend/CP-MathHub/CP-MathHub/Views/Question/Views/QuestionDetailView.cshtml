@@ -53,9 +53,6 @@
                         </div>
                     </div>
                 </a>
-                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
-                    <i class="fa fa-flag"></i> Báo vi phạm
-                </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">
                 <ul class="list-inline mh-list-tags mh-list-tags-right">
@@ -70,7 +67,7 @@
     @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id }, { "Status", Model.Status } })
 </div>
 
-@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs, new ViewDataDictionary { { "Status", Model.Status } })
+@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs, new ViewDataDictionary { { "Status", Model.Status }, {"UserId", Model.UserId} })
 @if (Model.Status.Value == CP_MathHub.Entity.PostStatusEnum.Active)
 {
     @Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })

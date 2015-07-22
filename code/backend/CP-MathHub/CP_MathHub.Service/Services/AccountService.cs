@@ -62,6 +62,10 @@ namespace CP_MathHub.Service.Services
             Profile profile = new Profile();
             profile.User = GetUser(userId);
             dal.Repository<Profile>().Insert(profile);
+            User user = dal.Repository<User>().GetById(userId);
+            user.CreatedDate = DateTime.Now;
+            user.Reputation = 0;
+            user.Status = UserStatusEnum.Active;
             dal.Save();
         }
 

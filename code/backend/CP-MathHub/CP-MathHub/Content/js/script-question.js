@@ -10,7 +10,7 @@
 var commentReady = true;
 
 /*
-  Init see more question event listening 
+  Init see more question
 */
 function seeMore(item) {
     $(item).parent().addClass("hidden");
@@ -20,14 +20,20 @@ function seeMore(item) {
     parent.find(".mh-social-report").removeClass("hidden");
 }
 
+function seeMoreContent(item) {
+    $(item).parent().addClass("hidden");
+    $(item).parent().siblings(".mh-sort-content").addClass("hidden");
+    $(item).parent().siblings(".mh-full-content").removeClass("hidden");
+}
+
 /*
-  Init see more comment event listening 
+  Init see more comment
 */
 function seeMoreComment(item) {
-        $(item).addClass("hidden");
-        $(item).siblings(".hidden").each(function () {
-            $(this).removeClass("hidden");
-        });
+    $(item).addClass("hidden");
+    $(item).siblings(".hidden").each(function () {
+        $(this).removeClass("hidden");
+    });
 }
 
 /*
@@ -45,7 +51,7 @@ function bookmark(id) {
         data: data
     })
 	  .done(function (msg) {
-	      if (msg) {
+	      if (msg == "True") {
 	          $(bookmark).each(function () { $(this).addClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).removeClass("hidden"); });
 	      } else {
@@ -72,7 +78,7 @@ function unBookmark(id) {
         data: data
     })
 	  .done(function (msg) {
-	      if (msg) {
+	      if (msg == "True") {
 	          $(bookmark).each(function () { $(this).removeClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).addClass("hidden"); });
 	      } else {
@@ -124,7 +130,7 @@ function createTag() {
         data: { name: name }
     })
       .done(function (msg) {
-          if (msg) {
+          if (msg == "True") {
               add(msg);
           } else {
               alert("false");
@@ -334,7 +340,7 @@ function showEditComment(item) {
 function editComment() {
     $(".mh-comment-edit-textarea").each(function () {
         var input = $(this);
-        input.keypress(function (e) {            
+        input.keypress(function (e) {
             if (e.keyCode === 13 && commentReady) {
                 e.preventDefault();
                 var content = input.val();
@@ -345,7 +351,7 @@ function editComment() {
                     data: { id: id, content: content }
                 })
 				.done(function (msg) {
-				    if (msg) {
+				    if (msg == "True") {
 				        $("#comment-content-" + id).html(content);
 				        input.parent().find(".edited-button").removeClass("hidden");
 				        closeEditComment();
@@ -425,6 +431,31 @@ function closeEditAnswer() {
         $("#" + list[item]).parent().hide();
     }
 
+}
+
+/*
+    Accept/Unaccept an answer
+*/
+function accept(item, id) {
+    $.ajax({
+        method: "Post",
+        url: "/Question/Accept",
+        data: { answerId: id }
+    })
+	.done(function (msg) {
+		if (msg == "True") {
+			if ($(item).hasClass("mh-checked")) {
+				$(item).removeClass("mh-checked");
+			} else {
+				$(item).addClass("mh-checked");
+			}
+		} else {
+		    alert("Bạn không thể chấp nhận hơn 1 câu trả lời");
+		}
+	})
+	.fail(function (msg) {
+		alert(msg);
+	});
 }
 
 /*

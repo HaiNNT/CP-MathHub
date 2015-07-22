@@ -172,6 +172,7 @@ namespace CP_MathHub.Controllers
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
             cookie.Expires.AddHours(1);
             Response.Cookies.Add(cookie);
+            qService.IncreaseViewQuestion(question);
             return View("Views/QuestionDetailView", questionDetailVM);
         }
 
@@ -433,6 +434,7 @@ namespace CP_MathHub.Controllers
             answer.Type = type;
             answer.VoteDown = 0;
             answer.VoteUp = 0;
+            answer.Accepted = false;
             answer.Status = PostStatusEnum.Active;
 
             qService.AnswerQuestion(answer);
@@ -447,7 +449,7 @@ namespace CP_MathHub.Controllers
             Answer answer = new Answer();
             answer.Content = content;
             answer.Id = id;
-            qService.EditAnswer(answer, User.Identity.GetUserId<int>(), User.IsInRole("Expert"));
+            answer = qService.EditAnswer(answer, User.Identity.GetUserId<int>(), User.IsInRole("Expert"));
             return RedirectToAction("Detail", new { id = answer.QuestionId });
         }
 
@@ -491,21 +493,39 @@ namespace CP_MathHub.Controllers
         }
 
         //Get: Question/Close
+        [Authorize]
         public ActionResult Close(int id)
         {
             Question question = qService.GetQuestion(id);
+            if (question.UserId != User.Identity.GetUserId<int>())
+            {
+                return RedirectToAction("Detail", new { @id = id });
+            }
             question.Status = PostStatusEnum.Closed;
             qService.EditQuestion(question);
             return RedirectToAction("Detail", new { @id = id });
         }
 
         //Get: Question/Open
+        [Authorize]
         public ActionResult Open(int id)
         {
             Question question = qService.GetQuestion(id);
+            if (question.UserId != User.Identity.GetUserId<int>())
+            {
+                return RedirectToAction("Detail", new { @id = id });
+            }
             question.Status = PostStatusEnum.Active;
             qService.EditQuestion(question);
             return RedirectToAction("Detail", new { @id = id });
+        }
+
+        //Post: Question/Accept
+        [Authorize]
+        [HttpPost]
+        public bool Accept(int answerId)
+        {
+            return qService.Accept(answerId);
         }
 
     }

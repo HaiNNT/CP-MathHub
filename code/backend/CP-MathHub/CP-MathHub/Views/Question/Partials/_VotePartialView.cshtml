@@ -29,17 +29,29 @@
         }
     </div>
     @{
-        if (!Model.IsQuestion && Model.Accepted)
+        if (((int)ViewData["UserId"] == User.Identity.GetUserId<int>()))
         {
-            <div>
-                <i class="fa fa-check mh-check-icon mh-checked"></i>
-            </div>
+            if (!Model.IsQuestion && Model.Accepted)
+            {
+                <div>
+                    <i onclick="@("accept(this, "+Model.Id+")")" class="fa fa-check mh-check-icon mh-checked"></i>
+                </div>
+            }
+            else if (!Model.IsQuestion && !Model.Accepted)
+            {
+                <div>
+                    <i onclick="@("accept(this, "+Model.Id+")")" class="fa fa-check mh-check-icon"></i>
+                </div>
+            }
         }
-        else if (!Model.IsQuestion && !Model.Accepted && ((int)ViewData["UserId"] == User.Identity.GetUserId<int>()))
+        else
         {
-            <div>
-                <i class="fa fa-check mh-check-icon"></i>
-            </div>
+            if (!Model.IsQuestion && Model.Accepted)
+            {
+                <div>
+                    <i class="fa fa-check mh-check-icon mh-checked" style="cursor: default;"></i>
+                </div>
+            }
         }
-    }
+}
 </div>

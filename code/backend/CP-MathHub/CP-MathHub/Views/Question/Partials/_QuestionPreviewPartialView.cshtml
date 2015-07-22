@@ -3,7 +3,7 @@
     <div class="panel-heading">
         <div class="mh-user-info">
             @Html.Partial("../CommonWidget/_UserInfoPartialView", Model.UserInfo, new ViewDataDictionary { { "PostId", Model.Id }, { "Edited", Model.Edited }, { "CreatedDateType", ViewBag.CreatedDateType } })
-            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, {"Status", Model.Status}, {"UserId", Model.UserId} })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
         </div>
     </div>
     <div class="panel-body">
@@ -13,7 +13,7 @@
                     <h2>@(Model.VoteUp - Model.VoteDown)</h2>
                     <span>bình chọn</span>
                 </div>
-                <div class="mh-answer-num">
+                <div class="mh-answer-num" style="@(Model.AnswerNum == 0 ? "background-color: transparent;":"")">
                     <h2>@Model.AnswerNum</h2>
                     <span>câu trả lời</span>
                 </div>
@@ -28,7 +28,7 @@
                         <h2>@(Model.VoteUp - Model.VoteDown)</h2>
                         <span>bình chọn</span>
                     </div>
-                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num">
+                    <div class="col-xs-4 col-sm-4 mh-sm-answer-num" style="@(Model.AnswerNum == 0 ? "background-color: transparent;":"")">
                         <h2>@Model.AnswerNum</h2>
                         <span>câu trả lời</span>
                     </div>
@@ -40,13 +40,13 @@
             </div>
             <div class="col-md-10 col-xs-12 mh-content">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
-                @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked },{"Id",Model.Id} })
+                @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
                 <div class="mh-sort-content">
                     @{
                         int length = Model.Title.Length > 50 ? 431 : 571;
                         if (Model.Content.Length > length)
                         {
-                            @Html.Raw(Model.Content);                      
+                            @Html.Raw(Model.Content);
                         }
                         else
                         {
@@ -84,9 +84,6 @@
                             <i></i>
                         </div>
                     </div>
-                </a>
-                <a href="#" class="mh-report-button" title="Báo cáo vi phạm">
-                    <i class="fa fa-flag"></i> Báo vi phạm
                 </a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-7">

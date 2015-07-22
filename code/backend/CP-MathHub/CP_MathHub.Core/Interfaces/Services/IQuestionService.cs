@@ -110,7 +110,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Edit an answer
         /// </summary>
         /// <param name="answer"></param>
-        bool EditAnswer(Answer answer, int userId, bool hasPermission);
+        Answer EditAnswer(Answer answer, int userId, bool hasPermission);
 
         /// <summary>
         /// Vote for an answer or a question
@@ -130,5 +130,18 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="votes"></param>
         void IncludeUserForVotes(List<Vote> votes);
+
+        /// <summary>
+        /// Increase view for a question
+        /// </summary>
+        /// <param name="questionId"></param>
+        void IncreaseViewQuestion(Question question);
+
+        /// <summary>
+        /// Accept/Unaccept an answer
+        /// </summary>
+        /// <param name="answerId"></param>
+        /// <returns></returns>
+        bool Accept(int answerId);
     }
 }

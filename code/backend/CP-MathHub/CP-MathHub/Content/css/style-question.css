@@ -102,10 +102,11 @@
 .mh-check-icon {
 	font-size: 25pt;
 	padding-top: 10px;
+    cursor: pointer;
 }
 
 .mh-checked {
-    color: green;
+    color: green !important;
 }
 
 .mh-vote-num {
@@ -268,7 +269,7 @@
 }
 
 .mh-sort-content {
-    max-height: 145px;
+    max-height: 140px;
     overflow-y: hidden;
 }
 .mh-answer_hint-edit-textarea, .mh-note-answer_hint {
