@@ -490,8 +490,6 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
-
-
             return View("Views/ProfileView", model);
         }
 
@@ -548,10 +546,50 @@ namespace CP_MathHub.Controllers
         public ActionResult UserProfile(/*int UserId*/)
         {
             Entity.User user = new User();
-            user = aService.GetUser(104, "Profile");
+            user = aService.GetUser(103, "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
-
-
+            UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+            UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+            if (friendship1 != default(UserFriendship))
+            {       
+                switch (friendship1.Status)
+                {
+                    case RelationshipEnum.Requesting:
+                        model.RequestStatus = FriendStatusEnum.ActiveRequesting;
+                        break;
+                    case RelationshipEnum.Friend:
+                        model.RequestStatus = FriendStatusEnum.Friend;
+                        break;
+                    case RelationshipEnum.Blocked:
+                        model.RequestStatus = FriendStatusEnum.Blocked;
+                        break;
+                    default:
+                        model.RequestStatus = FriendStatusEnum.Stranger;
+                        break;
+                }
+            }
+            else if(friendship2 != default(UserFriendship))
+            {
+                switch (friendship2.Status)
+                {
+                    case RelationshipEnum.Requesting:
+                        model.RequestStatus = FriendStatusEnum.PasssiveRequesting;
+                        break;
+                    case RelationshipEnum.Friend:
+                        model.RequestStatus = FriendStatusEnum.Friend;
+                        break;
+                    case RelationshipEnum.Blocked:
+                        model.RequestStatus = FriendStatusEnum.Blocked;
+                        break;
+                    default:
+                        model.RequestStatus = FriendStatusEnum.Stranger;
+                        break;
+                }
+            }
+            else
+            {
+                model.RequestStatus = FriendStatusEnum.Stranger;
+            }
             return View("Views/UserProfileView", model);
         }
         #endregion
@@ -583,16 +621,26 @@ namespace CP_MathHub.Controllers
             }
 
         }
-
-        public ActionResult SendFriendRequest(/*int userId, int targetUserId*/)
+        //Post: SendFriendRequest
+        [HttpPost]
+        public ActionResult SendFriendRequest(int targetUserId)
         {
-            aService.SendFriendRequest(105, 102);
+            aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
             return RedirectToAction("UserProfile");
         }
+        //Post: Account/AcceptFriend
+        [HttpPost]
         public ActionResult AcceptFriendRequest(/*int userId, int targetUserId*/)
         {
-            aService.AcceptFriendRequest(102, 105);
+            aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), 105);
             return RedirectToAction("Friend");
+        }
+
+        //Post: Account/CancelFriend
+        public ActionResult CancelFriend()
+        {
+            aService.CancelFriend(User.Identity.GetUserId<int>(), 105);
+            return RedirectToAction("UserProfile");
         }
         #endregion
     }

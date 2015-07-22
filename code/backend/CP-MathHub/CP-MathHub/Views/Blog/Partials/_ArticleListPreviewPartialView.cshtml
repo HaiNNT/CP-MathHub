@@ -1,5 +1,6 @@
 ﻿@model CP_MathHub.Models.Blog.ArticlePreviewViewModel
 @using CP_MathHub.Service.Helpers
+@using CP_MathHub.Entity
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.Owin;
 <div class="mh-list-content">
@@ -28,7 +29,7 @@
                     <img src="~/Content/img/user.jpg" class="mh-user-smallest">
                 </a>
                 <a href="#">
-                    <span>@Model.UserInfo.Username</span>
+                    <span style="@(Model.UserInfo.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.UserInfo.Username</span>
                 </a>
                 -
                 <span>@Model.UserInfo.Reputation</span>

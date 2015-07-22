@@ -1,5 +1,6 @@
 ﻿@model CP_MathHub.Models.Common.UserInfoViewModel
 @using CP_MathHub.Service.Helpers
+@using CP_MathHub.Entity
 <div class="mh-user-info">
     <a href="#">
         <img src="~/Content/img/user.jpg" class="mh-user-avatar">
@@ -7,7 +8,7 @@
     <div>
         <div>
             <a href="#">
-                <span class="mh-username">@Model.Username</span>
+                <span class="mh-username" style="@(Model.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.Username</span>
             </a>
             <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewData["CreatedDateType"])</span>
             <span class="@((bool)ViewData["Edited"] ? "" : "hidden") edited-button">

@@ -190,6 +190,7 @@ namespace CP_MathHub.Controllers
         //Post: Question/Create
         [HttpPost, ValidateInput(false)]
         [Authorize]
+        [BannedUser]
         public ActionResult Create(QuestionCreateViewModel questionVM)
         {
 
@@ -336,6 +337,7 @@ namespace CP_MathHub.Controllers
         //Post: Question/CreateTag
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -384,6 +386,7 @@ namespace CP_MathHub.Controllers
         //Post: Question/PostComment
         [HttpPost]
         [Authorize]
+        [BannedUser]
         public ActionResult PostComment(int postId, string content = "")
         {
             Comment comment = new Comment();
@@ -415,6 +418,7 @@ namespace CP_MathHub.Controllers
         //Post: Question/AnswerQuestion
         [HttpPost, ValidateInput(false)]
         [Authorize]
+        [BannedUser]
         public ActionResult AnswerQuestion(int questionId, string content = "", AnswerEnum type = AnswerEnum.Answer)
         {
             Answer answer = new Answer();
