@@ -162,11 +162,11 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        public List<Article> GetRelatedArticles(Article article, int skip = 0)
+        public List<Article> GetRelatedArticles(MainPost mainPost, int skip = 0)
         {
             List<Article> result = new List<Article>();
             List<List<Article>> biglist = new List<List<Article>>();
-            foreach (Tag t in article.Tags)
+            foreach (Tag t in mainPost.Tags)
             {
                 biglist.Add(dal.Repository<Article>()
                     .Get(

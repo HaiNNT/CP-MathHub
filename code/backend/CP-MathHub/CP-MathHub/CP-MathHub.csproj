@@ -191,6 +191,7 @@
     <Compile Include="Models\Blog\MyBlogViewModel.cs" />
     <Compile Include="Models\Common\CommentViewModel.cs" />
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
+    <Compile Include="Models\Common\RecommendedMainPostViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
     <Compile Include="Models\Common\UserInfoViewModel.cs" />
     <Compile Include="Models\Discussion\CategoryPreviewViewModel.cs" />
@@ -455,41 +456,6 @@
     <Content Include="Content\ckeditor\plugins\wsc\dialogs\wsc.js" />
     <Content Include="Content\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
     <Content Include="Content\ckeditor\plugins\youtube\images\icon.png" />
-    <Content Include="Content\ckeditor\samples\ajax.html" />
-    <Content Include="Content\ckeditor\samples\api.html" />
-    <Content Include="Content\ckeditor\samples\appendto.html" />
-    <Content Include="Content\ckeditor\samples\assets\inlineall\logo.png" />
-    <Content Include="Content\ckeditor\samples\assets\outputxhtml\outputxhtml.css" />
-    <Content Include="Content\ckeditor\samples\assets\posteddata.php" />
-    <Content Include="Content\ckeditor\samples\assets\sample.jpg" />
-    <Content Include="Content\ckeditor\samples\assets\uilanguages\languages.js" />
-    <Content Include="Content\ckeditor\samples\datafiltering.html" />
-    <Content Include="Content\ckeditor\samples\divreplace.html" />
-    <Content Include="Content\ckeditor\samples\index.html" />
-    <Content Include="Content\ckeditor\samples\inlineall.html" />
-    <Content Include="Content\ckeditor\samples\inlinebycode.html" />
-    <Content Include="Content\ckeditor\samples\inlinetextarea.html" />
-    <Content Include="Content\ckeditor\samples\jquery.html" />
-    <Content Include="Content\ckeditor\samples\plugins\dialog\assets\my_dialog.js" />
-    <Content Include="Content\ckeditor\samples\plugins\dialog\dialog.html" />
-    <Content Include="Content\ckeditor\samples\plugins\enterkey\enterkey.html" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\outputforflash.html" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\outputhtml.html" />
-    <Content Include="Content\ckeditor\samples\plugins\magicline\magicline.html" />
-    <Content Include="Content\ckeditor\samples\plugins\toolbar\toolbar.html" />
-    <Content Include="Content\ckeditor\samples\plugins\wysiwygarea\fullpage.html" />
-    <Content Include="Content\ckeditor\samples\readonly.html" />
-    <Content Include="Content\ckeditor\samples\replacebyclass.html" />
-    <Content Include="Content\ckeditor\samples\replacebycode.html" />
-    <Content Include="Content\ckeditor\samples\sample.css" />
-    <Content Include="Content\ckeditor\samples\sample.js" />
-    <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
-    <Content Include="Content\ckeditor\samples\tabindex.html" />
-    <Content Include="Content\ckeditor\samples\uicolor.html" />
-    <Content Include="Content\ckeditor\samples\uilanguages.html" />
-    <Content Include="Content\ckeditor\samples\xhtmlstyle.html" />
     <Content Include="Content\ckeditor\skins\office2013\dialog.css" />
     <Content Include="Content\ckeditor\skins\office2013\editor.css" />
     <Content Include="Content\ckeditor\skins\office2013\icons.png" />
@@ -510,6 +476,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\style-authentication.css" />
     <Content Include="Content\css\style-blog.css" />
     <Content Include="Content\css\style-discussion.css" />
     <Content Include="Content\css\style-profile.css" />
@@ -594,7 +561,6 @@
     <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\wsc\README.md" />
     <Content Include="Content\ckeditor\README.md" />
-    <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -714,6 +680,7 @@
     <Content Include="Views\Discussion\Partials\_CategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Account\BannedPage.cshtml" />
     <Content Include="Views\Account\Views\UserProfileView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_RecommendedMainPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

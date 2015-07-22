@@ -245,8 +245,13 @@
 	text-align: center;
 }
 
+.mh-sort-content {
+    max-height: 145px;
+    overflow-y: hidden;
+}
 .mh-answer_hint-edit-textarea, .mh-note-answer_hint {
     display: none;
+    text-align: right;
 }
  /* QA detail: end */
  /* QA User: start */

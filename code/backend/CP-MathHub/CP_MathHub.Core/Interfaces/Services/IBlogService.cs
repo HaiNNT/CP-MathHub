@@ -52,7 +52,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="article"></param>
         /// <param name="skip"></param>
         /// <returns></returns>
-        List<Article> GetRelatedArticles(Article article, int skip = 0);
+        List<Article> GetRelatedArticles(MainPost mainPost, int skip = 0);
         /// <summary>
         /// Count search result
         /// </summary>

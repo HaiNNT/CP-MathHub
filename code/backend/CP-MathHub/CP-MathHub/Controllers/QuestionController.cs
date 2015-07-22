@@ -395,6 +395,9 @@ namespace CP_MathHub.Controllers
             comment.CreatedDate = DateTime.Now;
             comment.LastEditedDate = comment.CreatedDate;
             comment.PostId = postId;
+            comment.Status = PostStatusEnum.Active;
+            comment.VoteDown = 0;
+            comment.VoteUp = 0;
 
             cService.CommentPost(comment);
             comment.Author = cService.GetUser(comment.UserId);
@@ -453,6 +456,10 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult Vote(int postId, VoteEnum type)
         {
+            if (cService.GetPost(postId).UserId == User.Identity.GetUserId<int>())
+            {
+                return Json(new { result = "", message = "Bạn không thể tự bình chọn cho chính mình." });
+            }
             Vote vote = new Vote();
             vote.PostId = postId;
             vote.VotedDate = DateTime.Now;
@@ -469,7 +476,7 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return Json(new { result = "" });
+                return Json(new { result = "", message = "Bạn không thể bình chọn nhiều hơn 1 lần." });
             }
         }
 
@@ -481,6 +488,24 @@ namespace CP_MathHub.Controllers
             logs = cService.GetEditedLog(id);
             ViewBag.Type = type;
             return PartialView("../CommonWidget/_EditedLogPartialView", logs);
+        }
+
+        //Get: Question/Close
+        public ActionResult Close(int id)
+        {
+            Question question = qService.GetQuestion(id);
+            question.Status = PostStatusEnum.Closed;
+            qService.EditQuestion(question);
+            return RedirectToAction("Detail", new { @id = id });
+        }
+
+        //Get: Question/Open
+        public ActionResult Open(int id)
+        {
+            Question question = qService.GetQuestion(id);
+            question.Status = PostStatusEnum.Active;
+            qService.EditQuestion(question);
+            return RedirectToAction("Detail", new { @id = id });
         }
 
     }

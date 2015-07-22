@@ -284,7 +284,7 @@ function vote(vote, postId, type) {
                   $(vote).parents(".mh-vote").find(".mh-vote-num").html(num - 1);
               }
           } else {
-              alert("Bạn không thể bình chọn nhiều hơn 1 lần");
+              alert(msg.message);
           }
       })
       .fail(function () {
