@@ -70,23 +70,6 @@ $(document).ready(function () {
             default:
                 break;
         }
-        $(".mh-pass-edit-button").click(function () {
-            //an
-            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").hide();
-            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
-            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").hide();
-            //hien
-            $(this).parents(".mh-body-profile").find(".mh-pass-change").show();
-        });
-        $(".mh-pass-cancel").click(function () {
-            //hien
-            $(this).parents(".mh-profile-info-row").find(".mh-profile-span").show();
-            $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
-            $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").show();
-            //an
-            $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
-        });
-
         // mh-profile-span-edit: hiện
         $(this).parents(".mh-profile-info-row").find(".mh-profile-span-edit").toggle();
         $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
@@ -97,5 +80,20 @@ $(document).ready(function () {
         //radio button: ẩn
         $(this).parents(".mh-profile-info-row").find(".radio-inline").toggle();
 
+    });
+    $(".mh-pass-edit-button").click(function () {
+        //an
+        $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").hide();
+        $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").hide();
+        //hien
+        $(this).parents(".mh-body-profile").find(".mh-pass-change").show();
+    });
+    $(".mh-pass-cancel").click(function () {
+        //hien
+        $(this).parents(".mh-profile-info-row").find(".mh-profile-span").show();
+        $(this).parents(".mh-body-profile").find(".mh-pass-edit-button").show();
+        $(this).parents(".mh-body-profile").find(".mh-profile-edit-button").show();
+        //an
+        $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
     });
 });

@@ -37,7 +37,7 @@
             </div>
         </div>
     </header>
-    <div class="container mh-body">
+    <div class="container mh-body mh-login_register-body">
         <div class="row">
             <div class="col-sm-2 col-md-3 col-lg-3"></div>
             <div class="col-sm-8 col-md-6 col-lg-6 mh-login_register">
@@ -53,15 +53,13 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="login">
-                        <h3>Đăng nhập</h3>
-
                         <div class="media mh-login_register-with">
                             <a href="">
                                 <div class="media-left">
                                     <i class="fa fa-facebook-official"></i>
                                 </div>
                                 <div class="media-body">
-                                    <span>Đăng nhập sử dụng Facebook</span>
+                                    <span>Đăng nhập bằng Facebook</span>
                                 </div>
                             </a>
                         </div>
@@ -76,21 +74,215 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="collapse" id="collapseExample">
+                            <div class="collapse in" id="collapseExample">
                                 <div class="well">
                                     <form>
-                                        <input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />
-                                        <i class="fa fa-user mh-login-mathHub-username-icon"></i>
-                                        <input type="text" placeholder="Mật khẩu" class="mh-login-mathHub-password" />
-                                        <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
-                                        <button type="button" class="btn btn-info">Đăng nhập</button>
-                                        <a href="">Quên mật khẩu</a>
+                                        <div>
+                                            <input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />
+                                            <i class="fa fa-user mh-login-mathHub-username-icon"></i>
+                                        </div>
+                                        <div>
+                                            <input type="password" placeholder="Mật khẩu" class="mh-login-mathHub-password" />
+                                            <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
+                                        </div>
+                                        <div class="mh-login_register-pre-button">
+                                            <div class="row">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> Ghi nhớ đăng nhập
+                                                    </label>
+                                                </div>
+                                                <div class="mh-login_register-forgot-password">
+                                                    <a href="">Quên mật khẩu</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mh-login-register-button">
+                                            <button type="button" class="btn btn-info">Đăng nhập</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="register">...</div>
+                    <div role="tabpanel" class="tab-pane" id="register">
+                        <div class="media mh-login_register-with">
+                            <a href="">
+                                <div class="media-left">
+                                    <i class="fa fa-facebook-official"></i>
+                                </div>
+                                <div class="media-body">
+                                    <span>Đăng ký bằng Facebook</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mh-login_register-mathHub">
+                            <div class="media mh-login_register-with">
+                                <a data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+                                    <div class="media-left">
+                                        <img src="img/icon_mathHub.png" class="mh-mathHub-icon" />
+                                    </div>
+                                    <div class="media-body">
+                                        <span>Đăng ký tài khoản MathHub</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="collapse in" id="collapseExample1">
+                                <div class="well">
+                                    <form>
+                                        <div>
+                                            <input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />
+                                            <i class="fa fa-user mh-login-mathHub-username-icon"></i>
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="E-mail" class="mh-login-mathHub-email" />
+                                            <i class="fa fa-envelope-o mh-login-mathHub-email-icon"></i>
+                                        </div>
+                                        <div>
+                                            <input type="password" placeholder="Mật khẩu" class="mh-login-mathHub-password" />
+                                            <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
+                                        </div>
+                                        <div>
+                                            <input type="password" placeholder="Nhập lại mật khẩu" class="mh-login-mathHub-password" />
+                                            <i class="fa fa-lock mh-login-mathHub-password-icon1"></i>
+                                        </div>
+                                        <div>
+                                        <div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Tôi đồng ý với các 
+                                                </label>
+                                                <a data-toggle="modal" data-target=".bs-example-modal-lg">
+                                                    điều khoản sử dụng
+                                                </a>
+                                                của MathHub
+                                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">Điều khoản sử dụng của MathHub</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>MathHub là là mạng xã hội đầu tiên của Việt Nam cung cấp công cụ học toán tương tác và toàn diện dựa trên các phương pháp sau đây: (1) Trao đổi những hiểu biết về toán học; (2) Cùng nhau thảo luận những bài toán; (3) Hỏi các bài toán khó mọi lúc, mọi nơi...</p>
+                                                                <p>Khi bạn tham gia MathHub, vui lòng đọc kỹ những điều khoản trong quy định. Việc sử dụng dịch vụ của chúng tôi đồng nghĩa với việc bạn đồng ý với bản quy định này. Ban quản trị (BQT) có quyền thay đổi nội dung của bản quy định này trên cơ sở đảm bảo tối đa quyền lợi và nghĩa vụ của các thành viên mà không cần báo trước. Ban quản trị sẽ có thông báo sau mỗi lần thay đổi quy định.</p>
+                                                                <p>
+                                                                    <b>Điều 1: Quy định chung</b><br />
+                                                                    1.	Chúng tôi (MathHub), với toàn quyền hạn của mình và vào bất cứ lúc nào được quyền bổ sung, sửa đổi hay xóa bỏ bất kỳ thông tin nào cũng như thay đổi giao diện, sự trình bày, thành phần hoặc chức năng, nội dung của các website này bao gồm bất kỳ khoản mục nào mà không cần báo trước.<br />
+                                                                    2.	Khi đăng ký làm thành viên của MathHub, tức là bạn đã đồng ý và chấp nhận tuân thủ mọi quy định của MathHub. Chịu trách nhiệm hoàn toàn trước mọi thông tin gửi lên MathHub.<br />
+                                                                    3.	Tuyệt đối nghiêm cấm đăng phát, lưu hành các thông tin, hình ảnh vi phạm hiến pháp và pháp luật nước CHXHCN Việt Nam.<br />
+                                                                    4.	Nghiêm cấm các hành vi phá hoại MathHub dưới mọi hình thức. Bạn sẽ không được xâm phạm, tiếp cận hay sử dụng bất kỳ phần nào trong máy chủ của MathHub. Nghiêm cấm mọi hành vi lợi dụng lỗi hệ thống để trục lợi cá nhân gây thiệt hại đến nhà cung cấp dịch vụ.<br />
+                                                                    5.	Khi phát hiện ra thành viên nào tham gia không tuân thủ các quy định sử dụng, BQT MathHub dừng tư cách thành viên lập tức mà không cần thông báo trước.<br />
+                                                                    6.	Các liên kết tại Mạng giáo dục MathHub có thể dẫn bạn tới các website khác, và bạn thừa nhận và đồng ý rằng MathHub không chịu trách nhiệm về sự chính xác hoặc giá trị của bất kỳ thông tin nào do các website liên kết cung cấp.<br />
+                                                                </p>
+                                                                <p>
+                                                                    <b>Điều 2: Quy định về riêng tư</b><br />
+                                                                    1.	Không sử dụng trái phép mật khẩu, khóa mật mã và thông tin riêng của thành viên khác trên MathHub. Không gây cản trở việc sử dụng bình thường tài khoản, mật khẩu của người sử dụng khác.<br />
+                                                                    2.	Bạn không có quyền hoặc có các hành động nhằm hạn chế hoặc cấm đoán bất kỳ người dùng nào khác sử dụng và đọc thông tin trên MathHub.<br />
+                                                                    3.	Không được kỳ thị chủng tộc, giới tính, nơi cư ngụ hay tuổi tác.<br />
+                                                                    4.	Bạn cho phép BQT giữ lại hoặc tiết lộ bất kì nội dung nào mà bạn đưa lên, bao gồm cả các thông tin cá nhân khi bạn đăng ký tài khoản, nếu pháp luật, cơ quan có thẩm quyền yêu cầu.
+                                                                </p>
+                                                                <p>
+                                                                    <b>Điều 3: Quy định về ảnh đại diện</b><br />
+                                                                    1.	Kích thước ảnh không quá 100x100 pixel, dung lượng không quá 30 KB.<br />
+                                                                    2.	Không được sử dụng ảnh có tính chất kinh dị, đồi trụy, khêu gợi hay trái với thuần phong mỹ tục, ảnh xuyên tạc truyền thống văn hoá Việt Nam.<br />
+                                                                    3.	Không được sử dụng hình ảnh của danh nhân, vĩ nhân, ảnh của các vị lãnh đạo Đảng và Nhà nước hay ảnh của kẻ xấu (được hiểu như: trùm khủng bố, phát xít hay tội phạm...).<br />
+                                                                    4.	Những ảnh đại diện vi phạm lần đầu sẽ được thay bằng ảnh đại diện của MathHub. Các vi phạm tiếp theo sẽ bị khóa tài khoản.
+                                                                </p>   
+                                                                <p>
+                                                                    <b>Điều 4: Quy định về tạo tên tài khoản</b><br />
+                                                                    1.	Không được đặt tên tài khoản theo tên của danh nhân, tên liên quan đến tôn giáo hay tên của các vị lãnh đạo của Đảng và Nhà nước của nước CHXHCN Việt Nam, tên của kẻ xấu (được hiểu như: trùm khủng bố, phát xít, tội phạm...).<br />
+                                                                    2.	Không được đặt tên tài khoản có ý nghĩa không lành mạnh, không trong sáng, gây hiểu lầm hay với mục đích bôi xấu, chế nhạo thành viên khác của cộng đồng MathHub.
+                                                                </p>  
+                                                                <p>
+                                                                    <b>Điều 5: Quy định về nội dung bình luận</b><br />
+                                                                    Bạn cần xác nhận rằng tất cả các nội dung bình luận hoàn toàn thuộc trách nhiệm của bạn. MathHub đề nghị bạn đọc kỹ, chấp thuận và thực hiện nghiêm túc các quy định sau:<br />
+                                                                    1.	Không tuyên truyền các nội dung vi phạm pháp luật nước Cộng hòa Xã hội Chủ nghĩa Việt Nam.<br />
+                                                                    2.	Không dùng ngôn ngữ thiếu văn hóa, vi phạm các chuẩn mực đạo đức, văn hóa truyền thống dân tộc Việt Nam.<br />
+                                                                    3.	Không tiết lộ bí mật nhà nước, bí mật quân sự, an ninh, kinh tế, đối ngoại và những bí mật khác đã được pháp luật quy định.<br />
+                                                                    4.	Không đưa các thông tin xuyên tạc, vu khống, xúc phạm uy tín của tổ chức; danh dự, nhân phẩm của công dân.<br />
+                                                                    5.	Không đăng tải, tuyên truyền, kích động bạo lực, dâm ô, đồi trụy, tội ác, tệ nạn xã hội, mê tín dị đoan, phá hoại thuần phong, mỹ tục của dân tộc.<br />
+                                                                    6.	Không đăng tải, tuyên truyền các nội dung vi phạm sở hữu trí tuệ và bản quyền tác giả.<br />
+                                                                    7.	Không lợi dụng internet để quảng cáo, tuyên truyền, mua bán hàng hóa, dịch vụ thuộc danh mục cấm theo quy định của pháp luật.<br />
+                                                                    8.	Không tạo ra và đăng tải lên các liên kết chứa virus máy tính hoặc các chương trình gây hại và phá hỏng máy tính.<br />
+                                                                    9.	Không gửi tin đến nội dung có tính chất Spam.<br />
+                                                                    10.	Chịu trách nhiệm về ý kiến, quan điểm đưa ra thảo luận trên MathHub.<br />
+                                                                    11.	Trong tất cả bình luận không bàn về chuyện chính trị, tôn giáo, hay những đề tài dễ gây hiềm khích.<br />
+                                                                    12.	BQT MathHub có quyền từ chối đăng tải hoặc loại bỏ, hoặc ngăn chặn truy cập tới bất kỳ nội dung nào bạn cung cấp vào bất kỳ lúc nào, với bất cứ lý do nào, có hoặc không có thông báo.<br />
+                                                                </p>
+                                                                <p>
+                                                                    <b>Điều 6: Quy định về spam</b><br />
+                                                                    Những bình luận như mô tả dưới đây sẽ được liệt vào danh sách spam:<br />
+                                                                    1.	Trong bài có lặp lại nhiều lần cùng một chữ, một ký tự hay một nhóm ký tự vô nghĩa.<br />
+                                                                    2.	Gửi những bình luận có cùng nội dung (có thể do 1 tên tài khoản hoặc nhiều tên tài khoản lần lượt gửi).<br />
+                                                                    3.	Nhiều bình luận có cùng một nội dung của 1 thành viên được gửi liên tiếp trong thời gian ngắn.<br />
+                                                                    4.	Chỉ có những emoticon (hình họa) hoặc các link, các ký tự không có ý nghĩa cụ thể, mà không viết bất kì thông tin gì khác.<br />
+                                                                    5.	Cố tình chia nhỏ nội dung bình luận một cách không cần thiết. Mọi thành viên đều có quyền thông báo lên BQT những bình luận spam trên MathHub. BQT sẽ xử lí nghiêm khắc với mọi hành vi spam.
+                                                                </p> 
+                                                                <p>
+                                                                    <b>Điều 7: Quy chế xử lý các vi phạm</b><br />
+                                                                    1.	MathHub có toàn quyền, vào mọi lúc, cấm hoặc từ chối tư cách thành viên trên MathHub hoặc bất kỳ phần nào của website ngay lập tức mà không cần báo trước, nếu chúng tôi cho rằng bạn đã vi phạm bất cứ điều khoản nào trong bản quy định này.<br />
+                                                                    2.	Tùy theo mức độ vi phạm, các thành viên sẽ được nhắc nhở bằng tin nhắn hay email hoặc treo nick vĩnh viễn mà không cần thông báo trước.
+                                                                </p>  
+                                                                <p>
+                                                                    <b>Điều 8: Thông tin của bên thứ ba</b><br />
+                                                                    1.	Thông tin được cung cấp tại *.MathHub có thể chứa thông tin từ bên thứ ba hoặc được MathHub chọn lọc từ các nguồn khác. Thông tin trên website *.MathHub không được coi là khuyến nghị sử dụng, tiêu dùng, đầu tư v.v…, hoặc xác thực của MathHub về bất cứ một vấn đề, biến cố hoặc sự kiện nào và với bất kỳ mục đích nào, tương ứng với bất kỳ người, sản phẩm hoặc dịch vụ nào.<br />
+                                                                    2.	MathHub không chịu trách nhiệm nếu thông tin không được cập nhật theo mong muốn của Bạn. MathHub không phải là đơn vị độc lập thẩm định thông tin và sẽ không khuyến cáo bất kỳ một xu hướng hành động nào của người sử dụng. Theo đó, chúng tôi không chấp nhận bất cứ trách nhiệm nào về các thông tin mà chúng tôi đăng tải, Bạn sẽ sử dụng hoặc đặt niềm tin vào những thông tin đó với hiểu biết, trách nhiệm và nguy cơ của riêng Bạn.
+                                                                </p>    
+                                                                <p>
+                                                                    <b>Điều 9: Quy định về chia sẻ nội dung hay thông tin</b><br />
+                                                                    1.	Bạn sẽ không gửi lên hoặc truyền phát bất kỳ thông tin bất hợp pháp, lừa gạt, bôi nhọ, sỉ nhục, tục tĩu, khiêu dâm, xúc phạm, đe dọa, lăng mạ, thù hận, kích động… hoặc trái với chuẩn mực đạo đức chung của xã hội thuộc bất kỳ loại nào, bao gồm cả việc truyền bá hay khuyến khích những hành vi có thể cấu thành tội phạm hay vi phạm bất cứ điều khoản nào của luật pháp Việt Nam hay quốc tế. Chúng tôi tôn trọng quyền tự do ngôn luận, nhưng cũng bảo lưu việc có toàn quyền lược bớt, hoặc xoá bỏ một phần hoặc toàn bộ các thông tin do bạn đưa lên các website *.MathHub nếu xét thấy bài viết hoặc bất kỳ thông tin gì gửi lên vi phạm những điểm nêu trên, bất kể việc vi phạm đó là rõ ràng hay chỉ là hàm ý.<br />
+                                                                    2.	Bạn sẽ không gửi hoặc truyền bất kỳ thông điệp nào mang tính quảng cáo, mời gọi, thư dây chuyền, cơ hội đầu tư, thư rác hay tin nhắn rác hay bất kỳ dạng liên lạc có mục đích thương mại nào mà người dùng không mong muốn;<br />
+                                                                    3.	Bạn sẽ không gửi hoặc truyền bất kỳ thông tin hoặc phần mềm nào không thuộc quyền sở hữu của Bạn trừ khi đó là phần mềm được cung cấp miễn phí, không gửi bất kỳ thông tin hay phần mềm nào có chứa bất kỳ loại virus, Trojan, sâu hay các thành phần nguy hại nào;<br />
+                                                                    4.	Bạn sẽ không gửi, xuất bản, truyền, tái sản xuất, phân phát hoặc khai thác bằng bất cứ hình thức nào với bất cứ thông tin nào thu được từ *.MathHub vào mục đích thương mại; hoặc tải lên, gửi, xuất bản, truyền, tái sản xuất hoặc phân phối dưới bất cứ hình thức nào những nội dung được bảo vệ bởi luật bản quyền và luật sở hữu trí tuệ của MathHub; hoặc tạo ra các biến thể của các nội dung đó mà không có sự đồng ý bằng văn bản của chủ nhân hoặc người giữ bản quyền.<br />
+                                                                    5.	Bạn đồng ý trao cho chúng tôi toàn bộ quyền và cấp phép (bao gồm cả các quyền về tinh thần hay các quyền cần thiết khác) để sử dụng, trưng bày, tái sản xuất, chỉnh sửa, làm cho phù hợp, xuất bản, cung cấp, xúc tiến, dịch và tạo ra các phiên bản phái sinh hoặc tổ hợp khác, một phần hoặc toàn bộ, trên phạm vi toàn cầu mà không đòi hỏi thù lao. Sự cấp phép này được áp dụng với bất cứ dạng thức, phương tiện, công nghệ nào đã được biết đến hoặc phát triển sau này; Bạn cần lưu ý rằng, các bài viết (post) trên diễn đàn, hoặc tại các khu vực được phép có thể tiếp tục nằm trên website của chúng tôi ngay cả khi tài khoản của Bạn đã bị xóa vì bất kỳ lý do gì.<br />
+                                                                    6.	Bạn bảo đảm rằng Bạn có tất cả các quyền pháp lý, tinh thần và các quyền khác cần thiết để cấp phép cho chúng tôi theo điều khoản được quy định trong mục này;<br />
+                                                                    7.	Bạn thừa nhận và đồng ý rằng chúng tôi sẽ có quyền (nhưng không có nghĩa vụ), từ chối xuất bản hoặc loại bỏ, hoặc ngăn truy cập tới bất kỳ Nội dung nào Bạn cung cấp vào bất cứ lúc nào, với bất cứ lý do nào, có hoặc không có thông báo.<br />
+                                                                    8.	Nếu Bạn cho rằng quyền sở hữu của Bạn đã bị sử dụng theo những cách thức vi phạm quyền tác giả, Bạn có thể liên hệ với nhân viên phụ trách vấn đề bản quyền của chúng tôi tại địa chỉ: support@mathhub.vn.
+                                                                </p>
+                                                                <p>
+                                                                    <b>Điều 10: Quyền sở hữu trí tuệ và các quyền khác</b><br />
+                                                                    1.	Tất cả quyền sở hữu trí tuệ tồn tại trong các website *.MathHub đều thuộc về MathHub hoặc cấp phép hợp pháp cho MathHub sử dụng. Theo đó, tất cả các quyền hợp pháp đều được đảm bảo. Trừ phi được sự đồng ý của MathHub, Bạn không được phép tải lên, gửi, xuất bản, tái sản xuất, truyền hoặc phân phát bằng bất cứ hình thức nào bất cứ thành phần nào của website *.MathHub hoặc tạo ra những bản sửa đổi của nội dung cung cấp trong *.MathHub.<br />
+                                                                    2.	Tại các khu vực được phép đăng tải bài viết và thông tin, Bạn có thể chia sẻ thông tin được phép dưới các định dạng chúng tôi mặc định và Bạn phải tự chịu trách nhiệm đối với các nội dung, thông tin, hình ảnh và bất kỳ sự chia sẻ nào khác của Bạn với cá nhân người sử dụng hoặc nhóm người sử dụng. Tuy nhiên, trong mọi trường hợp, chúng tôi vẫn được bảo lưu quyền xử lý các thông tin đăng tải cho phù hợp với thuần phong mỹ tục, các quy tắc đạo đức và các quy định của pháp luật, và chúng tôi có toàn quyền cho phép hoặc không cho phép bài viết của Bạn xuất hiện hay tồn tại trên diễn đàn hoặc tại các khu vực được phép chia sẻ thông tin.<br />
+                                                                    3.	Chúng tôi có toàn quyền, bao gồm nhưng không chỉ giới hạn trong các quyền tác giả, thương hiệu, bí mật kinh doanh và các quyền sở hữu khác mà chúng tôi có trong website *.MathHub, nội dung của website, và hàng hóa hoặc dịch vụ được cung cấp. Việc sử dụng quyền và sở hữu của chúng tôi cần phải được chúng tôi cho phép trước bằng văn bản. Ngoài việc cấp phép bằng văn bản, chúng tôi không cấp phép dưới bất kỳ hình thức nào khác cho dù đó là hình thức công bố hay hàm ý, hoặc thông qua việc để Bạn sử dụng dịch vụ. Và do vậy, Bạn không có quyền sử dụng website hoặc dịch vụ của chúng tôi vào mục đích thương mại mà không có sự cho phép bằng văn bản của chúng tôi trước đó.<br />
+                                                                    4.	Bạn đồng ý để chúng tôi tự do sử dụng, tiết lộ, áp dụng và sửa đổi bất kỳ ý tưởng, khái niệm, cách thức, đề xuất, gợi ý, bình luận hoặc hình thức thông báo nào khác mà Bạn cung cấp cho chúng tôi (“Phản hồi”) có liên quan tới MathHub và/hoặc dịch vụ của MathHub một cách hoàn toàn miễn phí. Bạn từ bỏ và đồng ý từ bỏ bất kỳ quyền và yêu cầu với bất kỳ khoản tiền thưởng, phí, nhuận bút, lệ phí và/ hoặc các kiểu chi trả khác liên quan đến việc chúng tôi sử dụng, tiết lộ, áp dụng, và/hoặc chỉnh sửa bất kỳ hoặc tất cả Phản hồi của Bạn.
+                                                                </p>
+                                                                <p>
+                                                                    <b>Điều 11: Giới hạn trách nhiệm pháp lý và bảo đảm</b><br />
+                                                                    1.	Bạn thừa nhận rằng tất cả thông tin hoặc dữ liệu thuộc bất kỳ dạng nào, dù là văn bản, phần mềm, mã nguồn, nhạc hoặc âm thanh, ảnh hoặc đồ họa, video hoặc các loại dữ liệu khác ("Nội dung"), được Bạn hoặc “người có tài khoản người dùng bị sử dụng” chia sẻ công khai và rộng rãi ở bất kỳ đâu cho phép Bạn chia sẻ nội dung dưới bất kỳ định dạng nào, sẽ hoàn toàn thuộc trách nhiệm của Bạn hoặc người có tài khoản người dùng bị sử dụng.<br />
+                                                                    2.	Bạn thừa nhận rằng nội dung trên các website của chúng tôi có thể không phù hợp hoặc phản cảm theo nhận định của cá nhân Bạn, mặc dù vậy, chúng tôi sẽ không chịu bất kỳ trách nhiệm nào với Bạn trong bất cứ phương diện nào về Nội dung của MathHub hay bất cứ tổn thất hoặc lỗi nào có liên quan.<br />
+                                                                    3.	Toàn bộ trách nhiệm pháp lý của chúng tôi bị giới hạn bởi pháp luật. Chúng tôi không chứng thực, bảo đảm hoặc bảo hành cho bất cứ giao dịch thương mại hoặc dịch vụ nào thông qua MathHub mà không qua công cụ thanh toán của chúng tôi.<br />
+                                                                    4.	Trong bất kỳ trường hợp nào, MathHub không chịu trách nhiệm về pháp lý hoặc người nào cho bất kỳ tổn thất nào phát sinh do sử dụng hoặc không thể sử dụng thông tin trên MathHub.<br />
+                                                                    5.	MathHub từ chối đảm bảo rằng toàn bộ, hoặc một bộ phận của MathHub không bị gián đoạn, không có lỗi, không có virus, đúng giờ, an toàn, ổn định hay bất kỳ nội dung nào là không an toàn cho bạn.<br />
+                                                                    6.	MathHub không chịu trách nhiệm nếu thông tin được cung cấp trên MathHub đến hoặc chứa thông từ bên thứ ba, hoặc được các thành viên của MathHub đưa lên.<br />
+                                                                    7.	Bạn hiểu và đồng ý rằng, việc sử dụng mọi thông tin từ MathHub là quyền quyết định của riêng bạn, và tất cả các yếu tố rủi ro của nó không thuộc trách nhiệm của chúng tôi.<br />
+                                                                    8.	Bất kỳ tranh chấp hoặc bất đồng nào phát sinh từ việc bạn sử dụng website MathHub hoặc các sản phẩm và dịch vụ của chúng tôi sẽ được giải quyết theo luật pháp của Nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam.<br />
+                                                                    9.	Bạn đồng ý chấp nhận mọi nghĩa vụ pháp lý, tố tụng, tổn thất, chi phí (bao gồm cả án phí) ... có liên quan tới hoặc phát sinh từ sự vi phạm của bạn đối với bất kỳ điều khoản nào trong bản quy định này hoặc từ việc sử dụng trái phép của bạn đối với MathHub.
+                                                                </p>    
+                                                                <p>
+                                                                    <b>Điều 12: Các quy định khác</b><br />
+                                                                    1.	Quy định của MathHub có thể được thay đổi, cập nhật để phù hợp với từng thời kỳ, mong các bạn sẽ theo dõi thường xuyên để kịp thời biết những thay đổi của MathHub.<br />
+                                                                    2.	Nếu còn thắc mắc và muốn tìm hiểu thêm các thông tin khác, bạn liên hệ support@mathhub.vn để được giải đáp.<br />
+                                                                    3.	Để tránh trường hợp các em học sinh không chịu suy nghĩ và hỏi quá nhiều bài toán, mạng Pitago có quy định như sau: mỗi học sinh không được hỏi quá 3 câu/ngày, 10 câu/1 tuần. Vậy mong các em học sinh chú ý khi chọn bài để hỏi.
+                                                                </p>                                                   
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="mh-login-register-button">
+                                            <button type="button" class="btn btn-info">Đăng ký</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-2 col-md-3 col-lg-3"></div>
