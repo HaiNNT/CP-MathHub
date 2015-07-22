@@ -16,5 +16,7 @@ namespace CP_MathHub.Models.Account
         public int ArticleNum { get; set; }
         public List<Entity.Answer> AnswerList { get; set; }
         public int AnswerNum { get; set; }
+        public List<Tag> TagList { get; set; }
+        public int CountTagPost { get; set; }
     }
 }

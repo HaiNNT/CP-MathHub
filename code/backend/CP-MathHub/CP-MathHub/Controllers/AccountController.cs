@@ -548,7 +548,7 @@ namespace CP_MathHub.Controllers
             aService.UpdateUser(user);
             return RedirectToAction("MyProfile");
         }
-       
+
         //Get: /Account/UserProfile
         public ActionResult UserProfile(/*int UserId*/)
         {
@@ -558,7 +558,7 @@ namespace CP_MathHub.Controllers
             UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             if (friendship1 != default(UserFriendship))
-            {       
+            {
                 switch (friendship1.Status)
                 {
                     case RelationshipEnum.Requesting:
@@ -575,7 +575,7 @@ namespace CP_MathHub.Controllers
                         break;
                 }
             }
-            else if(friendship2 != default(UserFriendship))
+            else if (friendship2 != default(UserFriendship))
             {
                 switch (friendship2.Status)
                 {
@@ -605,7 +605,7 @@ namespace CP_MathHub.Controllers
         {
             int userId = User.Identity.GetUserId<int>();
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab,skip);
+            List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab, skip);
             List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
             List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
             List<User> requests = aService.GetFriends(105, Constant.Account.String.RequestTab, skip);
@@ -644,14 +644,14 @@ namespace CP_MathHub.Controllers
         public ActionResult AcceptFriendRequest(int targetUserId, string tab = "receiverequest")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("Friend", new { @tab =  tab});
+            return RedirectToAction("Friend", new { @tab = tab });
         }
 
         //Post: Account/CancelFriend
         public ActionResult CancelFriend(int targetUserId, string tab = "receiverequest")
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new {@tab = tab });
+            return RedirectToAction("UserProfile", new { @tab = tab });
         }
         #endregion
         #region Activity
@@ -662,6 +662,7 @@ namespace CP_MathHub.Controllers
             List<Question> questions = qService.GetQuestions(User.Identity.GetUserId<int>(), skip);
             List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>(), skip);
             List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>(), skip);
+            List<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
             if (page == 0)
             {
                 ActivityViewModel model = new ActivityViewModel();
@@ -669,6 +670,7 @@ namespace CP_MathHub.Controllers
                 model.QuestionList = questions;
                 model.ArticleList = articles;
                 model.AnswerList = answers;
+                model.TagList = tags;
                 model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
                 model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
                 model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());

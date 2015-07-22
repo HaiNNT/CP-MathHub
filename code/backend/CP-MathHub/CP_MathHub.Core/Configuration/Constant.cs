@@ -85,7 +85,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string TagNewTab = "newtag";
                 public const string TagPopularTab = "popular";
                 public const string TagNameTab = "name";
-
+                public const string UserFavoriteTag = "favorite";
             }
 
         }

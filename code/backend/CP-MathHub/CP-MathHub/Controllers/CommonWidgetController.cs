@@ -77,7 +77,7 @@ namespace CP_MathHub.Controllers
 
         public virtual ActionResult FavoriteTagWidget()
         {
-            ICollection<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
+            ICollection<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
         }
 

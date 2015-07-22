@@ -99,7 +99,7 @@
                 <div class="col-lg-6">
                     <h4>
                         Kết quả cho:
-                        <span>abc</span>
+                        <span></span>
                     </h4>
                 </div>
                 <div class="col-lg-6">
@@ -124,7 +124,7 @@
                 <div class="col-lg-6">
                     <h4>
                         Kết quả cho:
-                        <span>abc</span>
+                        <span></span>
                     </h4>
                 </div>
                 <div class="col-lg-6">
@@ -158,23 +158,23 @@
 </div>
 @section LeftPanel
 {
-    <a class="mh-profile-menu-button active">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("Friend")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Bạn bè
             <span class="badge mh-num-icon">42</span>
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Hoạt động
         </div>
     </a>
-    <a class="mh-profile-menu-button">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Quyền riêng tư
         </div>

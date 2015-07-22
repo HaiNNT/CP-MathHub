@@ -1,0 +1,25 @@
+﻿@using CP_MathHub.Entity
+@model List<Tag>
+
+@foreach (Tag tag in Model)
+{
+    <div class="mh-tag-page">
+        <div class="mh-tag-name">
+            <a href="#" title="@tag.Description" class="mh-tag">@tag.Name</a>
+            x @*@tag.MainPosts.Count*@
+        </div>
+        <div class="mh-tag-content">
+            @if (tag.Description.Length > 130)
+            {
+                @(tag.Description.Substring(0, 130) + "...");
+            }
+            else
+            {
+                @tag.Description
+            }
+        </div>
+        <div class="mh-tag-times">
+        </div>
+    </div>
+}
+
