@@ -103,7 +103,6 @@ namespace CP_MathHub.Service.Services
                 .Count(u => u.Followers.Contains(user));
             return result;
         }
-
         public void SendFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();

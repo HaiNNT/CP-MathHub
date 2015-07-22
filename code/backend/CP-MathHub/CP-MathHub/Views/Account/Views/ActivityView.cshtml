@@ -78,37 +78,37 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="all-post">
             <div class="row">
-                <div class="mh-profile-posts">
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
                         Câu hỏi
-                        <span>(2)</span>
+                        <span>(@Model.QuestionNum)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserQuestionActivityPartialView", @Model.QuestionList)
                     </div>
                 </div>
-                <div class="mh-profile-posts">
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
                         Trả lời
-                        <span>(2)</span>
+                        <span>(@Model.AnswerNum)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserAnswerActivityPartialView", @Model.AnswerList)
                     </div>
                 </div>
-                <div class="mh-profile-posts">
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
                         Bài viết
-                        <span>(2)</span>
+                        <span>(@Model.ArticleNum)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserArticleActivityPartialView", @Model.ArticleList)
                     </div>
                 </div>
-                <div class="mh-profile-posts">
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
                         Thảo luận
-                        <span>(2)</span>
+                        <span>(@Model.DiscussionNum)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserDiscussionActivityPartialView", @Model.DiscussionList)
