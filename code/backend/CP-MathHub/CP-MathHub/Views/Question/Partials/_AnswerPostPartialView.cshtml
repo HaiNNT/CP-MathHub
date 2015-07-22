@@ -1,6 +1,46 @@
 ﻿@using CP_MathHub.Entity
 <div class="mh-post-Ans_Hint">
-    <section class="mh-tabs">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#postAnswers" aria-controls="postAnswers" role="tab" data-toggle="tab">
+                Trả lời câu hỏi
+            </a>
+        </li>
+        <li role="presentation"><a href="#postHints" aria-controls="postHints" role="tab" data-toggle="tab">Gợi ý trả lời</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="postAnswers">
+            @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post))
+            {
+
+                <div class="mh-ckeditor ">
+                    <textarea class="editor" name="content" id="editor1" rows="10" cols="80" placeholder="Trả lời câu hỏi"></textarea>
+                    <input type="hidden" name="type" value="@AnswerEnum.Answer" />
+                    <input type="hidden" name="questionId" value="@ViewData["QuestionId"]" />
+                </div>
+                <div class="mh-post-Ans_Hint-button">
+                    <button type="submit" class="btn btn-success btn-lg">Đăng câu trả lời</button>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="postHints">
+            @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post))
+            {
+                <div class="mh-ckeditor ">
+                    <textarea class="editor" name="content" id="editor2" rows="10" cols="80" placeholder="Gợi ý câu trả lời"></textarea>
+                    <input type="hidden" name="type" value="@AnswerEnum.Hint" />
+                    <input type="hidden" name="questionId" value="@ViewData["QuestionId"]" />
+                </div>
+                <div class="mh-post-Ans_Hint-button">
+                    <button type="submit" class="btn btn-success btn-lg">Đăng gợi ý</button>
+                </div>
+            }
+        </div>
+    </div>
+    @*<section class="mh-tabs">
         <input id="mh-tab-3" type="radio" name="radio-set-2" class="mh-tab-selector-1" checked="checked" />
         <label for="mh-tab-3" class="mh-tab-label-1">Trả lời câu hỏi</label>
 
@@ -11,16 +51,16 @@
 
         <div class="mh-tab-content">
             <div class="mh-tab-content-1">
-                @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post)){
-                
+                @using (Html.BeginForm("AnswerQuestion", "Question", FormMethod.Post))
+               {
                     <div class="mh-ckeditor ">
-                            <textarea class="editor" name="content" id="editor1" rows="10" cols="80" placeholder="Trả lời câu hỏi">
-                            </textarea>
-                        <input type="hidden" name="type" value="@AnswerEnum.Answer" />
+                        <textarea class="editor" name="content" id="editor2" rows="10" cols="80" placeholder="Gợi ý câu trả lời">
+                        </textarea>
+                        <input type="hidden" name="type" value="@AnswerEnum.Hint" />
                         <input type="hidden" name="questionId" value="@ViewData["QuestionId"]" />
                     </div>
                     <div class="mh-post-Ans_Hint-button">
-                        <button type="submit" class="btn btn-success btn-lg">Đăng câu trả lời</button>
+                        <button type="submit" class="btn btn-success btn-lg">Đăng gợi ý</button>
                     </div>
                 }
             </div>
@@ -39,5 +79,5 @@
                 }
             </div>
         </div>
-    </section>
+    </section>*@
 </div><!-- mh-post-Ans_Hint": end -->
