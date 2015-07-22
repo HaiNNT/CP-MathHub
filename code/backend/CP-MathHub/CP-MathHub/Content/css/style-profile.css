@@ -41,9 +41,8 @@
 .mh-profile-user-info .mh-profile-info-row {
     border-bottom: 0px;
 }
-.mh-profile-add-friend, .mh-profile-follow {
+.mh-profile-friend-button {
     padding: 1px 3px;
-    margin-bottom: 3px;
 }
 .mh-body-profile .mh-profile-info-row .mh-profile-edit-button {
     float: right;
