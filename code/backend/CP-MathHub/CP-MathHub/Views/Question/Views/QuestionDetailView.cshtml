@@ -22,12 +22,12 @@
     <div class="panel-heading">
         <div class="mh-user-info">
             @Html.Partial("../CommonWidget/_UserInfoPartialView", @Model.UserInfo, new ViewDataDictionary { { "PostId", Model.Id }, { "Edited", Model.Edited }, { "CreatedDateType", ViewBag.CreatedDateType } })
-            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, {"Status", Model.Status}, {"UserId", Model.UserId} })
+            @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Id }, { "PostType", "question" }, { "Status", Model.Status }, { "UserId", Model.UserId } })
         </div>
     </div>
     <div class="panel-body">
         <div class="row">
-            @Html.Partial("Partials/_VotePartialView", Model.VoteVM)
+            @Html.Partial("Partials/_VotePartialView", Model.VoteVM, new ViewDataDictionary { { "UserId", Model.UserId } })
             <div class="col-xs-11 col-sm-11 col-md-11 mh-content-detail">
                 <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
                 @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
@@ -67,11 +67,14 @@
             </div>
         </div>
     </div>
-    @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id } })
+    @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id }, { "Status", Model.Status } })
 </div>
 
-@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs)
-@Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
+@Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs, new ViewDataDictionary { { "Status", Model.Status } })
+@if (Model.Status.Value == CP_MathHub.Entity.PostStatusEnum.Active)
+{
+    @Html.Partial("Partials/_AnswerPostPartialView", new ViewDataDictionary { { "QuestionId", Model.Id } })
+}
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
 <div id="history-edit" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 </div>
@@ -93,4 +96,6 @@
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Blog" })
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Discussion" })
 }

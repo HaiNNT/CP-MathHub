@@ -268,7 +268,7 @@
 }
 
 .mh-sort-content {
-    height: 145px;
+    max-height: 145px;
     overflow-y: hidden;
 }
 .mh-answer_hint-edit-textarea, .mh-note-answer_hint {

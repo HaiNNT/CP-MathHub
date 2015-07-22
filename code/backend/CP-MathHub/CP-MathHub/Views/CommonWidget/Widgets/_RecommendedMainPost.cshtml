@@ -1,0 +1,35 @@
+﻿@model CP_MathHub.Models.Common.RecommendedMainPostViewModel
+@using CP_MathHub.Models.Common
+<div class="panel panel-info mh-panel-recommend">
+    <div class="panel-heading">
+        @Model.Name
+        @switch (Model.Type)
+        {
+            case RecommendedMainPostTypeEnum.Hot:
+                <span class="mh-hot">hot</span>
+                break;
+            case RecommendedMainPostTypeEnum.Related:
+            <span class="mh-hot">liên quan</span>
+                break;
+            default:
+                break;
+        }
+    </div>
+    <div class="panel-body mh-panel-recommend-body">
+        @foreach (var item in Model.MainPosts)
+        {
+            <div class="mh-panel-recommend-row">
+                <a href="@Url.Action("Detail", Model.System, new { id = item.Id})">
+                    <div class="row">
+                        <div class="col-md-1 mh-panel-recommend-icon">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                        <div class="col-md-11 mh-panel-recommend-title">
+                            @item.Title
+                    </div>
+                </div>
+            </a>
+        </div>
+        }
+    </div>
+</div>

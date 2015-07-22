@@ -417,6 +417,9 @@ namespace CP_MathHub.Controllers
                 comment.CreatedDate = DateTime.Now;
                 comment.LastEditedDate = comment.CreatedDate;
                 comment.PostId = postId;
+                comment.Status = PostStatusEnum.Active;
+                comment.VoteDown = 0;
+                comment.VoteUp = 0;
 
                 cService.CommentPost(comment);               
 

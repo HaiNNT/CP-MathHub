@@ -70,4 +70,6 @@
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Blog" })
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Question" })
 }

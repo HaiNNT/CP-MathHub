@@ -1,5 +1,7 @@
 ﻿@model CP_MathHub.Models.Question.VoteViewModel
 @using CP_MathHub.Entity
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
     <div>
         @if (Model.Voted == null)
@@ -30,13 +32,13 @@
         if (!Model.IsQuestion && Model.Accepted)
         {
             <div>
-                <i class="fa fa-check mh-check-icon mh-checked" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                <i class="fa fa-check mh-check-icon mh-checked"></i>
             </div>
         }
-        else if (!Model.IsQuestion && !Model.Accepted)
+        else if (!Model.IsQuestion && !Model.Accepted && ((int)ViewData["UserId"] == User.Identity.GetUserId<int>()))
         {
             <div>
-                <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                <i class="fa fa-check mh-check-icon"></i>
             </div>
         }
     }

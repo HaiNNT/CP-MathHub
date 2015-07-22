@@ -45,17 +45,29 @@ namespace CP_MathHub.Models.Account
 
     public class LoginViewModel
     {
+
+        [Display(Name = "Ghi nhớ đăng nhập")]
+        public bool RememberMe { get; set; }
+
         [Required]
-        [Display(Name = "Tài khoản")]
+        [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
         [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 
-        [Display(Name = "Ghi nhớ đăng nhập")]
-        public bool RememberMe { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không đúng")]
+        public string ConfirmPassword { get; set; }
     }
 
     public class RegisterViewModel
@@ -79,6 +91,9 @@ namespace CP_MathHub.Models.Account
         [Display(Name = "Xác nhận mật khẩu")]
         [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không đúng")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Ghi nhớ đăng nhập")]
+        public bool RememberMe { get; set; }
     }
 
     public class ResetPasswordViewModel

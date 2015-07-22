@@ -56,6 +56,9 @@ namespace CP_MathHub
 
             bundles.Add(new StyleBundle("~/Content/profile/css").Include(
                       "~/Content/css/style-profile.css"));
+
+            bundles.Add(new StyleBundle("~/Content/authentication/css").Include(
+                      "~/Content/css/style-authentication.css"));
         }
     }
 }

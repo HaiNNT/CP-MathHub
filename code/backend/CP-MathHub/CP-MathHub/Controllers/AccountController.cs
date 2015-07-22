@@ -37,7 +37,7 @@ namespace CP_MathHub.Controllers
             bService = new BlogService(context);
             qService = new QuestionService(context);
         }
-        #region Authorization
+        #region Authentication
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -89,10 +89,10 @@ namespace CP_MathHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
@@ -410,6 +410,7 @@ namespace CP_MathHub.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            Response.Cookies["returnUrl"].Expires = DateTime.Now.AddDays(-1);
             return RedirectToAction("Index", "Home");
         }
 

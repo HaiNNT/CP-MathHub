@@ -25,9 +25,15 @@
         <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon-discussion.ico" type="image/x-icon">
     }
-    else
+    else if(ViewBag.System == Constant.String.ProfileSystem)
     {
         @Styles.Render("~/Content/profile/css");
+        <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+        <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+    }
+    else
+    {
+        @Styles.Render("~/Content/authentication/css");
         <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     }

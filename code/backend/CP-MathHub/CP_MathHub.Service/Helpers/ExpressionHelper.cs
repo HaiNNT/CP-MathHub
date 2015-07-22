@@ -70,9 +70,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Discussion, bool>> HotDiscussion()
             {
-                return (q => q.Comments.Count > 5
+                return (q => q.Comments.Count > 0
                             && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                            && (q.View > 500));
+                            && (q.View > 0));
             }
             /// <summary>
             /// Get order answer by vote and accepted
@@ -154,9 +154,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> HotArticle()
             {
-                return (a => a.Comments.Count > 5
+                return (a => a.Comments.Count > 0
                             && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 500
-                            && (a.View > 500));
+                            && (a.View > 0));
             }
 
             /// <summary>

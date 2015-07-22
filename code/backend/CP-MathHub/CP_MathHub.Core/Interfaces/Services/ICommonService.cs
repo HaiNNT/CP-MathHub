@@ -176,5 +176,19 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="postId"></param>
         /// <returns></returns>
         List<EditedLog> GetEditedLog(int postId);
+
+        /// <summary>
+        /// Get a main post by id
+        /// </summary>
+        /// <param name="mainPostId"></param>
+        /// <returns></returns>
+        MainPost GetMainPost(int mainPostId, string include = "");
+
+        /// <summary>
+        /// Get a post by id
+        /// </summary>
+        /// <param name="mainPostId"></param>
+        /// <returns></returns>
+        Post GetPost(int postId, string include = "");
     }
 }

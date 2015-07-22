@@ -488,5 +488,13 @@ namespace CP_MathHub.Service.Services
                 ).ToList();
             return logs;
         }
+        public MainPost GetMainPost(int mainPostId, string include = "")
+        {
+            return dal.Repository<MainPost>().Include(include).GetById(mainPostId);
+        }
+        public Post GetPost(int postId, string include = "")
+        {
+            return dal.Repository<Post>().Include(include).GetById(postId);
+        }
     }
 }

@@ -15,7 +15,7 @@
             <h3>@Model.Name</h3>
         </div>
     </div>
-</div> 
+</div>
 @Html.Partial("Partials/_NavPartialView")
 <div class="mh-discussion-posts">
     <div class="panel panel-info mh-discussion-post">
@@ -31,7 +31,7 @@
                     <a href="@Url.Action("Detail",new{id = Model.Id})">@Model.Title</a>
                     @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
                     <div class="mh-full-content">
-                            @Html.Raw(Model.Content)
+                        @Html.Raw(Model.Content)
                     </div>
                 </div>
             </div>
@@ -143,4 +143,6 @@
         @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
         <hr />
         @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Blog" })
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Question" })
 }
