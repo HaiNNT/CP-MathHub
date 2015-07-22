@@ -71,6 +71,12 @@ namespace CP_MathHub.Service.Services
                 .Count(u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend);
             return result;
         }
+        public int CountFriendRequest(int userId)
+        {
+            int result = dal.Repository<UserFriendship>().Table
+                .Count(u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting);
+            return result;
+        }
 
         public int CountFollower(User user)
         {
@@ -109,12 +115,11 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Insert(friendship);
             dal.Save();
         }
-
         public void AcceptFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
             friendship = dal.Repository<UserFriendship>().Table.Where(
-                (u => (u.TargetUserId == targetUserId || u.TargetUserId == userId) && (u.UserId == targetUserId || u.UserId == userId))).FirstOrDefault();
+                (u => (u.TargetUserId == userId) && (u.UserId == targetUserId))).FirstOrDefault();
             friendship.Status = RelationshipEnum.Friend;
             dal.Repository<UserFriendship>().Update(friendship);
             dal.Save();
@@ -166,6 +171,21 @@ namespace CP_MathHub.Service.Services
                             , ""
                             , skip
                             , take).ToList();
+                    break;
+                case Constant.Account.String.RequestTab:
+                    List<UserFriendship> friendrequests = dal.Repository<UserFriendship>().Get(
+                            (u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User,TargetUser"
+                            , skip
+                            , take).ToList();
+                    foreach (UserFriendship friendShip in friendrequests)
+                    {
+                        if (friendShip.TargetUserId == userId)
+                        {
+                            friends.Add(friendShip.User);
+                        }
+                    }
                     break;
             }
             return friends;

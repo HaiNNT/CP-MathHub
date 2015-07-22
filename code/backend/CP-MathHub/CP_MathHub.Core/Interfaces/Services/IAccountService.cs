@@ -49,6 +49,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountFollower(User user);
 
         /// <summary>
+        /// Count friend request number
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        int CountFriendRequest(int userId);
+
+        /// <summary>
         /// Count number of followers of User
         /// </summary>
         /// <param name="userId"></param>

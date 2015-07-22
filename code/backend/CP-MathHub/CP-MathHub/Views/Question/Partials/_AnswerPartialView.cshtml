@@ -2,18 +2,21 @@
 @using CP_MathHub.Entity;
 @using CP_MathHub.Service.Helpers
 <div class="mh-answer_hint">
-    <section class="mh-tabs">
-        <input id="mh-tab-1" type="radio" name="radio-set-1" class="mh-tab-selector-1" checked="checked" />
-        <label for="mh-tab-1" class="mh-tab-label-1">@Model.Answers.Count câu trả lời</label>
-
-        <input id="mh-tab-2" type="radio" name="radio-set-1" class="mh-tab-selector-2" />
-        <label for="mh-tab-2" class="mh-tab-2 mh-tab-label-2">@Model.Hints.Count gợi ý</label>
-
-        <div class="clear-shadow"></div>
-
-        <div class="mh-tab-content">
-            <div class="mh-tab-content-1">
-
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#answers" aria-controls="answers" role="tab" data-toggle="tab">
+                @Model.Answers.Count câu trả lời
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#hints" aria-controls="hints" role="tab" data-toggle="tab">
+                @Model.Hints.Count gợi ý
+            </a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="answers">
                 <div class="mh-answer_hint-body">
                     @if (Model.Answers.Count < 1)
                     {
@@ -70,8 +73,8 @@
                                         <div class="mh-note-answer_hint">
                                             <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
                                             <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Answers.ElementAt(i).Content">
-                                                hủy
-                                            </button>
+                                            hủy
+                                        </button>
                                         </div>
                                     }
                                     @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Answers.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Answers.ElementAt(i).UserId } })
@@ -80,11 +83,9 @@
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
-            <div class="mh-tab-content-2">
-
+        <div role="tabpanel" class="tab-pane" id="hints">
                 <div class="mh-answer_hint-body">
                     @if (Model.Hints.Count < 1)
                     {
@@ -140,9 +141,9 @@
                                         </div>
                                         <div class="mh-note-answer_hint">
                                             <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
-                                            <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
-                                                hủy
-                                            </button>
+                                        <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
+                                            hủy
+                                        </button>
                                         </div>
                                     }
                                     @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Hints.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Hints.ElementAt(i).UserId } })
@@ -151,9 +152,7 @@
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </div>
-    </section>
 </div>

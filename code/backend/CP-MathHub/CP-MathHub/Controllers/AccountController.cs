@@ -25,11 +25,17 @@ namespace CP_MathHub.Controllers
     public class AccountController : BaseController
     {
         private IAccountService aService;
+        private IDiscussionService dService;
+        private IQuestionService qService;
+        private IBlogService bService;
         private CPMathHubModelContainer context;
         public AccountController()
         {
             context = new CPMathHubModelContainer();
             aService = new AccountService(context);
+            dService = new DiscussionService(context);
+            bService = new BlogService(context);
+            qService = new QuestionService(context);
         }
         #region Authentication
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -595,32 +601,37 @@ namespace CP_MathHub.Controllers
         }
         #endregion
         #region Friend
-        public ActionResult Friend(int userId=0, int page = 0)
+        public ActionResult Friend(int page = 0, string tab = "allfriend")
         {
+            int userId = User.Identity.GetUserId<int>();
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
             List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab,skip);
             List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
             List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
+            List<User> requests = aService.GetFriends(105, Constant.Account.String.RequestTab, skip);
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
                 model.ListFollowers = followers;
-                model.FriendNum = aService.CountFriend(105);
-                model.FollowerNum = aService.CountFollower(105);
-                model.FolloweeNum = aService.CountFollowee(105);
+                model.FriendNum = aService.CountFriend(userId);
+                model.FollowerNum = aService.CountFollower(userId);
+                model.FolloweeNum = aService.CountFollowee(userId);
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
+                model.ListRequested = requests;
+                model.RequestNum = aService.CountFriendRequest(userId);
                 ViewBag.System = Constant.String.AccountSystem;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
+                ViewBag.System = Constant.String.ProfileSystem;
+                ViewBag.Tab = tab;
                 return View("Views/FriendView", model);
             }
             else
             {
                 return PartialView("Partials/_FriendListPartialView", friends);
             }
-
         }
         //Post: SendFriendRequest
         [HttpPost]
@@ -631,17 +642,45 @@ namespace CP_MathHub.Controllers
         }
         //Post: Account/AcceptFriend
         [HttpPost]
-        public ActionResult AcceptFriendRequest(/*int userId, int targetUserId*/)
+        public ActionResult AcceptFriendRequest(int targetUserId, string tab = "receiverequest")
         {
-            aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), 105);
-            return RedirectToAction("Friend");
+            aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("Friend", new { @tab =  tab});
         }
 
         //Post: Account/CancelFriend
-        public ActionResult CancelFriend()
+        public ActionResult CancelFriend(int targetUserId, string tab = "receiverequest")
         {
-            aService.CancelFriend(User.Identity.GetUserId<int>(), 105);
-            return RedirectToAction("UserProfile");
+            aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("UserProfile", new {@tab = tab });
+        }
+        #endregion
+        #region Activity
+        public ActionResult MyActivity(int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.TagPagingDefaultTake;
+            List<Discussion> discussions = dService.GetDiscussions(User.Identity.GetUserId<int>(), skip);
+            List<Question> questions = qService.GetQuestions(User.Identity.GetUserId<int>(), skip);
+            List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>(), skip);
+            List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>(), skip);
+            if (page == 0)
+            {
+                ActivityViewModel model = new ActivityViewModel();
+                model.DiscussionList = discussions;
+                model.QuestionList = questions;
+                model.ArticleList = articles;
+                model.AnswerList = answers;
+                ViewBag.System = Constant.String.AccountSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                ViewBag.System = Constant.String.ProfileSystem;
+                return View("Views/ActivityView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_UserQuestionActivityPartialView", questions);
+            }
         }
         #endregion
     }

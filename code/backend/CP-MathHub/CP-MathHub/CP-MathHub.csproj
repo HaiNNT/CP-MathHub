@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
+    <Compile Include="Models\Account\ActivityViewModel.cs" />
     <Compile Include="Models\Account\FriendViewModel.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\ProfileViewModel.cs" />
@@ -680,6 +681,13 @@
     <Content Include="Views\Discussion\Partials\_CategoryPreviewPartialView.cshtml" />
     <Content Include="Views\Account\BannedPage.cshtml" />
     <Content Include="Views\Account\Views\UserProfileView.cshtml" />
+    <Content Include="Views\Account\Partials\_RequestReceiveListPartialView.cshtml" />
+    <Content Include="Views\Account\Layouts\_ActivityLayout.cshtml" />
+    <Content Include="Views\Account\Views\ActivityView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserQuestionActivityPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserArticleActivityPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserDiscussionActivityPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserAnswerActivityPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_RecommendedMainPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
