@@ -22,6 +22,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Discussion> GetDiscussions(int authorId, int skip = 0);
 
         /// <summary>
+        /// Count discussion of number
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <returns></returns>
+        int CountUserDiscussion(int authorId);
+
+        /// <summary>
         /// Get discusstionCategorys
         /// </summary>
         /// <param name="tagId"></param>

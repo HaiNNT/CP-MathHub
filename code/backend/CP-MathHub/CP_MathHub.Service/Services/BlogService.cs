@@ -172,6 +172,11 @@ namespace CP_MathHub.Service.Services
                     skip
                 ).ToList();
         }
+        public int CountUserArticle(int authorId)
+        {
+            int result = dal.Repository<Article>().Table.Count(d => d.UserId == authorId);
+            return result;
+        }
         public List<Article> GetRelatedArticles(Article article, int skip = 0)
         {
             List<Article> result = new List<Article>();

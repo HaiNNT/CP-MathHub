@@ -88,6 +88,11 @@ namespace CP_MathHub.Service.Services
                     skip
                 ).ToList();
         }
+        public int CountUserDiscussion(int authorId)
+        {
+            int result = dal.Repository<Discussion>().Table.Count(d => d.UserId == authorId);
+            return result;
+        }
         //public List<Discussion> GetRelatedDiscussions(int tagId, int skip = 0)
         //{
         //    return dal.Repository<Discussion>()

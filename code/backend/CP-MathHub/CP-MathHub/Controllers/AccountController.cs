@@ -619,7 +619,6 @@ namespace CP_MathHub.Controllers
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
                 model.RequestNum = aService.CountFriendRequest(userId);
-                ViewBag.System = Constant.String.AccountSystem;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
@@ -669,7 +668,10 @@ namespace CP_MathHub.Controllers
                 model.QuestionList = questions;
                 model.ArticleList = articles;
                 model.AnswerList = answers;
-                ViewBag.System = Constant.String.AccountSystem;
+                model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
+                model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
+                model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
+                model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
