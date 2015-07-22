@@ -71,6 +71,12 @@ namespace CP_MathHub.Service.Services
                 .Count(u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend);
             return result;
         }
+        public int CountFriendRequest(int userId)
+        {
+            int result = dal.Repository<UserFriendship>().Table
+                .Count(u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting);
+            return result;
+        }
 
         public int CountFollower(User user)
         {
@@ -109,15 +115,11 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Insert(friendship);
             dal.Save();
         }
-        public void GetFriendRequest(int userId, int targetUserId)
-        {
-
-        }
         public void AcceptFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
             friendship = dal.Repository<UserFriendship>().Table.Where(
-                (u => (u.TargetUserId == targetUserId || u.TargetUserId == userId) && (u.UserId == targetUserId || u.UserId == userId))).FirstOrDefault();
+                (u => (u.TargetUserId == userId) && (u.UserId == targetUserId))).FirstOrDefault();
             friendship.Status = RelationshipEnum.Friend;
             dal.Repository<UserFriendship>().Update(friendship);
             dal.Save();

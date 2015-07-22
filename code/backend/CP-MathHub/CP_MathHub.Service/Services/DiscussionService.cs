@@ -82,7 +82,7 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Discussion>() //Get Question Repository
                 .Get(
-                    (a => a.UserId > 0), //Filter Question by Author
+                    (a => a.UserId == authorId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip

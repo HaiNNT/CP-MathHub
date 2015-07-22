@@ -43,28 +43,28 @@
 <div class="mh-body-profile">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
+        <li role="presentation" class="@(ViewBag.Tab == "allfriend" ? "active" : "" )">
             <a href="#all-friend" aria-controls="all-friend" role="tab" data-toggle="tab">
                 Tất cả bạn bè
                 <span class="mh-profile-friend-quantity">@Model.FriendNum</span>
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "follower" ? "active" : "" )">
             <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
                 Người theo dõi bạn
                 <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "followee" ? "active" : "" )">
             <a href="#followee" aria-controls="followee" role="tab" data-toggle="tab">
                 Bạn đang theo dõi
                 <span class="mh-profile-friend-quantity">@Model.FolloweeNum</span>
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "receiverequest" ? "active" : "")">
             <a href="#ReceiveRequest" aria-controls="ReceiveRequest" role="tab" data-toggle="tab">
                 Lời mời kết bạn
-                <span class="mh-profile-friend-quantity">40</span>
+                <span class="mh-profile-friend-quantity">@Model.RequestNum</span>
             </a>
         </li>
     </ul>
@@ -147,7 +147,7 @@
         <div role="tabpanel" class="tab-pane" id="ReceiveRequest">
             <h4>
                 Trả lời
-                <span>20</span>
+                <span>@Model.RequestNum</span>
                 lời mời kết bạn của bạn
             </h4>
             <div class="mh-request-friend">

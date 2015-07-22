@@ -162,6 +162,16 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        public List<Article> GetArticles(int authorId, int skip = 0)
+        {
+            return dal.Repository<Article>() //Get Question Repository
+                .Get(
+                    (a => a.UserId == authorId), //Filter Question by Author
+                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                    skip
+                ).ToList();
+        }
         public List<Article> GetRelatedArticles(Article article, int skip = 0)
         {
             List<Article> result = new List<Article>();

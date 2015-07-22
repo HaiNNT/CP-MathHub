@@ -1,0 +1,13 @@
+﻿@using CP_MathHub.Entity
+@model List<Answer>
+
+@foreach (Answer item in Model)
+{
+
+    <div>
+        <i class="fa fa-square"></i>
+        Bạn đã hỏi:
+        <a href="@Url.Action("Detail", "Question", new { id = item.QuestionId})">@item.QuestionId</a><br />
+        <span class="mh-profile-time">@Html.PostCreatedTime(item.CreatedDate, "vào lúc")</span>
+    </div>
+}

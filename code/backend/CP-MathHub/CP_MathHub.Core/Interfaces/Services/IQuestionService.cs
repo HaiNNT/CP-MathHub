@@ -23,6 +23,14 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Question> GetQuestions(int authorId, int skip = 0);
 
         /// <summary>
+        /// Get answers of one user
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Answer> GetAnswers(int authorId, int skip = 0);
+
+        /// <summary>
         /// Get Questions by Tag
         /// </summary>
         /// <returns></returns>

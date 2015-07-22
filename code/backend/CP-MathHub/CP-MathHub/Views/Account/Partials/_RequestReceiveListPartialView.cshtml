@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="col-xs-5 mh-request-friend-button">
-            <button type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
-            <button type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+                <a href="@Url.Action("AcceptFriendRequest", new { targetUserId = item.Id })" class="btn btn-primary mh-request-button">Chấp nhận</a>
+                <a href="@Url.Action("CancelFriend", new { targetUserId = item.Id })" class="btn btn-default mh-request-button">Xóa yêu cầu</a>       
         </div>
     </div>
 }

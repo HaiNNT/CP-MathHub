@@ -27,6 +27,14 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Article> GetArticles(int userId, string tab, int skip);
 
         /// <summary>
+        /// Get articles of user
+        /// </summary>
+        /// <param name="authorId"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        List<Article> GetArticles(int authorId, int skip = 0);
+
+        /// <summary>
         /// Get an Article by id
         /// </summary>
         /// <param name="id"></param>

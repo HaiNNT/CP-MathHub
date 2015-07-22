@@ -22,6 +22,7 @@ namespace CP_MathHub.Core.Configuration
             public const string DiscussionSystem = "Discussion";
             public const string AccountSystem = "Account";
             public const string AdminSystem = "Admin";
+            public const string ProfileSystem = "Profile";
 
             public const string ProfilePage = "profile";
 

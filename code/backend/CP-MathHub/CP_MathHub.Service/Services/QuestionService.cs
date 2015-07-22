@@ -81,9 +81,19 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Question>() //Get Question Repository
                 .Get(
-                    (a => a.UserId > 0), //Filter Question by Author
+                    (a => a.UserId == authorId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
+                    skip
+                ).ToList();
+        }
+        public List<Answer> GetAnswers(int authorId, int skip = 0)
+        {
+            return dal.Repository<Answer>() //Get Question Repository
+                .Get(
+                    (a => a.UserId == authorId), //Filter Question by Author
+                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    "Author,Reports",
                     skip
                 ).ToList();
         }
