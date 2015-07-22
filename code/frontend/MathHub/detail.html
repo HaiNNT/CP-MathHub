@@ -1141,548 +1141,63 @@
                 </div><!-- mh-question-preview: end -->
                 <!-- mh-answer_hint: start -->
                 <div class="mh-answer_hint">
-                    <section class="mh-tabs">
-                        <input id="mh-tab-1" type="radio" name="radio-set-1" class="mh-tab-selector-1" checked="checked" />
-                        <label for="mh-tab-1" class="mh-tab-label-1">3 câu trả lời</label>
-
-                        <input id="mh-tab-2" type="radio" name="radio-set-1" class="mh-tab-selector-2" />
-                        <label for="mh-tab-2" class="mh-tab-2 mh-tab-label-2">3 gợi ý</label>
-
-                        <div class="clear-shadow"></div>
-
-                        <div class="mh-tab-content">
-                            <div class="mh-tab-content-1">
-                                <!-- mh-answer_hint-body: start -->
-                                <div class="mh-answer_hint-body">
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
-                                                </div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#answers" aria-controls="answers" role="tab" data-toggle="tab">
+                                3 câu trả lời
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#hints" aria-controls="hints" role="tab" data-toggle="tab">
+                                3 gợi ý
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="answers">
+                            <!-- mh-answer_hint-body: start -->
+                            <div class="mh-answer_hint-body">
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
                                             </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    Dãy cầu thang có 119 bậc.
-                                                    Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60.
-                                                    Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,....
-                                                    Trong đó 119 là số nhỏ nhất chia hết cho 7.
-                                                    Vậy số bậc cầu thang có thể là 119    
-                                                    <a data-toggle="modal" data-target="#history-edit-3" class="mh-comment-history-edit">- Đã chỉnh sửa</a>                                                
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <div class="row">
-                                                                <span class="mh-time">trả lời vào ngày 18 tháng 6 lúc 16:30</span>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                    <a href="#">
-                                                                        <img src="img/user.jpg" class="mh-user-avatar">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                                    <a href="#">
-                                                                        <span class="mh-username">HaiNNT</span>
-                                                                    </a>
-                                                                    <div class="detail-reputat">
-                                                                        <span>612</span>
-                                                                        <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <form>
-                                                    <div class="mh-ckeditor mh-answer_hint-edit-textarea">
-                                                        <textarea class="mh-ckeditor-textarea" name="editor3" id="editor3" rows="10" cols="80">
-                                                            Dãy cầu thang có 119 bậc.
-                                                            Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60.
-                                                            Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,....
-                                                            Trong đó 119 là số nhỏ nhất chia hết cho 7.
-                                                            Vậy số bậc cầu thang có thể là 119
-                                                        </textarea>
-                                                    </div>
-                                                    <div class="mh-note-answer_hint">
-                                                        <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
-                                                        <button type="button" class="mh-note-answer_hint-close-button" value="Dãy cầu thang có 119 bậc. Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60. Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,.... Trong đó 119 là số nhỏ nhất chia hết cho 7. Vậy số bậc cầu thang có thể là 119">
-                                                            hủy
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                                <!--<span class="mh-note-answer_hint">
-                                                    
-                                                </span>-->
-                                                <div class="dropdown">
-                                                    <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                                                        <i class="fa fa-chevron-down mh-commet-edit"></i>
-                                                    </a>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                        <li><a class="mh-answer_hint-edit-button">Chỉnh sửa</a></li>
-                                                        <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
-                                                        <li><a href="#">Xóa</a></li>
-                                                    </ul>
-                                                    <div>
-                                                        <!-- Modal: start -->
-                                                        <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                                            <div class="modal-dialog modal-sm" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                        <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="mh-radio">
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                                                    Option one is this and that&mdash;be sure to include why it's great
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                                                    Option two can be something else and selecting it will deselect option one
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                                                                    Option three is disabled
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mh-report-cause">
-                                                                            <label>Mô tả:</label><br />
-                                                                            <input type="text" placeholder="Nhập mô tả..." />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                                        <button type="button" class="btn btn-primary">Gửi báo cáo</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div><!-- Modal: end -->
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
-                                                        <div>
-                                                            <div class="mh-comment-content">
-                                                                <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị.</span><br />
-                                                                <a href="#" class="mh-comment-question-username"> User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                                <a data-toggle="modal" data-target="#history-edit-2" class="mh-comment-history-edit">- Đã chỉnh sửa</a>
-                                                                <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị.</textarea>
-                                                                <span class="mh-note">
-                                                                    <!--Nhấn ESC để để-->
-                                                                    <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị.">
-                                                                        hủy
-                                                                    </button>
-                                                                </span>
-                                                                <div class="dropdown">
-                                                                    <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                                                                        <i class="fa fa-chevron-down mh-commet-edit"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                        <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
-                                                                        <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
-                                                                        <li><a href="#">Xóa</a></li>
-                                                                    </ul>
-                                                                    <div>
-                                                                        <!-- Modal: start -->
-                                                                        <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                                                            <div class="modal-dialog modal-sm" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div class="mh-radio">
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                                                                    Option one is this and that&mdash;be sure to include why it's great
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                                                                    Option two can be something else and selecting it will deselect option one
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                                                                                    Option three is disabled
-                                                                                                </label>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="mh-report-cause">
-                                                                                            <label>Mô tả:</label><br />
-                                                                                            <input type="text" placeholder="Nhập mô tả..." />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                                                        <button type="button" class="btn btn-primary">Gửi báo cáo</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div><!-- Modal: end -->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mh-comment-content">
-                                                                <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                                <a href="#" class="mh-comment-question-username"> User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                                <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</textarea>
-                                                                <span class="mh-note">
-                                                                    <!--Nhấn ESC để để-->
-                                                                    <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.">
-                                                                        hủy
-                                                                    </button>
-                                                                </span>
-                                                                <div class="dropdown">
-                                                                    <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                                                                        <i class="fa fa-chevron-down mh-commet-edit"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                        <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
-                                                                        <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
-                                                                        <li><a href="#">Xóa</a></li>
-                                                                    </ul>
-                                                                    <div>
-                                                                        <!-- Modal: start -->
-                                                                        <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                                                            <div class="modal-dialog modal-sm" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div class="mh-radio">
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                                                                    Option one is this and that&mdash;be sure to include why it's great
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                                                                    Option two can be something else and selecting it will deselect option one
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                                                                                    Option three is disabled
-                                                                                                </label>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="mh-report-cause">
-                                                                                            <label>Mô tả:</label><br />
-                                                                                            <input type="text" placeholder="Nhập mô tả..." />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                                                        <button type="button" class="btn btn-primary">Gửi báo cáo</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div><!-- Modal: end -->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mh-comment-content">
-                                                                <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                                <a href="#" class="mh-comment-question-username"> User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                                <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</textarea>
-                                                                <span class="mh-note">
-                                                                    <!--Nhấn ESC để để-->
-                                                                    <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.">
-                                                                        hủy
-                                                                    </button>
-                                                                </span>
-                                                                <div class="dropdown">
-                                                                    <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
-                                                                        <i class="fa fa-chevron-down mh-commet-edit"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                                        <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
-                                                                        <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
-                                                                        <li><a href="#">Xóa</a></li>
-                                                                    </ul>
-                                                                    <div>
-                                                                        <!-- Modal: start -->
-                                                                        <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                                                            <div class="modal-dialog modal-sm" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-header">
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div class="mh-radio">
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                                                                    Option one is this and that&mdash;be sure to include why it's great
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                                                                    Option two can be something else and selecting it will deselect option one
-                                                                                                </label>
-                                                                                            </div>
-                                                                                            <div class="radio">
-                                                                                                <label>
-                                                                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                                                                                                    Option three is disabled
-                                                                                                </label>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="mh-report-cause">
-                                                                                            <label>Mô tả:</label><br />
-                                                                                            <input type="text" placeholder="Nhập mô tả..." />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                                                        <button type="button" class="btn btn-primary">Gửi báo cáo</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div><!-- Modal: end -->
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="hidden">
-                                                            <div class="mh-comment-content">
-                                                                <span>Câu hỏi của bạn thật thú vị.</span><br />
-                                                                <a href="#">User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                            </div>
-                                                            <div class="mh-comment-content">
-                                                                <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                                <a href="#">User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                            </div>
-                                                            <div class="mh-comment-content">
-                                                                <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                                <a href="#">User</a>
-                                                                <span class="mh-time">5 phút</span>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
-                                                </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                Dãy cầu thang có 119 bậc.
+                                                Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60.
+                                                Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,....
+                                                Trong đó 119 là số nhỏ nhất chia hết cho 7.
+                                                Vậy số bậc cầu thang có thể là 119
+                                                <a data-toggle="modal" data-target="#history-edit-3" class="mh-comment-history-edit">- Đã chỉnh sửa</a>
                                             </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    <p>Dãy cầu thang có 49</p>
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="row">
+                                                            <span class="mh-time">trả lời vào ngày 18 tháng 6 lúc 16:30</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                <a href="#">
-                                                                    <img src="img/user.jpg" class="mh-user-avatar">
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
-                                                                <a href="#">
-                                                                    <span class="mh-username">HaiNNT</span>
-                                                                </a>
-                                                                <div class="detail-reputat">
-                                                                    <span>612</span>
-                                                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
-                                                        <div class="mh-comment-content">
-                                                            <span>Câu hỏi của bạn thật thú vị.</span><br />
-                                                            <a href="#">User</a>
-                                                            <span class="mh-time">5 phút</span>
-                                                        </div>
-                                                        <div class="mh-comment-content">
-                                                            <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                            <a href="#">User</a>
-                                                            <span class="mh-time">5 phút</span>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#">Xem thêm bình luận</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    <p>Dãy cầu thang có 1149</p>
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                <a href="#">
-                                                                    <img src="img/user.jpg" class="mh-user-avatar">
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
-                                                                <a href="#">
-                                                                    <span class="mh-username">HaiNNT</span>
-                                                                </a>
-                                                                <div class="detail-reputat">
-                                                                    <span>612</span>
-                                                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
-                                                        <div>
-                                                            <a href="#">Bình luận</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                </div><!-- mh-answer_hint-body: end -->
-                            </div>
-                            <div class="mh-tab-content-2">
-                                <!-- mh-answer_hint-body: start -->
-                                <div class="mh-answer_hint-body">
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    <p>Dãy cầu thang có 119 bậc.</p>
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="row">
                                                             <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
                                                                 <a href="#">
                                                                     <img src="img/user.jpg" class="mh-user-avatar">
@@ -1700,8 +1215,281 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
+                                            </div>
+                                            <form>
+                                                <div class="mh-ckeditor mh-answer_hint-edit-textarea">
+                                                    <textarea class="mh-ckeditor-textarea" name="editor3" id="editor3" rows="10" cols="80">
+                                                        Dãy cầu thang có 119 bậc.
+                                                        Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60.
+                                                        Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,....
+                                                        Trong đó 119 là số nhỏ nhất chia hết cho 7.
+                                                        Vậy số bậc cầu thang có thể là 119
+                                                    </textarea>
+                                                </div>
+                                                <div class="mh-note-answer_hint">
+                                                    <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
+                                                    <button type="button" class="mh-note-answer_hint-close-button" value="Dãy cầu thang có 119 bậc. Từ câu hỏi có thể thấy rằng số bậc cầu thang thêm 1 sẽ là bội số của 2,3,4,5,6 là 60. Vì vậy số bậc cầu thang có thể là 60n - 1,n là số nguyên dương và có thể là 59,119,179,.... Trong đó 119 là số nhỏ nhất chia hết cho 7. Vậy số bậc cầu thang có thể là 119">
+                                                        hủy
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <!--<span class="mh-note-answer_hint">
+
+                                            </span>-->
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
+                                                    <i class="fa fa-chevron-down mh-commet-edit"></i>
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                    <li><a class="mh-answer_hint-edit-button">Chỉnh sửa</a></li>
+                                                    <li><a href="#" data-toggle="modal" data-target="#report-8">Báo cáo</a></li>
+                                                    <li><a href="#">Xóa</a></li>
+                                                </ul>
+                                                <div>   
+                                                    <!-- Modal: start -->
+                                                    <div id="report-8" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                                        <div class="modal-dialog modal-sm" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="mh-radio">
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                                Option one is this and that&mdash;be sure to include why it's great
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                                Option two can be something else and selecting it will deselect option one
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                                                Option three is disabled
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mh-report-cause">
+                                                                        <label>Mô tả:</label><br />
+                                                                        <input type="text" placeholder="Nhập mô tả..." />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                                    <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- Modal: end -->
+                                                </div>
+                                            </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div>
+                                                        <div class="mh-comment-content">
+                                                            <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị.</span><br />
+                                                            <a href="#" class="mh-comment-question-username"> User</a>
+                                                            <span class="mh-time">5 phút</span>
+                                                            <a data-toggle="modal" data-target="#history-edit-2" class="mh-comment-history-edit">- Đã chỉnh sửa</a>
+                                                            <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị.</textarea>
+                                                            <span class="mh-note">
+                                                                <!--Nhấn ESC để để-->
+                                                                <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị.">
+                                                                    hủy
+                                                                </button>
+                                                            </span>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
+                                                                    <i class="fa fa-chevron-down mh-commet-edit"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
+                                                                    <li><a href="#" data-toggle="modal" data-target="#report-11">Báo cáo</a></li>
+                                                                    <li><a href="#">Xóa</a></li>
+                                                                </ul>
+                                                                <div>
+                                                                    <!-- Modal: start -->
+                                                                    <div id="report-11" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                                                        <div class="modal-dialog modal-sm" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div class="mh-radio">
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                                                Option one is this and that&mdash;be sure to include why it's great
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                                                Option two can be something else and selecting it will deselect option one
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                                                                Option three is disabled
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mh-report-cause">
+                                                                                        <label>Mô tả:</label><br />
+                                                                                        <input type="text" placeholder="Nhập mô tả..." />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                                                    <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- Modal: end -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mh-comment-content">
+                                                            <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                            <a href="#" class="mh-comment-question-username"> User</a>
+                                                            <span class="mh-time">5 phút</span>
+                                                            <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</textarea>
+                                                            <span class="mh-note">
+                                                                <!--Nhấn ESC để để-->
+                                                                <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.">
+                                                                    hủy
+                                                                </button>
+                                                            </span>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
+                                                                    <i class="fa fa-chevron-down mh-commet-edit"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
+                                                                    <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
+                                                                    <li><a href="#">Xóa</a></li>
+                                                                </ul>
+                                                                <div>
+                                                                    <!-- Modal: start -->
+                                                                    <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                                                        <div class="modal-dialog modal-sm" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div class="mh-radio">
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                                                Option one is this and that&mdash;be sure to include why it's great
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                                                Option two can be something else and selecting it will deselect option one
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                                                                Option three is disabled
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mh-report-cause">
+                                                                                        <label>Mô tả:</label><br />
+                                                                                        <input type="text" placeholder="Nhập mô tả..." />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                                                    <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- Modal: end -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mh-comment-content">
+                                                            <span class="mh-comment-question-content">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                            <a href="#" class="mh-comment-question-username"> User</a>
+                                                            <span class="mh-time">5 phút</span>
+                                                            <textarea class="form-control mh-comment-edit-textarea" rows="3">Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</textarea>
+                                                            <span class="mh-note">
+                                                                <!--Nhấn ESC để để-->
+                                                                <button type="button" class="mh-note-close-button" value="Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi abc zyz làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.">
+                                                                    hủy
+                                                                </button>
+                                                            </span>
+                                                            <div class="dropdown">
+                                                                <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
+                                                                    <i class="fa fa-chevron-down mh-commet-edit"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <li><a class="mh-comment-edit-button">Chỉnh sửa</a></li>
+                                                                    <li><a href="#" data-toggle="modal" data-target="#report-1">Báo cáo</a></li>
+                                                                    <li><a href="#">Xóa</a></li>
+                                                                </ul>
+                                                                <div>
+                                                                    <!-- Modal: start -->
+                                                                    <div id="report-1" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                                                        <div class="modal-dialog modal-sm" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Báo cáo vi phạm</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div class="mh-radio">
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                                                                Option one is this and that&mdash;be sure to include why it's great
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                                                                Option two can be something else and selecting it will deselect option one
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                                                                Option three is disabled
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="mh-report-cause">
+                                                                                        <label>Mô tả:</label><br />
+                                                                                        <input type="text" placeholder="Nhập mô tả..." />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                                                    <button type="button" class="btn btn-primary">Gửi báo cáo</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- Modal: end -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hidden">
                                                         <div class="mh-comment-content">
                                                             <span>Câu hỏi của bạn thật thú vị.</span><br />
                                                             <a href="#">User</a>
@@ -1717,191 +1505,404 @@
                                                             <a href="#">User</a>
                                                             <span class="mh-time">5 phút</span>
                                                         </div>
-                                                        <div>
-                                                            <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
-                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                <p>Dãy cầu thang có 49</p>
+                                            </div>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
+                                                            <a href="#">
+                                                                <img src="img/user.jpg" class="mh-user-avatar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+                                                            <a href="#">
+                                                                <span class="mh-username">HaiNNT</span>
+                                                            </a>
+                                                            <div class="detail-reputat">
+                                                                <span>612</span>
+                                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    <p>Dãy cầu thang có 49</p>
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
-                                                        </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                <a href="#">
-                                                                    <img src="img/user.jpg" class="mh-user-avatar">
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
-                                                                <a href="#">
-                                                                    <span class="mh-username">HaiNNT</span>
-                                                                </a>
-                                                                <div class="detail-reputat">
-                                                                    <span>612</span>
-                                                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
                                                     </div>
-                                                </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
-                                                        <div class="mh-comment-content">
-                                                            <span>Câu hỏi của bạn thật thú vị.</span><br />
-                                                            <a href="#">User</a>
-                                                            <span class="mh-time">5 phút</span>
-                                                        </div>
-                                                        <div class="mh-comment-content">
-                                                            <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
-                                                            <a href="#">User</a>
-                                                            <span class="mh-time">5 phút</span>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#">Xem thêm bình luận</a>
-                                                        </div>
+                                                    <div>
+                                                        <a href="#">Xem thêm bình luận</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                    <!-- mh-answer_hint-content: start -->
-                                    <div class="mh-answer_hint-content">
-                                        <div class="row mh-answer_hint-content-row">
-                                            <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
-                                                    </a>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                <p>Dãy cầu thang có 1149</p>
+                                            </div>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <span class="mh-vote-num">20</span>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="#">
-                                                        <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
-                                                    </a>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
+                                                            <a href="#">
+                                                                <img src="img/user.jpg" class="mh-user-avatar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+                                                            <a href="#">
+                                                                <span class="mh-username">HaiNNT</span>
+                                                            </a>
+                                                            <div class="detail-reputat">
+                                                                <span>612</span>
+                                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                                <div class="mh-answer_hint-detail-content">
-                                                    <p>Dãy cầu thang có 1149</p>
-                                                </div>
-                                                <div class="mh-answer_hint-user_info">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
-                                                                <a href="#">
-                                                                    <img src="img/user.jpg" class="mh-user-avatar">
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
-                                                                <a href="#">
-                                                                    <span class="mh-username">HaiNNT</span>
-                                                                </a>
-                                                                <div class="detail-reputat">
-                                                                    <span>612</span>
-                                                                    <i class="fa fa-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel-body mh-comment">
-                                                    <div class="mh-comment-detail">
-                                                        <div>
-                                                            <a href="#">Bình luận</a>
-                                                        </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div>
+                                                        <a href="#">Bình luận</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- mh-answer_hint-content: end -->
-                                </div><!-- mh-answer_hint-body: end -->
-                            </div>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                            </div><!-- mh-answer_hint-body: end -->
                         </div>
-                    </section>
+                        <div role="tabpanel" class="tab-pane" id="hints">
+                            <!-- mh-answer_hint-body: start -->
+                            <div class="mh-answer_hint-body">
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                <p>Dãy cầu thang có 119 bậc.</p>
+                                            </div>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                                            <a href="#">
+                                                                <img src="img/user.jpg" class="mh-user-avatar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                                            <a href="#">
+                                                                <span class="mh-username">HaiNNT</span>
+                                                            </a>
+                                                            <div class="detail-reputat">
+                                                                <span>612</span>
+                                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
+                                                    </div>
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
+                                                    </div>
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi. Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" placeholder="Viết bình luận..." class="mh-form-input-comment">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                <p>Dãy cầu thang có 49</p>
+                                            </div>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
+                                                            <a href="#">
+                                                                <img src="img/user.jpg" class="mh-user-avatar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+                                                            <a href="#">
+                                                                <span class="mh-username">HaiNNT</span>
+                                                            </a>
+                                                            <div class="detail-reputat">
+                                                                <span>612</span>
+                                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
+                                                    </div>
+                                                    <div class="mh-comment-content">
+                                                        <span>Câu hỏi của bạn thật thú vị, nó giúp tôi cảm thấy giảm stress sau khi làm việc mệt mỏi.</span><br />
+                                                        <a href="#">User</a>
+                                                        <span class="mh-time">5 phút</span>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#">Xem thêm bình luận</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                                <!-- mh-answer_hint-content: start -->
+                                <div class="mh-answer_hint-content">
+                                    <div class="row mh-answer_hint-content-row">
+                                        <div class="col-xs-1 col-sm-1 col-md-1 mh-vote">
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-up mh-vote-icon" title="Câu trả lời này rất hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <span class="mh-vote-num">20</span>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-chevron-down mh-vote-icon mh-vote-down" title="Câu trả lời này không hữu dụng"></i>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a href="#">
+                                                    <i class="fa fa-check mh-check-icon" title="Câu trả lời này giải quyết được vấn đề của tác giả"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                            <div class="mh-answer_hint-detail-content">
+                                                <p>Dãy cầu thang có 1149</p>
+                                            </div>
+                                            <div class="mh-answer_hint-user_info">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <span class="mh-time">trả lời vào 18 tháng 6 lúc 16:30</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 mh-answer-avatar">
+                                                            <a href="#">
+                                                                <img src="img/user.jpg" class="mh-user-avatar">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 mh-answer-username">
+                                                            <a href="#">
+                                                                <span class="mh-username">HaiNNT</span>
+                                                            </a>
+                                                            <div class="detail-reputat">
+                                                                <span>612</span>
+                                                                <i class="fa fa-circle mh-reputation-icon"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body mh-comment">
+                                                <div class="mh-comment-detail">
+                                                    <div>
+                                                        <a href="#">Bình luận</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- mh-answer_hint-content: end -->
+                            </div><!-- mh-answer_hint-body: end -->
+                        </div>
+                    </div>
                 </div><!-- mh-answer_hint: end -->
                 <!-- mh-post-Ans_Hint": start -->
                 <div class="mh-post-Ans_Hint">
-                    <section class="mh-tabs">
-                        <input id="mh-tab-3" type="radio" name="radio-set-2" class="mh-tab-selector-1" checked="checked" />
-                        <label for="mh-tab-3" class="mh-tab-label-1">Trả lời câu hỏi</label>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Trả lời câu hỏi</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Gợi ý trả lời</a></li>
+                    </ul>
 
-                        <input id="mh-tab-4" type="radio" name="radio-set-2" class="mh-tab-selector-2" />
-                        <label for="mh-tab-4" class="mh-tab-2 mh-tab-label-2">Gợi ý trả lời</label>
-
-                        <div class="clear-shadow"></div>
-
-                        <div class="mh-tab-content">
-                            <div class="mh-tab-content-1">
-                                <form>
-                                    <div class="mh-ckeditor ">
-                                        <textarea name="editor1" id="editor1" rows="10" cols="80">
-                                            Trả lời câu hỏi
-                                        </textarea>
-                                    </div>
-                                    <div class="mh-post-Ans_Hint-button">
-                                        <button type="submit" class="btn btn-success btn-lg">Đăng câu trả lời</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="mh-tab-content-2">
-                                <form>
-                                    <div class="mh-ckeditor ">
-                                        <textarea name="editor2" id="editor2" rows="10" cols="80">
-                                            Gợi ý trả lời
-                                        </textarea>
-                                    </div>
-                                    <div class="mh-post-Ans_Hint-button">
-                                        <button type="submit" class="btn btn-success btn-lg">Đăng gợi ý</button>
-                                    </div>
-                                </form>
-                            </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <form>
+                                <div class="mh-ckeditor ">
+                                    <textarea name="editor1" id="editor1" rows="10" cols="80">
+                                        Trả lời câu hỏi
+                                    </textarea>
+                                </div>
+                                <div class="mh-post-Ans_Hint-button">
+                                    <button type="submit" class="btn btn-success btn-lg">Đăng câu trả lời</button>
+                                </div>
+                            </form>
                         </div>
-                    </section>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <form>
+                                <div class="mh-ckeditor ">
+                                    <textarea name="editor2" id="editor2" rows="10" cols="80">
+                                        Gợi ý trả lời
+                                    </textarea>
+                                </div>
+                                <div class="mh-post-Ans_Hint-button">
+                                    <button type="submit" class="btn btn-success btn-lg">Đăng gợi ý</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div><!-- mh-post-Ans_Hint": end -->
             </div><!-- Mid: end -->
             <!-- Right: start -->

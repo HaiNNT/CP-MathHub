@@ -2,156 +2,155 @@
 @using CP_MathHub.Entity;
 @using CP_MathHub.Service.Helpers
 <div class="mh-answer_hint">
-    <section class="mh-tabs">
-        <input id="mh-tab-1" type="radio" name="radio-set-1" class="mh-tab-selector-1" checked="checked" />
-        <label for="mh-tab-1" class="mh-tab-label-1">@Model.Answers.Count câu trả lời</label>
-
-        <input id="mh-tab-2" type="radio" name="radio-set-1" class="mh-tab-selector-2" />
-        <label for="mh-tab-2" class="mh-tab-2 mh-tab-label-2">@Model.Hints.Count gợi ý</label>
-
-        <div class="clear-shadow"></div>
-
-        <div class="mh-tab-content">
-            <div class="mh-tab-content-1">
-
-                <div class="mh-answer_hint-body">
-                    @if (Model.Answers.Count < 1)
-                    {
-                        <p>Chưa có câu trả lời nào.</p>
-                    }
-                    @for (int i = 0; i < Model.Answers.Count; i++)
-                    {
-                        <div class="mh-answer_hint-content">
-                            <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", Model.VoteAnswerVMs.ElementAt(i))
-                                <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                    <div class="mh-answer_hint-detail-content">
-                                        @Html.Raw(Model.Answers.ElementAt(i).Content)
-                                        <span class="@(Model.Answers.ElementAt(i).EditedContents.Count > 1 ? "" : "hidden") edited-button">
-                                            -
-                                            <a onclick="loadEditedLog(@Model.Answers.ElementAt(i).Id,'Answer')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
-                                        </span>
-                                    </div>
-                                    <div class="mh-answer_hint-user_info">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="row">
-                                                    <span class="mh-time">@Html.PostCreatedTime(Model.Answers.ElementAt(i).CreatedDate, "trả lời")</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="row">
-                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                        <a href="#">
-                                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                        <a href="#">
-                                                            <span class="mh-username">@Model.Answers.ElementAt(i).Author.UserName</span>
-                                                        </a>
-                                                        <div class="detail-reputat">
-                                                            <span>@Model.Answers.ElementAt(i).Author.Reputation</span>
-                                                            <i class="fa fa-circle mh-reputation-icon"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @using (Html.BeginForm("EditAnswer", "Question", FormMethod.Post))
-                                    {
-                                        <div class="mh-ckeditor mh-answer_hint-edit-textarea">
-                                            <textarea class="mh-ckeditor-textarea editor" name="content" id="editor-@Model.Answers.ElementAt(i).Id" rows="10" cols="80">
-                                                @Model.Answers.ElementAt(i).Content
-                                            </textarea>
-                                            <input type="hidden" name="id" value="@Model.Answers.ElementAt(i).Id" />
-                                        </div>
-                                    }
-                                    <span class="mh-note-answer_hint">
-                                        <button onclick="@("closeEditAnswer()")" type="button" class="mh-note-answer_hint-close-button" value="@Model.Answers.ElementAt(i).Content">
-                                            hủy
-                                        </button>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#answers" aria-controls="answers" role="tab" data-toggle="tab">
+                @Model.Answers.Count câu trả lời
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#hints" aria-controls="hints" role="tab" data-toggle="tab">
+                @Model.Hints.Count gợi ý
+            </a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="answers">
+            <div class="mh-answer_hint-body">
+                @if (Model.Answers.Count < 1)
+                {
+                    <p>Chưa có câu trả lời nào.</p>
+                }
+                @for (int i = 0; i < Model.Answers.Count; i++)
+                {
+                    <div class="mh-answer_hint-content">
+                        <div class="row mh-answer_hint-content-row">
+                            @Html.Partial("Partials/_VotePartialView", Model.VoteAnswerVMs.ElementAt(i))
+                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                <div class="mh-answer_hint-detail-content">
+                                    @Html.Raw(Model.Answers.ElementAt(i).Content)
+                                    <span class="@(Model.Answers.ElementAt(i).EditedContents.Count > 1 ? "" : "hidden") edited-button">
+                                        -
+                                        <a onclick="loadEditedLog(@Model.Answers.ElementAt(i).Id,'Answer')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
                                     </span>
-                                    @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Answers.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Answers.ElementAt(i).UserId } })
-                                    @Html.Partial("Partials/_CommentListPartialView", Model.Answers.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id } })
                                 </div>
+                                <div class="mh-answer_hint-user_info">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                            <div class="row">
+                                                <span class="mh-time">@Html.PostCreatedTime(Model.Answers.ElementAt(i).CreatedDate, "trả lời")</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                            <div class="row">
+                                                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                                    <a href="#">
+                                                        <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                                    <a href="#">
+                                                        <span class="mh-username">@Model.Answers.ElementAt(i).Author.UserName</span>
+                                                    </a>
+                                                    <div class="detail-reputat">
+                                                        <span>@Model.Answers.ElementAt(i).Author.Reputation</span>
+                                                        <i class="fa fa-circle mh-reputation-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @using (Html.BeginForm("EditAnswer", "Question", FormMethod.Post))
+                                {
+                                    <div class="mh-ckeditor mh-answer_hint-edit-textarea">
+                                        <textarea class="mh-ckeditor-textarea editor" name="content" id="editor-@Model.Answers.ElementAt(i).Id" rows="10" cols="80">
+                                            @Model.Answers.ElementAt(i).Content
+                                        </textarea>
+                                        <input type="hidden" name="id" value="@Model.Answers.ElementAt(i).Id" />
+                                    </div>
+                                }
+                                <span class="mh-note-answer_hint">
+                                    <button onclick="@("closeEditAnswer()")" type="button" class="mh-note-answer_hint-close-button" value="@Model.Answers.ElementAt(i).Content">
+                                        hủy
+                                    </button>
+                                </span>
+                                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Answers.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Answers.ElementAt(i).UserId } })
+                                @Html.Partial("Partials/_CommentListPartialView", Model.Answers.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id } })
                             </div>
                         </div>
-                    }
-
-                </div>
-            </div>
-            <div class="mh-tab-content-2">
-
-                <div class="mh-answer_hint-body">
-                    @if (Model.Hints.Count < 1)
-                    {
-                        <p>Chưa có gợi ý nào.</p>
-                    }
-                    @for (int i = 0; i < Model.Hints.Count; i++)
-                    {
-                        <div class="mh-answer_hint-content">
-                            <div class="row mh-answer_hint-content-row">
-                                @Html.Partial("Partials/_VotePartialView", Model.VoteHintVMs.ElementAt(i))
-                                <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
-                                    <div class="mh-answer_hint-detail-content">
-                                        @Html.Raw(Model.Hints.ElementAt(i).Content)
-                                        <span class="@(Model.Hints.ElementAt(i).EditedContents.Count > 1 ? "" : "hidden") edited-button">
-                                            -
-                                            <a onclick="loadEditedLog(@Model.Hints.ElementAt(i).Id,'Answer')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
-                                        </span>
-                                    </div>
-                                    <div class="mh-answer_hint-user_info">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="row">
-                                                    <span class="mh-time">@Html.PostCreatedTime(Model.Hints.ElementAt(i).CreatedDate, "gợi ý")</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
-                                                <div class="row">
-                                                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                        <a href="#">
-                                                            <img src="~/Content/img/user.jpg" class="mh-user-avatar">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                        <a href="#">
-                                                            <span class="mh-username">@Model.Hints.ElementAt(i).Author.UserName</span>
-                                                        </a>
-                                                        <div class="detail-reputat">
-                                                            <span>@Model.Hints.ElementAt(i).Author.Reputation</span>
-                                                            <i class="fa fa-circle mh-reputation-icon"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @using (Html.BeginForm("EditAnswer", "Question", FormMethod.Post))
-                                    {
-                                        <div class="mh-ckeditor mh-answer_hint-edit-textarea">
-                                            <textarea class="mh-ckeditor-textarea editor" name="content" id="editor-@Model.Hints.ElementAt(i).Id" rows="10" cols="80">
-                                                @Model.Hints.ElementAt(i).Content
-                                            </textarea>
-                                            <input type="hidden" name="id" value="@Model.Hints.ElementAt(i).Id" />
-                                        </div>
-                                    }
-                                    <span class="mh-note-answer_hint">
-                                        <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
-                                            hủy
-                                        </button>
-                                    </span>
-                                    @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Hints.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Hints.ElementAt(i).UserId } })
-                                    @Html.Partial("Partials/_CommentListPartialView", Model.Hints.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id } })
-                                </div>
-                            </div>
-                        </div>
-                    }
-
-                </div>
+                    </div>
+                }
             </div>
         </div>
-    </section>
+        <div role="tabpanel" class="tab-pane" id="hints">
+            <div class="mh-answer_hint-body">
+                @if (Model.Hints.Count < 1)
+                {
+                    <p>Chưa có gợi ý nào.</p>
+                }
+                @for (int i = 0; i < Model.Hints.Count; i++)
+                {
+                    <div class="mh-answer_hint-content">
+                        <div class="row mh-answer_hint-content-row">
+                            @Html.Partial("Partials/_VotePartialView", Model.VoteHintVMs.ElementAt(i))
+                            <div class="col-xs-11 col-sm-11 col-md-11 mh-answer_hint-detail">
+                                <div class="mh-answer_hint-detail-content">
+                                    @Html.Raw(Model.Hints.ElementAt(i).Content)
+                                    <span class="@(Model.Hints.ElementAt(i).EditedContents.Count > 1 ? "" : "hidden") edited-button">
+                                        -
+                                        <a onclick="loadEditedLog(@Model.Hints.ElementAt(i).Id,'Answer')" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
+                                    </span>
+                                </div>
+                                <div class="mh-answer_hint-user_info">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                            <div class="row">
+                                                <span class="mh-time">@Html.PostCreatedTime(Model.Hints.ElementAt(i).CreatedDate, "gợi ý")</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                            <div class="row">
+                                                <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
+                                                    <a href="#">
+                                                        <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
+                                                    <a href="#">
+                                                        <span class="mh-username">@Model.Hints.ElementAt(i).Author.UserName</span>
+                                                    </a>
+                                                    <div class="detail-reputat">
+                                                        <span>@Model.Hints.ElementAt(i).Author.Reputation</span>
+                                                        <i class="fa fa-circle mh-reputation-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @using (Html.BeginForm("EditAnswer", "Question", FormMethod.Post))
+                                {
+                                    <div class="mh-ckeditor mh-answer_hint-edit-textarea">
+                                        <textarea class="mh-ckeditor-textarea editor" name="content" id="editor-@Model.Hints.ElementAt(i).Id" rows="10" cols="80">
+                                            @Model.Hints.ElementAt(i).Content
+                                        </textarea>
+                                        <input type="hidden" name="id" value="@Model.Hints.ElementAt(i).Id" />
+                                    </div>
+                                }
+                                <span class="mh-note-answer_hint">
+                                    <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
+                                        hủy
+                                    </button>
+                                </span>
+                                @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Hints.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Hints.ElementAt(i).UserId } })
+                                @Html.Partial("Partials/_CommentListPartialView", Model.Hints.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id } })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
