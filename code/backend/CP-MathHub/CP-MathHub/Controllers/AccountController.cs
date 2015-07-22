@@ -497,6 +497,7 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+            ViewBag.System = Constant.String.ProfileSystem;
             return View("Views/ProfileView", model);
         }
 
@@ -555,6 +556,7 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(103, "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+            ViewBag.System = Constant.String.ProfileSystem;
             UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             if (friendship1 != default(UserFriendship))
