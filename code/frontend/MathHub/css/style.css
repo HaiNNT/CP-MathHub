@@ -420,7 +420,7 @@ a {
     display: none;
 }
 
-.mh-preview-content img, .mh-content img {
+.mh-preview-content img, .mh-content img, .mh-content-detail img, .mh-list-content .content img, .mh-show-detail-content .content img {
     vertical-align: baseline !important;
 }
 
