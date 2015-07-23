@@ -643,17 +643,30 @@ namespace CP_MathHub.Controllers
         }
         //Post: Account/AcceptFriend
         [HttpPost]
-        public ActionResult AcceptFriendRequest(int targetUserId, string tab = "receiverequest")
+        public ActionResult AcceptFriendRequestInUserPage(int targetUserId, string tab = "receiverequest")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
             return RedirectToAction("Friend", new { @tab = tab });
         }
+        [HttpPost]
+        public ActionResult AcceptFriendRequest(int targetUserId)
+        {
+            aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("UserProfile");
+        }
 
         //Post: Account/CancelFriend
-        public ActionResult CancelFriend(int targetUserId, string tab = "receiverequest")
+        public ActionResult CancelFriend(int targetUserId)
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new { @tab = tab });
+            return RedirectToAction("UserProfile");
+        }
+
+        //Post: Account/CancelFriendInFriend
+        public ActionResult CancelFriendInUserPage(int targetUserId, string tab = "receiverequest")
+        {
+            aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("Friend", new { @tab = tab });
         }
         #endregion
         #region Activity

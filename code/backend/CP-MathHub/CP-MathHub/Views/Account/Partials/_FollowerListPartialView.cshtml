@@ -19,10 +19,10 @@
         </div>
         <div class="media-right">
             <div class="btn-group">
-                <button type="button" class="btn btn-default">
+                <a href="@Url.Action("CancelFriendInUserPage", new {targetUserId = item.Id, tab = "follower" })" class="btn btn-default">
                     <i class="fa fa-user-plus"></i>
-                    Thêm bạn
-                </button>
+                    Hủy kết bạn
+                </a>
             </div>
         </div>
     </div>

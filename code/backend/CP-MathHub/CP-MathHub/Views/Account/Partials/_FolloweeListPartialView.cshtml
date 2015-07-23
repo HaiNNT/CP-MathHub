@@ -20,10 +20,10 @@
         <div class="media-right">
             <!-- Single button -->
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-times"></i>
+                <a href="@Url.Action("CancelFriendInUserPage", new {targetUserId = item.Id, tab = "follower" })" class="btn btn-default">
+                    <i class="fa fa-user-plus"></i>
                     Hủy kết bạn
-                </button>
+                </a>
                 <!--<ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
