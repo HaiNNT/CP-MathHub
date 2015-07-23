@@ -147,11 +147,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             #endregion
 
             #region Edit Discussion
-            Mapper.CreateMap<Discussion, DiscussionEditViewModel>()
-               .ForMember(
-                   s => s.Privacy,
-                   d => d.MapFrom(m => m.Privacy)
-               );
+            Mapper.CreateMap<Discussion, DiscussionEditViewModel>();
             #endregion
         }
     }

@@ -135,7 +135,7 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Delete(friendship);
             dal.Save();
         }
-        public List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake)
+        public List<User> GetFriends(int userId, string tab = Constant.Account.String.AllFriendTab, int skip = 0, int take = 0)
         {
             List<User> friends = new List<User>();
             switch (tab)
@@ -193,7 +193,6 @@ namespace CP_MathHub.Service.Services
             }
             return friends;
         }
-
         public List<Tag> GetFavoriteTags(int userId, int take = 0)
         {
             List<Tag> tags = new List<Tag>();
@@ -220,6 +219,14 @@ namespace CP_MathHub.Service.Services
             {
                 return tags.Skip(0).Take(take).ToList();
             }           
+        }
+        public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
+        {
+            List<User> users = new List<User>();
+            users = GetFriends(userId).Where(ExpressionHelper.UserHelper.ContainNameFunc(name)).ToList();
+            if (take != 0)
+                users = users.Skip(skip).Take(take).ToList();
+            return users;
         }
     }
 }

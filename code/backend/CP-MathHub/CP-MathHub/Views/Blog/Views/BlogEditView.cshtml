@@ -54,18 +54,19 @@
                     </div>
                 </div>
             </div>
-            @*<div class="mh-create-day">
+            <div class="mh-create-day">
                 <div class="row">
                     <div class="col-sm-6 col-md-5 col-lg-4" disable="true">
                         @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
                     </div>
                     <div class="col-sm-6 col-md-7 col-lg-8">
-                        @Html.TextBoxFor(model => model.CreatedDate, new { @id = "datepicker", @style = "padding-left: 5px;", @disabled = "true" })
+                        @*@Html.TextBoxFor(model => model.PublicDate, new { @id = "datepicker", @style = "padding-left: 5px;" })*@
+                        <input type="datetime" id="datepicker" style="padding-left:5px;" name="PublicDate" value="@Model.PublicDate.Value.ToString("dd-MM-yyyy")" />
                         @Html.ValidationMessageFor(model => model.Content)
                     </div>
                 </div>
             </div>
-            <div id="mh-input-invite-div">
+            @*<div id="mh-input-invite-div">
                 <label class="mh-create-label">Mời bạn bè: </label><br />
                 <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
                 <span class="mh-tag-list"></span>

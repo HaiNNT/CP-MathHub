@@ -135,7 +135,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        //Get All Tags
         public List<Tag> GetCategorys()
         {
             List<Tag> list = new List<Tag>();
@@ -209,7 +208,6 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
-        //Search Tag
         public List<Tag> SearchTags(string searchString, int skip)
         {
             List<Tag> list = new List<Tag>();
@@ -340,7 +338,7 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        public List<User> GetUsers(string name, int skip, string tab)
+        public List<User> GetUsers(string name, int skip, string tab = "")
         {
             List<User> list = new List<User>();
             switch (tab)

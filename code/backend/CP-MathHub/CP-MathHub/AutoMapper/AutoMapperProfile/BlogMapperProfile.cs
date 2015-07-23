@@ -164,15 +164,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             #endregion
 
             #region Edit Article
-            Mapper.CreateMap<Article, ArticleEditViewModel>()
-               .ForMember(
-                   s => s.Privacy,
-                   d => d.MapFrom(m => m.Privacy)
-               )
-               .ForMember(
-                   s => s.CreatedDate,
-                   d => d.MapFrom(m => m.CreatedDate)
-               );
+            Mapper.CreateMap<Article, ArticleEditViewModel>();
             #endregion
         }
     }
