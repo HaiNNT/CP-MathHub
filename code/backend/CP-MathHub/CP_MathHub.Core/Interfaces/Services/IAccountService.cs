@@ -117,6 +117,6 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="name"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
+        List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
     }
 }
