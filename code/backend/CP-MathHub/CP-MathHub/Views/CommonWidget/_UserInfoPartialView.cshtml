@@ -2,12 +2,12 @@
 @using CP_MathHub.Service.Helpers
 @using CP_MathHub.Entity
 <div class="mh-user-info">
-    <a href="#">
+    <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
         <img src="~/Content/img/user.jpg" class="mh-user-avatar">
     </a>
     <div>
         <div>
-            <a href="#">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
                 <span class="mh-username" style="@(Model.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.Username</span>
             </a>
             <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewData["CreatedDateType"])</span>

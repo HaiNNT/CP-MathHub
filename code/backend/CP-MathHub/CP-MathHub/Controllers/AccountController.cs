@@ -551,10 +551,10 @@ namespace CP_MathHub.Controllers
         }
 
         //Get: /Account/UserProfile
-        public ActionResult UserProfile(/*int UserId*/)
+        public ActionResult UserProfile(int userId)
         {
             Entity.User user = new User();
-            user = aService.GetUser(103, "Profile");
+            user = aService.GetUser(userId, "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
             ViewBag.System = Constant.String.ProfileSystem;
             UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
@@ -607,10 +607,10 @@ namespace CP_MathHub.Controllers
         {
             int userId = User.Identity.GetUserId<int>();
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<User> friends = aService.GetFriends(105, Constant.Account.String.AllFriendTab, skip);
-            List<User> followers = aService.GetFriends(105, Constant.Account.String.FollowerTab, skip);
-            List<User> followees = aService.GetFriends(105, Constant.Account.String.FolloweeTab, skip);
-            List<User> requests = aService.GetFriends(105, Constant.Account.String.RequestTab, skip);
+            List<User> friends = aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip);
+            List<User> followers = aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip);
+            List<User> followees = aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip);
+            List<User> requests = aService.GetFriends(userId, Constant.Account.String.RequestTab, skip);
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -639,7 +639,7 @@ namespace CP_MathHub.Controllers
         public ActionResult SendFriendRequest(int targetUserId)
         {
             aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile");
+            return RedirectToAction("UserProfile", new {@userId=targetUserId});
         }
         //Post: Account/AcceptFriend
         [HttpPost]
@@ -652,14 +652,14 @@ namespace CP_MathHub.Controllers
         public ActionResult AcceptFriendRequest(int targetUserId)
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile");
+            return RedirectToAction("UserProfile", new {@userId = targetUserId});
         }
 
         //Post: Account/CancelFriend
         public ActionResult CancelFriend(int targetUserId)
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile");
+            return RedirectToAction("UserProfile", new {@userId = targetUserId });
         }
 
         //Post: Account/CancelFriendInFriend

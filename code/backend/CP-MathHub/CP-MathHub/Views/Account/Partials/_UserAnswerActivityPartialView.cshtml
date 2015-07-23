@@ -7,7 +7,7 @@
     <div>
         <i class="fa fa-square"></i>
         Bạn đã trả lời ở câu hỏi:
-        <a href="@Url.Action("Detail", "Question", new { id = item.QuestionId})">@item.QuestionId</a><br />
+        <a href="@Url.Action("Detail", "Question", new { id = item.QuestionId})">@item.Question.Title</a><br />
         <span class="mh-profile-time">@Html.PostCreatedTime(item.CreatedDate, "vào lúc")</span>
     </div>
 }
