@@ -1,5 +1,7 @@
 ﻿@model CP_MathHub.Models.Blog.ArticleEditViewModel
 @using CP_MathHub.Core.Configuration
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.Owin;
 @{
     ViewBag.Title = "Chỉnh sửa bài viết";
     ViewBag.MhPage = Constant.String.BlogEditPage;
@@ -40,33 +42,36 @@
             <div class="mh-preview-content">
             </div>
         </div>
-        <div class="mh-create-privacy">
-            <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-4">
-                    @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
-                </div>
-                <div class="col-sm-6 col-md-7 col-lg-8">
-                    @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
-                </div>
-            </div>
-        </div>
-        <div class="mh-create-day">
-            <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-4" disable="true">
-                    @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
-                </div>
-                <div class="col-sm-6 col-md-7 col-lg-8">
-                    @Html.TextBoxFor(model => model.CreatedDate, new { @id = "datepicker", @style = "padding-left: 5px;" , @disabled = "true"})
-                    @Html.ValidationMessageFor(model => model.Content)
+        if (Model.UserId == User.Identity.GetUserId<int>())
+        {
+            <div class="mh-create-privacy">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-4">
+                        @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
+                    </div>
+                    <div class="col-sm-6 col-md-7 col-lg-8">
+                        @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="mh-input-invite-div">
-            <label class="mh-create-label">Mời bạn bè: </label><br />
-            <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
-            <span class="mh-tag-list"></span>
-            <ul id="mh-invite-autocomplete-list"></ul>
-        </div>
+            @*<div class="mh-create-day">
+                <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-4" disable="true">
+                        @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
+                    </div>
+                    <div class="col-sm-6 col-md-7 col-lg-8">
+                        @Html.TextBoxFor(model => model.CreatedDate, new { @id = "datepicker", @style = "padding-left: 5px;", @disabled = "true" })
+                        @Html.ValidationMessageFor(model => model.Content)
+                    </div>
+                </div>
+            </div>
+            <div id="mh-input-invite-div">
+                <label class="mh-create-label">Mời bạn bè: </label><br />
+                <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
+                <span class="mh-tag-list"></span>
+                <ul id="mh-invite-autocomplete-list"></ul>
+            </div>*@
+        }
         <div class="mh-create-div">
             <button type="submit" class="btn btn-success btn-lg mh-create-button">Cập Nhật</button>
         </div>

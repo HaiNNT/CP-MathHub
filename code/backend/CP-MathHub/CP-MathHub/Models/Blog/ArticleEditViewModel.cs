@@ -16,6 +16,7 @@ namespace CP_MathHub.Models.Blog
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
+        public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
     }

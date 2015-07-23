@@ -16,6 +16,7 @@ namespace CP_MathHub.Models.Discussion
         [Required]
         [MinLength(20)]
         public string Content { get; set; }
+        public int UserId { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
     }
 }

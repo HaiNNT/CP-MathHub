@@ -24,6 +24,7 @@ namespace CP_MathHub.Entity
         public string ViewPoint { get; set; }
         public Nullable<GenderEnum> Gender { get; set; }
         public Nullable<EducationEnum> Education { get; set; }
+        public Nullable<int> LocationId { get; set; }
     
         public virtual User User { get; set; }
         public virtual Location Location { get; set; }
