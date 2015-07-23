@@ -102,10 +102,11 @@
 .mh-check-icon {
 	font-size: 25pt;
 	padding-top: 10px;
+    cursor: pointer;
 }
 
 .mh-checked {
-    color: green;
+    color: green !important;
 }
 
 .mh-vote-num {
@@ -187,7 +188,7 @@
 .mh-answer_hint-content {
 	margin-bottom: 10px;
     padding-right: 10px;
-      border-bottom: 1px solid #C0C0C0;
+    border-bottom: 1px solid #C0C0C0;
 }
 
 .mh-answer_hint-content:last-child {
@@ -268,7 +269,7 @@
 }
 
 .mh-sort-content {
-    height: 145px;
+    max-height: 140px;
     overflow-y: hidden;
 }
 .mh-answer_hint-edit-textarea, .mh-note-answer_hint {
@@ -362,7 +363,7 @@
 	margin-left: 15px;
 }
   /* QA User: end */
-.mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon {
+.mh-content .mh-bookmark-icon, .mh-content .mh-bookmarked-icon, .mh-content-detail .mh-bookmark-icon, .mh-content-detail .mh-bookmarked-icon {
     vertical-align: top;
     font-size: 13pt;
 }
