@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
 using CP_MathHub.Models.Account;
+using CP_MathHub.Entity;
 
 namespace CP_MathHub.Helper
 {
@@ -65,4 +66,5 @@ namespace CP_MathHub.Helper
 
         }
     }
+   
 }

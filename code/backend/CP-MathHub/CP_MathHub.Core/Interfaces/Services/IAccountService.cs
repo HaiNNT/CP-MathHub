@@ -42,13 +42,6 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountFriend(int userId);
 
         /// <summary>
-        /// Count number of followers of User
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        int CountFollower(User user);
-
-        /// <summary>
         /// Count friend request number
         /// </summary>
         /// <param name="userId"></param>
@@ -70,18 +63,25 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountFollowee(int userId);
 
         /// <summary>
-        /// Count number of followees of User
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        int CountFollowee(User user);
-
-        /// <summary>
         /// Get all friends of User
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
         List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake);
+
+        /// <summary>
+        /// Follow a user
+        /// </summary>
+        /// <param name="followeeId"></param>
+        /// <param name="followerId"></param>
+        void FollowUser(int followeeId, int followerId);
+
+        /// <summary>
+        /// Unfollow a user
+        /// </summary>
+        /// <param name="followeeId"></param>
+        /// <param name="followerId"></param>
+        void UnFollowUser(int followeeId, int followerId);
 
         /// <summary>
         /// Send friend request

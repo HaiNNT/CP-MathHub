@@ -1,7 +1,7 @@
 ﻿@using CP_MathHub.Entity
-@model List<User>
-
-@foreach (User item in Model)
+@using CP_MathHub.Models.Account
+@model List<UserItemViewModel>
+@foreach (UserItemViewModel item in Model)
 {
     <div class="media mh-profile-friend">
         <div class="media-left">
@@ -10,21 +10,96 @@
             </a>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">@item.UserName</h5>
-            <span>đang theo dõi bạn</span><br/>
-            <button type="button" class="btn btn-default mh-profile-follow_unfollow-button">
-                <i class="fa fa-rss"></i>
-                Theo dõi
-            </button>
+            <h5 class="media-heading">@item.User.UserName</h5>
+            <span>đang theo dõi bạn</span><br />
+            @if (!item.FollowStatus)
+            {
+                using (Html.BeginForm("FollowFriendInUserPage", "Account", FormMethod.Post))
+                {
+                    <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                    <input type="hidden" name="tab" value="follower" />
+                    <button type="submit" class="btn btn-default mh-profile-follow_unfollow-button">
+                        <i class="fa fa-rss"></i>
+                        Theo dõi
+                    </button>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("UnFollowFriendInUserPage", "Account", FormMethod.Post))
+                {
+                    <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                    <input type="hidden" name="tab" value="follower" />
+                    <button type="submit" class="btn btn-default mh-profile-follow_unfollow-button">
+                        <i class="fa fa-check"></i>
+                        Bỏ Theo dõi
+                    </button>
+                }
+            }
+
         </div>
         <div class="media-right">
             <div class="btn-group">
-                <a href="@Url.Action("CancelFriendInUserPage", new {targetUserId = item.Id, tab = "follower" })" class="btn btn-default">
-                    <i class="fa fa-user-plus"></i>
-                    Hủy kết bạn
-                </a>
+                @switch (item.RequestStatus)
+                {
+                    case FriendStatusEnum.ActiveRequesting:
+                        using (Html.BeginForm("CancelFriendInUserPage", "Account", FormMethod.Post))
+                        {
+                            <div class="btn-group">
+                                <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                                <input type="hidden" name="tab" value="follower" />
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-user-times"></i>
+                                    Hủy lời mời kết bạn
+                                </button>
+                            </div>
+                        }
+                        break;
+                    case FriendStatusEnum.Friend:
+                        using (Html.BeginForm("CancelFriendInUserPage", "Account", FormMethod.Post))
+                        {
+                            <div class="btn-group">
+                                <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                                <input type="hidden" name="tab" value="follower" />
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-check"></i>
+                                    Bỏ bạn bè
+                                </button>
+                            </div>
+                        }
+                        break;
+                    case FriendStatusEnum.Blocked:
+                        break;
+                    case FriendStatusEnum.PasssiveRequesting:
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-plus"></i>
+                            Trả lời lời mời kết bạn
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("AcceptFriendRequestInUserPage", new { targetUserId = item.User.Id, tab ="follower" })">Chấp nhận</a></li>
+                            <li><a href="@Url.Action("CancelFriendInUserPage", new { targetUserId = item.User.Id, tab ="follower" })">Từ chối</a></li>
+                        </ul>
+                    </div>
+                        break;
+                    case FriendStatusEnum.Stranger:
+                        using (Html.BeginForm("SendFriendRequestInUserPage", "Account", FormMethod.Post))
+                        {
+                            <div class="btn-group">
+                                <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                                <input type="hidden" name="tab" value="follower" />
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-user-plus"></i>
+                                    Thêm bạn
+                                </button>
+                            </div>
+                        }
+                        break;
+                    default:
+                        break;
+                }
             </div>
         </div>
     </div>
 }
-

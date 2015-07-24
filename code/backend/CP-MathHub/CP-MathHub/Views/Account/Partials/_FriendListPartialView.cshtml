@@ -1,8 +1,7 @@
-﻿
-@using CP_MathHub.Entity
-@model List<User>
-
-@foreach (User item in Model)
+﻿@using CP_MathHub.Entity
+@using CP_MathHub.Models.Account
+@model List<UserItemViewModel>
+@foreach (UserItemViewModel item in Model)
 {
     <div class="media mh-profile-friend">
         <div class="media-left">
@@ -11,23 +10,29 @@
             </a>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">@item.UserName</h5>
+            <h5 class="media-heading">@item.User.UserName</h5>
         </div>
         <div class="media-right">
-            <!-- Single button -->
-            <div class="btn-group">
-                <a href="@Url.Action("CancelFriendInUserPage", new { targetUserId = item.Id, tab = "allfriend" })" class="btn btn-default dropdown-toggle">
-                    <i class="fa fa-times"></i>
+            @using (Html.BeginForm("CancelFriendInUserPage", "Account", FormMethod.Post))
+            {
+                <input type="hidden" name="targetUserId" value="@item.User.Id" />
+                <input type="hidden" name="tab" value="allfriend" />
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-user-times"></i>
                     Hủy kết bạn
-                </a>
+                </button>
+                @*<a href="@Url.Action("CancelFriendInUserPage", new { targetUserId = item.Id, tab = "allfriend" })" class="btn btn-default dropdown-toggle">
+                        <i class="fa fa-times"></i>
+                        Hủy kết bạn
+                    </a>*@
                 <!--<ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>-->
-            </div>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>-->
+            }
         </div>
     </div>
 }
