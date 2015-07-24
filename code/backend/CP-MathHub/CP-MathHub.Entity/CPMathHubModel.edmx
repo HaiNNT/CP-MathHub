@@ -278,10 +278,6 @@
       <End Role="ParentLocation" EntitySet="Locations" />
       <End Role="ChildrenLocation" EntitySet="Locations" />
     </AssociationSet>
-    <AssociationSet Name="LocationProfile" Association="CPMathHubModel.Store.LocationProfile">
-      <End Role="Location" EntitySet="Locations" />
-      <End Role="Profile" EntitySet="Profiles" />
-    </AssociationSet>
     <AssociationSet Name="UserActivity" Association="CPMathHubModel.Store.UserActivity">
       <End Role="User" EntitySet="Users" />
       <End Role="Activity" EntitySet="Activities" />
@@ -297,6 +293,10 @@
     <AssociationSet Name="UserUserLogin" Association="CPMathHubModel.Store.UserUserLogin">
       <End Role="User" EntitySet="Users" />
       <End Role="UserLogin" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="ProfileLocation" Association="CPMathHubModel.Store.ProfileLocation">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Location" EntitySet="Locations" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
@@ -371,6 +371,7 @@
     <Property Name="ViewPoint" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Gender" Type="int" Nullable="true" />
     <Property Name="Education" Type="int" Nullable="true" />
+    <Property Name="LocationId" Type="int" Nullable="true" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tags">
@@ -660,7 +661,6 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ZipCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ParentId" Type="int" Nullable="false" />
-    <Property Name="Profile_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserClaims">
     <Key>
@@ -1278,18 +1278,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="LocationProfile">
-    <End Role="Location" Type="CPMathHubModel.Store.Locations" Multiplicity="*" />
-    <End Role="Profile" Type="CPMathHubModel.Store.Profiles" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Profile">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Location">
-        <PropertyRef Name="Profile_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="UserActivity">
     <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1337,6 +1325,18 @@
       </Principal>
       <Dependent Role="UserLogin">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfileLocation">
+    <End Role="Profile" Type="CPMathHubModel.Store.Profiles" Multiplicity="*" />
+    <End Role="Location" Type="CPMathHubModel.Store.Locations" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="LocationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1883,10 +1883,6 @@
             <End Role="ParentLocation" EntitySet="Locations" />
             <End Role="ChildrenLocation" EntitySet="Locations" />
           </AssociationSet>
-          <AssociationSet Name="LocationProfile" Association="CPMathHubModel.LocationProfile">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
           <AssociationSet Name="UserActivity" Association="CPMathHubModel.UserActivity">
             <End Role="User" EntitySet="Users" />
             <End Role="Activity" EntitySet="Activities" />
@@ -1904,6 +1900,10 @@
           <AssociationSet Name="UserUserLogin" Association="CPMathHubModel.UserUserLogin">
             <End Role="User" EntitySet="Users" />
             <End Role="UserLogin" EntitySet="UserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="ProfileLocation" Association="CPMathHubModel.ProfileLocation">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Location" EntitySet="Locations" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
@@ -2019,7 +2019,8 @@
           <NavigationProperty Name="User" Relationship="CPMathHubModel.ProfileUser" FromRole="Profile" ToRole="User" />
           <Property Name="Gender" Type="CPMathHubModel.GenderEnum" Nullable="true" />
           <Property Name="Education" Type="CPMathHubModel.EducationEnum" Nullable="true" />
-          <NavigationProperty Name="Location" Relationship="CPMathHubModel.LocationProfile" FromRole="Profile" ToRole="Location" />
+          <NavigationProperty Name="Location" Relationship="CPMathHubModel.ProfileLocation" FromRole="Profile" ToRole="Location" />
+          <Property Name="LocationId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="ProfileUser">
           <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="0..1" />
@@ -2915,7 +2916,7 @@
           <NavigationProperty Name="ChildrenLocations" Relationship="CPMathHubModel.LocationLocation" FromRole="ParentLocation" ToRole="ChildrenLocation" />
           <NavigationProperty Name="ParentLocation" Relationship="CPMathHubModel.LocationLocation" FromRole="ChildrenLocation" ToRole="ParentLocation" />
           <Property Name="ParentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Profile" Relationship="CPMathHubModel.LocationProfile" FromRole="Location" ToRole="Profile" />
+          <NavigationProperty Name="Profiles" Relationship="CPMathHubModel.ProfileLocation" FromRole="Location" ToRole="Profile" />
         </EntityType>
         <Association Name="LocationLocation">
           <End Type="CPMathHubModel.Location" Role="ParentLocation" Multiplicity="1" >
@@ -2930,10 +2931,6 @@
               <PropertyRef Name="ParentId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="LocationProfile">
-          <End Type="CPMathHubModel.Location" Role="Location" Multiplicity="0..1" />
-          <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="1" />
         </Association>
         <Association Name="UserActivity">
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
@@ -2995,6 +2992,18 @@
             </Principal>
             <Dependent Role="UserLogin">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProfileLocation">
+          <End Type="CPMathHubModel.Profile" Role="Profile" Multiplicity="*" />
+          <End Type="CPMathHubModel.Location" Role="Location" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3093,6 +3102,7 @@
           <ScalarProperty Name="ViewPoint" ColumnName="ViewPoint" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -3551,14 +3561,6 @@
       </EndProperty>
       <EndProperty Name="Followee">
         <ScalarProperty Name="Id" ColumnName="Followers_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="LocationProfile" TypeName="CPMathHubModel.LocationProfile" StoreEntitySet="Locations">
-      <EndProperty Name="Profile">
-        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
-      </EndProperty>
-      <EndProperty Name="Location">
-        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserActivity" TypeName="CPMathHubModel.UserActivity" StoreEntitySet="Activities">

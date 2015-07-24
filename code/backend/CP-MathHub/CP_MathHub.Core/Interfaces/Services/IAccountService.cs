@@ -110,5 +110,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <param name="targetUserId"></param>
         void CancelFriend(int userId, int targetUserId);
+
+        /// <summary>
+        /// Search friend of an user by friend name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
     }
 }

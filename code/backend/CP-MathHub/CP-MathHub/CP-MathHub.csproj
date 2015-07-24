@@ -672,7 +672,6 @@
     <Content Include="Views\Account\Layouts\_ProfileLayout.cshtml" />
     <Content Include="Views\Account\Views\ProfileView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FavoriteTagWidget.cshtml" />
-    <Content Include="Views\Discussion\Views\DiscussionEditedView.cshtml" />
     <Content Include="Views\CommonWidget\_BookmarkPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_EditedLogPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_FriendLayout.cshtml" />

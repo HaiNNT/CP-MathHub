@@ -16,7 +16,7 @@ namespace CP_MathHub.Models.Blog
         [MinLength(20)]
         public string Content { get; set; }
         [DataType(DataType.Date)]
-        public DateTime PublicDate { get; set; }
+        public Nullable<DateTime> PublicDate { get; set; }
         public MainPostPrivacyEnum Privacy { get; set; }
         public List<int> TagIds { get; set; }
         public List<int> Invitations { get; set; }

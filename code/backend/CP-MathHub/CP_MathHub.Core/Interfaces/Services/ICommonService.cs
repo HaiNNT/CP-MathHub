@@ -110,7 +110,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get list user by Name with tab filter
         /// </summary>
         /// <returns></returns>
-        List<User> GetUsers(string name, int skip, string tab);
+        List<User> GetUsers(string name, int skip, string tab = "");
 
         /// <summary>
         /// Get list user by tab filter

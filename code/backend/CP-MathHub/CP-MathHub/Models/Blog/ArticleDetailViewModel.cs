@@ -11,7 +11,7 @@ namespace CP_MathHub.Models.Blog
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public Nullable<DateTime> PublicDate { get; set; }
         public DateTime LastEditedDate { get; set; }
         public int View { get; set; }
         public string Title { get; set; }

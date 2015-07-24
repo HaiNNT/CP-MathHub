@@ -42,7 +42,7 @@ namespace CP_MathHub.Controllers
 
             for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
                     articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
@@ -56,7 +56,7 @@ namespace CP_MathHub.Controllers
                         .ToList();
                 for (int i = 0; i < articlePreviewVMs.Count; i++)
                 {
-                    articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                    articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                     if (Request.IsAuthenticated)
                         articlePreviewVMs.ElementAt(i).Bookmarked = 
                             articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
@@ -99,7 +99,7 @@ namespace CP_MathHub.Controllers
 
             for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
                     articlePreviewVMs.ElementAt(i).Bookmarked =
                             articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
@@ -155,7 +155,7 @@ namespace CP_MathHub.Controllers
 
             for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
                     articlePreviewVMs.ElementAt(i).Bookmarked =
                             articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
@@ -196,7 +196,7 @@ namespace CP_MathHub.Controllers
 
             for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
                     articlePreviewVMs.ElementAt(i).Bookmarked =
                             articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
@@ -238,7 +238,7 @@ namespace CP_MathHub.Controllers
                     .ToList();
             for (int i = 0; i < articlePreviewVMs.Count; i++)
             {
-                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).CreatedDate;
+                articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
                     articlePreviewVMs.ElementAt(i).Bookmarked =
                             articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
@@ -283,7 +283,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
-            Article article = bService.GetArticle(id);
+            Article article = bService.GetArticle(id, User.Identity.GetUserId<int>());
             bService.IncludeUserForComments(article.Comments.ToList());
             bService.IncludeReplyForComments(article.Comments.ToList());
 
@@ -354,7 +354,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(int id)
         {
             ArticleEditViewModel articleEditVM = new ArticleEditViewModel();
-            Article article = bService.GetArticle(id);
+            Article article = bService.GetArticle(id, User.Identity.GetUserId<int>());
             articleEditVM = Mapper.Map<Article, ArticleEditViewModel>(article);
             ViewBag.System = Constant.String.BlogSystem;
             return View("Views/BlogEditView", articleEditVM);
@@ -365,21 +365,21 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(ArticleEditViewModel articleEditVM)
         {
             Article article = bService.GetArticle(articleEditVM.Id);
-
-            EditedLog editedlog = new EditedLog();
-            editedlog.Content = articleEditVM.Content;
-            editedlog.CreatedDate = DateTime.Now;
-            editedlog.PostId = article.Id;
-            editedlog.Title = articleEditVM.Title;
-            editedlog.UserId = User.Identity.GetUserId<int>();
-
             article.Title = articleEditVM.Title;
             article.Content = articleEditVM.Content;
             article.Privacy = articleEditVM.Privacy;
-
-            article.LastEditedDate = editedlog.CreatedDate;
-            article.EditedContents.Add(editedlog);
-
+            article.PublicDate = articleEditVM.PublicDate.Value;
+            if (article.PublicDate <= DateTime.Now)
+            {
+                EditedLog editedlog = new EditedLog();
+                editedlog.Content = articleEditVM.Content;
+                editedlog.CreatedDate = DateTime.Now;
+                editedlog.PostId = article.Id;
+                editedlog.Title = articleEditVM.Title;
+                editedlog.UserId = User.Identity.GetUserId<int>();
+                article.LastEditedDate = editedlog.CreatedDate;
+                article.EditedContents.Add(editedlog);
+            }
             bService.UpdateArticle(article);
 
             return RedirectToAction("Detail", new { id = article.Id });

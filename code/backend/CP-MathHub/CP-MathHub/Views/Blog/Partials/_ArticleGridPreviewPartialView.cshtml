@@ -6,7 +6,9 @@
 <div class="col-xs-4 @ViewData["Class"]">
     <div class="row">
         <div class="col-xs-9 col-sm-10 title">
-            <a title="@Model.Title" href="@Url.Action("Detail", new {id=Model.Id})">@(Model.Title.Length <= 39 ? Model.Title : Model.Title.Substring(0, 36) + "...")</a>
+            <a title="@Model.Title" href="@Url.Action("Detail", new {id=Model.Id})" style="@(Model.PublicDate > DateTime.Now ? "color:grey;" : "")">
+                @(Model.Title.Length <= 39 ? Model.Title : Model.Title.Substring(0, 36) + "...")
+            </a>
             @Html.Partial("../CommonWidget/_BookmarkPartialView", new ViewDataDictionary { { "UserId", Model.UserId }, { "Bookmarked", Model.Bookmarked }, { "Id", Model.Id } })
         </div>
         <div class="col-xs-3 col-sm-2">
@@ -15,7 +17,7 @@
     </div>
     <div class="mh-blog-user">
         <div class="row mh-row-time">
-            <span>@Html.PostCreatedTime(Model.CreatedDate, (string)ViewBag.CreatedDateType)</span>
+            <span>@Html.PostCreatedTime(Model.PublicDate.Value, (string)ViewBag.CreatedDateType)</span>
             <span class="@(Model.Edited ? "" : "hidden") edited-button">
                 -
                 <a onclick="loadEditedLog(@Model.Id,@("\"MainPost\""))" data-toggle="modal" data-target="#history-edit" class="mh-comment-history-edit">Đã chỉnh sửa</a>
