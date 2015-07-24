@@ -456,7 +456,7 @@ a {
     cursor: pointer;
 }
 
-#mh-input-tag-div {
+#mh-input-tag-div, #mh-input-invite-div {
     position: relative;
 }
 
@@ -484,6 +484,56 @@ a {
 }
 
 #mh-tag-autocomplete-list > li > span {
+    display: none;
+}
+
+.mh-invite-list {
+    position: absolute;
+    top: 42px;
+    left: 10px;
+}
+
+.mh-invite-item {
+    margin-right: 5px;
+    font-size: 11pt;
+    background-color: #469319;
+    padding: 5px;
+    color: #fff;
+}
+
+.mh-invite-item > span {
+    margin-right: 5px;
+}
+
+.mh-invite-item > i:hover {
+    color: #B91B1B;
+    cursor: pointer;
+}
+
+#mh-invite-autocomplete-list {
+    padding: 0;
+    margin: 0;
+    background-color: #F1F9F8;
+    width: 25%;
+    border: 1px solid;
+    position: absolute;
+    top: 71px;
+    display: none;
+    z-index: 100;
+}
+
+#mh-invite-autocomplete-list > li {
+    list-style-type: none;
+    padding: 5px;
+    border-bottom: 1px solid;
+    margin-bottom: -1px;
+}
+
+#mh-invite-autocomplete-list > li > label {
+    color: #3271FF;
+}
+
+#mh-invite-autocomplete-list > li > span {
     display: none;
 }
 

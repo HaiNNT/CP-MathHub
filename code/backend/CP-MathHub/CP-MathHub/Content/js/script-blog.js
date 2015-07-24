@@ -222,7 +222,11 @@ function togglePreview() {
 	Apply date time picker
 */
 function initDateTimePicker() {
-    $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).datepicker("setDate", new Date());
+    if ($("#datepicker").val() == "") {
+        $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).datepicker("setDate", new Date());
+    } else {
+        $("#datepicker").datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
+    } 
 }
 
 /*

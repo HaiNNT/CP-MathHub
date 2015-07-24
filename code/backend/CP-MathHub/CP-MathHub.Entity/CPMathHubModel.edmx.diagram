@@ -106,13 +106,13 @@
         <AssociationConnector Association="CPMathHubModel.ReportPost" />
         <EntityTypeShape EntityType="CPMathHubModel.Location" Width="1.5" PointX="17.125" PointY="14.875" />
         <AssociationConnector Association="CPMathHubModel.LocationLocation" />
-        <AssociationConnector Association="CPMathHubModel.LocationProfile" />
         <AssociationConnector Association="CPMathHubModel.UserActivity" />
         <AssociationConnector Association="CPMathHubModel.GroupArticle" />
         <EntityTypeShape EntityType="CPMathHubModel.UserClaim" Width="1.5" PointX="0.75" PointY="15.875" />
         <AssociationConnector Association="CPMathHubModel.UserUserClaim" />
         <EntityTypeShape EntityType="CPMathHubModel.UserLogin" Width="1.5" PointX="9" PointY="17.625" />
         <AssociationConnector Association="CPMathHubModel.UserUserLogin" />
+        <AssociationConnector Association="CPMathHubModel.ProfileLocation" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -182,6 +182,7 @@ namespace CP_MathHub.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
                     aService.CreateProfile(user.Id);
+                    aService.CreatePrivacy(user.Id);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -606,11 +607,14 @@ namespace CP_MathHub.Controllers
         public ActionResult Friend(int page = 0, string tab = "allfriend")
         {
             int userId = User.Identity.GetUserId<int>();
+            Entity.User user = new User();
+            user = aService.GetUser(userId, "Profile");
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<User> friends = aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip);
-            List<User> followers = aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip);
-            List<User> followees = aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip);
-            List<User> requests = aService.GetFriends(userId, Constant.Account.String.RequestTab, skip);
+            List<UserItemViewModel> friends = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
+
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -639,33 +643,49 @@ namespace CP_MathHub.Controllers
         public ActionResult SendFriendRequest(int targetUserId)
         {
             aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new {@userId=targetUserId});
+            return RedirectToAction("UserProfile", new { @userId = targetUserId });
         }
-        //Post: Account/AcceptFriend
+        //Post: SendFriendRequestInUserPage
         [HttpPost]
+        public ActionResult SendFriendRequestInUserPage(int targetUserId, string tab="follower")
+        {
+            aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("Friend", new { @userId = targetUserId , @tab=tab});
+        }
+        //Account/AcceptFriend
         public ActionResult AcceptFriendRequestInUserPage(int targetUserId, string tab = "receiverequest")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
             return RedirectToAction("Friend", new { @tab = tab });
         }
-        [HttpPost]
+        //Account/AcceptFriend
         public ActionResult AcceptFriendRequest(int targetUserId)
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new {@userId = targetUserId});
+            return RedirectToAction("UserProfile", new { @userId = targetUserId });
         }
 
         //Post: Account/CancelFriend
         public ActionResult CancelFriend(int targetUserId)
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new {@userId = targetUserId });
+            return RedirectToAction("UserProfile", new { @userId = targetUserId });
         }
 
         //Post: Account/CancelFriendInFriend
         public ActionResult CancelFriendInUserPage(int targetUserId, string tab = "receiverequest")
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
+            return RedirectToAction("Friend", new { @tab = tab });
+        }
+        public ActionResult FollowFriendInUserPage(int targetUserId, string tab = "follower")
+        {
+            aService.FollowUser(targetUserId, User.Identity.GetUserId<int>());
+            return RedirectToAction("Friend", new { @tab = tab });
+        }
+        public ActionResult UnFollowFriendInUserPage(int targetUserId, string tab = "follower")
+        {
+            aService.UnFollowUser(targetUserId, User.Identity.GetUserId<int>());
             return RedirectToAction("Friend", new { @tab = tab });
         }
         #endregion
@@ -701,6 +721,46 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_UserQuestionActivityPartialView", questions);
             }
         }
+        #endregion
+        #region Privacy
+        //Get: /Account/Privacy
+        [HttpGet]
+        public ActionResult Privacy()
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "PrivacySetting");
+            PrivacyViewModel model = Mapper.Map<User, PrivacyViewModel>(user);
+            ViewBag.System = Constant.String.ProfileSystem;
+            return View("Views/PrivacyView", model);
+        }
+        //Post: /Account/UpdatePrivacy
+        [HttpPost]
+        public ActionResult UpdatePrivacy(PrivacyViewModel model, string Property)
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "PrivacySetting");
+
+            switch (Property)
+            {
+                case "ReceiveMail":
+                    user.PrivacySetting.ReceiveEmail = model.ReceiveEmail;
+                    break;
+                case "SendRequest":
+                    user.PrivacySetting.SendRequest = model.SendRequest;
+                    break;
+                case "SeenBlog":
+                    user.PrivacySetting.SeenBlog = model.SeenBlog;
+                    break;
+                case "Notification":
+                    user.PrivacySetting.Notification = model.Notification;
+                    break;            
+                default:
+                    break;
+            }
+            aService.UpdateUser(user);
+            return RedirectToAction("Privacy");
+        }
+
         #endregion
     }
 }

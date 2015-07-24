@@ -243,6 +243,7 @@ function searchTag() {
 function initSelectMenu() {
     $("#mh-mainpost-privacy").selectmenu();
     $("#mh-mainpost-theme").selectmenu();
+    $("#mh-mainpost-category").selectmenu();
 }
 
 /*

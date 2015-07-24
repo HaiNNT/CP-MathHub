@@ -135,7 +135,6 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        //Get All Tags
         public List<Tag> GetCategorys()
         {
             List<Tag> list = new List<Tag>();
@@ -209,7 +208,6 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             return true;
         }
-        //Search Tag
         public List<Tag> SearchTags(string searchString, int skip)
         {
             List<Tag> list = new List<Tag>();
@@ -340,7 +338,7 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
-        public List<User> GetUsers(string name, int skip, string tab)
+        public List<User> GetUsers(string name, int skip, string tab = "")
         {
             List<User> list = new List<User>();
             switch (tab)
@@ -401,6 +399,22 @@ namespace CP_MathHub.Service.Services
                     break;
             }
             return list;
+        }
+        public List<Invitation> GetInvitations(List<int> userIds, int userId)
+        {
+            List<Invitation> invitations = new List<Invitation>();
+            if (userIds != null)
+            {
+                foreach (int id in userIds)
+                {
+                    Invitation invitation = new Invitation();
+                    invitation.InvitedDate = DateTime.Now;
+                    invitation.InviteeId = id;
+                    invitation.InviterId = userId;
+                    invitations.Add(invitation);
+                }
+            }
+            return invitations;
         }
         public void CommentPost(Comment comment)
         {
@@ -495,6 +509,10 @@ namespace CP_MathHub.Service.Services
         public Post GetPost(int postId, string include = "")
         {
             return dal.Repository<Post>().Include(include).GetById(postId);
+        }
+        public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
+        {
+            return aService.SearchFriend(name, userId, skip, take);
         }
     }
 }

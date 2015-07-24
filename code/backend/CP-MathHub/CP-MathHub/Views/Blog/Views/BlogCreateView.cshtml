@@ -5,7 +5,6 @@
     ViewBag.MhPage = Constant.String.BlogCreatePage;
     Layout = "~/Views/Blog/Layouts/_BlogCreateLayout.cshtml";
 }
-
 <div class="mh-top-content">
     <div class="row">
         <div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
@@ -23,7 +22,6 @@
         </div>
     </div>
 </div>
-
 <div class="mh-body-content-mid">
     @using (Html.BeginForm("Create", "Blog", FormMethod.Post))
     {
@@ -57,15 +55,14 @@
                 <div class="col-sm-6 col-md-5 col-lg-4">
                     @Html.Label("Chọn ngày đăng:", new { @class = "mh-create-label" })<br />
                 </div>
-                <div class="col-sm-6 col-md-7 col-lg-8">              
-                    @Html.TextBoxFor(model => model.PublicDate, new { @id = "datepicker", @style="padding-left: 5px;"})
+                <div class="col-sm-6 col-md-7 col-lg-8">
+                    @Html.TextBoxFor(model => model.PublicDate, new { @id = "datepicker", @style = "padding-left: 5px;" })
                     @Html.ValidationMessageFor(model => model.Content)
                 </div>
             </div>
         </div>
         <div id="mh-input-tag-div">
             <label class="mh-create-label">Gắn thẻ cho câu hỏi: </label><br />
-
             <div class="mh-create-input mh-input-tag">
                 <div id="mh-tag-list"></div>
                 <div><input type="text" id="mh-input-tag" /></div>
@@ -75,8 +72,10 @@
         </div>
         <div id="mh-input-invite-div">
             <label class="mh-create-label">Mời bạn bè: </label><br />
-            <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
-            <span class="mh-tag-list"></span>
+            <div class="mh-create-input mh-input-invite">
+                <div id="mh-invite-list"></div>
+                <div><input type="text" id="mh-input-invite" /></div>
+            </div>
             <ul id="mh-invite-autocomplete-list"></ul>
         </div>
         <div class="mh-create-div">

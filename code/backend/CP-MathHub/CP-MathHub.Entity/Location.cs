@@ -17,6 +17,7 @@ namespace CP_MathHub.Entity
         public Location()
         {
             this.ChildrenLocations = new HashSet<Location>();
+            this.Profiles = new HashSet<Profile>();
         }
     
         public int Id { get; set; }
@@ -26,6 +27,6 @@ namespace CP_MathHub.Entity
     
         public virtual ICollection<Location> ChildrenLocations { get; set; }
         public virtual Location ParentLocation { get; set; }
-        public virtual Profile Profile { get; set; }
+        public virtual ICollection<Profile> Profiles { get; set; }
     }
 }

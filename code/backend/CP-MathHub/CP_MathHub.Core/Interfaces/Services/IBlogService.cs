@@ -46,7 +46,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Article GetArticle(int id);
+        Article GetArticle(int id, int userId = 0);
 
         /// <summary>
         /// Insert Article

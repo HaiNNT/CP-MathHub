@@ -43,7 +43,7 @@ namespace CP_MathHub.Framework.Infrastructure.Repository
             int take = Constant.Integer.DefaultTake)
         {
             IQueryable<TEntity> query = dbSet;
-            query = query.AsNoTracking();
+            //query = query.AsNoTracking();
             if (filter != null)
             {
                 query = query.Where(filter);

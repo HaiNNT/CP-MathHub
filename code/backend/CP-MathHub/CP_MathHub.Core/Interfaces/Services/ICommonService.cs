@@ -110,13 +110,19 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get list user by Name with tab filter
         /// </summary>
         /// <returns></returns>
-        List<User> GetUsers(string name, int skip, string tab);
+        List<User> GetUsers(string name, int skip, string tab = "");
 
         /// <summary>
         /// Get list user by tab filter
         /// </summary>
         /// <returns></returns>
         List<User> GetUsers(int skip, string tab);
+
+        /// <summary>
+        /// Get list user by list id
+        /// </summary>
+        /// <returns></returns>
+        List<Invitation> GetInvitations(List<int> userIds, int userId);
 
         /// <summary>
         /// Comment for a post
@@ -190,5 +196,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="mainPostId"></param>
         /// <returns></returns>
         Post GetPost(int postId, string include = "");
+
+        /// <summary>
+        /// Search friend of an user by friend name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
     }
 }

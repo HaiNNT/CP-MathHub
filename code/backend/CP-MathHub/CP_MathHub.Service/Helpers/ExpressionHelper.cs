@@ -102,6 +102,15 @@ namespace CP_MathHub.Service.Helpers
             {
                 return (u => u.UserName.ToLower().Contains(name.ToLower()));
             }
+            /// <summary>
+            /// Get contain name lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Func<User, bool> ContainNameFunc(string name)
+            {
+                return (u => u.UserName.ToLower().Contains(name.ToLower()));
+            }
         }
         public class TagHelper
         {
@@ -124,7 +133,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> SubcribedArticle(User user)
             {
-                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0 && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -134,8 +143,8 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> FriendArticle(User user)
             {
-                return (a => a.Author.ActiveRelationships.Where(m => m.TargetUserId == user.Id).Count() > 0
-                            || a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0);
+                return (a => (a.Author.ActiveRelationships.Where(m => m.TargetUserId == user.Id).Count() > 0
+                            || a.Author.PassiveRelationship.Where(m => m.UserId == user.Id).Count() > 0) && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -145,7 +154,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> BookmarkArticle(User user)
             {
-                return (a => a.BookmarkUsers.Where(m => m.Id == user.Id).Count() > 0);
+                return (a => a.BookmarkUsers.Where(m => m.Id == user.Id).Count() > 0 && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -156,7 +165,8 @@ namespace CP_MathHub.Service.Helpers
             {
                 return (a => a.Comments.Count > 0
                             && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 500
-                            && (a.View > 0));
+                            && (a.View > 0)
+                            && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -167,7 +177,8 @@ namespace CP_MathHub.Service.Helpers
             {
                 return (a => a.Comments.Count > 1
                             && DbFunctions.DiffDays(a.CreatedDate, DateTime.Now) < 1000
-                            && (a.View > 500));
+                            && (a.View > 500)
+                            && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -176,7 +187,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> RecomendedArticle(User user)
             {
-                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0);
+                return (a => a.Author.Followers.Where(m => m.Id == user.Id).Count() > 0 && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>
@@ -186,6 +197,15 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> MyArticle(User user)
             {
                 return (a => a.UserId == user.Id);
+            }
+
+            /// <summary>
+            /// Get user's Article lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> UserArticle(User user)
+            {
+                return (a => a.UserId == user.Id && a.PublicDate <= DateTime.Now);
             }
 
             /// <summary>

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/14/2015 23:04:40
--- Generated from EDMX file: C:\Users\Nguyen\Desktop\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 07/23/2015 21:09:08
+-- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -418,6 +418,7 @@ CREATE TABLE [dbo].[Profiles] (
     [ViewPoint] nvarchar(max)  NULL,
     [Gender] int  NULL,
     [Education] int  NULL,
+    [LocationId] int  NULL,
     [User_Id] int  NOT NULL
 );
 GO
@@ -705,8 +706,7 @@ CREATE TABLE [dbo].[Locations] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [ZipCode] nvarchar(max)  NOT NULL,
-    [ParentId] int  NOT NULL,
-    [Profile_Id] int  NOT NULL
+    [ParentId] int  NOT NULL
 );
 GO
 
@@ -1914,21 +1914,6 @@ ON [dbo].[Locations]
     ([ParentId]);
 GO
 
--- Creating foreign key on [Profile_Id] in table 'Locations'
-ALTER TABLE [dbo].[Locations]
-ADD CONSTRAINT [FK_LocationProfile]
-    FOREIGN KEY ([Profile_Id])
-    REFERENCES [dbo].[Profiles]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_LocationProfile'
-CREATE INDEX [IX_FK_LocationProfile]
-ON [dbo].[Locations]
-    ([Profile_Id]);
-GO
-
 -- Creating foreign key on [User_Id] in table 'Activities'
 ALTER TABLE [dbo].[Activities]
 ADD CONSTRAINT [FK_UserActivity]
@@ -1987,6 +1972,21 @@ GO
 CREATE INDEX [IX_FK_UserUserLogin]
 ON [dbo].[UserLogins]
     ([UserId]);
+GO
+
+-- Creating foreign key on [LocationId] in table 'Profiles'
+ALTER TABLE [dbo].[Profiles]
+ADD CONSTRAINT [FK_ProfileLocation]
+    FOREIGN KEY ([LocationId])
+    REFERENCES [dbo].[Locations]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProfileLocation'
+CREATE INDEX [IX_FK_ProfileLocation]
+ON [dbo].[Profiles]
+    ([LocationId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'

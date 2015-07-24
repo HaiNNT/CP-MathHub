@@ -13,9 +13,9 @@ namespace CP_MathHub.Models.Account
         public int FollowerNum { get; set; }
         public int FolloweeNum { get; set; }
         public int RequestNum { get; set; }
-        public List<User> ListFriends { get; set; }
-        public List<User> ListFollowers { get; set; }
-        public List<User> ListFollowees { get; set; }
-        public List<User> ListRequested { get; set; }
+        public List<UserItemViewModel> ListFriends { get; set; }
+        public List<UserItemViewModel> ListFollowers { get; set; }
+        public List<UserItemViewModel> ListFollowees { get; set; }
+        public List<UserItemViewModel> ListRequested { get; set; }
     }
 }

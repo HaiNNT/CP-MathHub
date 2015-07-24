@@ -46,7 +46,7 @@ namespace CP_MathHub.Service.Services
             {
                 case Constant.Blog.String.HomeHomeTab:
                     list = dal.Repository<Article>()
-                                .Get(null,
+                                .Get((a => a.PublicDate <= DateTime.Now),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -117,7 +117,7 @@ namespace CP_MathHub.Service.Services
                     break;
                 default:
                     list = dal.Repository<Article>()
-                                .Get(null,
+                                .Get((a => a.PublicDate <= DateTime.Now),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -144,7 +144,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Blog.String.UserArticleTab:
                     list = dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.MyArticle(user),
+                                    ExpressionHelper.BlogHelper.UserArticle(user),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -153,7 +153,7 @@ namespace CP_MathHub.Service.Services
                 default:
                     list = dal.Repository<Article>()
                                .Get(
-                                   ExpressionHelper.BlogHelper.MyArticle(user),
+                                   ExpressionHelper.BlogHelper.UserArticle(user),
                                    (p => p.OrderByDescending(s => s.CreatedDate)),
                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                    skip
@@ -164,10 +164,10 @@ namespace CP_MathHub.Service.Services
         }
         public List<Article> GetArticles(int authorId, int skip = 0)
         {
-            return dal.Repository<Article>() //Get Question Repository
+            return dal.Repository<Article>()
                 .Get(
-                    (a => a.UserId == authorId), //Filter Question by Author
-                    (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
+                    (a => a.UserId == authorId),
+                    (p => p.OrderBy(s => s.CreatedDate)),
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip
                 ).ToList();
@@ -177,7 +177,7 @@ namespace CP_MathHub.Service.Services
             int result = dal.Repository<Article>().Table.Count(d => d.UserId == authorId);
             return result;
         }
-        
+
         public List<Article> GetRelatedArticles(MainPost mainPost, int skip = 0)
         {
             List<Article> result = new List<Article>();
@@ -186,7 +186,7 @@ namespace CP_MathHub.Service.Services
             {
                 biglist.Add(dal.Repository<Article>()
                     .Get(
-                        (a => a.Tags.Where(c => c.Id == t.Id).Count() > 0),
+                        (a => a.Tags.Where(c => c.Id == t.Id).Count() > 0 && a.PublicDate <= DateTime.Now),
                         null,
                         "",
                         0,
@@ -206,11 +206,18 @@ namespace CP_MathHub.Service.Services
             return result;
         }
 
-        public Article GetArticle(int id)
+        public Article GetArticle(int id, int userId = 0)
         {
             Article article = dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
-            article.Author = cService.GetUser(article.UserId);
-            return article;
+            if (userId == 0 || article.UserId == userId || article.PublicDate <= DateTime.Now)
+            {
+                article.Author = cService.GetUser(article.UserId);
+                return article;
+            }
+            else
+            {
+                return default(Article);
+            }
         }
         public void InsertArticle(Article article)
         {
@@ -223,7 +230,7 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Article> ienum = dal.Repository<Article>()
-                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                               .Get((a => a.Title.ToLower().Contains(searchString.ToLower()) && a.PublicDate <= DateTime.Now),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -235,7 +242,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountSearchResult(string searchString)
         {
-            return dal.Repository<Article>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+            return dal.Repository<Article>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()) && m.PublicDate <= DateTime.Now);
         }
         public void IncludeReplyForComments(List<Comment> comments)
         {
