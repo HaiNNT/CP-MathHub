@@ -1,0 +1,10 @@
+﻿@model List<User>
+@using CP_MathHub.Entity
+
+@foreach (var user in Model)
+{
+    <li onclick="addInvite(this)" class="mh-invite-autocomplete-item">
+        <label>@user.UserName</label>
+        <span>@user.Id</span>
+    </li>
+}
