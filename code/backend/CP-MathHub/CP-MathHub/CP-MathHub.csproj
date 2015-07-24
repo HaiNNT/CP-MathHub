@@ -174,6 +174,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\BindingHelper.cs" />
+    <Compile Include="Helper\ListHelper.cs" />
     <Compile Include="Migrations\201507100331103_InitialCreate.cs" />
     <Compile Include="Migrations\201507100331103_InitialCreate.Designer.cs">
       <DependentUpon>201507100331103_InitialCreate.cs</DependentUpon>
@@ -183,7 +184,9 @@
     <Compile Include="Models\Account\ActivityViewModel.cs" />
     <Compile Include="Models\Account\FriendViewModel.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
+    <Compile Include="Models\Account\PrivacyViewModel.cs" />
     <Compile Include="Models\Account\ProfileViewModel.cs" />
+    <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
@@ -688,8 +691,9 @@
     <Content Include="Views\Account\Partials\_UserDiscussionActivityPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserAnswerActivityPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_RecommendedMainPost.cshtml" />
-    <Content Include="Views\Account\Layouts\_TagsPageLayout.cshtml" />
     <Content Include="Views\Account\Partials\_FavoriteTagsPartialView.cshtml" />
+    <Content Include="Views\Account\Layouts\_PrivacyLayout.cshtml" />
+    <Content Include="Views\Account\Views\PrivacyView.cshtml" />
     <Content Include="Views\CommonWidget\_InviteAutoCompletePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

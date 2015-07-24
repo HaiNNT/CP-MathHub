@@ -68,7 +68,17 @@ namespace CP_MathHub.Service.Services
             user.Status = UserStatusEnum.Active;
             dal.Save();
         }
-
+        public void CreatePrivacy(int userId)
+        {
+            PrivacySetting privacy = new PrivacySetting();
+            privacy.User = GetUser(userId);
+            dal.Repository<PrivacySetting>().Insert(privacy);
+            User user = dal.Repository<User>().GetById(userId);
+            user.CreatedDate = DateTime.Now;
+            user.Reputation = 0;
+            user.Status = UserStatusEnum.Active;
+            dal.Save();
+        }
         public int CountFriend(int userId)
         {
             int result = dal.Repository<UserFriendship>().Table
@@ -81,30 +91,17 @@ namespace CP_MathHub.Service.Services
                 .Count(u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting);
             return result;
         }
-
-        public int CountFollower(User user)
-        {
-            int result = dal.Repository<User>().Table
-                .Count(u => u.Followees.Contains(user));
-            return result;
-        }
         public int CountFollower(int userId)
         {
             int result = dal.Repository<User>().Table
-                .Count(u => u.Followers.Where(t => t.Id == userId).Count() > 0);
+                .Count(u => u.Followees.Where(t => t.Id == userId).Count() > 0);
             return result;
         }
 
         public int CountFollowee(int userId)
         {
             int result = dal.Repository<User>().Table
-                .Count(u => u.Followees.Where(t => t.Id == userId).Count() > 0);
-            return result;
-        }
-        public int CountFollowee(User user)
-        {
-            int result = dal.Repository<User>().Table
-                .Count(u => u.Followers.Contains(user));
+                .Count(u => u.Followers.Where(t => t.Id == userId).Count() > 0);
             return result;
         }
         public void SendFriendRequest(int userId, int targetUserId)
@@ -135,6 +132,22 @@ namespace CP_MathHub.Service.Services
             dal.Repository<UserFriendship>().Delete(friendship);
             dal.Save();
         }
+        public void FollowUser(int followeeId, int followerId)
+        {
+            User followee = dal.Repository<User>().GetById(followeeId);
+            User follower = dal.Repository<User>().GetById(followerId);
+            followee.Followers.Add(follower);
+            dal.Repository<User>().Update(followee);
+            dal.Save();
+        }
+        public void UnFollowUser(int followeeId, int followerId)
+        {
+            User followee = dal.Repository<User>().GetById(followeeId);
+            User follower = dal.Repository<User>().GetById(followerId);
+            followee.Followers.Remove(follower);
+            dal.Repository<User>().Update(followee);
+            dal.Save();
+        }       
         public List<User> GetFriends(int userId, string tab = Constant.Account.String.AllFriendTab, int skip = 0, int take = 0)
         {
             List<User> friends = new List<User>();
@@ -144,7 +157,7 @@ namespace CP_MathHub.Service.Services
                     List<UserFriendship> friendShips = dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
-                            , "User,TargetUser"
+                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
                             , skip
                             , take).ToList();
                     foreach (UserFriendship friendShip in friendShips)

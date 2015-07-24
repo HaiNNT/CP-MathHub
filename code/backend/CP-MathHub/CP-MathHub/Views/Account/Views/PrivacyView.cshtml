@@ -1,0 +1,201 @@
+﻿@using CP_MathHub.Models.Account
+@model PrivacyViewModel
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Service.Helpers
+@{
+    ViewBag.Title = "Privacy";
+    Layout = "~/Views/Account/Layouts/_PrivacyLayout.cshtml";
+}
+
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-xs-12 mh-content-title">
+            <h2>
+                <i class="fa fa-lock"></i>
+                Cài đặt quyền riêng tư
+            </h2>
+        </div>
+    </div>
+</div>
+<div class="mh-home">
+    <div class="row">
+        <div class="visible-xs mh-home-tab">
+            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+            <a class="btn btn-danger btn-sm">
+                Bạn bè
+                <span class="badge mh-num-icon">42</span>
+            </a>
+            <a class="btn btn-danger btn-sm">Hoạt động</a>
+            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
+        </div>
+    </div>
+</div>
+<div class="mh-body-profile">
+    <div>
+        <h3>Quyền riêng tư cơ bản</h3>
+        <div class="mh-profile-info">
+            @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+            {
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-5">
+                        <label>Bạn có nhận mail từ hệ thống?</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="mh-profile-span-edit">@(Model.ReceiveEmail == true ? "Có" : "Không")</span>
+                        @Html.RadioListForReceiveEmailBoolean("ReceiveEmail", Model.ReceiveEmail)
+                        <input type="hidden" name="Property" value="ReceiveMail" />
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.ReceiveEmail" mh-type="radio">Hủy</button>
+                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            }
+           @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+           {
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-5">
+                    <label>Ai có thể gửi lời mời kết bạn đến bạn?</label>
+                </div>
+                <div class="col-xs-3">
+                    <span class="mh-profile-span-edit">@(Model.SendRequest != null ? Constant.Account.Dictionary.RequestSend[(int)Model.SendRequest] : "")</span>
+                    @Html.EnumDropDownListFor(m => m.SendRequest, new { @class = "mh-profile-select-edit" })
+                    <input type="hidden" name="Property" value="SendRequest" />
+                </div>
+                <div class="col-xs-4">
+                    <a href="" class="mh-profile-edit-button" mh-type="select">
+                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                    </a>
+                    <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.SendRequest.ToString()" mh-type="select">Hủy</button>
+                    <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                </div>
+            </div>
+           }
+            @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+            {
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-5">
+                        <label>Ai có thể thấy BLOG của bạn?</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="mh-profile-span-edit">@(Model.SeenBlog != null ? Constant.Account.Dictionary.SeenBlog[(int)Model.SeenBlog] : "")</span>
+                        @Html.EnumDropDownListFor(m => m.SeenBlog, new { @class = "mh-profile-select-edit" })
+                        <input type="hidden" name="Property" value="SeenBlog" />
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="select">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.SeenBlog" mh-type="select">Hủy</button>
+                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <h3>Cài đặt nhận thông báo</h3>
+        <div class="mh-profile-info">
+            <form>
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-5">
+                        <label>Khi người dùng trả lời câu hỏi của bạn</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="mh-profile-span-edit">Có</span>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-5">
+                        <label>Khi người dùng bình luận các bài viết của bạn</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="mh-profile-span-edit">Có</span>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </form>
+            <form>
+                <div class="row mh-profile-info-row">
+                    <div class="col-xs-5">
+                        <label>Khi Bạn bị BANNED tài khoản</label>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="mh-profile-span-edit">Có</span>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
+                        </label>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="" class="mh-profile-edit-button" mh-type="radio">
+                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                        </a>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
+                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section LeftPanel
+{
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
+        <div class="mh-profile-menu-div">
+            Thông tin cá nhân
+        </div>
+    </a>
+    <a href="@Url.Action("Friend")" class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Bạn bè
+            <span class="badge mh-num-icon">42</span>
+        </div>
+    </a>
+    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Hoạt động
+        </div>
+    </a>
+    <a href="@Url.Action("Privacy")" class="mh-profile-menu-button">
+        <div class="mh-profile-menu-div">
+            Quyền riêng tư
+        </div>
+    </a>
+}
+
+
+
+

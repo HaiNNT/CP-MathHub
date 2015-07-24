@@ -18,18 +18,18 @@ namespace CP_MathHub.Models.Account
         public Nullable<UserStatusEnum> Status { get; set; }
         public string PhoneNumber { get; set; }
 
-        public virtual Profile Profile { get; set; }
-        public virtual ICollection<Tag> FavoriteTags { get; set; }
-        public virtual ICollection<Accessment> Assessments { get; set; }
-        public virtual ICollection<Privilege> Privileges { get; set; }
-        public virtual PrivacySetting PrivacySetting { get; set; }
-        public virtual Image Avatar { get; set; }
+        public Profile Profile { get; set; }
+        public ICollection<Tag> FavoriteTags { get; set; }
+        public ICollection<Accessment> Assessments { get; set; }
+        public ICollection<Privilege> Privileges { get; set; }
+        public PrivacySetting PrivacySetting { get; set; }
+        public Image Avatar { get; set; }
 
-        public virtual ICollection<ProfileHistory> ProfileHistories { get; set; }
-        public virtual ICollection<Group> SubscribedGroups { get; set; }
-        public virtual ICollection<User> Followers { get; set; }
-        public virtual ICollection<User> Followees { get; set; }
-        public virtual Activity Activity { get; set; }
+        public ICollection<ProfileHistory> ProfileHistories { get; set; }
+        public ICollection<Group> SubscribedGroups { get; set; }
+        public ICollection<User> Followers { get; set; }
+        public ICollection<User> Followees { get; set; }
+        public Activity Activity { get; set; }
 
         public int FriendNumber { get; set; }
         public FriendStatusEnum RequestStatus { get; set; }

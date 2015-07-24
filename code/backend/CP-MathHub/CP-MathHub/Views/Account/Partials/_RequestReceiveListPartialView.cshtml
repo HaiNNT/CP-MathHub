@@ -1,7 +1,7 @@
 ﻿@using CP_MathHub.Entity
-@model List<User>
-
-@foreach (User item in Model)
+@using CP_MathHub.Models.Account
+@model List<UserItemViewModel>
+@foreach (UserItemViewModel item in Model)
 {
     <div class="row mh-request-friend-row">
         <div class="col-xs-7 media">
@@ -12,14 +12,14 @@
             </div>
             <div class="media-body">
                 <a>
-                    <span class="media-heading mh-request-user-name">@item.UserName</span>
+                    <span class="media-heading mh-request-user-name">@item.User.UserName</span>
                 </a><br />
-                <span>Đang sinh sống tại: @item.Profile.Address</span>
+                <span>Đang sinh sống tại: @(item.User.Profile.Address != null ? item.User.Profile.Address : "Không có thông tin")</span>
             </div>
         </div>
         <div class="col-xs-5 mh-request-friend-button">
-                <a href="@Url.Action("AcceptFriendRequestInUserPage", new { targetUserId = item.Id, tab = "receiverequest" })" class="btn btn-primary mh-request-button">Chấp nhận</a>
-                <a href="@Url.Action("CancelFriendInUserPage", new { targetUserId = item.Id, tab = "receiverequest" })" class="btn btn-default mh-request-button">Xóa yêu cầu</a>       
+                <a href="@Url.Action("AcceptFriendRequestInUserPage", new { targetUserId = item.User.Id })" class="btn btn-primary mh-request-button">Chấp nhận</a>
+                <a href="@Url.Action("CancelFriendInUserPage", new { targetUserId = item.User.Id})" class="btn btn-default mh-request-button">Xóa yêu cầu</a>       
         </div>
     </div>
 }
