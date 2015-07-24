@@ -4,7 +4,6 @@
     ViewBag.MhPage = "discussion-create";
     Layout = "~/Views/Discussion/Layouts/_DiscussionCreateLayout.cshtml";
 }
-
 <div class="mh-top-content">
     <div class="row">
         <div class="col-md-4 mh-content-title">
@@ -12,12 +11,11 @@
         </div>
     </div>
 </div>
-
 <div class="mh-home">
     <div class="row">
         <div class="col-xs-12 col-md-7 mh-home-tab">
             <h4>Chủ đề: </h4>
-            @Html.DropDownListFor(n => @*n.TagList.ElementAt(0).Id*@ n.tagId, new SelectList( Model.TagList, "Id", "Name"), new { @id = "mh-mainpost-privacy", @onchange = "selectCategory(this)"})
+            @Html.DropDownListFor(n => @*n.TagList.ElementAt(0).Id*@ n.tagId, new SelectList(Model.TagList, "Id", "Name"), new { @id = "mh-mainpost-category", @onchange = "selectCategory(this)" })
         </div>
         <div class="col-xs-12 col-md-5 mh-page-search">
             <form>
@@ -33,7 +31,6 @@
         </div>
     </div>
 </div>
-
 <div class="mh-body-content-mid">
     @using (Html.BeginForm("Create", "Discussion", FormMethod.Post))
     {
@@ -50,10 +47,9 @@
         <div class="mh-preview">
             <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
             <div class="mh-preview-content">
-
             </div>
         </div>
-        
+
         <div class="mh-create-privacy">
             <div class="row">
                 <div class="col-sm-6 col-md-5 col-lg-4">
@@ -66,10 +62,9 @@
         </div>
         <div id="mh-input-tag-div">
             <label class="mh-create-label">Gắn thẻ cho câu hỏi: </label><br />
-
             <div class="mh-create-input mh-input-tag">
                 <div id="mh-tag-list">
-                    <input id="category-input" type="hidden" name="TagIds" value="@Model.TagList.ElementAt(0).Id"/>
+                    <input id="category-input" type="hidden" name="TagIds" value="@Model.TagList.ElementAt(0).Id" />
                 </div>
                 <div><input type="text" id="mh-input-tag" /></div>
                 <i id="mh-create-tag" class="fa fa-plus-square" onclick="createTag()"></i>
@@ -78,8 +73,10 @@
         </div>
         <div id="mh-input-invite-div">
             <label class="mh-create-label">Mời bạn bè: </label><br />
-            <input type="text" class="mh-create-input mh-input-tag" id="mh-input-invite" />
-            <span class="mh-tag-list"></span>
+            <div class="mh-create-input mh-input-invite">
+                <div id="mh-invite-list"></div>
+                <div><input type="text" id="mh-input-invite" /></div>
+            </div>
             <ul id="mh-invite-autocomplete-list"></ul>
         </div>
         <div class="mh-create-div">
@@ -88,7 +85,6 @@
     }
 </div><!-- Body content Mid: end  -->
 <input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
-
 @section LeftPanel
 {
     @if (Request.IsAuthenticated)

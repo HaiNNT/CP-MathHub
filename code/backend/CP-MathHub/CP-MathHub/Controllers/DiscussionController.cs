@@ -261,6 +261,7 @@ namespace CP_MathHub.Controllers
             discussion.LastEditedDate = DateTime.Now;
             discussion.UserId = User.Identity.GetUserId<int>();
             discussion.Tags = cService.GetTags(discussionCreateVM.TagIds);
+            discussion.Invitations = cService.GetInvitations(discussionCreateVM.InviteIds, User.Identity.GetUserId<int>());
             discussion.Status = CP_MathHub.Entity.PostStatusEnum.Active;
             dService.InsertDiscussion(discussion);
 

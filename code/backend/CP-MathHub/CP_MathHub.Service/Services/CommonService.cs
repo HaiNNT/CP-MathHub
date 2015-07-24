@@ -400,6 +400,22 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        public List<Invitation> GetInvitations(List<int> userIds, int userId)
+        {
+            List<Invitation> invitations = new List<Invitation>();
+            if (userIds != null)
+            {
+                foreach (int id in userIds)
+                {
+                    Invitation invitation = new Invitation();
+                    invitation.InvitedDate = DateTime.Now;
+                    invitation.InviteeId = id;
+                    invitation.InviterId = userId;
+                    invitations.Add(invitation);
+                }
+            }
+            return invitations;
+        }
         public void CommentPost(Comment comment)
         {
             dal.Repository<Comment>().Insert(comment);
@@ -493,6 +509,10 @@ namespace CP_MathHub.Service.Services
         public Post GetPost(int postId, string include = "")
         {
             return dal.Repository<Post>().Include(include).GetById(postId);
+        }
+        public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
+        {
+            return aService.SearchFriend(name, userId, skip, take);
         }
     }
 }

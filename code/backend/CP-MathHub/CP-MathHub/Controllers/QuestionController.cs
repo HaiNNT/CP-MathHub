@@ -201,6 +201,7 @@ namespace CP_MathHub.Controllers
             question.LastEditedDate = question.CreatedDate;
             question.UserId = User.Identity.GetUserId<int>();
             question.Tags = cService.GetTags(questionVM.TagIds);
+            question.Invitations = cService.GetInvitations(questionVM.InviteIds, User.Identity.GetUserId<int>());
             question.Status = PostStatusEnum.Active;
             qService.InsertQuestion(question);
 
@@ -307,6 +308,16 @@ namespace CP_MathHub.Controllers
                     return PartialView("Partials/_TagListPartialView", tags);
             }
 
+        }
+
+        //Post: Question/InviteFriend
+        [HttpPost]
+        public ActionResult InviteFriend(string name)
+        {
+            List<User> users = new List<User>();
+            //users = cService.SearchFriend(name, User.Identity.GetUserId<int>(), 0, 5);
+            users = cService.GetUsers(name, 0).Take(5).ToList();
+            return PartialView("../CommonWidget/_InviteAutoCompletePartialView", users);
         }
 
         //Get: Question/Tags

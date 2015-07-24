@@ -697,6 +697,7 @@
     <Content Include="Views\Account\Views\UserFriendView.cshtml" />
     <Content Include="Views\Account\Partials\_UserFriendListPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserFollowerListPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\_InviteAutoCompletePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

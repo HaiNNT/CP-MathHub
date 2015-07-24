@@ -8,7 +8,7 @@
 /*
   Auto complete tag
 */
-var ids = [];
+var tagIds = [];
 
 function autocompleteTag() {
     var timeout;
@@ -27,7 +27,8 @@ function autocompleteTag() {
               for (var i = 0; i < array.length; i++) {
                   list.append(array[i]);
               }
-              list.show();
+              if (list.html() != "")
+                  list.show();
           }
       })
       .fail(function (msg) {
@@ -61,8 +62,8 @@ function addTag(item) {
     $("#mh-input-tag").val("");
     $("#mh-input-tag").focus();
     autocomplete.hide();
-    if (!ids[tagId]){
-        ids[tagId] = tagName;
+    if (!tagIds[tagId]) {
+        tagIds[tagId] = tagName;
         list.append($(item));
     }
 }
@@ -75,13 +76,92 @@ function filterAddedTag(msg) {
     var list = $(msg);
     var result = $("");
     for (var i = 0; i < list.length; i++) {
-        if (!ids[$(list[i]).find("span").text()]) {
+        if (!tagIds[$(list[i]).find("span").text()]) {
             result.push($(list[i]).clone());
-        }       
+        }
     }
     return result;
 }
 
+/*
+  Auto complete invite
+*/
+var inviteIds = [];
+
+function filterAddedInvite(msg) {
+    var list = $(msg);
+    var result = $("");
+    for (var i = 0; i < list.length; i++) {
+        if (!inviteIds[$(list[i]).find("span").text()]) {
+            result.push($(list[i]).clone());
+        }
+    }
+    return result;
+}
+
+function addInvite(item) {
+    var autocomplete = $("#mh-invite-autocomplete-list");
+    var inviteName = $(item).find("label").text();
+    var inviteId = $(item).find("span").text();
+    var hidden = "<input type='hidden' name='InviteIds' value='" + inviteId + "' />"
+    var item = "<span class='mh-invite-item'>"
+                + "<span>"
+                + inviteName
+                + "</span>"
+                + "<i class='fa fa-times-circle' onclick='removeInvite(this)'></i>"
+                + hidden
+                + "</span>";
+    var list = $("#mh-invite-list");
+    $("#mh-input-invite").val("");
+    $("#mh-input-invite").focus();
+    autocomplete.hide();
+    if (!inviteIds[inviteId]) {
+        inviteIds[inviteId] = inviteName;
+        list.append($(item));
+    }
+}
+
+function removeInvite(item) {
+    var parent = $(item).parent().remove();
+}
+
+function autocompleteInvite() {
+    var timeout;
+    var list = $("#mh-invite-autocomplete-list");
+    var load = function () {
+        clearTimeout(timeout);
+        var param = $("#mh-input-invite").val();
+        $.ajax({
+            method: "POST",
+            url: "/Question/InviteFriend",
+            data: { name: param }
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              var array = filterAddedInvite(msg);
+              for (var i = 0; i < array.length; i++) {
+                  list.append(array[i]);
+              }
+              if (list.html() != "")
+                  list.show();
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-input-invite").keypress(function () {
+        list.hide();
+        list.html("");
+        timeout = setTimeout(load, 1000);
+    });
+    $("body").click(function () {
+        list.hide();
+        list.html("");
+    });
+}
+
 $(document).ready(function () {
     autocompleteTag();
+    autocompleteInvite();
 });

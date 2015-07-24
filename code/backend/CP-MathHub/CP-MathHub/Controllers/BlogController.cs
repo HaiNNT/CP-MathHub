@@ -325,6 +325,7 @@ namespace CP_MathHub.Controllers
             article = Mapper.Map<ArticleCreateViewModel, Article>(model);
             article.UserId = User.Identity.GetUserId<int>();
             article.Tags = cService.GetTags(model.TagIds);
+            article.Invitations = cService.GetInvitations(model.InviteIds, User.Identity.GetUserId<int>());
             article.Status = PostStatusEnum.Active;
 
             bService.InsertArticle(article);
