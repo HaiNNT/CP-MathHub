@@ -14,7 +14,7 @@
                 <a>
                     <span class="media-heading mh-request-user-name">@item.User.UserName</span>
                 </a><br />
-                <span>Đang sinh sống tại: @item.User.Profile.Address</span>
+                <span>Đang sinh sống tại: @(item.User.Profile.Address != null ? item.User.Profile.Address : "Không có thông tin")</span>
             </div>
         </div>
         <div class="col-xs-5 mh-request-friend-button">

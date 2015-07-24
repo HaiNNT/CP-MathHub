@@ -84,6 +84,13 @@ namespace CP_MathHub.Service.Helpers
                 html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other, "mh-radio");
             return MvcHtmlString.Create(html);
         }
+        public static MvcHtmlString RadioListForReceiveEmailBoolean(this HtmlHelper htmlHelper, string name, Boolean? receiveEmail = default(Boolean))
+        {
+            string html = "";
+            html += InlineRadioForBoolean(true, "Có", name, receiveEmail == true, "mh-radio");
+            html += InlineRadioForBoolean(false, "Không", name, receiveEmail == false, "mh-radio");
+            return MvcHtmlString.Create(html);
+        }
 
         private static string RadioForEnum(Enum mhEnum, string display, string name, string cssClass = "")
         {
@@ -112,6 +119,22 @@ namespace CP_MathHub.Service.Helpers
             input.MergeAttribute("class", cssClass);
             input.MergeAttribute("id", name + 1);
             input.MergeAttribute("value", mhEnum.ToString());
+            if (check)
+                input.MergeAttribute("checked", "checked");
+
+            label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
+            return label.ToString(TagRenderMode.Normal);
+        }
+        private static string InlineRadioForBoolean(Boolean mhBoolean, string display, string name, bool check = false, string cssClass = "")
+        {
+            var label = new TagBuilder("label");
+            label.MergeAttribute("class", "radio-inline");
+            var input = new TagBuilder("input");
+            input.MergeAttribute("type", "radio");
+            input.MergeAttribute("name", name);
+            input.MergeAttribute("class", cssClass);
+            input.MergeAttribute("id", name + 1);
+            input.MergeAttribute("value", mhBoolean.ToString());
             if (check)
                 input.MergeAttribute("checked", "checked");
 

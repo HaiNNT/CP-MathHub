@@ -68,7 +68,17 @@ namespace CP_MathHub.Service.Services
             user.Status = UserStatusEnum.Active;
             dal.Save();
         }
-
+        public void CreatePrivacy(int userId)
+        {
+            PrivacySetting privacy = new PrivacySetting();
+            privacy.User = GetUser(userId);
+            dal.Repository<PrivacySetting>().Insert(privacy);
+            User user = dal.Repository<User>().GetById(userId);
+            user.CreatedDate = DateTime.Now;
+            user.Reputation = 0;
+            user.Status = UserStatusEnum.Active;
+            dal.Save();
+        }
         public int CountFriend(int userId)
         {
             int result = dal.Repository<UserFriendship>().Table

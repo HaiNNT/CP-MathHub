@@ -16,7 +16,7 @@
             </h2>
         </div>
     </div>
-</div>  
+</div>
 <div class="mh-home">
     <div class="row">
         <div class="visible-xs mh-home-tab">
@@ -34,74 +34,66 @@
     <div>
         <h3>Quyền riêng tư cơ bản</h3>
         <div class="mh-profile-info">
-            <form>
+            @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+            {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-5">
                         <label>Bạn có nhận mail từ hệ thống?</label>
                     </div>
                     <div class="col-xs-3">
-                        <span class="mh-profile-span-edit">Có</span>
-                        <label class="radio-inline">
-                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1" /> Có
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" class="mh-radio" name="inlineRadioOptions" id="inlineRadio2" value="2" /> Không
-                        </label>
+                        <span class="mh-profile-span-edit">@(Model.ReceiveEmail == true ? "Có" : "Không")</span>
+                        @Html.RadioListForReceiveEmailBoolean("ReceiveEmail", Model.ReceiveEmail)
+                        <input type="hidden" name="Property" value="ReceiveMail" />
                     </div>
                     <div class="col-xs-4">
                         <a href="" class="mh-profile-edit-button" mh-type="radio">
                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                         </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="radio">Hủy</button>
-                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.ReceiveEmail" mh-type="radio">Hủy</button>
+                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
-            </form>
-            <form>
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-5">
-                        <label>Ai có thể gửi lời mời kết bạn đến bạn?</label>
-                    </div>
-                    <div class="col-xs-3">
-                        <span class="mh-profile-span-edit">Mọi người</span>
-                        <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
-                        <select class="mh-profile-select-edit">
-                            <option value="1">Mọi người</option>
-                            <option value="2">Bạn của bạn bè</option>
-                        </select>
-                    </div>
-                    <div class="col-xs-4">
-                        <a href="" class="mh-profile-edit-button" mh-type="select">
-                            <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
-                        </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="select">Hủy</button>
-                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
-                    </div>
+            }
+           @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+           {
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-5">
+                    <label>Ai có thể gửi lời mời kết bạn đến bạn?</label>
                 </div>
-            </form>
-            <form>
+                <div class="col-xs-3">
+                    <span class="mh-profile-span-edit">@(Model.SendRequest != null ? Constant.Account.Dictionary.RequestSend[(int)Model.SendRequest] : "")</span>
+                    @Html.EnumDropDownListFor(m => m.SendRequest, new { @class = "mh-profile-select-edit" })
+                    <input type="hidden" name="Property" value="SendRequest" />
+                </div>
+                <div class="col-xs-4">
+                    <a href="" class="mh-profile-edit-button" mh-type="select">
+                        <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
+                    </a>
+                    <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.SendRequest.ToString()" mh-type="select">Hủy</button>
+                    <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                </div>
+            </div>
+           }
+            @using (Html.BeginForm("UpdatePrivacy", "Account", FormMethod.Post))
+            {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-5">
                         <label>Ai có thể thấy BLOG của bạn?</label>
                     </div>
                     <div class="col-xs-3">
-                        <span class="mh-profile-span-edit">Mọi người</span>
-                        <!--<input type="text" class="mh-profile-input-edit" value="Đại học" />-->
-                        <select class="mh-profile-select-edit">
-                            <option value="1">Mọi người</option>
-                            <option value="2">Bạn bè</option>
-                            <option value="2">Chỉ mình tôi</option>
-                        </select>
+                        <span class="mh-profile-span-edit">@(Model.SeenBlog != null ? Constant.Account.Dictionary.SeenBlog[(int)Model.SeenBlog] : "")</span>
+                        @Html.EnumDropDownListFor(m => m.SeenBlog, new { @class = "mh-profile-select-edit" })
+                        <input type="hidden" name="Property" value="SeenBlog" />
                     </div>
                     <div class="col-xs-4">
                         <a href="" class="mh-profile-edit-button" mh-type="select">
                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                         </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="1" mh-type="select">Hủy</button>
-                        <button type="button" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.SeenBlog" mh-type="select">Hủy</button>
+                        <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
-            </form>
+            }
         </div>
     </div>
     <div>

@@ -182,6 +182,7 @@ namespace CP_MathHub.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
                     aService.CreateProfile(user.Id);
+                    aService.CreatePrivacy(user.Id);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -722,11 +723,44 @@ namespace CP_MathHub.Controllers
         }
         #endregion
         #region Privacy
+        //Get: /Account/Privacy
+        [HttpGet]
         public ActionResult Privacy()
         {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "PrivacySetting");
+            PrivacyViewModel model = Mapper.Map<User, PrivacyViewModel>(user);
             ViewBag.System = Constant.String.ProfileSystem;
-            return View("Views/PrivacyView");
+            return View("Views/PrivacyView", model);
         }
+        //Post: /Account/UpdatePrivacy
+        [HttpPost]
+        public ActionResult UpdatePrivacy(PrivacyViewModel model, string Property)
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(User.Identity.GetUserId<int>(), "PrivacySetting");
+
+            switch (Property)
+            {
+                case "ReceiveMail":
+                    user.PrivacySetting.ReceiveEmail = model.ReceiveEmail;
+                    break;
+                case "SendRequest":
+                    user.PrivacySetting.SendRequest = model.SendRequest;
+                    break;
+                case "SeenBlog":
+                    user.PrivacySetting.SeenBlog = model.SeenBlog;
+                    break;
+                case "Notification":
+                    user.PrivacySetting.Notification = model.Notification;
+                    break;            
+                default:
+                    break;
+            }
+            aService.UpdateUser(user);
+            return RedirectToAction("Privacy");
+        }
+
         #endregion
     }
 }

@@ -35,6 +35,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         void CreateProfile(int userId);
 
         /// <summary>
+        /// Create Privacy
+        /// </summary>
+        /// <param name="userId"></param>
+        void CreatePrivacy(int userId);
+
+        /// <summary>
         /// Count number of friends of User
         /// </summary>
         /// <param name="user"></param>
