@@ -55,7 +55,7 @@ function addTag(item) {
                 + "<span>"
                 + tagName
                 + "</span>"
-                + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+                + "<i class='fa fa-times-circle' onclick='removeTag(this,"+tagId+")'></i>"
                 + hidden
                 + "</span>";
     var list = $("#mh-tag-list");
@@ -68,8 +68,9 @@ function addTag(item) {
     }
 }
 
-function removeTag(item) {
+function removeTag(item, tagId) {
     var parent = $(item).parent().remove();
+    tagIds[tagId] = undefined;
 }
 
 function filterAddedTag(msg) {
@@ -108,7 +109,7 @@ function addInvite(item) {
                 + "<span>"
                 + inviteName
                 + "</span>"
-                + "<i class='fa fa-times-circle' onclick='removeInvite(this)'></i>"
+                + "<i class='fa fa-times-circle' onclick='removeInvite(this," + inviteId + ")'></i>"
                 + hidden
                 + "</span>";
     var list = $("#mh-invite-list");
@@ -121,8 +122,9 @@ function addInvite(item) {
     }
 }
 
-function removeInvite(item) {
+function removeInvite(item, inviteId) {
     var parent = $(item).parent().remove();
+    inviteIds[inviteId] = undefined;
 }
 
 function autocompleteInvite() {
