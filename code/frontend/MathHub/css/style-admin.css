@@ -4656,6 +4656,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /* editable-sample: start */
 .editable-table .table > thead > tr > th {
     text-align: center;
+    vertical-align: middle;
 }
 .editable-table .table > tbody .mh-cell-center, #editable-sample > tbody .mh-cell-center{
     text-align: center;

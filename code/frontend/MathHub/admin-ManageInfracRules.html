@@ -288,7 +288,7 @@
                   </li>
 
                   <li>
-                      <a class="active" href="admin-ManageUserPermissionRole.html">
+                      <a href="admin-ManageUserPermissionRole.html">
                           <i class="icon-user-md"></i>
                           <span>Phân Quyền</span>
                       </a>
@@ -302,14 +302,14 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;">
+                      <a class="active" href="javascript:;">
                           <i class="icon-flag"></i>
                           <span>Quản lý vi phạm</span>
                       </a>
                       <ul class="sub">
                           <li><a href="admin-ManageInfracPosts.html">Bài viết</a></li>
                           <li><a href="admin-ManageInfracUsers.html">Người dùng</a></li>
-                          <li><a href="admin-ManageInfracRules.html">Quy định</a></li>
+                          <li class="active"><a href="admin-ManageInfracRules.html">Quy định</a></li>
                       </ul>
                   </li>
 
@@ -329,14 +329,14 @@
       <section id="main-content">
           <section class="wrapper">
               <!-- table: start -->
-              <h3>Quản lý phân quyền người dùng</h3>
+              <h3>Quản lý các quy định</h3>
               <section class="panel">
                   <div class="panel-body">
                       <div class="adv-table editable-table ">
                           <div class="clearfix">
                               <div class="btn-group">
                                   <button id="editable-sample_new" class="btn green">
-                                      Tạo chức vụ mới <i class="icon-plus"></i>
+                                      Tạo quy định mới <i class="icon-plus"></i>
                                   </button>
                               </div>
                           </div>
@@ -345,11 +345,9 @@
                               <thead>
                                   <tr>
                                       <th>STT</th>
-                                      <th>Chức vụ</th>
-                                      <th>Số điểm yêu cầu</th>
+                                      <th>Tên quy định</th>
                                       <th>Miêu tả</th>
-                                      <th>Số lượng người đạt</th>
-                                      <th>Quyền</th>
+                                      <th>Hình phạt</th>
                                       <th>Chỉnh sửa</th>
                                       <th>Xóa</th>
                                   </tr>
@@ -357,78 +355,9 @@
                               <tbody>
                                   <tr class="">
                                       <td class="mh-cell-center">1</td>
-                                      <td class ="mh-cell-center">Admin</td>
-                                      <td class="mh-cell-center">Không cần</td>
-                                      <td class="mh-cell-middle">Quản trị của trang web</td>
-                                      <td class="mh-cell-center">2</td>
-                                      <td class="center mh-cell-middle">
-                                          Toàn quyền.
-                                          <a href="" data-toggle="modal" data-target="#permission-1">Thay đổi</a>
-                                          <!-- Modal -->
-                                          <div class="modal fade" id="permission-1" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel">
-                                              <div class="modal-dialog modal-sm" role="document">
-                                                  <div class="modal-content">
-                                                      <form>
-                                                          <div class="modal-header">
-                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                              <h4 class="modal-title" id="myModalLabel">Thay đổi quyền của <span class="mh-manage-user-username">Admin</span></h4>
-                                                          </div>
-                                                          <div class="modal-body">
-                                                              <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox1" value="1"> Chỉnh sửa bài viết
-                                                              </label><br />
-                                                              <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox2" value="2"> Xem report
-                                                              </label><br />
-                                                              <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox3" value="3"> Duplicate thẻ
-                                                              </label><br />
-                                                          </div>
-                                                          <div class="modal-footer">
-                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                              <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                                                          </div>
-                                                      </form>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </td>
-                                      <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
-                                      <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-                                  </tr>
-                                  <tr class="">
-                                      <td class="mh-cell-center">2</td>
-                                      <td class="mh-cell-center">Quản lý</td>
-                                      <td class="mh-cell-center">
-                                          3000
-                                      </td>
-                                      <td class="mh-cell-middle">Moderator của trang web</td>
-                                      <td class="mh-cell-center">5</td>
-                                      <td class="center mh-cell-middle">...</td>
-                                      <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
-                                      <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-                                  </tr>
-                                  <tr class="">
-                                      <td class="mh-cell-center">3</td>
-                                      <td class="mh-cell-center">Chuyên gia</td>
-                                      <td class="mh-cell-center">
-                                          2000
-                                      </td>
-                                      <td class="mh-cell-middle">Những người có kiến thức sâu rộng về toán học</td>
-                                      <td class="mh-cell-center">10</td>
-                                      <td class="center mh-cell-middle">...</td>
-                                      <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
-                                      <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-                                  </tr>
-                                  <tr class="">
-                                      <td class="mh-cell-center">4</td>
-                                      <td class="mh-cell-center">Người dùng</td>
-                                      <td class="mh-cell-center">
-                                          0
-                                      </td>
-                                      <td class="mh-cell-middle">Là người dùng bình thường</td>
-                                      <td class="mh-cell-center">1000</td>
-                                      <td class="center mh-cell-middle">...</td>
+                                      <td class ="mh-cell-center">ABC</td>
+                                      <td class="mh-cell-middle">dasd dasdas dsada</td>
+                                      <td class="mh-cell-middle">...</td>
                                       <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
                                       <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
                                   </tr>
