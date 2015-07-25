@@ -2484,7 +2484,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PrivacySettingUser">
-          <End Type="CPMathHubModel.PrivacySetting" Role="PrivacySetting" Multiplicity="1" />
+          <End Type="CPMathHubModel.PrivacySetting" Role="PrivacySetting" Multiplicity="0..1" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
             <OnDelete Action="Cascade" />
           </End>

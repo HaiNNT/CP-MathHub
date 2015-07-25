@@ -69,6 +69,9 @@ namespace CP_MathHub
             //app.UseGoogleAuthentication(
             //    clientId: "",
             //    clientSecret: "");
+
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR();
         }
     }
 }

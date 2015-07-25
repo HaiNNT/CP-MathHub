@@ -62,21 +62,22 @@ namespace CP_MathHub.Service.Services
             Profile profile = new Profile();
             profile.User = GetUser(userId);
             dal.Repository<Profile>().Insert(profile);
-            User user = dal.Repository<User>().GetById(userId);
+            User user = GetUser(userId);
             user.CreatedDate = DateTime.Now;
             user.Reputation = 0;
             user.Status = UserStatusEnum.Active;
+            dal.Repository<User>().Update(user);
             dal.Save();
         }
         public void CreatePrivacy(int userId)
         {
             PrivacySetting privacy = new PrivacySetting();
             privacy.User = GetUser(userId);
+            privacy.Notification = 0;
+            privacy.ReceiveEmail = true;
+            privacy.SeenBlog = SeenBlogEnum.Everyone;
+            privacy.SendRequest = FriendRequestEnum.Everyone;
             dal.Repository<PrivacySetting>().Insert(privacy);
-            User user = dal.Repository<User>().GetById(userId);
-            user.CreatedDate = DateTime.Now;
-            user.Reputation = 0;
-            user.Status = UserStatusEnum.Active;
             dal.Save();
         }
         public int CountFriend(int userId)

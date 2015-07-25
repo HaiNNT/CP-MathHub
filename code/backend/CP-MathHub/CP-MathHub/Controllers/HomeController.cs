@@ -22,8 +22,11 @@ namespace CP_MathHub.Controllers
 
         public ActionResult Contact()
         {
+            return View();
+        }
 
-
+        public ActionResult DemoChat()
+        {
             return View();
         }
     }
