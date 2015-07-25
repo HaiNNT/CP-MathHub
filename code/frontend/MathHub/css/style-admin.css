@@ -4640,10 +4640,12 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-user-icon {
     width: 30px;
     height: 30px;
+    border: 1px solid #c0c0c0;
 }
 .mh-post-picture {
     width: 53.6px;
     height: 51px;
+    border: 1px solid #c0c0c0;
 }
 .mh-user-picture {
     width: 60px;
@@ -4652,23 +4654,24 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 /* Image: end*/
 /* editable-sample: start */
-#editable-manageUser > thead > tr > th {
+.editable-table .table > thead > tr > th {
     text-align: center;
 }
-#editable-manageUser > tbody .mh-cell-center {
+.editable-table .table > tbody .mh-cell-center, #editable-sample > tbody .mh-cell-center{
     text-align: center;
     vertical-align: middle;
 }
-#editable-manageUser > tbody .mh-cell-middle {
+
+.editable-table .table > tbody .mh-cell-middle {
     vertical-align: middle;
 }
-#editable-manageUser td a {
+.editable-table .table td a {
     cursor: pointer;
 }
 .mh-manage-user-username {
     font-weight: bold;
 }
-#editable-manageUser .modal-content {
+.editable-table .table .modal-content {
     text-align: left;
 }
 .mh-reputation-icon {
@@ -4688,5 +4691,26 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 .mh-history-block-row:last-child {
     border-bottom: 0px;
+}
+.editable-table .table > tbody .modal-body .mh-user-report .media-body {
+    vertical-align: middle;
+}
+.mh-admin-send-notification-body {
+    padding: 15px;
+}
+.mh-admin-send-notification-body  .row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.mh-admin-sender-input, .mh-admin-receiver-input {
+    width: 100%;
+    padding: 5px 10px;
+}
+.mh-admin-send-notification-footer {
+    text-align: right;
+    margin-top: 15px;
+}
+.mh-send-notification-button {
+      width: 230px;
 }
 /* editable-sample: end */

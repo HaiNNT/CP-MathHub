@@ -557,7 +557,44 @@
                 <div class="mh-body-profile">
                     <div class="row mh-profile-user-info">
                         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
-                            <img src="img/user.jpg" class="mh-image-user-profile" />
+                            <div class="mh-profile-images-user">
+                                <img src="img/user.jpg" class="mh-image-user-profile" />
+                                <a data-toggle="modal" data-target="#changeAvatar">
+                                    <i class="fa fa-camera mh-profile-change-picture-icon"></i>
+                                </a>
+                                <a data-toggle="modal" data-target="#changeAvatar">
+                                    <i class="fa fa-camera mh-profile-change-picture"> Cập nhật ảnh đại diện</i>
+                                </a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="changeAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Cập nhật ảnh đại diện</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row mh-profile-image-upload-take">
+                                                    <div class="col-xs-6 mh-profile-upload-picture">
+                                                        <i class="fa fa-plus"> Tải ảnh lên</i>
+                                                        <input type="file" />
+                                                    </div>
+                                                    <div class="col-xs-6 mh-profile-take-picture">
+                                                        <i class="fa fa-camera"> Chụp ảnh</i>
+                                                    </div>
+                                                </div>
+                                                <div class="mh-profile-show-image">
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mh-profie-friend-button-group">
                                 <!-- Nút kết bạn -->
                                 <!--<div class="btn-group">
