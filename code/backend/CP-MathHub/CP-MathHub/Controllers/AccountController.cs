@@ -181,8 +181,8 @@ namespace CP_MathHub.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
-                    aService.CreateProfile(user.Id);
                     aService.CreatePrivacy(user.Id);
+                    aService.CreateProfile(user.Id);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -544,6 +544,25 @@ namespace CP_MathHub.Controllers
                 case "Summary":
                     user.Profile.Summary = model.Profile.Summary;
                     break;
+                case "Password":
+                    //PasswordHasher hash = new PasswordHasher();
+                    if (UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword).Succeeded)
+                    {
+                        return RedirectToAction("MyProfile");
+                    }
+                    else
+                    {
+                        return RedirectToAction("MyProfile");
+                    }
+                    //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
+                    //    && model.NewPassword == model.ConfirmPassword)
+                    //{
+                    //    user.PasswordHash = hash.HashPassword(model.NewPassword);
+                    //}
+                    //else
+                    //{
+                        
+                    //}
                 default:
                     break;
             }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/23/2015 21:09:08
+-- Date Created: 07/25/2015 12:01:40
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -185,9 +185,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LocationLocation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [FK_LocationLocation];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LocationProfile]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [FK_LocationProfile];
-GO
 IF OBJECT_ID(N'[dbo].[FK_UserActivity]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_UserActivity];
 GO
@@ -199,6 +196,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserUserClaim]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserUserLogin]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserLogins] DROP CONSTRAINT [FK_UserUserLogin];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProfileLocation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Profiles] DROP CONSTRAINT [FK_ProfileLocation];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
