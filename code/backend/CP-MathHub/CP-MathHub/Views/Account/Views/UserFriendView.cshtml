@@ -3,27 +3,17 @@
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Service.Helpers
 @{
-    ViewBag.Title = "Friends";
+    ViewBag.Title = "UserFriend";
     Layout = "~/Views/Account/Layouts/_FriendLayout.cshtml";
 }
 
 <div class="mh-top-content">
     <div class="row">
         <div class="col-xs-12 col-sm-5 col-md-3 mh-content-title">
-            <h2>
+            <h4>
                 <i class="fa fa-users"></i>
-                Bạn bè
-            </h2>
-        </div>
-        <div class="col-xs-12 col-sm-7 col-md-9 mh-content-top-button">
-            <a class="btn btn-default" href="@Url.Action("Friend",new {tab = "receiverequest"})" role="button">
-                <span class="badge mh-num-icon">@Model.RequestNum</span>
-                Lời mời kết bạn
-            </a>
-            <a class="btn btn-default" href="#" role="button">
-                <i class="fa fa-user-plus"></i>
-                Tìm bạn
-            </a>
+                Bạn bè của @Model.UserName
+            </h4>
         </div>
     </div>
 </div>
@@ -51,20 +41,8 @@
         </li>
         <li role="presentation" class="@(ViewBag.Tab == "follower" ? "active" : "" )">
             <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
-                Người theo dõi bạn
+                Người đang theo dõi
                 <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
-            </a>
-        </li>
-        <li role="presentation" class="@(ViewBag.Tab == "followee" ? "active" : "" )">
-            <a href="#followee" aria-controls="followee" role="tab" data-toggle="tab">
-                Bạn đang theo dõi
-                <span class="mh-profile-friend-quantity">@Model.FolloweeNum</span>
-            </a>
-        </li>
-        <li role="presentation" class="@(ViewBag.Tab == "receiverequest" ? "active" : "")">
-            <a href="#ReceiveRequest" aria-controls="ReceiveRequest" role="tab" data-toggle="tab">
-                Lời mời kết bạn
-                <span class="mh-profile-friend-quantity">@Model.RequestNum</span>
             </a>
         </li>
     </ul>
@@ -91,7 +69,7 @@
                 </div>
             </div>
             <div class="row">
-                @Html.Partial("Partials/_FriendListPartialView", Model.ListFriends)
+                @Html.Partial("Partials/_UserFriendListPartialView", Model.ListFriends, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
         </div>
         <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "follower" ? "active" : "")" id="follower">
@@ -116,42 +94,7 @@
                 </div>
             </div>
             <div class="row">
-                @Html.Partial("Partials/_FollowerListPartialView", Model.ListFollowers)
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "followee" ? "active" : "")" id="followee">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h4>
-                        Kết quả cho:
-                        <span></span>
-                    </h4>
-                </div>
-                <div class="col-lg-6">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit" style="height: 34px;">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                @Html.Partial("Partials/_FolloweeListPartialView", Model.ListFollowees)
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "receiverequest" ? "active" : "")" id="ReceiveRequest">
-            <h4>
-                Trả lời
-                <span>@Model.RequestNum</span>
-                lời mời kết bạn của bạn
-            </h4>
-            <div class="mh-request-friend">
-                @Html.Partial("Partials/_RequestReceiveListPartialView", Model.ListRequested)
+                @Html.Partial("Partials/_UserFollowerListPartialView", Model.ListFollowers, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
         </div>
     </div>
@@ -172,11 +115,6 @@
     <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Hoạt động
-        </div>
-    </a>
-    <a href="@Url.Action("Privacy")" class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Quyền riêng tư
         </div>
     </a>
 }

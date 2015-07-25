@@ -315,8 +315,8 @@ namespace CP_MathHub.Controllers
         public ActionResult InviteFriend(string name)
         {
             List<User> users = new List<User>();
-            //users = cService.SearchFriend(name, User.Identity.GetUserId<int>(), 0, 5);
-            users = cService.GetUsers(name, 0).Take(5).ToList();
+            users = cService.SearchFriend(name, User.Identity.GetUserId<int>(), 0, 5);
+            //users = cService.GetUsers(name, 0).Take(5).ToList();
             return PartialView("../CommonWidget/_InviteAutoCompletePartialView", users);
         }
 

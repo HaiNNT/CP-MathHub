@@ -694,6 +694,9 @@
     <Content Include="Views\Account\Partials\_FavoriteTagsPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_PrivacyLayout.cshtml" />
     <Content Include="Views\Account\Views\PrivacyView.cshtml" />
+    <Content Include="Views\Account\Views\UserFriendView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserFriendListPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserFollowerListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_InviteAutoCompletePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

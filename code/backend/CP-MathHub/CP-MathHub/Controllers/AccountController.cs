@@ -638,55 +638,72 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_FriendListPartialView", friends);
             }
         }
+        //Account/User Friend
+        public ActionResult UserFriend(int friendId, int page = 0, string tab = "allfriend")
+        {
+            Entity.User user = new User();
+            user = aService.GetUser(friendId, "Profile");
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<UserItemViewModel> friends = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
+
+            if (page == 0)
+            {
+                FriendViewModel model = new FriendViewModel();
+                model.Id = friendId;
+                model.UserName = user.UserName;
+                model.ListFollowers = followers;
+                model.FriendNum = aService.CountFriend(friendId);
+                model.FollowerNum = aService.CountFollower(friendId);
+                model.FolloweeNum = aService.CountFollowee(friendId);
+                model.ListFriends = friends;
+                model.ListFollowees = followees;
+                model.ListRequested = requests;
+                model.RequestNum = aService.CountFriendRequest(friendId);
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                ViewBag.System = Constant.String.ProfileSystem;
+                ViewBag.Tab = tab;
+                return View("Views/UserFriendView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_UserFriendListPartialView", friends);
+            }
+        }
         //Post: SendFriendRequest
         [HttpPost]
-        public ActionResult SendFriendRequest(int targetUserId)
+        public ActionResult SendFriendRequest(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new { @userId = targetUserId });
-        }
-        //Post: SendFriendRequestInUserPage
-        [HttpPost]
-        public ActionResult SendFriendRequestInUserPage(int targetUserId, string tab="follower")
-        {
-            aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("Friend", new { @userId = targetUserId , @tab=tab});
+            return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
         //Account/AcceptFriend
-        public ActionResult AcceptFriendRequestInUserPage(int targetUserId, string tab = "receiverequest")
+        public ActionResult AcceptFriendRequest(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("Friend", new { @tab = tab });
-        }
-        //Account/AcceptFriend
-        public ActionResult AcceptFriendRequest(int targetUserId)
-        {
-            aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new { @userId = targetUserId });
+            return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
 
         //Post: Account/CancelFriend
-        public ActionResult CancelFriend(int targetUserId)
+        public ActionResult CancelFriend(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("UserProfile", new { @userId = targetUserId });
+            return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
 
-        //Post: Account/CancelFriendInFriend
-        public ActionResult CancelFriendInUserPage(int targetUserId, string tab = "receiverequest")
-        {
-            aService.CancelFriend(User.Identity.GetUserId<int>(), targetUserId);
-            return RedirectToAction("Friend", new { @tab = tab });
-        }
-        public ActionResult FollowFriendInUserPage(int targetUserId, string tab = "follower")
+        public ActionResult FollowFriend(int targetUserId, int friendId = 0, string tab = "follower", string returnPage = "UserProfile")
         {
             aService.FollowUser(targetUserId, User.Identity.GetUserId<int>());
-            return RedirectToAction("Friend", new { @tab = tab });
+            return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
-        public ActionResult UnFollowFriendInUserPage(int targetUserId, string tab = "follower")
+        public ActionResult UnFollowFriend(int targetUserId, int friendId = 0, string tab = "followee", string returnPage = "UserProfile")
         {
             aService.UnFollowUser(targetUserId, User.Identity.GetUserId<int>());
-            return RedirectToAction("Friend", new { @tab = tab });
+            return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
         #endregion
         #region Activity
@@ -753,7 +770,7 @@ namespace CP_MathHub.Controllers
                     break;
                 case "Notification":
                     user.PrivacySetting.Notification = model.Notification;
-                    break;            
+                    break;
                 default:
                     break;
             }
