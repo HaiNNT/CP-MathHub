@@ -97,5 +97,9 @@ $(document).ready(function () {
         $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
     });
     $('.image-editor').cropit();
-    $(".slider").slider();
+    $('#avatar-form').submit(function () {
+        // Move cropped image data to hidden input
+        var imageData = $('.image-editor').cropit('export');
+        $('.hidden-image-data').val(imageData);
+    });
 });

@@ -15,6 +15,7 @@
     <link href="css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/data-tables/DT_bootstrap.css" />
     <!-- Custom styles for this template -->
@@ -287,12 +288,12 @@
                       </a>
                   </li>
 
-                  <li>
+                  <!--<li>
                       <a href="admin-ManageUserPermissionRole.html">
                           <i class="icon-user-md"></i>
                           <span>Phân Quyền</span>
                       </a>
-                  </li>
+                  </li>-->
 
                   <li>
                       <a href="admin-SendNotification.html">
@@ -334,21 +335,8 @@
                   <div class="col-lg-3 col-sm-6">
                       <a href="#">
                           <section class="panel">
-                              <div class="symbol red">
-                                  <i class="icon-group"></i>
-                              </div>
-                              <div class="value">
-                                  <h1 class="count">495</h1>
-                                  <p>Người dùng</p>
-                              </div>
-                          </section>
-                      </a>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <a href="#">
-                          <section class="panel">
                               <div class="symbol green">
-                                  <i class="icon-group"></i>
+                                  <i class="fa fa-user-plus"></i>
                               </div>
                               <div class="value">
                                   <h1 class="count">495</h1>
@@ -357,24 +345,37 @@
                           </section>
                       </a>
                   </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <a href="#">
+                          <section class="panel">
+                              <div class="symbol blue">
+                                  <i class="icon-group"></i>
+                              </div>
+                              <div class="value">
+                                  <h1 class="count">495</h1>
+                                  <p>Người dùng</p>
+                              </div>
+                          </section>
+                      </a>
+                  </div>      
               </div>
-              <!--state overview end-->
-              <div class="row">
-                  <div class="col-xs-4 cols-sm-2 col-md-2 col-lg-2">
-                      <h4>Hiển thị: </h4>
-                  </div>
-                  <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                      <select name="selValue" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
-                          <option value="1">Tất cả mọi người</option>
-                          <option value="2">Quản lý</option>
-                          <option value="3">Người dùng</option>
-                      </select>
-                  </div>
-              </div>
+              <!--state overview end-->            
               <!-- table: start -->
               <section class="panel">
                   <div class="panel-body">
                       <div class="adv-table editable-table ">
+                          <div class="row">
+                              <div class="col-xs-4 cols-sm-2 col-md-2 col-lg-2">
+                                  <h4>Hiển thị: </h4>
+                              </div>
+                              <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
+                                  <select name="selValue" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
+                                      <option value="1">Tất cả mọi người</option>
+                                      <option value="2">Quản lý</option>
+                                      <option value="3">Người dùng</option>
+                                  </select>
+                              </div>
+                          </div>
                           <div class="space15"></div>
                           <table class="table table-striped table-hover table-bordered" id="editable-manageUser">
                               <thead>
@@ -384,7 +385,7 @@
                                       <th>Họ tên</th>
                                       <th>Email</th>
                                       <th>Trạng thái</th>
-                                      <th>Từng bị block</th>
+                                      <th>Từng bị khóa</th>
                                       <th>Chức vụ</th>
                                       <th></th>
                                   </tr>
@@ -546,9 +547,9 @@
                                       <td class="mh-cell-center">Chưa</td>
                                       <td class="mh-cell-center">Admin</td>
                                       <td class="mh-cell-center">
-                                          <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#blockuser1">Block</a>
+                                          <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#blockuser1">Khóa</a>
                                           <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
-                                          <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Set role</a>
+                                          <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Phân quyền</a>
                                           <!-- Modal -->
                                           <div class="modal fade" id="blockuser1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                               <div class="modal-dialog" role="document">
@@ -556,7 +557,7 @@
                                                       <form>
                                                           <div class="modal-header">
                                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                              <h4 class="modal-title" id="myModalLabel">Block tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
+                                                              <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
                                                           </div>
                                                           <div class="modal-body">
                                                               <div class="row">
@@ -573,7 +574,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Tổng số ngày bị Block</h5>
+                                                                      <h5>Tổng số ngày bị khóa</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <input id="dayresult-1"type="text" readonly value="" class="mh-sum-day-block-input" />
@@ -582,7 +583,7 @@
                                                           </div>
                                                           <div class="modal-footer">
                                                               <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                              <button type="button" class="btn btn-warning">Block</button>
+                                                              <button type="button" class="btn btn-warning">Khóa</button>
                                                           </div>
                                                       </form>
                                                   </div>
@@ -777,7 +778,7 @@
                                       </td>
                                       <td class="mh-cell-middle">Thân Văn Tâm</td>
                                       <td class="mh-cell-middle">tamtv93@gmail.com</td>
-                                      <td class="mh-cell-center">Bị Block</td>
+                                      <td class="mh-cell-center">Bị khóa</td>
                                       <td class="mh-cell-center">
                                         <a href="" data-toggle="modal" data-target="#blocked">1 lần</a>
                                           <!-- Modal -->
@@ -786,7 +787,7 @@
                                                   <div class="modal-content">
                                                       <div class="modal-header">
                                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                          <h4 class="modal-title" id="myModalLabel">Lịch sử bị Block</h4>
+                                                          <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa</h4>
                                                       </div>
                                                       <div class="modal-body">
                                                           <div class="mh-history-block-row">
@@ -805,7 +806,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Tổng số ngày bị Block</h5>
+                                                                      <h5>Tổng số ngày bị khóa</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <input type="text" readonly value="" class="mh-sum-day-block-input" />
@@ -813,7 +814,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Bị block bởi</h5>
+                                                                      <h5>Bị khóa bởi</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <h5>Quản lý - ABC</h5>
@@ -830,9 +831,9 @@
                                       </td>
                                       <td class="mh-cell-center">Admin</td>
                                       <td class="mh-cell-center">
-                                          <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#unblockuser1">Unblock</a>
+                                          <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#unblockuser1">Bỏ khóa</a>
                                           <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
-                                          <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Set role</a>
+                                          <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Phân quyền</a>
                                           <!-- Modal -->
                                           <div class="modal fade" id="unblockuser1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                               <div class="modal-dialog" role="document">
@@ -840,7 +841,7 @@
                                                       <form>
                                                           <div class="modal-header">
                                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                              <h4 class="modal-title" id="myModalLabel">Block tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
+                                                              <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
                                                           </div>
                                                           <div class="modal-body">
                                                               <div class="row">
@@ -857,7 +858,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Tổng số ngày bị Block</h5>
+                                                                      <h5>Tổng số ngày bị khóa</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <input type="text" readonly value="" class="mh-sum-day-block-input" />
@@ -865,7 +866,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Số ngày bị Block còn lại</h5>
+                                                                      <h5>Số ngày bị khóa còn lại</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <input type="text" readonly value="" class="mh-sum-day-block-input" />
@@ -873,7 +874,7 @@
                                                               </div>
                                                               <div class="row">
                                                                   <div class="col-xs-4">
-                                                                      <h5>Bị block bởi</h5>
+                                                                      <h5>Bị khóa bởi</h5>
                                                                   </div>
                                                                   <div class="col-xs-8">
                                                                       <h5>Quản lý - ABC</h5>
@@ -882,7 +883,7 @@
                                                           </div>
                                                           <div class="modal-footer">
                                                               <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                              <button type="button" class="btn btn-warning">Unblock</button>
+                                                              <button type="button" class="btn btn-warning">Bỏ khóa</button>
                                                           </div>
                                                       </form>
                                                   </div>

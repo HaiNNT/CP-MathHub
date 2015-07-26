@@ -95,7 +95,7 @@
 .mh-grid-contents .content {
 	text-align: justify;
 		max-height: 80px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 .mh-grid-contents .readmore {
 	text-align: right;
