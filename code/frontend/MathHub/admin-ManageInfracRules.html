@@ -335,9 +335,58 @@
                       <div class="adv-table editable-table ">
                           <div class="clearfix">
                               <div class="btn-group">
-                                  <button id="editable-sample_new" class="btn green">
+                                  <button id="editable-sample_new" class="btn green" data-toggle="modal" data-target="#create">
                                       Tạo quy định mới <i class="icon-plus"></i>
                                   </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                  <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Tên quy định:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" />
+                                                      </div>
+                                                  </div>
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Miêu tả:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" />
+                                                      </div>
+                                                  </div>
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Hình phạt:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <label class="radio-inline">
+                                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                                                          </label>
+                                                          <label class="radio-inline">
+                                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                                                          </label>
+                                                          <label class="radio-inline">
+                                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                                                          </label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                  <button type="button" class="btn btn-primary">Tạo mới</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                           <div class="space15"></div>
@@ -357,7 +406,38 @@
                                       <td class="mh-cell-center">1</td>
                                       <td class ="mh-cell-center">ABC</td>
                                       <td class="mh-cell-middle">dasd dasdas dsada</td>
-                                      <td class="mh-cell-middle">...</td>
+                                      <td class="mh-cell-middle">
+                                          Toàn quyền.
+                                          <a href="" data-toggle="modal" data-target="#penalty-1">Thay đổi</a>
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="penalty-1" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel">
+                                              <div class="modal-dialog modal-sm" role="document">
+                                                  <div class="modal-content">
+                                                      <form>
+                                                          <div class="modal-header">
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                              <h4 class="modal-title" id="myModalLabel">Thay đổi hình phạt của <span class="mh-manage-user-username">ABC</span></h4>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                              <label class="radio-inline">
+                                                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                                                              </label>
+                                                              <label class="radio-inline">
+                                                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                                                              </label>
+                                                              <label class="radio-inline">
+                                                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                                                              </label>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                              <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </td>
                                       <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
                                       <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
                                   </tr>
@@ -397,62 +477,13 @@
     <script src="js/common-scripts.js"></script>
     <script src="js/count.js"></script>
 
-    
-    <!-- select picker-->
-    <!--<script src="js/bootstrap-select.js"></script>
-    <script>
-        $('.selectpicker').selectpicker();
-
-        $('select[name=selValue]').val(1);
-        $('.selectpicker').selectpicker('refresh');
-       
-        $('.selectpicker.blockday').on('change', function () {
-            var temp2 = $('.selectpicker.blockday').val();
-            var total = 0;
-            for (var i = 0; i < temp2.length; i++) {
-                total += +temp2[i];
-            }
-            $('#dayresult-1').val(total + " ngày");
-        });
-        
-    </script>-->
       <!--script for this page only-->
-      <script src="js/editable-table.js"></script>
+      <script src="js/editable-table-rule.js"></script>
       <!-- END JAVASCRIPTS -->
       <script>
           jQuery(document).ready(function () {
               EditableTable.init();
           });
       </script>
-    <!--<script>
-        $('#editable-sample').dataTable({
-            "aLengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
-            ],
-            // set the initial value
-            "iDisplayLength": 5,
-            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "Hiện _MENU_ người dùng một trang",
-                "oPaginate": {
-                    "sPrevious": "Trước",
-                    "sNext": "Sau"
-                },
-                "sSearch": "Tìm kiếm",
-                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ records"
-            },
-            "aoColumnDefs": [{
-                'bSortable': false,
-                'aTargets': [0,7]
-            }
-            ]
-        });
-
-        jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-        jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-
-    </script>-->
   </body>
 </html>

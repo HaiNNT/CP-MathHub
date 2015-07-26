@@ -335,9 +335,69 @@
                       <div class="adv-table editable-table ">
                           <div class="clearfix">
                               <div class="btn-group">
-                                  <button id="editable-sample_new" class="btn green">
+                                  <button class="btn green" data-toggle="modal" data-target="#create">
                                       Tạo chức vụ mới <i class="icon-plus"></i>
                                   </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                  <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Chức vụ:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <input type="text" placeholder="Nhập tên chức vụ" class="mh-admin-row-input" />
+                                                      </div>
+                                                  </div>
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Số điểm yêu cầu:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <input type="text" placeholder="Nhập số điểm yêu cầu để đạt được chức vụ này" class="mh-admin-row-input" />
+                                                      </div>
+                                                  </div>
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Miêu tả:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <input type="text" placeholder="Nhập miêu tả cho chức vụ này" class="mh-admin-row-input" />
+                                                      </div>
+                                                  </div>
+                                                  <div class="row mh-admin-row">
+                                                      <div class="col-xs-3">
+                                                          <label>Quyền:</label>
+                                                      </div>
+                                                      <div class="col-xs-9">
+                                                          <label class="checkbox-inline">
+                                                              <input type="checkbox" id="inlineCheckbox1" value="option1"> BACACBCA
+                                                          </label>
+                                                          <label class="checkbox-inline">
+                                                              <input type="checkbox" id="inlineCheckbox2" value="option2"> ACCACAC
+                                                          </label>
+                                                          <label class="checkbox-inline">
+                                                              <input type="checkbox" id="inlineCheckbox3" value="option3"> AAAAAAA
+                                                          </label>
+                                                          <label class="checkbox-inline">
+                                                              <input type="checkbox" id="inlineCheckbox3" value="option3"> acA
+                                                          </label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                  <button type="button" class="btn btn-primary">Tạo mới</button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
                           <div class="space15"></div>
@@ -495,35 +555,5 @@
               EditableTable.init();
           });
       </script>
-    <!--<script>
-        $('#editable-sample').dataTable({
-            "aLengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
-            ],
-            // set the initial value
-            "iDisplayLength": 5,
-            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "Hiện _MENU_ người dùng một trang",
-                "oPaginate": {
-                    "sPrevious": "Trước",
-                    "sNext": "Sau"
-                },
-                "sSearch": "Tìm kiếm",
-                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ records"
-            },
-            "aoColumnDefs": [{
-                'bSortable': false,
-                'aTargets': [0,7]
-            }
-            ]
-        });
-
-        jQuery('#editable-sample_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-        jQuery('#editable-sample_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-
-    </script>-->
   </body>
 </html>
