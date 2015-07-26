@@ -1889,11 +1889,11 @@ f(x) = \sin(x) ~\Rightarrow ~ f(0) = 0
 //]]>
   </script>
   <span class="MathJax_Preview">
-    f'(x) = \cos(x) ~\Rightarrow ~ f'(0) = 1
+    f(x) = \cos(x) ~\Rightarrow ~ f(0) = 1
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f'(x) = \cos(x) ~\Rightarrow ~ f'(0) = 1
+f(x) = \cos(x) ~\Rightarrow ~ f(0) = 1
 //]]>
   </script>
   <span class="MathJax_Preview">
@@ -1962,11 +1962,11 @@ f(x) = \sin(x)
    là như sau:
   <br/>
   <span class="MathJax_Preview">
-    f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+    f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
 //]]>
   </script>
   <br/>
@@ -2636,22 +2636,22 @@ p
    chúng ta có
 
   <span class="MathJax_Preview">
-    p'(x) = 2 a x + b
+    p(x) = 2 a x + b
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-p'(x) = 2 a x + b
+p(x) = 2 a x + b
 //]]>
   </script>
   <br/>
   
 Vậy 
   <span class="MathJax_Preview">
-    b = p'(0)
+    b = p(0)
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-b = p'(0)
+b = p(0)
 //]]>
   </script>
   <br/>
@@ -2683,11 +2683,11 @@ p''(x) = 2a
   
 Vậy chúng ta có 
   <span class="MathJax_Preview">
-    c = p(0), ~~ b = p'(0), ~~ a = \frac{1}{2} p''(0).
+    c = p(0), ~~ b = p(0), ~~ a = \frac{1}{2} p''(0).
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-c = p(0), ~~ b = p'(0), ~~ a = \frac{1}{2} p''(0).
+c = p(0), ~~ b = p(0), ~~ a = \frac{1}{2} p''(0).
 //]]>
   </script>
   <br/>
@@ -2696,11 +2696,11 @@ c = p(0), ~~ b = p'(0), ~~ a = \frac{1}{2} p''(0).
 Thay các hệ số này vào công thức bậc 2, chúng ta có
 
   <span class="MathJax_Preview">
-    p(x) = a x^2 + bx + c=\frac{1}{2} p''(0) x^2 + p'(0) x + p(0)
+    p(x) = a x^2 + bx + c=\frac{1}{2} p''(0) x^2 + p(0) x + p(0)
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-p(x) = a x^2 + bx + c=\frac{1}{2} p''(0) x^2 + p'(0) x + p(0)
+p(x) = a x^2 + bx + c=\frac{1}{2} p''(0) x^2 + p(0) x + p(0)
 //]]>
   </script>
   <br/>
@@ -2758,11 +2758,11 @@ a_0 = p(0)
 Lấy đạo hàm bậc 1 chúng ta có
 
   <span class="MathJax_Preview">
-    p'(x) = 5 a_5 x^4 + 4 a_4 x^3 + 3 a_3 x^2 + 2 a_2 x + a_1
+    p(x) = 5 a_5 x^4 + 4 a_4 x^3 + 3 a_3 x^2 + 2 a_2 x + a_1
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-p'(x) = 5 a_5 x^4 + 4 a_4 x^3 + 3 a_3 x^2 + 2 a_2 x + a_1
+p(x) = 5 a_5 x^4 + 4 a_4 x^3 + 3 a_3 x^2 + 2 a_2 x + a_1
 //]]>
   </script>
   <br/>
@@ -2770,11 +2770,11 @@ p'(x) = 5 a_5 x^4 + 4 a_4 x^3 + 3 a_3 x^2 + 2 a_2 x + a_1
   
 Vậy 
   <span class="MathJax_Preview">
-    a_1 = p'(0)
+    a_1 = p(0)
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-a_1 = p'(0)
+a_1 = p(0)
 //]]>
   </script>
   <br/>
@@ -2808,11 +2808,11 @@ a_2 = \frac{p''(0)}{2}
 Lấy đạo hàm bậc 3 chúng ta có
 
   <span class="MathJax_Preview">
-    p'''(x) = 5 \times 4 \times 3 \, a_5 x^2 + 4 \times 3 \times 2 \, a_4 x + 3 \times 2 \times 1 \, a_3
+    p''(x) = 5 \times 4 \times 3 \, a_5 x^2 + 4 \times 3 \times 2 \, a_4 x + 3 \times 2 \times 1 \, a_3
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-p'''(x) = 5 \times 4 \times 3 \, a_5 x^2 + 4 \times 3 \times 2 \, a_4 x + 3 \times 2 \times 1 \, a_3
+p''(x) = 5 \times 4 \times 3 \, a_5 x^2 + 4 \times 3 \times 2 \, a_4 x + 3 \times 2 \times 1 \, a_3
 //]]>
   </script>
   <br/>
@@ -2820,11 +2820,11 @@ p'''(x) = 5 \times 4 \times 3 \, a_5 x^2 + 4 \times 3 \times 2 \, a_4 x + 3 \tim
   
 Vậy 
   <span class="MathJax_Preview">
-    a_3 = \frac{p'''(0)}{3 \times 2 \times 1} = \frac{p'''(0)}{3!}
+    a_3 = \frac{p''(0)}{3 \times 2 \times 1} = \frac{p''(0)}{3!}
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-a_3 = \frac{p'''(0)}{3 \times 2 \times 1} = \frac{p'''(0)}{3!}
+a_3 = \frac{p''(0)}{3 \times 2 \times 1} = \frac{p''(0)}{3!}
 //]]>
   </script>
   <br/>
@@ -2967,19 +2967,19 @@ p(x) = a_5 x^5 + a_4 x^4 + a_3 x^3 + a_2 x^2 + a_1 x + a_0
 //]]>
   </script>
   <span class="MathJax_Preview">
-    = \frac{p^{(5)}(0)}{5!} x^5 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p''(0)}{2!} x^2 + p'(0) x + p(0)
+    = \frac{p^{(5)}(0)}{5!} x^5 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p''(0)}{2!} x^2 + p(0) x + p(0)
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-= \frac{p^{(5)}(0)}{5!} x^5 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p''(0)}{2!} x^2 + p'(0) x + p(0)
+= \frac{p^{(5)}(0)}{5!} x^5 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p''(0)}{2!} x^2 + p(0) x + p(0)
 //]]>
   </script>
   <span class="MathJax_Preview">
-    = p(0) + p'(0) x + \frac{p''(0)}{2!} x^2 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(5)}(0)}{5!} x^5
+    = p(0) + p(0) x + \frac{p''(0)}{2!} x^2 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(5)}(0)}{5!} x^5
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-= p(0) + p'(0) x + \frac{p''(0)}{2!} x^2 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(5)}(0)}{5!} x^5
+= p(0) + p(0) x + \frac{p''(0)}{2!} x^2 + \frac{p^{(3)}(0)}{3!} x^3 + \frac{p^{(4)}(0)}{4!} x^4 + \frac{p^{(5)}(0)}{5!} x^5
 //]]>
   </script>
   <br/>
@@ -3016,11 +3016,11 @@ f(x)
     </span>
     <span style="color: purple;">
       <span class="MathJax_Preview">
-        f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+        f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
       </span>
       <script type="math/tex; mode=display">
 //<![CDATA[
-f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
 //]]>
       </script>
     </span>
@@ -3120,11 +3120,11 @@ e^x
   :
 
   <span class="MathJax_Preview">
-    f(x) = f'(x) = f''(x) = f^{(3)}(x) = f^{(4)}(x) = f^{(5)}(x) = \dots = e^x
+    f(x) = f(x) = f''(x) = f^{(3)}(x) = f^{(4)}(x) = f^{(5)}(x) = \dots = e^x
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(x) = f'(x) = f''(x) = f^{(3)}(x) = f^{(4)}(x) = f^{(5)}(x) = \dots = e^x
+f(x) = f(x) = f''(x) = f^{(3)}(x) = f^{(4)}(x) = f^{(5)}(x) = \dots = e^x
 //]]>
   </script>
   <br/>
@@ -3133,11 +3133,11 @@ f(x) = f'(x) = f''(x) = f^{(3)}(x) = f^{(4)}(x) = f^{(5)}(x) = \dots = e^x
 Vì vậy
 
   <span class="MathJax_Preview">
-    f(0) = f'(0) = f''(0) = f^{(3)}(0) = f^{(4)}(0) = f^{(5)}(0) = \dots = e^0 = 1
+    f(0) = f(0) = f''(0) = f^{(3)}(0) = f^{(4)}(0) = f^{(5)}(0) = \dots = e^0 = 1
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(0) = f'(0) = f''(0) = f^{(3)}(0) = f^{(4)}(0) = f^{(5)}(0) = \dots = e^0 = 1
+f(0) = f(0) = f''(0) = f^{(3)}(0) = f^{(4)}(0) = f^{(5)}(0) = \dots = e^0 = 1
 //]]>
   </script>
   <br/>
@@ -3155,11 +3155,11 @@ f(x) = e^x
    là như sau:
 
   <span class="MathJax_Preview">
-    f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+    f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(x) = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
+f(x) = f(0) + f(0) x + \frac{f''(0)}{2!} x^2 + \frac{f^{(3)}(0)}{3!} x^3 + \frac{f^{(4)}(0)}{4!} x^4 + \dots + \frac{f^{(n)}(0)}{n!} x^n + \dots
 //]]>
   </script>
   <span class="MathJax_Preview">
@@ -3260,11 +3260,11 @@ g(x)
 //]]>
   </script>
   <span class="MathJax_Preview">
-    g(x) = g(0) + g'(0) x + \frac{g''(0)}{2!} x^2 + \frac{g^{(3)}(0)}{3!} x^3 + \frac{g^{(4)}(0)}{4!} x^4 + \dots + \frac{g^{(n)}(0)}{n!} x^n + \dots
+    g(x) = g(0) + g(0) x + \frac{g''(0)}{2!} x^2 + \frac{g^{(3)}(0)}{3!} x^3 + \frac{g^{(4)}(0)}{4!} x^4 + \dots + \frac{g^{(n)}(0)}{n!} x^n + \dots
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-g(x) = g(0) + g'(0) x + \frac{g''(0)}{2!} x^2 + \frac{g^{(3)}(0)}{3!} x^3 + \frac{g^{(4)}(0)}{4!} x^4 + \dots + \frac{g^{(n)}(0)}{n!} x^n + \dots
+g(x) = g(0) + g(0) x + \frac{g''(0)}{2!} x^2 + \frac{g^{(3)}(0)}{3!} x^3 + \frac{g^{(4)}(0)}{4!} x^4 + \dots + \frac{g^{(n)}(0)}{n!} x^n + \dots
 //]]>
   </script>
   <br/>
@@ -3281,11 +3281,11 @@ f(x+a) = g(x)
   , chứng minh rằng
 
   <span class="MathJax_Preview">
-    f(x+a) = f(a) + f'(a) x + \frac{f''(a)}{2!} x^2 + \frac{f^{(3)}(a)}{3!} x^3 + \frac{f^{(4)}(a)}{4!} x^4 + \dots + \frac{f^{(n)}(a)}{n!} x^n + \dots
+    f(x+a) = f(a) + f(a) x + \frac{f''(a)}{2!} x^2 + \frac{f^{(3)}(a)}{3!} x^3 + \frac{f^{(4)}(a)}{4!} x^4 + \dots + \frac{f^{(n)}(a)}{n!} x^n + \dots
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(x+a) = f(a) + f'(a) x + \frac{f''(a)}{2!} x^2 + \frac{f^{(3)}(a)}{3!} x^3 + \frac{f^{(4)}(a)}{4!} x^4 + \dots + \frac{f^{(n)}(a)}{n!} x^n + \dots
+f(x+a) = f(a) + f(a) x + \frac{f''(a)}{2!} x^2 + \frac{f^{(3)}(a)}{3!} x^3 + \frac{f^{(4)}(a)}{4!} x^4 + \dots + \frac{f^{(n)}(a)}{n!} x^n + \dots
 //]]>
   </script>
   <br/>
@@ -3293,11 +3293,11 @@ f(x+a) = f(a) + f'(a) x + \frac{f''(a)}{2!} x^2 + \frac{f^{(3)}(a)}{3!} x^3 + \f
 Từ đó suy ra
   <br/>
   <span class="MathJax_Preview">
-    f(x) = f(a) + f'(a) (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \frac{f^{(3)}(a)}{3!} (x-a)^3 + \frac{f^{(4)}(a)}{4!} (x-a)^4 + \dots + \frac{f^{(n)}(a)}{n!} (x-a)^n + \dots
+    f(x) = f(a) + f(a) (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \frac{f^{(3)}(a)}{3!} (x-a)^3 + \frac{f^{(4)}(a)}{4!} (x-a)^4 + \dots + \frac{f^{(n)}(a)}{n!} (x-a)^n + \dots
   </span>
   <script type="math/tex; mode=display">
 //<![CDATA[
-f(x) = f(a) + f'(a) (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \frac{f^{(3)}(a)}{3!} (x-a)^3 + \frac{f^{(4)}(a)}{4!} (x-a)^4 + \dots + \frac{f^{(n)}(a)}{n!} (x-a)^n + \dots
+f(x) = f(a) + f(a) (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \frac{f^{(3)}(a)}{3!} (x-a)^3 + \frac{f^{(4)}(a)}{4!} (x-a)^4 + \dots + \frac{f^{(n)}(a)}{n!} (x-a)^n + \dots
 //]]>
   </script>
   <br/>
@@ -12566,20 +12566,20 @@ r
     <li>
       Dựng trục tọa độ vuông góc 
       <span class="MathJax_Preview">
-        x'Ox
+        xOx
       </span>
       <script type="math/tex">
 //<![CDATA[
-x'Ox
+xOx
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        y'Oy
+        yOy
       </span>
       <script type="math/tex">
 //<![CDATA[
-y'Oy
+yOy
 //]]>
       </script>
       ; 
@@ -12605,11 +12605,11 @@ Ox
       </script>
       , 
       <span class="MathJax_Preview">
-        Ox'
+        Ox
       </span>
       <script type="math/tex">
 //<![CDATA[
-Ox'
+Ox
 //]]>
       </script>
       , 
@@ -16953,7 +16953,7 @@ Bài toán con bướm có rất nhiều cách chứng minh. Các cách chứng 
       </b>
       , 
       <i>
-        Pascal's hexagon theorem implies the butterfly theorem
+        Pascals hexagon theorem implies the butterfly theorem
       </i>
       , Mathematics Magazine, vol. 84, no. 1, Feb 2011, p. 56-62.
     </li>
@@ -17174,74 +17174,74 @@ VM
       </script>
        cắt đường tròn tại 
       <span class="MathJax_Preview">
-        V'
+        V
       </span>
       <script type="math/tex">
 //<![CDATA[
-V'
+V
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        U'
+        U
       </span>
       <script type="math/tex">
 //<![CDATA[
-U'
+U
 //]]>
       </script>
       . Giả sử 
       <span class="MathJax_Preview">
-        IV'
+        IV
       </span>
       <script type="math/tex">
 //<![CDATA[
-IV'
+IV
 //]]>
       </script>
        cắt 
       <span class="MathJax_Preview">
-        JU'
+        JU
       </span>
       <script type="math/tex">
 //<![CDATA[
-JU'
+JU
 //]]>
       </script>
        tại 
       <span class="MathJax_Preview">
-        Z'
+        Z
       </span>
       <script type="math/tex">
 //<![CDATA[
-Z'
+Z
 //]]>
       </script>
       . Chứng minh 
       <span class="MathJax_Preview">
-        U'
+        U
       </span>
       <script type="math/tex">
 //<![CDATA[
-U'
+U
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        V'
+        V
       </span>
       <script type="math/tex">
 //<![CDATA[
-V'
+V
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        Z'
+        Z
       </span>
       <script type="math/tex">
 //<![CDATA[
-Z'
+Z
 //]]>
       </script>
        đối xứng với 
@@ -17304,11 +17304,11 @@ M
       </script>
       , 
       <span class="MathJax_Preview">
-        Z'
+        Z
       </span>
       <script type="math/tex">
 //<![CDATA[
-Z'
+Z
 //]]>
       </script>
        thẳng hàng.
@@ -17439,11 +17439,11 @@ JE
   </script>
   , 
   <span class="MathJax_Preview">
-    Q'
+    Q
   </span>
   <script type="math/tex">
 //<![CDATA[
-Q'
+Q
 //]]>
   </script>
    là giao điểm của 
@@ -17597,11 +17597,11 @@ L
       </script>
       , 
       <span class="MathJax_Preview">
-        Q'
+        Q
       </span>
       <script type="math/tex">
 //<![CDATA[
-Q'
+Q
 //]]>
       </script>
        thẳng hàng và nằm trên đường thẳng 
@@ -17618,11 +17618,11 @@ XY
     <li>
       Chứng minh rằng 
       <span class="MathJax_Preview">
-        Q = Q'
+        Q = Q
       </span>
       <script type="math/tex">
 //<![CDATA[
-Q = Q'
+Q = Q
 //]]>
       </script>
       , từ đó suy ra 
@@ -17776,7 +17776,7 @@ MP = MQ
   </b>
    (Richard Taylor, đăng trên 
   <i>
-    The Gentleman's Diary
+    The Gentlemans Diary
   </i>
   , 1815)
   <br/>
@@ -17953,7 +17953,7 @@ MP = MQ
   </b>
    (W.G. Horner, đăng trên 
   <i>
-    The Gentleman's Diary
+    The Gentlemans Diary
   </i>
   , 1815)
   <br/>
@@ -19139,29 +19139,29 @@ ABC
       </script>
        và ba điểm 
       <span class="MathJax_Preview">
-        A'
+        A
       </span>
       <script type="math/tex">
 //<![CDATA[
-A'
+A
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        B'
+        B
       </span>
       <script type="math/tex">
 //<![CDATA[
-B'
+B
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        C'
+        C
       </span>
       <script type="math/tex">
 //<![CDATA[
-C'
+C
 //]]>
       </script>
        lần lượt nằm trên ba đường thẳng 
@@ -19193,38 +19193,38 @@ AB
       </script>
       . Vậy thì ba điểm 
       <span class="MathJax_Preview">
-        A'
+        A
       </span>
       <script type="math/tex">
 //<![CDATA[
-A'
+A
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        B'
+        B
       </span>
       <script type="math/tex">
 //<![CDATA[
-B'
+B
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        C'
+        C
       </span>
       <script type="math/tex">
 //<![CDATA[
-C'
+C
 //]]>
       </script>
        thẳng hàng khi và chỉ khi 
       <span class="MathJax_Preview">
-        \frac{\vec{A'B}}{\vec{A'C}} \times \frac{\vec{B'C}}{\vec{B'A}} \times \frac{\vec{C'A}}{\vec{C'B}} = 1.
+        \frac{\vec{AB}}{\vec{AC}} \times \frac{\vec{BC}}{\vec{BA}} \times \frac{\vec{CA}}{\vec{CB}} = 1.
       </span>
       <script type="math/tex; mode=display">
 //<![CDATA[
-\frac{\vec{A'B}}{\vec{A'C}} \times \frac{\vec{B'C}}{\vec{B'A}} \times \frac{\vec{C'A}}{\vec{C'B}} = 1.
+\frac{\vec{AB}}{\vec{AC}} \times \frac{\vec{BC}}{\vec{BA}} \times \frac{\vec{CA}}{\vec{CB}} = 1.
 //]]>
       </script>
     </span>
@@ -19951,29 +19951,29 @@ ABC
       </script>
        và ba điểm 
       <span class="MathJax_Preview">
-        A'
+        A
       </span>
       <script type="math/tex">
 //<![CDATA[
-A'
+A
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        B'
+        B
       </span>
       <script type="math/tex">
 //<![CDATA[
-B'
+B
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        C'
+        C
       </span>
       <script type="math/tex">
 //<![CDATA[
-C'
+C
 //]]>
       </script>
        lần lượt nằm trên ba đường thẳng 
@@ -20005,38 +20005,38 @@ AB
       </script>
       . Vậy thì ba điểm 
       <span class="MathJax_Preview">
-        A'
+        A
       </span>
       <script type="math/tex">
 //<![CDATA[
-A'
+A
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        B'
+        B
       </span>
       <script type="math/tex">
 //<![CDATA[
-B'
+B
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        C'
+        C
       </span>
       <script type="math/tex">
 //<![CDATA[
-C'
+C
 //]]>
       </script>
        thẳng hàng khi và chỉ khi 
       <span class="MathJax_Preview">
-        \frac{\vec{A'B}}{\vec{A'C}} \times \frac{\vec{B'C}}{\vec{B'A}} \times \frac{\vec{C'A}}{\vec{C'B}} = 1.
+        \frac{\vec{AB}}{\vec{AC}} \times \frac{\vec{BC}}{\vec{BA}} \times \frac{\vec{CA}}{\vec{CB}} = 1.
       </span>
       <script type="math/tex; mode=display">
 //<![CDATA[
-\frac{\vec{A'B}}{\vec{A'C}} \times \frac{\vec{B'C}}{\vec{B'A}} \times \frac{\vec{C'A}}{\vec{C'B}} = 1.
+\frac{\vec{AB}}{\vec{AC}} \times \frac{\vec{BC}}{\vec{BA}} \times \frac{\vec{CA}}{\vec{CB}} = 1.
 //]]>
       </script>
     </span>
@@ -22386,29 +22386,29 @@ ABC
       </script>
        ba tam giác cân 
       <span class="MathJax_Preview">
-        BA'C
+        BAC
       </span>
       <script type="math/tex">
 //<![CDATA[
-BA'C
+BAC
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        CB'A
+        CBA
       </span>
       <script type="math/tex">
 //<![CDATA[
-CB'A
+CBA
 //]]>
       </script>
        và 
       <span class="MathJax_Preview">
-        AC'B
+        ACB
       </span>
       <script type="math/tex">
 //<![CDATA[
-AC'B
+ACB
 //]]>
       </script>
        mà cạnh đáy lần lượt là 
@@ -22467,29 +22467,29 @@ C
       </script>
        lần lượt vuông góc với 
       <span class="MathJax_Preview">
-        B'C'
+        BC
       </span>
       <script type="math/tex">
 //<![CDATA[
-B'C'
+BC
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        C'A'
+        CA
       </span>
       <script type="math/tex">
 //<![CDATA[
-C'A'
+CA
 //]]>
       </script>
       , 
       <span class="MathJax_Preview">
-        A'B'
+        AB
       </span>
       <script type="math/tex">
 //<![CDATA[
-A'B'
+AB
 //]]>
       </script>
        đồng quy.
@@ -22519,11 +22519,11 @@ A'B'
     
 Qua tâm 
     <span class="MathJax_Preview">
-      A'
+      A
     </span>
     <script type="math/tex">
 //<![CDATA[
-A'
+A
 //]]>
     </script>
      vẽ đường tròn đi qua hai điểm 
@@ -22546,11 +22546,11 @@ C
     </script>
     . Qua tâm 
     <span class="MathJax_Preview">
-      B'
+      B
     </span>
     <script type="math/tex">
 //<![CDATA[
-B'
+B
 //]]>
     </script>
      vẽ đường tròn đi qua hai điểm 
@@ -22573,11 +22573,11 @@ A
     </script>
     . Qua tâm 
     <span class="MathJax_Preview">
-      C'
+      C
     </span>
     <script type="math/tex">
 //<![CDATA[
-C'
+C
 //]]>
     </script>
      vẽ đường tròn đi qua hai điểm 
@@ -22619,29 +22619,29 @@ A
     </script>
      vuông góc với 
     <span class="MathJax_Preview">
-      B'C'
+      BC
     </span>
     <script type="math/tex">
 //<![CDATA[
-B'C'
+BC
 //]]>
     </script>
      chính là trục đẳng phương của hai đường tròn 
     <span class="MathJax_Preview">
-      (B')
+      (B)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(B')
+(B)
 //]]>
     </script>
      và 
     <span class="MathJax_Preview">
-      (C')
+      (C)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(C')
+(C)
 //]]>
     </script>
     . Tương tự thì đường thẳng qua 
@@ -22655,29 +22655,29 @@ B
     </script>
      vuông góc với 
     <span class="MathJax_Preview">
-      C'A'
+      CA
     </span>
     <script type="math/tex">
 //<![CDATA[
-C'A'
+CA
 //]]>
     </script>
      là trục đẳng phương của hai đường tròn 
     <span class="MathJax_Preview">
-      (C')
+      (C)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(C')
+(C)
 //]]>
     </script>
      và 
     <span class="MathJax_Preview">
-      (A')
+      (A)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(A')
+(A)
 //]]>
     </script>
     , và đường thẳng qua 
@@ -22691,56 +22691,56 @@ C
     </script>
      vuông góc với 
     <span class="MathJax_Preview">
-      A'B'
+      AB
     </span>
     <script type="math/tex">
 //<![CDATA[
-A'B'
+AB
 //]]>
     </script>
      là trục đẳng phương của hai đường tròn 
     <span class="MathJax_Preview">
-      (A')
+      (A)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(A')
+(A)
 //]]>
     </script>
      và 
     <span class="MathJax_Preview">
-      (B')
+      (B)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(B')
+(B)
 //]]>
     </script>
     . Từ đó suy ra ba đường thẳng này đồng quy tại tâm đẳng phương của ba đường tròn 
     <span class="MathJax_Preview">
-      (A')
+      (A)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(A')
+(A)
 //]]>
     </script>
     , 
     <span class="MathJax_Preview">
-      (B')
+      (B)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(B')
+(B)
 //]]>
     </script>
     , 
     <span class="MathJax_Preview">
-      (C')
+      (C)
     </span>
     <script type="math/tex">
 //<![CDATA[
-(C')
+(C)
 //]]>
     </script>
     , và bài toán đã được chứng minh.
