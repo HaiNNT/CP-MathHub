@@ -32,6 +32,7 @@ namespace CP_MathHub
                       "~/Content/js/script-discussion.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/profilejs").Include(
+                      "~/Content/js/jquery.cropit.js",
                       "~/Content/js/script-profile.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/blogjs").Include(

@@ -369,7 +369,10 @@ namespace CP_MathHub.Controllers
             article.Title = articleEditVM.Title;
             article.Content = articleEditVM.Content;
             article.Privacy = articleEditVM.Privacy;
-            article.PublicDate = articleEditVM.PublicDate.Value;
+            if (article.UserId == User.Identity.GetUserId<int>())
+            {
+                article.PublicDate = articleEditVM.PublicDate.Value;
+            }
             if (article.PublicDate <= DateTime.Now)
             {
                 EditedLog editedlog = new EditedLog();

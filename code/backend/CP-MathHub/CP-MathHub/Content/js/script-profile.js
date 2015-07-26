@@ -96,4 +96,6 @@ $(document).ready(function () {
         //an
         $(this).parents(".mh-body-profile").find(".mh-pass-change").hide();
     });
+    $('.image-editor').cropit();
+    $(".slider").slider();
 });
