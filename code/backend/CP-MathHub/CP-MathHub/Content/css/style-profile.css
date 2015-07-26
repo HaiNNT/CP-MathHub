@@ -344,3 +344,81 @@ form:last-child .mh-profile-info-row {
 .tab-pane {
     min-height: 300px;
 }
+
+/*Avatar*/
+.mh-profile-images-user {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+.mh-profile-change-picture-icon {
+    color: #fff;
+    position: absolute;
+    left: 5px;
+    bottom: 7px;
+}
+.mh-profile-change-picture {
+    display: none;
+    background-color: #000;
+    color: #fff;
+    width: 100px;
+    padding: 3px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    opacity: 0.7;
+}
+.mh-profile-user-info .mh-profile-images-user:hover .mh-profile-change-picture-icon {
+    display: none;
+}
+.mh-profile-user-info .mh-profile-images-user:hover .mh-profile-change-picture {
+    display: block;
+}
+.mh-profile-image-upload-take {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E5E5E5;
+}
+.mh-profile-upload-picture {
+    position: relative;
+    border-right: 1px solid #E5E5E5;
+    height: 92px;
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+}
+.mh-profile-upload-picture:hover, .mh-profile-take-picture:hover {
+    background-color: #F2F4F7;
+}
+.mh-profile-take-picture {
+    height: 92px;
+    cursor: pointer;
+}
+.mh-profile-upload-picture input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 65px;
+    direction: ltr;
+    cursor: pointer;
+}
+.mh-profile-upload-picture .fa-plus, .mh-profile-take-picture .fa-camera {
+    font-size: 20px;
+    margin-top: 13%;
+    color: #6A7180;
+}
+.mh-profile-show-image {
+}
+.cropit-image-preview {
+    background-color: #f8f8f8;
+    background-size: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 7px;
+    width: 250px;
+    height: 250px;
+    cursor: move;
+    margin-left: 28%;
+}
