@@ -21,11 +21,9 @@
                 //jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                //jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
-                //jqTds[5].innerHTML = '<input type="text" class="form-control small" value="' + aData[5] + '">';
-                jqTds[6].innerHTML = '<a class="edit btn btn-primary" href="">Lưu</a>';
-                jqTds[7].innerHTML = '<a class="cancel btn btn-danger" href="">Hủy</a>';
+                //jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
+                jqTds[4].innerHTML = '<a class="edit btn btn-primary" href="">Lưu</a>';
+                jqTds[5].innerHTML = '<a class="cancel btn btn-danger" href="">Hủy</a>';
             }
 
             function saveRow(oTable, nRow) {
@@ -33,11 +31,9 @@
                 //oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
-                //oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                //oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
-                oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 6, false);
-                oTable.fnUpdate('<a class="delete btn btn-danger" href="">Xóa</a>', nRow, 7, false);
+                //oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
+                oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 4, false);
+                oTable.fnUpdate('<a class="delete btn btn-danger" href="">Xóa</a>', nRow, 5, false);
                 oTable.fnDraw();
             }
 
@@ -45,11 +41,9 @@
                 var jqInputs = $('input', nRow);
                 //oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value + '<i class="icon-circle mh-reputation-icon"></i>', nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                //oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                //oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
-                oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 6, false);
+                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
+                //oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
+                oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 4, false);
                 oTable.fnDraw();
             }
 
@@ -73,7 +67,7 @@
                 },
                 "aoColumnDefs": [{
                         'bSortable': false,
-                        'aTargets': [6,7]
+                        'aTargets': [4,5]
                     }
                 ]
             });

@@ -4714,4 +4714,15 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-send-notification-button {
       width: 230px;
 }
+.mh-admin-row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.mh-admin-row-input {
+    padding: 5px 10px;
+    width: 100%;
+}
+.mh-admin-duplicate-footer {
+    text-align: right;
+}
 /* editable-sample: end */
