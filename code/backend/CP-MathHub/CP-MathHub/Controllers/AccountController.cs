@@ -18,6 +18,8 @@ using CP_MathHub.Entity;
 using CP_MathHub.Helper;
 using AutoMapper;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace CP_MathHub.Controllers
 {
@@ -504,7 +506,7 @@ namespace CP_MathHub.Controllers
 
         //Post: /Account/UpdateProfile
         [HttpPost]
-        public ActionResult UpdateProfile([ModelBinder(typeof(BindingHelper))]ProfileViewModel model, string Property)
+        public ActionResult UpdateProfile([ModelBinder(typeof(BindingHelper))]ProfileViewModel model, string Property, string Image = "")
         {
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
@@ -554,15 +556,32 @@ namespace CP_MathHub.Controllers
                     {
                         return RedirectToAction("MyProfile");
                     }
-                    //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
-                    //    && model.NewPassword == model.ConfirmPassword)
-                    //{
-                    //    user.PasswordHash = hash.HashPassword(model.NewPassword);
-                    //}
-                    //else
-                    //{
-                        
-                    //}
+                //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
+                //    && model.NewPassword == model.ConfirmPassword)
+                //{
+                //    user.PasswordHash = hash.HashPassword(model.NewPassword);
+                //}
+                //else
+                //{
+
+                //}
+                case "Avatar":
+                    if (Image != "")
+                    {
+                        byte[] data = Convert.FromBase64String(Image.Replace("data:image/png;base64,", ""));
+                        System.Drawing.Image image;
+                        using (MemoryStream ms = new MemoryStream(data))
+                        {
+                            image = System.Drawing.Image.FromStream(ms);
+                        }
+                        string pathToSave = Server.MapPath("~/Content/upload/");
+                        string filename = Path.GetFileName(User.Identity.Name + ".png");
+                        image.Save(Path.Combine(pathToSave, filename));
+                        user.Avatar = new Image();
+                        user.Avatar.Url = Path.Combine("/Content/upload/", filename);
+                        user.Avatar.Caption = "";
+                    }
+                    break;
                 default:
                     break;
             }
