@@ -423,6 +423,7 @@ a {
 .mh-preview-content img, .mh-content img, .mh-content-detail img, .mh-list-content .content img, .mh-show-detail-content .content img,
 .mh-answer_hint-detail-content img {
     vertical-align: baseline !important;
+    max-width: 600px;
 }
 
 .mh-tag-list {
