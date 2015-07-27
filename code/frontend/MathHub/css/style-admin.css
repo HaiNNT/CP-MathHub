@@ -4725,4 +4725,12 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-admin-duplicate-footer {
     text-align: right;
 }
+.mh-admin-tag-footer {
+    text-align: right;
+}
+.mh-admin-row-duplicate {
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+}
 /* editable-sample: end */

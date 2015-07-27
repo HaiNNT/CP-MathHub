@@ -185,6 +185,8 @@
 	text-decoration: none;
 }
 .mh-list-content .content {
+	max-height: 300px;
+    overflow: hidden;
 	font-size: 13pt;
 }
 .mh-list-content  .readmore {

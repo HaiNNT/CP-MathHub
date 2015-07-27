@@ -70,7 +70,7 @@
                 },
                 "aoColumnDefs": [{
                         'bSortable': false,
-                        'aTargets': [4,5,6]
+                        'aTargets': [4,5,6,7]
                     }
                 ]
             });
