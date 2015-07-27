@@ -41,6 +41,19 @@ namespace CP_MathHub.Core.Interfaces.Services
         void CreatePrivacy(int userId);
 
         /// <summary>
+        /// Create Avatar
+        /// </summary>
+        /// <param name="userId"></param>
+        void CreateAvatar(int userId);
+
+        /// <summary>
+        /// Create Activity
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="ip"></param>
+        void CreateActivity(int userId, string ip = "");
+
+        /// <summary>
         /// Count number of friends of User
         /// </summary>
         /// <param name="user"></param>
@@ -124,5 +137,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
+
+        /// <summary>
+        /// Log last login time of user
+        /// </summary>
+        /// <param name="userId"></param>
+        void LogLastLogin(int userId);
     }
 }

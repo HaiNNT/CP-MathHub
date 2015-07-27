@@ -80,6 +80,28 @@ namespace CP_MathHub.Service.Services
             dal.Repository<PrivacySetting>().Insert(privacy);
             dal.Save();
         }
+        public void CreateAvatar(int userId)
+        {
+            Image avatar = new Image();
+            avatar.User = GetUser(userId);
+            avatar.Url = "~/Content/img/user.jpg";
+            avatar.Caption = "";
+            dal.Repository<Image>().Insert(avatar);
+            dal.Save();
+        }
+        public void CreateActivity(int userId, string ip = "")
+        {
+            Activity activity = new Activity();
+            activity.LastLogin = DateTime.Now;
+            activity.LastSeenFriendRequest = DateTime.Now;
+            activity.LastSeenInvitation = DateTime.Now;
+            activity.LastSeenSubcription = DateTime.Now;
+            activity.LastSeenNotification = DateTime.Now;
+            activity.LastIp = ip;
+            activity.User = GetUser(userId);
+            dal.Repository<Activity>().Insert(activity);
+            dal.Save();
+        }
         public int CountFriend(int userId)
         {
             int result = dal.Repository<UserFriendship>().Table
@@ -241,6 +263,13 @@ namespace CP_MathHub.Service.Services
             if (take != 0)
                 users = users.Skip(skip).Take(take).ToList();
             return users;
+        }
+        public void LogLastLogin(int userId)
+        {
+            User user = GetUser(userId, "Activity");
+            user.Activity.LastLogin = DateTime.Now;
+            dal.Repository<User>().Update(user);
+            dal.Save();
         }
     }
 }

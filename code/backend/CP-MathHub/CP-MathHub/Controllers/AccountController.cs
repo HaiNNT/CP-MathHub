@@ -102,6 +102,7 @@ namespace CP_MathHub.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    aService.LogLastLogin(User.Identity.GetUserId<int>());
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -185,6 +186,8 @@ namespace CP_MathHub.Controllers
                     ViewBag.Link = callbackUrl;
                     aService.CreatePrivacy(user.Id);
                     aService.CreateProfile(user.Id);
+                    aService.CreateAvatar(user.Id);
+                    aService.CreateActivity(user.Id, Request.UserHostAddress);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);

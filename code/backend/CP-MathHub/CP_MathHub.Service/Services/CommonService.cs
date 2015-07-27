@@ -277,9 +277,9 @@ namespace CP_MathHub.Service.Services
         {
             return aService.GetLoginUser();
         }
-        public User GetUser(int userId)
+        public User GetUser(int userId, string include = "")
         {
-            return aService.GetUser(userId);
+            return aService.GetUser(userId, include);
         }
         public List<User> GetUsers(int skip, string tab)
         {

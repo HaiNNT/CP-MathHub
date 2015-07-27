@@ -153,7 +153,9 @@ namespace CP_MathHub.Core.Configuration
             }
 
         }
-
+        /// <summary>
+        /// Constant group for Account
+        /// </summary>
         public static class Account
         {
             public static class String
@@ -172,6 +174,20 @@ namespace CP_MathHub.Core.Configuration
                 public static Dictionary<int, string> RequestSend = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn của bạn bè" } };
                 public static Dictionary<int, string> SeenBlog = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn bè" }, { 3, "Bạn của bạn bè" } };
 
+            }
+        }
+        /// <summary>
+        /// Constant group for Admin
+        /// </summary>
+        public static class Admin
+        {
+            public static class Integer
+            { 
+                
+            }
+            public static class String
+            {
+                public const string DashboardPage = "Dashboard";
             }
         }
     }
