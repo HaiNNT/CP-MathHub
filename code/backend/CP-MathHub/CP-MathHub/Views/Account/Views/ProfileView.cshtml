@@ -34,7 +34,7 @@
     <div class="row mh-profile-user-info">
         <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2" style="text-align: center;">
             <div class="mh-profile-images-user">
-                <img src="~/Content/img/user.jpg" class="mh-image-user-profile" />
+                <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-image-user-profile" />
                 <a data-toggle="modal" data-target="#changeAvatar">
                     <i class="fa fa-camera mh-profile-change-picture-icon"></i>
                 </a>
@@ -45,41 +45,43 @@
                 <div class="modal fade" id="changeAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Cập nhật ảnh đại diện</h4>
-                            </div>
-                            <div class="modal-body image-editor">
-                                <div class="row mh-profile-image-upload-take">
-                                    <div class="col-xs-6 mh-profile-upload-picture">
-                                        <i class="fa fa-plus"> Tải ảnh lên</i>
-                                        <input type="file" class="cropit-image-input">
+                            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "avatar-form" }))
+                            {
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Cập nhật ảnh đại diện</h4>
+                                </div>
+                                <div class="modal-body image-editor">
+                                    <div class="row mh-profile-image-upload-take">
+                                        <div class="col-xs-6 mh-profile-upload-picture">
+                                            <i class="fa fa-plus"> Tải ảnh lên</i>
+                                            <input type="file" class="cropit-image-input">
+                                        </div>
+                                        <div class="col-xs-6 mh-profile-take-picture">
+                                            <i class="fa fa-camera"> Chụp ảnh</i>
+                                        </div>
                                     </div>
-                                    <div class="col-xs-6 mh-profile-take-picture">
-                                        <i class="fa fa-camera"> Chụp ảnh</i>
+                                    <div class="mh-profile-show-image">
+                                        <div class="cropit-image-preview" style="text-align:center;"></div>
+                                        <div class="image-size-label" style="margin: 10px 0px 5px 0px;">
+                                            Chỉnh sửa kích thước ảnh
+                                        </div>
+                                        <input type="range" class="cropit-image-zoom-input">
+                                        <input type="hidden" name="Image" class="hidden-image-data" />
                                     </div>
                                 </div>
-                                <div class="mh-profile-show-image">
-                                    <div class="cropit-image-preview" style="text-align:center;"></div>
-                                    <div class="image-size-label" style="margin: 10px 0px 5px 0px;">
-                                        Chỉnh sửa kích thước ảnh
-                                    </div>
-                                    <input type="range" class="cropit-image-zoom-input">
-                                    <input type="hidden" name="image-data" class="hidden-image-data" />
+                                <div class="modal-footer">
+                                    <input type="hidden" name="Property" value="Avatar" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
                         <label>Tài khoản</label>
@@ -89,9 +91,6 @@
                         @* @Html.EditorFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })*@
                     </div>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
                         <label>Email</label>
@@ -100,9 +99,6 @@
                         <span class="mh-profile-span-edit">@Model.Email</span>
                     </div>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
                         <label>Điểm thưởng</label>
@@ -112,7 +108,6 @@
                         <i class="fa fa-circle mh-reputation-icon"></i>
                     </div>
                 </div>
-            }
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
             {
                 <div class="row mh-profile-info-row">
