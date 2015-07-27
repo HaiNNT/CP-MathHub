@@ -1,0 +1,67 @@
+﻿@model CP_MathHub.Models.Admin.DashboardViewModel
+@{
+    ViewBag.Title = "DashboardView";
+    Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
+}
+
+<section class="wrapper site-min-height">
+    <h3>Dashboard</h3>
+    <!--state overview start-->
+    <div class="row state-overview">
+        <div class="col-lg-3 col-sm-6">
+            <a href="#">
+                <section class="panel">
+                    <div class="symbol green">
+                        <i class="fa fa-user-plus"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class="count">@Model.NewUserNumber</h1>
+                        <p>Người dùng mới</p>
+                    </div>
+                </section>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="">
+                <section class="panel">
+                    <div class="symbol blue">
+                        <i class="icon-tags"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class="count">@Model.NewTagNumber</h1>
+                        <p>Thẻ mới</p>
+                    </div>
+                </section>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="">
+                <section class="panel">
+                    <div class="symbol yellow">
+                        <i class="icon-flag"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class="count">@Model.NewReportMainpostNumber</h1>
+                        <p>Báo cáo bài viết mới</p>
+                    </div>
+                </section>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="#">
+                <section class="panel">
+                    <div class="symbol red">
+                        <i class="icon-legal"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class="count">@Model.NewReportUserNumber</h1>
+                        <p>Báo cáo người dùng mới</p>
+                    </div>
+                </section>
+            </a>
+        </div>
+    </div>
+    <!--state overview end-->
+</section>
+
+

@@ -1,0 +1,131 @@
+﻿@using CP_MathHub.Core.Configuration
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+    @Styles.Render("~/Content/admincss")
+
+</head>
+
+<body>
+    <section id="container" class="">
+        <!--header start-->
+        <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+            </div>
+            <!--logo start-->
+            <a href="index.html" class="logo">
+                <img src="~/Content/img/logo-admin.png" />
+            </a>
+
+            <div class="top-nav ">
+                <ul class="nav pull-right top-menu">
+                    <li>
+                        <input type="text" class="form-control search" placeholder="Search">
+                    </li>
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" src="~/Content/img/user.jpg" class="mh-user-icon">
+                            <span class="username">Admin</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
+                            <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
+                            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+                    <li>
+                        <a class="@(ViewBag.Page == Constant.Admin.String.DashboardPage ? "active" : "")" href="admin-dashboard.html">
+                            <i class="icon-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="admin-ManageUser.html">
+                            <i class="icon-group"></i>
+                            <span>Quản lý người dùng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-SendMailNotification.html">
+                            <i class="icon-envelope"></i>
+                            <span>Gửi thông báo</span>
+                            <span class="label label-danger pull-right mail-info">2</span>
+                        </a>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="icon-flag"></i>
+                            <span>Quản lý vi phạm</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="admin-ManageInfracPosts.html">Bài viết</a></li>
+                            <li><a href="admin-ManageInfracUsers.html">Người dùng</a></li>
+                            <li><a href="admin-ManageInfracRules">Quy định</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="admin-ManageTags.html">
+                            <i class="icon-tags"></i>
+                            <span>Quản lý thẻ</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            @RenderBody()
+        </section>
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2015 &copy; MathHub Team.
+                <a href="#" class="go-top">
+                    <i class="icon-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script class="include" type="text/javascript" src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
+    @Scripts.Render("~/bundles/adminjs")
+    @switch ((string)ViewBag.Page)
+    {
+        case Constant.Admin.String.DashboardPage:
+            @Scripts.Render("~/bundles/adminDashboardjs")
+            break;
+        default:
+            break;
+    }
+</body>
+</html>
