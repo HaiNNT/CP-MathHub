@@ -41,6 +41,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         void CreatePrivacy(int userId);
 
         /// <summary>
+        /// Create Avatar
+        /// </summary>
+        /// <param name="userId"></param>
+        void CreateAvatar(int userId);
+
+        /// <summary>
         /// Count number of friends of User
         /// </summary>
         /// <param name="user"></param>

@@ -185,6 +185,7 @@ namespace CP_MathHub.Controllers
                     ViewBag.Link = callbackUrl;
                     aService.CreatePrivacy(user.Id);
                     aService.CreateProfile(user.Id);
+                    aService.CreateAvatar(user.Id);
                     return View("DisplayEmail");
                 }
                 AddErrors(result);

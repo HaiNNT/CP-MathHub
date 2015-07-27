@@ -80,6 +80,15 @@ namespace CP_MathHub.Service.Services
             dal.Repository<PrivacySetting>().Insert(privacy);
             dal.Save();
         }
+        public void CreateAvatar(int userId)
+        {
+            Image avatar = new Image();
+            avatar.User = GetUser(userId);
+            avatar.Url = "~/Content/img/user.jpg";
+            avatar.Caption = "";
+            dal.Repository<Image>().Insert(avatar);
+            dal.Save();
+        }
         public int CountFriend(int userId)
         {
             int result = dal.Repository<UserFriendship>().Table
