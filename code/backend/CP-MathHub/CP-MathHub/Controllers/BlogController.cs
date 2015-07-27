@@ -52,7 +52,7 @@ namespace CP_MathHub.Controllers
             {
                 List<Article> hotArticles = bService.GetArticles(Constant.Blog.String.HomeHotTab, skip);
                 ICollection<ArticlePreviewViewModel> articleHotPreviewVMs =
-                        articles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
+                        hotArticles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                         .ToList();
                 for (int i = 0; i < articlePreviewVMs.Count; i++)
                 {
