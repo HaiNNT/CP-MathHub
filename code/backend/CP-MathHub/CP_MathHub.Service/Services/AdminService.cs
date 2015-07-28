@@ -39,7 +39,10 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<User>().Table.Count(u => u.CreatedDate > time);
         }
 
-
+        public int CountUsers()
+        {
+            return dal.Repository<User>().Table.Count();
+        }
         public int CountNewTag(DateTime time)
         {
             return dal.Repository<Tag>().Table.Count(t => t.CreatedDate > time);

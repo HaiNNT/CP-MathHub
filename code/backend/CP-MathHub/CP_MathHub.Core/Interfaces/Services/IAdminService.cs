@@ -33,5 +33,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         int CountUserReport(DateTime time);
+
+        /// <summary>
+        /// Count users
+        /// </summary>
+        /// <returns></returns>
+        int CountUsers();
     }
 }

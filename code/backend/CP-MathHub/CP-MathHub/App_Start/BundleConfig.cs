@@ -43,10 +43,17 @@ namespace CP_MathHub
                       "~/Content/js/jquery.scrollTo.min.js",
                       "~/Content/js/jquery.nicescroll.js",
                       "~/Content/js/respond.min.js",
-                      "~/Content/js/common-scripts.js"));
+                      "~/Content/js/common-scripts.js",
+                      "~/Content/js/script-admin.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminDashboardjs").Include(
                       "~/Content/js/count.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminManageUsersjs").Include(
+                      "~/Content/js/count.js",
+                      "~/Content/js/bootstrap-select.js",
+                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
@@ -77,6 +84,8 @@ namespace CP_MathHub
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style-admin.css",
                       "~/Content/css/style-responsive-admin.css"));
+            bundles.Add(new StyleBundle("~/Content/selectPickercss").Include(
+                      "~/Content/css/bootstrap-select.css"));
         }
     }
 }

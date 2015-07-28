@@ -30,6 +30,7 @@ namespace CP_MathHub.Controllers
             cService = new CommonService(context);
         }
         // GET: Admin
+        [HttpGet]
         public ActionResult Index()
         {
             DashboardViewModel model = new DashboardViewModel();
@@ -40,6 +41,18 @@ namespace CP_MathHub.Controllers
             model.NewReportUserNumber = aService.CountUserReport(user.Activity.LastLogin);
             ViewBag.Page = Constant.Admin.String.DashboardPage;
             return View("Views/DashboardView", model);
+        }
+
+        //Get: Admin/ManageUsers
+        [HttpGet]
+        public ActionResult ManageUsers()
+        {
+            ManageUsersViewModel model = new ManageUsersViewModel();
+            User user = cService.GetUser(User.Identity.GetUserId<int>(), "Activity");
+            model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
+            model.UserNumber = aService.CountUsers();
+            ViewBag.Page = Constant.Admin.String.ManageUsersPage;
+            return View("Views/ManageUsersView", model);
         }
     }
 }

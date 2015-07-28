@@ -10,6 +10,14 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/admincss")
+    @switch ((string)ViewBag.Page)
+    {
+        case Constant.Admin.String.ManageUsersPage:
+            @Styles.Render("~/Content/selectPickercss")
+            break;
+        default:
+            break;
+    }
 
 </head>
 
@@ -123,6 +131,9 @@
     {
         case Constant.Admin.String.DashboardPage:
             @Scripts.Render("~/bundles/adminDashboardjs")
+            break;
+        case Constant.Admin.String.ManageUsersPage:
+            @Scripts.Render("~/bundles/adminManageUsersjs")
             break;
         default:
             break;
