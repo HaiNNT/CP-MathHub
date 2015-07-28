@@ -14,6 +14,7 @@ using CP_MathHub.Models.Question;
 using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
+using System.Web.Routing;
 
 namespace CP_MathHub.Controllers
 {
@@ -24,10 +25,24 @@ namespace CP_MathHub.Controllers
         private CPMathHubModelContainer context;
 
         public QuestionController()
+        {            
+            context = new CPMathHubModelContainer();           
+        }
+        protected override void Initialize(RequestContext requestContext)
         {
-            context = new CPMathHubModelContainer();
-            qService = new QuestionService(context);
-            cService = new CommonService(context);
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                qService = new QuestionService(context, _currentUserId);
+                cService = new CommonService(context);
+            }
+            else
+            {
+                qService = new QuestionService(context);
+                cService = new CommonService(context);
+            }
+
         }
 
         // GET: Question
