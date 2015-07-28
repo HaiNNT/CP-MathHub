@@ -14,18 +14,20 @@ namespace CP_MathHub.Service.Services
 {
     public class QuestionService : IQuestionService, IDisposable
     {
-        private IUnitOfWork dal;
-        private ICommonService cService;
-        public QuestionService(CPMathHubModelContainer context)
+        private int _loginUserId;
+        private IUnitOfWork _dal;
+        private ICommonService _cService;
+        public QuestionService(CPMathHubModelContainer context, int userId = 0)
         {
-            dal = new MathHubUoW(context);
-            cService = new CommonService(context);
+            _loginUserId = userId;
+            _dal = new MathHubUoW(context);
+            _cService = new CommonService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                dal.Dispose();
+                _dal.Dispose();
             }
 
         }
@@ -41,15 +43,15 @@ namespace CP_MathHub.Service.Services
             switch (homeTab)
             {
                 case Constant.Question.String.HomeNewestTab:
-                    list = dal.Repository<Question>() // Get Question Repository
-                                .Get(null,
+                    list = _dal.Repository<Question>() // Get Question Repository
+                                .Get(ExpressionHelper.QuestionHelper.NewestQuestion(_loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
                                     "Author,BookmarkUsers,Sharers,Tags,Reports", // Include Author Property
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Question.String.HomeUnAnsweredTab:
-                    list = dal.Repository<Question>()
+                    list = _dal.Repository<Question>()
                                 .Get(
                                     ExpressionHelper.QuestionHelper.UnAnsweredQuestion(), // Get unanswered Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -58,7 +60,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.HomeHotTab:
-                    list = dal.Repository<Question>()
+                    list = _dal.Repository<Question>()
                                 .Get(
                                     ExpressionHelper.QuestionHelper.HotQuestion(),// Get hot Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -67,7 +69,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Question>()
+                    list = _dal.Repository<Question>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
@@ -79,7 +81,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Question> GetQuestions(int authorId, int skip = 0)
         {
-            return dal.Repository<Question>() //Get Question Repository
+            return _dal.Repository<Question>() //Get Question Repository
                 .Get(
                     (a => a.UserId == authorId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
@@ -89,17 +91,17 @@ namespace CP_MathHub.Service.Services
         }
         public int CountUserQuestion(int authorId)
         {
-            int result = dal.Repository<Question>().Table.Count(d => d.UserId == authorId);
+            int result = _dal.Repository<Question>().Table.Count(d => d.UserId == authorId);
             return result;
         }
         public int CountUserAnswer(int authorId)
         {
-            int result = dal.Repository<Answer>().Table.Count(d => d.UserId == authorId);
+            int result = _dal.Repository<Answer>().Table.Count(d => d.UserId == authorId);
             return result;
         }
         public List<Answer> GetAnswers(int authorId, int skip = 0)
         {
-            return dal.Repository<Answer>() //Get Question Repository
+            return _dal.Repository<Answer>() //Get Question Repository
                 .Get(
                     (a => a.UserId == authorId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
@@ -119,7 +121,7 @@ namespace CP_MathHub.Service.Services
         //}
         public List<Question> GetQuestions(int skip, string tagName)
         {
-            return dal.Repository<Question>() //Get Question Repository
+            return _dal.Repository<Question>() //Get Question Repository
                 .Get(a => a.Tags.Where(t => t.Name == tagName).Count() > 0, //Contain tag
                         (p => p.OrderBy(s => s.CreatedDate)),
                         "Author,BookmarkUsers,Sharers,Tags,Reports",
@@ -128,31 +130,31 @@ namespace CP_MathHub.Service.Services
         }
         public Question GetQuestion(int id)
         {
-            Question question = dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
-            question.Author = cService.GetUser(question.UserId);
+            Question question = _dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
+            question.Author = _cService.GetUser(question.UserId);
             return question;
         }
         public void InsertQuestion(Question question)
         {
-            dal.Repository<Question>().Insert(question);
-            dal.Save();
+            _dal.Repository<Question>().Insert(question);
+            _dal.Save();
         }
         public void EditQuestion(Question question)
         {
-            dal.Repository<Question>().Update(question);
-            dal.Save();
+            _dal.Repository<Question>().Update(question);
+            _dal.Save();
         }
         public void DeleteQuestion(Question question)
         {
-            dal.Repository<Question>().Delete(question);
-            dal.Save();
+            _dal.Repository<Question>().Delete(question);
+            _dal.Save();
         }
         public List<Question> SearchQuestion(string searchString, int skip)
         {
             List<Question> list = new List<Question>();
             if (searchString != null)
             {
-                IEnumerable<Question> ienum = dal.Repository<Question>()
+                IEnumerable<Question> ienum = _dal.Repository<Question>()
                                .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
@@ -165,7 +167,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountSearchResult(string searchString)
         {
-            return dal.Repository<Question>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+            return _dal.Repository<Question>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
         }
         public List<Answer> GetAnswers(int questionId, AnswerEnum type = 0)
         {
@@ -173,7 +175,7 @@ namespace CP_MathHub.Service.Services
             switch (type)
             {
                 case AnswerEnum.Answer:
-                    answers = dal.Repository<Answer>().Get(
+                    answers = _dal.Repository<Answer>().Get(
                              ExpressionHelper.QuestionHelper.AnswerOfQuestion(questionId),
                              ExpressionHelper.QuestionHelper.OrderUsefulAnswer(),
                              "Author",
@@ -182,7 +184,7 @@ namespace CP_MathHub.Service.Services
                          ).ToList();
                     break;
                 case AnswerEnum.Hint:
-                    answers = dal.Repository<Answer>().Get(
+                    answers = _dal.Repository<Answer>().Get(
                             ExpressionHelper.QuestionHelper.HintOfQuestion(questionId),
                             ExpressionHelper.QuestionHelper.OrderUsefulAnswer(),
                             "Author",
@@ -191,7 +193,7 @@ namespace CP_MathHub.Service.Services
                         ).ToList();
                     break;
                 default:
-                    answers = dal.Repository<Answer>().Get(
+                    answers = _dal.Repository<Answer>().Get(
                              (a => a.QuestionId == questionId),
                              ExpressionHelper.QuestionHelper.OrderUsefulAnswer(),
                              "Author",
@@ -205,7 +207,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Comment> GetComments(int postId)
         {
-            List<Comment> comments = dal.Repository<Comment>().Get(
+            List<Comment> comments = _dal.Repository<Comment>().Get(
                     (c => c.PostId == postId),
                     (c => c.OrderByDescending(m => m.CreatedDate)),
                     "",
@@ -226,7 +228,7 @@ namespace CP_MathHub.Service.Services
         {
             foreach (Comment comment in comments)
             {
-                comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
+                comment.Author = _dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
         }
         public void AnswerQuestion(Answer answer)
@@ -236,12 +238,12 @@ namespace CP_MathHub.Service.Services
             editedlog.CreatedDate = DateTime.Now;
             editedlog.UserId = answer.UserId;
             answer.EditedContents.Add(editedlog);
-            dal.Repository<Answer>().Insert(answer);
-            dal.Save();
+            _dal.Repository<Answer>().Insert(answer);
+            _dal.Save();
         }
         public Answer EditAnswer(Answer answer, int userId, bool hasPermission)
         {
-            Answer a = dal.Repository<Answer>().GetById(answer.Id);
+            Answer a = _dal.Repository<Answer>().GetById(answer.Id);
             if (a.UserId == userId || hasPermission)
             {
                 a.Content = answer.Content;
@@ -253,18 +255,18 @@ namespace CP_MathHub.Service.Services
                 editedlog.UserId = userId;
 
                 a.EditedContents.Add(editedlog);
-                dal.Save();
+                _dal.Save();
                 return a;
             }
             return a;
         }
         public bool Vote(Vote vote)
         {
-            if (dal.Repository<Vote>().Table.Where(v => v.UserId == vote.UserId && v.PostId == vote.PostId).Count() > 0)
+            if (_dal.Repository<Vote>().Table.Where(v => v.UserId == vote.UserId && v.PostId == vote.PostId).Count() > 0)
             {
                 return false;
             }
-            Post post = dal.Repository<Post>().GetById(vote.PostId);
+            Post post = _dal.Repository<Post>().GetById(vote.PostId);
             if (vote.Type == VoteEnum.VoteUp)
             {
                 ++post.VoteUp;
@@ -273,22 +275,22 @@ namespace CP_MathHub.Service.Services
             {
                 ++post.VoteDown;
             }
-            dal.Repository<Vote>().Insert(vote);
-            dal.Repository<Post>().Update(post);
-            dal.Save();
+            _dal.Repository<Vote>().Insert(vote);
+            _dal.Repository<Post>().Update(post);
+            _dal.Save();
             return true;
         }
         public List<Vote> GetVotes(int postId)
         {
             List<Vote> votes = new List<Vote>();
-            votes = dal.Repository<Vote>().Table.Where(v => v.PostId == postId).ToList();
+            votes = _dal.Repository<Vote>().Table.Where(v => v.PostId == postId).ToList();
             return votes;
         }
         public void IncludeUserForVotes(List<Vote> votes)
         {
             foreach (Vote vote in votes)
             {
-                vote.User = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == vote.UserId);
+                vote.User = _dal.Repository<User>().Table.FirstOrDefault(m => m.Id == vote.UserId);
             }
         }
         public void IncreaseViewQuestion(Question question)
@@ -298,14 +300,14 @@ namespace CP_MathHub.Service.Services
         }
         public bool Accept(int answerId)
         {
-            Answer answer = dal.Repository<Answer>().GetById(answerId);
-            if (dal.Repository<Answer>().Table.Count(m => m.QuestionId == answer.QuestionId && m.Accepted == true) > 0 && !dal.Repository<Answer>().GetById(answerId).Accepted)
+            Answer answer = _dal.Repository<Answer>().GetById(answerId);
+            if (_dal.Repository<Answer>().Table.Count(m => m.QuestionId == answer.QuestionId && m.Accepted == true) > 0 && !_dal.Repository<Answer>().GetById(answerId).Accepted)
             {
                 return false;
             }
             answer.Accepted = !answer.Accepted;
-            dal.Repository<Answer>().Update(answer);
-            dal.Save();
+            _dal.Repository<Answer>().Update(answer);
+            _dal.Save();
             return true;
         }
     }

@@ -19,6 +19,16 @@ namespace CP_MathHub.Service.Helpers
         /// </summary>
         public class QuestionHelper
         {
+            public static Expression<Func<Question, bool>> NewestQuestion(int userId)
+            {
+                return (q => q.Status != PostStatusEnum.Hidden
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone)
+                                || (q.Privacy == MainPostPrivacyEnum.Friend
+                                    && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
+                                        || q.Author.PassiveRelationship.Count(r => r.UserId == userId) > 0))
+                                || (q.Privacy == MainPostPrivacyEnum.Invited
+                                    && q.Invitations.Count(i => i.InviteeId == userId) > 0)));
+            }
             /// <summary>
             /// Get hot Question lambda expression
             /// </summary>
