@@ -34,6 +34,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         int CountUserReport(DateTime time);
 
+        /// <summary>
+        /// Count users
+        /// </summary>
+        /// <returns></returns>
+        int CountUsers();
+
         List<BanReason> GetBanReasons();
 
         BanReason GetBanReason(int id);

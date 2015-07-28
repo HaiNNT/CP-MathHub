@@ -35,6 +35,26 @@ namespace CP_MathHub.Service.Helpers
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
 
+        public static string CheckStatusUser(this HtmlHelper html, UserStatusEnum? enU)
+        {
+            string s = "";
+            switch (enU)
+            {
+                case UserStatusEnum.Active:
+                    s = "Bình thường";
+                    break;
+                case UserStatusEnum.Banned:
+                    s = "Bị khóa";
+                    break;
+                case UserStatusEnum.Pending:
+                    s = "Đợi xác nhận mail";
+                    break;
+                default:
+                    break;
+            }
+            return s;
+        }
+
         public static string VoteNumer(this HtmlHelper html, int? vote)
         {
             if (vote == null)

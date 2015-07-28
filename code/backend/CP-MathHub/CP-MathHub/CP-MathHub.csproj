@@ -201,6 +201,7 @@
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
+    <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
@@ -544,6 +545,7 @@
     <Content Include="Content\ckeditor\skins\office2013\images\refresh.png" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\css\bootstrap-reset.css" />
+    <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -607,6 +609,7 @@
     <Content Include="Content\jquery-ui\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.min.css" />
     <Content Include="Content\js\auto-complete.js" />
+    <Content Include="Content\js\bootstrap-select.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\common-scripts.js" />
@@ -827,6 +830,7 @@
     <Content Include="Views\Admin\Views\DashboardView.cshtml" />
     <Content Include="Views\Admin\Views\ManageRulesView.cshtml" />
     <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
+    <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

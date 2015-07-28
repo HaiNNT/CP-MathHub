@@ -400,6 +400,10 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        public List<User> GetUsers(string include = "")
+        {
+            return dal.Repository<User>().Include(include).Table.ToList();
+        }
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
         {
             List<Invitation> invitations = new List<Invitation>();

@@ -10,6 +10,16 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/admincss")
+    @switch ((string)ViewBag.Page)
+    {
+        case Constant.Admin.String.ManageUsersPage:
+            @Styles.Render("~/Content/selectPickercss")
+            @Styles.Render("~/Content/adminManageUser")
+            break;
+        default:
+            break;
+    }
+
 </head>
 <body>
     <section id="container" class="">
@@ -59,7 +69,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="admin-ManageUser.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="admin-ManageUser.html">
                             <i class="icon-group"></i>
                             <span>Quản lý người dùng</span>
                         </a>
@@ -117,6 +127,9 @@
     {
         case Constant.Admin.String.DashboardPage:
             @Scripts.Render("~/bundles/adminDashboardjs")
+            break;
+        case Constant.Admin.String.ManageUsersPage:
+            @Scripts.Render("~/bundles/adminManageUsersjs")
             break;
         case Constant.Admin.String.ManageRulePage:
             @Scripts.Render("~/bundles/adminManageRulesjs")
