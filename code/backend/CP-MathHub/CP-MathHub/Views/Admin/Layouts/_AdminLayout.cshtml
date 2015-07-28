@@ -14,6 +14,7 @@
     {
         case Constant.Admin.String.ManageUsersPage:
             @Styles.Render("~/Content/selectPickercss")
+            @Styles.Render("~/Content/adminManageUser")
             break;
         default:
             break;
@@ -71,7 +72,7 @@
                     </li>
 
                     <li>
-                        <a href="admin-ManageUser.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="admin-ManageUser.html">
                             <i class="icon-group"></i>
                             <span>Quản lý người dùng</span>
                         </a>

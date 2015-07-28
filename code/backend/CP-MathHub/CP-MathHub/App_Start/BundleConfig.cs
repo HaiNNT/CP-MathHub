@@ -84,8 +84,12 @@ namespace CP_MathHub
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style-admin.css",
                       "~/Content/css/style-responsive-admin.css"));
+
             bundles.Add(new StyleBundle("~/Content/selectPickercss").Include(
                       "~/Content/css/bootstrap-select.css"));
+
+            bundles.Add(new StyleBundle("~/Content/adminManageUser").Include(
+                      "~/Content/assets/data-tables/DT_bootstrap.css"));
         }
     }
 }

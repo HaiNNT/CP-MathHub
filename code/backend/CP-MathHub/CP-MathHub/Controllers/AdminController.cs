@@ -51,6 +51,7 @@ namespace CP_MathHub.Controllers
             User user = cService.GetUser(User.Identity.GetUserId<int>(), "Activity");
             model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
             model.UserNumber = aService.CountUsers();
+            model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
             ViewBag.Page = Constant.Admin.String.ManageUsersPage;
             return View("Views/ManageUsersView", model);
         }
