@@ -1,0 +1,91 @@
+﻿@using CP_MathHub.Models.Admin
+@model RulesViewModel
+@{
+    ViewBag.Title = "ManageRulesView";
+    Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
+}
+<section class="wrapper">
+    <!-- table: start -->
+    <h3>Quản lý các quy định</h3>
+    <section class="panel">
+        <div class="panel-body">
+            <div class="adv-table editable-table ">
+                <div class="clearfix">
+                    <div class="btn-group">
+                        <button id="editable-sample_new" class="btn green" data-toggle="modal" data-target="#create">
+                            Tạo quy định mới <i class="icon-plus"></i>
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row mh-admin-row">
+                                            <div class="col-xs-3">
+                                                <label>Tên quy định:</label>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" />
+                                            </div>
+                                        </div>
+                                        <div class="row mh-admin-row">
+                                            <div class="col-xs-3">
+                                                <label>Miêu tả:</label>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" />
+                                            </div>
+                                        </div>
+                                        <div class="row mh-admin-row">
+                                            <div class="col-xs-3">
+                                                <label>Hình phạt:</label>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                        <button type="button" class="btn btn-primary">Tạo mới</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space15"></div>
+                <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên quy định</th>
+                            <th>Miêu tả</th>
+                            <th>Hình phạt</th>
+                            <th>Chỉnh sửa</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Partial("Partials/ManageRulePartialView", Model.Items)
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- table: end -->
+</section>
+<input id="mh-page" type="hidden" value="@ViewBag.Page" />
+

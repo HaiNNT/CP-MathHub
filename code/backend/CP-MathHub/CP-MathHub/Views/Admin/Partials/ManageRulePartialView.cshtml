@@ -1,0 +1,47 @@
+﻿@using CP_MathHub.Models.Admin
+@model ICollection<RuleViewModel>
+@foreach (RuleViewModel rule in Model)
+{
+    <tr class="">
+        <td class="mh-cell-center">@rule.Id</td>
+        <td class="mh-cell-center">@rule.Name</td>
+        <td class="mh-cell-middle">@rule.Description</td>
+        <td class="mh-cell-middle">
+            Toàn quyền.
+            <a href="" data-toggle="modal" data-target="#penalty-1">Thay đổi</a>
+            <!-- Modal -->
+            <div class="modal fade" id="penalty-1" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Thay đổi hình phạt của <span class="mh-manage-user-username">ABC</span></h4>
+                            </div>
+                            <div class="modal-body">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </td>
+        <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
+        <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
+    </tr>
+}
+
+
+

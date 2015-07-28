@@ -10,9 +10,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/admincss")
-
 </head>
-
 <body>
     <section id="container" class="">
         <!--header start-->
@@ -24,7 +22,6 @@
             <a href="index.html" class="logo">
                 <img src="~/Content/img/logo-admin.png" />
             </a>
-
             <div class="top-nav ">
                 <ul class="nav pull-right top-menu">
                     <li>
@@ -61,7 +58,6 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-
                     <li>
                         <a href="admin-ManageUser.html">
                             <i class="icon-group"></i>
@@ -75,7 +71,6 @@
                             <span class="label label-danger pull-right mail-info">2</span>
                         </a>
                     </li>
-
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="icon-flag"></i>
@@ -93,7 +88,6 @@
                             <span>Quản lý thẻ</span>
                         </a>
                     </li>
-
                 </ul>
                 <!-- sidebar menu end-->
             </div>
@@ -123,6 +117,9 @@
     {
         case Constant.Admin.String.DashboardPage:
             @Scripts.Render("~/bundles/adminDashboardjs")
+            break;
+        case Constant.Admin.String.ManageRulePage:
+            @Scripts.Render("~/bundles/adminManageRulesjs")
             break;
         default:
             break;

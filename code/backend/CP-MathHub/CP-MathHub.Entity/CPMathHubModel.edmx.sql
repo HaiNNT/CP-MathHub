@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/25/2015 12:01:40
--- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 07/28/2015 17:30:50
+-- Generated from EDMX file: D:\FPT\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -185,9 +185,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LocationLocation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Locations] DROP CONSTRAINT [FK_LocationLocation];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserActivity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_UserActivity];
-GO
 IF OBJECT_ID(N'[dbo].[FK_GroupArticle]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Article] DROP CONSTRAINT [FK_GroupArticle];
 GO
@@ -199,6 +196,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserUserLogin]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ProfileLocation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Profiles] DROP CONSTRAINT [FK_ProfileLocation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserActivity]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_UserActivity];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
@@ -1914,21 +1914,6 @@ ON [dbo].[Locations]
     ([ParentId]);
 GO
 
--- Creating foreign key on [User_Id] in table 'Activities'
-ALTER TABLE [dbo].[Activities]
-ADD CONSTRAINT [FK_UserActivity]
-    FOREIGN KEY ([User_Id])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserActivity'
-CREATE INDEX [IX_FK_UserActivity]
-ON [dbo].[Activities]
-    ([User_Id]);
-GO
-
 -- Creating foreign key on [GroupId] in table 'Posts_Article'
 ALTER TABLE [dbo].[Posts_Article]
 ADD CONSTRAINT [FK_GroupArticle]
@@ -1987,6 +1972,21 @@ GO
 CREATE INDEX [IX_FK_ProfileLocation]
 ON [dbo].[Profiles]
     ([LocationId]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Activities'
+ALTER TABLE [dbo].[Activities]
+ADD CONSTRAINT [FK_ActivityUser]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ActivityUser'
+CREATE INDEX [IX_FK_ActivityUser]
+ON [dbo].[Activities]
+    ([User_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'

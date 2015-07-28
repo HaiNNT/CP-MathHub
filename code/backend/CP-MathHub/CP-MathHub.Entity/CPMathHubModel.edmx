@@ -278,10 +278,6 @@
       <End Role="ParentLocation" EntitySet="Locations" />
       <End Role="ChildrenLocation" EntitySet="Locations" />
     </AssociationSet>
-    <AssociationSet Name="UserActivity" Association="CPMathHubModel.Store.UserActivity">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Activity" EntitySet="Activities" />
-    </AssociationSet>
     <AssociationSet Name="GroupArticle" Association="CPMathHubModel.Store.GroupArticle">
       <End Role="Group" EntitySet="Groups" />
       <End Role="Article" EntitySet="Posts_Article" />
@@ -297,6 +293,10 @@
     <AssociationSet Name="ProfileLocation" Association="CPMathHubModel.Store.ProfileLocation">
       <End Role="Profile" EntitySet="Profiles" />
       <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="ActivityUser" Association="CPMathHubModel.Store.ActivityUser">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
@@ -1278,20 +1278,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserActivity">
-    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Activity" Type="CPMathHubModel.Store.Activities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Activity">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="GroupArticle">
     <End Role="Group" Type="CPMathHubModel.Store.Groups" Multiplicity="0..1" />
     <End Role="Article" Type="CPMathHubModel.Store.Posts_Article" Multiplicity="*" />
@@ -1337,6 +1323,18 @@
       </Principal>
       <Dependent Role="Profile">
         <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ActivityUser">
+    <End Role="Activity" Type="CPMathHubModel.Store.Activities" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1883,10 +1881,6 @@
             <End Role="ParentLocation" EntitySet="Locations" />
             <End Role="ChildrenLocation" EntitySet="Locations" />
           </AssociationSet>
-          <AssociationSet Name="UserActivity" Association="CPMathHubModel.UserActivity">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Activity" EntitySet="Activities" />
-          </AssociationSet>
           <AssociationSet Name="GroupArticle" Association="CPMathHubModel.GroupArticle">
             <End Role="Group" EntitySet="Groups" />
             <End Role="Article" EntitySet="Posts" />
@@ -1904,6 +1898,10 @@
           <AssociationSet Name="ProfileLocation" Association="CPMathHubModel.ProfileLocation">
             <End Role="Profile" EntitySet="Profiles" />
             <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="ActivityUser" Association="CPMathHubModel.ActivityUser">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
@@ -1980,7 +1978,6 @@
           <NavigationProperty Name="Followers" Relationship="CPMathHubModel.Follow" FromRole="Follower" ToRole="Followee" />
           <NavigationProperty Name="Followees" Relationship="CPMathHubModel.Follow" FromRole="Followee" ToRole="Follower" />
           <NavigationProperty Name="InvitedInvitations" Relationship="CPMathHubModel.InvitedUser" FromRole="User" ToRole="Invitation" />
-          <NavigationProperty Name="Activity" Relationship="CPMathHubModel.UserActivity" FromRole="User" ToRole="Activity" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="SecurityStamp" Type="String" Nullable="true" />
           <Property Name="PhoneNumber" Type="String" Nullable="true" />
@@ -1991,6 +1988,7 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserClaims" Relationship="CPMathHubModel.UserUserClaim" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogins" Relationship="CPMathHubModel.UserUserLogin" FromRole="User" ToRole="UserLogin" />
+          <NavigationProperty Name="Activity" Relationship="CPMathHubModel.ActivityUser" FromRole="User" ToRole="Activity" />
           </EntityType>
         <Association Name="PostUser">
           <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="*" />
@@ -2376,7 +2374,7 @@
           <Property Name="LastLogin" Type="DateTime" Nullable="false" />
           <Property Name="LastIp" Type="String" Nullable="false" />
           <Property Name="LastSeenFriendRequest" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="CPMathHubModel.UserActivity" FromRole="Activity" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.ActivityUser" FromRole="Activity" ToRole="User" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -2932,12 +2930,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserActivity">
-          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="1" />
-        </Association>
         <Association Name="GroupArticle">
           <End Type="CPMathHubModel.Group" Role="Group" Multiplicity="0..1" />
           <End Type="CPMathHubModel.Article" Role="Article" Multiplicity="*" />
@@ -3006,6 +2998,10 @@
               <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="ActivityUser">
+          <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -3563,7 +3559,7 @@
         <ScalarProperty Name="Id" ColumnName="Followers_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="UserActivity" TypeName="CPMathHubModel.UserActivity" StoreEntitySet="Activities">
+    <AssociationSetMapping Name="ActivityUser" TypeName="CPMathHubModel.ActivityUser" StoreEntitySet="Activities">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="User_Id" />
       </EndProperty>

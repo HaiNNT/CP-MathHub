@@ -43,10 +43,16 @@ namespace CP_MathHub
                       "~/Content/js/jquery.scrollTo.min.js",
                       "~/Content/js/jquery.nicescroll.js",
                       "~/Content/js/respond.min.js",
-                      "~/Content/js/common-scripts.js"));
+                      "~/Content/js/common-scripts.js",
+                      "~/Content/js/script-admin.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminDashboardjs").Include(
                       "~/Content/js/count.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminManageRulesjs").Include(
+                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js",
+                      "~/Content/js/editable-table-rule.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",

@@ -54,5 +54,24 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Report>().Table.Count(u => u.ReportedDate > time && u.UserId != default(int?));
         }
+
+        public List<BanReason> GetBanReasons()
+        {
+            List<BanReason> list = new List<BanReason>();
+            list = dal.Repository<BanReason>().Get(null, (p => p.OrderByDescending(b => b.CreatedDate)), "", 0).ToList();
+            return list;
+        }
+
+        public BanReason GetBanReason(int id)
+        {
+            BanReason banReason = dal.Repository<BanReason>().GetById(id);
+            return banReason;
+        }
+
+        public void EditBanReason(BanReason banReason)
+        {
+            dal.Repository<BanReason>().Update(banReason);
+            dal.Save();
+        }
     }
 }
