@@ -60,12 +60,21 @@ function tableManageUsers() {
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 }
 
+function tableRule(){
+    jQuery(document).ready(function () {
+        EditableTable.init();
+    });
+}
+
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
             selectPicker();
             selectValue();
             tableManageUsers();
+            break;
+        case "ManageRules":
+            tableRule();
             break;
         default:
             break;

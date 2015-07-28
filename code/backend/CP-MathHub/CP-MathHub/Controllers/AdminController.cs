@@ -51,8 +51,30 @@ namespace CP_MathHub.Controllers
             User user = cService.GetUser(User.Identity.GetUserId<int>(), "Activity");
             model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
             model.UserNumber = aService.CountUsers();
+            model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
             ViewBag.Page = Constant.Admin.String.ManageUsersPage;
             return View("Views/ManageUsersView", model);
+        }
+
+        public ActionResult ManageRule()
+        {
+            List<BanReason> list = aService.GetBanReasons();
+            RulesViewModel model = new RulesViewModel();
+            ICollection<RuleViewModel> rulesVM = list.Select(Mapper.Map<BanReason,RuleViewModel>).ToList();
+            model.Items = rulesVM;
+            ViewBag.Page = Constant.Admin.String.ManageRulePage;
+            return View("Views/ManageRulesView",model);
+        }
+        [HttpPost]
+        public ActionResult EditRule(RuleEditViewModel model)
+        {
+            BanReason banReason = aService.GetBanReason(model.Id);
+            banReason.Name = model.Name;
+            banReason.Description = model.Description;
+            banReason.CreatedDate = DateTime.Now;
+            banReason.Duration = 1;
+            aService.EditBanReason(banReason);
+            return RedirectToAction("ManageRule");
         }
     }
 }

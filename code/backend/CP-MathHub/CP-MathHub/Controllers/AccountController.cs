@@ -102,7 +102,7 @@ namespace CP_MathHub.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    aService.LogLastLogin(User.Identity.GetUserId<int>());
+                    aService.LogLastLogin(model.Username);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

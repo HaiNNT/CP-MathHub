@@ -89,8 +89,8 @@ namespace CP_MathHub.Entity
         public virtual ICollection<User> Followers { get; set; }
         public virtual ICollection<User> Followees { get; set; }
         public virtual ICollection<Invitation> InvitedInvitations { get; set; }
-        public virtual Activity Activity { get; set; }
         public virtual ICollection<UserClaim> UserClaims { get; set; }
         public virtual ICollection<UserLogin> UserLogins { get; set; }
+        public virtual Activity Activity { get; set; }
     }
 }

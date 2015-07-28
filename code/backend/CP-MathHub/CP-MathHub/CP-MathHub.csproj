@@ -160,7 +160,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\upload\" />
     <Folder Include="RealTime\Notification\" />
-    <Folder Include="Views\Admin\Partials\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -169,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\AccountMapperProfile.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile\AdminMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\BlogMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\CommonMapperProfile.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile\DiscussionMapperProfile.cs" />
@@ -198,6 +198,9 @@
     <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\RuleEditViewModel.cs" />
+    <Compile Include="Models\Admin\RulesViewModel.cs" />
+    <Compile Include="Models\Admin\RuleViewModel.cs" />
     <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
@@ -611,6 +614,7 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\common-scripts.js" />
     <Content Include="Content\js\count.js" />
+    <Content Include="Content\js\editable-table-rule.js" />
     <Content Include="Content\js\jquery-1.11.3.js" />
     <Content Include="Content\js\jquery.cropit.js" />
     <Content Include="Content\js\jquery.dcjqaccordion.2.7.js" />
@@ -824,6 +828,8 @@
     <Content Include="Views\Home\DemoChat.cshtml" />
     <Content Include="Views\Admin\Layouts\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Views\DashboardView.cshtml" />
+    <Content Include="Views\Admin\Views\ManageRulesView.cshtml" />
+    <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
   </ItemGroup>
   <ItemGroup>

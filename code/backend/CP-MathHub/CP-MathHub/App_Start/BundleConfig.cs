@@ -55,6 +55,11 @@ namespace CP_MathHub
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/adminManageRulesjs").Include(
+                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js",
+                      "~/Content/js/editable-table-rule.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/jquery-ui/jquery-ui.css",
@@ -84,8 +89,12 @@ namespace CP_MathHub
                       "~/Content/css/font-awesome.min.css",
                       "~/Content/css/style-admin.css",
                       "~/Content/css/style-responsive-admin.css"));
+
             bundles.Add(new StyleBundle("~/Content/selectPickercss").Include(
                       "~/Content/css/bootstrap-select.css"));
+
+            bundles.Add(new StyleBundle("~/Content/adminManageUser").Include(
+                      "~/Content/assets/data-tables/DT_bootstrap.css"));
         }
     }
 }

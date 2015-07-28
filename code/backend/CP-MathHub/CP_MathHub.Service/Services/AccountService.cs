@@ -50,6 +50,10 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
         }
+        public User GetUser(string username, string include = "")
+        {
+            return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.UserName == username);
+        }
 
         public void UpdateUser(User user)
         {
@@ -264,9 +268,9 @@ namespace CP_MathHub.Service.Services
                 users = users.Skip(skip).Take(take).ToList();
             return users;
         }
-        public void LogLastLogin(int userId)
+        public void LogLastLogin(string username)
         {
-            User user = GetUser(userId, "Activity");
+            User user = GetUser(username, "Activity");
             user.Activity.LastLogin = DateTime.Now;
             dal.Repository<User>().Update(user);
             dal.Save();

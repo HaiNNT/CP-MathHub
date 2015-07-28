@@ -14,13 +14,13 @@
     {
         case Constant.Admin.String.ManageUsersPage:
             @Styles.Render("~/Content/selectPickercss")
+            @Styles.Render("~/Content/adminManageUser")
             break;
         default:
             break;
     }
 
 </head>
-
 <body>
     <section id="container" class="">
         <!--header start-->
@@ -32,7 +32,6 @@
             <a href="index.html" class="logo">
                 <img src="~/Content/img/logo-admin.png" />
             </a>
-
             <div class="top-nav ">
                 <ul class="nav pull-right top-menu">
                     <li>
@@ -69,9 +68,8 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-
                     <li>
-                        <a href="admin-ManageUser.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="admin-ManageUser.html">
                             <i class="icon-group"></i>
                             <span>Quản lý người dùng</span>
                         </a>
@@ -83,7 +81,6 @@
                             <span class="label label-danger pull-right mail-info">2</span>
                         </a>
                     </li>
-
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="icon-flag"></i>
@@ -101,7 +98,6 @@
                             <span>Quản lý thẻ</span>
                         </a>
                     </li>
-
                 </ul>
                 <!-- sidebar menu end-->
             </div>
@@ -134,6 +130,9 @@
             break;
         case Constant.Admin.String.ManageUsersPage:
             @Scripts.Render("~/bundles/adminManageUsersjs")
+            break;
+        case Constant.Admin.String.ManageRulePage:
+            @Scripts.Render("~/bundles/adminManageRulesjs")
             break;
         default:
             break;

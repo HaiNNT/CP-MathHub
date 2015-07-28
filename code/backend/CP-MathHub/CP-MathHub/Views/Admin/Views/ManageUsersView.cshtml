@@ -1,5 +1,7 @@
 ﻿@model CP_MathHub.Models.Admin.ManageUsersViewModel
 @using CP_MathHub.Core.Configuration
+@using CP_MathHub.Entity
+@using CP_MathHub.Service.Helpers
 @{
     ViewBag.Title = "ManageUsersView";
     Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
@@ -68,553 +70,250 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td class="mh-cell-center">
-                                <img src="~/Content/img/user.jpg" class="mh-user-picture" />
-                            </td>
-                            <td class="mh-cell-center">
-                                <a data-toggle="modal" data-target="#user1">Admin</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="user1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">Admin</span></h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4>
-                                                    Đi đến
-                                                    <a href="#">trang thông tin cá nhân</a>
-                                                    của
-                                                    <span class="mh-manage-user-username">Admin</span>
-                                                </h4>
-                                                <div>
-                                                    <h3>Thông tin chung</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Tài khoản</label>
+                        @foreach (User user in Model.Users)
+                        {
+                            <tr class="">
+                                <td class="mh-cell-center">
+                                    <img src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-picture" />
+                                </td>
+                                <td class="mh-cell-center">
+                                    <a data-toggle="modal" data-target="#user1">@user.UserName</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="user1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">Admin</span></h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4>
+                                                        Đi đến
+                                                        <a href="#">trang thông tin cá nhân</a>
+                                                        của
+                                                        <span class="mh-manage-user-username">Admin</span>
+                                                    </h4>
+                                                    <div>
+                                                        <h3>Thông tin chung</h3>
+                                                        <div class="mh-manage-user-info-detail">
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Tài khoản</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>TamTV</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <span>TamTV</span>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Email</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>tamtv93@gmail.com</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Điểm thưởng</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <div>
+                                                                        <span>1432</span>
+                                                                        <i class="icon-circle mh-reputation-icon"></i>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Email</label>
+                                                    </div>
+                                                    <div>
+                                                        <h3>Thông tin cơ bản</h3>
+                                                        <div class="mh-manage-user-info-detail">
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Họ tên</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Thân Văn Tâm</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <span>tamtv93@gmail.com</span>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Giới tính</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Nam</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Ngày sinh</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>13/10/1993</span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Điểm thưởng</label>
+                                                    </div>
+                                                    <div>
+                                                        <h3>Thông tin liên hệ</h3>
+                                                        <div class="mh-manage-user-info-detail">
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Địa chỉ</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Đà Nẵng</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <div>
-                                                                    <span>1432</span>
-                                                                    <i class="icon-circle mh-reputation-icon"></i>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Số điện thoại</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>01227527757</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Facebook</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <a href="https://www.facebook.com/tam.gre.5">https://www.facebook.com/tam.gre.5</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <h3>Thông tin khác</h3>
+                                                        <div class="mh-manage-user-info-detail">
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Trường</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>FPT University</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Trình độ</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Đại học</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Quan điểm</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Sống thật với bản thân</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mh-profile-info-row">
+                                                                <div class="col-xs-3">
+                                                                    <label>Giới thiệu</label>
+                                                                </div>
+                                                                <div class="col-xs-5">
+                                                                    <span>Bình thường</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <h3>Thông tin cơ bản</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Họ tên</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Thân Văn Tâm</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới tính</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Nam</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Ngày sinh</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>13/10/1993</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin liên hệ</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Địa chỉ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đà Nẵng</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Số điện thoại</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>01227527757</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Facebook</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <a href="https://www.facebook.com/tam.gre.5">https://www.facebook.com/tam.gre.5</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin khác</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trường</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>FPT University</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trình độ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đại học</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Quan điểm</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Sống thật với bản thân</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới thiệu</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Bình thường</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-middle">Admin admin admin</td>
-                            <td class="mh-cell-middle">admin@gmail.com</td>
-                            <td class="mh-cell-center">Bình thường</td>
-                            <td class="mh-cell-center">Chưa</td>
-                            <td class="mh-cell-center">Admin</td>
-                            <td class="mh-cell-center">
-                                <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#blockuser1">Khóa</a>
-                                <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
-                                <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Phân quyền</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="blockuser1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Lý do:</h5>
-                                                        </div>
-                                                        <div class="col-xs-8 mh-select-cause-time-block">
-                                                            <select name="selBlock" class="selectpicker blockday" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                <option value="1">ABC - 1 ngày</option>
-                                                                <option value="2">XYZ - 2 ngày</option>
-                                                                <option value="3">LMG - 3 ngày</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Tổng số ngày bị khóa</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input id="dayresult-1" type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                    <button type="button" class="btn btn-warning">Khóa</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="setRole1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Phân quyền cho Admin</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label>
-                                                        <input type="checkbox" value="1" checked>
-                                                        Admin
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="2">
-                                                        Quản lý
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="3">
-                                                        Chuyên gia
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="4">
-                                                        Người dùng
-                                                    </label>
-                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td class="mh-cell-center">
-                                <img src="~/Content/img/user.jpg" class="mh-user-picture" />
-                            </td>
-                            <td class="mh-cell-center">
-                                <a data-toggle="modal" data-target="#user2">TamTV</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="user2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">Admin</span></h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4>
-                                                    Đi đến
-                                                    <a href="#">trang thông tin cá nhân</a>
-                                                    của
-                                                    <span class="mh-manage-user-username">TamTV</span>
-                                                </h4>
-                                                <div>
-                                                    <h3>Thông tin chung</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Tài khoản</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>TamTV</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Email</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>tamtv93@gmail.com</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Điểm thưởng</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <div>
-                                                                    <span>1432</span>
-                                                                    <i class="icon-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin cơ bản</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Họ tên</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Thân Văn Tâm</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới tính</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Nam</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Ngày sinh</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>13/10/1993</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin liên hệ</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Địa chỉ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đà Nẵng</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Số điện thoại</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>01227527757</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Facebook</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <a href="https://www.facebook.com/tam.gre.5">https://www.facebook.com/tam.gre.5</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin khác</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trường</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>FPT University</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trình độ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đại học</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Quan điểm</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Sống thật với bản thân</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới thiệu</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Bình thường</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-middle">Thân Văn Tâm</td>
-                            <td class="mh-cell-middle">tamtv93@gmail.com</td>
-                            <td class="mh-cell-center">Bị khóa</td>
-                            <td class="mh-cell-center">
-                                <a href="" data-toggle="modal" data-target="#blocked">1 lần</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="blocked" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="mh-history-block-row">
-                                                    <h3>Lần 1:</h3>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Lý do:</h5>
+                                </td>
+                                <td class="mh-cell-middle">@user.Profile.FullName</td>
+                                <td class="mh-cell-middle">@user.Email</td>
+                                <td class="mh-cell-center">@Html.CheckStatusUser(user.Status)</td>
+                                <td class="mh-cell-center">@(user.BannedAccounts.Count > 0 ? user.BannedAccounts.Count+" lần" : "chưa")</td>
+                                <td class="mh-cell-center">@user.Assessments</td>
+                                <td class="mh-cell-center">
+                                    <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#blockuser1">Khóa</a>
+                                    <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
+                                    <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Phân quyền</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="blockuser1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form>
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <h5>Lý do:</h5>
+                                                            </div>
+                                                            <div class="col-xs-8 mh-select-cause-time-block">
+                                                                <select name="selBlock" class="selectpicker blockday" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                    <option value="1">ABC - 1 ngày</option>
+                                                                    <option value="2">XYZ - 2 ngày</option>
+                                                                    <option value="3">LMG - 3 ngày</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-xs-8 mh-select-cause-time-block">
-                                                            <select name="selBlock" class="selectpicker" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                <option value="1">ABC - 1 ngày</option>
-                                                                <option value="2">XYZ - 2 ngày</option>
-                                                                <option value="3">LMG - 3 ngày</option>
-                                                            </select>
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <h5>Tổng số ngày bị khóa</h5>
+                                                            </div>
+                                                            <div class="col-xs-8">
+                                                                <input id="dayresult-1" type="text" readonly value="" class="mh-sum-day-block-input" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Tổng số ngày bị khóa</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                        <button type="button" class="btn btn-warning">Khóa</button>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Bị khóa bởi</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <h5>Quản lý - ABC</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-center">Người dùng</td>
-                            <td class="mh-cell-center">
-                                <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#unblockuser1">Bỏ khóa</a>
-                                <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
-                                <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole1">Phân quyền</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="unblockuser1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">Admin</span></h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Lý do:</h5>
-                                                        </div>
-                                                        <div class="col-xs-8 mh-select-cause-time-block">
-                                                            <select name="selBlock" class="selectpicker" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                <option value="1">ABC - 1 ngày</option>
-                                                                <option value="2">XYZ - 2 ngày</option>
-                                                                <option value="3">LMG - 3 ngày</option>
-                                                            </select>
-                                                        </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="setRole1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <form>
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Phân quyền cho Admin</h4>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Tổng số ngày bị khóa</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                        </div>
+                                                    <div class="modal-body">
+                                                        <label>
+                                                            <input type="checkbox" value="1" checked>
+                                                            Admin
+                                                        </label><br />
+                                                        <label>
+                                                            <input type="checkbox" value="2">
+                                                            Quản lý
+                                                        </label><br />
+                                                        <label>
+                                                            <input type="checkbox" value="3">
+                                                            Chuyên gia
+                                                        </label><br />
+                                                        <label>
+                                                            <input type="checkbox" value="4">
+                                                            Người dùng
+                                                        </label>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Số ngày bị khóa còn lại</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <input type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                        <button type="button" class="btn btn-primary">Lưu thay đổi</button>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-xs-4">
-                                                            <h5>Bị khóa bởi</h5>
-                                                        </div>
-                                                        <div class="col-xs-8">
-                                                            <h5>Quản lý - ABC</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                    <button type="button" class="btn btn-warning">Bỏ khóa</button>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="setRole1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <form>
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Phân quyền người dùng</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label>
-                                                        <input type="checkbox" value="1" checked>
-                                                        Admin
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="2">
-                                                        Quản lý
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="3">
-                                                        Chuyên gia
-                                                    </label><br />
-                                                    <label>
-                                                        <input type="checkbox" value="4">
-                                                        Người dùng
-                                                    </label>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

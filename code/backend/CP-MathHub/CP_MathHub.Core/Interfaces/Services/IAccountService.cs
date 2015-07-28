@@ -23,6 +23,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         User GetUser(int userId, string include = "");
 
         /// <summary>
+        /// Get an entity User by name
+        /// </summary>
+        /// <returns></returns>
+        User GetUser(string username, string include = "");
+
+        /// <summary>
         /// Update User
         /// </summary>
         /// <param name="user"></param>
@@ -142,6 +148,6 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Log last login time of user
         /// </summary>
         /// <param name="userId"></param>
-        void LogLastLogin(int userId);
+        void LogLastLogin(string username);
     }
 }

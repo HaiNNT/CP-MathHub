@@ -189,6 +189,7 @@ namespace CP_MathHub.Core.Configuration
             {
                 public const string DashboardPage = "Dashboard";
                 public const string ManageUsersPage = "ManageUsers";
+                public const string ManageRulePage = "ManageRules";
             }
         }
     }

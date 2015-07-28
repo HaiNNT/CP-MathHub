@@ -119,6 +119,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<User> GetUsers(int skip, string tab);
 
         /// <summary>
+        /// Get all users
+        /// </summary>
+        /// <returns></returns>
+        List<User> GetUsers(string include = "");
+
+        /// <summary>
         /// Get list user by list id
         /// </summary>
         /// <returns></returns>
