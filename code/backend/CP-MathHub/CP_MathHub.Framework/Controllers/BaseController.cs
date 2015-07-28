@@ -22,7 +22,7 @@ namespace CP_MathHub.Framework.Controllers
 
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                int _currentUserId = requestContext.HttpContext.User.Identity.GetUserId<int>();
+                _currentUserId = requestContext.HttpContext.User.Identity.GetUserId<int>();
             }
             else
             {
