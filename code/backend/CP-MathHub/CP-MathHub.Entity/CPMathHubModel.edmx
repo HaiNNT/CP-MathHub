@@ -466,6 +466,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Avatar" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Attendances">
     <Key>
@@ -2304,6 +2305,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Attendances" Relationship="CPMathHubModel.AttendanceConversation" FromRole="Conversation" ToRole="Attendance" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Avatar" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
@@ -3200,6 +3202,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

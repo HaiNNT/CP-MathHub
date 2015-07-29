@@ -232,6 +232,7 @@
     <Compile Include="Models\Question\TagsPageViewModel.cs" />
     <Compile Include="Models\Question\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\VoteViewModel.cs" />
+    <Compile Include="Models\RealTime\ConversationViewModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTime\Chat\ChatHub.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CP_MathHub.Entity;
+using CP_MathHub.Models.RealTime;
 
 namespace CP_MathHub.Models.Account
 {
@@ -18,5 +19,7 @@ namespace CP_MathHub.Models.Account
         public int AnswerNum { get; set; }
         public List<Tag> TagList { get; set; }
         public int CountTagPost { get; set; }
+
+        public List<ConversationViewModel> Conversations { get; set; }
     }
 }

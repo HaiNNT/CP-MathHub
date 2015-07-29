@@ -2,6 +2,7 @@
 @model ActivityViewModel
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Service.Helpers
+@using CP_MathHub.Models.RealTime
 @{
     ViewBag.Title = "ActivityView";
     Layout = "~/Views/Account/Layouts/_ActivityLayout.cshtml";
@@ -409,147 +410,26 @@
                         </div>
                     </div>
                     <div class="mh-profile-chat-user">
-                        <div class="active">
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
+                        @foreach(ConversationViewModel conversation in Model.Conversations){
+                            <div>
+                                <a href="#">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img src="@(conversation.Avatar != null ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="media-heading">@conversation.Name</span><br />
+                                            <span class="mh-profile-chat-content">@conversation.LastMessage.Content</span><br />
+                                            <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate,"")</span><br />
+                                            @if (conversation.NewMessageNum != default(int) || conversation.NewMessageNum > 0)
+                                            {
+                                                <span class="mh-new-message">@conversation.NewMessageNum tin nhắn mới</span>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">Thân Văn Tâm</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">Văn Minh Hoàng Quân</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span><br />
-                                        <span class="mh-new-message">2 tin nhắn mới</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
-                                        <span class="media-heading">User</span><br />
-                                        <span class="mh-profile-chat-content"> sao? bạn nói gì</span><br />
-                                        <span class="mh-time">58 phút trước</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="col-xs-8 mh-profile-chat-details">
