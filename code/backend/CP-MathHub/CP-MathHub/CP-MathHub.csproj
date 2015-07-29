@@ -197,6 +197,7 @@
     <Compile Include="Models\Account\PrivacyViewModel.cs" />
     <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Account\UserItemViewModel.cs" />
+    <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
@@ -230,7 +231,6 @@
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Models\Question\TagsPageViewModel.cs" />
-    <Compile Include="Models\Question\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\VoteViewModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -742,9 +742,6 @@
     <Content Include="Views\CommonWidget\Widgets\_UserHeaderWidget.cshtml" />
     <Content Include="Views\Question\Partials\_NavPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_TagAutoCompletePartialView.cshtml" />
-    <Content Include="Views\Question\Layouts\_UsersPageLayout.cshtml" />
-    <Content Include="Views\Question\Views\UsersPageView.cshtml" />
-    <Content Include="Views\Question\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Question\Layouts\_TagsPageLayout.cshtml" />
     <Content Include="Views\Question\Views\TagsPageView.cshtml" />
     <Content Include="Views\Question\Partials\_TagListPartialView.cshtml" />
@@ -832,6 +829,10 @@
     <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
     <Content Include="Views\Account\Partials\_UserMutualFriendListPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserSearchFriendListPartialView.cshtml" />
+    <Content Include="Views\Account\Views\UsersPageView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserListPartialView.cshtml" />
+    <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

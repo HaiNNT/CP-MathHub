@@ -366,9 +366,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.UserExpertTab:
                     list = dal.Repository<User>()
                                 .Get(
-                                    Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Expert").Body,
-                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                    ExpressionHelper.UserHelper.MixRoleContainUser("Expert",name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
                                     skip,
@@ -378,9 +376,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.UserModTab:
                     list = dal.Repository<User>()
                                 .Get(
-                                     Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Moderator").Body,
-                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                     ExpressionHelper.UserHelper.MixRoleContainUser("Moderator", name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
                                     skip,
