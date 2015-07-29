@@ -52,6 +52,7 @@ namespace CP_MathHub.Controllers
             model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
             model.UserNumber = aService.CountUsers();
             model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
+            model.BanReasons = cService.GetBanReason();
             ViewBag.Page = Constant.Admin.String.ManageUsersPage;
             return View("Views/ManageUsersView", model);
         }
