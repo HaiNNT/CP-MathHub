@@ -85,7 +85,7 @@ namespace CP_MathHub.Controllers
                 blogHomeVM.HotArticles = articleHotPreviewVMs;
                 blogHomeVM.View = view;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
@@ -186,7 +186,7 @@ namespace CP_MathHub.Controllers
                 myBlogVM.Articles = articlePreviewVMs;
                 myBlogVM.View = view;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/MyBlogView", myBlogVM);
             }
@@ -230,7 +230,7 @@ namespace CP_MathHub.Controllers
                 blogHomeVM.Articles = articlePreviewVMs;
                 blogHomeVM.View = view;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
@@ -270,7 +270,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = tag;
                 blogHomeVM.Articles = articlePreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/BlogHomeView", blogHomeVM);
             }
@@ -313,7 +313,7 @@ namespace CP_MathHub.Controllers
             bService.IncreaseViewArticle(article);
             ViewBag.System = Constant.String.BlogSystem;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-            cookie.Expires.AddHours(1);
+            cookie.Expires = DateTime.Now.AddMinutes(5);
             Response.Cookies.Add(cookie);
             return View("Views/BlogDetailView", articleDetailVM);
         }

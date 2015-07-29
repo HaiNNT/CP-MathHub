@@ -410,9 +410,10 @@
                         </div>
                     </div>
                     <div class="mh-profile-chat-user">
-                        @foreach(ConversationViewModel conversation in Model.Conversations){
-                            <div>
-                                <a href="#">
+                        @foreach (ConversationPreviewViewModel conversation in Model.Conversations)
+                        {
+                            <div class="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "active" : "")">
+                                <a href="#" id="conversation-@conversation.Id" onclick="@("loadConversationDetail(this," + @conversation.Id + ")")">
                                     <div class="media">
                                         <div class="media-left">
                                             <img src="@(conversation.Avatar != null ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
@@ -420,10 +421,10 @@
                                         <div class="media-body">
                                             <span class="media-heading">@conversation.Name</span><br />
                                             <span class="mh-profile-chat-content">@conversation.LastMessage.Content</span><br />
-                                            <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate,"")</span><br />
+                                            <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate, "")</span><br />
                                             @if (conversation.NewMessageNum != default(int) || conversation.NewMessageNum > 0)
                                             {
-                                                <span class="mh-new-message">@conversation.NewMessageNum tin nhắn mới</span>
+                                                <span class="mh-new-message" style="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "color: #fff;" : "")">@conversation.NewMessageNum tin nhắn mới</span>
                                             }
                                         </div>
                                     </div>
@@ -432,182 +433,7 @@
                         }
                     </div>
                 </div>
-                <div class="col-xs-8 mh-profile-chat-details">
-                    <div class="mh-profile-chat-top">
-                        <h4>Thân Văn Tâm</h4>
-                    </div>
-                    <div class="mh-profile-chat-detail">
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Văn Minh Hoàng Quân</h5>
-                                </a>
-                                <span>khỏe không?</span>
-                            </div>
-                            <div class="media-right">
-                                18/7/2015 13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Thân Văn Tâm</h5>
-                                </a>
-                                <span>bình thường, m sao rồi</span>
-                            </div>
-                            <div class="media-right">
-                                18/7/2015 13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Văn Minh Hoàng Quân</h5>
-                                </a>
-                                <span>chán<br />ê m học xml chưa<br />nó khó ko</span>
-                            </div>
-                            <div class="media-right">
-                                18/7/2015 13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Thân Văn Tâm</h5>
-                                </a>
-                                <span>rồi, nói chung ráng học là qua à :)</span>
-                            </div>
-                            <div class="media-right">
-                                18/7/2015 13:02
-                            </div>
-                        </div>
-                        <div class="mh-profile-chat-detail-divide">
-                            <span class="mh-profile-chat-detail-divide-time">Hôm nay</span>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Thân Văn Tâm</h5>
-                                </a>
-                                <span>ê m biết giải lập trình abc ko?</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Văn Minh Hoàng Quân</h5>
-                                </a>
-                                <span>biết m định tham gia hả...</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Thân Văn Tâm</h5>
-                                </a>
-                                <span>ko, nhưng nghe nói cái đó là lập trình di động hả, t định giới thiệu cho bạn t tham gia ấy mà</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Văn Minh Hoàng Quân</h5>
-                                </a>
-                                <span>uhm`, android thì phải, mình vô cms tìm link mà vô xem chi tiết</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Thân Văn Tâm</h5>
-                                </a>
-                                <span>uhm` ok, thanks m</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                        <div class="media mh-profile-chat-detail-row">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object mh-user-icon" src="~/Content/img/user.jpg" alt="...">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <a href="">
-                                    <h5 class="media-heading">Văn Minh Hoàng Quân</h5>
-                                </a>
-                                <span>:)</span>
-                            </div>
-                            <div class="media-right">
-                                13:02
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mh-profile-chat-footer">
-                        <textarea rows="5" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
-                        <a href="">
-                            <i class="fa fa-smile-o mh-profile-chat-footer-smile" title="Chọn một nhãn dán"></i>
-                        </a>
-                    </div>
-                </div>
+                @Html.Partial("Partials/_ConversationDetailPartialView", Model.Conversation)
             </div>
         </div>
     </div>

@@ -101,7 +101,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get Answers of Quuestion
         /// </summary>
         /// <returns></returns>
-        List<Answer> GetAnswers(int questionId, AnswerEnum type = 0);
+        List<Answer> GetAnswers(int questionId, AnswerEnum type);
 
         /// <summary>
         /// Get Comments of Post

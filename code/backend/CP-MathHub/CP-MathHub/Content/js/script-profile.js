@@ -103,3 +103,24 @@ $(document).ready(function () {
         $('.hidden-image-data').val(imageData);
     });
 });
+
+function loadConversationDetail(item, id) {
+    $(".mh-profile-chat-details").html("");
+    $(item).parent().siblings().removeClass("active");
+    $(item).parent().addClass("active");
+    $.ajax({
+        method: "POST",
+        url: "/Account/LoadConversationDetail",
+        data: { id: id }
+    })
+	  .done(function (msg) {
+	      if (msg || msg != "") {
+	          $(".mh-profile-chat-details").html($(msg).html());
+	      } else {
+	          alert("empty conversation");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
+}

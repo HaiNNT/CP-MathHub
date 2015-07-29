@@ -21,7 +21,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             Mapper.CreateMap<User, ProfileViewModel>()
                 .ForMember(
                     d => d.FriendNumber,
-                    s => s.MapFrom(m => new AccountService(new CPMathHubModelContainer()).CountFriend(m.Id))
+                    s => s.MapFrom(m => new AccountService(new CPMathHubModelContainer(), 0).CountFriend(m.Id))
                 );
             Mapper.CreateMap<User, PrivacyViewModel>()
                 .ForMember(

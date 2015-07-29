@@ -1,0 +1,42 @@
+﻿@model CP_MathHub.Models.RealTime.ConversationDetailViewModel
+@using CP_MathHub.Models.RealTime
+@using CP_MathHub.Helper
+@using CP_MathHub.Entity
+<div class="col-xs-8 mh-profile-chat-details">
+    <div class="mh-profile-chat-top">
+        <h4>@Model.Name</h4>
+    </div>
+    <div class="mh-profile-chat-detail">
+        @foreach (MesagesOfDate date in Model.Dates)
+        {
+            <div class="mh-profile-chat-detail-divide">
+                <span class="mh-profile-chat-detail-divide-time">@Html.CreatedTime(date.Date)</span>
+            </div>
+            foreach (Message message in date.Messages)
+            {
+                <div class="media mh-profile-chat-detail-row">
+                    <div class="media-left">
+                        <a href="@Url.Action("UserProfile", "Account", new { userId = message.Attendance.UserId })">
+                            <img class="media-object mh-user-icon" src="@(message.Attendance.User.Avatar != null ? Url.Content(message.Attendance.User.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <a href="">
+                            <h5 class="media-heading">@message.Attendance.User.UserName</h5>
+                        </a>
+                        <span>@message.Content</span>
+                    </div>
+                    <div class="media-right">
+                        @message.CreatedDate.ToShortTimeString()
+                    </div>
+                </div>
+            }
+        }      
+    </div>
+    <div class="mh-profile-chat-footer">
+        <textarea rows="5" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
+        <a href="">
+            <i class="fa fa-smile-o mh-profile-chat-footer-smile" title="Chọn một nhãn dán"></i>
+        </a>
+    </div>
+</div>

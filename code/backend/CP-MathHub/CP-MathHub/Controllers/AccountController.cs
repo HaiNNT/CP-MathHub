@@ -16,10 +16,12 @@ using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
 using CP_MathHub.Helper;
+using CP_MathHub.Models.RealTime;
 using AutoMapper;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Web.Routing;
 
 namespace CP_MathHub.Controllers
 {
@@ -30,14 +32,11 @@ namespace CP_MathHub.Controllers
         private IDiscussionService dService;
         private IQuestionService qService;
         private IBlogService bService;
+        private IRealTimeService rService;
         private CPMathHubModelContainer context;
         public AccountController()
         {
             context = new CPMathHubModelContainer();
-            aService = new AccountService(context);
-            dService = new DiscussionService(context);
-            bService = new BlogService(context);
-            qService = new QuestionService(context);
         }
         #region Authentication
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -45,7 +44,27 @@ namespace CP_MathHub.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
             context = new CPMathHubModelContainer();
-            aService = new AccountService(context);
+        }
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                aService = new AccountService(context, _currentUserId);
+                dService = new DiscussionService(context, _currentUserId);
+                bService = new BlogService(context, _currentUserId);
+                qService = new QuestionService(context, _currentUserId);
+                rService = new RealTimeService(context, _currentUserId);
+            }
+            else
+            {
+                aService = new AccountService(context);
+                dService = new DiscussionService(context);
+                bService = new BlogService(context);
+                qService = new QuestionService(context);
+            }
+
         }
 
         private ApplicationUserManager _userManager;
@@ -652,10 +671,10 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(userId, "Profile");
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<UserItemViewModel> friends = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());          
+            List<UserItemViewModel> friends = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followers = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followees = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> requests = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(userId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -668,7 +687,7 @@ namespace CP_MathHub.Controllers
                 model.ListRequested = requests;
                 model.RequestNum = aService.CountFriendRequest(userId);
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 ViewBag.System = Constant.String.ProfileSystem;
                 ViewBag.Tab = tab;
@@ -685,11 +704,11 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(friendId, "Profile");
             int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<UserItemViewModel> friends = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> mutualfriends = Helper.ListHelper.ListUsertoListUserItem(aService.GetMutualFriends(User.Identity.GetUserId<int>(), friendId), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> friends = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(friendId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followers = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(friendId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> followees = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(friendId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> requests = Helper.ListHelper.ListUserToListUserItem(aService.GetFriends(friendId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
+            List<UserItemViewModel> mutualfriends = Helper.ListHelper.ListUserToListUserItem(aService.GetMutualFriends(User.Identity.GetUserId<int>(), friendId), User.Identity.GetUserId<int>());
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -704,9 +723,9 @@ namespace CP_MathHub.Controllers
                 model.ListRequested = requests;
                 model.ListMutualFriend = mutualfriends;
                 model.RequestNum = aService.CountFriendRequest(friendId);
-                model.MutualFriendNum = aService.CountMutualFriend(User.Identity.GetUserId<int>(),friendId);
+                model.MutualFriendNum = aService.CountMutualFriend(User.Identity.GetUserId<int>(), friendId);
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 ViewBag.System = Constant.String.ProfileSystem;
                 ViewBag.Tab = tab;
@@ -750,36 +769,37 @@ namespace CP_MathHub.Controllers
         }
         #endregion
         #region Activity
-        public ActionResult MyActivity(int page = 0)
+        public ActionResult MyActivity()
         {
-            int skip = page * Constant.Question.Integer.TagPagingDefaultTake;
-            List<Discussion> discussions = dService.GetDiscussions(User.Identity.GetUserId<int>(), skip);
-            List<Question> questions = qService.GetQuestions(User.Identity.GetUserId<int>(), skip);
-            List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>(), skip);
-            List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>(), skip);
+            List<Discussion> discussions = dService.GetDiscussions(User.Identity.GetUserId<int>());
+            List<Question> questions = qService.GetQuestions(User.Identity.GetUserId<int>());
+            List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>());
+            List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>());
             List<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
-            if (page == 0)
-            {
-                ActivityViewModel model = new ActivityViewModel();
-                model.DiscussionList = discussions;
-                model.QuestionList = questions;
-                model.ArticleList = articles;
-                model.AnswerList = answers;
-                model.TagList = tags;
-                model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
-                model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
-                model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
-                model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
-                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
-                Response.Cookies.Add(cookie);
-                ViewBag.System = Constant.String.ProfileSystem;
-                return View("Views/ActivityView", model);
-            }
-            else
-            {
-                return PartialView("Partials/_UserQuestionActivityPartialView", questions);
-            }
+            List<Conversation> convers = rService.GetConversations(_currentUserId);
+            List<ConversationPreviewViewModel> conversations =
+                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
+            ConversationDetailViewModel conversation = new ConversationDetailViewModel();
+            conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
+            conversation.Name = convers.First().Name;
+
+            ActivityViewModel model = new ActivityViewModel();
+            model.DiscussionList = discussions;
+            model.QuestionList = questions;
+            model.ArticleList = articles;
+            model.AnswerList = answers;
+            model.TagList = tags;
+            model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
+            model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
+            model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
+            model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
+            model.Conversations = conversations;
+            model.Conversation = conversation;
+            //var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+            //cookie.Expires = DateTime.Now.AddMinutes(5);
+            //Response.Cookies.Add(cookie);
+            ViewBag.System = Constant.String.ProfileSystem;
+            return View("Views/ActivityView", model);
         }
         #endregion
         #region Privacy
@@ -821,6 +841,18 @@ namespace CP_MathHub.Controllers
             return RedirectToAction("Privacy");
         }
 
+        #endregion
+        #region Chat
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult LoadConversationDetail(int id)
+        {
+            ConversationDetailViewModel conversation = new ConversationDetailViewModel();
+            conversation.SetDates(rService.GetAllConversationMessages(id));
+            conversation.Name = rService.GetConversation(id).Name;
+            return PartialView("Partials/_ConversationDetailPartialView", conversation);
+        }
         #endregion
     }
 }

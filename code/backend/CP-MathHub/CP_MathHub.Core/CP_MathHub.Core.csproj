@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\Services\IDiscussionService.cs" />
     <Compile Include="Interfaces\Services\IQuestionService.cs" />
     <Compile Include="Interfaces\Repository\IRepository.cs" />
+    <Compile Include="Interfaces\Services\IRealTimeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -20,6 +20,7 @@ namespace CP_MathHub.Models.Account
         public List<Tag> TagList { get; set; }
         public int CountTagPost { get; set; }
 
-        public List<ConversationViewModel> Conversations { get; set; }
+        public List<ConversationPreviewViewModel> Conversations { get; set; }
+        public ConversationDetailViewModel Conversation { get; set; }
     }
 }
