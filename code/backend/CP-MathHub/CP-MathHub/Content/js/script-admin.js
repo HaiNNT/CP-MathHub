@@ -17,13 +17,15 @@ function selectValue() {
     Select Picker: select value after calculator
 */
 function selectValuePlus() {
-    $('.selectpicker.blockday').on('change', function () {
-            var temp2 = $('.selectpicker.blockday').val();
+
+    $('.selectpicker.blockday').change(function () {
+        var temp2 = $(this).val();
+        var id = $(this).attr("mh-id");
             var total = 0;
-            for (var i = 0; i < temp2.length; i++) {
-                total += +temp2[i];
+        for (var item in temp2) {
+            total += +temp2[item];
             }
-            $('#dayresult-1').val(total + " ngày");
+        $('#dayresult-' + id).val(total + " ngày");
         });
 }
 
@@ -60,7 +62,7 @@ function tableManageUsers() {
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 }
 
-function tableRule(){
+function tableRule() {
     jQuery(document).ready(function () {
         EditableTable.init();
     });
@@ -121,6 +123,7 @@ $(document).ready(function () {
         case "ManageUsers":
             selectPicker();
             selectValue();
+            selectValuePlus();
             tableManageUsers();
             break;
         case "ManageRules":

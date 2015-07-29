@@ -4678,7 +4678,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-reputation-icon {
   color: #FFD252;
 }
-.mh-sum-day-block-input {
+.mh-sum-day-block-input, .mh-block-input {
     width: 100%;
     margin-top: 7px;
     padding: 5px 10px;

@@ -411,3 +411,11 @@ form:last-child .mh-profile-info-row {
 .mh-profile-show-image {
     height: 200px;
 }
+.mh-chat-header-status-header-on {
+    font-size: 10pt;
+    color: #0F9D28;
+}
+.mh-chat-header-status-header-off {
+    font-size: 10px;
+    color: #9197a3;
+}
