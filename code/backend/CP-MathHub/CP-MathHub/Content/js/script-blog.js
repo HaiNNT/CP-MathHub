@@ -94,8 +94,8 @@ function createTag() {
         $("#mh-input-tag").val("");
         $("#mh-input-tag").focus();
         autocomplete.hide();
-        if (!ids[tagId]) {
-            ids[tagId] = tagName;
+        if (!tagIds[tagId]) {
+            tagIds[tagId] = tagName;
             list.append($(item));
         }
     }

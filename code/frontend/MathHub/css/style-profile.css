@@ -256,7 +256,7 @@ form:last-child .mh-profile-info-row {
     border-bottom: 1px solid #E9EAED;
 }
 .mh-profile-chat-user {
-    height: 500px;
+    height: 408px;
     overflow-y: scroll;
 }
 .mh-profile-chat-user > div {
@@ -289,7 +289,7 @@ form:last-child .mh-profile-info-row {
     float: right;
 }
 .mh-profile-chat-detail {
-    height: 400px;
+    height: 310px;
     overflow-y: scroll;
     padding: 10px;
 }
@@ -323,6 +323,7 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-chat-footer {
     padding: 10px;
+    padding-bottom: 0px;
     border-top: 1px solid #E9EAED;
     position: relative;
 }
@@ -409,4 +410,12 @@ form:last-child .mh-profile-info-row {
 }
 .mh-profile-show-image {
     height: 200px;
+}
+.mh-chat-header-status-header-on {
+    font-size: 10pt;
+    color: #0F9D28;
+}
+.mh-chat-header-status-header-off {
+    font-size: 10px;
+    color: #9197a3;
 }

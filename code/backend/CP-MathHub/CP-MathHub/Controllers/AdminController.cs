@@ -76,5 +76,12 @@ namespace CP_MathHub.Controllers
             aService.EditBanReason(banReason);
             return RedirectToAction("ManageRule");
         }
+        [HttpPost]
+        public ActionResult DeleteRule(int Id)
+        {
+            BanReason banReason = aService.GetBanReason(Id);
+            aService.DeleteBanReason(banReason);
+            return RedirectToAction("ManageRule");
+        }
     }
 }
