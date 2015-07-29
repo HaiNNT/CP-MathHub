@@ -39,11 +39,26 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         int CountUsers();
-
+        /// <summary>
+        /// Get list ban reasons
+        /// </summary>
+        /// <returns></returns>
         List<BanReason> GetBanReasons();
-
+        /// <summary>
+        /// Get ban reason by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         BanReason GetBanReason(int id);
-
+        /// <summary>
+        /// Edit ban reason
+        /// </summary>
+        /// <param name="banReason"></param>
         void EditBanReason(BanReason banReason);
+        /// <summary>
+        /// Delete ban reason
+        /// </summary>
+        /// <param name="Id"></param>
+        void DeleteBanReason(BanReason banReason);
     }
 }
