@@ -229,9 +229,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Discussion, bool>> HotDiscussion(int userId)
             {
-                return (q => (q.Comments.Count > 0
+                return (q => (q.Comments.Count >= 0
                             && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                            && (q.View > 0)) && (q.Status != PostStatusEnum.Hidden
+                            && (q.View > 500)) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
@@ -421,9 +421,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> HotArticle(int userId)
             {
-                return (q => (q.Comments.Count > 0
+                return (q => (q.Comments.Count >= 0
                             && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                            && (q.View > 0)
+                            && (q.View > 500)
                             && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend

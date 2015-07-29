@@ -1,0 +1,59 @@
+﻿@model CP_MathHub.Models.Admin.RuleCreateViewModel
+
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row mh-admin-row">
+                <div class="col-xs-3">
+                    <label>Tên quy định:</label>
+                </div>
+                <div class="col-xs-9">
+                    <input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" value="@Model.Name"/>
+                </div>
+            </div>
+            <div class="row mh-admin-row">
+                <div class="col-xs-3">
+                    <label>Miêu tả:</label>
+                </div>
+                <div class="col-xs-9">
+                    <input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" value="@Model.Description"/>
+                </div>
+            </div>
+            <div class="row mh-admin-row">
+                <div class="col-xs-3">
+                    <label>Hình phạt:</label>
+                </div>
+                <div class="col-xs-9">
+                    <div id="spinner4">
+                        <div class="input-group" style="width:150px;">
+                            <div class="spinner-buttons input-group-btn">
+                                <button type="button" class="btn spinner-down btn-danger">
+                                    <i class="icon-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="spinner-input form-control" maxlength="3" value="@Model.Duration">
+                            <div class="spinner-buttons input-group-btn">
+                                <button type="button" class="btn spinner-up btn-warning">
+                                    <i class="icon-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="help-block">
+                        Mỗi lần cộng/trừ: 1
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+        </div>
+    </div>
+
+}
