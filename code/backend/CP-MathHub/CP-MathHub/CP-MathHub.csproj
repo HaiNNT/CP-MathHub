@@ -829,7 +829,6 @@
     <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
     <Content Include="Views\Account\Partials\_UserMutualFriendListPartialView.cshtml" />
-    <Content Include="Views\Account\Partials\_UserSearchFriendListPartialView.cshtml" />
     <Content Include="Views\Account\Views\UsersPageView.cshtml" />
     <Content Include="Views\Account\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
