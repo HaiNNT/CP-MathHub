@@ -76,5 +76,11 @@ namespace CP_MathHub.Service.Services
             dal.Repository<BanReason>().Update(banReason);
             dal.Save();
         }
+
+        public void DeleteBanReason(BanReason banReason)
+        {
+            dal.Repository<BanReason>().Delete(banReason);
+            dal.Save();
+        }
     }
 }

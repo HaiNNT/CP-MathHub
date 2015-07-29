@@ -33,7 +33,7 @@
                 oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
                 //oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
                 oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete btn btn-danger" href="">Xóa</a>', nRow, 5, false);
+                oTable.fnUpdate('<a class="delete btn btn-danger" href="/Admin/DeleteRule?Id=3">Xóa</a>', nRow, 5, false);
                 oTable.fnDraw();
             }
 
@@ -88,11 +88,21 @@
 
             $('#editable-sample').on('click','a.delete', function (e) {
                 e.preventDefault();
-
+                //var Id = encodeURIComponent(document.getElementById("txtId").value);
                 if (confirm("Are you sure to delete this row ?") == false) {
                     return;
                 }
+                //$.ajax({
+                //    type: 'POST',
+                //    url: '/Admin/DeleteRule',
+                //    data: {Id: Id},
+                //    //contentType: 'application/json; charset=utf-8',
 
+                //    success: function () {
+                //        var nRow = $(this).parents('tr')[0];
+                //        oTable.fnDeleteRow(nRow);
+                //    }
+                //});
                 var nRow = $(this).parents('tr')[0];
                 oTable.fnDeleteRow(nRow);
                 alert("Deleted! Do not forget to do some ajax to sync with backend :)");
