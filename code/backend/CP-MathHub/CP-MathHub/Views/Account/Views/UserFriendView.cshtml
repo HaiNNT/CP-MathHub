@@ -45,6 +45,12 @@
                 <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
             </a>
         </li>
+        <li role="presentation" class="@(ViewBag.Tab == "mutualfriend" ? "active" : "" )">
+            <a href="#mutualfriend" aria-controls="mutualfriend" role="tab" data-toggle="tab">
+                Bạn chung
+                <span class="mh-profile-friend-quantity">@Model.MutualFriendNum</span>
+            </a>
+        </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -97,24 +103,43 @@
                 @Html.Partial("Partials/_UserFollowerListPartialView", Model.ListFollowers, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
         </div>
+        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "mutualfriend" ? "active" : "")" id="mutualfriend">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        Kết quả cho:
+                        <span></span>
+                    </h4>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @Html.Partial("Partials/_UserMutualFriendListPartialView", Model.ListMutualFriend, new ViewDataDictionary { { "FriendId", Model.Id } })
+            </div>
+        </div>
     </div>
 </div>
 @section LeftPanel
 {
-    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
+    <a href="@Url.Action("UserProfile", new { @userId = Model.Id })" class="mh-profile-menu-button active">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
     </a>
-    <a href="@Url.Action("Friend")" class="mh-profile-menu-button">
+    <a href="@Url.Action("UserFriend", new { @friendId = Model.Id })" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Bạn bè
-            <span class="badge mh-num-icon">42</span>
-        </div>
-    </a>
-    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Hoạt động
         </div>
     </a>
 }

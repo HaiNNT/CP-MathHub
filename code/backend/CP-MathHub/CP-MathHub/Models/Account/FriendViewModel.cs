@@ -13,10 +13,12 @@ namespace CP_MathHub.Models.Account
         public int FriendNum { get; set; }
         public int FollowerNum { get; set; }
         public int FolloweeNum { get; set; }
+        public int MutualFriendNum { get; set; }
         public int RequestNum { get; set; }
         public List<UserItemViewModel> ListFriends { get; set; }
         public List<UserItemViewModel> ListFollowers { get; set; }
         public List<UserItemViewModel> ListFollowees { get; set; }
         public List<UserItemViewModel> ListRequested { get; set; }
+        public List<UserItemViewModel> ListMutualFriend { get; set; }
     }
 }
