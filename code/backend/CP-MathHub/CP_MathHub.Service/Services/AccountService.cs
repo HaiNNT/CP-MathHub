@@ -174,7 +174,93 @@ namespace CP_MathHub.Service.Services
             followee.Followers.Remove(follower);
             dal.Repository<User>().Update(followee);
             dal.Save();
-        }       
+        }
+        public List<User> GetMutualFriends(int userId, int friendId, int skip = 0, int take = 0)
+        {
+            List<User> mutualfriends = new List<User>();
+            List<User> friends = new List<User>();
+            List<User> userfriends = new List<User>();
+            List<UserFriendship> friendship1 = dal.Repository<UserFriendship>().Get(
+                            (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+                            , skip
+                            , take).ToList();
+            foreach (UserFriendship friendShip1 in friendship1)
+            {
+                if (friendShip1.TargetUserId == userId)
+                {
+                    friends.Add(friendShip1.User);
+                }
+                else
+                {
+                    friends.Add(friendShip1.TargetUser);
+                }
+            }
+            List<UserFriendship> friendship2 = dal.Repository<UserFriendship>().Get(
+                            (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+                            , skip
+                            , take).ToList();
+            foreach (UserFriendship friendShip2 in friendship2)
+            {
+                if (friendShip2.TargetUserId == friendId)
+                {
+                    userfriends.Add(friendShip2.User);
+                }
+                else
+                {
+                    userfriends.Add(friendShip2.TargetUser);
+                }
+            }
+            mutualfriends = friends.Intersect(userfriends).ToList();
+            return mutualfriends;
+        }
+        public int CountMutualFriend(int userId, int friendId, int skip = 0, int take = 0)
+        {
+            int result = 0;
+            List<User> mutualfriends = new List<User>();
+            List<User> friends = new List<User>();
+            List<User> userfriends = new List<User>();
+            List<UserFriendship> friendship1 = dal.Repository<UserFriendship>().Get(
+                            (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+                            , skip
+                            , take).ToList();
+            foreach (UserFriendship friendShip1 in friendship1)
+            {
+                if (friendShip1.TargetUserId == userId)
+                {
+                    friends.Add(friendShip1.User);
+                }
+                else
+                {
+                    friends.Add(friendShip1.TargetUser);
+                }
+            }
+            List<UserFriendship> friendship2 = dal.Repository<UserFriendship>().Get(
+                            (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
+                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
+                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+                            , skip
+                            , take).ToList();
+            foreach (UserFriendship friendShip2 in friendship2)
+            {
+                if (friendShip2.TargetUserId == friendId)
+                {
+                    userfriends.Add(friendShip2.User);
+                }
+                else
+                {
+                    userfriends.Add(friendShip2.TargetUser);
+                }
+            }
+            mutualfriends = friends.Intersect(userfriends).ToList();
+            result = mutualfriends.Count;
+            return result;
+        }
         public List<User> GetFriends(int userId, string tab = Constant.Account.String.AllFriendTab, int skip = 0, int take = 0)
         {
             List<User> friends = new List<User>();

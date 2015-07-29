@@ -42,7 +42,7 @@
                         <div class="btn-group">
                             <input type="hidden" name="targetUserId" value="@Model.Id" />
                             <input type="hidden" name="returnPage" value="UserProfile" />
-                            <button type="submit" class="btn btn-default mh-profile-friend-button">
+                            <button type="submit" class="btn btn-primary mh-profile-friend-button">
                                 <i class="fa fa-user-plus"></i>
                                 Hủy lời mời kết bạn
                             </button>
@@ -57,12 +57,24 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-rss"></i>
-                                Theo dõi
-                            </a>
-                        </li>
+                        @if(!Model.FollowStatus)
+                        {
+                            <li>
+                                <a href="@Url.Action("FollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                    <i class="fa fa-rss"></i>
+                                    Theo dõi
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("UnFollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                    <i class="fa fa-times"></i>
+                                    Bỏ theo dõi
+                                </a>
+                            </li>
+                        }
                         <li>
                             <a href="#">
                                 <i class="fa fa-comments"></i>
@@ -108,12 +120,24 @@
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-rss"></i>
-                                        Theo dõi
-                                    </a>
-                                </li>
+                                @if (!Model.FollowStatus)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("FollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                            <i class="fa fa-rss"></i>
+                                            Theo dõi
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="@Url.Action("UnFollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                            <i class="fa fa-times"></i>
+                                            Bỏ theo dõi
+                                        </a>
+                                    </li>
+                                }
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-comments"></i>
@@ -316,7 +340,7 @@
 </div>
 @section LeftPanel
 {
-    <a href="@Url.Action("UserProfile")" class="mh-profile-menu-button active">
+    <a href="@Url.Action("UserProfile", new { @userId = Model.Id })" class="mh-profile-menu-button active">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
@@ -324,12 +348,6 @@
     <a href="@Url.Action("UserFriend", new { @friendId = Model.Id})" class=" mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Bạn bè
-            <span class="badge mh-num-icon">42</span>
-        </div>
-    </a>
-    <a class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Hoạt động
         </div>
     </a>
 }

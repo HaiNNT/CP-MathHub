@@ -599,6 +599,7 @@ namespace CP_MathHub.Controllers
             user = aService.GetUser(userId, "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
             ViewBag.System = Constant.String.ProfileSystem;
+            model.FollowStatus = user.Followers.Count(t => t.Id == User.Identity.GetUserId<int>()) > 0;
             UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
             if (friendship1 != default(UserFriendship))
@@ -654,8 +655,7 @@ namespace CP_MathHub.Controllers
             List<UserItemViewModel> friends = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.AllFriendTab, skip), User.Identity.GetUserId<int>());
             List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
             List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
-            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
-
+            List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(userId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());          
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -689,7 +689,7 @@ namespace CP_MathHub.Controllers
             List<UserItemViewModel> followers = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FollowerTab, skip), User.Identity.GetUserId<int>());
             List<UserItemViewModel> followees = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.FolloweeTab, skip), User.Identity.GetUserId<int>());
             List<UserItemViewModel> requests = Helper.ListHelper.ListUsertoListUserItem(aService.GetFriends(friendId, Constant.Account.String.RequestTab, skip), User.Identity.GetUserId<int>());
-
+            List<UserItemViewModel> mutualfriends = Helper.ListHelper.ListUsertoListUserItem(aService.GetMutualFriends(User.Identity.GetUserId<int>(), friendId), User.Identity.GetUserId<int>());
             if (page == 0)
             {
                 FriendViewModel model = new FriendViewModel();
@@ -702,7 +702,9 @@ namespace CP_MathHub.Controllers
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
+                model.ListMutualFriend = mutualfriends;
                 model.RequestNum = aService.CountFriendRequest(friendId);
+                model.MutualFriendNum = aService.CountMutualFriend(User.Identity.GetUserId<int>(),friendId);
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);

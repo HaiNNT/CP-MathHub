@@ -5,13 +5,13 @@
 {
     <div class="media mh-profile-friend">
         <div class="media-left">
-            <a href="#">
+            <a href="@Url.Action("UserProfile", new {userId = item.User.Id })">
                 <img class="mh-image-user-profile" src="~/Content/img/user-icon.png" alt="...">
             </a>
         </div>
         <div class="media-body">
             <span>Bạn đang theo dõi</span>
-            <h5 class="media-heading">@item.User.UserName</h5>
+            <h5 class="media-heading"><a href="@Url.Action("UserProfile", new {userId = item.User.Id })">@item.User.UserName</a></h5>
             @using (Html.BeginForm("UnFollowFriend", "Account", FormMethod.Post))
             {
             <input type="hidden" name="targetUserId" value="@item.User.Id" />

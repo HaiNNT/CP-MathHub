@@ -102,6 +102,26 @@ namespace CP_MathHub.Core.Interfaces.Services
         void FollowUser(int followeeId, int followerId);
 
         /// <summary>
+        /// Get mutual friend of 2 user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="friendId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        List<User> GetMutualFriends(int userId, int friendId, int skip = 0, int take = 0);
+
+        /// <summary>
+        /// Count mutual friend of 2 user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="friendId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        int CountMutualFriend(int userId, int friendId, int skip = 0, int take = 0);
+
+        /// <summary>
         /// Unfollow a user
         /// </summary>
         /// <param name="followeeId"></param>
