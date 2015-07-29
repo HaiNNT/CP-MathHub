@@ -22,8 +22,25 @@
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
                 //jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
+                jqTds[3].innerHTML =
+                                       '<div id="spinner5">'
+                                        + '<div class="input-group" style="width:150px;">'
+                                            + '<div class="spinner-buttons input-group-btn">'
+                                                + '<button type="button" class="btn spinner-down btn-danger">'
+                                                    + '<i class="icon-minus"></i>'
+                                                + '</button>'
+                                            + '</div>'
+                                            + '<input type="text" class="spinner-input form-control small" maxlength="3" value="' + $(aData[3]).find("span").html() + '">'
+                                            + '<div class="spinner-buttons input-group-btn">'
+                                                + '<button type="button" class="btn spinner-up btn-warning">'
+                                                    + '<i class="icon-plus"></i>'
+                                                + '</button>'
+                                            + '</div>'
+                                        + '</div>'
+                                   + '</div>';
                 jqTds[4].innerHTML = '<a class="edit btn btn-primary" href="">Lưu</a>';
                 jqTds[5].innerHTML = '<a class="cancel btn btn-danger" href="">Hủy</a>';
+                $('#spinner5').spinner({ value: 0, step: 1, min: 0, max: 365 });
             }
 
             function saveRow(oTable, nRow) {
@@ -31,7 +48,7 @@
                 //oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
-                //oTable.fnUpdate(jqInputs[2].value, nRow, 3, false);
+                oTable.fnUpdate('<div><span>' + jqInputs[2].value + '</span> ngày</div>', nRow, 3, false);
                 oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 4, false);
                 oTable.fnUpdate('<a class="delete btn btn-danger" href="">Xóa</a>', nRow, 5, false);
                 oTable.fnDraw();
@@ -42,7 +59,7 @@
                 //oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
                 oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                //oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
+                oTable.fnUpdate('<div><span>' + jqInputs[3].value + '</span> ngày</div>', nRow, 3, false);
                 oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 4, false);
                 oTable.fnDraw();
             }
