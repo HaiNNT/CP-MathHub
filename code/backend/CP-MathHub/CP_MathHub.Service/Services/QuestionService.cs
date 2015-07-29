@@ -53,7 +53,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.HomeUnAnsweredTab:
                     list = _dal.Repository<Question>()
                                 .Get(
-                                    ExpressionHelper.QuestionHelper.UnAnsweredQuestion(), // Get unanswered Question lambda expression
+                                    ExpressionHelper.QuestionHelper.UnAnsweredQuestion(_loginUserId), // Get unanswered Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -62,7 +62,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.HomeHotTab:
                     list = _dal.Repository<Question>()
                                 .Get(
-                                    ExpressionHelper.QuestionHelper.HotQuestion(),// Get hot Question lambda expression
+                                    ExpressionHelper.QuestionHelper.HotQuestion(_loginUserId),// Get hot Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -83,7 +83,7 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<Question>() //Get Question Repository
                 .Get(
-                    (a => a.UserId == authorId), //Filter Question by Author
+                    ExpressionHelper.QuestionHelper.UserQuestion(authorId, _loginUserId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip
@@ -91,7 +91,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountUserQuestion(int authorId)
         {
-            int result = _dal.Repository<Question>().Table.Count(d => d.UserId == authorId);
+            int result = _dal.Repository<Question>().Table.Count(ExpressionHelper.QuestionHelper.UserQuestion(authorId, _loginUserId));
             return result;
         }
         public int CountUserAnswer(int authorId)
@@ -122,7 +122,7 @@ namespace CP_MathHub.Service.Services
         public List<Question> GetQuestions(int skip, string tagName)
         {
             return _dal.Repository<Question>() //Get Question Repository
-                .Get(a => a.Tags.Where(t => t.Name == tagName).Count() > 0, //Contain tag
+                .Get(ExpressionHelper.QuestionHelper.TagQuestion(tagName, _loginUserId), //Contain tag
                         (p => p.OrderBy(s => s.CreatedDate)),
                         "Author,BookmarkUsers,Sharers,Tags,Reports",
                         skip
@@ -132,6 +132,16 @@ namespace CP_MathHub.Service.Services
         {
             Question question = _dal.Repository<Question>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Votes");
             question.Author = _cService.GetUser(question.UserId);
+            return question;
+        }
+        public Question GetDetailQuestion(int id)
+        {
+            Question question = _dal.Repository<Question>()
+                                        .Include("Author,BookmarkUsers,Sharers,Tags,Reports,Votes").Table
+                                        .Where(ExpressionHelper.QuestionHelper.DetailQuestion(id, _loginUserId))
+                                        .FirstOrDefault();
+            if (question != default(Question))
+                question.Author = _cService.GetUser(question.UserId);
             return question;
         }
         public void InsertQuestion(Question question)
@@ -155,7 +165,7 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Question> ienum = _dal.Repository<Question>()
-                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                               .Get(ExpressionHelper.QuestionHelper.SearchQuestion(searchString, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -167,7 +177,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountSearchResult(string searchString)
         {
-            return _dal.Repository<Question>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+            return _dal.Repository<Question>().Table.Count(ExpressionHelper.QuestionHelper.SearchQuestion(searchString, _loginUserId));
         }
         public List<Answer> GetAnswers(int questionId, AnswerEnum type = 0)
         {

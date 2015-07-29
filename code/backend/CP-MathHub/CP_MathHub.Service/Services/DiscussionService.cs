@@ -14,18 +14,20 @@ namespace CP_MathHub.Service.Services
 {
     public class DiscussionService : IDiscussionService, IDisposable
     {
-        private IUnitOfWork dal;
-        private ICommonService cService;
-        public DiscussionService(CPMathHubModelContainer context)
+        private int _loginUserId;
+        private IUnitOfWork _dal;
+        private ICommonService _cService;
+        public DiscussionService(CPMathHubModelContainer context, int userId = 0)
         {
-            dal = new MathHubUoW(context);
-            cService = new CommonService(context);
+            _loginUserId = userId;
+            _dal = new MathHubUoW(context);
+            _cService = new CommonService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                dal.Dispose();
+                _dal.Dispose();
             }
 
         }
@@ -37,12 +39,12 @@ namespace CP_MathHub.Service.Services
         }
         public Discussion GetLastestDiscussion(int tagid)
         {
-            Discussion discussion = dal.Repository<Discussion>().Include("Author").Table
+            Discussion discussion = _dal.Repository<Discussion>().Include("Author").Table
                                                  .Where(p => p.Tags.Where(t => t.Id == tagid).Count() > 0)
                                                  .Distinct()
                                                  .OrderByDescending(t => t.CreatedDate)
                                                  .FirstOrDefault();
-            discussion.Author = cService.GetUser(discussion.UserId);
+            discussion.Author = _cService.GetUser(discussion.UserId);
             return discussion;
         }
         public List<Discussion> GetDiscussions(string homeTab, int skip = 0)
@@ -51,25 +53,25 @@ namespace CP_MathHub.Service.Services
             switch (homeTab)
             {
                 case Constant.Question.String.HomeNewestTab:
-                    list = dal.Repository<Discussion>() // Get Question Repository
-                                .Get(null,
+                    list = _dal.Repository<Discussion>() // Get Question Repository
+                                .Get(ExpressionHelper.DiscussionHelper.NewestDiscussion(_loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
                                     "Author,BookmarkUsers,Sharers,Tags,Reports", // Include Author Property
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Question.String.HomeHotTab:
-                    list = dal.Repository<Discussion>()
+                    list = _dal.Repository<Discussion>()
                                 .Get(
-                                    ExpressionHelper.DiscussionHelper.HotDiscussion(),// Get hot Discussion lambda expression
+                                    ExpressionHelper.DiscussionHelper.HotDiscussion(_loginUserId),// Get hot Discussion lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Discussion>()
-                                .Get(null,
+                    list = _dal.Repository<Discussion>()
+                                .Get(ExpressionHelper.DiscussionHelper.NewestDiscussion(_loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -80,9 +82,9 @@ namespace CP_MathHub.Service.Services
         }
         public List<Discussion> GetDiscussions(int authorId, int skip = 0)
         {
-            return dal.Repository<Discussion>() //Get Question Repository
+            return _dal.Repository<Discussion>() //Get Question Repository
                 .Get(
-                    (a => a.UserId == authorId), //Filter Question by Author
+                    ExpressionHelper.DiscussionHelper.UserDiscussion(authorId, _loginUserId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip
@@ -90,7 +92,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountUserDiscussion(int authorId)
         {
-            int result = dal.Repository<Discussion>().Table.Count(d => d.UserId == authorId);
+            int result = _dal.Repository<Discussion>().Table.Count(ExpressionHelper.DiscussionHelper.UserDiscussion(authorId, _loginUserId));
             return result;
         }
         //public List<Discussion> GetRelatedDiscussions(int tagId, int skip = 0)
@@ -105,7 +107,7 @@ namespace CP_MathHub.Service.Services
         //}
         public List<Discussion> GetDiscussionCategorys(int tagId, int skip)
         {
-            return dal.Repository<Discussion>() //Get Question Repository
+            return _dal.Repository<Discussion>() //Get Question Repository
                 .Get(
                     (a => a.Tags.Where(t => t.Id == tagId).Count() > 0), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
@@ -116,7 +118,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<EditedLog> GetEditedLog(int postId, int skip = 0)
         {
-            return dal.Repository<EditedLog>()
+            return _dal.Repository<EditedLog>()
                 .Get(
                 (a => a.PostId == postId),
                 (p => p.OrderBy(s => s.CreatedDate)),
@@ -127,8 +129,8 @@ namespace CP_MathHub.Service.Services
         }
         public List<Discussion> GetDiscussions(int skip, string tagName)
         {
-            return dal.Repository<Discussion>() //Get Question Repository
-                .Get(a => a.Tags.Where(t => t.Name == tagName).Count() > 0, //Contain tag
+            return _dal.Repository<Discussion>() //Get Question Repository
+                .Get(ExpressionHelper.DiscussionHelper.TagDiscussion(tagName, _loginUserId), //Contain tag
                         (p => p.OrderBy(s => s.CreatedDate)),
                         "Author,BookmarkUsers,Sharers,Tags,Reports",
                         skip
@@ -136,26 +138,26 @@ namespace CP_MathHub.Service.Services
         }
         public void InsertDiscussion(Discussion discussion)
         {
-            dal.Repository<Discussion>().Insert(discussion);
-            dal.Save();
+            _dal.Repository<Discussion>().Insert(discussion);
+            _dal.Save();
         }
         public void EditDiscussion(Discussion discussion)
         {
-            dal.Repository<Discussion>().Update(discussion);
-            dal.Save();
+            _dal.Repository<Discussion>().Update(discussion);
+            _dal.Save();
         }
         public void DeleteDiscussion(Discussion discussion)
         {
-            dal.Repository<Discussion>().Delete(discussion);
-            dal.Save();
+            _dal.Repository<Discussion>().Delete(discussion);
+            _dal.Save();
         }
         public List<Discussion> SearchDiscussions(int skip, string searchString)
         {
             List<Discussion> list = new List<Discussion>();
             if (searchString != null)
             {
-                IEnumerable<Discussion> ienum = dal.Repository<Discussion>()
-                               .Get(a => a.Title.ToLower().Contains(searchString.ToLower()),
+                IEnumerable<Discussion> ienum = _dal.Repository<Discussion>()
+                               .Get(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -167,11 +169,11 @@ namespace CP_MathHub.Service.Services
         }
         public int CountSearchResult(string searchString)
         {
-            return dal.Repository<Discussion>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()));
+            return _dal.Repository<Discussion>().Table.Count(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId));
         }
         public List<Comment> GetComments(int postId)
         {
-            List<Comment> comments = dal.Repository<Comment>().Get(
+            List<Comment> comments = _dal.Repository<Comment>().Get(
                     (c => c.PostId == postId),
                     (c => c.OrderByDescending(m => m.CreatedDate)),
                     "",
@@ -185,7 +187,7 @@ namespace CP_MathHub.Service.Services
         {
             foreach (Comment comment in comments)
             {
-                comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
+                comment.Author = _dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
         }
         public void IncludeReplyForComments(List<Comment> comments)
@@ -197,14 +199,24 @@ namespace CP_MathHub.Service.Services
         }
         public Discussion GetDiscussion(int id)
         {
-            Discussion discussion = dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
-            discussion.Author = cService.GetUser(discussion.UserId);
+            Discussion discussion = _dal.Repository<Discussion>().GetById(id, "Author,Tags,Reports");
+            discussion.Author = _cService.GetUser(discussion.UserId);
+            return discussion;
+        }
+        public Discussion GetDetailDiscussion(int id)
+        {
+            Discussion discussion = _dal.Repository<Discussion>()
+                                        .Include("Author,BookmarkUsers,Sharers,Tags,Reports,Votes").Table
+                                        .Where(ExpressionHelper.DiscussionHelper.DetailDiscussion(id, _loginUserId))
+                                        .FirstOrDefault();
+            if (discussion != default(Discussion))
+                discussion.Author = _cService.GetUser(discussion.UserId);
             return discussion;
         }
         public void UpdateDiscussion(Discussion discussion)
         {
-            dal.Repository<Discussion>().Update(discussion);
-            dal.Save();
+            _dal.Repository<Discussion>().Update(discussion);
+            _dal.Save();
         }
         public void IncreaseViewDiscussion(Discussion discussion)
         {

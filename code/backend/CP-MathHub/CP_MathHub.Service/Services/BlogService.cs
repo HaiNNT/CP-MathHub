@@ -14,18 +14,20 @@ namespace CP_MathHub.Service.Services
 {
     public class BlogService : IBlogService, IDisposable
     {
-        private IUnitOfWork dal;
-        private ICommonService cService;
-        public BlogService(CPMathHubModelContainer context)
+        private int _loginUserId;
+        private IUnitOfWork _dal;
+        private ICommonService _cService;
+        public BlogService(CPMathHubModelContainer context, int userId = 0)
         {
-            dal = new MathHubUoW(context);
-            cService = new CommonService(context);
+            _loginUserId = userId;
+            _dal = new MathHubUoW(context);
+            _cService = new CommonService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                dal.Dispose();
+                _dal.Dispose();
             }
 
         }
@@ -39,85 +41,85 @@ namespace CP_MathHub.Service.Services
             User user = new User();
             if (userId != 0)
             {
-                user = cService.GetUser(userId);
+                user = _cService.GetUser(userId);
             }
             List<Article> list = new List<Article>();
             switch (tab)
             {
                 case Constant.Blog.String.HomeHomeTab:
-                    list = dal.Repository<Article>()
-                                .Get((a => a.PublicDate <= DateTime.Now),
+                    list = _dal.Repository<Article>()
+                                .Get(ExpressionHelper.BlogHelper.NewestArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeSubcribeTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.SubcribedArticle(user),
+                                    ExpressionHelper.BlogHelper.SubcribedArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeFriendTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.FriendArticle(user),
+                                    ExpressionHelper.BlogHelper.FriendArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeBookmarkTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.BookmarkArticle(user),
+                                    ExpressionHelper.BlogHelper.BookmarkArticle(userId, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeHotTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.HotArticle(),
+                                    ExpressionHelper.BlogHelper.HotArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeFeatureTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.FeatureArticle(),
+                                    ExpressionHelper.BlogHelper.FeatureArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.HomeRecomendedTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.RecomendedArticle(user),
+                                    ExpressionHelper.BlogHelper.RecomendedArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.MyArticleTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.MyArticle(user),
+                                    ExpressionHelper.BlogHelper.MyArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Article>()
-                                .Get((a => a.PublicDate <= DateTime.Now),
+                    list = _dal.Repository<Article>()
+                                .Get(ExpressionHelper.BlogHelper.NewestArticle(userId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -128,32 +130,32 @@ namespace CP_MathHub.Service.Services
         }
         public List<Article> GetArticles(int userId, string tab, int skip)
         {
-            User user = cService.GetUser(userId);
+            //User user = _cService.GetUser(userId);
             List<Article> list = new List<Article>();
             switch (tab)
             {
                 case Constant.Blog.String.UserBookmarkTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.BookmarkArticle(user),
+                                    ExpressionHelper.BlogHelper.BookmarkArticle(userId, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 case Constant.Blog.String.UserArticleTab:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.UserArticle(user),
+                                    ExpressionHelper.BlogHelper.UserArticle(userId, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Article>()
+                    list = _dal.Repository<Article>()
                                .Get(
-                                   ExpressionHelper.BlogHelper.UserArticle(user),
+                                   ExpressionHelper.BlogHelper.UserArticle(userId, _loginUserId),
                                    (p => p.OrderByDescending(s => s.CreatedDate)),
                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                    skip
@@ -164,9 +166,9 @@ namespace CP_MathHub.Service.Services
         }
         public List<Article> GetArticles(int authorId, int skip = 0)
         {
-            return dal.Repository<Article>()
+            return _dal.Repository<Article>()
                 .Get(
-                    (a => a.UserId == authorId),
+                    ExpressionHelper.BlogHelper.UserArticle(authorId, _loginUserId),
                     (p => p.OrderBy(s => s.CreatedDate)),
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip
@@ -174,7 +176,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountUserArticle(int authorId)
         {
-            int result = dal.Repository<Article>().Table.Count(d => d.UserId == authorId);
+            int result = _dal.Repository<Article>().Table.Count(ExpressionHelper.BlogHelper.UserArticle(authorId, _loginUserId));
             return result;
         }
 
@@ -184,9 +186,9 @@ namespace CP_MathHub.Service.Services
             List<List<Article>> biglist = new List<List<Article>>();
             foreach (Tag t in mainPost.Tags)
             {
-                biglist.Add(dal.Repository<Article>()
+                biglist.Add(_dal.Repository<Article>()
                     .Get(
-                        (a => a.Tags.Where(c => c.Id == t.Id).Count() > 0 && a.PublicDate <= DateTime.Now),
+                        ExpressionHelper.BlogHelper.TagArticle(t.Id, _loginUserId),
                         null,
                         "",
                         0,
@@ -208,10 +210,10 @@ namespace CP_MathHub.Service.Services
 
         public Article GetArticle(int id, int userId = 0)
         {
-            Article article = dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
+            Article article = _dal.Repository<Article>().GetById(id, "Author,BookmarkUsers,Sharers,Tags,Reports,Comments,Votes");
             if (userId == 0 || article.UserId == userId || article.PublicDate <= DateTime.Now)
             {
-                article.Author = cService.GetUser(article.UserId);
+                article.Author = _cService.GetUser(article.UserId);
                 return article;
             }
             else
@@ -219,18 +221,28 @@ namespace CP_MathHub.Service.Services
                 return default(Article);
             }
         }
+        public Article GetDetailArticle(int id)
+        {
+            Article article = _dal.Repository<Article>()
+                            .Include("Author,BookmarkUsers,Sharers,Tags,Reports,Votes").Table
+                            .Where(ExpressionHelper.BlogHelper.DetailArticle(id, _loginUserId))
+                            .FirstOrDefault();
+            if (article != default(Article))
+                article.Author = _cService.GetUser(article.UserId);
+            return article;
+        }
         public void InsertArticle(Article article)
         {
-            dal.Repository<Article>().Insert(article);
-            dal.Save();
+            _dal.Repository<Article>().Insert(article);
+            _dal.Save();
         }
         public List<Article> SearchArticle(int skip, string searchString)
         {
             List<Article> list = new List<Article>();
             if (searchString != null)
             {
-                IEnumerable<Article> ienum = dal.Repository<Article>()
-                               .Get((a => a.Title.ToLower().Contains(searchString.ToLower()) && a.PublicDate <= DateTime.Now),
+                IEnumerable<Article> ienum = _dal.Repository<Article>()
+                               .Get(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
@@ -242,7 +254,7 @@ namespace CP_MathHub.Service.Services
         }
         public int CountSearchResult(string searchString)
         {
-            return dal.Repository<Article>().Table.Count(m => m.Title.ToLower().Contains(searchString.ToLower()) && m.PublicDate <= DateTime.Now);
+            return _dal.Repository<Article>().Table.Count(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId));
         }
         public void IncludeReplyForComments(List<Comment> comments)
         {
@@ -255,13 +267,13 @@ namespace CP_MathHub.Service.Services
         {
             foreach (Comment comment in comments)
             {
-                comment.Author = dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
+                comment.Author = _dal.Repository<User>().Table.FirstOrDefault(m => m.Id == comment.UserId);
             }
         }
         public void UpdateArticle(Article article)
         {
-            dal.Repository<Article>().Update(article);
-            dal.Save();
+            _dal.Repository<Article>().Update(article);
+            _dal.Save();
         }
         public void IncreaseViewArticle(Article article)
         {
