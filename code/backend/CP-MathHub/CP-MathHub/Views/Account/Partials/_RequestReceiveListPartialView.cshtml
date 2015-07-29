@@ -6,13 +6,13 @@
     <div class="row mh-request-friend-row">
         <div class="col-xs-7 media">
             <div class="media-left">
-                <a href="#">
+                <a href="@Url.Action("UserProfile", new {userId = item.User.Id })">
                     <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
                 </a>
             </div>
             <div class="media-body">
                 <a>
-                    <span class="media-heading mh-request-user-name">@item.User.UserName</span>
+                    <span class="media-heading mh-request-user-name"><a href="@Url.Action("UserProfile", new {userId = item.User.Id })">@item.User.UserName</a></span>
                 </a><br />
                 <span>Đang sinh sống tại: @(item.User.Profile.Address != null ? item.User.Profile.Address : "Không có thông tin")</span>
             </div>

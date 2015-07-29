@@ -24,12 +24,12 @@ namespace CP_MathHub.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
-        [TestMethod]
-        public void GetHotQuestion()
-        {
-            QuestionController controller = new QuestionController();
-            List<Question> result = controller.GetHotQuestion() as List<Question>;
-            Assert.IsNotNull(result);
-        }
+        //[TestMethod]
+        //public void GetHotQuestion()
+        //{
+        //    QuestionController controller = new QuestionController();
+        //    List<Question> result = controller.GetHotQuestion() as List<Question>;
+        //    Assert.IsNotNull(result);
+        //}
     }
 }

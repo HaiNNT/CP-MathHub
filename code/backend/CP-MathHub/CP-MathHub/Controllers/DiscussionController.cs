@@ -14,6 +14,7 @@ using CP_MathHub.Models.Discussion;
 using CP_MathHub.Entity;
 using AutoMapper;
 using CP_MathHub.Models.Common;
+using System.Web.Routing;
 
 namespace CP_MathHub.Controllers
 {
@@ -25,8 +26,22 @@ namespace CP_MathHub.Controllers
         public DiscussionController()
         {
             context = new CPMathHubModelContainer();
-            dService = new DiscussionService(context);
-            cService = new CommonService(context);
+        }
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                dService = new DiscussionService(context, _currentUserId);
+                cService = new CommonService(context);
+            }
+            else
+            {
+                dService = new DiscussionService(context);
+                cService = new CommonService(context);
+            }
+
         }
         // GET: Discussion
         [HttpGet]
@@ -37,7 +52,11 @@ namespace CP_MathHub.Controllers
             List<CategoryPreviewViewModel> discussioncategoryVM =
                 tags.Select(Mapper.Map<Tag, CategoryPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-
+            for (int i = 0; i < tags.Count; i++ )
+            {
+                discussioncategoryVM.ElementAt(i).Discussion = dService.GetLastestDiscussion(tags.ElementAt(i).Id);
+                discussioncategoryVM.ElementAt(i).UserName = dService.GetLastestDiscussion(tags.ElementAt(i).Id).Author.UserName;
+            }
             DiscussionHomeViewModel discussionHomeVM = new DiscussionHomeViewModel();
             discussionHomeVM.Name = "THẢO LUẬN";
             ViewBag.System = Constant.String.DiscussionSystem;
@@ -212,7 +231,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             DiscussionDetailViewModel discussionDetailVM = new DiscussionDetailViewModel();
-            Discussion discussion = dService.GetDiscussion(id);
+            Discussion discussion = dService.GetDetailDiscussion(id);
             dService.IncludeUserForComments(discussion.Comments.ToList());
             dService.IncludeReplyForComments(discussion.Comments.ToList());
 

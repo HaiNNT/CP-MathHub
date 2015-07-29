@@ -108,6 +108,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         Discussion GetDiscussion(int id);
 
         /// <summary>
+        /// Get Detail Discussion
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Discussion GetDetailDiscussion(int id);
+
+        /// <summary>
         /// Include replys for comments
         /// </summary>
         /// <param name="comments"></param>

@@ -26,6 +26,7 @@ namespace CP_MathHub.Models.Account
 
         public int FriendNumber { get; set; }
         public FriendStatusEnum RequestStatus { get; set; }
+        public bool FollowStatus { get; set; }
     }
 
     public enum FriendStatusEnum : int

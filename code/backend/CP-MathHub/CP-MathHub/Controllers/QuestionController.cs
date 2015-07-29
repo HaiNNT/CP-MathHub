@@ -81,14 +81,6 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_QuestionListPartialView", questionPreviewVMs);
             }
         }
-        //Get: Question/HotQuestion
-        public List<Question> GetHotQuestion(string tab = Constant.Question.String.HomeHotTab
-                                   , int page = 0)
-        {
-            int skip = page * Constant.Question.Integer.PagingDefaultTake;
-             List<Question>questions = qService.GetQuestions(tab, skip);
-             return questions;
-        }
         //Get: Question/Tag
         public ActionResult Tag(string tag = "", int page = 0)
         {
@@ -170,7 +162,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
-            Question question = qService.GetQuestion(id);
+            Question question = qService.GetDetailQuestion(id);
             qService.IncludeUserForComments(question.Comments.ToList());
             qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);

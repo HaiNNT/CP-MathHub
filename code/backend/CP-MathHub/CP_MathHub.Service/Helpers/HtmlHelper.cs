@@ -54,6 +54,28 @@ namespace CP_MathHub.Service.Helpers
             }
             return s;
         }
+        public static string GetRoleUser(this HtmlHelper html, List<Accessment> assessments)
+        {
+            string s = "";
+            foreach (Accessment assessment in assessments)
+            {
+                s += assessment.Role.Name + ",";
+                if (s.Contains("User"))
+                {
+                    s = "Người dùng";
+                }
+                if (s.Contains("Expert"))
+                {
+                    s = "Chuyên gia";
+                }
+                if (s.Contains("Moderator"))
+                {
+                    s = "Quản lý";
+                }
+            }
+            
+            return s.TrimEnd(',');
+        }
 
         public static string VoteNumer(this HtmlHelper html, int? vote)
         {

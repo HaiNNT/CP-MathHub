@@ -14,6 +14,7 @@ using CP_MathHub.Models.Blog;
 using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
+using System.Web.Routing;
 
 namespace CP_MathHub.Controllers
 {
@@ -25,8 +26,22 @@ namespace CP_MathHub.Controllers
         public BlogController()
         {
             context = new CPMathHubModelContainer();
-            bService = new BlogService(context);
-            cService = new CommonService(context);
+        }
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                bService = new BlogService(context, _currentUserId);
+                cService = new CommonService(context);
+            }
+            else
+            {
+                bService = new BlogService(context);
+                cService = new CommonService(context);
+            }
+
         }
         // GET: Blog
         public ActionResult Index(string tab = Constant.Blog.String.HomeDefaultTab
@@ -283,7 +298,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
-            Article article = bService.GetArticle(id, User.Identity.GetUserId<int>());
+            Article article = bService.GetDetailArticle(id);
             bService.IncludeUserForComments(article.Comments.ToList());
             bService.IncludeReplyForComments(article.Comments.ToList());
 

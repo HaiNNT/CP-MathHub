@@ -35,15 +35,15 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.PostNum,
                     d => d.MapFrom(m => m.MainPosts.OfType<Discussion>().Count())
                  )
-                 .ForMember(
-                    s => s.Discussion,
-                    d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id))
-                 )
-                 .ForMember(
-                     s => s.UserName,
-                     //d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).UserName)
-                     d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer()).GetLastestDiscussion(m.Id).Author.UserName)
-                 )
+                 //.ForMember(
+                 //   s => s.Discussion,
+                 //   d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer(), 0).GetLastestDiscussion(m.Id))
+                 //)
+                 //.ForMember(
+                 //    s => s.UserName,
+                 //    //d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId).UserName)
+                 //    d => d.MapFrom(m => new DiscussionService(new CPMathHubModelContainer(), 0).GetLastestDiscussion(m.Id).Author.UserName)
+                 //)
 
                  ;
             #endregion

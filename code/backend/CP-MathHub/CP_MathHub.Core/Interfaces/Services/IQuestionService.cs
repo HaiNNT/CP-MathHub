@@ -58,6 +58,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         Question GetQuestion(int id);
 
         /// <summary>
+        /// Get detail of a Question By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Question GetDetailQuestion(int id);
+
+        /// <summary>
         /// Insert a Question
         /// </summary>
         /// <param name="question"></param>
