@@ -669,6 +669,7 @@ namespace CP_MathHub.Controllers
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
                 model.RequestNum = aService.CountFriendRequest(userId);
+                model.Id = User.Identity.GetUserId<int>();
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
@@ -751,10 +752,17 @@ namespace CP_MathHub.Controllers
             aService.UnFollowUser(targetUserId, User.Identity.GetUserId<int>());
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
-        public ActionResult SearchFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "UserProfile")
+        public ActionResult SearchFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "Friend")
         {
-            aService.SearchFriend(searchString, friendId);
-            return RedirectToAction(returnPage, new { @userId = friendId, @tab = tab, @searchString = searchString, @friendId = friendId });
+            List<User> friends = aService.SearchFriend(searchString, friendId);
+            List<UserItemViewModel> friendUserItems = Helper.ListHelper.ListUsertoListUserItem(friends, User.Identity.GetUserId<int>());
+            return PartialView("Partials/_FriendListPartialView", friendUserItems);
+        }
+        public ActionResult SearchUserFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "UserFriend")
+        {
+            List<User> friends = aService.SearchFriend(searchString, friendId);
+            List<UserItemViewModel> friendUserItems = Helper.ListHelper.ListUsertoListUserItem(friends, User.Identity.GetUserId<int>());
+            return PartialView("Partials/_UserFriendListPartialView", friendUserItems);
         }
         //Get: Account/Users
         [HttpGet]

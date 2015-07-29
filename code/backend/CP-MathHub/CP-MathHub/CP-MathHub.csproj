@@ -231,7 +231,6 @@
     <Compile Include="Models\Question\QuestionHomeViewModel.cs" />
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Models\Question\TagsPageViewModel.cs" />
-    <Compile Include="Models\Question\UsersPageViewModel.cs" />
     <Compile Include="Models\Question\VoteViewModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -743,9 +742,6 @@
     <Content Include="Views\CommonWidget\Widgets\_UserHeaderWidget.cshtml" />
     <Content Include="Views\Question\Partials\_NavPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_TagAutoCompletePartialView.cshtml" />
-    <Content Include="Views\Question\Layouts\_UsersPageLayout.cshtml" />
-    <Content Include="Views\Question\Views\UsersPageView.cshtml" />
-    <Content Include="Views\Question\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Question\Layouts\_TagsPageLayout.cshtml" />
     <Content Include="Views\Question\Views\TagsPageView.cshtml" />
     <Content Include="Views\Question\Partials\_TagListPartialView.cshtml" />

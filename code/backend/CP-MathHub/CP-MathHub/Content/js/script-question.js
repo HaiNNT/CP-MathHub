@@ -231,7 +231,7 @@ function searchUser() {
         })
       .done(function (msg) {
           if (msg != "\n") {
-              list.append($(msg));
+              list.html($(msg));
           }
       })
       .fail(function (msg) {

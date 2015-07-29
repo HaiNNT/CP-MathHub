@@ -35,6 +35,7 @@ $(document).ready(function () {
         }
         $(this).siblings().toggle();
     });
+
     $(".mh-profile-cancel").click(function () {
         //nút cancel: ẩn 
         $(this).toggle();
@@ -102,4 +103,64 @@ $(document).ready(function () {
         var imageData = $('.image-editor').cropit('export');
         $('.hidden-image-data').val(imageData);
     });
+    searchUser();
+    searchUserFriend();
 });
+/*
+Search Friends
+*/
+function searchUser() {
+    var timeout;
+    var list = $("#mh-list-friend");
+    var id = $("#user-id").val();
+    var load = function () {
+        clearTimeout(timeout);
+        var param = $("#mh-search-friend").val();
+        $.ajax({
+            method: "GET",
+            url: "/Account/SearchFriend",
+            data: { searchString: param, friendId: id }
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.html($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-search-friend").keypress(function () {
+        list.html("");
+        timeout = setTimeout(load, 1000);
+    });
+}
+/*
+Search UserFriends
+*/
+function searchUserFriend() {
+    var timeout;
+    var list = $("#mh-list-userfriend");
+    var id = $("#friend-id").val();
+    var load = function () {
+        clearTimeout(timeout);
+        var param = $("#mh-search-userfriend").val();
+        $.ajax({
+            method: "GET",
+            url: "/Account/SearchUserFriend",
+            data: { searchString: param, friendId: id }
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.html($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-search-userfriend").keypress(function () {
+        list.html("");
+        timeout = setTimeout(load, 1000);
+    });
+}

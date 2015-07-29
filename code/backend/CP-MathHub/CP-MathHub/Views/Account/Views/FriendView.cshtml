@@ -76,7 +76,7 @@
                 <div class="col-lg-6">
                     <form>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm..." id = "mh-search-friend">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" type="submit" style="height: 34px;">
                                     <i class="fa fa-search"></i>
@@ -86,56 +86,16 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="mh-list-friend">
                 @Html.Partial("Partials/_FriendListPartialView", Model.ListFriends)
             </div>
         </div>
         <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "follower" ? "active" : "")" id="follower">
             <div class="row">
-                <div class="col-lg-6">
-                    <h4>
-                        Kết quả cho:
-                        <span></span>
-                    </h4>
-                </div>
-                <div class="col-lg-6">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit" style="height: 34px;">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
                 @Html.Partial("Partials/_FollowerListPartialView", Model.ListFollowers)
             </div>
         </div>
         <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "followee" ? "active" : "")" id="followee">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h4>
-                        Kết quả cho:
-                        <span></span>
-                    </h4>
-                </div>
-                <div class="col-lg-6">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit" style="height: 34px;">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="row">
                 @Html.Partial("Partials/_FolloweeListPartialView", Model.ListFollowees)
             </div>
@@ -152,6 +112,7 @@
         </div>
     </div>
 </div>
+<input type="hidden" value="@Model.Id" id="user-id" />
 @section LeftPanel
 {
     <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
