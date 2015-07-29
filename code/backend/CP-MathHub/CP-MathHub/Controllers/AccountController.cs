@@ -28,6 +28,7 @@ namespace CP_MathHub.Controllers
     {
         private IAccountService aService;
         private IDiscussionService dService;
+        private ICommonService cService;
         private IQuestionService qService;
         private IBlogService bService;
         private CPMathHubModelContainer context;
@@ -37,6 +38,7 @@ namespace CP_MathHub.Controllers
             aService = new AccountService(context);
             dService = new DiscussionService(context);
             bService = new BlogService(context);
+            cService = new CommonService(context);
             qService = new QuestionService(context);
         }
         #region Authentication
@@ -680,7 +682,7 @@ namespace CP_MathHub.Controllers
             }
         }
         //Account/User Friend
-        public ActionResult UserFriend(int friendId, int page = 0, string tab = "allfriend")
+        public ActionResult UserFriend(int friendId, int page = 0, string tab = "allfriend", string searchString = "")
         {
             Entity.User user = new User();
             user = aService.GetUser(friendId, "Profile");
@@ -710,6 +712,7 @@ namespace CP_MathHub.Controllers
                 Response.Cookies.Add(cookie);
                 ViewBag.System = Constant.String.ProfileSystem;
                 ViewBag.Tab = tab;
+                ViewBag.SearchString = searchString;
                 return View("Views/UserFriendView", model);
             }
             else
@@ -747,6 +750,36 @@ namespace CP_MathHub.Controllers
         {
             aService.UnFollowUser(targetUserId, User.Identity.GetUserId<int>());
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
+        }
+        public ActionResult SearchFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "UserProfile")
+        {
+            aService.SearchFriend(searchString, friendId);
+            return RedirectToAction(returnPage, new { @userId = friendId, @tab = tab, @searchString = searchString, @friendId = friendId });
+        }
+        //Get: Account/Users
+        [HttpGet]
+        public ActionResult Users(string tab = Constant.Question.String.UserReputationTab, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> users = cService.GetUsers(skip, tab);
+
+            if (page == 0)
+            {
+                UsersPageViewModel model = new UsersPageViewModel();
+                model.Tab = tab;
+                model.ListUsers = users;
+                ViewBag.Tab = Constant.Question.String.HomeUserTab;
+                ViewBag.System = Constant.String.QuestionSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                return View("Views/UsersPageView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_UserListPartialView", users);
+            }
+
         }
         #endregion
         #region Activity

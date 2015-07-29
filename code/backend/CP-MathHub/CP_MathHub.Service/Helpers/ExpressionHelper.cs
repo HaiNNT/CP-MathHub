@@ -250,6 +250,10 @@ namespace CP_MathHub.Service.Helpers
         }
         public class UserHelper
         {
+            public static Expression<Func<User,bool>> MixRoleContainUser(string role, string name)
+            {
+                return (u => (u.Assessments.Where(a => a.Role.Name == role).Count() > 0) && (u.UserName.ToLower().Contains(name.ToLower())));
+            }
             /// <summary>
             /// Get Expert User lambda expression
             /// </summary>

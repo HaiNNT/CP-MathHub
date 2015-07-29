@@ -58,47 +58,51 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h4>
-                        Tất cả bạn
+                        Kết quả cho : @ViewBag.SearchString
                     </h4>
                 </div>
-                <div class="col-lg-6">
-                    <form>
+                @using (Html.BeginForm("SearchFriend", "Account", FormMethod.Post))
+                {
+                    <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                            <input type="hidden" name="tab" value="allfriend" />
+                            <input type="hidden" name="returnPage" value="UserFriend" />
+                            <input type="hidden" name="friendId" value="@Model.Id"/>
+                            <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" type="submit" style="height: 34px;">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                }
             </div>
             <div class="row">
                 @Html.Partial("Partials/_UserFriendListPartialView", Model.ListFriends, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
         </div>
         <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "follower" ? "active" : "")" id="follower">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h4>
-                        Kết quả cho:
-                        <span></span>
-                    </h4>
-                </div>
-                <div class="col-lg-6">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit" style="height: 34px;">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            @*<div class="row">
+                    <div class="col-lg-6">
+                        <h4>
+                            Kết quả cho:
+                            <span></span>
+                        </h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>*@
             <div class="row">
                 @Html.Partial("Partials/_UserFollowerListPartialView", Model.ListFollowers, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
@@ -126,6 +130,34 @@
             </div>
             <div class="row">
                 @Html.Partial("Partials/_UserMutualFriendListPartialView", Model.ListMutualFriend, new ViewDataDictionary { { "FriendId", Model.Id } })
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "searchfriend" ? "active" : "")" id="searchfriend">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>
+                        Kết quả cho : @ViewBag.SearchString
+                    </h4>
+                </div>
+                @using (Html.BeginForm("SearchFriend", "Account", FormMethod.Post))
+                {
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="hidden" name="tab" value="allfriend" />
+                            <input type="hidden" name="returnPage" value="UserFriend" />
+                            <input type="hidden" name="friendId" value="@Model.Id" />
+                            <input type="search" class="form-control" name="searchString" placeholder="Tìm kiếm..." value="@ViewBag.SearchString">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" style="height: 34px;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                @Html.Partial("Partials/_UserSearchFriendListPartialView", Model.ListFriends, new ViewDataDictionary { { "FriendId", Model.Id } })
             </div>
         </div>
     </div>

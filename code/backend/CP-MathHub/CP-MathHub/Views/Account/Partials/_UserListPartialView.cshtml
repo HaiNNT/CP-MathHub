@@ -1,0 +1,29 @@
+﻿@using CP_MathHub.Entity
+@model List<User>
+
+@foreach (User item in Model)
+{
+    <div class="mh-user-item">
+        <div class="row">
+            <div class="col-xs-4 mh-body-detail-image">
+                <a href="@Url.Action("UserProfile", new {userId = item.Id })">
+                    <img src="~/Content/img/user.jpg" class="mh-user-image">
+                </a>
+            </div>
+            <div class="col-xs-8 mh-body-detail-info">
+                <div>
+                    <a href="@Url.Action("UserProfile", new {userId = item.Id })">@item.UserName</a>
+                </div>
+                <div>
+                    @*@if (item.Profile != null && item.Profile.Location != null) {
+                            @(item.Profile.Location.Name + "," + item.Profile.Location.ParentLocation.Name)
+                        }*@
+                </div>
+                <div class="detail-reputation">
+                    @item.Reputation
+                    <i class="fa fa-circle mh-reputation-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+}
