@@ -1,4 +1,4 @@
-﻿
+﻿@model CP_MathHub.Models.Admin.ManageInfracPostsViewModel
 @{
     ViewBag.Title = "ManageInfracPosts";
     Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
@@ -42,6 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @Html.Partial("Partials/ManageInfracPostPartialView",Model.Items)
                         <tr class="">
                             <td class="mh-cell-center">
                                 1
@@ -530,6 +531,7 @@
                                 <a href="" class="delete btn btn-danger" type="button">Xóa</a>
                             </td>
                         </tr>
+                    
                     </tbody>
                 </table>
             </div>
