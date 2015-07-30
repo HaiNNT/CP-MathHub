@@ -177,6 +177,17 @@ function loadConversationDetail(item, id) {
 	  .done(function (msg) {
 	      if (msg || msg != "") {
 	          $(".mh-profile-chat-details").html($(msg).html());
+	          checkOnline(id);
+	          $('.mh-profile-chat-footer-textarea').keypress(function (e) {
+	              if (e.keyCode === 13) {
+	                  e.preventDefault();
+	                  e.stopPropagation();
+	                  if ($(this).val().trim() != "") {
+	                      chat.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
+	                      $(this).val("").focus();
+	                  }
+	              }
+	          });
 	      } else {
 	          alert("empty conversation");
 	      }

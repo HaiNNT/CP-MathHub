@@ -29,5 +29,24 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="id"></param>
         /// <returns></returns>
         Conversation GetConversation(int id);
+
+        /// <summary>
+        /// Insert a message
+        /// </summary>
+        /// <param name="message"></param>
+        void AddMessage(Message message);
+
+        /// <summary>
+        /// Build conversation name
+        /// </summary>
+        /// <param name="conversation"></param>
+        /// <returns></returns>
+        string GetConversationName(int id);
+
+        /// <summary>
+        /// Update s conversation
+        /// </summary>
+        /// <param name="id"></param>
+        void UpdateConversation(Conversation conversation);
     }
 }
