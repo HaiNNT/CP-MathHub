@@ -5,7 +5,7 @@
 {
     <div class="mh-tag-page">
         <div class="mh-tag-name">
-            <a href="#" title="@tag.Description" class="mh-tag">@tag.Name</a>
+            <a href="@Url.Action("Tag", "Question", new {@tag = tag.Name})" title="@tag.Description" class="mh-tag">@tag.Name</a>
             @*x @tag.MainPosts.Count*@
         </div>
         <div class="mh-tag-content">

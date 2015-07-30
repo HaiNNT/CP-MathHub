@@ -111,5 +111,14 @@ namespace CP_MathHub.Controllers
             aService.InsertBanReason(banReason);
             return RedirectToAction("ManageRule");
         }
+
+        //Get: Admin/ManageTags
+        [HttpGet]
+        public ActionResult ManagerTags()
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            return View("Views/ManageTagsView", model);
+        }
     }
 }

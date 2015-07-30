@@ -143,6 +143,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         void AcceptFriendRequest(int userId, int targetUserId);
 
         /// <summary>
+        /// Create first conversation
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="targetUserId"></param>
+        void CreateConversation(int userId, int targetUserId);
+
+        /// <summary>
         /// Get all tags that user participate in
         /// </summary>
         /// <param name="userId"></param>

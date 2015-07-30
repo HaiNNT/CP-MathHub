@@ -14,17 +14,19 @@ namespace CP_MathHub.Service.Services
 {
     public class AccountService : IAccountService, IDisposable
     {
-        private IUnitOfWork dal;
-        public AccountService(CPMathHubModelContainer context)
+        private int _loginUserId;
+        private IUnitOfWork _dal;
+        public AccountService(CPMathHubModelContainer context, int userId = 0)
         {
-            dal = new MathHubUoW(context);
+            _loginUserId = userId;
+            _dal = new MathHubUoW(context);
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                dal.Dispose();
+                _dal.Dispose();
             }
 
         }
@@ -42,36 +44,36 @@ namespace CP_MathHub.Service.Services
             user.Reputation = 23142;
             //return user;
             //return dal.Repository<User>().GetById(55);
-            return dal.Repository<User>().Table.FirstOrDefault(m => m.Id == 56);
+            return _dal.Repository<User>().Table.FirstOrDefault(m => m.Id == 56);
 
         }
 
         public User GetUser(int userId, string include = "")
         {
-            return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
+            return _dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.Id == userId);
         }
         public User GetUser(string username, string include = "")
         {
-            return dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.UserName == username);
+            return _dal.Repository<User>().Include(include).Table.FirstOrDefault(m => m.UserName == username);
         }
 
         public void UpdateUser(User user)
         {
-            dal.Repository<User>().Update(user);
-            dal.Save();
+            _dal.Repository<User>().Update(user);
+            _dal.Save();
         }
 
         public void CreateProfile(int userId)
         {
             Profile profile = new Profile();
             profile.User = GetUser(userId);
-            dal.Repository<Profile>().Insert(profile);
+            _dal.Repository<Profile>().Insert(profile);
             User user = GetUser(userId);
             user.CreatedDate = DateTime.Now;
             user.Reputation = 0;
             user.Status = UserStatusEnum.Active;
-            dal.Repository<User>().Update(user);
-            dal.Save();
+            _dal.Repository<User>().Update(user);
+            _dal.Save();
         }
         public void CreatePrivacy(int userId)
         {
@@ -81,8 +83,8 @@ namespace CP_MathHub.Service.Services
             privacy.ReceiveEmail = true;
             privacy.SeenBlog = SeenBlogEnum.Everyone;
             privacy.SendRequest = FriendRequestEnum.Everyone;
-            dal.Repository<PrivacySetting>().Insert(privacy);
-            dal.Save();
+            _dal.Repository<PrivacySetting>().Insert(privacy);
+            _dal.Save();
         }
         public void CreateAvatar(int userId)
         {
@@ -90,8 +92,8 @@ namespace CP_MathHub.Service.Services
             avatar.User = GetUser(userId);
             avatar.Url = "~/Content/img/user.jpg";
             avatar.Caption = "";
-            dal.Repository<Image>().Insert(avatar);
-            dal.Save();
+            _dal.Repository<Image>().Insert(avatar);
+            _dal.Save();
         }
         public void CreateActivity(int userId, string ip = "")
         {
@@ -103,31 +105,31 @@ namespace CP_MathHub.Service.Services
             activity.LastSeenNotification = DateTime.Now;
             activity.LastIp = ip;
             activity.User = GetUser(userId);
-            dal.Repository<Activity>().Insert(activity);
-            dal.Save();
+            _dal.Repository<Activity>().Insert(activity);
+            _dal.Save();
         }
         public int CountFriend(int userId)
         {
-            int result = dal.Repository<UserFriendship>().Table
+            int result = _dal.Repository<UserFriendship>().Table
                 .Count(u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend);
             return result;
         }
         public int CountFriendRequest(int userId)
         {
-            int result = dal.Repository<UserFriendship>().Table
+            int result = _dal.Repository<UserFriendship>().Table
                 .Count(u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting);
             return result;
         }
         public int CountFollower(int userId)
         {
-            int result = dal.Repository<User>().Table
+            int result = _dal.Repository<User>().Table
                 .Count(u => u.Followees.Where(t => t.Id == userId).Count() > 0);
             return result;
         }
 
         public int CountFollowee(int userId)
         {
-            int result = dal.Repository<User>().Table
+            int result = _dal.Repository<User>().Table
                 .Count(u => u.Followers.Where(t => t.Id == userId).Count() > 0);
             return result;
         }
@@ -139,48 +141,67 @@ namespace CP_MathHub.Service.Services
             friendship.Status = RelationshipEnum.Requesting;
             friendship.TargetUserId = targetUserId;
             friendship.UserId = userId;
-            dal.Repository<UserFriendship>().Insert(friendship);
-            dal.Save();
+            _dal.Repository<UserFriendship>().Insert(friendship);
+            _dal.Save();
         }
         public void AcceptFriendRequest(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
-            friendship = dal.Repository<UserFriendship>().Table.Where(
+            friendship = _dal.Repository<UserFriendship>().Table.Where(
                 (u => (u.TargetUserId == userId) && (u.UserId == targetUserId))).FirstOrDefault();
             friendship.Status = RelationshipEnum.Friend;
-            dal.Repository<UserFriendship>().Update(friendship);
-            dal.Save();
+            _dal.Repository<UserFriendship>().Update(friendship);
+            _dal.Save();
+        }
+
+        public void CreateConversation(int userId, int targetUserId)
+        {
+            Attendance att1 = new Attendance();
+            att1.UserId = targetUserId;
+            att1.JoinedDate = DateTime.Now;
+            att1.SeenDate = DateTime.Now;
+            Attendance att2 = new Attendance();
+            att2.UserId = userId;
+            att2.JoinedDate = DateTime.Now;
+            att2.SeenDate = DateTime.Now;
+            Conversation con = new Conversation();
+            con.Attendances.Add(att1);
+            con.Attendances.Add(att2);
+            con.Name = "";
+            con.CreatedDate = DateTime.Now;
+            _dal.Repository<Conversation>().Insert(con);
+            _dal.Save();
         }
         public void CancelFriend(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
-            friendship = dal.Repository<UserFriendship>().Table.Where(
+            friendship = _dal.Repository<UserFriendship>().Table.Where(
                 (u => (u.TargetUserId == targetUserId || u.TargetUserId == userId) && (u.UserId == targetUserId || u.UserId == userId) && (u.Status == RelationshipEnum.Requesting || u.Status == RelationshipEnum.Friend))).FirstOrDefault();
-            dal.Repository<UserFriendship>().Delete(friendship);
-            dal.Save();
+            _dal.Repository<UserFriendship>().Delete(friendship);
+            _dal.Save();
         }
         public void FollowUser(int followeeId, int followerId)
         {
-            User followee = dal.Repository<User>().GetById(followeeId);
-            User follower = dal.Repository<User>().GetById(followerId);
+            User followee = _dal.Repository<User>().GetById(followeeId);
+            User follower = _dal.Repository<User>().GetById(followerId);
             followee.Followers.Add(follower);
-            dal.Repository<User>().Update(followee);
-            dal.Save();
+            _dal.Repository<User>().Update(followee);
+            _dal.Save();
         }
         public void UnFollowUser(int followeeId, int followerId)
         {
-            User followee = dal.Repository<User>().GetById(followeeId);
-            User follower = dal.Repository<User>().GetById(followerId);
+            User followee = _dal.Repository<User>().GetById(followeeId);
+            User follower = _dal.Repository<User>().GetById(followerId);
             followee.Followers.Remove(follower);
-            dal.Repository<User>().Update(followee);
-            dal.Save();
+            _dal.Repository<User>().Update(followee);
+            _dal.Save();
         }
         public List<User> GetMutualFriends(int userId, int friendId, int skip = 0, int take = 0)
         {
             List<User> mutualfriends = new List<User>();
             List<User> friends = new List<User>();
             List<User> userfriends = new List<User>();
-            List<UserFriendship> friendship1 = dal.Repository<UserFriendship>().Get(
+            List<UserFriendship> friendship1 = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
@@ -197,7 +218,7 @@ namespace CP_MathHub.Service.Services
                     friends.Add(friendShip1.TargetUser);
                 }
             }
-            List<UserFriendship> friendship2 = dal.Repository<UserFriendship>().Get(
+            List<UserFriendship> friendship2 = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
@@ -223,7 +244,7 @@ namespace CP_MathHub.Service.Services
             List<User> mutualfriends = new List<User>();
             List<User> friends = new List<User>();
             List<User> userfriends = new List<User>();
-            List<UserFriendship> friendship1 = dal.Repository<UserFriendship>().Get(
+            List<UserFriendship> friendship1 = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
@@ -240,7 +261,7 @@ namespace CP_MathHub.Service.Services
                     friends.Add(friendShip1.TargetUser);
                 }
             }
-            List<UserFriendship> friendship2 = dal.Repository<UserFriendship>().Get(
+            List<UserFriendship> friendship2 = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
@@ -267,7 +288,7 @@ namespace CP_MathHub.Service.Services
             switch (tab)
             {
                 case Constant.Account.String.AllFriendTab:
-                    List<UserFriendship> friendShips = dal.Repository<UserFriendship>().Get(
+                    List<UserFriendship> friendShips = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
@@ -286,7 +307,7 @@ namespace CP_MathHub.Service.Services
                     }
                     break;
                 case Constant.Account.String.FollowerTab:
-                    friends = dal.Repository<User>().Get(
+                    friends = _dal.Repository<User>().Get(
                             ( u => u.Followees.Where(t => t.Id == userId).Count() >0)
                             , (u => u.OrderByDescending(m => m.UserName))
                             , ""
@@ -294,7 +315,7 @@ namespace CP_MathHub.Service.Services
                             , take).ToList();
                     break;
                 case Constant.Account.String.FolloweeTab:
-                    friends = dal.Repository<User>().Get(
+                    friends = _dal.Repository<User>().Get(
                             ( u => u.Followers.Where(t => t.Id == userId).Count() >0)
                             , (u => u.OrderByDescending(m => m.UserName))
                             , ""
@@ -302,7 +323,7 @@ namespace CP_MathHub.Service.Services
                             , take).ToList();
                     break;
                 case Constant.Account.String.RequestTab:
-                    List<UserFriendship> friendrequests = dal.Repository<UserFriendship>().Get(
+                    List<UserFriendship> friendrequests = _dal.Repository<UserFriendship>().Get(
                             (u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User,TargetUser"
@@ -322,7 +343,7 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetFavoriteTags(int userId, int take = 0)
         {
             List<Tag> tags = new List<Tag>();
-            List<MainPost> posts = dal.Repository<MainPost>().Get(
+            List<MainPost> posts = _dal.Repository<MainPost>().Get(
                     (m => m.UserId == userId),
                     null,
                     "Tags",
@@ -358,8 +379,8 @@ namespace CP_MathHub.Service.Services
         {
             User user = GetUser(username, "Activity");
             user.Activity.LastLogin = DateTime.Now;
-            dal.Repository<User>().Update(user);
-            dal.Save();
+            _dal.Repository<User>().Update(user);
+            _dal.Save();
         }
     }
 }

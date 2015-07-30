@@ -133,7 +133,7 @@ function searchUser() {
     $("#mh-search-friend").keypress(function () {
         list.html("");
         timeout = setTimeout(load, 1000);
-    });
+});
 }
 /*
 Search UserFriends
@@ -163,4 +163,25 @@ function searchUserFriend() {
         list.html("");
         timeout = setTimeout(load, 1000);
     });
+}
+
+function loadConversationDetail(item, id) {
+    $(".mh-profile-chat-details").html("");
+    $(item).parent().siblings().removeClass("active");
+    $(item).parent().addClass("active");
+    $.ajax({
+        method: "POST",
+        url: "/Account/LoadConversationDetail",
+        data: { id: id }
+    })
+	  .done(function (msg) {
+	      if (msg || msg != "") {
+	          $(".mh-profile-chat-details").html($(msg).html());
+	      } else {
+	          alert("empty conversation");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
 }

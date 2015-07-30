@@ -179,7 +179,7 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<Question>().Table.Count(ExpressionHelper.QuestionHelper.SearchQuestion(searchString, _loginUserId));
         }
-        public List<Answer> GetAnswers(int questionId, AnswerEnum type = 0)
+        public List<Answer> GetAnswers(int questionId, AnswerEnum type)
         {
             List<Answer> answers = new List<Answer>();
             switch (type)

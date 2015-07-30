@@ -121,6 +121,7 @@
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\DiscussionService.cs" />
     <Compile Include="Services\QuestionService.cs" />
+    <Compile Include="Services\RealTimeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

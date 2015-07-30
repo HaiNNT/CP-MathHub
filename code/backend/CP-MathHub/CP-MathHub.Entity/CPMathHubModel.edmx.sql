@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/28/2015 17:30:50
--- Generated from EDMX file: D:\FPT\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 07/29/2015 14:42:57
+-- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -197,8 +197,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ProfileLocation]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Profiles] DROP CONSTRAINT [FK_ProfileLocation];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserActivity]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_UserActivity];
+IF OBJECT_ID(N'[dbo].[FK_ActivityUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_ActivityUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
@@ -511,7 +511,8 @@ GO
 CREATE TABLE [dbo].[Conversations] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [CreatedDate] datetime  NOT NULL
+    [CreatedDate] datetime  NOT NULL,
+    [Avatar] nvarchar(max)  NOT NULL
 );
 GO
 

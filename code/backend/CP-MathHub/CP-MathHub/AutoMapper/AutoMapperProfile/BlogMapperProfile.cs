@@ -149,7 +149,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             )
             .ForMember(
                 s => s.UserInfo,
-                d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(new CommonService(new CPMathHubModelContainer()).GetUser(m.UserId, "")))
+                d => d.MapFrom(m => Mapper.Map<User, UserInfoViewModel>(new CommonService(new CPMathHubModelContainer(), 0).GetUser(m.UserId, "")))
             )
                 //.ForMember(
                 //    s => s.Bookmarked,
