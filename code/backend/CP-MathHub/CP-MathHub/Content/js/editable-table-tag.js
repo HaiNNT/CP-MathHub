@@ -34,8 +34,8 @@
                 //oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
                 oTable.fnUpdate(jqInputs[1].value, nRow, 3, false);
                 //oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
-                oTable.fnUpdate('<a class="edit btn btn-primary" href="">Chỉnh sửa</a>', nRow, 5, false);
-                oTable.fnUpdate('<a class="delete btn btn-danger" href="">Xóa</a>', nRow, 6, false);
+                oTable.fnUpdate('<a class="edit btn btn-primary" href="" mh-id="' + id + '">Chỉnh sửa</a>', nRow, 5, false);
+                oTable.fnUpdate('<a class="delete btn btn-danger" href="" mh-id="' + id + '">Xóa</a>', nRow, 6, false);
                 oTable.fnDraw();
             }
 
@@ -92,15 +92,33 @@
 
             $('#editable-sample').on('click', 'a.delete', function (e) {
                 e.preventDefault();
-
+                var nRow = $(this).parents('tr')[0];
+                var id = $(this).attr("mh-id");
+                var userNum = $(this).attr("mh-usedNum");
                 if (confirm("Are you sure to delete this row ?") == false) {
                     return;
                 }
-
-                var nRow = $(this).parents('tr')[0];
-                oTable.fnDeleteRow(nRow);
-                alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+                if (userNum > 0)
+                {
+                    alert("Tag này đã được dùng. Bạn không thể xóa");
+                    return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/DeleteTag',
+                    data: { tagId: id },
+                    //contentType: 'application/json; charset=utf-8',
+                    success: function (msg) {
+                        if (msg) {                         
+                            oTable.fnDeleteRow(nRow);
+                        }
+                    }
+                });
+                //var nRow = $(this).parents('tr')[0];
+                //oTable.fnDeleteRow(nRow);
+                //alert("Deleted! Do not forget to do some ajax to sync with backend :)");
             });
+
 
             $('#editable-sample').on('click', 'a.cancel', function (e) {
                 e.preventDefault();
