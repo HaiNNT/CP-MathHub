@@ -17,7 +17,7 @@ using AutoMapper;
 
 namespace CP_MathHub.Controllers
 {
-    [Authorize(Roles = "Moderator")]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : BaseController
     {
         private IAdminService aService;
@@ -52,6 +52,7 @@ namespace CP_MathHub.Controllers
             model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
             model.UserNumber = aService.CountUsers();
             model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
+            model.BanReasons = cService.GetBanReason();
             ViewBag.Page = Constant.Admin.String.ManageUsersPage;
             return View("Views/ManageUsersView", model);
         }
@@ -71,8 +72,8 @@ namespace CP_MathHub.Controllers
             BanReason banReason = aService.GetBanReason(model.Id);
             banReason.Name = model.Name;
             banReason.Description = model.Description;
-            banReason.CreatedDate = DateTime.Now;
-            banReason.Duration = 1;
+            banReason.CreatedDate = banReason.CreatedDate;
+            banReason.Duration = model.Duration;
             aService.EditBanReason(banReason);
             return RedirectToAction("ManageRule");
         }
@@ -81,6 +82,18 @@ namespace CP_MathHub.Controllers
         {
             BanReason banReason = aService.GetBanReason(Id);
             aService.DeleteBanReason(banReason);
+            return RedirectToAction("ManageRule");
+        }
+
+        [HttpPost]
+        public ActionResult InsertRule(RulesViewModel model)
+        {
+            BanReason banReason = new BanReason();
+            banReason.Name = model.Name;
+            banReason.Description = model.Description;
+            banReason.Duration = model.Duration;
+            banReason.CreatedDate = DateTime.Now;
+            aService.InsertBanReason(banReason);
             return RedirectToAction("ManageRule");
         }
     }

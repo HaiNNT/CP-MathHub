@@ -76,7 +76,15 @@ namespace CP_MathHub.Service.Helpers
             
             return s.TrimEnd(',');
         }
-
+        public static string GetReasonBlockUser(this HtmlHelper html, List<BanReason> banReasons)
+        {
+            string s = "";
+            foreach (BanReason banReason in banReasons)
+            {
+                s += banReason.Name + ",";
+            }
+            return s.TrimEnd(',');
+        }
         public static string VoteNumer(this HtmlHelper html, int? vote)
         {
             if (vote == null)

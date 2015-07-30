@@ -60,5 +60,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="Id"></param>
         void DeleteBanReason(BanReason banReason);
+        /// <summary>
+        /// Insert ban reason
+        /// </summary>
+        /// <param name="banReason"></param>
+        void InsertBanReason(BanReason banReason);
     }
 }

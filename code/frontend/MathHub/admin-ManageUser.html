@@ -399,6 +399,7 @@
                                   </tr>
                               </thead>
                               <tbody>
+
                                   <tr class="">
                                       <td class="mh-cell-center">
                                           <img src="img/user.jpg" class="mh-user-picture" />
@@ -580,7 +581,7 @@
                                                                   </div>
                                                                   <div class="col-xs-8 mh-select-cause-time-block">
                                                                       <select  name="selBlock" class="selectpicker blockday" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                          <option value="1">ABC - 1 ngày</option>
+                                                                          <option value="2">ABC - 1 ngày</option>
                                                                           <option value="2">XYZ - 2 ngày</option>
                                                                           <option value="3">LMG - 3 ngày</option>
                                                                       </select>
@@ -596,7 +597,7 @@
                                                               </div>
                                                           </div>
                                                           <div class="modal-footer">
-                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                              <button type="button" class="btn btn-default" data-dismiss="modal" onclick="refresh()">Hủy</button>
                                                               <button type="button" class="btn btn-warning">Khóa</button>
                                                           </div>
                                                       </form>
@@ -995,11 +996,13 @@
             var temp2 = $('.selectpicker.blockday').val();
             var total = 0;
             for (var i = 0; i < temp2.length; i++) {
-                total += +temp2[i];
+                total += temp2[i];
             }
             $('#dayresult-1').val(total + " ngày");
         });
-        z
+        function refresh() {
+			$('.selectpicker').selectpicker('refresh');
+		}
     </script>
     <!--script for this page only-->
     <script>
