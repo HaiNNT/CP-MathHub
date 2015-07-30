@@ -199,6 +199,7 @@
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
@@ -617,6 +618,7 @@
     <Content Include="Content\js\common-scripts.js" />
     <Content Include="Content\js\count.js" />
     <Content Include="Content\js\editable-table-rule.js" />
+    <Content Include="Content\js\editable-table-tag.js" />
     <Content Include="Content\js\jquery-1.11.3.js" />
     <Content Include="Content\js\jquery.cropit.js" />
     <Content Include="Content\js\jquery.dcjqaccordion.2.7.js" />
@@ -837,6 +839,7 @@
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
     <Content Include="Views\Admin\Partials\RuleCreatePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
+    <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

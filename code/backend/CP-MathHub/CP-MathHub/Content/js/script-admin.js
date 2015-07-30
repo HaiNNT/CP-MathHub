@@ -117,7 +117,11 @@ function ManageInfracPosts_edittable() {
     jQuery('#editable-manageInfracPosts_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     jQuery('#editable-manageInfracPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 }
-
+function tableTag() {
+    jQuery(document).ready(function () {
+        EditableTable.init();
+    });
+}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -134,6 +138,8 @@ $(document).ready(function () {
             ManageInfracPosts_blockday();
             ManageInfracPosts_edittable();
             break;
+        case "ManageTags":
+            tableTag();
         default:
             break;
     }

@@ -732,6 +732,7 @@ namespace CP_MathHub.Controllers
         public ActionResult AcceptFriendRequest(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
+            aService.CreateConversation(User.Identity.GetUserId<int>(), targetUserId);
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
 
