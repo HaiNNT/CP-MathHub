@@ -7,7 +7,6 @@
     ViewBag.Title = "ActivityView";
     Layout = "~/Views/Account/Layouts/_ProfileLayout.cshtml";
 }
-
 <div class="mh-top-content">
     <div class="row">
         <div class="col-xs-12 col-sm-5 col-md-3 mh-content-title">
@@ -394,11 +393,11 @@
                         {
                             <div class="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "active" : "")">
                                 <a href="#" id="conversation-@conversation.Id" onclick="@("loadConversationDetail(this," + @conversation.Id + ")")">
-                                <div class="media">
-                                    <div class="media-left">
+                                    <div class="media">
+                                        <div class="media-left">
                                             <img src="@(conversation.Avatar != null ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
-                                    </div>
-                                    <div class="media-body">
+                                        </div>
+                                        <div class="media-body">
                                             <span class="media-heading">@conversation.Name</span><br />
                                             <span class="mh-profile-chat-content">@conversation.LastMessage.Content</span><br />
                                             <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate, "")</span><br />
@@ -406,18 +405,18 @@
                                             {
                                                 <span class="mh-new-message" style="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "color: #fff;" : "")">@conversation.NewMessageNum tin nhắn mới</span>
                                             }
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
                         }
-                                </div>
-                        </div>
+                    </div>
+                </div>
                 @Html.Partial("Partials/_ConversationDetailPartialView", Model.Conversation)
-                                    </div>
-                                    </div>
-                                </div>
-                        </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section LeftPanel
 {
     <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
@@ -442,30 +441,57 @@
     </a>
 }
 @section scripts{
+    <script src="~/signalr/hubs"></script>
     <script>
+        var chat;
         $(function () {
             // Reference the auto-generated proxy for the hub.
-            var chat = $.connection.chatHub;
+            chat = $.connection.chatHub;
+
             // Create a function that the hub can call back to display messages.
-            chat.client.addChatMessage = function (name, message) {
-                // Add the message to the page.
-                $('#discussion').append('<li><strong>' + htmlEncode(name)
-                    + '</strong>: ' + htmlEncode(message) + '</li>');
-            };
-            // Show online users
-            chat.client.showOnlineUser = function (json, count) {
-                // Add the message to the page.
-                $('#count').html(count);
-                console.log(json);
-            };
+            chat.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {
+                var result = '<div class="media mh-profile-chat-detail-row">'
+                                + '<div class="media-left">'
+                                     + '<a href="' + profileUrl + '">'
+                                        + '<img class="media-object mh-user-icon" src="' + avatarUrl + '" alt="...">'
+                                     + '</a>'
+                                + '</div>'
+                                + '<div class="media-body">'
+                                     + '<a href="' + profileUrl + '">'
+                                         + '<h5 class="media-heading">' + username + '</h5>'
+                                     + '</a>'
+                                     + '<span>' + content + '</span>'
+                                + '</div>'
+                                + '<div class="media-right">'
+                                      + time
+                                + '</div>'
+                            + '</div>';
+                $(".mh-profile-chat-detail").append(result);
+            }
+
+            // Check online conversation
+            chat.client.checkOnlineTrigger = function (cssClass) {
+                $('#conversation-status').attr("class", cssClass);
+            }
+
             // Start the connection.
             $.connection.hub.start().done(function () {
-                chat.server.joinConversation($('#displayname').val());
-                $('#sendmessage').click(function () {
-                    // Call the Send method on the hub.
-                    chat.server.sendToConversation($('#message').val(), $('#displayname').val());
-                    // Clear text box and reset focus for next comment.
-                    $('#message').val('').focus();
+                //chat.server.joinConversation($('#displayname').val());
+                //$('#sendmessage').click(function () {
+                //    // Call the Send method on the hub.
+                //    chat.server.sendToConversation($('#message').val(), $('#displayname').val());
+                //    // Clear text box and reset focus for next comment.
+                //    $('#message').val('').focus();
+                //});
+                $('.mh-profile-chat-footer-textarea').keypress(function (e) {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if ($(this).val().trim() != "") {
+                            chat.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
+                            $(this).val("").focus();
+                        }                    
+                    }
                 });
             });
         });
@@ -474,12 +500,10 @@
             var encodedValue = $('<div />').text(value).html();
             return encodedValue;
         }
+        //function renderMessage(profileUrl, avatarUrl, username, content, time)
+        //function checkOnlineTrigger(cssClass)
+        function checkOnline(id) {
+            chat.server.checkOnline(id);
+        }
     </script>
 }
-@section styles{
-
-}
-
-
-
-

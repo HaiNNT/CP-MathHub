@@ -8,6 +8,7 @@ namespace CP_MathHub.Models.RealTime
 {
     public class ConversationDetailViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<MesagesOfDate> Dates { get; set; }
 

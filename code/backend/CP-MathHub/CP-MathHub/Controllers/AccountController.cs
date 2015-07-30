@@ -61,12 +61,12 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-            aService = new AccountService(context);
+                aService = new AccountService(context);
                 dService = new DiscussionService(context);
                 bService = new BlogService(context);
                 qService = new QuestionService(context);
                 cService = new CommonService(context);
-        }
+            }
 
         }
 
@@ -824,26 +824,34 @@ namespace CP_MathHub.Controllers
                 CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
             ConversationDetailViewModel conversation = new ConversationDetailViewModel();
             conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
-            conversation.Name = convers.First().Name;
+            conversation.Name = rService.GetConversationName(convers.First().Id);
+            conversation.Id = convers.First().Id;
 
-                ActivityViewModel model = new ActivityViewModel();
-                model.DiscussionList = discussions;
-                model.QuestionList = questions;
-                model.ArticleList = articles;
-                model.AnswerList = answers;
-                model.TagList = tags;
-                model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
-                model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
-                model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
-                model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
+            Conversation conver = rService.GetConversation(convers.First().Id);
+            for (int i = 0; i < conver.Attendances.Count; i++)
+            {
+                conver.Attendances.ElementAt(i).SeenDate = DateTime.Now;
+            }
+            rService.UpdateConversation(conver);
+
+            ActivityViewModel model = new ActivityViewModel();
+            model.DiscussionList = discussions;
+            model.QuestionList = questions;
+            model.ArticleList = articles;
+            model.AnswerList = answers;
+            model.TagList = tags;
+            model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
+            model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
+            model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
+            model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
             model.Conversations = conversations;
             model.Conversation = conversation;
             //var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
             //cookie.Expires = DateTime.Now.AddMinutes(5);
             //Response.Cookies.Add(cookie);
-                ViewBag.System = Constant.String.ProfileSystem;
-                return View("Views/ActivityView", model);
-            }
+            ViewBag.System = Constant.String.ProfileSystem;
+            return View("Views/ActivityView", model);
+        }
         #endregion
         #region Privacy
         //Get: /Account/Privacy
@@ -893,7 +901,14 @@ namespace CP_MathHub.Controllers
         {
             ConversationDetailViewModel conversation = new ConversationDetailViewModel();
             conversation.SetDates(rService.GetAllConversationMessages(id));
-            conversation.Name = rService.GetConversation(id).Name;
+            conversation.Name = rService.GetConversationName(id);
+            conversation.Id = id;
+            Conversation conver = rService.GetConversation(id);
+            for (int i = 0; i < conver.Attendances.Count; i++ )
+            {
+                conver.Attendances.ElementAt(i).SeenDate = DateTime.Now;
+            }
+            rService.UpdateConversation(conver);
             return PartialView("Partials/_ConversationDetailPartialView", conversation);
         }
         #endregion
