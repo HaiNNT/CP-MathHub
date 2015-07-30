@@ -17,7 +17,7 @@ using AutoMapper;
 
 namespace CP_MathHub.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Moderator")]
     public class AdminController : BaseController
     {
         private IAdminService aService;
@@ -95,6 +95,15 @@ namespace CP_MathHub.Controllers
             banReason.CreatedDate = DateTime.Now;
             aService.InsertBanReason(banReason);
             return RedirectToAction("ManageRule");
+        }
+
+        //Get: Admin/ManageTags
+        [HttpGet]
+        public ActionResult ManagerTags()
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            return View("Views/ManageTagsView", model);
         }
     }
 }

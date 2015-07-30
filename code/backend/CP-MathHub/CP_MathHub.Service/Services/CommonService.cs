@@ -405,7 +405,7 @@ namespace CP_MathHub.Service.Services
 
         public List<BanReason> GetBanReason()
         {
-            return dal.Repository<BanReason>().Table.ToList();
+            return _dal.Repository<BanReason>().Table.ToList();
         }
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
         {

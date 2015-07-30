@@ -192,6 +192,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string ManageUsersPage = "ManageUsers";
                 public const string ManageRulePage = "ManageRules";
                 public const string ManageInfracPosts = "ManageInfracPosts";
+                public const string ManagerTagsPage = "ManageTags";
             }
         }
     }

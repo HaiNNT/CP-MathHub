@@ -153,6 +153,25 @@ namespace CP_MathHub.Service.Services
             _dal.Repository<UserFriendship>().Update(friendship);
             _dal.Save();
         }
+
+        public void CreateConversation(int userId, int targetUserId)
+        {
+            Attendance att1 = new Attendance();
+            att1.UserId = targetUserId;
+            att1.JoinedDate = DateTime.Now;
+            att1.SeenDate = DateTime.Now;
+            Attendance att2 = new Attendance();
+            att2.UserId = userId;
+            att2.JoinedDate = DateTime.Now;
+            att2.SeenDate = DateTime.Now;
+            Conversation con = new Conversation();
+            con.Attendances.Add(att1);
+            con.Attendances.Add(att2);
+            con.Name = "";
+            con.CreatedDate = DateTime.Now;
+            _dal.Repository<Conversation>().Insert(con);
+            _dal.Save();
+        }
         public void CancelFriend(int userId, int targetUserId)
         {
             UserFriendship friendship = new UserFriendship();
