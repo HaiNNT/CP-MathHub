@@ -30,6 +30,7 @@ namespace CP_MathHub.Controllers
     {
         private IAccountService aService;
         private IDiscussionService dService;
+        private ICommonService cService;
         private IQuestionService qService;
         private IBlogService bService;
         private IRealTimeService rService;
@@ -56,14 +57,16 @@ namespace CP_MathHub.Controllers
                 bService = new BlogService(context, _currentUserId);
                 qService = new QuestionService(context, _currentUserId);
                 rService = new RealTimeService(context, _currentUserId);
+                cService = new CommonService(context, _currentUserId);
             }
             else
             {
-                aService = new AccountService(context);
+            aService = new AccountService(context);
                 dService = new DiscussionService(context);
                 bService = new BlogService(context);
                 qService = new QuestionService(context);
-            }
+                cService = new CommonService(context);
+        }
 
         }
 
@@ -686,6 +689,7 @@ namespace CP_MathHub.Controllers
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
                 model.RequestNum = aService.CountFriendRequest(userId);
+                model.Id = User.Identity.GetUserId<int>();
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
@@ -699,7 +703,7 @@ namespace CP_MathHub.Controllers
             }
         }
         //Account/User Friend
-        public ActionResult UserFriend(int friendId, int page = 0, string tab = "allfriend")
+        public ActionResult UserFriend(int friendId, int page = 0, string tab = "allfriend", string searchString = "")
         {
             Entity.User user = new User();
             user = aService.GetUser(friendId, "Profile");
@@ -729,6 +733,7 @@ namespace CP_MathHub.Controllers
                 Response.Cookies.Add(cookie);
                 ViewBag.System = Constant.String.ProfileSystem;
                 ViewBag.Tab = tab;
+                ViewBag.SearchString = searchString;
                 return View("Views/UserFriendView", model);
             }
             else
@@ -767,6 +772,43 @@ namespace CP_MathHub.Controllers
             aService.UnFollowUser(targetUserId, User.Identity.GetUserId<int>());
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
+        public ActionResult SearchFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "Friend")
+        {
+            List<User> friends = aService.SearchFriend(searchString, friendId);
+            List<UserItemViewModel> friendUserItems = Helper.ListHelper.ListUserToListUserItem(friends, User.Identity.GetUserId<int>());
+            return PartialView("Partials/_FriendListPartialView", friendUserItems);
+        }
+        public ActionResult SearchUserFriend(int friendId, string searchString, int skip = 0, int take = 0, string tab = "allfriend", string returnPage = "UserFriend")
+        {
+            List<User> friends = aService.SearchFriend(searchString, friendId);
+            List<UserItemViewModel> friendUserItems = Helper.ListHelper.ListUserToListUserItem(friends, User.Identity.GetUserId<int>());
+            return PartialView("Partials/_UserFriendListPartialView", friendUserItems);
+        }
+        //Get: Account/Users
+        [HttpGet]
+        public ActionResult Users(string tab = Constant.Question.String.UserReputationTab, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> users = cService.GetUsers(skip, tab);
+
+            if (page == 0)
+            {
+                UsersPageViewModel model = new UsersPageViewModel();
+                model.Tab = tab;
+                model.ListUsers = users;
+                ViewBag.Tab = Constant.Question.String.HomeUserTab;
+                ViewBag.System = Constant.String.QuestionSystem;
+                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+                cookie.Expires.AddHours(1);
+                Response.Cookies.Add(cookie);
+                return View("Views/UsersPageView", model);
+            }
+            else
+            {
+                return PartialView("Partials/_UserListPartialView", users);
+            }
+
+        }
         #endregion
         #region Activity
         public ActionResult MyActivity()
@@ -783,24 +825,24 @@ namespace CP_MathHub.Controllers
             conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
             conversation.Name = convers.First().Name;
 
-            ActivityViewModel model = new ActivityViewModel();
-            model.DiscussionList = discussions;
-            model.QuestionList = questions;
-            model.ArticleList = articles;
-            model.AnswerList = answers;
-            model.TagList = tags;
-            model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
-            model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
-            model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
-            model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
+                ActivityViewModel model = new ActivityViewModel();
+                model.DiscussionList = discussions;
+                model.QuestionList = questions;
+                model.ArticleList = articles;
+                model.AnswerList = answers;
+                model.TagList = tags;
+                model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
+                model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
+                model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
+                model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
             model.Conversations = conversations;
             model.Conversation = conversation;
             //var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
             //cookie.Expires = DateTime.Now.AddMinutes(5);
             //Response.Cookies.Add(cookie);
-            ViewBag.System = Constant.String.ProfileSystem;
-            return View("Views/ActivityView", model);
-        }
+                ViewBag.System = Constant.String.ProfileSystem;
+                return View("Views/ActivityView", model);
+            }
         #endregion
         #region Privacy
         //Get: /Account/Privacy

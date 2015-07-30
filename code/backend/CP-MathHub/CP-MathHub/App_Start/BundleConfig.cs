@@ -60,6 +60,10 @@ namespace CP_MathHub
                       "~/Content/assets/data-tables/DT_bootstrap.js",
                       "~/Content/js/editable-table-rule.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/realtimejs").Include(
+                      "~/Scripts/jquery.signalR-2.1.2.min.js",
+                      "~/signalr/hubs"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.min.css",
                       "~/Content/jquery-ui/jquery-ui.css",

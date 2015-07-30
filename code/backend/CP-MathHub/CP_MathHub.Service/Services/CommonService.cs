@@ -15,19 +15,21 @@ namespace CP_MathHub.Service.Services
 {
     public class CommonService : ICommonService, IDisposable
     {
-        private IUnitOfWork dal;
-        private AccountService aService;
-        public CommonService(CPMathHubModelContainer context)
+        private int _loginUserId;
+        private IUnitOfWork _dal;
+        private AccountService _aService;
+        public CommonService(CPMathHubModelContainer context, int userId = 0)
         {
-            dal = new MathHubUoW(context);
-            aService = new AccountService(context);
+            _loginUserId = userId;
+            _dal = new MathHubUoW(context);
+            _aService = new AccountService(context);
 
         }
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                dal.Dispose();
+                _dal.Dispose();
             }
 
         }
@@ -39,7 +41,7 @@ namespace CP_MathHub.Service.Services
         public Tag GetTag(string name)
         {
             Tag tag = null;
-            IQueryable<Tag> query = dal.Repository<Tag>().Table
+            IQueryable<Tag> query = _dal.Repository<Tag>().Table
             .Where(
                 t => t.Name.ToLower() == name.ToLower()
             );
@@ -51,7 +53,7 @@ namespace CP_MathHub.Service.Services
         }
         public Tag GetTag(int id)
         {
-            Tag tag = dal.Repository<Tag>()
+            Tag tag = _dal.Repository<Tag>()
                 .GetById(id);
             return tag;
         }
@@ -70,7 +72,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Tag> GetTags(string name)
         {
-            List<Tag> tags = dal.Repository<Tag>().Get(
+            List<Tag> tags = _dal.Repository<Tag>().Get(
                     (t => t.Name.ToLower().Contains(name.ToLower())),
                     (t => t.OrderBy(m => m.Name))
                 ).ToList();
@@ -78,7 +80,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Tag> GetTags(string name, int skip)
         {
-            List<Tag> tags = dal.Repository<Tag>().Get(
+            List<Tag> tags = _dal.Repository<Tag>().Get(
                     (t => t.Name.ToLower().Contains(name.ToLower())),
                     (t => t.OrderBy(m => m.Name)),
                     "MainPosts",
@@ -93,7 +95,7 @@ namespace CP_MathHub.Service.Services
             switch (tab)
             {
                 case Constant.Question.String.TagNewTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     ExpressionHelper.TagHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -103,7 +105,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.TagPopularTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     ExpressionHelper.TagHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.MainPosts.Count)),
@@ -113,7 +115,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.TagNameTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     ExpressionHelper.TagHelper.ContainName(name),
                                     (p => p.OrderBy(s => s.Name)),
@@ -123,7 +125,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     ExpressionHelper.TagHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.MainPosts.Count)),
@@ -138,7 +140,7 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetCategorys()
         {
             List<Tag> list = new List<Tag>();
-            list = dal.Repository<Tag>()
+            list = _dal.Repository<Tag>()
                                 .Get(
                                 (p=>p.MainPosts.OfType<Discussion>().Count() > 0),
                                     (p => p.OrderByDescending(s => s.Id)),
@@ -154,7 +156,7 @@ namespace CP_MathHub.Service.Services
             switch (tab)
             {
                 case Constant.Question.String.TagNewTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "MainPosts",
@@ -163,7 +165,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.TagPopularTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     null,
                                     (p => p.OrderByDescending(s => s.MainPosts.Count)),
@@ -173,7 +175,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.TagNameTab:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     null,
                                     (p => p.OrderBy(s => s.Name)),
@@ -183,7 +185,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<Tag>()
+                    list = _dal.Repository<Tag>()
                                 .Get(
                                     null,
                                     (p => p.OrderByDescending(s => s.MainPosts.Count)),
@@ -204,8 +206,8 @@ namespace CP_MathHub.Service.Services
             tag.CreatedDate = DateTime.Now;
             tag.UserId = userId;
             tag.Description = "";
-            dal.Repository<Tag>().Insert(tag);
-            dal.Save();
+            _dal.Repository<Tag>().Insert(tag);
+            _dal.Save();
             return true;
         }
         public List<Tag> SearchTags(string searchString, int skip)
@@ -213,7 +215,7 @@ namespace CP_MathHub.Service.Services
             List<Tag> list = new List<Tag>();
             if (searchString != null)
             {
-                IEnumerable<Tag> ienum = dal.Repository<Tag>()
+                IEnumerable<Tag> ienum = _dal.Repository<Tag>()
                                .Get(a => a.Name.ToLower().Contains(searchString.ToLower()),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Name",
@@ -226,7 +228,7 @@ namespace CP_MathHub.Service.Services
         }
         public bool Bookmark(int id, User user)
         {
-            MainPost post = dal.Repository<MainPost>().GetById(id);
+            MainPost post = _dal.Repository<MainPost>().GetById(id);
             if (post.BookmarkUsers.Contains(user))
             {
                 post.BookmarkUsers.Remove(user);
@@ -235,8 +237,8 @@ namespace CP_MathHub.Service.Services
             {
                 post.BookmarkUsers.Add(user);
             }
-            dal.Repository<MainPost>().Update(post);
-            dal.Save();
+            _dal.Repository<MainPost>().Update(post);
+            _dal.Save();
             return true;
         }
         public bool Like(int id, int userId)
@@ -251,20 +253,20 @@ namespace CP_MathHub.Service.Services
                     vote.Type = VoteEnum.VoteUp;
                     vote.UserId = userId;
                     vote.VotedDate = DateTime.Now;
-                    dal.Repository<Vote>().Insert(vote);
+                    _dal.Repository<Vote>().Insert(vote);
 
-                    Post post = dal.Repository<Post>().GetById(id);
+                    Post post = _dal.Repository<Post>().GetById(id);
                     ++post.VoteUp;
-                    dal.Repository<Post>().Update(post);
-                    dal.Save();
+                    _dal.Repository<Post>().Update(post);
+                    _dal.Save();
                     return true;
                 }
                 else
                 {
-                    Post post = dal.Repository<Post>().GetById(id);
+                    Post post = _dal.Repository<Post>().GetById(id);
                     post.VoteUp = post.VoteUp > 0 ? --post.VoteUp : 0;
-                    dal.Repository<Vote>().Delete(vote);
-                    dal.Save();
+                    _dal.Repository<Vote>().Delete(vote);
+                    _dal.Save();
                     return true;
                 }
             }
@@ -275,11 +277,11 @@ namespace CP_MathHub.Service.Services
         }
         public User GetLoginUser()
         {
-            return aService.GetLoginUser();
+            return _aService.GetLoginUser();
         }
         public User GetUser(int userId, string include = "")
         {
-            return aService.GetUser(userId, include);
+            return _aService.GetUser(userId, include);
         }
         public List<User> GetUsers(int skip, string tab)
         {
@@ -287,7 +289,7 @@ namespace CP_MathHub.Service.Services
             switch (tab)
             {
                 case Constant.Question.String.UserNewTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
@@ -296,7 +298,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserReputationTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     null,
                                     (p => p.OrderByDescending(s => s.Reputation)),
@@ -306,7 +308,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserExpertTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     ExpressionHelper.UserHelper.RoledUsers("Expert"),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -316,7 +318,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserModTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     ExpressionHelper.UserHelper.RoledUsers("Moderator"),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -326,7 +328,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     null,
                                     (p => p.OrderByDescending(s => s.Reputation)),
@@ -344,7 +346,7 @@ namespace CP_MathHub.Service.Services
             switch (tab)
             {
                 case Constant.Question.String.UserNewTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     ExpressionHelper.UserHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
@@ -354,7 +356,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserReputationTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     ExpressionHelper.UserHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.Reputation)),
@@ -364,11 +366,9 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserExpertTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
-                                    Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Expert").Body,
-                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                    ExpressionHelper.UserHelper.MixRoleContainUser("Expert",name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
                                     skip,
@@ -376,11 +376,9 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 case Constant.Question.String.UserModTab:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
-                                     Expression.Lambda<Func<User, bool>>(
-                                                    Expression.AndAlso(ExpressionHelper.UserHelper.RoledUsers("Moderator").Body,
-                                                                        ExpressionHelper.UserHelper.ContainName(name).Body)),
+                                     ExpressionHelper.UserHelper.MixRoleContainUser("Moderator", name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
                                     skip,
@@ -388,7 +386,7 @@ namespace CP_MathHub.Service.Services
                                 ).ToList();
                     break;
                 default:
-                    list = dal.Repository<User>()
+                    list = _dal.Repository<User>()
                                 .Get(
                                     ExpressionHelper.UserHelper.ContainName(name),
                                     (p => p.OrderByDescending(s => s.Reputation)),
@@ -402,7 +400,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<User> GetUsers(string include = "")
         {
-            return dal.Repository<User>().Include(include).Table.ToList();
+            return _dal.Repository<User>().Include(include).Table.ToList();
         }
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
         {
@@ -422,66 +420,66 @@ namespace CP_MathHub.Service.Services
         }
         public void CommentPost(Comment comment)
         {
-            dal.Repository<Comment>().Insert(comment);
+            _dal.Repository<Comment>().Insert(comment);
             EditedLog log = new EditedLog();
             log.PostId = comment.Id;
             log.UserId = comment.UserId;
             log.Content = comment.Content;
             log.CreatedDate = comment.CreatedDate;
-            dal.Repository<EditedLog>().Insert(log);
-            dal.Save();
+            _dal.Repository<EditedLog>().Insert(log);
+            _dal.Save();
         }
         public Comment UpdateComment(Comment c, int userId)
         {
-            Comment comment = dal.Repository<Comment>().GetById(c.Id);
+            Comment comment = _dal.Repository<Comment>().GetById(c.Id);
             comment.Content = c.Content;
             comment.LastEditedDate = DateTime.Now;
-            dal.Repository<Comment>().Update(comment);
+            _dal.Repository<Comment>().Update(comment);
             EditedLog log = new EditedLog();
             log.PostId = comment.Id;
             log.UserId = comment.UserId;
             log.Content = comment.Content;
             log.CreatedDate = comment.LastEditedDate;
-            dal.Repository<EditedLog>().Insert(log);
-            dal.Save();
+            _dal.Repository<EditedLog>().Insert(log);
+            _dal.Save();
             return comment;
         }
         public void DisableComment(int postId)
         {
-            MainPost post = dal.Repository<MainPost>().GetById(postId);
+            MainPost post = _dal.Repository<MainPost>().GetById(postId);
             post.Status = PostStatusEnum.Closed;
-            dal.Repository<MainPost>().Update(post);
-            dal.Save();
+            _dal.Repository<MainPost>().Update(post);
+            _dal.Save();
         }
         public void EnableComment(int postId)
         {
-            MainPost post = dal.Repository<MainPost>().GetById(postId);
+            MainPost post = _dal.Repository<MainPost>().GetById(postId);
             post.Status = PostStatusEnum.Active;
-            dal.Repository<MainPost>().Update(post);
-            dal.Save();
+            _dal.Repository<MainPost>().Update(post);
+            _dal.Save();
         }
         public List<Comment> GetComments(int postId)
         {
-            return dal.Repository<Comment>().Table
+            return _dal.Repository<Comment>().Table
                                             .Where(c => c.PostId == postId)
                                             .OrderBy(c => c.CreatedDate)
                                             .ToList();
         }
         public Comment GetComment(int id, string include = "")
         {
-            return dal.Repository<Comment>().Include(include).GetById(id);
+            return _dal.Repository<Comment>().Include(include).GetById(id);
         }
         public Vote GetVote(int postId, int userId)
         {
-            return dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
+            return _dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
         }
         public bool CreateReport(Report report)
         {
             Report r = GetReport(report.PostId, report.ReporterId);
             if (r == default(Report))
             {
-                dal.Repository<Report>().Insert(report);
-                dal.Save();
+                _dal.Repository<Report>().Insert(report);
+                _dal.Save();
                 return true;
             }
             else
@@ -492,12 +490,12 @@ namespace CP_MathHub.Service.Services
         }
         public Report GetReport(int? postId, int reporterId)
         {
-            return dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
+            return _dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
         }
         public List<EditedLog> GetEditedLog(int postId)
         {
             List<EditedLog> logs = new List<EditedLog>();
-            logs = dal.Repository<EditedLog>().Get(
+            logs = _dal.Repository<EditedLog>().Get(
                     (e => e.PostId == postId),
                     (e => e.OrderBy(m => m.CreatedDate)),
                     "User,Post",
@@ -508,15 +506,15 @@ namespace CP_MathHub.Service.Services
         }
         public MainPost GetMainPost(int mainPostId, string include = "")
         {
-            return dal.Repository<MainPost>().Include(include).GetById(mainPostId);
+            return _dal.Repository<MainPost>().Include(include).GetById(mainPostId);
         }
         public Post GetPost(int postId, string include = "")
         {
-            return dal.Repository<Post>().Include(include).GetById(postId);
+            return _dal.Repository<Post>().Include(include).GetById(postId);
         }
         public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
         {
-            return aService.SearchFriend(name, userId, skip, take);
+            return _aService.SearchFriend(name, userId, skip, take);
         }
     }
 }

@@ -22,13 +22,13 @@ namespace CP_MathHub.RealTime.Chat
             Clients.All.showOnlineUser(_connections.GetListUser(), _connections.Count);
         }
 
-        public Task JoinConversation(string conversationName)
+        private Task JoinConversation(string conversationName)
         {
             return Groups.Add(Context.ConnectionId, conversationName);
         }
 
-        public Task LeaveConversation(string conversationName)
-        {
+        private Task LeaveConversation(string conversationName)
+        {               
             return Groups.Remove(Context.ConnectionId, conversationName);
         }
 
@@ -40,6 +40,7 @@ namespace CP_MathHub.RealTime.Chat
         public override Task OnConnected()
         {
             using (AccountService aSercive = new AccountService(new CPMathHubModelContainer()))
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer()))
             {
                 string name = Context.User.Identity.Name;
                 User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
@@ -50,6 +51,11 @@ namespace CP_MathHub.RealTime.Chat
                 if (!_connections.GetConnections(name).Contains(Context.ConnectionId))
                 {
                     _connections.Add(name, Context.ConnectionId, user.Id + "", user.Avatar.Url);
+                }
+                List<Conversation> conversations = rService.GetConversations(user.Id);
+                foreach (Conversation conversation in conversations)
+                {
+                    JoinConversation(conversation.Id+"");
                 }
             }
             GetOnlineUser();

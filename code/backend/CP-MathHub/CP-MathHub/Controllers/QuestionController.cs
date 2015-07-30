@@ -366,32 +366,6 @@ namespace CP_MathHub.Controllers
             return PartialView("../CommonWidget/_TagPartialView", tag);
         }
 
-        //Get: Question/Users
-        [HttpGet]
-        public ActionResult Users(string tab = Constant.Question.String.UserReputationTab, int page = 0)
-        {
-            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<User> users = cService.GetUsers(skip, tab);
-
-            if (page == 0)
-            {
-                UsersPageViewModel model = new UsersPageViewModel();
-                model.Tab = tab;
-                model.ListUsers = users;
-                ViewBag.Tab = Constant.Question.String.HomeUserTab;
-                ViewBag.System = Constant.String.QuestionSystem;
-                var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires = DateTime.Now.AddMinutes(5);
-                Response.Cookies.Add(cookie);
-                return View("Views/UsersPageView", model);
-            }
-            else
-            {
-                return PartialView("Partials/_UserListPartialView", users);
-            }
-
-        }
-
         //Get: Question/SearchUsers
         [HttpGet]
         public ActionResult SearchUser(string name = "", string tab = Constant.Question.String.UserReputationTab, int page = 0)

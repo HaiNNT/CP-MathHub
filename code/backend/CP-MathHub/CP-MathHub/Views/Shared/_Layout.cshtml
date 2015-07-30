@@ -15,9 +15,9 @@
     }
     else if (ViewBag.System == Constant.String.BlogSystem)
     {
-        @Styles.Render("~/Content/blog/css");
         <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
+        @Styles.Render("~/Content/blog/css")
     }
     else if (ViewBag.System == Constant.String.DiscussionSystem)
     {
@@ -37,7 +37,7 @@
         <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
         <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     }
-    @*@Styles.Render("~/Content/question/css");*@
+    @*@RenderSection("styles", required: false)*@
     @Scripts.Render("~/bundles/modernizr")
     @*<link rel="stylesheet" type="text/css" href="~/Content/css/style-question.css" />*@
 </head>
@@ -177,6 +177,7 @@
     else if (ViewBag.System == Constant.String.BlogSystem)
     {
         @Scripts.Render("~/bundles/blogjs")
+
     }
     else if (ViewBag.System == Constant.String.DiscussionSystem)
     {
@@ -185,6 +186,7 @@
     else
     {
         @Scripts.Render("~/bundles/profilejs")
+        @Scripts.Render("~/bundles/realtimejs")
     }
     @RenderSection("scripts", required: false)
 </body>
