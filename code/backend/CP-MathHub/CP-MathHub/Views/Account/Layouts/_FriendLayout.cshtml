@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
@@ -10,3 +9,18 @@
         @RenderBody()
     </div>
 </div>
+
+<div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
+    @RenderSection("LeftPanel", true)
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/profilejs")
+    @Scripts.Render("~/bundles/realtimejs")
+    @RenderSection("scripts", false)
+}
+@section styles{
+    <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
+    @Styles.Render("~/Content/profile/css")
+    @RenderSection("styles", false)
+}

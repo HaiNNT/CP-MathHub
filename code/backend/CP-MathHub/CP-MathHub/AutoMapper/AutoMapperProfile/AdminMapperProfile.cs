@@ -18,6 +18,15 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         protected override void Configure()
         {
             Mapper.CreateMap<BanReason, RuleViewModel>();
+            Mapper.CreateMap<Tag, TagViewModel>()
+                .ForMember(
+                    s => s.UsedNum,
+                    d => d.MapFrom(m => m.MainPosts.Count)
+                )
+                .ForMember(
+                    s => s.CheckDuplicate,
+                    d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer(), 0).GetTags(m.Name).Count>1)
+                );
         }
     }
 }

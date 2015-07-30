@@ -88,5 +88,20 @@ namespace CP_MathHub.Service.Services
             dal.Repository<BanReason>().Insert(banReason);
             dal.Save();
         }
+        public void InsertTag(Tag tag)
+        {
+            dal.Repository<Tag>().Insert(tag);
+            dal.Save();
+        }
+        public void EditTag(Tag tag)
+        {
+            dal.Repository<Tag>().Update(tag);
+            dal.Save();
+        }
+        public void DeleteTag(int tagId)
+        {
+            dal.Repository<Tag>().Delete(tagId);
+            dal.Save();
+        }
     }
 }

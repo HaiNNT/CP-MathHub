@@ -99,11 +99,43 @@ namespace CP_MathHub.Controllers
 
         //Get: Admin/ManageTags
         [HttpGet]
-        public ActionResult ManagerTags()
+        public ActionResult ManageTags()
         {
             ManageTagsViewModel model = new ManageTagsViewModel();
+            List<Tag> list = cService.GetAllTags();
+            ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            model.Items = tagsVM;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
             return View("Views/ManageTagsView", model);
+        }
+        //Post: Admin/InsertTag
+        [HttpPost]
+        public ActionResult InsertTag(TagViewModel model)
+        {
+            Tag tag = new Tag();
+            tag.Name = model.Name;
+            tag.CreatedDate = DateTime.Now;
+            tag.Description = model.Description;
+            tag.UserId = User.Identity.GetUserId<int>();
+            aService.InsertTag(tag);
+            return RedirectToAction("ManageTags");
+        }
+        //Post: Admin/EditTag
+        [HttpPost]
+        public bool EditTag(int tagId, string name, string description)
+        {
+            Tag tag = cService.GetTag(tagId);
+            tag.Name = name;
+            tag.Description = description;
+            aService.EditTag(tag);
+            return true;
+        }
+        //Post: Admin/DeleteTag
+        [HttpPost]
+        public bool DeleteTag(int tagId)
+        {
+            aService.DeleteTag(tagId);
+            return true;
         }
     }
 }

@@ -7,7 +7,7 @@
     </div>
     <div class="media-body">
         <div class="media-heading mh-comment-content">
-            <a href="" class="mh-media-comment-user">@Model.Username</a>
+            <a href="@Url.Action("UserProfile", "Account", new {userId = Model.UserId })" class="mh-media-comment-user">@Model.Username</a>
             <span id="comment-content-@(Model.Id)">@Model.Content</span>
         </div>
         @*<div class="mh-comment-activity">*@

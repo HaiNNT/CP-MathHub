@@ -3,6 +3,6 @@
 
 <div class="mh-comment-content">
     <span>@Model.Content</span><br />
-    <a href="#">@Model.Author.Username</a>
+    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Author.Id })">@Model.Author.Username</a>
     <span class="mh-time">@MhHtmlHelper.PostCreatedTime(Model.CreatedDate, "bình luận")</span>
 </div>
