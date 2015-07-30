@@ -16,10 +16,12 @@ namespace CP_MathHub.Service.Services
     {
         private IUnitOfWork dal;
         private ICommonService cService;
+        private IAccountService aService;
         public AdminService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
+            aService = new AccountService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
@@ -43,6 +45,7 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<User>().Table.Count();
         }
+
         public int CountNewTag(DateTime time)
         {
             return dal.Repository<Tag>().Table.Count(t => t.CreatedDate > time);
@@ -87,6 +90,16 @@ namespace CP_MathHub.Service.Services
         {
             dal.Repository<BanReason>().Insert(banReason);
             dal.Save();
+        }
+        public List<BanReason> GetBanReason()
+        {
+            return dal.Repository<BanReason>().Table.ToList();
+        }
+        public void BlockUser(BanAccount banAccount)
+        {
+            dal.Repository<BanAccount>().Insert(banAccount);       
+            dal.Save();
+            //aService.UpdateUser(banAccount.BannedUser);
         }
     }
 }

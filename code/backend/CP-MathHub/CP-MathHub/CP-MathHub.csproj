@@ -198,6 +198,7 @@
     <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
+    <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />

@@ -65,5 +65,16 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="banReason"></param>
         void InsertBanReason(BanReason banReason);
+        /// <summary>
+        /// Get all Ban Reason
+        /// </summary>
+        /// <param name="include"></param>
+        /// <returns></returns>
+        List<BanReason> GetBanReason();
+        /// <summary>
+        /// Block user: insert table BanAccount
+        /// </summary>
+        /// <param name="banAccount"></param>
+        void BlockUser(BanAccount banAccount);
     }
 }

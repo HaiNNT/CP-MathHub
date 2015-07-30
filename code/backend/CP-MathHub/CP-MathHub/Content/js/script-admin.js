@@ -72,6 +72,43 @@ function spinDurationBanReason() {
     $('#spinner4').spinner({ value: 0, step: 1, min: 0, max: 365 });
 }
 
+function blockUser(id) {
+    //var id = $(".selectpicker.blockday").attr("mh-id");
+    var duration = parseInt($("#dayresult-" + id).val().split(' ngày'));
+    var description = $("#des-" + id).val();
+    var status = 2;
+    $.ajax({
+        method: "POST",
+        url: "/Admin/BlockUser",
+        data: { Duration: duration, BannedUserId: id, Description: description, Status: status }
+    })
+      .done(function (msg) {
+          //if (msg) {
+          //    add(msg);
+          //} else {
+          //    alert("false");
+          //}
+      })
+      .fail(function () {
+          alert("Khóa tài khoản này thất bại!");
+      });
+        //var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
+        //var item = "<span class='mh-tag-item'>"
+        //            + "<span>"
+        //            + tagName
+        //            + "</span>"
+        //            + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+        //            + hidden
+        //            + "</span>";
+        //var list = $("#mh-tag-list");
+        //$("#mh-input-tag").val("");
+        //$("#mh-input-tag").focus();
+        //autocomplete.hide();
+        //if (!tagIds[tagId]) {
+        //    tagIds[tagId] = tagName;
+        //    list.append($(item));
+}
+
 function ManageInfracPosts_blockday() {
     $('.selectpicker').selectpicker();
 
@@ -125,6 +162,7 @@ $(document).ready(function () {
             selectValue();
             selectValuePlus();
             tableManageUsers();
+            //blockUser(id);
             break;
         case "ManageRules":
             tableRule();

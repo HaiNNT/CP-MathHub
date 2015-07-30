@@ -777,7 +777,7 @@ namespace CP_MathHub.Controllers
                 model.Tab = tab;
                 model.ListUsers = users;
                 ViewBag.Tab = Constant.Question.String.HomeUserTab;
-                ViewBag.System = Constant.String.QuestionSystem;
+                ViewBag.System = Constant.String.ProfileSystem;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires.AddHours(1);
                 Response.Cookies.Add(cookie);
