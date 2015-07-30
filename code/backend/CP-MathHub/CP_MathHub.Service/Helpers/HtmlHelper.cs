@@ -35,6 +35,19 @@ namespace CP_MathHub.Service.Helpers
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
 
+        public static string CreatedTime(this HtmlHelper html, DateTime time)
+        {           
+            if (time.Date == DateTime.Now.Date)
+            {
+                return "Hôm nay";
+            }
+            if (time.Date.AddDays(1) == DateTime.Now.Date)
+            {
+                return "Hôm qua";
+            }
+            return time.ToShortDateString();
+        }
+
         public static string CheckStatusUser(this HtmlHelper html, UserStatusEnum? enU)
         {
             string s = "";

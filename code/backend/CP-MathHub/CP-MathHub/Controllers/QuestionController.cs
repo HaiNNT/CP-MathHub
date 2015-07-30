@@ -72,7 +72,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -108,7 +108,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.QuestionSystem;
                 questionHomeVM.Items = questionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -147,7 +147,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = searchString;
                 questionHomeVM.Items = questionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/QuestionHomeView", questionHomeVM);
             }
@@ -177,7 +177,7 @@ namespace CP_MathHub.Controllers
             ViewBag.System = Constant.String.QuestionSystem;
             questionDetailVM.AnswerVMs = answerVM;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-            cookie.Expires.AddHours(1);
+            cookie.Expires = DateTime.Now.AddMinutes(5);
             Response.Cookies.Add(cookie);
             qService.IncreaseViewQuestion(question);
             return View("Views/QuestionDetailView", questionDetailVM);
@@ -342,7 +342,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.QuestionSystem;
                 ViewBag.Tab = Constant.Question.String.HomeTagTab;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/TagsPageView", model);
             }

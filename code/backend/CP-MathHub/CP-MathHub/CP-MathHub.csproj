@@ -198,7 +198,9 @@
     <Compile Include="Models\Account\ProfileViewModel.cs" />
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
+    <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracPostViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
@@ -235,6 +237,8 @@
     <Compile Include="Models\Question\QuestionPreviewViewModel.cs" />
     <Compile Include="Models\Question\TagsPageViewModel.cs" />
     <Compile Include="Models\Question\VoteViewModel.cs" />
+    <Compile Include="Models\RealTime\ConversationDetailViewModel.cs" />
+    <Compile Include="Models\RealTime\ConversationPreviewViewModel.cs" />
     <Compile Include="OwinStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RealTime\Chat\ChatHub.cs" />
@@ -619,6 +623,7 @@
     <Content Include="Content\js\common-scripts.js" />
     <Content Include="Content\js\count.js" />
     <Content Include="Content\js\editable-table-rule.js" />
+    <Content Include="Content\js\editable-table-tag.js" />
     <Content Include="Content\js\jquery-1.11.3.js" />
     <Content Include="Content\js\jquery.cropit.js" />
     <Content Include="Content\js\jquery.dcjqaccordion.2.7.js" />
@@ -630,6 +635,7 @@
     <Content Include="Content\js\responsiveCarousel-slideshow.js" />
     <Content Include="Content\js\script-admin.js" />
     <Content Include="Content\js\script-blog.js" />
+    <Content Include="Content\js\script-chat.js" />
     <Content Include="Content\js\script-discussion.js" />
     <Content Include="Content\js\script-profile.js" />
     <Content Include="Content\js\script-question.js" />
@@ -834,12 +840,13 @@
     <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
     <Content Include="Views\Account\Partials\_UserMutualFriendListPartialView.cshtml" />
-    <Content Include="Views\Account\Partials\_UserSearchFriendListPartialView.cshtml" />
     <Content Include="Views\Account\Views\UsersPageView.cshtml" />
     <Content Include="Views\Account\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
     <Content Include="Views\Admin\Partials\RuleCreatePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
+    <Content Include="Views\Account\Partials\_ConversationDetailPartialView.cshtml" />
+    <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
     <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

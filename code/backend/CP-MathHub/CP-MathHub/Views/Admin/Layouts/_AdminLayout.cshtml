@@ -131,11 +131,15 @@
         case Constant.Admin.String.ManageRulePage:
         @Scripts.Render("~/bundles/adminManageRulesjs")
             break;
+        case Constant.Admin.String.ManagerTagsPage:
+        @Scripts.Render("~/bundles/adminManageRulesjs")
+            break;
         case Constant.Admin.String.ManageInfracPosts:
         @Scripts.Render("~/bundles/adminManageInfracPostsjs")
             break;
         default:
             break;
     }
+    @RenderSection("scripts", required: false)
 </body>
 </html>

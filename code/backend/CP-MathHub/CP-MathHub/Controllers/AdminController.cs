@@ -17,7 +17,7 @@ using AutoMapper;
 
 namespace CP_MathHub.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator,Moderator")]
     public class AdminController : BaseController
     {
         private IAdminService aService;
@@ -52,11 +52,26 @@ namespace CP_MathHub.Controllers
             model.NewUserNumber = aService.CountNewUser(user.Activity.LastLogin);
             model.UserNumber = aService.CountUsers();
             model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
-            model.BanReasons = cService.GetBanReason();
+            model.BanReasons = aService.GetBanReason();
             ViewBag.Page = Constant.Admin.String.ManageUsersPage;
             return View("Views/ManageUsersView", model);
         }
+        //Post: BlockUser
+        [HttpPost]
+        public ActionResult BlockUser(BlockUserViewModel model)
+        {
+            BanAccount banAccount = new BanAccount();
+            banAccount.BannedDate = DateTime.Now;
+            banAccount.Duration = model.Duration;
+            banAccount.UnBanedDate = DateTime.Now.AddDays(banAccount.Duration);
+            banAccount.BannedUser = cService.GetUser(model.BannedUserId);
+            banAccount.BannedUser.Status = model.Status;
+            banAccount.BanUserId = User.Identity.GetUserId<int>();
+            banAccount.Description = model.Description;
+            aService.BlockUser(banAccount);
 
+            return null;
+        }
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
@@ -117,6 +132,15 @@ namespace CP_MathHub.Controllers
             //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
            
             return View("Views/ManageInfracPosts", models);
+        }
+
+        //Get: Admin/ManageTags
+        [HttpGet]
+        public ActionResult ManagerTags()
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            return View("Views/ManageTagsView", model);
         }
     }
 }

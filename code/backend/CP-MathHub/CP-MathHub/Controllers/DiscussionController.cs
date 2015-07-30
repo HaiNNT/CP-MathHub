@@ -62,7 +62,7 @@ namespace CP_MathHub.Controllers
             ViewBag.System = Constant.String.DiscussionSystem;
             discussionHomeVM.Items = discussioncategoryVM;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-            cookie.Expires.AddHours(1);
+            cookie.Expires = DateTime.Now.AddMinutes(5);
             Response.Cookies.Add(cookie);
             return View("Views/DiscussionHomeView", discussionHomeVM);
 
@@ -95,7 +95,7 @@ namespace CP_MathHub.Controllers
                 discussionTagHomeVM.Id = tagId;
                 discussionTagHomeVM.Items = discussionTagPreviewVM;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", discussionTagHomeVM);
             }
@@ -178,7 +178,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = tagId;
                 tagHomeVM.Items = discussionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
@@ -217,7 +217,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = searchString;
                 tagHomeVM.Items = discussionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/DiscussionTagHomeView", tagHomeVM);
             }
@@ -252,7 +252,7 @@ namespace CP_MathHub.Controllers
             //    .ToList();
             ViewBag.System = Constant.String.DiscussionSystem;
             var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-            cookie.Expires.AddHours(1);
+            cookie.Expires = DateTime.Now.AddMinutes(5);
             Response.Cookies.Add(cookie);
             return View("Views/DiscussionDetailView", discussionDetailVM);
         }
@@ -389,7 +389,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.System = Constant.String.DiscussionSystem;
                 ViewBag.Tab = Constant.Discussion.String.HomeTagTab;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/TagsPageView", model);
             }
@@ -426,7 +426,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.Tab = Constant.Discussion.String.HomeUserTab;
                 ViewBag.System = Constant.String.DiscussionSystem;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
-                cookie.Expires.AddHours(1);
+                cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
                 return View("Views/UsersPageView", model);
             }

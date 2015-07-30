@@ -5,13 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
 using CP_MathHub.Models.Account;
+using CP_MathHub.Models.RealTime;
 using CP_MathHub.Entity;
 
 namespace CP_MathHub.Helper
 {
     public static class ListHelper
     {
-        public static List<UserItemViewModel> ListUsertoListUserItem(List<User> users, int userId)
+        public static List<UserItemViewModel> ListUserToListUserItem(List<User> users, int userId)
         {
             List<UserItemViewModel> result = new List<UserItemViewModel>();
             foreach (User u in users)
@@ -64,6 +65,29 @@ namespace CP_MathHub.Helper
                 result.Add(model);
             }
             return result;
+        }
+        public static List<ConversationPreviewViewModel> ConversationsToConversationViewModels(List<Conversation> conversations, int userId)
+        {
+            List<ConversationPreviewViewModel> models = new List<ConversationPreviewViewModel>();
+            foreach (Conversation conversation in conversations)
+            {
+                ConversationPreviewViewModel model = new ConversationPreviewViewModel();
+                model.Id = conversation.Id;
+                model.Avatar = conversation.Avatar;
+                model.Name = conversation.Name;
+                model.LastMessage = conversation.Attendances
+                                                    .Where(m => m.UserId != userId)
+                                                    .FirstOrDefault()
+                                                    .Messages
+                                                        .OrderByDescending(m => m.CreatedDate)
+                                                        .FirstOrDefault();
+                model.NewMessageNum = conversation.Attendances
+                                                    .Where(m => m.UserId != userId)
+                                                    .FirstOrDefault()
+                                                    .Messages.Count(m => m.Attendance.SeenDate <= m.CreatedDate);
+                models.Add(model);
+            }
+            return models;
         }
     }
 }
