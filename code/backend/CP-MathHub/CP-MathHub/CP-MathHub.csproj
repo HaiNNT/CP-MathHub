@@ -199,6 +199,8 @@
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracPostViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
@@ -838,6 +840,7 @@
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
     <Content Include="Views\Admin\Partials\RuleCreatePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
+    <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

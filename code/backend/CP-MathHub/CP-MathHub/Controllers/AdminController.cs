@@ -96,5 +96,27 @@ namespace CP_MathHub.Controllers
             aService.InsertBanReason(banReason);
             return RedirectToAction("ManageRule");
         }
+
+        public ActionResult ManageInfracPosts()
+        {
+            List<ManageInfracPostViewModel> models = new List<ManageInfracPostViewModel>();
+            //List<Report> list = aService.GetPostReport();
+            List<MainPost> mainPosts = aService.GetReportedMainPost();
+            foreach (MainPost post in mainPosts)
+            {
+                ManageInfracPostViewModel model = new ManageInfracPostViewModel();
+                model.MainPost = post;
+                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
+                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key.ToString(), k => k.Count());
+                model.Status = post.Reports.Count(s => !s.Status) == 0;
+                models.Add(model);
+                    //Select(r=> new KeyValuePair<string,int>(r.Type.ToString(),0));
+            }
+            //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
+            //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
+           
+            return View("Views/ManageInfracPosts", models);
+        }
     }
 }

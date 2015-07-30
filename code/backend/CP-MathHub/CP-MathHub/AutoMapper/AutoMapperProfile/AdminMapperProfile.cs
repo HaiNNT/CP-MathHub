@@ -18,6 +18,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         protected override void Configure()
         {
             Mapper.CreateMap<BanReason, RuleViewModel>();
+
+            Mapper.CreateMap<Report, ManageInfracPostViewModel>();
         }
     }
 }

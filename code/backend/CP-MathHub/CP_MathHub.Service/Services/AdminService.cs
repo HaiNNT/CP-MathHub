@@ -88,5 +88,20 @@ namespace CP_MathHub.Service.Services
             dal.Repository<BanReason>().Insert(banReason);
             dal.Save();
         }
+
+        public List<Report> GetMainPostReport()
+        {
+            List<Report> list = new List<Report>();
+            list = dal.Repository<Report>().Get((r =>r.PostId != null)
+                                                , (r => r.OrderByDescending(s => s.ReportedDate))
+                                                , "Reporter,Post"
+                                                , 0
+                                                , 0).ToList();
+            return list;
+        }
+        public List<MainPost> GetReportedMainPost()
+        {
+            return dal.Repository<Post>().Table.OfType<MainPost>().Where(p => p.Reports.Count > 0).ToList();
+        }
     }
 }

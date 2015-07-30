@@ -65,5 +65,15 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="banReason"></param>
         void InsertBanReason(BanReason banReason);
+        /// <summary>
+        /// Get list report
+        /// </summary>
+        /// <returns></returns>
+        List<Report> GetMainPostReport();
+        /// <summary>
+        /// Get list reported main posts
+        /// </summary>
+        /// <returns></returns>
+        List<MainPost> GetReportedMainPost();
     }
 }
