@@ -16,10 +16,12 @@ namespace CP_MathHub.Service.Services
     {
         private IUnitOfWork dal;
         private ICommonService cService;
+        private IAccountService aService;
         public AdminService(CPMathHubModelContainer context)
         {
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
+            aService = new AccountService(context);
         }
         protected virtual void Dispose(bool disposing)
         {
@@ -43,6 +45,7 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<User>().Table.Count();
         }
+
         public int CountNewTag(DateTime time)
         {
             return dal.Repository<Tag>().Table.Count(t => t.CreatedDate > time);
@@ -86,6 +89,46 @@ namespace CP_MathHub.Service.Services
         public void InsertBanReason(BanReason banReason)
         {
             dal.Repository<BanReason>().Insert(banReason);
+            dal.Save();
+        }
+        public List<BanReason> GetBanReason()
+        {
+            return dal.Repository<BanReason>().Table.ToList();
+        }
+        public void BlockUser(BanAccount banAccount)
+        {
+            dal.Repository<BanAccount>().Insert(banAccount);       
+            dal.Save();
+            //aService.UpdateUser(banAccount.BannedUser);
+        }
+
+        public List<Report> GetMainPostReport()
+        {
+            List<Report> list = new List<Report>();
+            list = dal.Repository<Report>().Get((r =>r.PostId != null)
+                                                , (r => r.OrderByDescending(s => s.ReportedDate))
+                                                , "Reporter,Post"
+                                                , 0
+                                                , 0).ToList();
+            return list;
+        }
+        public List<MainPost> GetReportedMainPost()
+        {
+            return dal.Repository<Post>().Table.OfType<MainPost>().Where(p => p.Reports.Count > 0).ToList();
+        }
+        public void InsertTag(Tag tag)
+        {
+            dal.Repository<Tag>().Insert(tag);
+            dal.Save();
+        }
+        public void EditTag(Tag tag)
+        {
+            dal.Repository<Tag>().Update(tag);
+            dal.Save();
+        }
+        public void DeleteTag(int tagId)
+        {
+            dal.Repository<Tag>().Delete(tagId);
             dal.Save();
         }
     }

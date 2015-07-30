@@ -23,3 +23,13 @@
         @RenderSection("RightPanel", true)
     </div>
 </div>
+@section scripts{
+    @Scripts.Render("~/bundles/questionjs")
+    @RenderSection("scripts", false)
+}
+@section styles{
+    <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
+    @Styles.Render("~/Content/question/css")
+    @RenderSection("styles", false)
+}

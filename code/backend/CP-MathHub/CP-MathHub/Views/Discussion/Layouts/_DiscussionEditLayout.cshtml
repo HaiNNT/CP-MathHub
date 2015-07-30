@@ -10,3 +10,13 @@
         @RenderBody()
     </div>
 </div>
+@section scripts{
+    @Scripts.Render("~/bundles/discussionjs")
+    @RenderSection("scripts", false)
+}
+@section styles{
+    <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon-blog.ico" type="image/x-icon">
+    @Styles.Render("~/Content/discussion/css")
+    @RenderSection("styles", false)
+}

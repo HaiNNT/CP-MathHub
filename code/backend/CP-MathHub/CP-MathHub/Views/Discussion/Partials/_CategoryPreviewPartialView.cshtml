@@ -25,7 +25,7 @@
                 <div class="media-body">                    
                         Bài viết mới: <a href="@Url.Action("Detail", new {@id = Model.Discussion.Id})" style="font-size:12.5pt;"><strong>@Model.Discussion.Title</strong></a> <br/>
                          @Html.PostCreatedTime(Model.Discussion.CreatedDate, "Đăng")
-                        bởi <a href="#"><strong><i>@Model.Discussion.Author.UserName</i></strong></a>
+                        bởi <a href="@Url.Action("UserProfile","Account", new {userId=Model.Discussion.Author.Id})"><strong><i>@Model.Discussion.Author.UserName</i></strong></a>
                 </div>
             </div>
         </div>

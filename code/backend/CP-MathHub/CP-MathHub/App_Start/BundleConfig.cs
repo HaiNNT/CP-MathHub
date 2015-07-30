@@ -59,7 +59,7 @@ namespace CP_MathHub
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
                       "~/Content/js/editable-table-rule.js",
-                      "~/Content/js/editable-table-tag.js",
+                      
                       "~/Content/js/spinner.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminManageInfracPostsjs").Include(

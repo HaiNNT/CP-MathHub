@@ -10,6 +10,7 @@ using CP_MathHub.Entity;
 using CP_MathHub.Core.Interfaces.DAL;
 using CP_MathHub.DAL;
 using CP_MathHub.Service.Helpers;
+using CP_MathHub.Framework.Utils;
 
 namespace CP_MathHub.Service.Services
 {
@@ -72,10 +73,8 @@ namespace CP_MathHub.Service.Services
         }
         public List<Tag> GetTags(string name)
         {
-            List<Tag> tags = _dal.Repository<Tag>().Get(
-                    (t => t.Name.ToLower().Contains(name.ToLower())),
-                    (t => t.OrderBy(m => m.Name))
-                ).ToList();
+            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            tags = tags.Where(m => StringUtil.Compare2String(name, m.Name)).ToList();
             return tags;
         }
         public List<Tag> GetTags(string name, int skip)
@@ -142,13 +141,18 @@ namespace CP_MathHub.Service.Services
             List<Tag> list = new List<Tag>();
             list = _dal.Repository<Tag>()
                                 .Get(
-                                (p=>p.MainPosts.OfType<Discussion>().Count() > 0),
+                                (p => p.MainPosts.OfType<Discussion>().Count() > 0),
                                     (p => p.OrderByDescending(s => s.Id)),
                                     "MainPosts",
                                     0,
                                     Constant.Discussion.Integer.CategoryDefaultLoad
                                 ).ToList();
             return list;
+        }
+        public List<Tag> GetAllTags()
+        {
+            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            return tags;
         }
         public List<Tag> GetTags(int skip, string tab)
         {
@@ -368,7 +372,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.UserExpertTab:
                     list = _dal.Repository<User>()
                                 .Get(
-                                    ExpressionHelper.UserHelper.MixRoleContainUser("Expert",name),
+                                    ExpressionHelper.UserHelper.MixRoleContainUser("Expert", name),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "",
                                     skip,
@@ -403,10 +407,6 @@ namespace CP_MathHub.Service.Services
             return _dal.Repository<User>().Include(include).Table.ToList();
         }
 
-        public List<BanReason> GetBanReason()
-        {
-            return _dal.Repository<BanReason>().Table.ToList();
-        }
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
         {
             List<Invitation> invitations = new List<Invitation>();

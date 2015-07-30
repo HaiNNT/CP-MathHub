@@ -574,6 +574,7 @@
     <Property Name="UserId" Type="int" Nullable="true" />
     <Property Name="PostId" Type="int" Nullable="true" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Images">
     <Key>
@@ -2609,6 +2610,7 @@
           <NavigationProperty Name="Post" Relationship="CPMathHubModel.ReportPost" FromRole="Report" ToRole="Post" />
           <Property Name="PostId" Type="Int32" Nullable="true" />
           <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="ReportUser">
           <End Type="CPMathHubModel.Report" Role="Report" Multiplicity="*" />
@@ -3317,6 +3319,7 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="PostId" ColumnName="PostId" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

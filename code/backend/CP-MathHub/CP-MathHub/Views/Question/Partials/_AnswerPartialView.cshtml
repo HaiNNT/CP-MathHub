@@ -49,7 +49,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="#">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Answers.ElementAt(i).Author.Id })">
                                                         <span class="mh-username">@Model.Answers.ElementAt(i).Author.UserName</span>
                                                     </a>
                                                     <div class="detail-reputat">
@@ -117,7 +117,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="#">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Hints.ElementAt(i).Author.Id })">
                                                         <span class="mh-username">@Model.Hints.ElementAt(i).Author.UserName</span>
                                                     </a>
                                                     <div class="detail-reputat">

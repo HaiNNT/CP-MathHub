@@ -255,7 +255,7 @@
                                                                             <h5>Lý do:</h5>
                                                                         </div>
                                                                         <div class="col-xs-8">
-                                                                            <input type="text" readonly value="@Html.GetReasonBlockUser(ban.BanReasons.ToList())" class="mh-block-input" />
+                                                                            <h5>@Html.GetReasonBlockUser(ban.BanReasons.ToList())</h5> 
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -290,6 +290,14 @@
                                                                             <h5>@(ban.UnBanedDate != null ? ban.UnBanedDate.ToString("dd-MM-yyyy") : "")</h5>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-4">
+                                                                            <h5>Miêu tả</h5>
+                                                                        </div>
+                                                                        <div class="col-xs-8">
+                                                                            <h5>@ban.Description</h5>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             }
 
@@ -317,109 +325,117 @@
                                         if (@Html.CheckStatusUser(user.Status) == "Bị khóa")
                                         {
                                             <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#unblockuser-@user.Id">Bỏ khóa</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="unblockuser-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <form>
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">Bỏ khóa tài khoản: <span class="mh-manage-user-username">@user.UserName</span></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Lý do:</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8 mh-select-cause-time-block">
+                                                                        <select name="selBlock" class="selectpicker" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                            <option value="1">ABC - 1 ngày</option>
+                                                                            <option value="2">XYZ - 2 ngày</option>
+                                                                            <option value="3">LMG - 3 ngày</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Tổng số ngày bị khóa</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <input type="text" readonly value="" class="mh-sum-day-block-input" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Số ngày bị khóa còn lại</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <input type="text" readonly value="" class="mh-sum-day-block-input" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Bị khóa bởi</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <h5>Quản lý - ABC</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                                <button type="button" class="btn btn-warning">Bỏ khóa</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
                                         else
                                         {
                                             <a href="" type="button" class="btn btn-warning" data-toggle="modal" data-target="#blockuser-@user.Id">Khóa</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="blockuser-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <form>
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">@user.UserName</span></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Lý do:</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8 mh-select-cause-time-block">
+                                                                        <select name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                            @foreach (BanReason reason in Model.BanReasons)
+                                                                            {
+                                                                                <option value="@reason.Id">@reason.Name - @reason.Duration ngày</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Tổng số ngày bị khóa</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <input id="dayresult-@user.Id" type="text" readonly value="" class="mh-sum-day-block-input" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-xs-4">
+                                                                        <h5>Miêu tả</h5>
+                                                                    </div>
+                                                                    <div class="col-xs-8">
+                                                                        <input type="text" value="" class="mh-block-input" id="des-@user.Id"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                                <button type="button" class="btn btn-warning" onclick="@("blockUser(" + @user.Id + ")")">Khóa</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         }
-                                    }  
+                                    } 
                                     <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
                                     <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole-@user.Id">Phân quyền</a>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="blockuser-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <form>
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">@user.UserName</span></h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Lý do:</h5>
-                                                            </div>
-                                                            <div class="col-xs-8 mh-select-cause-time-block">
-                                                                <select name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                    @foreach (BanReason reason in Model.BanReasons)
-                                                                    {
-                                                                        <option value="@reason.Id">@reason.Name - @reason.Duration ngày</option>
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Tổng số ngày bị khóa</h5>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input id="dayresult-@user.Id" type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                        <button type="button" class="btn btn-warning">Khóa</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="unblockuser-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <form>
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Bỏ khóa tài khoản: <span class="mh-manage-user-username">@user.UserName</span></h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Lý do:</h5>
-                                                            </div>
-                                                            <div class="col-xs-8 mh-select-cause-time-block">
-                                                                <select name="selBlock" class="selectpicker" multiple="multiple" title="Không có lý do nào được chọn">
-                                                                    <option value="1">ABC - 1 ngày</option>
-                                                                    <option value="2">XYZ - 2 ngày</option>
-                                                                    <option value="3">LMG - 3 ngày</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Tổng số ngày bị khóa</h5>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Số ngày bị khóa còn lại</h5>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <input type="text" readonly value="" class="mh-sum-day-block-input" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-xs-4">
-                                                                <h5>Bị khóa bởi</h5>
-                                                            </div>
-                                                            <div class="col-xs-8">
-                                                                <h5>Quản lý - ABC</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                        <button type="button" class="btn btn-warning">Bỏ khóa</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="setRole-@user.Id" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                         <div class="modal-dialog modal-sm" role="document">

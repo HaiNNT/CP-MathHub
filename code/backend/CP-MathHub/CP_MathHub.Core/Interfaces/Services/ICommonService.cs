@@ -123,13 +123,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         List<User> GetUsers(string include = "");
-
-        /// <summary>
-        /// Get all Ban Reason
-        /// </summary>
-        /// <param name="include"></param>
-        /// <returns></returns>
-        List<BanReason> GetBanReason();
+        
         /// <summary>
         /// Get list user by list id
         /// </summary>
@@ -187,6 +181,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="report"></param>
         bool CreateReport(Report report);
+
+        /// <summary>
+        /// Get all tag
+        /// </summary>
+        /// <returns></returns>
+        List<Tag> GetAllTags();
 
         /// <summary>
         /// Get edited logs

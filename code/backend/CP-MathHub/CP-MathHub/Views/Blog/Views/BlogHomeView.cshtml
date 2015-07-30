@@ -23,9 +23,7 @@
         </div>
     </div>
 </div>
-
 @Html.Partial("Partials/_NavPartialView")
-
 @if (ViewBag.Tab == "Home")
 {
     @Html.Partial("Partials/_ArticleHotPartialView", Model.HotArticles)
@@ -87,5 +85,10 @@
         @Html.Action("HotMainPost", "CommonWidget", new { system = "Question" })
         @Html.Action("HotMainPost", "CommonWidget", new { system = "Discussion" })
     }
+    @section styles{
 
+    }
+    @section scripts{
+
+    }
 
