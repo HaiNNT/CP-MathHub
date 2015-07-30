@@ -5,9 +5,6 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Mosaddek">
-    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/admincss")
     @switch ((string)ViewBag.Page)
@@ -63,7 +60,7 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
                     <li>
-                        <a class="@(ViewBag.Page == Constant.Admin.String.DashboardPage ? "active" : "")" href="admin-dashboard.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.DashboardPage ? "active" : "")" href="~/Admin">
                             <i class="icon-dashboard"></i>
                             <span>Dashboard</span>
                         </a>
@@ -82,14 +79,14 @@
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a href="javascript:;" class="@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "active" : "")">
                             <i class="icon-flag"></i>
                             <span>Quản lý vi phạm</span>
                         </a>
                         <ul class="sub">
                             <li><a href="admin-ManageInfracPosts.html">Bài viết</a></li>
                             <li><a href="admin-ManageInfracUsers.html">Người dùng</a></li>
-                            <li><a href="admin-ManageInfracRules">Quy định</a></li>
+                            <li><a href="~/Admin/ManageRule" style="color:@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "red" : "")">Quy định</a></li>
                         </ul>
                     </li>
                     <li>
@@ -129,10 +126,13 @@
             @Scripts.Render("~/bundles/adminDashboardjs")
             break;
         case Constant.Admin.String.ManageUsersPage:
-            @Scripts.Render("~/bundles/adminManageUsersjs")
+        @Scripts.Render("~/bundles/adminManageUsersjs")
             break;
         case Constant.Admin.String.ManageRulePage:
-            @Scripts.Render("~/bundles/adminManageRulesjs")
+        @Scripts.Render("~/bundles/adminManageRulesjs")
+            break;
+        case Constant.Admin.String.ManageInfracPosts:
+        @Scripts.Render("~/bundles/adminManageInfracPostsjs")
             break;
         default:
             break;

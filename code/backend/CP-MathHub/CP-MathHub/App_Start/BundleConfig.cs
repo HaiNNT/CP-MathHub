@@ -58,7 +58,15 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/adminManageRulesjs").Include(
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
-                      "~/Content/js/editable-table-rule.js"));
+                      "~/Content/js/editable-table-rule.js",
+                      "~/Content/js/spinner.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminManageInfracPostsjs").Include(
+                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js",
+                      "~/Content/js/bootstrap-switch.js",
+                      "~/Content/js/count.js",
+                      "~/Content/js/js/bootstrap-select.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/realtimejs").Include(
                       "~/Scripts/jquery.signalR-2.1.2.min.js",

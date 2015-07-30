@@ -5,13 +5,12 @@ using System.Web;
 
 namespace CP_MathHub.Models.Admin
 {
-    public class RulesViewModel
+    public class RuleCreateViewModel
     {
-        public ICollection<RuleViewModel> Items { get; set; }
-
         public string Name { get; set; }
         public string Description { get; set; }
         public int Duration { get; set; }
+
 
     }
 }

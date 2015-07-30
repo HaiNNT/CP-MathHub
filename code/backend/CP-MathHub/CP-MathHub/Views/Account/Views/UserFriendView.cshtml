@@ -35,13 +35,13 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="@(ViewBag.Tab == "allfriend" ? "active" : "" )">
             <a href="#all-friend" aria-controls="all-friend" role="tab" data-toggle="tab">
-                Tất cả bạn bè
+                Tất cả bạn bè của @Model.UserName
                 <span class="mh-profile-friend-quantity">@Model.FriendNum</span>
             </a>
         </li>
         <li role="presentation" class="@(ViewBag.Tab == "follower" ? "active" : "" )">
             <a href="#follower" aria-controls="follower" role="tab" data-toggle="tab">
-                Người đang theo dõi
+                Người đang theo dõi @Model.UserName
                 <span class="mh-profile-friend-quantity">@Model.FollowerNum</span>
             </a>
         </li>

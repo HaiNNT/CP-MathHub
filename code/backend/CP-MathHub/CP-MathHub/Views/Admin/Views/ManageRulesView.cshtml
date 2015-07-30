@@ -1,4 +1,5 @@
 ﻿@using CP_MathHub.Models.Admin
+
 @model RulesViewModel
 @{
     ViewBag.Title = "ManageRulesView";
@@ -12,56 +13,72 @@
             <div class="adv-table editable-table ">
                 <div class="clearfix">
                     <div class="btn-group">
+
                         <button id="editable-sample_new" class="btn green" data-toggle="modal" data-target="#create">
                             Tạo quy định mới <i class="icon-plus"></i>
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row mh-admin-row">
-                                            <div class="col-xs-3">
-                                                <label>Tên quy định:</label>
+                                @using (Html.BeginForm("InsertRule", "Admin", FormMethod.Post))
+                                {
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Tạo chức vụ mới</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row mh-admin-row">
+                                                <div class="col-xs-3">
+                                                    <label>Tên quy định:</label>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    @*<input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" value="@Model.Name" />*@
+                                                    @Html.TextBoxFor(m => m.Name, new { @class = "mh-admin-row-input", @placeholder = "Nhập tên quy định" })
+                                                </div>
                                             </div>
-                                            <div class="col-xs-9">
-                                                <input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" />
+                                            <div class="row mh-admin-row">
+                                                <div class="col-xs-3">
+                                                    <label>Miêu tả:</label>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    @*<input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" value="@Model.Description" />*@
+                                                    @Html.TextBoxFor(m => m.Description, new { @class = "mh-admin-row-input", @placeholder = "Nhập miêu tả cho quy định này" })
+                                                </div>
+                                            </div>
+                                            <div class="row mh-admin-row">
+                                                <div class="col-xs-3">
+                                                    <label>Hình phạt:</label>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    <div id="spinner4">
+                                                        <div class="input-group" style="width:150px;">
+                                                            <div class="spinner-buttons input-group-btn">
+                                                                <button type="button" class="btn spinner-down btn-danger">
+                                                                    <i class="icon-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                            @*<input type="text" class="spinner-input form-control" maxlength="3" value="@Model.Duration">*@
+                                                            @Html.TextBoxFor(m => m.Duration, new { @class = "spinner-input form-control", @maxlength = "3" })
+                                                            <div class="spinner-buttons input-group-btn">
+                                                                <button type="button" class="btn spinner-up btn-warning">
+                                                                    <i class="icon-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <span class="help-block">
+                                                        Mỗi lần cộng/trừ: 1
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mh-admin-row">
-                                            <div class="col-xs-3">
-                                                <label>Miêu tả:</label>
-                                            </div>
-                                            <div class="col-xs-9">
-                                                <input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" />
-                                            </div>
-                                        </div>
-                                        <div class="row mh-admin-row">
-                                            <div class="col-xs-3">
-                                                <label>Hình phạt:</label>
-                                            </div>
-                                            <div class="col-xs-9">
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-                                                </label>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Tạo mới</button>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Tạo mới</button>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -75,7 +92,7 @@
                             <th>Miêu tả</th>
                             <th>Hình phạt</th>
                             <th>Chỉnh sửa</th>
-                            <th>Xóa</th>
+                            @*<th>Xóa</th>*@
                         </tr>
                     </thead>
                     <tbody>

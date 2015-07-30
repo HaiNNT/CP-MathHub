@@ -199,6 +199,7 @@
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
@@ -612,6 +613,7 @@
     <Content Include="Content\jquery-ui\jquery-ui.theme.min.css" />
     <Content Include="Content\js\auto-complete.js" />
     <Content Include="Content\js\bootstrap-select.js" />
+    <Content Include="Content\js\bootstrap-switch.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\common-scripts.js" />
@@ -632,6 +634,7 @@
     <Content Include="Content\js\script-discussion.js" />
     <Content Include="Content\js\script-profile.js" />
     <Content Include="Content\js\script-question.js" />
+    <Content Include="Content\js\spinner.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -832,10 +835,11 @@
     <Content Include="Views\Admin\Partials\ManageRulePartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageUsersView.cshtml" />
     <Content Include="Views\Account\Partials\_UserMutualFriendListPartialView.cshtml" />
-    <Content Include="Views\Account\Partials\_UserSearchFriendListPartialView.cshtml" />
     <Content Include="Views\Account\Views\UsersPageView.cshtml" />
     <Content Include="Views\Account\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
+    <Content Include="Views\Admin\Partials\RuleCreatePartialView.cshtml" />
+    <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
     <Content Include="Views\Account\Partials\_ConversationDetailPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

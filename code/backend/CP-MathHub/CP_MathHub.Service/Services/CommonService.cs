@@ -402,6 +402,11 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<User>().Include(include).Table.ToList();
         }
+
+        public List<BanReason> GetBanReason()
+        {
+            return dal.Repository<BanReason>().Table.ToList();
+        }
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
         {
             List<Invitation> invitations = new List<Invitation>();

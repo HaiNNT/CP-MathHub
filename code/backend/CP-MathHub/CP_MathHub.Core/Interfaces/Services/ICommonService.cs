@@ -125,6 +125,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<User> GetUsers(string include = "");
 
         /// <summary>
+        /// Get all Ban Reason
+        /// </summary>
+        /// <param name="include"></param>
+        /// <returns></returns>
+        List<BanReason> GetBanReason();
+        /// <summary>
         /// Get list user by list id
         /// </summary>
         /// <returns></returns>
