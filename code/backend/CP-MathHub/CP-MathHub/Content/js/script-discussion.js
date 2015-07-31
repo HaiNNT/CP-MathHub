@@ -382,6 +382,20 @@ function editPost(item) {
     $($(item).parents(".mh-comment-div")[0]).children(".media-body").children(".mh-note").toggle();
 }
 
+/*
+    Send report
+*/
+function sendReport(id) {
+    var formId = "#report-form-" + id;
+    $.post('/Discussion/Report', $(formId).serialize())
+        .done(function (msg) {
+            console.log(msg);
+            $(formId).trigger("reset");
+        })
+         .fail(function () {
+             alert("fail error");
+         });
+}
 
 /*
     Load edited logs

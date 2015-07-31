@@ -94,7 +94,7 @@ namespace CP_MathHub.Controllers
             return View("Views/ManageRulesView",model);
         }
         [HttpPost]
-        public ActionResult EditRule(RuleEditViewModel model)
+        public bool EditRule(RuleEditViewModel model)
         {
             BanReason banReason = aService.GetBanReason(model.Id);
             banReason.Name = model.Name;
@@ -102,15 +102,9 @@ namespace CP_MathHub.Controllers
             banReason.CreatedDate = banReason.CreatedDate;
             banReason.Duration = model.Duration;
             aService.EditBanReason(banReason);
-            return RedirectToAction("ManageRule");
+            return true;
         }
-        [HttpPost]
-        public ActionResult DeleteRule(int Id)
-        {
-            BanReason banReason = aService.GetBanReason(Id);
-            aService.DeleteBanReason(banReason);
-            return RedirectToAction("ManageRule");
-        }
+
 
         [HttpPost]
         public ActionResult InsertRule(RulesViewModel model)
@@ -142,7 +136,7 @@ namespace CP_MathHub.Controllers
             }
             //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
             //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
-           
+            ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPosts", models);
         }
 
@@ -152,8 +146,11 @@ namespace CP_MathHub.Controllers
         {
             ManageTagsViewModel model = new ManageTagsViewModel();
             List<Tag> list = cService.GetAllTags();
+            List<Tag> list1 = cService.GetAllTagsOrderByName();
             ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            ICollection<TagViewModel> tagsVM1 = list1.Select(Mapper.Map<Tag, TagViewModel>).ToList();
             model.Items = tagsVM;
+            model.Items1 = tagsVM1;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
             return View("Views/ManageTagsView", model);
         }
