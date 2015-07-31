@@ -1,4 +1,5 @@
 ﻿@using CP_MathHub.Models.Admin
+@using CP_MathHub.Entity
 @model List<ManageInfracPostViewModel>
 @{
     ViewBag.Title = "ManageInfracPosts";
@@ -208,9 +209,9 @@
                                         @iPost.ReportedDate
                                     </td>
                                     <td class="mh-cell-center">
-                                        <a data-toggle="modal" data-target="#userReport">@iPost.Reporters.Count</a>
+                                        <a data-toggle="modal" data-target="#userReport-@iPost.MainPost.Id">@iPost.Reporters.Count</a>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="userReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal fade" id="userReport-@iPost.MainPost.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -218,17 +219,19 @@
                                                         <h4 class="modal-title" id="myModalLabel">Người báo cáo</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="media mh-user-report">
-                                                            <div class="media-left">
-                                                                <a href="#">
-                                                                    <img class="mh-user-icon" src="img/user.jpg" alt="...">
-                                                                </a>
+                                                        @foreach (User user in iPost.Reporters)
+                                                        {
+                                                            <div class="media mh-user-report">
+                                                                <div class="media-left">
+                                                                    <a href="#">
+                                                                        <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <span>@user.UserName</span>
+                                                                </div>
                                                             </div>
-                                                            <div class="media-body">
-                                                                <span>QuanVMH</span>
-                                                            </div>
-                                                        </div>
-
+                                                        }
 
                                                     </div>
                                                     <div class="modal-footer">
@@ -239,9 +242,9 @@
                                         </div>
                                     </td>
                                     <td class="mh-cell-middle">
-                                        <a data-toggle="modal" data-target="#causePost">ABC, XYZ, RYG</a>
+                                        <a data-toggle="modal" data-target="#causePost-@iPost.MainPost.Id">@iPost.Reasons.Count</a>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="causePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal fade" id="causePost-@iPost.MainPost.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -267,9 +270,9 @@
                                     </td>
                                     <td class="mh-cell-center">
                                         <div class="switch switch-square"
-                                             data-on-label="<i class=' icon-ok'></i>"
-                                                       data-off-label="<i class='icon-remove'></i>">
-                                                      <input type="checkbox"/>
+                                             data-on-label="@("<i class=' icon-ok'></i>")"
+                                                       data-off-label="@("<i class='icon-remove'></i>")">
+                                                      <input type="checkbox" @(iPost.Status==true?"checked": "")/>
                                               </div>
                                     </td>
                                     <td class="mh-cell-center">

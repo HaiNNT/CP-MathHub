@@ -476,7 +476,7 @@ namespace CP_MathHub.Service.Services
         }
         public Vote GetVote(int postId, int userId)
         {
-            return _dal.Repository<Vote>().Table.Where(v => v.PostId == postId && v.UserId == userId).FirstOrDefault();
+            return _dal.Repository<Vote>().Table.FirstOrDefault(v => v.PostId == postId && v.UserId == userId);
         }
         public bool CreateReport(Report report)
         {
@@ -495,7 +495,7 @@ namespace CP_MathHub.Service.Services
         }
         public Report GetReport(int? postId, int reporterId)
         {
-            return _dal.Repository<Report>().Table.Where(v => v.PostId == postId && v.UserId == reporterId).FirstOrDefault();
+            return _dal.Repository<Report>().Table.FirstOrDefault(v => v.PostId == postId && v.ReporterId == reporterId);
         }
         public List<EditedLog> GetEditedLog(int postId)
         {
