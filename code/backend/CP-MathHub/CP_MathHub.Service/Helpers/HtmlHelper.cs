@@ -72,7 +72,7 @@ namespace CP_MathHub.Service.Helpers
             string s = "";
             foreach (Accessment assessment in assessments)
             {
-                s += assessment.Role.Name + ",";
+                s += assessment.Role.Name + ", ";
                 if (s.Contains("User"))
                 {
                     s = "Người dùng";
@@ -94,7 +94,7 @@ namespace CP_MathHub.Service.Helpers
             string s = "";
             foreach (BanReason banReason in banReasons)
             {
-                s += banReason.Name + ",";
+                s += banReason.Name + ", ";
             }
             return s.TrimEnd(',');
         }

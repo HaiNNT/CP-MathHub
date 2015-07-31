@@ -20,6 +20,7 @@ function selectValuePlus() {
 
     $('.selectpicker.blockday').change(function () {
         var temp2 = $(this).val();
+        //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
             var total = 0;
         for (var item in temp2) {
@@ -33,6 +34,7 @@ function selectValuePlus() {
     Data table: manage users
 */
 function tableManageUsers() {
+    //var oTable = $('#editable-manageUser').dataTable({
     $('#editable-manageUser').dataTable({
         "aLengthMenu": [
             [5, 15, 20, -1],
@@ -60,6 +62,18 @@ function tableManageUsers() {
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+    
+    //$('#editable-manageUser').on('click', 'a.delete', function (e) {
+    //    e.preventDefault();
+
+    //    if (confirm("Bạn có chắc chắn muốn xóa tài khoản này?") == false) {
+    //        return;
+    //    }
+
+    //    var nRow = $(this).parents('tr')[0];
+    //    oTable.fnDeleteRow(nRow);
+    //    alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+    //});
 }
 
 function tableRule() {
@@ -77,36 +91,25 @@ function blockUser(id) {
     var duration = parseInt($("#dayresult-" + id).val().split(' ngày'));
     var description = $("#des-" + id).val();
     var status = 2;
+    var ids = [];
+    $($("#select-" + id).prop("selectedOptions")).each(function () {
+        ids.push($(this).attr("mh-id"));
+    });
     $.ajax({
         method: "POST",
         url: "/Admin/BlockUser",
-        data: { Duration: duration, BannedUserId: id, Description: description, Status: status }
+        data: { Duration: duration, BannedUserId: id, Description: description, Status: status, Reasons: ids }
     })
       .done(function (msg) {
-          //if (msg) {
-          //    add(msg);
-          //} else {
-          //    alert("false");
-          //}
+          if (msg) {
+              add(msg);
+          } else {
+              alert("false");
+          }
       })
       .fail(function () {
           alert("Khóa tài khoản này thất bại!");
       });
-        //var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
-        //var item = "<span class='mh-tag-item'>"
-        //            + "<span>"
-        //            + tagName
-        //            + "</span>"
-        //            + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
-        //            + hidden
-        //            + "</span>";
-        //var list = $("#mh-tag-list");
-        //$("#mh-input-tag").val("");
-        //$("#mh-input-tag").focus();
-        //autocomplete.hide();
-        //if (!tagIds[tagId]) {
-        //    tagIds[tagId] = tagName;
-        //    list.append($(item));
 }
 
 function ManageInfracPosts_blockday() {
@@ -116,7 +119,7 @@ function ManageInfracPosts_blockday() {
     $('.selectpicker').selectpicker('refresh');
 
     
-}
+        }
 
 function ManageInfracPosts_edittable() {
     $('#editable-manageInfracPosts').dataTable({

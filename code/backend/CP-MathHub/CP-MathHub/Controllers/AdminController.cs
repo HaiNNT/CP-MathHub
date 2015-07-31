@@ -68,10 +68,12 @@ namespace CP_MathHub.Controllers
             banAccount.BannedUser.Status = model.Status;
             banAccount.BanUserId = User.Identity.GetUserId<int>();
             banAccount.Description = model.Description;
+            banAccount.BanReasons = aService.GetListBanReason(model.Reasons);
             aService.BlockUser(banAccount);
 
             return null;
         }
+        [HttpPost]
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
