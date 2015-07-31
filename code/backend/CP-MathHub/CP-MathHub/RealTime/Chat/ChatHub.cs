@@ -61,8 +61,8 @@ namespace CP_MathHub.RealTime.Chat
                 Conversation conversation = rService.GetConversation(id);
                 List<User> users = conversation.Attendances.Select(c => c.User).ToList();
                 int count = users.Count(u => _connections.TrackOnlineUser(u.UserName));
-                string cssClass = count > 1 ? "fa fa-circle mh-chat-status-icon-on" : "fa fa-circle mh-chat-status-icon-off";
-                Clients.Caller.checkOnlineTrigger(cssClass);
+                string cssClass = count > 1 ? "fa fa-circle mh-chat-status-icon-on conversation-status-" + id : "fa fa-circle mh-chat-status-icon-off conversation-status-" + id;
+                Clients.Group(id + "").checkOnlineTrigger(id, cssClass);
             }
         }
 
@@ -85,23 +85,31 @@ namespace CP_MathHub.RealTime.Chat
                 foreach (Conversation conversation in conversations)
                 {
                     JoinConversation(conversation.Id+"");
+                    CheckOnline(conversation.Id);
                 }
-            }
-            
+            }          
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            string name = Context.User.Identity.Name;
-            _connections.Remove(name, Context.ConnectionId);
-            GetOnlineUser();
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer()))
+            {
+                string name = Context.User.Identity.Name;
+                _connections.Remove(name, Context.ConnectionId);
+                List<Conversation> conversations = rService.GetConversations(Context.User.Identity.GetUserId<int>());
+                foreach (Conversation conversation in conversations)
+                {
+                    CheckOnline(conversation.Id);
+                }
+            }
             return base.OnDisconnected(stopCalled);
         }
 
         public override Task OnReconnected()
         {
             using (AccountService aSercive = new AccountService(new CPMathHubModelContainer()))
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer()))
             {
                 string name = Context.User.Identity.Name;
                 User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
@@ -113,8 +121,13 @@ namespace CP_MathHub.RealTime.Chat
                 {
                     _connections.Add(name, Context.ConnectionId, user.Id + "", user.Avatar.Url);
                 }
+                List<Conversation> conversations = rService.GetConversations(user.Id);
+                foreach (Conversation conversation in conversations)
+                {
+                    JoinConversation(conversation.Id + "");
+                    CheckOnline(conversation.Id);
+                }
             }
-            GetOnlineUser();
             return base.OnReconnected();
         }
 

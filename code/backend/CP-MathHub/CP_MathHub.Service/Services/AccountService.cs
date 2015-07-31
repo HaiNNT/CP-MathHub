@@ -103,6 +103,7 @@ namespace CP_MathHub.Service.Services
             activity.LastSeenInvitation = DateTime.Now;
             activity.LastSeenSubcription = DateTime.Now;
             activity.LastSeenNotification = DateTime.Now;
+            activity.LastSeenMessage = DateTime.Now;
             activity.LastIp = ip;
             activity.User = GetUser(userId);
             _dal.Repository<Activity>().Insert(activity);

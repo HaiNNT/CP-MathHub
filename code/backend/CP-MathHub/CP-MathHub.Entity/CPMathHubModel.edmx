@@ -489,6 +489,7 @@
     <Property Name="LastLogin" Type="datetime" Nullable="false" />
     <Property Name="LastIp" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LastSeenFriendRequest" Type="datetime" Nullable="false" />
+    <Property Name="LastSeenMessage" Type="datetime" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Notifications">
@@ -2378,6 +2379,7 @@
           <Property Name="LastIp" Type="String" Nullable="false" />
           <Property Name="LastSeenFriendRequest" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.ActivityUser" FromRole="Activity" ToRole="User" />
+          <Property Name="LastSeenMessage" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -3229,6 +3231,7 @@
           <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
           <ScalarProperty Name="LastIp" ColumnName="LastIp" />
           <ScalarProperty Name="LastSeenFriendRequest" ColumnName="LastSeenFriendRequest" />
+          <ScalarProperty Name="LastSeenMessage" ColumnName="LastSeenMessage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

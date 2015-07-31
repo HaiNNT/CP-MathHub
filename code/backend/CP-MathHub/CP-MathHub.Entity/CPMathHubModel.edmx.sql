@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/30/2015 10:17:48
--- Generated from EDMX file: D:\FPT\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 07/31/2015 17:15:02
+-- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -535,6 +535,7 @@ CREATE TABLE [dbo].[Activities] (
     [LastLogin] datetime  NOT NULL,
     [LastIp] nvarchar(max)  NOT NULL,
     [LastSeenFriendRequest] datetime  NOT NULL,
+    [LastSeenMessage] datetime  NOT NULL,
     [User_Id] int  NOT NULL
 );
 GO

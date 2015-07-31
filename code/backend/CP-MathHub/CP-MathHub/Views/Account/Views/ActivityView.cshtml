@@ -49,6 +49,11 @@
             </a>
         </li>
         <li role="presentation">
+            <a href="#follow-post" aria-controls="follow-post" role="tab" data-toggle="tab">
+                Bài yêu thích
+            </a>
+        </li>
+        <li role="presentation">
             <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">
                 Thẻ yêu thích
             </a>
@@ -58,11 +63,11 @@
                 Danh hiệu
             </a>
         </li>
-        <li role="presentation">
+        @*<li role="presentation">
             <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">
                 Hoạt động
             </a>
-        </li>
+        </li>*@
         <li role="presentation">
             <a href="#notification" aria-controls="notification" role="tab" data-toggle="tab">
                 Thông báo
@@ -80,8 +85,8 @@
             <div class="row">
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
-                        Câu hỏi
-                        <span>(@Model.QuestionNum)</span>
+                        Câu hỏi đã đăng
+                        <span>(@Model.QuestionList.Count)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserQuestionActivityPartialView", Model.QuestionList)
@@ -89,8 +94,8 @@
                 </div>
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
-                        Trả lời
-                        <span>(@Model.AnswerNum)</span>
+                        Trả lời đã đăng
+                        <span>(@Model.AnswerList.Count)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserAnswerActivityPartialView", Model.AnswerList)
@@ -98,8 +103,8 @@
                 </div>
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
-                        Bài viết
-                        <span>(@Model.ArticleNum)</span>
+                        Bài viết đã đăng
+                        <span>(@Model.ArticleList.Count)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserArticleActivityPartialView", Model.ArticleList)
@@ -107,8 +112,8 @@
                 </div>
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
-                        Thảo luận
-                        <span>(@Model.DiscussionNum)</span>
+                        Thảo luận đã đăng
+                        <span>(@Model.DiscussionList.Count)</span>
                     </h4>
                     <div class="mh-profile-post">
                         @Html.Partial("Partials/_UserDiscussionActivityPartialView", Model.DiscussionList)
@@ -116,7 +121,47 @@
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tags">
+        <div id="follow-post" role="tabpanel" class="tab-pane">
+            <div class="row">
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
+                    <h4>
+                        Câu hỏi yêu thích
+                        <span>(@Model.FollowQuestionList.Count)</span>
+                    </h4>
+                    <div class="mh-profile-post">
+                        @Html.Partial("Partials/_UserQuestionActivityPartialView", Model.FollowQuestionList)
+                    </div>
+                </div>
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
+                    <h4>
+                        Bài viết yêu thích
+                        <span>(@Model.FollowArticleList.Count)</span>
+                    </h4>
+                    <div class="mh-profile-post">
+                        @Html.Partial("Partials/_UserArticleActivityPartialView", Model.FollowArticleList)
+                    </div>
+                </div>
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
+                    <h4>
+                        Thảo luận yêu thích
+                        <span>(@Model.FollowDiscussionList.Count)</span>
+                    </h4>
+                    <div class="mh-profile-post">
+                        @Html.Partial("Partials/_UserDiscussionActivityPartialView", Model.FollowDiscussionList)
+                    </div>
+                </div>
+                <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
+                    <h4>
+                        Bài được mời
+                        <span>(@Model.InvitedList.Count)</span>
+                    </h4>
+                    <div class="mh-profile-post">
+                        @Html.Partial("Partials/_UserInvitedActivityPartialView", Model.InvitedList)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tags" role="tabpanel" class="tab-pane">
             <div class="row mh-profile-tag-favourite">
                 @Html.Partial("Partials/_FavoriteTagsPartialView", Model.TagList)
             </div>
@@ -209,7 +254,7 @@
                 </div>
             </div>
         </div>
-        <div id="activity" class="tab-pane">
+        @*<div id="activity" class="tab-pane">
             <h4>Hoạt động của bạn</h4>
             <div class="mh-profile-activities">
                 <div class="mh-profile-activity">
@@ -225,7 +270,7 @@
                     <a>Thân Văn Tâm</a>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div id="notification" class="tab-pane">
             <h4>Thông báo của bạn</h4>
             <div class="mh-profile-notifications">
@@ -470,8 +515,8 @@
             }
 
             // Check online conversation
-            chat.client.checkOnlineTrigger = function (cssClass) {
-                $('#conversation-status').attr("class", cssClass);
+            chat.client.checkOnlineTrigger = function (id, cssClass) {
+                $('.conversation-status-' + id).attr("class", cssClass);
             }
 
             // Start the connection.

@@ -854,6 +854,7 @@
     <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_DuplicateTagsPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_HistoryBlockUserPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_UserInvitedActivityPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_UserInformationDetailPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

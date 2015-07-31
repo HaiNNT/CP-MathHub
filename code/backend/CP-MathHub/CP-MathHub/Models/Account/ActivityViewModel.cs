@@ -10,15 +10,16 @@ namespace CP_MathHub.Models.Account
     public class ActivityViewModel
     {
         public List<Entity.Discussion> DiscussionList { get; set; }
-        public int DiscussionNum { get; set; }
         public List<Entity.Question> QuestionList { get; set; }
-        public int QuestionNum { get; set; }
         public List<Entity.Article> ArticleList { get; set; }
-        public int ArticleNum { get; set; }
         public List<Entity.Answer> AnswerList { get; set; }
-        public int AnswerNum { get; set; }
         public List<Tag> TagList { get; set; }
         public int CountTagPost { get; set; }
+
+        public List<Entity.Discussion> FollowDiscussionList { get; set; }
+        public List<Entity.Question> FollowQuestionList { get; set; }
+        public List<Entity.Article> FollowArticleList { get; set; }
+        public List<Entity.MainPost> InvitedList { get; set; }
 
         public List<ConversationPreviewViewModel> Conversations { get; set; }
         public ConversationDetailViewModel Conversation { get; set; }

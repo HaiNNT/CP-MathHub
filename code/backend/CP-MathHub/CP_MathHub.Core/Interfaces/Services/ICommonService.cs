@@ -123,7 +123,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         List<User> GetUsers(string include = "");
-        
+
         /// <summary>
         /// Get list user by list id
         /// </summary>
@@ -209,6 +209,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         MainPost GetMainPost(int mainPostId, string include = "");
 
         /// <summary>
+        /// Get list main posts
+        /// </summary>
+        /// <param name="mainPostId"></param>
+        /// <returns></returns>
+        List<MainPost> GetMainPosts(string type, int skip = 0, int take = 0);
+
+        /// <summary>
         /// Get a post by id
         /// </summary>
         /// <param name="mainPostId"></param>
@@ -222,5 +229,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
+
+        /// <summary>
+        /// Get plus reputation
+        /// </summary>
+        /// <param name="type"></param>
+        int GetPlusReputation(string type);
     }
 }
