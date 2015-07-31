@@ -101,7 +101,6 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             //aService.UpdateUser(banAccount.BannedUser);
         }
-
         public List<Report> GetMainPostReport()
         {
             List<Report> list = new List<Report>();

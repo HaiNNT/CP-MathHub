@@ -73,6 +73,16 @@ namespace CP_MathHub.Controllers
 
             return null;
         }
+        public ActionResult SetRoleUser(SetRoleViewModel model)
+        {
+            Accessment assess = new Accessment();
+            assess.UserId = model.UserId;
+            //assess.RoleId = aService.GetListAssessment(model.RoleId);
+            assess.AccessedDate = DateTime.Now;
+            assess.ExpireDate = DateTime.Now.AddDays(365);
+            //aService
+            return null;
+        }
         [HttpPost]
         public ActionResult ManageRule()
         {

@@ -112,6 +112,28 @@ function blockUser(id) {
       });
 }
 
+function setRuleUser(id) {
+    var roleID = [];
+    var idCheckbox = "#checkbox-" + id;
+    $(idCheckbox + " :checked").each(function () {
+        roleID.push($(this).val());
+    });
+    $.ajax({
+        method: "POST",
+        url: "/Admin/SetRoleUser",
+        data: { UserId: id, RoleId: roleID}
+    })
+      .done(function (msg) {
+          if (msg) {
+              add(msg);
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Phân quyền cho tài khoản này thất bại!");
+      });
+}
 function ManageInfracPosts_blockday() {
     $('.selectpicker').selectpicker();
 

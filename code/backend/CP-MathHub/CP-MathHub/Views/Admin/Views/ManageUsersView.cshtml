@@ -72,7 +72,7 @@
                     <tbody>
                         @*@for (int i = 0; i < Model.Users.Count; i++)
                         {
-                            
+                            List<User> user = Model
                         }*@
                         @foreach (User user in Model.Users)
                         {
@@ -236,11 +236,12 @@
                                 <td class="mh-cell-middle">@user.Email</td>
                                 <td class="mh-cell-center">@Html.CheckStatusUser(user.Status)</td>
                                 <td class="mh-cell-center">
+                                    @*@Html.Partial("~Partials/_HistoryBlockUserPartialView", user)*@
                                     @{
                                         if (user.BannedAccounts.Count > 0)
                                         {
                                             <a data-toggle="modal" data-target="#blocked-@user.Id">@user.BannedAccounts.Count lần</a>
-                                            <!-- Modal -->
+                                            
                                             <div class="modal fade" id="blocked-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -444,30 +445,28 @@
                                     <div class="modal fade" id="setRole-@user.Id" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                         <div class="modal-dialog modal-sm" role="document">
                                             <div class="modal-content">
-                                                <form>
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Phân quyền cho <span class="mh-manage-user-username">@user.UserName</span></h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>
-                                                            <input type="checkbox" value="3" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Quản lý") ? "checked" : "")>
-                                                            Quản lý
-                                                        </label><br />
-                                                        <label>
-                                                            <input type="checkbox" value="2" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Chuyên gia") ? "checked" : "")>
-                                                            Chuyên gia
-                                                        </label><br />
-                                                        <label>
-                                                            <input type="checkbox" value="1" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Người dùng") ? "checked" : "")>
-                                                            Người dùng
-                                                        </label>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                        <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                                                    </div>
-                                                </form>
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Phân quyền cho <span class="mh-manage-user-username">@user.UserName</span></h4>
+                                                </div>
+                                                <div class="modal-body" id="checkbox-@user.Id">
+                                                    <label>
+                                                        <input type="checkbox" value="3" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Quản lý") ? "checked" : "")>
+                                                        Quảnlý
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox" value="2" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Chuyên gia") ? "checked" : "")>
+                                                        Chuyên gia
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox" value="1" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Người dùng") ? "checked" : "")>
+                                                        Người dùng
+                                                    </label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary" onclick="@("setRuleUser(" + @user.Id + ")")" )>Lưu thay đổi</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
