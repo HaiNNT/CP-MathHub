@@ -73,6 +73,7 @@
   margin-right: 8px;
   position: relative;
   margin-top: 10px;
+  background-color: #FFF;
 }
 /*	
 .mh-grid-contents:nth-child(3n) {
@@ -166,6 +167,7 @@
 /* Show List: start */
 .mh-list-content {
 	margin: 15px 0;
+    background-color: #FFF;
 }
 .mh-list-content > div{
   border: 1px solid #ccc;

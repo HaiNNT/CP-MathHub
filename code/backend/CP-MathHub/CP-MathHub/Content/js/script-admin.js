@@ -115,21 +115,14 @@ function ManageInfracPosts_blockday() {
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-    $('.selectpicker.blockday').on('change', function () {
-        var temp2 = $('.selectpicker.blockday').val();
-        var total = 0;
-        for (var i = 0; i < temp2.length; i++) {
-            total += +temp2[i];
-        }
-        $('#dayresult-1').val(total + " ngày");
-    });
+    
 }
 
 function ManageInfracPosts_edittable() {
     $('#editable-manageInfracPosts').dataTable({
         "aLengthMenu": [
             [5, 15, 20, -1],
-            [5, 15, 20, "All"] // change per page values here
+            [5, 15, 20, "Tất cả"] // change per page values here
         ],
         // set the initial value
         "iDisplayLength": 5,
@@ -173,11 +166,13 @@ $(document).ready(function () {
             spinDurationBanReason();
             break;
         case "ManageInfracPosts":
-            ManageInfracPosts_blockday();
+            selectPicker();
+            selectValue();
             ManageInfracPosts_edittable();
             break;
         case "ManageTags":
             tableTag();
+            break;
         default:
             break;
     }

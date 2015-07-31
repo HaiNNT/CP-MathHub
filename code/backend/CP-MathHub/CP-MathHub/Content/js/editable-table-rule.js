@@ -163,10 +163,13 @@
                         data: { Id: id, Name: Name, Description: Des, Duration: Dur },
                         //contentType: 'application/json; charset=utf-8',
 
-                        success: function () {
+                        success: function (msg) {
                             // Notice that msg.d is used to retrieve the result object
-                            saveRow(oTable, nEditing, id);
-                            nEditing = null;
+                            if (msg) {
+                                saveRow(oTable, nEditing, id);
+                                nEditing = null;
+                            }
+                            
                         }
                     });
 

@@ -541,5 +541,19 @@ namespace CP_MathHub.Controllers
             return PartialView("../CommonWidget/_EditedLogPartialView", logs);
         }
 
+        //Post: Discussion/Report
+        [HttpPost]
+        [Authorize]
+        public bool Report(int postId, string description, ReportTypeEnum reportName = ReportTypeEnum.Other)
+        {
+            Report report = new Report();
+            report.Description = description;
+            report.PostId = postId;
+            report.ReportedDate = DateTime.Now;
+            report.ReporterId = User.Identity.GetUserId<int>();
+            report.Type = reportName;
+
+            return cService.CreateReport(report);
+        }
     }
 }

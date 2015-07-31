@@ -481,6 +481,21 @@ function accept(item, id) {
 }
 
 /*
+    Send report
+*/
+function sendReport(id) {
+    var formId = "#report-form-" + id;
+    $.post('/Question/Report', $(formId).serialize())
+        .done(function (msg) {
+            console.log(msg);
+            $(formId).trigger("reset");
+        })
+         .fail(function () {
+             alert("fail error");
+         });
+}
+
+/*
     Init all necessary fucntions
 */
 $(document).ready(function () {
