@@ -112,11 +112,5 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="list"></param>
         /// <returns></returns>
         List<BanReason> GetListBanReason(List<int> list);
-        /// <summary>
-        /// Get list Assessment
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        List<Accessment> GetListAssessment(List<int> list);
     }
 }
