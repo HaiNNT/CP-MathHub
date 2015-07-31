@@ -21,12 +21,12 @@ function selectValuePlus() {
     $('.selectpicker.blockday').change(function () {
         var temp2 = $(this).val();
         var id = $(this).attr("mh-id");
-            var total = 0;
+        var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-            }
+        }
         $('#dayresult-' + id).val(total + " ngày");
-        });
+    });
 }
 
 /*
@@ -92,21 +92,21 @@ function blockUser(id) {
       .fail(function () {
           alert("Khóa tài khoản này thất bại!");
       });
-        //var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
-        //var item = "<span class='mh-tag-item'>"
-        //            + "<span>"
-        //            + tagName
-        //            + "</span>"
-        //            + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
-        //            + hidden
-        //            + "</span>";
-        //var list = $("#mh-tag-list");
-        //$("#mh-input-tag").val("");
-        //$("#mh-input-tag").focus();
-        //autocomplete.hide();
-        //if (!tagIds[tagId]) {
-        //    tagIds[tagId] = tagName;
-        //    list.append($(item));
+    //var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
+    //var item = "<span class='mh-tag-item'>"
+    //            + "<span>"
+    //            + tagName
+    //            + "</span>"
+    //            + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+    //            + hidden
+    //            + "</span>";
+    //var list = $("#mh-tag-list");
+    //$("#mh-input-tag").val("");
+    //$("#mh-input-tag").focus();
+    //autocomplete.hide();
+    //if (!tagIds[tagId]) {
+    //    tagIds[tagId] = tagName;
+    //    list.append($(item));
 }
 
 function ManageInfracPosts_blockday() {
@@ -159,6 +159,46 @@ function tableTag() {
         EditableTable.init();
     });
 }
+/*
+    Get duplicate tags
+*/
+function GetDuplicateTags() {
+    $("#btn-checkduplicate").click(function () {
+        var list = $("#mh-list-tag");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/GetDuplicateTags",
+            data: {}
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.append($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+
+    });
+}
+function checkall() {
+    $('#all').change(function () {
+        var checkboxes = $(this).closest('#editable-sample1').find(':checkbox');
+        if ($(this).is(':checked')) {
+            checkboxes.prop('checked', true);
+        } else {
+            checkboxes.prop('checked', false);
+        }
+    });
+    $('#all-dup').change(function () {
+        var checkboxes = $(this).closest('#editable-sample').find(':checkbox');
+        if ($(this).is(':checked')) {
+            checkboxes.prop('checked', true);
+        } else {
+            checkboxes.prop('checked', false);
+        }
+    });
+}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -177,7 +217,9 @@ $(document).ready(function () {
             ManageInfracPosts_edittable();
             break;
         case "ManageTags":
+            GetDuplicateTags();
             tableTag();
+            checkall();
         default:
             break;
     }

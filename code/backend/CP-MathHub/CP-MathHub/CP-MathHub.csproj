@@ -851,6 +851,7 @@
     <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
     <Content Include="Views\Admin\Partials\_ManageTagsPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\_DuplicateTagsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

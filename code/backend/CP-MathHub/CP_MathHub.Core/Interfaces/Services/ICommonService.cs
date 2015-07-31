@@ -189,6 +189,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Tag> GetAllTags();
 
         /// <summary>
+        /// Get all tag order by name
+        /// </summary>
+        /// <returns></returns>
+        List<Tag> GetAllTagsOrderByName();
+
+        /// <summary>
         /// Get edited logs
         /// </summary>
         /// <param name="postId"></param>
