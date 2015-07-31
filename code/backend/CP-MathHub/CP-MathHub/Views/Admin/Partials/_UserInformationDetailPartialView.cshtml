@@ -1,0 +1,151 @@
+﻿@using CP_MathHub.Entity
+@model User
+
+<div class="modal fade" id="user-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">@Model.UserName</span></h4>
+            </div>
+            <div class="modal-body">
+                <h4>
+                    Đi đến
+                    <a href="#">trang thông tin cá nhân</a>
+                    của
+                    <span class="mh-manage-user-username">@Model.UserName</span>
+                </h4>
+                <div>
+                    <h3>Thông tin chung</h3>
+                    <div class="mh-manage-user-info-detail">
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Tài khoản</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.UserName</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Email</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Điểm thưởng</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <div>
+                                    <span>@Model.Reputation</span>
+                                    <i class="icon-circle mh-reputation-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Thông tin cơ bản</h3>
+                    <div class="mh-manage-user-info-detail">
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Họ tên</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Profile.FullName</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Giới tính</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@(Model.Profile.Gender != null ? CP_MathHub.Core.Configuration.Constant.Account.Dictionary.GenderName[(int)Model.Profile.Gender] : "")</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Ngày sinh</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Thông tin liên hệ</h3>
+                    <div class="mh-manage-user-info-detail">
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Địa chỉ</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Profile.Address</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Số điện thoại</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.PhoneNumber</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Facebook</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <a href="@Model.Profile.Facebook">@Model.Profile.Facebook</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Thông tin khác</h3>
+                    <div class="mh-manage-user-info-detail">
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Trường</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Profile.School</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Trình độ</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@(Model.Profile.Education != null ? CP_MathHub.Core.Configuration.Constant.Account.Dictionary.EducationName[(int)Model.Profile.Education] : "")</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Quan điểm</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Profile.ViewPoint</span>
+                            </div>
+                        </div>
+                        <div class="row mh-profile-info-row">
+                            <div class="col-xs-3">
+                                <label>Giới thiệu</label>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>@Model.Profile.Summary</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

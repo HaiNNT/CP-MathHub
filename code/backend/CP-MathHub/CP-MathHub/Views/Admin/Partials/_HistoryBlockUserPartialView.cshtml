@@ -1,30 +1,28 @@
-﻿@*@using CP_MathHub.Entity
+﻿@using CP_MathHub.Entity
 @model User
 @{
-    
-    if (user.BannedAccounts.Count > 0)
+    if (Model.BannedAccounts.Count > 0)
     {
-        <a data-toggle="modal" data-target="#blocked-@user.Id">@user.BannedAccounts.Count lần</a>
-
-        <div class="modal fade" id="blocked-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <a data-toggle="modal" data-target="#blocked-@Model.Id">@Model.BannedAccounts.Count lần</a>
+        <div class="modal fade" id="blocked-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa của <span class="mh-manage-user-username">@user.UserName</span></h4>
+                        <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa của <span class="mh-manage-user-username">@Model.UserName</span></h4>
                     </div>
                     <div class="modal-body">
-                        @for (int i = 0; i < user.BannedAccounts.Count; i++)
+                        @for (int j = 0; j < Model.BannedAccounts.Count; j++)
                         {
-                            BanAccount ban = user.BannedAccounts.ElementAt(i);
+                            BanAccount ban = Model.BannedAccounts.ElementAt(j);
                             <div class="mh-history-block-row">
-                                <h3>Lần @(i + 1):</h3>
+                                <h3>Lần @(j + 1):</h3>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <h5>Lý do:</h5>
                                     </div>
                                     <div class="col-xs-8">
-                                        <h5>@Html.GetReasonBlockUser(ban.BanReasons.ToList())</h5>
+                                        <h5>@(string.Join(", ", ban.BanReasons.Select(r => r.Name)))</h5>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -72,7 +70,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
             </div>
@@ -82,4 +80,5 @@
     {
         <span>Chưa</span>
     }
-}*@
+
+}

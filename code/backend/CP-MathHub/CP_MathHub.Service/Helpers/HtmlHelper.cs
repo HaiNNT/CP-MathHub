@@ -36,7 +36,7 @@ namespace CP_MathHub.Service.Helpers
         }
 
         public static string CreatedTime(this HtmlHelper html, DateTime time)
-        {           
+        {
             if (time.Date == DateTime.Now.Date)
             {
                 return "Hôm nay";
@@ -72,31 +72,21 @@ namespace CP_MathHub.Service.Helpers
             string s = "";
             foreach (Accessment assessment in assessments)
             {
-                s += assessment.Role.Name + ", ";
-                if (s.Contains("User"))
+                if (assessment.RoleId == 1)
                 {
-                    s = "Người dùng";
+                    s += " Người dùng,";
                 }
-                if (s.Contains("Expert"))
+                else if (assessment.RoleId == 2)
                 {
-                    s = "Chuyên gia";
+                    s += " Chuyên gia,";
                 }
-                if (s.Contains("Moderator"))
+                else if (assessment.RoleId == 3)
                 {
-                    s = "Quản lý";
+                    s += " Quản lý,";
                 }
             }
-            
-            return s.TrimEnd(',');
-        }
-        public static string GetReasonBlockUser(this HtmlHelper html, List<BanReason> banReasons)
-        {
-            string s = "";
-            foreach (BanReason banReason in banReasons)
-            {
-                s += banReason.Name + ", ";
-            }
-            return s.TrimEnd(',');
+
+            return s.Trim().TrimEnd(',');
         }
         public static string VoteNumer(this HtmlHelper html, int? vote)
         {
@@ -108,7 +98,7 @@ namespace CP_MathHub.Service.Helpers
             {
                 return vote.Value / 1000 + "K";
             }
-            return vote.Value+"";
+            return vote.Value + "";
         }
 
         public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)
@@ -142,9 +132,9 @@ namespace CP_MathHub.Service.Helpers
         public static MvcHtmlString RadioListForGenderEnum(this HtmlHelper htmlHelper, string name, GenderEnum? gender = default(GenderEnum))
         {
             string html = "";
-                html += InlineRadioForEnum(GenderEnum.Male, "Nam", name, gender == GenderEnum.Male, "mh-radio");
-                html += InlineRadioForEnum(GenderEnum.Female, "Nữ", name, gender == GenderEnum.Female, "mh-radio");
-                html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other, "mh-radio");
+            html += InlineRadioForEnum(GenderEnum.Male, "Nam", name, gender == GenderEnum.Male, "mh-radio");
+            html += InlineRadioForEnum(GenderEnum.Female, "Nữ", name, gender == GenderEnum.Female, "mh-radio");
+            html += InlineRadioForEnum(GenderEnum.Other, "Khác", name, gender == GenderEnum.Other, "mh-radio");
             return MvcHtmlString.Create(html);
         }
         public static MvcHtmlString RadioListForReceiveEmailBoolean(this HtmlHelper htmlHelper, string name, Boolean? receiveEmail = default(Boolean))
@@ -165,7 +155,7 @@ namespace CP_MathHub.Service.Helpers
             input.MergeAttribute("name", name);
             input.MergeAttribute("class", cssClass);
             input.MergeAttribute("id", name + 1);
-            input.MergeAttribute("value", mhEnum.ToString());           
+            input.MergeAttribute("value", mhEnum.ToString());
 
             label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
             div.InnerHtml = label.ToString(TagRenderMode.Normal);
