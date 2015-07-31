@@ -76,5 +76,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="banAccount"></param>
         void BlockUser(BanAccount banAccount);
+
+        /// <summary>
+        /// Get list ban reason by list ids
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        List<BanReason> GetListBanReason(List<int> list);
     }
 }
