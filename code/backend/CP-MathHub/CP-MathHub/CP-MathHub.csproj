@@ -208,6 +208,7 @@
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
     <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
+    <Compile Include="Models\Admin\SetRoleViewModel.cs" />
     <Compile Include="Models\Admin\TagEditViewModel.cs" />
     <Compile Include="Models\Admin\TagViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
@@ -851,6 +852,8 @@
     <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
     <Content Include="Views\Admin\Partials\_ManageTagsPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\_DuplicateTagsPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\_HistoryBlockUserPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserInvitedActivityPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

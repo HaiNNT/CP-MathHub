@@ -12,5 +12,6 @@ namespace CP_MathHub.Models.Admin
         public int BannedUserId { get; set; }
         public string Description { get; set; }
         public UserStatusEnum Status { get; set; }
+        public List<int> Reasons { get; set; }
     }
 }

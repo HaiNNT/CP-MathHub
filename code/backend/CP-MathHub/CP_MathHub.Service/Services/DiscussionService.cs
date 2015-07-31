@@ -100,7 +100,8 @@ namespace CP_MathHub.Service.Services
                     ExpressionHelper.DiscussionHelper.UserDiscussion(authorId, _loginUserId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
-                    skip
+                    skip,
+                    0
                 ).ToList();
         }
         public int CountUserDiscussion(int authorId)

@@ -76,7 +76,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Block user: insert table BanAccount
         /// </summary>
         /// <param name="banAccount"></param>
-        void BlockUser(BanAccount banAccount);
+        void BlockUser(BanAccount banAccount); 
         /// <summary>
         /// Get list report
         /// </summary>
@@ -105,5 +105,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="tagId"></param>
         void DeleteTag(int tagId);
+
+        /// <summary>
+        /// Get list ban reason by list ids
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        List<BanReason> GetListBanReason(List<int> list);
     }
 }

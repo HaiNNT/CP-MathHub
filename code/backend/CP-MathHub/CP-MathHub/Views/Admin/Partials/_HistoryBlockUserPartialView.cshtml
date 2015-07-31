@@ -1,0 +1,85 @@
+﻿@*@using CP_MathHub.Entity
+@model User
+@{
+    
+    if (user.BannedAccounts.Count > 0)
+    {
+        <a data-toggle="modal" data-target="#blocked-@user.Id">@user.BannedAccounts.Count lần</a>
+
+        <div class="modal fade" id="blocked-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa của <span class="mh-manage-user-username">@user.UserName</span></h4>
+                    </div>
+                    <div class="modal-body">
+                        @for (int i = 0; i < user.BannedAccounts.Count; i++)
+                        {
+                            BanAccount ban = user.BannedAccounts.ElementAt(i);
+                            <div class="mh-history-block-row">
+                                <h3>Lần @(i + 1):</h3>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Lý do:</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@Html.GetReasonBlockUser(ban.BanReasons.ToList())</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Tổng số ngày bị khóa</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@ban.Duration ngày</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Bị khóa bởi</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@ban.BanUser.UserName</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Ngày bị khóa</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@(ban.BannedDate != null ? ban.BannedDate.ToString("dd-MM-yyyy") : "")</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Ngày bỏ khóa</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@(ban.UnBanedDate != null ? ban.UnBanedDate.ToString("dd-MM-yyyy") : "")</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <h5>Miêu tả</h5>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <h5>@ban.Description</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <span>Chưa</span>
+    }
+}*@

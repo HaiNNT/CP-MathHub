@@ -380,6 +380,7 @@ function sendReport(id) {
     $.post('/Blog/Report', $(formId).serialize())
         .done(function (msg) {
             console.log(msg);
+            $(formId).trigger("reset");
         })
          .fail(function () {
              alert("fail error");

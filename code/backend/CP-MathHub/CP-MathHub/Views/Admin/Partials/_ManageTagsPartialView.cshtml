@@ -6,7 +6,7 @@
     <tr class="">
         <td class="mh-cell-center">@(i + 1)</td>
         <td class="mh-cell-center">@tag.Name</td>
-        <td class="mh-cell-center">@tag.UsedNum</td>
+        <td class="mh-cell-center" mh-id ="@tag.UsedNum">@tag.UsedNum</td>
         <td class="mh-cell-middle">@tag.Description</td>
 
         @if (tag.CheckDuplicate)
@@ -20,9 +20,9 @@
             <td class="center mh-cell-center">Không trùng</td>
         }
 
-        <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;" mh-id="@tag.Id" *>Chỉnh sửa</a></td>
-        <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-        <td class="mh-cell-center"><input type="checkbox" value=""></td>
+        <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;" mh-id="@tag.Id" >Chỉnh sửa</a></td>
+        <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;" mh-id="@tag.Id" mh-usedNum="@tag.UsedNum">Xóa</a></td>
+        <td class="mh-cell-center"><input type="checkbox" id="@tag.Id" value=""></td>
     </tr>
 }
 

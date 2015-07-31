@@ -647,7 +647,7 @@
                                           <div class="switch switch-square"
                                                data-on-label="<i class=' icon-ok'></i>"
                                                    data-off-label="<i class='icon-remove'></i>">
-                                              <input type="checkbox" checked="" />
+                                              <input type="checkbox" />
                                           </div>
                                       </td>
                                       <td class="mh-cell-center">
@@ -702,15 +702,6 @@
 
         $('select[name=selValue]').val(1);
         $('.selectpicker').selectpicker('refresh');
-       
-        $('.selectpicker.blockday').on('change', function () {
-            var temp2 = $('.selectpicker.blockday').val();
-            var total = 0;
-            for (var i = 0; i < temp2.length; i++) {
-                total += +temp2[i];
-            }
-            $('#dayresult-1').val(total + " ngày");
-        });
         
     </script>
     <!--script for this page only-->
@@ -741,7 +732,7 @@
         });
 
         jQuery('#editable-manageInfracPosts_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-        jQuery('#editable-manageInfracPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+		jQuery('#editable-manageInfracPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 
     </script>
   </body>

@@ -465,19 +465,35 @@ function accept(item, id) {
         data: { answerId: id }
     })
 	.done(function (msg) {
-		if (msg == "True") {
-			if ($(item).hasClass("mh-checked")) {
-				$(item).removeClass("mh-checked");
-			} else {
-				$(item).addClass("mh-checked");
-			}
-		} else {
-		    alert("Bạn không thể chấp nhận hơn 1 câu trả lời");
-		}
+	    if (msg == "True") {
+	        if ($(item).hasClass("mh-checked")) {
+	            $(item).removeClass("mh-checked");
+	        } else {
+	            $(item).addClass("mh-checked");
+	        }
+	    } else {
+	        alert("Bạn không thể chấp nhận hơn 1 câu trả lời");
+	    }
 	})
 	.fail(function (msg) {
-		alert(msg);
+	    alert(msg);
 	});
+}
+
+/*
+    Send report
+*/
+function sendReport(id) {
+    var formId = "#report-form-" + id;
+    $.post('/Question/Report', $(formId).serialize())
+        .done(function (msg) {
+            $(formId).trigger("reset");
+            if (msg == "False")
+                alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+        })
+         .fail(function () {
+             alert("fail error");
+         });
 }
 
 /*

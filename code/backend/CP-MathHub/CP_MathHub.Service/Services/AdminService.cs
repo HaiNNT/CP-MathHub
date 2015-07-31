@@ -101,7 +101,6 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             //aService.UpdateUser(banAccount.BannedUser);
         }
-
         public List<Report> GetMainPostReport()
         {
             List<Report> list = new List<Report>();
@@ -130,6 +129,15 @@ namespace CP_MathHub.Service.Services
         {
             dal.Repository<Tag>().Delete(tagId);
             dal.Save();
+        }
+        public List<BanReason> GetListBanReason(List<int> list)
+        {
+            List<BanReason> result = new List<BanReason>();
+            foreach (int id in list)
+            {
+                result.Add(dal.Repository<BanReason>().GetById(id));
+            }
+            return result;
         }
     }
 }

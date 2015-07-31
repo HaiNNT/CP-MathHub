@@ -1,4 +1,4 @@
-﻿@model CP_MathHub.Models.Admin.ManageUsersViewModel
+﻿@using CP_MathHub.Models.Admin
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Entity
 @using CP_MathHub.Service.Helpers
@@ -59,7 +59,7 @@
                 <table class="table table-striped table-hover table-bordered" id="editable-manageUser">
                     <thead>
                         <tr>
-                            <th>Ảnh đại diện</th>
+                            <th>STT</th>
                             <th>Tài khoản</th>
                             <th>Họ tên</th>
                             <th>Email</th>
@@ -70,11 +70,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @*@for (int i = 0; i < Model.Users.Count; i++)
+                        {
+                            List<User> user = Model
+                        }*@
                         @foreach (User user in Model.Users)
                         {
                             <tr class="">
                                 <td class="mh-cell-center">
-                                    <img src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-picture" />
+                                    
                                 </td>
                                 <td class="mh-cell-center">
                                     <a data-toggle="modal" data-target="#user-@user.Id">@user.UserName</a>
@@ -232,11 +236,12 @@
                                 <td class="mh-cell-middle">@user.Email</td>
                                 <td class="mh-cell-center">@Html.CheckStatusUser(user.Status)</td>
                                 <td class="mh-cell-center">
+                                    @*@Html.Partial("~Partials/_HistoryBlockUserPartialView", user)*@
                                     @{
                                         if (user.BannedAccounts.Count > 0)
                                         {
                                             <a data-toggle="modal" data-target="#blocked-@user.Id">@user.BannedAccounts.Count lần</a>
-                                            <!-- Modal -->
+                                            
                                             <div class="modal fade" id="blocked-@user.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -399,10 +404,10 @@
                                                                         <h5>Lý do:</h5>
                                                                     </div>
                                                                     <div class="col-xs-8 mh-select-cause-time-block">
-                                                                        <select name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                        <select id="select-@user.Id" name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
                                                                             @foreach (BanReason reason in Model.BanReasons)
                                                                             {
-                                                                                <option value="@reason.Id">@reason.Name - @reason.Duration ngày</option>
+                                                                                <option mh-id="@reason.Id" value="@reason.Duration">@reason.Name - @reason.Duration ngày</option>
                                                                             }
                                                                         </select>
                                                                     </div>
@@ -434,36 +439,34 @@
                                             </div>
                                         }
                                     } 
-                                    <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
+                                    @*<a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>*@
                                     <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole-@user.Id">Phân quyền</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="setRole-@user.Id" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                         <div class="modal-dialog modal-sm" role="document">
                                             <div class="modal-content">
-                                                <form>
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title" id="myModalLabel">Phân quyền cho <span class="mh-manage-user-username">@user.UserName</span></h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label>
-                                                            <input type="checkbox" value="3" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Quản lý") ? "checked" : "")>
-                                                            Quản lý
-                                                        </label><br />
-                                                        <label>
-                                                            <input type="checkbox" value="2" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Chuyên gia") ? "checked" : "")>
-                                                            Chuyên gia
-                                                        </label><br />
-                                                        <label>
-                                                            <input type="checkbox" value="1" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Người dùng") ? "checked" : "")>
-                                                            Người dùng
-                                                        </label>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                        <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                                                    </div>
-                                                </form>
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Phân quyền cho <span class="mh-manage-user-username">@user.UserName</span></h4>
+                                                </div>
+                                                <div class="modal-body" id="checkbox-@user.Id">
+                                                    <label>
+                                                        <input type="checkbox" value="3" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Quản lý") ? "checked" : "")>
+                                                        Quảnlý
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox" value="2" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Chuyên gia") ? "checked" : "")>
+                                                        Chuyên gia
+                                                    </label><br />
+                                                    <label>
+                                                        <input type="checkbox" value="1" @(Html.GetRoleUser(user.Assessments.ToList()).Contains("Người dùng") ? "checked" : "")>
+                                                        Người dùng
+                                                    </label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                    <button type="button" class="btn btn-primary" onclick="@("setRuleUser(" + @user.Id + ")")" )>Lưu thay đổi</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
