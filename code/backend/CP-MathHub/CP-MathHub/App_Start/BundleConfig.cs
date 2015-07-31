@@ -58,9 +58,13 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/adminManageRulesjs").Include(
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
-                      "~/Content/js/editable-table-rule.js",
-                      "~/Content/js/editable-table-tag.js",
+                      "~/Content/js/editable-table-rule.js",                    
                       "~/Content/js/spinner.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/adminManageTagsjs").Include(
+                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js",
+                     "~/Content/js/editable-table-tag.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminManageInfracPostsjs").Include(
                       "~/Content/assets/data-tables/jquery.dataTables.js",

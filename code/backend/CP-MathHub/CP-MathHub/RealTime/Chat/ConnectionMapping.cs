@@ -76,5 +76,10 @@ namespace CP_MathHub.RealTime.Chat
         {
             return JsonConvert.SerializeObject(_connections, Formatting.Indented);
         }
+
+        public bool TrackOnlineUser(T key)
+        {
+            return _connections.ContainsKey(key);
+        }
     }
 }

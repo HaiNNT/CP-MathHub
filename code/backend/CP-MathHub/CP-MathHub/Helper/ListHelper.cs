@@ -7,6 +7,7 @@ using System.Globalization;
 using CP_MathHub.Models.Account;
 using CP_MathHub.Models.RealTime;
 using CP_MathHub.Entity;
+using CP_MathHub.Service.Services;
 
 namespace CP_MathHub.Helper
 {
@@ -68,26 +69,29 @@ namespace CP_MathHub.Helper
         }
         public static List<ConversationPreviewViewModel> ConversationsToConversationViewModels(List<Conversation> conversations, int userId)
         {
-            List<ConversationPreviewViewModel> models = new List<ConversationPreviewViewModel>();
-            foreach (Conversation conversation in conversations)
+            using (RealTimeService rSercive = new RealTimeService(new CPMathHubModelContainer(), userId))
             {
-                ConversationPreviewViewModel model = new ConversationPreviewViewModel();
-                model.Id = conversation.Id;
-                model.Avatar = conversation.Avatar;
-                model.Name = conversation.Name;
-                model.LastMessage = conversation.Attendances
-                                                    .Where(m => m.UserId != userId)
-                                                    .FirstOrDefault()
-                                                    .Messages
-                                                        .OrderByDescending(m => m.CreatedDate)
-                                                        .FirstOrDefault();
-                model.NewMessageNum = conversation.Attendances
-                                                    .Where(m => m.UserId != userId)
-                                                    .FirstOrDefault()
-                                                    .Messages.Count(m => m.Attendance.SeenDate <= m.CreatedDate);
-                models.Add(model);
-            }
+                List<ConversationPreviewViewModel> models = new List<ConversationPreviewViewModel>();
+                foreach (Conversation conversation in conversations)
+                {
+                    ConversationPreviewViewModel model = new ConversationPreviewViewModel();
+                    model.Id = conversation.Id;
+                    model.Avatar = conversation.Avatar;
+                    model.Name = rSercive.GetConversationName(conversation.Id);
+                    model.LastMessage = conversation.Attendances
+                                                        .Where(m => m.UserId != userId)
+                                                        .FirstOrDefault()
+                                                        .Messages
+                                                            .OrderByDescending(m => m.CreatedDate)
+                                                            .FirstOrDefault();
+                    model.NewMessageNum = conversation.Attendances
+                                                        .Where(m => m.UserId != userId)
+                                                        .FirstOrDefault()
+                                                        .Messages.Count(m => m.Attendance.SeenDate <= m.CreatedDate);
+                    models.Add(model);
+                }         
             return models;
+            }
         }
     }
 }

@@ -22,19 +22,48 @@ namespace CP_MathHub.RealTime.Chat
             Clients.All.showOnlineUser(_connections.GetListUser(), _connections.Count);
         }
 
-        private Task JoinConversation(string conversationName)
+        private Task JoinConversation(string conversationId)
         {
-            return Groups.Add(Context.ConnectionId, conversationName);
+            return Groups.Add(Context.ConnectionId, conversationId);
         }
 
-        private Task LeaveConversation(string conversationName)
-        {               
-            return Groups.Remove(Context.ConnectionId, conversationName);
+        private Task LeaveConversation(string conversationId)
+        {
+            return Groups.Remove(Context.ConnectionId, conversationId);
         }
 
-        public void SendToConversation(string message, string conversationName)
+        public void SendToConversation(string content, int conversationId)
+        {   
+            //profileUrl, avatarUrl, username, content, time
+            using (AccountService aSercive = new AccountService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            using (RealTimeService rSercive = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            {
+                User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
+                string profileUrl = user.Id == Context.User.Identity.GetUserId<int>() ? "/Account/MyProfile" : "/Account/UserProfile?userId=" + user.Id;
+                string avatarUrl = user.Avatar.Url.Replace("~","");
+                string username = user.UserName;
+                string time = DateTime.Now.ToShortTimeString();
+                Conversation conversation = rSercive.GetConversation(conversationId);               
+                Message message = new Message();
+                message.AttendanceId = conversation.Attendances.First(a => a.UserId == user.Id).Id;
+                message.Content = content;
+                message.CreatedDate = DateTime.Now;
+                rSercive.AddMessage(message);
+                Clients.Group(conversationId+"").addChatMessage(profileUrl, avatarUrl, username, content, time);
+            }
+           
+        }
+
+        public void CheckOnline(int id)
         {
-            Clients.Group(conversationName).addChatMessage(Context.User.Identity.Name, message);
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer()))
+            {
+                Conversation conversation = rService.GetConversation(id);
+                List<User> users = conversation.Attendances.Select(c => c.User).ToList();
+                int count = users.Count(u => _connections.TrackOnlineUser(u.UserName));
+                string cssClass = count > 1 ? "fa fa-circle mh-chat-status-icon-on" : "fa fa-circle mh-chat-status-icon-off";
+                Clients.Caller.checkOnlineTrigger(cssClass);
+            }
         }
 
         public override Task OnConnected()
@@ -58,7 +87,7 @@ namespace CP_MathHub.RealTime.Chat
                     JoinConversation(conversation.Id+"");
                 }
             }
-            GetOnlineUser();
+            
             return base.OnConnected();
         }
 
@@ -88,8 +117,6 @@ namespace CP_MathHub.RealTime.Chat
             GetOnlineUser();
             return base.OnReconnected();
         }
-
-
 
     }
 }

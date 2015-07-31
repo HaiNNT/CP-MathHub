@@ -21,6 +21,7 @@ namespace CP_MathHub.Entity
         public Nullable<int> UserId { get; set; }
         public Nullable<int> PostId { get; set; }
         public string Description { get; set; }
+        public bool Status { get; set; }
     
         public virtual User Reporter { get; set; }
         public virtual User User { get; set; }

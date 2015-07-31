@@ -201,11 +201,15 @@
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracPostViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
     <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
+    <Compile Include="Models\Admin\TagEditViewModel.cs" />
+    <Compile Include="Models\Admin\TagViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
@@ -845,6 +849,8 @@
     <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
     <Content Include="Views\Account\Partials\_ConversationDetailPartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
+    <Content Include="Views\Admin\Partials\_ManageTagsPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\ManageInfracPostPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

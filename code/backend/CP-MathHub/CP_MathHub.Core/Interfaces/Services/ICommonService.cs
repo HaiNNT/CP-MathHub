@@ -183,6 +183,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         bool CreateReport(Report report);
 
         /// <summary>
+        /// Get all tag
+        /// </summary>
+        /// <returns></returns>
+        List<Tag> GetAllTags();
+
+        /// <summary>
         /// Get edited logs
         /// </summary>
         /// <param name="postId"></param>

@@ -68,5 +68,24 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<Conversation>().Include("Attendances").GetById(id);
         }
+
+        public void AddMessage(Message message)
+        {
+            _dal.Repository<Message>().Insert(message);
+            _dal.Save();
+        }
+
+        public string GetConversationName(int id)
+        {
+            Conversation conversation = GetConversation(id);
+            string name = string.Join(",", conversation.Attendances.Where(a => a.UserId != _loginUserId).Select(a => a.User.UserName).ToArray());           
+            return name;
+        }
+
+        public void UpdateConversation(Conversation conversation)
+        {
+            _dal.Repository<Conversation>().Update(conversation);
+            _dal.Save();
+        }
     }
 }

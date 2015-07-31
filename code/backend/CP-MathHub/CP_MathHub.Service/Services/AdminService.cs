@@ -101,6 +101,36 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             //aService.UpdateUser(banAccount.BannedUser);
         }
+
+        public List<Report> GetMainPostReport()
+        {
+            List<Report> list = new List<Report>();
+            list = dal.Repository<Report>().Get((r =>r.PostId != null)
+                                                , (r => r.OrderByDescending(s => s.ReportedDate))
+                                                , "Reporter,Post"
+                                                , 0
+                                                , 0).ToList();
+            return list;
+        }
+        public List<MainPost> GetReportedMainPost()
+        {
+            return dal.Repository<Post>().Table.OfType<MainPost>().Where(p => p.Reports.Count > 0).ToList();
+        }
+        public void InsertTag(Tag tag)
+        {
+            dal.Repository<Tag>().Insert(tag);
+            dal.Save();
+        }
+        public void EditTag(Tag tag)
+        {
+            dal.Repository<Tag>().Update(tag);
+            dal.Save();
+        }
+        public void DeleteTag(int tagId)
+        {
+            dal.Repository<Tag>().Delete(tagId);
+            dal.Save();
+        }
         public List<BanReason> GetListBanReason(List<int> list)
         {
             List<BanReason> result = new List<BanReason>();

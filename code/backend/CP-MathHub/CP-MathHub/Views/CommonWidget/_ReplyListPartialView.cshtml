@@ -12,7 +12,7 @@
         </div>
         <div class="media-body">
             <div class="media-heading mh-comment-content">
-                <a href="" class="mh-media-comment-user">@reply.Username</a>
+                <a href="@Url.Action("UserProfile", "Account", new {userId = reply.UserId })" class="mh-media-comment-user">@reply.Username</a>
                 <span id="comment-content-@(reply.Id)">@reply.Content</span>
             </div>
             <div class="mh-comment-activity">

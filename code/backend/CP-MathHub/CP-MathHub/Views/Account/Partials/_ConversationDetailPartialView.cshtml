@@ -4,14 +4,18 @@
 @using CP_MathHub.Entity
 <div class="col-xs-8 mh-profile-chat-details">
     <div class="mh-profile-chat-top">
-        <h4>@Model.Name</h4>
+        <h4>@Model.Name <i id="conversation-status" class="fa fa-circle mh-chat-status-icon-off"></i></h4>        
     </div>
     <div class="mh-profile-chat-detail">
         @foreach (MesagesOfDate date in Model.Dates)
         {
-            <div class="mh-profile-chat-detail-divide">
-                <span class="mh-profile-chat-detail-divide-time">@Html.CreatedTime(date.Date)</span>
-            </div>
+            if (date.Messages.Count > 0 || date.Date == DateTime.Now.Date)
+            {
+                <div class="mh-profile-chat-detail-divide">
+                    <span class="mh-profile-chat-detail-divide-time">@Html.CreatedTime(date.Date)</span>
+                </div>
+            }
+
             foreach (Message message in date.Messages)
             {
                 <div class="media mh-profile-chat-detail-row">
@@ -34,9 +38,9 @@
         }      
     </div>
     <div class="mh-profile-chat-footer">
-        <textarea rows="5" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
+        <textarea mh-id="@Model.Id" rows="3" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
         <a href="">
-            <i class="fa fa-smile-o mh-profile-chat-footer-smile" title="Chọn một nhãn dán"></i>
+            <i class="fa fa-smile-o mh-profile-chat-footer-smile" title="Chọn biểu tượng cảm xúc"></i>
         </a>
     </div>
 </div>

@@ -60,6 +60,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="Id"></param>
         void DeleteBanReason(BanReason banReason);
+
         /// <summary>
         /// Insert ban reason
         /// </summary>
@@ -76,6 +77,34 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="banAccount"></param>
         void BlockUser(BanAccount banAccount);
+        /// <summary>
+        /// Get list report
+        /// </summary>
+        /// <returns></returns>
+        List<Report> GetMainPostReport();
+        /// <summary>
+        /// Get list reported main posts
+        /// </summary>
+        /// <returns></returns>
+        List<MainPost> GetReportedMainPost();
+
+        /// <summary>
+        /// Insert tag
+        /// </summary>
+        /// <param name="tag"></param>
+        void InsertTag(Tag tag);
+
+        /// <summary>
+        /// Edit tag
+        /// </summary>
+        /// <param name="tag"></param>
+        void EditTag(Tag tag);
+
+        /// <summary>
+        /// Delete tag
+        /// </summary>
+        /// <param name="tagId"></param>
+        void DeleteTag(int tagId);
 
         /// <summary>
         /// Get list ban reason by list ids

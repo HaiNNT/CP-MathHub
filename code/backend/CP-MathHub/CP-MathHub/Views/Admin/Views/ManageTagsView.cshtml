@@ -1,4 +1,4 @@
-﻿
+﻿@using CP_MathHub.Entity
 @using CP_MathHub.Models.Admin
 @model ManageTagsViewModel
 @{
@@ -19,34 +19,39 @@
                         <!-- Modal -->
                         <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Tạo thẻ mới</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row mh-admin-row">
-                                            <div class="col-xs-3">
-                                                <label>Tên thẻ:</label>
+                                @using (Html.BeginForm("InsertTag", "Admin", FormMethod.Post))
+                                {
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Tạo thẻ mới</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row mh-admin-row">
+                                                <div class="col-xs-3">
+                                                    <label>Tên thẻ:</label>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    @*<input type="text" placeholder="Nhập tên thẻ" class="mh-admin-row-input" />*@
+                                                    @Html.TextBoxFor(m => m.Name, new { @class = "mh-admin-row-input", @placeholder = "Nhập tên thẻ" })
+                                                </div>
                                             </div>
-                                            <div class="col-xs-9">
-                                                <input type="text" placeholder="Nhập tên thẻ" class="mh-admin-row-input" />
+                                            <div class="row mh-admin-row">
+                                                <div class="col-xs-3">
+                                                    <label>Miêu tả:</label>
+                                                </div>
+                                                <div class="col-xs-9">
+                                                    @*<input type="text" placeholder="Nhập miêu tả cho thẻ này" class="mh-admin-row-input" />*@
+                                                    @Html.TextBoxFor(m => m.Description, new { @class = "mh-admin-row-input", @placeholder = "Nhập miêu tả cho thẻ này" })
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mh-admin-row">
-                                            <div class="col-xs-3">
-                                                <label>Miêu tả:</label>
-                                            </div>
-                                            <div class="col-xs-9">
-                                                <input type="text" placeholder="Nhập miêu tả cho thẻ này" class="mh-admin-row-input" />
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Tạo mới</button>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-primary">Tạo mới</button>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -69,30 +74,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td class="mh-cell-center">1</td>
-                            <td class="mh-cell-center">abc</td>
-                            <td class="mh-cell-center">1234</td>
-                            <td class="mh-cell-middle">dsa dsad dsad sadsda</td>
-                            <td class="center mh-cell-center">
-                                <a class="btn btn-warning">Bị trùng</a>
-                            </td>
-                            <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
-                            <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-                            <td class="mh-cell-center"><input type="checkbox" value=""></td>
-                        </tr>
-                        <tr class="">
-                            <td class="mh-cell-center">1</td>
-                            <td class="mh-cell-center">xyz</td>
-                            <td class="mh-cell-center">1234</td>
-                            <td class="mh-cell-middle">dsa dsad dsad sadsda</td>
-                            <td class="center mh-cell-center">
-                                Không trùng
-                            </td>
-                            <td class="mh-cell-center"><a class="edit btn btn-primary" href="javascript:;">Chỉnh sửa</a></td>
-                            <td class="mh-cell-center"><a class="delete btn btn-danger" href="javascript:;">Xóa</a></td>
-                            <td class="mh-cell-center"><input type="checkbox" value=""></td>
-                        </tr>
+                        @Html.Partial("Partials/_ManageTagsPartialView", Model.Items)
                     </tbody>
                 </table>
                 <div class="space15"></div>
