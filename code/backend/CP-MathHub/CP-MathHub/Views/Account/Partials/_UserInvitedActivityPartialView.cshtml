@@ -1,0 +1,28 @@
+﻿@using CP_MathHub.Entity
+@model List<MainPost>
+@foreach (MainPost item in Model)
+{
+    string text = "";
+    string type = "";
+    if (item.GetType() == typeof(Question))
+    {
+        text = "câu hỏi";
+        type = "Question";
+    }
+    else if (item.GetType() == typeof(Article))
+    {
+        text = "bài viết";
+        type = "Blog";
+    }
+    else //Discussion
+    {
+        text = "thảo luận";
+        type = "Discussion";
+    }    
+    <div>
+        <i class="fa fa-square"></i>
+        Bạn được mời vào @text:
+        <a href="@Url.Action("Detail", type, new { id = item.Id})">@item.Title</a><br />
+        <span class="mh-profile-time">@Html.PostCreatedTime(item.CreatedDate, "")</span>
+    </div>
+}

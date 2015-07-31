@@ -814,10 +814,19 @@ namespace CP_MathHub.Controllers
         #region Activity
         public ActionResult MyActivity()
         {
+            //Post
             List<Discussion> discussions = dService.GetDiscussions(User.Identity.GetUserId<int>());
             List<Question> questions = qService.GetQuestions(User.Identity.GetUserId<int>());
             List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>());
             List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>());
+
+            //Follow
+            List<Discussion> followDiscussions = dService.GetDiscussions(Constant.Discussion.String.FollowDiscussion);
+            List<Question> followQuestions = qService.GetQuestions(Constant.Question.String.FollowQuestion);
+            List<Article> followArticles = bService.GetArticles(Constant.Blog.String.FollowArticle);
+            //Invited
+            List<MainPost> invitedMainPosts = cService.GetMainPosts("Invited");
+
             List<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
             List<Conversation> convers = rService.GetConversations(_currentUserId);
             List<ConversationPreviewViewModel> conversations =
@@ -835,15 +844,23 @@ namespace CP_MathHub.Controllers
             rService.UpdateConversation(conver);
 
             ActivityViewModel model = new ActivityViewModel();
+            //Post
             model.DiscussionList = discussions;
             model.QuestionList = questions;
             model.ArticleList = articles;
             model.AnswerList = answers;
+            //Follow
+            model.FollowArticleList = followArticles;
+            model.FollowDiscussionList = followDiscussions;
+            model.FollowQuestionList = followQuestions;
+            //Invited
+            model.InvitedList = invitedMainPosts;
+
             model.TagList = tags;
-            model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
-            model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
-            model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
-            model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
+            //model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
+            //model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());
+            //model.DiscussionNum = dService.CountUserDiscussion(User.Identity.GetUserId<int>());
+            //model.QuestionNum = qService.CountUserQuestion(User.Identity.GetUserId<int>());
             model.Conversations = conversations;
             model.Conversation = conversation;
             //var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);

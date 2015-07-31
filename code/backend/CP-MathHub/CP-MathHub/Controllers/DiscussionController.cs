@@ -142,14 +142,14 @@ namespace CP_MathHub.Controllers
                 return View("Views/Error");
             }
         }
-        //Get: Discussion/HotDiscussion
-        public List<Discussion> GetHotDiscussion(string tab = Constant.Discussion.String.HomeHotTab
-                                   , int page = 0)
-        {
-            int skip = page * Constant.Question.Integer.PagingDefaultTake;
-            List<Discussion> discussions = dService.GetDiscussions(tab, skip);
-            return discussions;
-        }
+        ////Get: Discussion/HotDiscussion
+        //public List<Discussion> GetHotDiscussion(string tab = Constant.Discussion.String.HomeHotTab
+        //                           , int page = 0)
+        //{
+        //    int skip = page * Constant.Question.Integer.PagingDefaultTake;
+        //    List<Discussion> discussions = dService.GetDiscussions(tab, skip);
+        //    return discussions;
+        //}
         //Get: Discussion/Tag
         public ActionResult Tag(string tag, int tagId, int page = 0)
         {

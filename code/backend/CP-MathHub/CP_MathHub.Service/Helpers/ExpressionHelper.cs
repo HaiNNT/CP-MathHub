@@ -24,6 +24,21 @@ namespace CP_MathHub.Service.Helpers
             /// </summary>
             /// <param name="userId"></param>
             /// <returns></returns>
+            public static Expression<Func<Question, bool>> FollowQuestion(int userId)
+            {
+                return (q => (q.BookmarkUsers.Count(b => b.Id == userId) > 0) && (q.Status != PostStatusEnum.Hidden
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
+                                || (q.Privacy == MainPostPrivacyEnum.Friend
+                                    && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
+                                        || q.Author.PassiveRelationship.Count(r => r.UserId == userId) > 0))
+                                || (q.Privacy == MainPostPrivacyEnum.Invited
+                                    && q.Invitations.Count(i => i.InviteeId == userId) > 0))));
+            }
+            /// <summary>
+            /// Get Detail Question lambda expression by id
+            /// </summary>
+            /// <param name="userId"></param>
+            /// <returns></returns>
             public static Expression<Func<Question, bool>> DetailQuestion(int id, int userId)
             {
                 return (q => (q.Id == id) && (q.Status != PostStatusEnum.Hidden
@@ -153,6 +168,20 @@ namespace CP_MathHub.Service.Helpers
         }
         public class DiscussionHelper
         {
+            /// <summary>
+            /// Detail Discussion lambda expression
+            /// </summary>
+            /// <returns></returns>
+            public static Expression<Func<Discussion, bool>> FollowDiscussion(int userId)
+            {
+                return (q => (q.BookmarkUsers.Count(b => b.Id == userId) > 0) && (q.Status != PostStatusEnum.Hidden
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
+                                || (q.Privacy == MainPostPrivacyEnum.Friend
+                                    && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
+                                        || q.Author.PassiveRelationship.Count(r => r.UserId == userId) > 0))
+                                || (q.Privacy == MainPostPrivacyEnum.Invited
+                                    && q.Invitations.Count(i => i.InviteeId == userId) > 0))));
+            }
             /// <summary>
             /// Detail Discussion lambda expression
             /// </summary>
@@ -295,6 +324,21 @@ namespace CP_MathHub.Service.Helpers
         }
         public class BlogHelper
         {
+            /// <summary>
+            /// Get follow articles lambda expression
+            /// </summary>
+            /// <param name="name"></param>
+            /// <returns></returns>
+            public static Expression<Func<Article, bool>> FollowArticle(int loginUserId)
+            {
+                return (q => (q.BookmarkUsers.Count(b => b.Id == loginUserId) > 0 && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == loginUserId
+                                || (q.Privacy == MainPostPrivacyEnum.Friend
+                                    && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == loginUserId) > 0
+                                        || q.Author.PassiveRelationship.Count(r => r.UserId == loginUserId) > 0))
+                                || (q.Privacy == MainPostPrivacyEnum.Invited
+                                    && q.Invitations.Count(i => i.InviteeId == loginUserId) > 0))));
+            }
             /// <summary>
             /// Search article lambda expression
             /// </summary>

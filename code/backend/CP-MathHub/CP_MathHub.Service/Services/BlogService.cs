@@ -36,7 +36,7 @@ namespace CP_MathHub.Service.Services
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        public List<Article> GetArticles(string tab, int skip, int userId = 0)
+        public List<Article> GetArticles(string tab, int skip = 0, int userId = 0)
         {
             User user = new User();
             if (userId != 0)
@@ -115,6 +115,16 @@ namespace CP_MathHub.Service.Services
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
+                                ).ToList();
+                    break;
+                case Constant.Blog.String.FollowArticle:
+                    list = _dal.Repository<Article>()
+                                .Get(
+                                    ExpressionHelper.BlogHelper.FollowArticle(_loginUserId),
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
+                                    skip,
+                                    0
                                 ).ToList();
                     break;
                 default:

@@ -47,26 +47,38 @@ namespace CP_MathHub.Service.Services
             discussion.Author = _cService.GetUser(discussion.UserId);
             return discussion;
         }
-        public List<Discussion> GetDiscussions(string homeTab, int skip = 0)
+        public List<Discussion> GetDiscussions(string type, int skip = 0, int take = 0)
         {
             List<Discussion> list = new List<Discussion>();
-            switch (homeTab)
+            switch (type)
             {
-                case Constant.Question.String.HomeNewestTab:
+                case Constant.Discussion.String.HomeNewestTab:
                     list = _dal.Repository<Discussion>() // Get Question Repository
                                 .Get(ExpressionHelper.DiscussionHelper.NewestDiscussion(_loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)), //Order Question by CreatedDate
                                     "Author,BookmarkUsers,Sharers,Tags,Reports", // Include Author Property
-                                    skip
+                                    skip,
+                                    take
                                 ).ToList();
                     break;
-                case Constant.Question.String.HomeHotTab:
+                case Constant.Discussion.String.HomeHotTab:
                     list = _dal.Repository<Discussion>()
                                 .Get(
                                     ExpressionHelper.DiscussionHelper.HotDiscussion(_loginUserId),// Get hot Discussion lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
-                                    skip
+                                    skip,
+                                    take
+                                ).ToList();
+                    break;
+                case Constant.Discussion.String.FollowDiscussion:
+                    list = _dal.Repository<Discussion>()
+                                .Get(
+                                    ExpressionHelper.DiscussionHelper.FollowDiscussion(_loginUserId),// Get hot Discussion lambda expression
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    skip,
+                                    take
                                 ).ToList();
                     break;
                 default:
@@ -74,7 +86,8 @@ namespace CP_MathHub.Service.Services
                                 .Get(ExpressionHelper.DiscussionHelper.NewestDiscussion(_loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
-                                    skip
+                                    skip,
+                                    take
                                 ).ToList();
                     break;
             }

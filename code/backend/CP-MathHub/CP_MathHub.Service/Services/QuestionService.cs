@@ -37,7 +37,7 @@ namespace CP_MathHub.Service.Services
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        public List<Question> GetQuestions(string homeTab, int skip = 0)
+        public List<Question> GetQuestions(string homeTab, int skip = 0, int take = 0)
         {
             List<Question> list = new List<Question>();
             switch (homeTab)
@@ -63,6 +63,15 @@ namespace CP_MathHub.Service.Services
                     list = _dal.Repository<Question>()
                                 .Get(
                                     ExpressionHelper.QuestionHelper.HotQuestion(_loginUserId),// Get hot Question lambda expression
+                                    (p => p.OrderByDescending(s => s.CreatedDate)),
+                                    "Author,BookmarkUsers,Sharers,Tags,Reports",
+                                    skip
+                                ).ToList();
+                    break;
+                case Constant.Question.String.FollowQuestion:
+                    list = _dal.Repository<Question>()
+                                .Get(
+                                    ExpressionHelper.QuestionHelper.FollowQuestion(_loginUserId),// Get hot Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip

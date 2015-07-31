@@ -14,7 +14,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get Default Questions
         /// </summary>
         /// <returns></returns>
-        List<Question> GetQuestions(string homeTab, int skip = 0);
+        List<Question> GetQuestions(string type, int skip = 0, int take = 0);
 
         /// <summary>
         /// Get Questions by Author

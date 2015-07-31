@@ -62,7 +62,7 @@ namespace CP_MathHub.RealTime.Chat
 
                 lock (connections)
                 {
-                    connections.Remove(connectionId);
+                    connections.Clear();
 
                     if (connections.Count == 0)
                     {
