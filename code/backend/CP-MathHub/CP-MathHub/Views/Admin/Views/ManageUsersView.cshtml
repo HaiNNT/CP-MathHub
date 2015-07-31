@@ -1,4 +1,4 @@
-﻿@model CP_MathHub.Models.Admin.ManageUsersViewModel
+﻿@using CP_MathHub.Models.Admin
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Entity
 @using CP_MathHub.Service.Helpers
@@ -59,7 +59,7 @@
                 <table class="table table-striped table-hover table-bordered" id="editable-manageUser">
                     <thead>
                         <tr>
-                            <th>Ảnh đại diện</th>
+                            <th>STT</th>
                             <th>Tài khoản</th>
                             <th>Họ tên</th>
                             <th>Email</th>
@@ -70,11 +70,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @*@for (int i = 0; i < Model.Users.Count; i++)
+                        {
+                            
+                        }*@
                         @foreach (User user in Model.Users)
                         {
                             <tr class="">
                                 <td class="mh-cell-center">
-                                    <img src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-picture" />
+                                    
                                 </td>
                                 <td class="mh-cell-center">
                                     <a data-toggle="modal" data-target="#user-@user.Id">@user.UserName</a>
@@ -399,10 +403,10 @@
                                                                         <h5>Lý do:</h5>
                                                                     </div>
                                                                     <div class="col-xs-8 mh-select-cause-time-block">
-                                                                        <select name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                        <select id="select-@user.Id" name="selBlock" class="selectpicker blockday" mh-id="@user.Id" multiple="multiple" title="Không có lý do nào được chọn">
                                                                             @foreach (BanReason reason in Model.BanReasons)
                                                                             {
-                                                                                <option value="@reason.Id">@reason.Name - @reason.Duration ngày</option>
+                                                                                <option mh-id="@reason.Id" value="@reason.Duration">@reason.Name - @reason.Duration ngày</option>
                                                                             }
                                                                         </select>
                                                                     </div>
@@ -434,7 +438,7 @@
                                             </div>
                                         }
                                     } 
-                                    <a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>
+                                    @*<a class="delete btn btn-danger" href="javascript:;" type="button">Xóa</a>*@
                                     <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#setRole-@user.Id">Phân quyền</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="setRole-@user.Id" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">

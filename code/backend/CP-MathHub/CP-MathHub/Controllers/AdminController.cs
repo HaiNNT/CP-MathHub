@@ -68,10 +68,12 @@ namespace CP_MathHub.Controllers
             banAccount.BannedUser.Status = model.Status;
             banAccount.BanUserId = User.Identity.GetUserId<int>();
             banAccount.Description = model.Description;
+            banAccount.BanReasons = aService.GetListBanReason(model.Reasons);
             aService.BlockUser(banAccount);
 
             return null;
         }
+        [HttpPost]
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
@@ -82,7 +84,7 @@ namespace CP_MathHub.Controllers
             return View("Views/ManageRulesView",model);
         }
         [HttpPost]
-        public ActionResult EditRule(RuleEditViewModel model)
+        public bool EditRule(RuleEditViewModel model)
         {
             BanReason banReason = aService.GetBanReason(model.Id);
             banReason.Name = model.Name;
@@ -90,15 +92,9 @@ namespace CP_MathHub.Controllers
             banReason.CreatedDate = banReason.CreatedDate;
             banReason.Duration = model.Duration;
             aService.EditBanReason(banReason);
-            return RedirectToAction("ManageRule");
+            return true;
         }
-        [HttpPost]
-        public ActionResult DeleteRule(int Id)
-        {
-            BanReason banReason = aService.GetBanReason(Id);
-            aService.DeleteBanReason(banReason);
-            return RedirectToAction("ManageRule");
-        }
+
 
         [HttpPost]
         public ActionResult InsertRule(RulesViewModel model)
@@ -130,7 +126,7 @@ namespace CP_MathHub.Controllers
             }
             //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
             //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
-           
+            ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPosts", models);
         }
 

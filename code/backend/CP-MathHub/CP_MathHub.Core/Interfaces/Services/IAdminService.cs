@@ -105,5 +105,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="tagId"></param>
         void DeleteTag(int tagId);
+
+        /// <summary>
+        /// Get list ban reason by list ids
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        List<BanReason> GetListBanReason(List<int> list);
     }
 }
