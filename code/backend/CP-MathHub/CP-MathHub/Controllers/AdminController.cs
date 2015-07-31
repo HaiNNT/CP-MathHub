@@ -136,8 +136,11 @@ namespace CP_MathHub.Controllers
         {
             ManageTagsViewModel model = new ManageTagsViewModel();
             List<Tag> list = cService.GetAllTags();
+            List<Tag> list1 = cService.GetAllTagsOrderByName();
             ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            ICollection<TagViewModel> tagsVM1 = list1.Select(Mapper.Map<Tag, TagViewModel>).ToList();
             model.Items = tagsVM;
+            model.Items1 = tagsVM1;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
             return View("Views/ManageTagsView", model);
         }

@@ -11,5 +11,6 @@ namespace CP_MathHub.Models.Admin
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<TagViewModel> Items { get; set; }
+        public ICollection<TagViewModel> Items1 { get; set; }
     }
 }

@@ -154,6 +154,18 @@ namespace CP_MathHub.Service.Services
             List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
             return tags;
         }
+        public List<Tag> GetAllTagsOrderByName()
+        {
+            List<Tag> tags = _dal.Repository<Tag>()
+                .Get(
+                     null,
+                     (p => p.OrderBy(s => s.Name)),
+                     "MainPosts",
+                     0,
+                     0
+                    ).ToList();
+            return tags;
+        }
         public List<Tag> GetTags(int skip, string tab)
         {
             List<Tag> list = new List<Tag>();

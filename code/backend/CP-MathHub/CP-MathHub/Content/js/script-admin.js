@@ -119,7 +119,7 @@ function ManageInfracPosts_blockday() {
     $('.selectpicker').selectpicker('refresh');
 
     
-        }
+}
 
 function ManageInfracPosts_edittable() {
     $('#editable-manageInfracPosts').dataTable({
@@ -155,6 +155,46 @@ function tableTag() {
         EditableTable.init();
     });
 }
+/*
+    Get duplicate tags
+*/
+function GetDuplicateTags() {
+    $("#btn-checkduplicate").click(function () {
+        var list = $("#mh-list-tag");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/GetDuplicateTags",
+            data: {}
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.append($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+
+    });
+}
+function checkall() {
+    $('#all').change(function () {
+        var checkboxes = $(this).closest('#editable-sample1').find(':checkbox');
+        if ($(this).is(':checked')) {
+            checkboxes.prop('checked', true);
+        } else {
+            checkboxes.prop('checked', false);
+        }
+    });
+    $('#all-dup').change(function () {
+        var checkboxes = $(this).closest('#editable-sample').find(':checkbox');
+        if ($(this).is(':checked')) {
+            checkboxes.prop('checked', true);
+        } else {
+            checkboxes.prop('checked', false);
+        }
+    });
+}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -174,7 +214,9 @@ $(document).ready(function () {
             ManageInfracPosts_edittable();
             break;
         case "ManageTags":
+            GetDuplicateTags();
             tableTag();
+            checkall();
             break;
         default:
             break;
