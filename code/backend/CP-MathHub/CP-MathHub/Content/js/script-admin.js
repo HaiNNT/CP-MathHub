@@ -4,6 +4,9 @@
 function selectPicker() {
     $('.selectpicker').selectpicker();
 }
+function selectPickerReport() {
+    $('.selectpicker').selectpicker();
+}
 
 /*
     Select Picker: select value
@@ -34,8 +37,8 @@ function selectValuePlus() {
     Data table: manage users
 */
 function tableManageUsers() {
-    var oTable = $('#editable-manageUser').dataTable({
-    //$('#editable-manageUser').dataTable({
+    //var oTable = $('#editable-manageUser').dataTable({
+    $('#editable-manageUser').dataTable({
         "aLengthMenu": [
             [5, 15, 20, -1],
             [5, 15, 20, "Tất cả"] // change per page values here
@@ -115,7 +118,6 @@ function blockUser(id) {
     var description = $("#des-" + id).val();
     var status = 2;
     var ids = [];
-    
     $($("#select-" + id).prop("selectedOptions")).each(function () {
         ids.push($(this).attr("mh-id"));
     });                                                                
@@ -295,6 +297,115 @@ function checkall() {
         }
     });
 }
+
+function uncheckStatus(id) {
+    var url = "/Admin/CheckStatus";
+    var data = { id: id };
+    var checked = "#checked-" + id;
+    var check = "#check-" + id;
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+	  .done(function (msg) {
+	      if (msg == "True") {
+	          $(check).each(function () { $(this).removeClass("hidden"); });
+	          $(checked).each(function () { $(this).addClass("hidden"); });
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+    });
+}
+
+function checkStatus(id) {
+    var url = "/Admin/CheckStatus";
+    var data = { id: id };
+    var checked = "#checked-" + id;
+    var check = "#check-" + id;
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+	  .done(function (msg) {
+	      if (msg == "True") {
+	          $(check).each(function () { $(this).addClass("hidden"); });
+	          $(checked).each(function () { $(this).removeClass("hidden"); });
+	      } else {
+	          alert("false");
+	      }
+	  })
+	  .fail(function () {
+	      alert("fail error");
+	  });
+}
+
+//change status report
+function changeStatusReport(id) {
+    var url = "/Admin/ChangeStatusReport";
+    var data = { id: id };
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    });
+}
+
+//block post
+function blockPost(item, id) {
+    var url = "/Admin/BlockPost";
+    var data = { id: id };
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data,
+        success: function (msg) {
+            if (msg == "True") {
+                $(item).addClass("hidden");
+                $(item).siblings(".hidden").removeClass("hidden");
+            }
+        }
+
+
+    });
+}
+
+//active post
+function activePost(item, id) {
+    var url = "/Admin/ActivePost";
+    var data = { id: id };
+
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data,
+        success: function (msg) {
+            if (msg == "True") {
+                $(item).addClass("hidden");
+                $(item).siblings(".hidden").removeClass("hidden");
+            }
+        }
+
+
+    });
+}
+var timeoutMainpostFilter;
+function GetOptionSelect() {
+    clearTimeout(timeoutMainpostFilter);
+    var load = function () {
+        $("#select-form").submit();
+    }   
+    timeoutMainpostFilter = setTimeout(load, 1000);
+}
+
+
 function clearDataModal(){
     $('body').on('hidden.bs.modal', '.modal', function () {
         var id = $(this).attr("mh-id");
@@ -317,8 +428,10 @@ $(document).ready(function () {
             break;
         case "ManageInfracPosts":
             selectPicker();
-            selectValue();
+
             ManageInfracPosts_edittable();
+            //uncheckStatus(id);
+            //checkStatus(id);
             break;
         case "ManageTags":
             GetDuplicateTags();

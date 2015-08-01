@@ -200,9 +200,10 @@
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracNormalPostViewModel.cs" />
     <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
-    <Compile Include="Models\Admin\ManageInfracPostViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracMainPostViewModel.cs" />
     <Compile Include="Models\Admin\RuleCreateViewModel.cs" />
     <Compile Include="Models\Admin\RuleEditViewModel.cs" />
     <Compile Include="Models\Admin\RulesViewModel.cs" />
