@@ -16,6 +16,9 @@
         case Constant.Admin.String.ManageInfracPosts:
             @Styles.Render("~/Content/adminManageInfracPostscss")
             break;
+        case Constant.Admin.String.ManageInfracUsers:
+            @Styles.Render("~/Content/selectPickercss")
+            break;
         default:
             break;
     }
@@ -128,16 +131,19 @@
             @Scripts.Render("~/bundles/adminDashboardjs")
             break;
         case Constant.Admin.String.ManageUsersPage:
-        @Scripts.Render("~/bundles/adminManageUsersjs")
+            @Scripts.Render("~/bundles/adminManageUsersjs")
             break;
         case Constant.Admin.String.ManageRulePage:
-        @Scripts.Render("~/bundles/adminManageRulesjs")
+            @Scripts.Render("~/bundles/adminManageRulesjs")
             break;
         case Constant.Admin.String.ManagerTagsPage:
-        @Scripts.Render("~/bundles/adminManageTagsjs")
+            @Scripts.Render("~/bundles/adminManageTagsjs")
             break;
         case Constant.Admin.String.ManageInfracPosts:
-        @Scripts.Render("~/bundles/adminManageInfracPostsjs")
+            @Scripts.Render("~/bundles/adminManageInfracPostsjs")
+            break;
+        case Constant.Admin.String.ManageInfracUsers:
+            @Scripts.Render("~/bundles/adminManageInfracPostsjs")
             break;
         default:
             break;

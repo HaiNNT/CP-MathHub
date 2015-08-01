@@ -412,6 +412,37 @@ function clearDataModal(){
         clearBlockUser(id);
     });
 }
+
+function dataTableManageInfracUsers() {
+    $('#editable-manageInfracUsers').dataTable({
+            "aLengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
+                "oPaginate": {
+                    "sPrevious": "Trước",
+                    "sNext": "Sau"
+                },
+                "sSearch": "Tìm kiếm",
+                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+            },
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [5,6]
+            }
+            ]
+        });
+
+        jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+        jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+}
+
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -420,7 +451,6 @@ $(document).ready(function () {
             selectValuePlus();
             tableManageUsers();
             clearDataModal();
-            //blockUser(id);
             break;
         case "ManageRules":
             tableRule();
@@ -437,6 +467,10 @@ $(document).ready(function () {
             GetDuplicateTags();
             tableTag();
             checkall();
+            break;
+        case "ManageInfracUsers":
+            selectPicker();
+            dataTableManageInfracUsers();
             break;
         default:
             break;

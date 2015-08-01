@@ -296,5 +296,10 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPosts", models);
         }
+        public ActionResult ManageInfracUsers()
+        {
+            ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
+            return View("Views/ManageInfracUsersView"); ;
+        }
     }
 }
