@@ -20,13 +20,10 @@
 <div class="mh-home">
     <div class="row">
         <div class="visible-xs mh-home-tab">
-            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
-            <a class="btn btn-danger btn-sm">
-                Bạn bè
-                <span class="badge mh-num-icon">42</span>
-            </a>
-            <a class="btn btn-danger btn-sm">Hoạt động</a>
-            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
+            <a href="@Url.Action("MyProfile")" class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+            <a href="@Url.Action("Friend")" class="btn btn-danger btn-sm">Bạn bè</a>
+            <a href="@Url.Action("MyActivity")" class="btn btn-danger btn-sm">Hoạt động</a>
+            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a> 
         </div>
     </div>
 </div>

@@ -143,5 +143,46 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/script")
     @RenderSection("scripts", required: false)
+    <script>
+        function acceptFriend(item, id) {
+            $.ajax({
+                method: "POST",
+                url: "/Account/AcceptFriendRequest",
+                data: { targetUserId: id }
+            })
+	        .done(function (msg) {
+	            if (msg != "" && msg != "\n") {
+	                $(item).addClass("hidden");
+	                $(item).siblings("button").addClass("hidden");
+	                $(item).siblings("span").removeClass("hidden").text("Bạn bè");
+	            } else {
+	                alert("Có sự cố hệ thống. Hãy thử lại.");
+	            }
+	        })
+	        .fail(function () {
+	            alert("Có sự cố về mạng. Hãy thử lại sau.");
+	        });
+        }
+
+        function refuseFriend(item, id) {
+            $.ajax({
+                method: "POST",
+                url: "/Account/CancelFriend",
+                data: { targetUserId: id }
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $(item).addClass("hidden");
+                    $(item).siblings("button").addClass("hidden");
+                    $(item).siblings("span").removeClass("hidden").text("Đã từ chối");
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
+    </script>
 </body>
 </html>

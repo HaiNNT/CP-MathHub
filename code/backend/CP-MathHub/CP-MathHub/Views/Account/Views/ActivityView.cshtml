@@ -30,35 +30,32 @@
 <div class="mh-home">
     <div class="row">
         <div class="visible-xs mh-home-tab">
-            <a class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
-            <a class="btn btn-danger btn-sm">
-                Bạn bè
-                <span class="badge mh-num-icon">3</span>
-            </a>
-            <a class="btn btn-danger btn-sm">Hoạt động</a>
-            <a class="btn btn-danger btn-sm">Quyền riêng tư</a>
+            <a href="@Url.Action("MyProfile")" class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
+            <a href="@Url.Action("Friend")" class="btn btn-danger btn-sm">Bạn bè</a>
+            <a href="@Url.Action("MyActivity")" class="btn btn-danger btn-sm">Hoạt động</a>
+            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a>           
         </div>
     </div>
 </div>
 <div class="mh-body-profile">
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
+        <li role="presentation" class="@(ViewBag.Tab == "posts" ? "active" : "" )">
             <a href="#all-post" aria-controls="all-post" role="tab" data-toggle="tab">
                 Bài đăng
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "bookmarks" ? "active" : "" )">
             <a href="#follow-post" aria-controls="follow-post" role="tab" data-toggle="tab">
                 Bài yêu thích
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "tags" ? "active" : "" )">
             <a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">
                 Thẻ yêu thích
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "privileges" ? "active" : "" )">
             <a href="#brands" aria-controls="brands" role="tab" data-toggle="tab">
                 Danh hiệu
             </a>
@@ -68,12 +65,12 @@
                 Hoạt động
             </a>
         </li>*@
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "notifications" ? "active" : "")">
             <a href="#notification" aria-controls="notification" role="tab" data-toggle="tab">
                 Thông báo
             </a>
         </li>
-        <li role="presentation">
+        <li role="presentation" class="@(ViewBag.Tab == "conversations" ? "active" : "")">
             <a href="#message" aria-controls="message" role="tab" data-toggle="tab">
                 Tin nhắn
             </a>
@@ -81,7 +78,7 @@
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="all-post">
+        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "posts" ? "active" : "")" id="all-post">
             <div class="row">
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
@@ -121,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <div id="follow-post" role="tabpanel" class="tab-pane">
+        <div id="follow-post" role="tabpanel" class="tab-pane @(ViewBag.Tab == "bookmarks" ? "active" : "")">
             <div class="row">
                 <div class="col-xs-9 col-sm-10 col-md-11 col-lg-5 mh-profile-posts">
                     <h4>
@@ -161,12 +158,12 @@
                 </div>
             </div>
         </div>
-        <div id="tags" role="tabpanel" class="tab-pane">
+        <div id="tags" role="tabpanel" class="tab-pane @(ViewBag.Tab == "tags" ? "active" : "")">
             <div class="row mh-profile-tag-favourite">
                 @Html.Partial("Partials/_FavoriteTagsPartialView", Model.TagList)
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="brands">
+        <div role="tabpanel" class="tab-pane @(ViewBag.Tab == "privileges" ? "active" : "")" id="brands">
             <div class="row">
                 <div class="mh-profile-brand">
                     Hiện tại bạn đạt danh hiệu:
@@ -271,7 +268,7 @@
                 </div>
             </div>
         </div>*@
-        <div id="notification" class="tab-pane">
+        <div id="notification" class="tab-pane @(ViewBag.Tab == "notifications" ? "active" : "")">
             <h4>Thông báo của bạn</h4>
             <div class="mh-profile-notifications">
                 <div class="mh-profile-notification">
@@ -420,7 +417,7 @@
                 </div>
             </div>
         </div>
-        <div id="message" class="tab-pane">
+        <div id="message" class="tab-pane @(ViewBag.Tab == "conversations" ? "active" : "")">
             <div class="row">
                 <div class="col-xs-4 mh-profile-chat-users">
                     <div class="mh-profile-chat-top">

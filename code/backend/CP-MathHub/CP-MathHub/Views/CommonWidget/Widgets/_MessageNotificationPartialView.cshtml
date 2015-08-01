@@ -1,0 +1,22 @@
+﻿@model List<ConversationPreviewViewModel>
+@using CP_MathHub.Models.RealTime
+@using CP_MathHub.Service.Helpers
+
+@foreach (ConversationPreviewViewModel item in Model)
+{
+    <div>
+        <a href="#">
+            <div class="media">
+                <div class="media-left">
+                    <img src="@(item.Avatar != null ? Url.Content(item.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                </div>
+                <div class="media-body">
+                    <span class="media-heading">@item.Name</span><br />
+                    <span class="mh-notifi-content">@item.LastMessage.Content</span><br />
+                    <span class="mh-time">@Html.PostCreatedTime(item.LastMessage.CreatedDate, "")</span>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+

@@ -92,7 +92,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake);
+        List<User> GetFriends(int userId, string tab, int skip = 0, int take = 0);
 
         /// <summary>
         /// Follow a user
