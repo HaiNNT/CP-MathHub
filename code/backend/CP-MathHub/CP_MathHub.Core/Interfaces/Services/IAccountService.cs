@@ -92,7 +92,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        List<User> GetFriends(int userId, string tab, int skip = 0, int take = Constant.Integer.DefaultTake);
+        List<User> GetFriends(int userId, string tab, int skip = 0, int take = 0);
 
         /// <summary>
         /// Follow a user
@@ -110,16 +110,6 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="take"></param>
         /// <returns></returns>
         List<User> GetMutualFriends(int userId, int friendId, int skip = 0, int take = 0);
-
-        /// <summary>
-        /// Count mutual friend of 2 user
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="friendId"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        int CountMutualFriend(int userId, int friendId, int skip = 0, int take = 0);
 
         /// <summary>
         /// Unfollow a user

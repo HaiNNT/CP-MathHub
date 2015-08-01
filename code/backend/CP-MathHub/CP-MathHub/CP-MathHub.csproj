@@ -861,6 +861,9 @@
     <Content Include="Views\Account\Partials\_UserInvitedActivityPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_UserInformationDetailPartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageInfracUsersView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_FriendRequestNotificationPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_MessageNotificationPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_ActivityNotificationPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

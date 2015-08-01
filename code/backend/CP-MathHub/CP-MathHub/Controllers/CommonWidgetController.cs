@@ -16,29 +16,52 @@ using CP_MathHub.Models.Common;
 using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
 using AutoMapper;
+using System.Web.Routing;
+using CP_MathHub.Models.RealTime;
 
 namespace CP_MathHub.Controllers
 {
     [ChildActionOnly]
     public partial class CommonWidgetController : BaseController
     {
-        private CPMathHubModelContainer context;
-        private ICommonService cService;
-        private IAccountService aService;
-        private IQuestionService qService;
-        private IBlogService bService;
-        private IDiscussionService dService;
+        private CPMathHubModelContainer _context;
+        private ICommonService _cService;
+        private IAccountService _aService;
+        private IQuestionService _qService;
+        private IBlogService _bService;
+        private IDiscussionService _dService;
+        private IRealTimeService _rService;
         //private ApplicationUserManager uManager;
 
         public CommonWidgetController()
         {
-            context = new CPMathHubModelContainer();
-            cService = new CommonService(context);
-            aService = new AccountService(context);
-            bService = new BlogService(context);
-            dService = new DiscussionService(context);
-            qService = new QuestionService(context);
+            _context = new CPMathHubModelContainer();
             //UserManager = userManager;
+        }
+
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                _qService = new QuestionService(_context, _currentUserId);
+                _cService = new CommonService(_context, _currentUserId);
+                _aService = new AccountService(_context, _currentUserId);
+                _bService = new BlogService(_context, _currentUserId);
+                _dService = new DiscussionService(_context, _currentUserId);
+                _rService = new RealTimeService(_context, _currentUserId);
+            }
+            else
+            {
+                _cService = new CommonService(_context);
+                _aService = new AccountService(_context);
+                _bService = new BlogService(_context);
+                _dService = new DiscussionService(_context);
+                _qService = new QuestionService(_context);
+                _rService = new RealTimeService(_context);
+            }
+
         }
         //public ApplicationUserManager UserManager
         //{
@@ -58,7 +81,7 @@ namespace CP_MathHub.Controllers
             ProfileWidgetViewModel profileWidgetVm = null;
             if (User.Identity.IsAuthenticated)
             {
-                User user = cService.GetUser(User.Identity.GetUserId<int>());
+                User user = _cService.GetUser(User.Identity.GetUserId<int>());
                 profileWidgetVm = Mapper.Map<User, ProfileWidgetViewModel>(user);
             }
             return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
@@ -68,7 +91,7 @@ namespace CP_MathHub.Controllers
             UserHeaderViewModel userHeaderVM = null;
             if (User.Identity.IsAuthenticated)
             {
-                User user = cService.GetUser(User.Identity.GetUserId<int>());
+                User user = _cService.GetUser(User.Identity.GetUserId<int>());
                 userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
             }
 
@@ -77,7 +100,7 @@ namespace CP_MathHub.Controllers
 
         public virtual ActionResult FavoriteTagWidget()
         {
-            ICollection<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
+            ICollection<Tag> tags = _aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
         }
 
@@ -91,23 +114,23 @@ namespace CP_MathHub.Controllers
                 case "Question":
                     model.Name = "Câu hỏi";
                     model.Type = RecommendedMainPostTypeEnum.Hot;               
-                    model.MainPosts = qService.GetQuestions(Constant.Question.String.HomeHotTab).Take(5).ToList<MainPost>();
+                    model.MainPosts = _qService.GetQuestions(Constant.Question.String.HomeHotTab).Take(5).ToList<MainPost>();
                     break;
                 case "Blog":
                     model.Name = "Bài viết";
                     model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.MainPosts = bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
+                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
                     break;
                 case "Discussion":
                     model.Name = "Thảo luận";
                     model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.MainPosts = dService.GetDiscussions(Constant.Discussion.String.HomeHotTab).Take(5).ToList<MainPost>();
+                    model.MainPosts = _dService.GetDiscussions(Constant.Discussion.String.HomeHotTab).Take(5).ToList<MainPost>();
                     break;
                 default:
                     model.Name = "Bài Viết";
                     model.Type = RecommendedMainPostTypeEnum.Hot;
                     model.System = "Blog";
-                    model.MainPosts = bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
+                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
                     break;
             }
             return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
@@ -115,13 +138,13 @@ namespace CP_MathHub.Controllers
 
         public virtual ActionResult RelatedMainPost(string system, int postId)
         {
-            MainPost mainPost = cService.GetMainPost(postId, "Tags");
+            MainPost mainPost = _cService.GetMainPost(postId, "Tags");
             List<MainPost> list = new List<MainPost>();
             RecommendedMainPostViewModel model = new RecommendedMainPostViewModel();
             model.Name = "Bài viết";
             model.Type = RecommendedMainPostTypeEnum.Related;
             model.System = system;
-            model.MainPosts = bService.GetRelatedArticles(mainPost, 0).Take(5).ToList<MainPost>();
+            model.MainPosts = _bService.GetRelatedArticles(mainPost, 0).Take(5).ToList<MainPost>();
             return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
         }
 
@@ -146,6 +169,28 @@ namespace CP_MathHub.Controllers
         //{
         //    return PartialView("_YourActivityWidget");
         //}
+        #endregion
+
+        #region Notification
+        public virtual ActionResult FriendRequestNotification()
+        {
+            List<User> model = _aService.GetFriends(_currentUserId, Constant.Account.String.RequestTab);
+            return PartialView("Widgets/_FriendRequestNotificationPartialView", model);
+        }
+        public virtual ActionResult MessageNotification()
+        {
+            List<Conversation> convers = _rService.GetConversations(_currentUserId);
+            List<ConversationPreviewViewModel> conversations =
+                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
+            return PartialView("Widgets/_MessageNotificationPartialView", conversations);
+        }
+        public virtual ActionResult ActivityNotification()
+        {
+            List<Conversation> convers = _rService.GetConversations(_currentUserId);
+            List<ConversationPreviewViewModel> conversations =
+                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
+            return PartialView("Widgets/_MessageNotificationPartialView", conversations);
+        }        
         #endregion
     }
 }

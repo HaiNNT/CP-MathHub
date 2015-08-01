@@ -7,12 +7,12 @@
         <div class="col-xs-7 media">
             <div class="media-left">
                 <a href="@Url.Action("UserProfile", new {userId = item.User.Id })">
-                    <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
+                    <img src="@(item.User.Avatar != null ? Url.Content(item.User.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
                 </a>
             </div>
             <div class="media-body">
-                <a>
-                    <span class="media-heading mh-request-user-name"><a href="@Url.Action("UserProfile", new {userId = item.User.Id })">@item.User.UserName</a></span>
+                <a href="@Url.Action("UserProfile", new {userId = item.User.Id })">
+                    <span class="media-heading mh-request-user-name">@item.User.UserName</span>
                 </a><br />
                 <span>Đang sinh sống tại: @(item.User.Profile.Address != null ? item.User.Profile.Address : "Không có thông tin")</span>
             </div>
