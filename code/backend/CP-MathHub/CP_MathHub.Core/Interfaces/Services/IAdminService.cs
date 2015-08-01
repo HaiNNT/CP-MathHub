@@ -112,5 +112,32 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="list"></param>
         /// <returns></returns>
         List<BanReason> GetListBanReason(List<int> list);
-    }
+
+        /// <summary>
+        /// Change report status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool changeStatus(int id);
+        /// <summary>
+        /// Update post
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool UpdatePost(Post post);
+
+        /// <summary>
+        /// Get post by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Post GetPost(int id);
+
+
+        List<Question> GetReportedQuestion();
+
+        List<Article> GetReportedArticle();
+
+        List<Discussion> GetReportedDiscussion();
+       }
 }

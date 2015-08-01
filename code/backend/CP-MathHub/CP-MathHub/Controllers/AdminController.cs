@@ -78,10 +78,10 @@ namespace CP_MathHub.Controllers
         {
             List<BanReason> list = aService.GetBanReasons();
             RulesViewModel model = new RulesViewModel();
-            ICollection<RuleViewModel> rulesVM = list.Select(Mapper.Map<BanReason,RuleViewModel>).ToList();
+            ICollection<RuleViewModel> rulesVM = list.Select(Mapper.Map<BanReason, RuleViewModel>).ToList();
             model.Items = rulesVM;
             ViewBag.Page = Constant.Admin.String.ManageRulePage;
-            return View("Views/ManageRulesView",model);
+            return View("Views/ManageRulesView", model);
         }
         [HttpPost]
         public bool EditRule(RuleEditViewModel model)
@@ -108,27 +108,27 @@ namespace CP_MathHub.Controllers
             return RedirectToAction("ManageRule");
         }
 
-        public ActionResult ManageInfracPosts()
-        {
-            List<ManageInfracPostViewModel> models = new List<ManageInfracPostViewModel>();
-            //List<Report> list = aService.GetPostReport();
-            List<MainPost> mainPosts = aService.GetReportedMainPost();
-            foreach (MainPost post in mainPosts)
-            {
-                ManageInfracPostViewModel model = new ManageInfracPostViewModel();
-                model.MainPost = post;
-                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
-                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
-                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key.ToString(), k => k.Count());
-                model.Status = post.Reports.Count(s => !s.Status) == 0;
-                models.Add(model);
-                    //Select(r=> new KeyValuePair<string,int>(r.Type.ToString(),0));
-            }
-            //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
-            //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
-            ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
-            return View("Views/ManageInfracPosts", models);
-        }
+        //public ActionResult ManageInfracPosts()
+        //{
+        //    List<ManageInfracPostViewModel> models = new List<ManageInfracPostViewModel>();
+        //    //List<Report> list = aService.GetPostReport();
+        //    List<MainPost> mainPosts = aService.GetReportedMainPost();
+        //    foreach (MainPost post in mainPosts)
+        //    {
+        //        ManageInfracPostViewModel model = new ManageInfracPostViewModel();
+        //        model.MainPost = post;
+        //        model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+        //        model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
+        //        model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+        //        model.Status = post.Reports.Count(s => !s.Status) == 0;
+        //        models.Add(model);
+        //        //Select(r=> new KeyValuePair<string,int>(r.Type.ToString(),0));
+        //    }
+        //    //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
+        //    //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
+        //    ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
+        //    return View("Views/ManageInfracPosts", models);
+        //}
 
         //Get: Admin/ManageTags
         [HttpGet]
@@ -172,6 +172,106 @@ namespace CP_MathHub.Controllers
         {
             aService.DeleteTag(tagId);
             return true;
+        }
+
+        //Post: Admin/ChangeStatusReport
+        [HttpPost]
+        public bool ChangeStatusReport(int id)
+        {
+            aService.changeStatus(id);
+            return true;
+        }
+
+        //Post: Admin/BlockPost
+        [HttpPost]
+        public bool BlockPost(int id)
+        {
+            Post post = aService.GetPost(id);
+            post.Status = PostStatusEnum.Hidden;
+            return aService.UpdatePost(post);
+        }
+
+        //Post: Admin/ActivePost
+        [HttpPost]
+        public bool ActivePost(int id)
+        {
+            Post post = aService.GetPost(id);
+            post.Status = PostStatusEnum.Active;
+            return aService.UpdatePost(post);
+        }
+
+        public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null)
+        {
+            ManageInfracPostsViewModel models = new ManageInfracPostsViewModel();
+            models.MainPostFilters = MainPostFilters;
+            models.NormalPostFilters = NormalPostFilters;
+
+            List<MainPost> listMainPost = new List<MainPost>();
+            List<ManageInfracMainPostViewModel> listMainPostChecked = new List<ManageInfracMainPostViewModel>();
+            List<ManageInfracMainPostViewModel> listMainPostUnChecked = new List<ManageInfracMainPostViewModel>();
+
+            if (MainPostFilters == null)
+            {
+                MainPostFilters = new List<int>();
+            }
+            if (MainPostFilters.Contains(1))//Get questions
+            {
+                listMainPost.AddRange(aService.GetReportedQuestion().OfType<MainPost>().ToList());
+            }
+            if (MainPostFilters.Contains(2))// Get articles
+            {
+                listMainPost.AddRange(aService.GetReportedArticle().OfType<MainPost>().ToList());               
+            }
+            if (MainPostFilters.Contains(3))// Get discussions
+            {
+                listMainPost.AddRange(aService.GetReportedDiscussion().OfType<MainPost>().ToList());                
+            }
+            if (!MainPostFilters.Contains(3) && !MainPostFilters.Contains(2) && !MainPostFilters.Contains(1))
+            {
+                listMainPost = aService.GetReportedMainPost();
+            }
+            foreach (MainPost post in listMainPost)
+            {
+                ManageInfracMainPostViewModel model = new ManageInfracMainPostViewModel();
+                model.MainPost = post;
+                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
+                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+                model.Status = post.Reports.Count(s => !s.Status) == 0;
+
+                models.MainPosts.Add(model);
+            }
+
+            if (MainPostFilters.Contains(4))//Filter checked
+            {
+                foreach (ManageInfracMainPostViewModel q in models.MainPosts)
+                {
+                    if (q.Status)
+                    {
+                        listMainPostChecked.Add(q);
+                    }
+                }
+            }
+            if (MainPostFilters.Contains(5))//Filter unchecked
+            {
+                foreach (ManageInfracMainPostViewModel q in models.MainPosts)
+                {
+                    if (!q.Status)
+                    {
+                        listMainPostUnChecked.Add(q);
+                    }
+                }
+            }
+            if (!MainPostFilters.Contains(4) && !MainPostFilters.Contains(5))
+            {
+                listMainPostChecked = models.MainPosts.ToList();//get all when not check both of them
+            }
+            listMainPostChecked.AddRange(listMainPostUnChecked);// merge 2 list into listMainPostChecked
+            models.MainPosts = listMainPostChecked;
+
+
+            ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
+            return View("Views/ManageInfracPosts", models);
         }
     }
 }

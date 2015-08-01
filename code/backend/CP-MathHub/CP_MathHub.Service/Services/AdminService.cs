@@ -97,7 +97,7 @@ namespace CP_MathHub.Service.Services
         }
         public void BlockUser(BanAccount banAccount)
         {
-            dal.Repository<BanAccount>().Insert(banAccount);       
+            dal.Repository<BanAccount>().Insert(banAccount);
             dal.Save();
             //aService.UpdateUser(banAccount.BannedUser);
         }
@@ -105,7 +105,7 @@ namespace CP_MathHub.Service.Services
         public List<Report> GetMainPostReport()
         {
             List<Report> list = new List<Report>();
-            list = dal.Repository<Report>().Get((r =>r.PostId != null)
+            list = dal.Repository<Report>().Get((r => r.PostId != null)
                                                 , (r => r.OrderByDescending(s => s.ReportedDate))
                                                 , "Reporter,Post"
                                                 , 0
@@ -116,6 +116,22 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Post>().Table.OfType<MainPost>().Where(p => p.Reports.Count > 0).ToList();
         }
+
+        public List<Question> GetReportedQuestion()
+        {
+            return dal.Repository<Question>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
+
+        public List<Article> GetReportedArticle()
+        {
+            return dal.Repository<Article>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
+
+        public List<Discussion> GetReportedDiscussion()
+        {
+            return dal.Repository<Discussion>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
+
         public void InsertTag(Tag tag)
         {
             dal.Repository<Tag>().Insert(tag);
@@ -139,6 +155,47 @@ namespace CP_MathHub.Service.Services
                 result.Add(dal.Repository<BanReason>().GetById(id));
             }
             return result;
+        }
+        public bool changeStatus(int id)
+        {
+            List<Report> reports = dal.Repository<Report>().Table.Where(r => r.PostId == id).ToList();
+            foreach (Report r in reports)
+            {
+                if (r.Status)
+                {
+                    r.Status = false;
+                }
+                else
+                {
+                    r.Status = true;
+                }
+                dal.Repository<Report>().Update(r);
+                dal.Save();
+            }
+            return true;
+        }
+
+
+        public bool UpdatePost(Post post)
+        {
+            try
+            {
+                dal.Repository<Post>().Update(post);
+                dal.Save();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            
+        }
+
+        public Post GetPost(int id)
+        {
+            Post post = dal.Repository<Post>().GetById(id);
+            return post;
         }
     }
 }

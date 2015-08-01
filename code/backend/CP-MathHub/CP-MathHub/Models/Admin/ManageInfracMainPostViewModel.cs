@@ -6,12 +6,14 @@ using CP_MathHub.Entity;
 
 namespace CP_MathHub.Models.Admin
 {
-    public class ManageInfracPostViewModel
+    public class ManageInfracMainPostViewModel
     {
+        public int Id { get; set; }
 
         public MainPost MainPost { get; set; }
 
-        public Dictionary<string,int> Reasons { get; set; }
+
+        public Dictionary<ReportTypeEnum,int> Reasons { get; set; }
 
         public DateTime ReportedDate { get; set; }
 

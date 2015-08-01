@@ -167,13 +167,22 @@ namespace CP_MathHub.Core.Configuration
                 public const string RequestTab = "friendrequest";
                 public const string MutualFriend = "mutualfriend";
             }
-
+        //    DuplicateQuestion = 1,
+        //Swearing = 2,
+        //SpamComment = 3,
+        //Other = 0,
+        //SpamAnswer = 4,
+        //ClonedAccount = 5,
+        //SpamQuestion = 6,
+        //WrongMainPostPosition = 7
             public class Dictionary
             {
                 public static Dictionary<int, string> GenderName = new Dictionary<int, string> { { 1, "Nam" }, { 2, "Nữ" }, { 0, "Khác" } };
                 public static Dictionary<int, string> EducationName = new Dictionary<int, string> { { 1, "Cấp 1" }, { 2, "Cấp 2" }, { 3, "Cấp 3" }, { 4, "Sinh viên" }, { 5, "Cử nhân" }, { 6, "Thạc sĩ" }, { 7, "Tiến sĩ" }, { 8, "Giáo sư" }, { 0, "Khác" } };
                 public static Dictionary<int, string> RequestSend = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn của bạn bè" } };
                 public static Dictionary<int, string> SeenBlog = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn bè" }, { 3, "Bạn của bạn bè" } };
+                public static Dictionary<int, string> ReportType = new Dictionary<int, string> {{1,"Câu hỏi trùng"}, {2,"Sử dụng từ ngữ không phù hợp"}, {3,"Bình luận spam"},
+                                                                                               {4,"Trả lời spam"}, {5,"Sử dụng tài khoản ão"},{6,"Câu hỏi spam"}, {7,"Sai vị trí"} };
 
             }
         }
