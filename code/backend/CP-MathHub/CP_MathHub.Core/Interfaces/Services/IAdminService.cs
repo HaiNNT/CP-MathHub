@@ -163,6 +163,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         void ClearRolesUser(int id);
+        /// <summary>
+        /// Unblock user
+        /// </summary>
+        /// <param name="user"></param>
+        void UnBlockUser(User user);
 
         /// <summary>
         /// Result duplicate tags

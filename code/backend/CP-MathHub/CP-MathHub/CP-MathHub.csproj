@@ -212,6 +212,7 @@
     <Compile Include="Models\Admin\SetRoleViewModel.cs" />
     <Compile Include="Models\Admin\TagEditViewModel.cs" />
     <Compile Include="Models\Admin\TagViewModel.cs" />
+    <Compile Include="Models\Admin\UnBlockUserViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />

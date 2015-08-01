@@ -250,5 +250,10 @@ namespace CP_MathHub.Service.Services
             Post post = dal.Repository<Post>().GetById(id);
             return post;
         }
+        public void UnBlockUser(User user)
+        {
+            dal.Repository<User>().Update(user);
+            dal.Save();
+        }
     }
 }
