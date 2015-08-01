@@ -14,6 +14,7 @@ using CP_MathHub.Models.Admin;
 using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
+using System.Web.Routing;
 
 namespace CP_MathHub.Controllers
 {
@@ -26,8 +27,23 @@ namespace CP_MathHub.Controllers
         public AdminController()
         {
             context = new CPMathHubModelContainer();
-            aService = new AdminService(context);
-            cService = new CommonService(context);
+
+        }
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            if (requestContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                aService = new AdminService(context, _currentUserId);
+                cService = new CommonService(context, _currentUserId);
+            }
+            else
+            {
+                aService = new AdminService(context);
+                cService = new CommonService(context);
+            }
+
         }
         // GET: Admin
         [HttpGet]
@@ -150,7 +166,7 @@ namespace CP_MathHub.Controllers
         //    //List<ManageInfracPostsViewModel> model = new ManageInfracPostsViewModel();
         //    //ICollection<ManageInfracPostViewModel> item = list.Select(Mapper.Map<Report, ManageInfracPostViewModel>).ToList();
         //    ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
-        //    return View("Views/ManageInfracPosts", models);
+        //    return View("Views/ManageInfracPostsView", models);
         //}
 
         //Get: Admin/ManageTags
@@ -196,7 +212,12 @@ namespace CP_MathHub.Controllers
             aService.DeleteTag(tagId);
             return true;
         }
-
+        [HttpPost]
+        public bool ResultDuplicateTags(List<int> tagIds, string tagName, string description)
+        {
+            aService.ResultDuplicateTags(tagIds,tagName,description);
+            return true;
+        }
         //Post: Admin/ChangeStatusReport
         [HttpPost]
         public bool ChangeStatusReport(int id)
@@ -230,16 +251,27 @@ namespace CP_MathHub.Controllers
             models.NormalPostFilters = NormalPostFilters;
 
             List<MainPost> listMainPost = new List<MainPost>();
+            List<Post> listNormalPost = new List<Post>();
             List<ManageInfracMainPostViewModel> listMainPostChecked = new List<ManageInfracMainPostViewModel>();
             List<ManageInfracMainPostViewModel> listMainPostUnChecked = new List<ManageInfracMainPostViewModel>();
 
+            List<ManageInfracNormalPostViewModel> listNormalPostChecked = new List<ManageInfracNormalPostViewModel>();
+            List<ManageInfracNormalPostViewModel> listNormalPostUnChecked = new List<ManageInfracNormalPostViewModel>();
             if (MainPostFilters == null)
             {
                 MainPostFilters = new List<int>();
             }
+            if (NormalPostFilters == null)
+            {
+                NormalPostFilters = new List<int>();
+            }
             if (MainPostFilters.Contains(1))//Get questions
             {
                 listMainPost.AddRange(aService.GetReportedQuestion().OfType<MainPost>().ToList());
+            }
+            if (NormalPostFilters.Contains(6))//Get answer
+            {
+                listNormalPost.AddRange(aService.GetReportedAnswer().OfType<Post>().ToList());
             }
             if (MainPostFilters.Contains(2))// Get articles
             {
@@ -265,6 +297,18 @@ namespace CP_MathHub.Controllers
                 models.MainPosts.Add(model);
             }
 
+            foreach (Post post in listNormalPost)
+            {
+                ManageInfracNormalPostViewModel model = new ManageInfracNormalPostViewModel();
+                model.Post = post;
+                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
+                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+                model.Status = post.Reports.Count(s => !s.Status) == 0;
+
+                models.NormalPosts.Add(model);
+            }
+
             if (MainPostFilters.Contains(4))//Filter checked
             {
                 foreach (ManageInfracMainPostViewModel q in models.MainPosts)
@@ -274,7 +318,18 @@ namespace CP_MathHub.Controllers
                         listMainPostChecked.Add(q);
                     }
                 }
+
+                foreach (ManageInfracNormalPostViewModel q in models.NormalPosts)
+                {
+                    if (q.Status)
+                    {
+                        listNormalPostChecked.Add(q);
+                    }
+                }
+
             }
+
+
             if (MainPostFilters.Contains(5))//Filter unchecked
             {
                 foreach (ManageInfracMainPostViewModel q in models.MainPosts)
@@ -284,17 +339,28 @@ namespace CP_MathHub.Controllers
                         listMainPostUnChecked.Add(q);
                     }
                 }
+
+                foreach (ManageInfracNormalPostViewModel q in models.NormalPosts)
+                {
+                    if (!q.Status)
+                    {
+                        listNormalPostUnChecked.Add(q);
+                    }
+                }
             }
             if (!MainPostFilters.Contains(4) && !MainPostFilters.Contains(5))
             {
                 listMainPostChecked = models.MainPosts.ToList();//get all when not check both of them
+                listNormalPostChecked = models.NormalPosts.ToList();
             }
             listMainPostChecked.AddRange(listMainPostUnChecked);// merge 2 list into listMainPostChecked
+            listNormalPostChecked.AddRange(listNormalPostUnChecked);
             models.MainPosts = listMainPostChecked;
+            models.NormalPosts = listNormalPostChecked;
 
 
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
-            return View("Views/ManageInfracPosts", models);
+            return View("Views/ManageInfracPostsView", models);
         }
         public ActionResult ManageInfracUsers()
         {

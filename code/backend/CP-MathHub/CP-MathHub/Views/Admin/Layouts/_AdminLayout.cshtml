@@ -124,7 +124,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script class="include" type="text/javascript" src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
-    @Scripts.Render("~/bundles/adminjs")
+
     @switch ((string)ViewBag.Page)
     {
         case Constant.Admin.String.DashboardPage:
@@ -148,6 +148,7 @@
         default:
             break;
     }
+    @Scripts.Render("~/bundles/adminjs")
     @RenderSection("scripts", required: false)
 </body>
 </html>

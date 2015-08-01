@@ -289,14 +289,31 @@ namespace CP_MathHub.Service.Services
             if (vote.Type == VoteEnum.VoteUp)
             {
                 ++post.VoteUp;
+                if (post.GetType() == typeof(Question))
+                {
+                    _cService.PlusReputation(vote.PostId, Constant.String.ReputationQuestionUpVote);
+                }
+                else
+                {
+                    _cService.PlusReputation(vote.PostId, Constant.String.ReputationAnswerUpVote);
+                }
             }
             else
             {
                 ++post.VoteDown;
+                if (post.GetType() == typeof(Question))
+                {
+                    _cService.PlusReputation(vote.PostId, Constant.String.ReputationQuestionDownVote);
+                }
+                else
+                {
+                    _cService.PlusReputation(vote.PostId, Constant.String.ReputationAnswerDownVote);
+                }
             }
             _dal.Repository<Vote>().Insert(vote);
             _dal.Repository<Post>().Update(post);
             _dal.Save();
+
             return true;
         }
         public List<Vote> GetVotes(int postId)
@@ -327,6 +344,7 @@ namespace CP_MathHub.Service.Services
             answer.Accepted = !answer.Accepted;
             _dal.Repository<Answer>().Update(answer);
             _dal.Save();
+            _cService.PlusReputation(answerId, Constant.String.ReputationAcceptedAnswer);
             return true;
         }
     }

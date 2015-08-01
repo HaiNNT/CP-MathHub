@@ -111,7 +111,7 @@
                                                         <label>Tên tag:</label>
                                                     </div>
                                                     <div class="col-xs-9">
-                                                        <input type="text" class="mh-admin-row-input" />
+                                                        <input type="text" class="mh-admin-row-input" id="tagName" />
                                                     </div>
                                                 </div>
                                                 <div class="row mh-admin-row-duplicate">
@@ -119,11 +119,11 @@
                                                         <label>Miêu tả:</label>
                                                     </div>
                                                     <div class="col-xs-9">
-                                                        <input type="text" class="mh-admin-row-input" />
+                                                        <input type="text" class="mh-admin-row-input" id="tagDescription" />
                                                     </div>
                                                 </div>
                                                 <div class="mh-admin-duplicate-footer">
-                                                    <button type="button" class="btn btn-danger">Gộp thẻ</button>
+                                                    <button type="button" onclick="resultDuplicateTag()" class="btn btn-danger">Gộp thẻ</button>
                                                 </div>
                                             </div>
                                         </section>

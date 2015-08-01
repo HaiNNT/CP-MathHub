@@ -75,6 +75,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Tag> GetTags(string tab, string name, int skip);
 
         /// <summary>
+        /// Get duplicate tag
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        List<Tag> GetDupicateTags(string name);
+
+        /// <summary>
         /// Insert a new tag
         /// </summary>
         /// <returns></returns>
@@ -231,9 +238,9 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0);
 
         /// <summary>
-        /// Get plus reputation
+        /// Plus reputation
         /// </summary>
         /// <param name="type"></param>
-        int GetPlusReputation(string type);
+        void PlusReputation(int postId, string type);
     }
 }

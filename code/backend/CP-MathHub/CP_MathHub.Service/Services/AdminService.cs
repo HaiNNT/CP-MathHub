@@ -14,11 +14,13 @@ namespace CP_MathHub.Service.Services
 {
     public class AdminService : IAdminService, IDisposable
     {
+        private int _loginUserId;
         private IUnitOfWork dal;
         private ICommonService cService;
         private IAccountService aService;
-        public AdminService(CPMathHubModelContainer context)
+        public AdminService(CPMathHubModelContainer context, int userId = 0)
         {
+            _loginUserId = userId;
             dal = new MathHubUoW(context);
             cService = new CommonService(context);
             aService = new AccountService(context);
@@ -153,6 +155,11 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<Discussion>().Table.Where(p => p.Reports.Count > 0).ToList();
         }
 
+        public List<Answer> GetReportedAnswer()
+        {
+            return dal.Repository<Answer>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
+
         public void InsertTag(Tag tag)
         {
             dal.Repository<Tag>().Insert(tag);
@@ -166,6 +173,31 @@ namespace CP_MathHub.Service.Services
         public void DeleteTag(int tagId)
         {
             dal.Repository<Tag>().Delete(tagId);
+            dal.Save();
+        }
+        public void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "")
+        {
+            List<Tag> tags = new List<Tag>();
+            List<MainPost> mainPosts = new List<MainPost>();
+            tags = cService.GetTags(tagIds);
+            Tag tag = new Tag();
+            tag.UserId = _loginUserId;
+            tag.Name = tagName;
+            tag.Description = description;
+            tag.CreatedDate = DateTime.Now;
+            dal.Repository<Tag>().Insert(tag);
+            dal.Save();
+            foreach ( Tag t in tags)
+            {
+                mainPosts.AddRange( dal.Repository<MainPost>().Table.Where(m => m.Tags.Count(c => c.Id == t.Id) > 0).ToList());           
+                t.MainPosts.Clear();
+                dal.Repository<Tag>().Update(t);
+                dal.Save();
+                dal.Repository<Tag>().Delete(t);
+                dal.Save();
+            }
+            tag.MainPosts = mainPosts;
+            dal.Repository<Tag>().Update(tag);
             dal.Save();
         }
         public List<BanReason> GetListBanReason(List<int> list)

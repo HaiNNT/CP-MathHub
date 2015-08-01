@@ -9,12 +9,11 @@
   Auto complete tag
 */
 var tagIds = [];
-
+var timeout;
 function autocompleteTag() {
-    var timeout;
+
     var list = $("#mh-tag-autocomplete-list");
     var load = function () {
-        clearTimeout(timeout);
         var param = $("#mh-input-tag").val();
         $.ajax({
             method: "GET",
@@ -38,6 +37,7 @@ function autocompleteTag() {
     $("#mh-input-tag").keypress(function () {
         list.hide();
         list.html("");
+        clearTimeout(timeout);
         timeout = setTimeout(load, 1000);
     });
     $("body").click(function () {
@@ -128,10 +128,8 @@ function removeInvite(item, inviteId) {
 }
 
 function autocompleteInvite() {
-    var timeout;
     var list = $("#mh-invite-autocomplete-list");
     var load = function () {
-        clearTimeout(timeout);
         var param = $("#mh-input-invite").val();
         $.ajax({
             method: "POST",
@@ -155,6 +153,7 @@ function autocompleteInvite() {
     $("#mh-input-invite").keypress(function () {
         list.hide();
         list.html("");
+        clearTimeout(timeout);
         timeout = setTimeout(load, 1000);
     });
     $("body").click(function () {

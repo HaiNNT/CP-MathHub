@@ -74,6 +74,12 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(string name)
         {
             List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            tags = tags.Where(t => t.Name.ToLower().Contains(name.ToLower())).ToList();
+            return tags;
+        }
+        public List<Tag> GetDupicateTags(string name)
+        {
+            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
             tags = tags.Where(m => StringUtil.Compare2String(name, m.Name)).ToList();
             return tags;
         }
@@ -275,6 +281,18 @@ namespace CP_MathHub.Service.Services
                     ++post.VoteUp;
                     _dal.Repository<Post>().Update(post);
                     _dal.Save();
+                    if (post.GetType() == typeof(Article))
+                    {
+                        PlusReputation(id, Constant.String.ReputationArticleLike);
+                    }
+                    else if (post.GetType() == typeof(Discussion))
+                    {
+                        PlusReputation(id, Constant.String.ReputationDiscussionLike);
+                    }
+                    else
+                    {
+                        PlusReputation(id, Constant.String.ReputationCommentLike);
+                    }
                     return true;
                 }
                 else
@@ -283,6 +301,18 @@ namespace CP_MathHub.Service.Services
                     post.VoteUp = post.VoteUp > 0 ? --post.VoteUp : 0;
                     _dal.Repository<Vote>().Delete(vote);
                     _dal.Save();
+                    if (post.GetType() == typeof(Article))
+                    {
+                        MinusReputation(id, Constant.String.ReputationArticleLike);
+                    }
+                    else if (post.GetType() == typeof(Discussion))
+                    {
+                        MinusReputation(id, Constant.String.ReputationDiscussionLike);
+                    }
+                    else
+                    {
+                        MinusReputation(id, Constant.String.ReputationCommentLike);
+                    }
                     return true;
                 }
             }
@@ -532,7 +562,7 @@ namespace CP_MathHub.Service.Services
             {
                 case "Invited":
                     list = _dal.Repository<MainPost>().Get(
-                            (m => m.Invitations.Count(i => i.InviteeId == _loginUserId)>0),
+                            (m => m.Invitations.Count(i => i.InviteeId == _loginUserId) > 0),
                             (m => m.OrderByDescending(a => a.CreatedDate)),
                             "",
                             skip,
@@ -560,15 +590,44 @@ namespace CP_MathHub.Service.Services
         {
             return _aService.SearchFriend(name, userId, skip, take);
         }
-        public int GetPlusReputation(string type)
+        private int GetPlusReputation(string type)
         {
+            ReputationRule rule = _dal.Repository<ReputationRule>().Table.First();
             switch (type)
             {
-                case "":
-                    return 0;
+                case Constant.String.ReputationAcceptedAnswer:
+                    return rule.AcceptedAnswer;
+                case Constant.String.ReputationAnswerDownVote:
+                    return rule.AnswerDownVote;
+                case Constant.String.ReputationAnswerUpVote:
+                    return rule.AnswerUpVote;
+                case Constant.String.ReputationArticleLike:
+                    return rule.ArticleLike;
+                case Constant.String.ReputationCommentLike:
+                    return rule.CommentLike;
+                case Constant.String.ReputationDiscussionLike:
+                    return rule.DiscussionLike;
+                case Constant.String.ReputationQuestionDownVote:
+                    return rule.QuestionDownVote;
+                case Constant.String.ReputationQuestionUpVote:
+                    return rule.QuestionUpVote;
                 default:
                     return 0;
             }
+        }
+        public void PlusReputation(int postId, string type)
+        {
+            User user = _dal.Repository<User>().Table.First(u => u.Posts.Count(p => p.Id == postId) > 0);
+            user.Reputation += GetPlusReputation(type);
+            _dal.Repository<User>().Update(user);
+            _dal.Save();
+        }
+        public void MinusReputation(int postId, string type)
+        {
+            User user = _dal.Repository<User>().Table.First(u => u.Posts.Count(p => p.Id == postId) > 0);
+            user.Reputation -= GetPlusReputation(type);
+            _dal.Repository<User>().Update(user);
+            _dal.Save();
         }
     }
 }
