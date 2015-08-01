@@ -42,6 +42,15 @@ namespace CP_MathHub.Core.Configuration
 
             public const string DiscussionDetailPage = "discussion-detail";
 
+            //Plus reputaion
+            public const string ReputationCommentLike = "CommentLike";
+            public const string ReputationQuestionUpVote = "QuestionUpVote";
+            public const string ReputationQuestionDownVote = "QuestionDownVote";
+            public const string ReputationDiscussionLike = "DiscussionLike";
+            public const string ReputationArticleLike = "ArticleLike";
+            public const string ReputationAnswerUpVote = "AnswerUpVote";
+            public const string ReputationAnswerDownVote = "AnswerDownVote";
+            public const string ReputationAcceptedAnswer = "AcceptedAnswer";
 
         }
         /// <summary>
