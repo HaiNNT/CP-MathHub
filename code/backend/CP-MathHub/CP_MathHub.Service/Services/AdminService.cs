@@ -255,5 +255,10 @@ namespace CP_MathHub.Service.Services
             dal.Repository<User>().Update(user);
             dal.Save();
         }
+
+        public List<User> GetReportedUser()
+        {
+            return dal.Repository<User>().Table.Where(u => u.ReportedList.Count > 0).ToList();
+        }
     }
 }

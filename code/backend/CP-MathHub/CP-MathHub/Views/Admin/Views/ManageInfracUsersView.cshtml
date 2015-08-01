@@ -2,7 +2,7 @@
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Entity
 @using CP_MathHub.Service.Helpers
-
+@model ManageInfracUserListViewModel
 @{
     ViewBag.Title = "ManageInfracUsersView";
     Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
@@ -40,488 +40,143 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
-                            <td class="mh-cell-center">
-                                1
-                            </td>
-                            <td class="mh-cell-middle">
-                                <a data-toggle="modal" data-target="#user1">Admin</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="user1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">Admin</span></h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4>
-                                                    Đi đến
-                                                    <a href="#">trang thông tin cá nhân</a>
-                                                    của
-                                                    <span class="mh-manage-user-username">Admin</span>
-                                                </h4>
-                                                <div>
-                                                    <h3>Thông tin chung</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Tài khoản</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>TamTV</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Email</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>tamtv93@gmail.com</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Điểm thưởng</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <div>
-                                                                    <span>1432</span>
-                                                                    <i class="icon-circle mh-reputation-icon"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                        @for (int i = 0; i < Model.Items.Count; i++)
+                        {
+                            ManageInfracUsersViewModel user = Model.Items.ElementAt(i);
+                            <tr class="">
+                                <td class="mh-cell-center">
+                                    @(i+1)
+                                </td>
+                                <td class="mh-cell-middle">
+                                    <a data-toggle="modal" data-target="#user-@user.User.Id">@user.User.UserName</a>
+                                    <!-- Modal -->
+                                    @Html.Partial("Partials/_UserInformationDetailPartialView", user.User)
+                                </td>
+                                <td class="mh-cell-center">
+                                    @user.ReportedDate
+                                </td>
+                                <td class="mh-cell-center">
+                                    <a data-toggle="modal" data-target="#userReport-@(i+1)">@user.Reporters.Count</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="userReport-@(i+1)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Người báo cáo</h4>
                                                 </div>
-                                                <div>
-                                                    <h3>Thông tin cơ bản</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Họ tên</label>
+                                                <div class="modal-body">
+                                                    @foreach (User u in user.Reporters)
+                                                    {
+                                                        <div class="media mh-user-report">
+                                                            <div class="media-left">
+                                                                <a href="#">
+                                                                    <img class="mh-user-icon" src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="...">
+                                                                </a>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Thân Văn Tâm</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới tính</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Nam</span>
+                                                            <div class="media-body">
+                                                                <span>@u.UserName</span>
                                                             </div>
                                                         </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Ngày sinh</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>13/10/1993</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    }
+
+
                                                 </div>
-                                                <div>
-                                                    <h3>Thông tin liên hệ</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Địa chỉ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đà Nẵng</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Số điện thoại</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>01227527757</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Facebook</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <a href="https://www.facebook.com/tam.gre.5">https://www.facebook.com/tam.gre.5</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
-                                                <div>
-                                                    <h3>Thông tin khác</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trường</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>FPT University</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trình độ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đại học</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Quan điểm</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Sống thật với bản thân</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới thiệu</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Bình thường</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                13/02/2015
-                            </td>
-                            <td class="mh-cell-center">
-                                <a data-toggle="modal" data-target="#userReport">10</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="userReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Người báo cáo</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="media mh-user-report">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="mh-user-icon" src="img/user.jpg" alt="...">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <span>TamTV</span>
-                                                    </div>
+                                </td>
+                                <td class="mh-cell-middle">
+                                    <a data-toggle="modal" data-target="#causePost-@(i+1)">@user.Reasons.Count</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="causePost-@(i+1)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel">Lí do</h4>
                                                 </div>
-                                                <div class="media mh-user-report">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="mh-user-icon" src="img/user.jpg" alt="...">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <span>TamTV</span>
-                                                    </div>
+                                                <div class="modal-body">
+                                                    @foreach (KeyValuePair<ReportTypeEnum, int> reason in user.Reasons)
+                                                    {
+                                                        <div class="row">
+                                                            <div class="col-xs-7">@CP_MathHub.Core.Configuration.Constant.Account.Dictionary.ReportType[(int)@reason.Key]</div>
+                                                            <div class="col-xs-5">@reason.Value</div>
+                                                        </div>
+                                                    }
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-middle">
-                                <a data-toggle="modal" data-target="#causePost">ABC, XYZ, RYG</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="causePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Lí do</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-xs-7">ABC</div>
-                                                    <div class="col-xs-5">8 báo cáo</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-7">XYZ</div>
-                                                    <div class="col-xs-5">1 báo cáo</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-7">RYG</div>
-                                                    <div class="col-xs-5">1 báo cáo</div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                <div class="switch switch-square"
-                                     data-on-label="<i class=' icon-ok'></i>"
+                                </td>
+                                <td class="mh-cell-center">
+                                    <div class="switch switch-square"
+                                         data-on-label="<i class=' icon-ok'></i>"
                                                    data-off-label="<i class='icon-remove'></i>">
-                                              <input type="checkbox" checked="" />
+                                        <input type="checkbox" @(user.Status == true ? "checked" : "") />
                                           </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                <a href="" type="button" class="btn btn-warning">Block</a>
-                                <a href="" class="delete btn btn-danger" type="button">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td class="mh-cell-center">
-                                2
-                            </td>
-                            <td class="mh-cell-middle">
-                                <a data-toggle="modal" data-target="#user2">TamTV</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="user2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">Admin</span></h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h4>
-                                                    Đi đến
-                                                    <a href="#">trang thông tin cá nhân</a>
-                                                    của
-                                                    <span class="mh-manage-user-username">TamTV</span>
-                                                </h4>
-                                                <div>
-                                                    <h3>Thông tin chung</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Tài khoản</label>
+                                </td>
+                                <td class="mh-cell-center">
+                                    <a href="" id="activeUser-@user.User.Id" type="button" class="btn btn-warning @(user.User.Status.Value == UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" onclick="@("unBlockUser(" + @user.User.Id + ")")" data-target="#unblockuser-@user.User.Id">Bỏ khóa</a>
+                                    <a href="" id="deActiveUser-@user.User.Id" type="button" class="btn btn-warning @(user.User.Status.Value != UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" data-target="#blockuser-@user.User.Id">Khóa</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="blockuser-@user.User.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" mh-id="@user.User.Id">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form>
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Khóa tài khoản: <span class="mh-manage-user-username">@user.User.UserName</span></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <h5>Lý do:</h5>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <span>TamTV</span>
+                                                            <div class="col-xs-8 mh-select-cause-time-block">
+                                                                <select id="select-@user.User.Id" name="selBlock" class="selectpicker blockday" mh-id="@user.User.Id" multiple="multiple" title="Không có lý do nào được chọn">
+                                                                    @foreach (BanReason reason in Model.BanReasons)
+                                                                    {
+                                                                        <option mh-id="@reason.Id" value="@reason.Duration">@reason.Name - @reason.Duration ngày</option>
+                                                                    }
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Email</label>
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <h5>Tổng số ngày bị khóa</h5>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <span>tamtv93@gmail.com</span>
+                                                            <div class="col-xs-8">
+                                                                <input id="dayresult-@user.User.Id" type="text" readonly value="" class="mh-sum-day-block-input" />
                                                             </div>
                                                         </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Điểm thưởng</label>
+                                                        <div class="row">
+                                                            <div class="col-xs-4">
+                                                                <h5>Miêu tả</h5>
                                                             </div>
-                                                            <div class="col-xs-5">
-                                                                <div>
-                                                                    <span>1432</span>
-                                                                    <i class="icon-circle mh-reputation-icon"></i>
-                                                                </div>
+                                                            <div class="col-xs-8">
+                                                                <input type="text" value="" class="mh-block-input" id="des-@user.User.Id" />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin cơ bản</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Họ tên</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Thân Văn Tâm</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới tính</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Nam</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Ngày sinh</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>13/10/1993</span>
-                                                            </div>
-                                                        </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                        <button type="button" data-dismiss="modal" class="block btn btn-warning" mh-id-user="@user.User.Id" onclick="@("blockUser(" + @user.User.Id + ")")">Khóa</button>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin liên hệ</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Địa chỉ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đà Nẵng</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Số điện thoại</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>01227527757</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Facebook</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <a href="https://www.facebook.com/tam.gre.5">https://www.facebook.com/tam.gre.5</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <h3>Thông tin khác</h3>
-                                                    <div class="mh-manage-user-info-detail">
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trường</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>FPT University</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Trình độ</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Đại học</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Quan điểm</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Sống thật với bản thân</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mh-profile-info-row">
-                                                            <div class="col-xs-3">
-                                                                <label>Giới thiệu</label>
-                                                            </div>
-                                                            <div class="col-xs-5">
-                                                                <span>Bình thường</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                13/02/2015
-                            </td>
-                            <td class="mh-cell-center">
-                                <a data-toggle="modal" data-target="#userReport">10</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="userReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Người báo cáo</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="media mh-user-report">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="mh-user-icon" src="img/user.jpg" alt="...">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <span>TamTV</span>
-                                                    </div>
-                                                </div>
-                                                <div class="media mh-user-report">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="mh-user-icon" src="img/user.jpg" alt="...">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <span>TamTV</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-middle">
-                                <a data-toggle="modal" data-target="#causePost">ABC, XYZ, RYG</a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="causePost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">Lí do</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-xs-7">ABC</div>
-                                                    <div class="col-xs-5">8 báo cáo</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-7">XYZ</div>
-                                                    <div class="col-xs-5">1 báo cáo</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-7">RYG</div>
-                                                    <div class="col-xs-5">1 báo cáo</div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                <div class="switch switch-square"
-                                     data-on-label="<i class=' icon-ok'></i>"
-                                                   data-off-label="<i class='icon-remove'></i>">
-                                              <input type="checkbox" checked="" />
-                                          </div>
-                            </td>
-                            <td class="mh-cell-center">
-                                <a href="" type="button" class="btn btn-warning">Unblock</a>
-                                <a href="" class="delete btn btn-danger" type="button">Xóa</a>
-                            </td>
-                        </tr>
+
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

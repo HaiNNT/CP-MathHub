@@ -493,7 +493,9 @@ $(document).ready(function () {
             break;
         case "ManageInfracUsers":
             selectPicker();
+            selectValuePlus();
             dataTableManageInfracUsers();
+            clearDataModal();
             break;
         default:
             break;

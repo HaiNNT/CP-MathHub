@@ -201,6 +201,8 @@
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracNormalPostViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracUserListViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracUsersViewModel.cs" />
     <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracMainPostViewModel.cs" />

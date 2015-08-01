@@ -174,5 +174,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="tagIds"></param>
         void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "");
+        /// <summary>
+        /// Get list reported user
+        /// </summary>
+        /// <returns></returns>
+        List<User> GetReportedUser();
     }
 }
