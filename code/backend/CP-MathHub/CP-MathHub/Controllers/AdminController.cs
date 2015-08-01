@@ -171,17 +171,39 @@ namespace CP_MathHub.Controllers
 
         //Get: Admin/ManageTags
         [HttpGet]
-        public ActionResult ManageTags()
+        public ActionResult ManageTags(string loadType = Constant.Admin.String.NormalLoadTags)
         {
             ManageTagsViewModel model = new ManageTagsViewModel();
             List<Tag> list = cService.GetAllTags();
-            List<Tag> list1 = cService.GetAllTagsOrderByName();
             ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
-            ICollection<TagViewModel> tagsVM1 = list1.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            if (loadType == "duplicate")
+            {
+                tagsVM = tagsVM.Where(t => t.CheckDuplicate).OrderBy(t => t.Name).ToList();
+            }         
             model.Items = tagsVM;
-            model.Items1 = tagsVM1;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            ViewBag.LoadType = loadType;
             return View("Views/ManageTagsView", model);
+        }
+        //Get: Admin/GetSelectedTags
+        public ActionResult GetSelectedTags(List<int> tagIds)
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            List<Tag> list = cService.GetTags(tagIds);
+            ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            model.Items = tagsVM;
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            return PartialView("Partials/_DuplicateTagsPartialView", model.Items);
+        }
+        //Get: Admin/GetDuplicateTags
+        public ActionResult GetDupicateTags(string tagName)
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            List<Tag> list = cService.GetDupicateTags(tagName);
+            ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            model.Items = tagsVM;
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;          
+            return PartialView("Partials/_DuplicateTagsPartialView", model.Items);
         }
         //Post: Admin/InsertTag
         [HttpPost]
@@ -247,9 +269,11 @@ namespace CP_MathHub.Controllers
         public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null)
         {
             ManageInfracPostsViewModel models = new ManageInfracPostsViewModel();
-            models.MainPostFilters = MainPostFilters;
+            
             models.NormalPostFilters = NormalPostFilters;
-
+            #region Main post
+            models.MainPostFilters = MainPostFilters;
+            #endregion
             List<MainPost> listMainPost = new List<MainPost>();
             List<Post> listNormalPost = new List<Post>();
             List<ManageInfracMainPostViewModel> listMainPostChecked = new List<ManageInfracMainPostViewModel>();

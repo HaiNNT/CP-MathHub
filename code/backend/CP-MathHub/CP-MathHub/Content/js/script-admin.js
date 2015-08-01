@@ -25,12 +25,12 @@ function selectValuePlus() {
         var temp2 = $(this).val();
         //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
-            var total = 0;
+        var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-            }
+        }
         $('#dayresult-' + id).val(total + " ngày");
-        });
+    });
 }
 
 /*
@@ -65,7 +65,7 @@ function tableManageUsers() {
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-    
+
     //$('#editable-sample').on('click', 'a.block', function (e) {
     //    e.preventDefault();
     //    var id = $(this).attr("mh-id-user");
@@ -177,8 +177,42 @@ function unBlockUser(id) {
           alert("Khóa tài khoản này thất bại!");
       });
 }
-function resultDuplicateTag()
-{
+/*
+    Select duplicate tags
+*/
+function selectTag() {
+    var tagID = [];
+    $(".selectcheckTag:checked").each(function () {
+        tagID.push($(this).val());
+    });
+    var list = $("#duplicateView");
+    $.ajax({
+        method: "POST",
+        url: "/Admin/GetSelectedTags",
+        data: { tagIds: tagID }
+    })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.html(msg);
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+}
+function checkSelectItem() {
+    var tagID = [];
+    $(".selectcheckTag:checked").each(function () {
+        tagID.push($(this).val());
+    });
+    if (tagID.length > 0) {
+        $("#btnResultDuplicate").removeClass("hidden");
+    }
+    else if (tagID.length == 0) {
+        $("#btnResultDuplicate").addClass("hidden");
+    }
+}
+function resultDuplicateTag() {
     var tagID = [];
     var tagName = $("#tagName").val();
     var description = $("#tagDescription").val();
@@ -188,7 +222,7 @@ function resultDuplicateTag()
     $.ajax({
         method: "POST",
         url: "/Admin/ResultDuplicateTags",
-        data: { tagIds: tagID, tagName: tagName, description : description }
+        data: { tagIds: tagID, tagName: tagName, description: description }
     })
       .done(function (msg) {
           if (msg) {
@@ -244,7 +278,7 @@ function ManageInfracPosts_blockday() {
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-    
+
 }
 
 function ManageInfracPosts_edittable() {
@@ -281,27 +315,26 @@ function tableTag() {
         EditableTable.init();
     });
 }
+
 /*
     Get duplicate tags
 */
-function GetDuplicateTags() {
-    $("#btn-checkduplicate").click(function () {
-        var list = $("#mh-list-tag");
-        $.ajax({
-            method: "GET",
-            url: "/Admin/GetDuplicateTags",
-            data: {}
-        })
+function GetDuplicateTags(item) {
+    var name = $(item).parents("tr").find(".selectedDuplicateTagName").text();
+    var list = $("#duplicateView");
+    $.ajax({
+        method: "POST",
+        url: "/Admin/GetDupicateTags",
+        data: { tagName: name }
+    })
       .done(function (msg) {
           if (msg != "\n") {
-              list.append($(msg));
+              list.html(msg);
           }
       })
       .fail(function (msg) {
           alert(msg);
       });
-
-    });
 }
 function checkall() {
     $('#all').change(function () {
@@ -343,7 +376,7 @@ function uncheckStatus(id) {
 	  })
 	  .fail(function () {
 	      alert("fail error");
-    });
+	  });
 }
 
 function checkStatus(id) {
@@ -425,17 +458,10 @@ function GetOptionSelect() {
     clearTimeout(timeoutMainpostFilter);
     var load = function () {
         $("#select-form").submit();
-    }   
+    }
     timeoutMainpostFilter = setTimeout(load, 1000);
 }
 
-
-function clearDataModal(){
-    $('body').on('hidden.bs.modal', '.modal', function () {
-        var id = $(this).attr("mh-id");
-        clearBlockUser(id);
-    });
-}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -443,7 +469,10 @@ $(document).ready(function () {
             selectValue();
             selectValuePlus();
             tableManageUsers();
-            clearDataModal();
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                var id = $(this).attr("mh-id");
+                clearBlockUser(id);
+            });
             //blockUser(id);
             break;
         case "ManageRules":
@@ -457,9 +486,13 @@ $(document).ready(function () {
             //checkStatus(id);
             break;
         case "ManageTags":
-            GetDuplicateTags();
             tableTag();
             checkall();
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                var checkboxes = $('#editable-sample').find(':checkbox');
+                checkboxes.prop('checked', false);
+                $("#btnResultDuplicate").addClass("hidden");
+            });
             break;
         default:
             break;

@@ -4,12 +4,12 @@
 {
     string text = "";
     string type = "";
-    if (item.GetType() == typeof(Question))
+    if (item.GetType().BaseType == typeof(Question))
     {
         text = "câu hỏi";
         type = "Question";
     }
-    else if (item.GetType() == typeof(Article))
+    else if (item.GetType().BaseType == typeof(Article))
     {
         text = "bài viết";
         type = "Blog";

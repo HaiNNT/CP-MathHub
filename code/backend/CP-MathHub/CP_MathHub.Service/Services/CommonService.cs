@@ -160,18 +160,6 @@ namespace CP_MathHub.Service.Services
             List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
             return tags;
         }
-        public List<Tag> GetAllTagsOrderByName()
-        {
-            List<Tag> tags = _dal.Repository<Tag>()
-                .Get(
-                     null,
-                     (p => p.OrderBy(s => s.Name)),
-                     "MainPosts",
-                     0,
-                     0
-                    ).ToList();
-            return tags;
-        }
         public List<Tag> GetTags(int skip, string tab)
         {
             List<Tag> list = new List<Tag>();
@@ -281,11 +269,11 @@ namespace CP_MathHub.Service.Services
                     ++post.VoteUp;
                     _dal.Repository<Post>().Update(post);
                     _dal.Save();
-                    if (post.GetType() == typeof(Article))
+                    if (post.GetType().BaseType == typeof(Article))
                     {
                         PlusReputation(id, Constant.String.ReputationArticleLike);
                     }
-                    else if (post.GetType() == typeof(Discussion))
+                    else if (post.GetType().BaseType == typeof(Discussion))
                     {
                         PlusReputation(id, Constant.String.ReputationDiscussionLike);
                     }
@@ -301,11 +289,11 @@ namespace CP_MathHub.Service.Services
                     post.VoteUp = post.VoteUp > 0 ? --post.VoteUp : 0;
                     _dal.Repository<Vote>().Delete(vote);
                     _dal.Save();
-                    if (post.GetType() == typeof(Article))
+                    if (post.GetType().BaseType == typeof(Article))
                     {
                         MinusReputation(id, Constant.String.ReputationArticleLike);
                     }
-                    else if (post.GetType() == typeof(Discussion))
+                    else if (post.GetType().BaseType == typeof(Discussion))
                     {
                         MinusReputation(id, Constant.String.ReputationDiscussionLike);
                     }
