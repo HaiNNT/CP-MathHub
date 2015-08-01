@@ -371,9 +371,9 @@ function checkStatus(id) {
 }
 
 //change status report
-function changeStatusReport(id) {
+function changeStatusReport(id,type) {
     var url = "/Admin/ChangeStatusReport";
-    var data = { id: id };
+    var data = { id: id, type: type };
     $.ajax({
         method: "POST",
         url: url,
@@ -427,6 +427,15 @@ function GetOptionSelect() {
         $("#select-form").submit();
     }   
     timeoutMainpostFilter = setTimeout(load, 1000);
+}
+
+var timeoutUserFilter;
+function GetUserOptionSelect() {
+    clearTimeout(timeoutUserFilter);
+    var load = function () {
+        $("#select-form-user").submit();
+    }
+    timeoutUserFilter = setTimeout(load, 1000);
 }
 
 

@@ -12,6 +12,8 @@ namespace CP_MathHub.Models.Admin
 
         public List<BanReason> BanReasons { get; set; }
 
+        public List<int> Filters { get; set; }
+
         public ManageInfracUserListViewModel()
         {
             Items = new List<ManageInfracUsersViewModel>();

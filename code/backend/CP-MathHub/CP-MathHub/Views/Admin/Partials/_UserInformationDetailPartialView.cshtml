@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <h4>
                     Đi đến
-                    <a href="#">trang thông tin cá nhân</a>
+                    <a href="@Url.Action("UserProfile", "Account", new { userId= Model.Id })">trang thông tin cá nhân</a>
                     của
                     <span class="mh-manage-user-username">@Model.UserName</span>
                 </h4>

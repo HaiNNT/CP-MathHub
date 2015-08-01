@@ -89,9 +89,9 @@
                             <span>Quản lý vi phạm</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="admin-ManageInfracPosts.html">Bài viết</a></li>
-                            <li><a href="admin-ManageInfracUsers.html">Người dùng</a></li>
-                            <li><a href="~/Admin/ManageRule" style="color:@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "red" : "")">Quy định</a></li>
+                            <li><a href="@Url.Action("ManageInfracPosts","Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageInfracPosts ? "red" : "")">Bài viết</a></li>
+                            <li><a href="@Url.Action("ManageInfracUsers", "Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageInfracUsers ? "red" : "")">Người dùng</a></li>
+                            <li><a href="@Url.Action("ManageRule", "Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "red" : "")">Quy định</a></li>
                         </ul>
                     </li>
                     <li>

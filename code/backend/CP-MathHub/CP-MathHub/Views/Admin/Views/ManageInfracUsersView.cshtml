@@ -19,11 +19,15 @@
                         <h4>Hiển thị: </h4>
                     </div>
                     <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                        <select name="selValue" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
-                            <option value="1">Tất cả</option>
-                            <option value="5">Đã kiểm tra</option>
-                            <option value="5">Chưa kiểm tra</option>
-                        </select>
+                        @using (Html.BeginForm("ManageInfracUsers", "Admin", FormMethod.Post, new { id = "select-form-user" }))
+                        {
+                            <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
+                                <option value="1" @(Model.Filters != null && Model.Filters.Contains(1) ? "selected" : "")>Đã kiểm tra</option>
+                                <option value="2" @(Model.Filters != null && Model.Filters.Contains(2) ? "selected" : "")>Chưa kiểm tra</option>
+                            </select>
+                            <input type="hidden" value="@Model.Filters"/>
+                        }
+                        
                     </div>
                 </div>
                 <div class="space15"></div>
@@ -45,7 +49,7 @@
                             ManageInfracUsersViewModel user = Model.Items.ElementAt(i);
                             <tr class="">
                                 <td class="mh-cell-center">
-                                    @(i+1)
+                                    @(i + 1)
                                 </td>
                                 <td class="mh-cell-middle">
                                     <a data-toggle="modal" data-target="#user-@user.User.Id">@user.User.UserName</a>
@@ -75,8 +79,8 @@
                                                                 </a>
                                                             </div>
                                                             <div class="media-body">
-                                                                <span>@u.UserName</span>
-                                                            </div>
+                                                                <a href="@Url.Action("UserProfile", "Account", new { userId= u.Id })"><span>@u.UserName</span></a>
+</div>
                                                         </div>
                                                     }
 
@@ -119,7 +123,7 @@
                                     <div class="switch switch-square"
                                          data-on-label="<i class=' icon-ok'></i>"
                                                    data-off-label="<i class='icon-remove'></i>">
-                                        <input type="checkbox" @(user.Status == true ? "checked" : "") />
+                                        <input type="checkbox" @(user.Status == true ? "checked" : "") onchange="changeStatusReport(@user.User.Id,2)" />
                                           </div>
                                 </td>
                                 <td class="mh-cell-center">

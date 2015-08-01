@@ -118,7 +118,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        bool changeStatus(int id);
+        bool changeStatus(int id, int type);
         /// <summary>
         /// Update post
         /// </summary>
@@ -179,5 +179,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         List<User> GetReportedUser();
+        /// <summary>
+        /// Get list reported normal post
+        /// </summary>
+        /// <returns></returns>
+        List<Post> GetReportedPost();
     }
 }
