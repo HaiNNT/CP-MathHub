@@ -155,6 +155,11 @@ namespace CP_MathHub.Service.Services
             return dal.Repository<Discussion>().Table.Where(p => p.Reports.Count > 0).ToList();
         }
 
+        public List<Post> GetReportedPost()
+        {
+            return dal.Repository<Post>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
+
         public List<Answer> GetReportedAnswer()
         {
             return dal.Repository<Answer>().Table.Where(p => p.Reports.Count > 0).ToList();
@@ -209,9 +214,18 @@ namespace CP_MathHub.Service.Services
             }
             return result;
         }
-        public bool changeStatus(int id)
+        public bool changeStatus(int id, int type)
         {
-            List<Report> reports = dal.Repository<Report>().Table.Where(r => r.PostId == id).ToList();
+            List<Report> reports = new List<Report>();
+            if (type == 1)//post
+            {
+                reports = dal.Repository<Report>().Table.Where(r => r.PostId == id).ToList();
+            }
+            else if (type == 2)//user
+            {
+                reports = dal.Repository<Report>().Table.Where(r => r.UserId == id).ToList();
+            }
+            //List<Report> reports = dal.Repository<Report>().Table.Where(r => r.PostId == id).ToList();
             foreach (Report r in reports)
             {
                 if (r.Status)
@@ -254,6 +268,11 @@ namespace CP_MathHub.Service.Services
         {
             dal.Repository<User>().Update(user);
             dal.Save();
+        }
+
+        public List<User> GetReportedUser()
+        {
+            return dal.Repository<User>().Table.Where(u => u.ReportedList.Count > 0).ToList();
         }
     }
 }

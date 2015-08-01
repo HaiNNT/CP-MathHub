@@ -682,13 +682,13 @@ namespace CP_MathHub.Controllers
             {
                 FriendViewModel model = new FriendViewModel();
                 model.ListFollowers = followers;
-                model.FriendNum = aService.CountFriend(userId);
-                model.FollowerNum = aService.CountFollower(userId);
-                model.FolloweeNum = aService.CountFollowee(userId);
+                model.FriendNum = friends.Count;
+                model.FollowerNum = followers.Count;
+                model.FolloweeNum = followees.Count;
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
-                model.RequestNum = aService.CountFriendRequest(userId);
+                model.RequestNum = requests.Count;
                 model.Id = User.Identity.GetUserId<int>();
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires = DateTime.Now.AddMinutes(5);
@@ -719,15 +719,15 @@ namespace CP_MathHub.Controllers
                 model.Id = friendId;
                 model.UserName = user.UserName;
                 model.ListFollowers = followers;
-                model.FriendNum = aService.CountFriend(friendId);
-                model.FollowerNum = aService.CountFollower(friendId);
-                model.FolloweeNum = aService.CountFollowee(friendId);
+                model.FriendNum = friends.Count;
+                model.FollowerNum = followers.Count;
+                model.FolloweeNum = followees.Count;
                 model.ListFriends = friends;
                 model.ListFollowees = followees;
                 model.ListRequested = requests;
                 model.ListMutualFriend = mutualfriends;
-                model.RequestNum = aService.CountFriendRequest(friendId);
-                model.MutualFriendNum = aService.CountMutualFriend(User.Identity.GetUserId<int>(), friendId);
+                model.RequestNum = requests.Count;
+                model.MutualFriendNum = mutualfriends.Count;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
@@ -812,7 +812,7 @@ namespace CP_MathHub.Controllers
         }
         #endregion
         #region Activity
-        public ActionResult MyActivity()
+        public ActionResult MyActivity(string tab = "posts")
         {
             //Post
             List<Discussion> discussions = dService.GetDiscussions(User.Identity.GetUserId<int>());
@@ -867,6 +867,7 @@ namespace CP_MathHub.Controllers
             //cookie.Expires = DateTime.Now.AddMinutes(5);
             //Response.Cookies.Add(cookie);
             ViewBag.System = Constant.String.ProfileSystem;
+            ViewBag.Tab = tab;
             return View("Views/ActivityView", model);
         }
         #endregion

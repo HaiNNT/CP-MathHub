@@ -208,81 +208,89 @@ namespace CP_MathHub.Service.Services
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
                             , skip
                             , take).ToList();
-            foreach (UserFriendship friendShip1 in friendship1)
-            {
-                if (friendShip1.TargetUserId == userId)
-                {
-                    friends.Add(friendShip1.User);
-                }
-                else
-                {
-                    friends.Add(friendShip1.TargetUser);
-                }
-            }
+            //foreach (UserFriendship friendShip1 in friendship1)
+            //{
+            //    if (friendShip1.TargetUserId == userId)
+            //    {
+            //        friends.Add(friendShip1.User);
+            //    }
+            //    else
+            //    {
+            //        friends.Add(friendShip1.TargetUser);
+            //    }
+            //}
+            friends.AddRange(friendship1.Where(f => f.TargetUserId == userId).Select(f => f.User));
+            friends.AddRange(friendship1.Where(f => f.TargetUserId != userId).Select(f => f.TargetUser));
             List<UserFriendship> friendship2 = _dal.Repository<UserFriendship>().Get(
                             (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
                             , (u => u.OrderByDescending(m => m.LastChangeStatus))
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
                             , skip
                             , take).ToList();
-            foreach (UserFriendship friendShip2 in friendship2)
-            {
-                if (friendShip2.TargetUserId == friendId)
-                {
-                    userfriends.Add(friendShip2.User);
-                }
-                else
-                {
-                    userfriends.Add(friendShip2.TargetUser);
-                }
-            }
+            //foreach (UserFriendship friendShip2 in friendship2)
+            //{
+            //    if (friendShip2.TargetUserId == friendId)
+            //    {
+            //        userfriends.Add(friendShip2.User);
+            //    }
+            //    else
+            //    {
+            //        userfriends.Add(friendShip2.TargetUser);
+            //    }
+            //}
+            userfriends.AddRange(friendship2.Where(f => f.TargetUserId == friendId).Select(f => f.User));
+            userfriends.AddRange(friendship2.Where(f => f.TargetUserId != friendId).Select(f => f.TargetUser));
             mutualfriends = friends.Intersect(userfriends).ToList();
             return mutualfriends;
         }
-        public int CountMutualFriend(int userId, int friendId, int skip = 0, int take = 0)
-        {
-            int result = 0;
-            List<User> mutualfriends = new List<User>();
-            List<User> friends = new List<User>();
-            List<User> userfriends = new List<User>();
-            List<UserFriendship> friendship1 = _dal.Repository<UserFriendship>().Get(
-                            (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
-                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
-                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
-                            , skip
-                            , take).ToList();
-            foreach (UserFriendship friendShip1 in friendship1)
-            {
-                if (friendShip1.TargetUserId == userId)
-                {
-                    friends.Add(friendShip1.User);
-                }
-                else
-                {
-                    friends.Add(friendShip1.TargetUser);
-                }
-            }
-            List<UserFriendship> friendship2 = _dal.Repository<UserFriendship>().Get(
-                            (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
-                            , (u => u.OrderByDescending(m => m.LastChangeStatus))
-                            , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
-                            , skip
-                            , take).ToList();
-            foreach (UserFriendship friendShip2 in friendship2)
-            {
-                if (friendShip2.TargetUserId == friendId)
-                {
-                    userfriends.Add(friendShip2.User);
-                }
-                else
-                {
-                    userfriends.Add(friendShip2.TargetUser);
-                }
-            }
-            mutualfriends = friends.Intersect(userfriends).ToList();
-            result = mutualfriends.Count;
-            return result;
-        }
+        //public int CountMutualFriend(int userId, int friendId, int skip = 0, int take = 0)
+        //{
+        //    int result = 0;
+        //    List<User> mutualfriends = new List<User>();
+        //    List<User> friends = new List<User>();
+        //    List<User> userfriends = new List<User>();
+        //    List<UserFriendship> friendship1 = _dal.Repository<UserFriendship>().Get(
+        //                    (u => (u.UserId == userId || u.TargetUserId == userId) && u.Status == RelationshipEnum.Friend)
+        //                    , (u => u.OrderByDescending(m => m.LastChangeStatus))
+        //                    , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+        //                    , skip
+        //                    , take).ToList();
+        //    //foreach (UserFriendship friendShip1 in friendship1)
+        //    //{
+        //    //    if (friendShip1.TargetUserId == userId)
+        //    //    {
+        //    //        friends.Add(friendShip1.User);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        friends.Add(friendShip1.TargetUser);
+        //    //    }
+        //    //}
+        //    friends.AddRange(friendship1.Where(f => f.TargetUserId == userId).Select(f => f.User));
+        //    friends.AddRange(friendship1.Where(f => f.TargetUserId != userId).Select(f => f.TargetUser));
+        //    List<UserFriendship> friendship2 = _dal.Repository<UserFriendship>().Get(
+        //                    (u => (u.UserId == friendId || u.TargetUserId == friendId) && u.Status == RelationshipEnum.Friend)
+        //                    , (u => u.OrderByDescending(m => m.LastChangeStatus))
+        //                    , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
+        //                    , skip
+        //                    , take).ToList();
+        //    //foreach (UserFriendship friendShip2 in friendship2)
+        //    //{
+        //    //    if (friendShip2.TargetUserId == friendId)
+        //    //    {
+        //    //        userfriends.Add(friendShip2.User);
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        userfriends.Add(friendShip2.TargetUser);
+        //    //    }
+        //    //}
+        //    userfriends.AddRange(friendship2.Where(f => f.TargetUserId == friendId).Select(f => f.User));
+        //    userfriends.AddRange(friendship2.Where(f => f.TargetUserId != friendId).Select(f => f.TargetUser));
+        //    mutualfriends = friends.Intersect(userfriends).ToList();
+        //    result = mutualfriends.Count;
+        //    return result;
+        //}
         public List<User> GetFriends(int userId, string tab = Constant.Account.String.AllFriendTab, int skip = 0, int take = 0)
         {
             List<User> friends = new List<User>();
@@ -295,17 +303,19 @@ namespace CP_MathHub.Service.Services
                             , "User.ActiveRelationships,User.PassiveRelationship,TargetUser.ActiveRelationships,TargetUser.PassiveRelationship"
                             , skip
                             , take).ToList();
-                    foreach (UserFriendship friendShip in friendShips)
-                    {
-                        if (friendShip.TargetUserId == userId)
-                        {
-                            friends.Add(friendShip.User);
-                        }
-                        else
-                        {
-                            friends.Add(friendShip.TargetUser);
-                        }
-                    }
+                    //foreach (UserFriendship friendShip in friendShips)
+                    //{
+                    //    if (friendShip.TargetUserId == userId)
+                    //    {
+                    //        friends.Add(friendShip.User);
+                    //    }
+                    //    else
+                    //    {
+                    //        friends.Add(friendShip.TargetUser);
+                    //    }
+                    //}
+                    friends.AddRange(friendShips.Where(f => f.TargetUserId == userId).Select(f => f.User));
+                    friends.AddRange(friendShips.Where(f => f.TargetUserId != userId).Select(f => f.TargetUser));
                     break;
                 case Constant.Account.String.FollowerTab:
                     friends = _dal.Repository<User>().Get(
@@ -330,13 +340,7 @@ namespace CP_MathHub.Service.Services
                             , "User,TargetUser"
                             , skip
                             , take).ToList();
-                    foreach (UserFriendship friendShip in friendrequests)
-                    {
-                        if (friendShip.TargetUserId == userId)
-                        {
-                            friends.Add(friendShip.User);
-                        }
-                    }
+                    friends = friendrequests.Select(r => r.User).ToList();
                     break;
             }
             return friends;
@@ -351,14 +355,15 @@ namespace CP_MathHub.Service.Services
                     0,
                     0
                 ).ToList();
-            foreach (MainPost post in posts)
-            {
-                foreach (Tag tag in post.Tags)
-                {
-                    if (tags.Where(t => t.Id == tag.Id).Count() == 0)
-                        tags.Add(tag);
-                }
-            }
+            //foreach (MainPost post in posts)
+            //{
+            //    foreach (Tag tag in post.Tags)
+            //    {
+            //        if (tags.Where(t => t.Id == tag.Id).Count() == 0)
+            //            tags.Add(tag);
+            //    }
+            //}
+            tags = posts.Select(p => p.Tags).SelectMany(t => t).GroupBy(t => t.Id).Select(t => t.FirstOrDefault()).ToList();
             if(take == 0)
             {
                 return tags;

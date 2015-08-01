@@ -25,12 +25,12 @@ function selectValuePlus() {
         var temp2 = $(this).val();
         //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
-        var total = 0;
+            var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-        }
+            }
         $('#dayresult-' + id).val(total + " ngày");
-    });
+        });
 }
 
 /*
@@ -65,7 +65,7 @@ function tableManageUsers() {
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-
+    
     //$('#editable-sample').on('click', 'a.block', function (e) {
     //    e.preventDefault();
     //    var id = $(this).attr("mh-id-user");
@@ -278,7 +278,7 @@ function ManageInfracPosts_blockday() {
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-
+    
 }
 
 function ManageInfracPosts_edittable() {
@@ -322,11 +322,11 @@ function tableTag() {
 function GetDuplicateTags(item) {
     var name = $(item).parents("tr").find(".selectedDuplicateTagName").text();
     var list = $("#duplicateView");
-    $.ajax({
+        $.ajax({
         method: "POST",
         url: "/Admin/GetDupicateTags",
         data: { tagName: name }
-    })
+        })
       .done(function (msg) {
           if (msg != "\n") {
               list.html(msg);
@@ -376,7 +376,7 @@ function uncheckStatus(id) {
 	  })
 	  .fail(function () {
 	      alert("fail error");
-	  });
+    });
 }
 
 function checkStatus(id) {
@@ -404,9 +404,9 @@ function checkStatus(id) {
 }
 
 //change status report
-function changeStatusReport(id) {
+function changeStatusReport(id,type) {
     var url = "/Admin/ChangeStatusReport";
-    var data = { id: id };
+    var data = { id: id, type: type };
     $.ajax({
         method: "POST",
         url: url,
@@ -458,8 +458,47 @@ function GetOptionSelect() {
     clearTimeout(timeoutMainpostFilter);
     var load = function () {
         $("#select-form").submit();
-    }
+    }   
     timeoutMainpostFilter = setTimeout(load, 1000);
+}
+
+var timeoutUserFilter;
+function GetUserOptionSelect() {
+    clearTimeout(timeoutUserFilter);
+    var load = function () {
+        $("#select-form-user").submit();
+    }
+    timeoutUserFilter = setTimeout(load, 1000);
+}
+
+function dataTableManageInfracUsers() {
+    $('#editable-manageInfracUsers').dataTable({
+            "aLengthMenu": [
+                [5, 15, 20, -1],
+                [5, 15, 20, "All"] // change per page values here
+            ],
+            // set the initial value
+            "iDisplayLength": 5,
+            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+            "sPaginationType": "bootstrap",
+            "oLanguage": {
+                "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
+                "oPaginate": {
+                    "sPrevious": "Trước",
+                    "sNext": "Sau"
+                },
+                "sSearch": "Tìm kiếm",
+                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+            },
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [5,6]
+            }
+            ]
+        });
+
+        jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+        jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 }
 
 $(document).ready(function () {
@@ -493,6 +532,12 @@ $(document).ready(function () {
                 checkboxes.prop('checked', false);
                 $("#btnResultDuplicate").addClass("hidden");
             });
+            break;
+        case "ManageInfracUsers":
+            selectPicker();
+            selectValuePlus();
+            dataTableManageInfracUsers();
+            clearDataModal();
             break;
         default:
             break;

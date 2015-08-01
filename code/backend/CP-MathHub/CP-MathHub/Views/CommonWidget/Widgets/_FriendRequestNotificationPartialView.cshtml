@@ -1,0 +1,25 @@
+﻿@model List<User>
+@using CP_MathHub.Entity
+
+@foreach (User user in Model)
+{
+    <div class="row mh-request-friend-row">
+        <div class="col-xs-6 media">
+            <div class="media-left">
+                <a href="@Url.Action("UserProfile","Account", new { userId = user.Id })">
+                    <img src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="@Url.Action("UserProfile", "Account", new { userId = user.Id })">
+                    <span class="media-heading mh-request-user-name">@user.UserName</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-6 mh-request-friend-button">
+            <button onclick="@("acceptFriend(this,"+user.Id+")")" type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+            <button onclick="@("refuseFriend(this,"+user.Id+")")" type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+            <span class="mh-request-button"></span>
+        </div>
+    </div>
+}

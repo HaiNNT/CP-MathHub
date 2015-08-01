@@ -112,7 +112,7 @@ namespace CP_MathHub.Controllers
             }
             return true;
         }
-        [HttpPost]
+     
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
@@ -242,9 +242,9 @@ namespace CP_MathHub.Controllers
         }
         //Post: Admin/ChangeStatusReport
         [HttpPost]
-        public bool ChangeStatusReport(int id)
+        public bool ChangeStatusReport(int id, int type)
         {
-            aService.changeStatus(id);
+            aService.changeStatus(id, type);
             return true;
         }
 
@@ -266,36 +266,23 @@ namespace CP_MathHub.Controllers
             return aService.UpdatePost(post);
         }
 
+        //Admin/ManageInfracPosts
         public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null)
         {
             ManageInfracPostsViewModel models = new ManageInfracPostsViewModel();
-            
-            models.NormalPostFilters = NormalPostFilters;
-            #region Main post
+            #region select mainpost
             models.MainPostFilters = MainPostFilters;
-            #endregion
             List<MainPost> listMainPost = new List<MainPost>();
-            List<Post> listNormalPost = new List<Post>();
             List<ManageInfracMainPostViewModel> listMainPostChecked = new List<ManageInfracMainPostViewModel>();
             List<ManageInfracMainPostViewModel> listMainPostUnChecked = new List<ManageInfracMainPostViewModel>();
 
-            List<ManageInfracNormalPostViewModel> listNormalPostChecked = new List<ManageInfracNormalPostViewModel>();
-            List<ManageInfracNormalPostViewModel> listNormalPostUnChecked = new List<ManageInfracNormalPostViewModel>();
             if (MainPostFilters == null)
             {
                 MainPostFilters = new List<int>();
             }
-            if (NormalPostFilters == null)
-            {
-                NormalPostFilters = new List<int>();
-            }
             if (MainPostFilters.Contains(1))//Get questions
             {
                 listMainPost.AddRange(aService.GetReportedQuestion().OfType<MainPost>().ToList());
-            }
-            if (NormalPostFilters.Contains(6))//Get answer
-            {
-                listNormalPost.AddRange(aService.GetReportedAnswer().OfType<Post>().ToList());
             }
             if (MainPostFilters.Contains(2))// Get articles
             {
@@ -317,20 +304,7 @@ namespace CP_MathHub.Controllers
                 model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
                 model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
                 model.Status = post.Reports.Count(s => !s.Status) == 0;
-
                 models.MainPosts.Add(model);
-            }
-
-            foreach (Post post in listNormalPost)
-            {
-                ManageInfracNormalPostViewModel model = new ManageInfracNormalPostViewModel();
-                model.Post = post;
-                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
-                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
-                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
-                model.Status = post.Reports.Count(s => !s.Status) == 0;
-
-                models.NormalPosts.Add(model);
             }
 
             if (MainPostFilters.Contains(4))//Filter checked
@@ -342,17 +316,7 @@ namespace CP_MathHub.Controllers
                         listMainPostChecked.Add(q);
                     }
                 }
-
-                foreach (ManageInfracNormalPostViewModel q in models.NormalPosts)
-                {
-                    if (q.Status)
-                    {
-                        listNormalPostChecked.Add(q);
-                    }
-                }
-
             }
-
 
             if (MainPostFilters.Contains(5))//Filter unchecked
             {
@@ -363,7 +327,53 @@ namespace CP_MathHub.Controllers
                         listMainPostUnChecked.Add(q);
                     }
                 }
+            }
+            if (!MainPostFilters.Contains(4) && !MainPostFilters.Contains(5))
+            {
+                listMainPostChecked = models.MainPosts.ToList();//get all when not check both of them
+            }
+            listMainPostChecked.AddRange(listMainPostUnChecked);// merge 2 list into listMainPostChecked
+            models.MainPosts = listMainPostChecked;
+            #endregion
 
+            #region select normalpost
+            models.NormalPostFilters = NormalPostFilters;
+            List<Post> listNormalPost = new List<Post>();
+            //listNormalPost = aService.GetReportedPost();
+            listNormalPost.AddRange(aService.GetReportedAnswer().OfType<Post>().ToList());
+            List<ManageInfracNormalPostViewModel> listNormalPostChecked = new List<ManageInfracNormalPostViewModel>();
+            List<ManageInfracNormalPostViewModel> listNormalPostUnChecked = new List<ManageInfracNormalPostViewModel>();
+            if (NormalPostFilters == null)
+            {
+                NormalPostFilters = new List<int>();
+            }
+            //if (NormalPostFilters.Contains(6))//Get answer
+            //{
+            //    listNormalPost.AddRange(aService.GetReportedAnswer().OfType<Post>().ToList());
+            //}
+            foreach (Post post in listNormalPost)
+            {
+                ManageInfracNormalPostViewModel model = new ManageInfracNormalPostViewModel();
+                model.Post = post;
+                model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
+                model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+                model.Status = post.Reports.Count(s => !s.Status) == 0;
+                models.NormalPosts.Add(model);
+            }
+            if (NormalPostFilters.Contains(7))//Filter checked
+            {
+                foreach (ManageInfracNormalPostViewModel q in models.NormalPosts)
+                {
+                    if (q.Status)
+                    {
+                        listNormalPostChecked.Add(q);
+                    }
+                }
+            }
+
+            if (NormalPostFilters.Contains(8))//Filter unchecked
+            {
                 foreach (ManageInfracNormalPostViewModel q in models.NormalPosts)
                 {
                     if (!q.Status)
@@ -371,20 +381,88 @@ namespace CP_MathHub.Controllers
                         listNormalPostUnChecked.Add(q);
                     }
                 }
-            }
-            if (!MainPostFilters.Contains(4) && !MainPostFilters.Contains(5))
-            {
-                listMainPostChecked = models.MainPosts.ToList();//get all when not check both of them
-                listNormalPostChecked = models.NormalPosts.ToList();
-            }
-            listMainPostChecked.AddRange(listMainPostUnChecked);// merge 2 list into listMainPostChecked
+                    }
             listNormalPostChecked.AddRange(listNormalPostUnChecked);
-            models.MainPosts = listMainPostChecked;
-            models.NormalPosts = listNormalPostChecked;
-
-
+            //models.NormalPosts = listNormalPostChecked;
+            #endregion
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPostsView", models);
+                }
+
+        //public ActionResult ManageInfracUsers(List<int> Filters = null)
+        //{
+        //    ManageInfracUserListViewModel modelList = new ManageInfracUserListViewModel();
+        //    modelList.Filters = Filters;
+        //    List<User> users = aService.GetReportedUser();
+        //    modelList.BanReasons = aService.GetBanReason();
+        //    List<ManageInfracUsersViewModel> models = modelList.Items;
+            
+        //    foreach (User user in users)
+        //    {
+        //        ManageInfracUsersViewModel model = new ManageInfracUsersViewModel();
+        //        model.User = user;
+        //        model.ReportedDate = user.ReportedList.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+        //        model.Reporters = user.ReportedList.Select(r => r.Reporter).ToList();
+        //        model.Reasons = user.ReportedList.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+        //        model.Status = user.ReportedList.Count(s => !s.Status) == 0;
+        //        models.Add(model);
+        //    }
+        //    ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
+        //    return View("Views/ManageInfracUsersView", modelList); 
+        //}
+
+        public ActionResult ManageInfracUsers(List<int> Filters = null)
+        {
+            ManageInfracUserListViewModel modelList = new ManageInfracUserListViewModel();
+            modelList.Filters = Filters;
+            List<User> users = aService.GetReportedUser();
+            modelList.BanReasons = aService.GetBanReason();
+            List<ManageInfracUsersViewModel> modelsChecked = new List<ManageInfracUsersViewModel>();
+            List<ManageInfracUsersViewModel> modelsUnChecked = new List<ManageInfracUsersViewModel>();
+            if (Filters == null)
+            {
+                Filters = new List<int>();
+            }
+
+            foreach (User user in users)
+            {
+                ManageInfracUsersViewModel model = new ManageInfracUsersViewModel();
+                model.User = user;
+                model.ReportedDate = user.ReportedList.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = user.ReportedList.Select(r => r.Reporter).ToList();
+                model.Reasons = user.ReportedList.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+                model.Status = user.ReportedList.Count(s => !s.Status) == 0;
+                modelList.Items.Add(model);
+            }
+
+            if (Filters.Contains(1))//Filter checked
+            {
+                foreach (ManageInfracUsersViewModel q in modelList.Items)
+                {
+                    if (q.Status)
+                    {
+                        modelsChecked.Add(q);
+                    }
+                    }
+                }
+            if (Filters.Contains(2))//Filter checked
+            {
+                foreach (ManageInfracUsersViewModel q in modelList.Items)
+                {
+                    if (!q.Status)
+                    {
+                        modelsUnChecked.Add(q);
+                    }
+                }
+            }
+            if (!Filters.Contains(1) && !Filters.Contains(2))
+            {
+                modelsChecked = modelList.Items.ToList();//get all when not check both of them
+            }
+            modelsChecked.AddRange(modelsUnChecked);
+            modelList.Items = modelsChecked;
+            ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
+            return View("Views/ManageInfracUsersView", modelList);
         }
     }
 }
