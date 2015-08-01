@@ -64,12 +64,12 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/adminManageTagsjs").Include(
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
-                     "~/Content/js/editable-table-tag.js"));
+                      "~/Content/js/editable-table-tag.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminManageInfracPostsjs").Include(
+                      "~/Content/js/bootstrap-switch.js",
                       "~/Content/assets/data-tables/jquery.dataTables.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
-                      "~/Content/js/bootstrap-switch.js",
                       "~/Content/js/bootstrap-select.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/realtimejs").Include(

@@ -25,7 +25,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 )
                 .ForMember(
                     s => s.CheckDuplicate,
-                    d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer(), 0).GetTags(m.Name).Count>1)
+                    d => d.MapFrom(m => new CommonService(new CPMathHubModelContainer(), 0).GetDupicateTags(m.Name).Count > 1)
                 );
         }
     }

@@ -237,7 +237,7 @@ function searchTag() {
     var timeout;
     var list = $("#mh-list-tag");
     var load = function () {
-        clearTimeout(timeout);
+
         var param = $("#mh-search-tag").val();
         var tab = $("#tab").val();
         $.ajax({
@@ -256,6 +256,7 @@ function searchTag() {
     }
     $("#mh-search-tag").keypress(function () {
         list.html("");
+        clearTimeout(timeout);
         timeout = setTimeout(load, 1000);
     });
 }
@@ -275,7 +276,7 @@ function searchUser() {
     var timeout;
     var list = $("#mh-list-user");
     var load = function () {
-        clearTimeout(timeout);
+
         var param = $("#mh-search-user").val();
         var tab = $("#tab").val();
         $.ajax({
@@ -294,6 +295,7 @@ function searchUser() {
     }
     $("#mh-search-user").keypress(function () {
         list.html("");
+        clearTimeout(timeout);
         timeout = setTimeout(load, 1000);
     });
 }

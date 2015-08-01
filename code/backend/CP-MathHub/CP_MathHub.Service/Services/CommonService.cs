@@ -74,6 +74,12 @@ namespace CP_MathHub.Service.Services
         public List<Tag> GetTags(string name)
         {
             List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            tags = tags.Where(t => t.Name.ToLower().Contains(name.ToLower())).ToList();
+            return tags;
+        }
+        public List<Tag> GetDupicateTags(string name)
+        {
+            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
             tags = tags.Where(m => StringUtil.Compare2String(name, m.Name)).ToList();
             return tags;
         }

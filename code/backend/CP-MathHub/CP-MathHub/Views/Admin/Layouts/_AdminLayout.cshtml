@@ -68,7 +68,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="admin-ManageUser.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="~/Admin/ManageUsers">
                             <i class="icon-group"></i>
                             <span>Quản lý người dùng</span>
                         </a>
@@ -121,7 +121,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script class="include" type="text/javascript" src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
-    @Scripts.Render("~/bundles/adminjs")
+
     @switch ((string)ViewBag.Page)
     {
         case Constant.Admin.String.DashboardPage:
@@ -142,6 +142,7 @@
         default:
             break;
     }
+    @Scripts.Render("~/bundles/adminjs")
     @RenderSection("scripts", required: false)
 </body>
 </html>

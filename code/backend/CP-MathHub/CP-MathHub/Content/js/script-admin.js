@@ -125,6 +125,7 @@ function blockUser(id) {
     var userstatus = $("#userStatus-" + id)
     var activeButton = $("#activeUser-" + id);
     var deActiveButton = $("#deActiveUser-" + id);
+    deActiveButton.text("...");
     $.ajax({
         method: "POST",
         url: "/Admin/BlockUser",
@@ -136,6 +137,7 @@ function blockUser(id) {
               userstatus.html("Bị khóa");
               activeButton.removeClass("hidden");
               deActiveButton.addClass("hidden");
+              deActiveButton.text("Khóa");
               alert("Khóa tài khoản thành công!");
           }
           else {
@@ -145,6 +147,65 @@ function blockUser(id) {
       .fail(function () {
           alert("Khóa tài khoản này thất bại!");
       });
+}
+
+function unBlockUser(id) {
+    var status = 1;
+    //var list = $("#historyBlock-" + id);
+    var userstatus = $("#userStatus-" + id)
+    var activeButton = $("#activeUser-" + id);
+    var deActiveButton = $("#deActiveUser-" + id);
+    activeButton.text("...");
+    $.ajax({
+        method: "POST",
+        url: "/Admin/UnBlockUser",
+        data: { BannedUserId: id, Status: status }
+    })
+      .done(function (msg) {
+          if (msg) {
+              userstatus.html("Bình thường");
+              activeButton.addClass("hidden");
+              activeButton.text("Mở khóa");
+              deActiveButton.removeClass("hidden");
+              alert("Bỏ khóa tài khoản thành công!");
+          }
+          else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Khóa tài khoản này thất bại!");
+      });
+}
+function resultDuplicateTag()
+{
+    var tagID = [];
+    var tagName = $("#tagName").val();
+    var description = $("#tagDescription").val();
+    $(".checkduplicate:checked").each(function () {
+        tagID.push($(this).val());
+    });
+    $.ajax({
+        method: "POST",
+        url: "/Admin/ResultDuplicateTags",
+        data: { tagIds: tagID, tagName: tagName, description : description }
+    })
+      .done(function (msg) {
+          if (msg) {
+              location.reload();
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Phân quyền cho tài khoản này thất bại!");
+      });
+}
+
+function clearBlockUser(id) {
+    $("#select-" + id).selectpicker('deselectAll');
+    $("#dayresult-" + id).val('');
+    $("#des-" + id).val('');
 }
 
 function setRuleUser(id) {
@@ -369,6 +430,12 @@ function GetOptionSelect() {
 }
 
 
+function clearDataModal(){
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        var id = $(this).attr("mh-id");
+        clearBlockUser(id);
+    });
+}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -376,6 +443,7 @@ $(document).ready(function () {
             selectValue();
             selectValuePlus();
             tableManageUsers();
+            clearDataModal();
             //blockUser(id);
             break;
         case "ManageRules":
@@ -384,7 +452,6 @@ $(document).ready(function () {
             break;
         case "ManageInfracPosts":
             selectPicker();
-
             ManageInfracPosts_edittable();
             //uncheckStatus(id);
             //checkStatus(id);

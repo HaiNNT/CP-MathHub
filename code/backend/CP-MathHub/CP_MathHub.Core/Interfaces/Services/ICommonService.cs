@@ -75,6 +75,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Tag> GetTags(string tab, string name, int skip);
 
         /// <summary>
+        /// Get duplicate tag
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        List<Tag> GetDupicateTags(string name);
+
+        /// <summary>
         /// Insert a new tag
         /// </summary>
         /// <returns></returns>
