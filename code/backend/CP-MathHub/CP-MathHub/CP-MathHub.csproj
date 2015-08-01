@@ -201,6 +201,8 @@
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracNormalPostViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracUserListViewModel.cs" />
+    <Compile Include="Models\Admin\ManageInfracUsersViewModel.cs" />
     <Compile Include="Models\Admin\ManageTagsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracPostsViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracMainPostViewModel.cs" />
@@ -858,6 +860,7 @@
     <Content Include="Views\Admin\Partials\_HistoryBlockUserPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserInvitedActivityPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_UserInformationDetailPartialView.cshtml" />
+    <Content Include="Views\Admin\Views\ManageInfracUsersView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FriendRequestNotificationPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_MessageNotificationPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_ActivityNotificationPartialView.cshtml" />

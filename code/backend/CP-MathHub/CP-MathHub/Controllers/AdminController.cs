@@ -244,6 +244,7 @@ namespace CP_MathHub.Controllers
             return aService.UpdatePost(post);
         }
 
+        //Admin/ManageInfracPosts
         public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null)
         {
             ManageInfracPostsViewModel models = new ManageInfracPostsViewModel();
@@ -362,5 +363,30 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPostsView", models);
         }
+
+        public ActionResult ManageInfracUsers()
+        {
+            ManageInfracUserListViewModel modelList = new ManageInfracUserListViewModel();
+            List<User> users = aService.GetReportedUser();
+            modelList.BanReasons = aService.GetBanReason();
+            List<ManageInfracUsersViewModel> models = modelList.Items;
+            
+            foreach (User user in users)
+            {
+                ManageInfracUsersViewModel model = new ManageInfracUsersViewModel();
+                model.User = user;
+                model.ReportedDate = user.ReportedList.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
+                model.Reporters = user.ReportedList.Select(r => r.Reporter).ToList();
+                model.Reasons = user.ReportedList.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
+                model.Status = user.ReportedList.Count(s => !s.Status) == 0;
+                models.Add(model);
+                //modelList.Items.Add(model);
+            }
+            
+            ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
+            return View("Views/ManageInfracUsersView", modelList); 
+        }
+
+        
     }
 }
