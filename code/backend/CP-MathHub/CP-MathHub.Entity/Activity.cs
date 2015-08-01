@@ -21,6 +21,7 @@ namespace CP_MathHub.Entity
         public System.DateTime LastLogin { get; set; }
         public string LastIp { get; set; }
         public System.DateTime LastSeenFriendRequest { get; set; }
+        public System.DateTime LastSeenMessage { get; set; }
     
         public virtual User User { get; set; }
     }

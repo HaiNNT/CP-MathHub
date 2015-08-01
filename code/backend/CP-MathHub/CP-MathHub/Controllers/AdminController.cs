@@ -66,12 +66,24 @@ namespace CP_MathHub.Controllers
             banAccount.UnBanedDate = DateTime.Now.AddDays(banAccount.Duration);
             banAccount.BannedUser = cService.GetUser(model.BannedUserId);
             banAccount.BannedUser.Status = model.Status;
-            banAccount.BanUserId = User.Identity.GetUserId<int>();
+            banAccount.BanUser = cService.GetUser(User.Identity.GetUserId<int>());
             banAccount.Description = model.Description;
             banAccount.BanReasons = aService.GetListBanReason(model.Reasons);
             aService.BlockUser(banAccount);
-
-            return null;
+            return PartialView("Partials/_HistoryBlockUserPartialView", banAccount.BannedUser);
+        }
+        public bool SetRoleUser(SetRoleViewModel model)
+        {
+            aService.ClearRolesUser(model.UserId);
+            foreach (int id in model.RoleId) {
+                Accessment assess = new Accessment();
+                assess.UserId = model.UserId;
+                assess.RoleId = id;
+                assess.AccessedDate = DateTime.Now;
+                assess.ExpireDate = DateTime.Now.AddYears(1);
+                aService.SetRoleUser(assess);
+            }
+            return true;
         }
         [HttpPost]
         public ActionResult ManageRule()

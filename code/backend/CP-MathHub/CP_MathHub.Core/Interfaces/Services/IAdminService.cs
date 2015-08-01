@@ -139,5 +139,15 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Article> GetReportedArticle();
 
         List<Discussion> GetReportedDiscussion();
-       }
+        /// <summary>
+        /// Set role for user
+        /// </summary>
+        /// <param name="assessment"></param>
+        void SetRoleUser(Accessment assessment);
+        /// <summary>
+        /// Clear roles user
+        /// </summary>
+        /// <param name="id"></param>
+        void ClearRolesUser(int id);
+    }
 }

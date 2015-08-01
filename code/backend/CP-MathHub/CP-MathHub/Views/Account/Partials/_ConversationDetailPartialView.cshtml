@@ -4,7 +4,7 @@
 @using CP_MathHub.Entity
 <div class="col-xs-8 mh-profile-chat-details">
     <div class="mh-profile-chat-top">
-        <h4>@Model.Name <i id="conversation-status" class="fa fa-circle mh-chat-status-icon-off"></i></h4>        
+        <h4>@Model.Name <i class="fa fa-circle mh-chat-status-icon-off conversation-status-@Model.Id"></i></h4>        
     </div>
     <div class="mh-profile-chat-detail">
         @foreach (MesagesOfDate date in Model.Dates)

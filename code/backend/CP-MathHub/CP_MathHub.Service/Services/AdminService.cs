@@ -101,7 +101,28 @@ namespace CP_MathHub.Service.Services
             dal.Save();
             //aService.UpdateUser(banAccount.BannedUser);
         }
-
+        public void SetRoleUser(Accessment assessment)
+        {
+            if (dal.Repository<Accessment>().Table.Count(a => a.RoleId == assessment.RoleId && a.UserId == assessment.UserId) == 0)
+            {
+                dal.Repository<Accessment>().Insert(assessment);
+                dal.Save();
+            }
+        }
+        public void ClearRolesUser(int id)
+        {
+            User user = cService.GetUser(id);
+            user.Assessments.Clear();
+            dal.Repository<User>().Update(user);
+            dal.Save();
+            //List<Accessment> list = new List<Accessment>();
+            //list = dal.Repository<Accessment>().Table.Where(a => a.UserId == id).ToList();
+            //foreach (Accessment a in list)
+            //{
+            //    dal.Repository<Accessment>().Delete(a);
+            //    dal.Save();
+            //}
+        }
         public List<Report> GetMainPostReport()
         {
             List<Report> list = new List<Report>();

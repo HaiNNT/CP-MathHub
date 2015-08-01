@@ -13,7 +13,6 @@ function selectPickerReport() {
 */
 function selectValue() {
     $('select[name=selValue]').val(1);
-
     $('.selectpicker').selectpicker('refresh');
 }
 
@@ -26,12 +25,12 @@ function selectValuePlus() {
         var temp2 = $(this).val();
         //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
-        var total = 0;
+            var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-        }
+            }
         $('#dayresult-' + id).val(total + " ngày");
-    });
+        });
 }
 
 /*
@@ -66,6 +65,29 @@ function tableManageUsers() {
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+    
+    //$('#editable-sample').on('click', 'a.block', function (e) {
+    //    e.preventDefault();
+    //    var id = $(this).attr("mh-id-user");
+    //    /* Get the row as a parent of the link that was clicked on */
+    //    var nRow = $(this).parents('tr')[0];
+
+    //        $.ajax({
+    //            type: 'POST',
+    //            url: '/Admin/BlockUser',
+    //            data: { tagId: id, name: Name, description: Des },
+    //            //contentType: 'application/json; charset=utf-8',
+
+    //            success: function (msg) {
+    //                // Notice that msg.d is used to retrieve the result object
+    //                if (msg) {
+    //                    saveRow(oTable, nEditing, id);
+    //                    nEditing = null;
+    //                }
+    //            }
+    //        });
+    //        //alert("Updated! Do not forget to do some ajax to sync with backend :)");
+    //});
 
     //$('#editable-manageUser').on('click', 'a.delete', function (e) {
     //    e.preventDefault();
@@ -99,15 +121,24 @@ function blockUser(id) {
     $($("#select-" + id).prop("selectedOptions")).each(function () {
         ids.push($(this).attr("mh-id"));
     });
+    var list = $("#historyBlock-" + id);
+    var userstatus = $("#userStatus-" + id)
+    var activeButton = $("#activeUser-" + id);
+    var deActiveButton = $("#deActiveUser-" + id);
     $.ajax({
         method: "POST",
         url: "/Admin/BlockUser",
         data: { Duration: duration, BannedUserId: id, Description: description, Status: status, Reasons: ids }
     })
       .done(function (msg) {
-          if (msg) {
-              add(msg);
-          } else {
+          if (msg != "\n") {
+              list.html(msg);
+              userstatus.html("Bị khóa");
+              activeButton.removeClass("hidden");
+              deActiveButton.addClass("hidden");
+              alert("Khóa tài khoản thành công!");
+          }
+          else {
               alert("false");
           }
       })
@@ -116,13 +147,43 @@ function blockUser(id) {
       });
 }
 
+function setRuleUser(id) {
+    var idCheckbox = "#checkbox-" + id;
+    var roleID = [];
+    $(idCheckbox + " :checked").each(function () {
+        roleID.push($(this).val());
+    });
+    var names = "";
+    $(idCheckbox + " :checked").each(function () {
+        names += $(this).attr("mh-name");
+    });
+    var nameLast = names.slice(0, -1);
+    var role = $("#role-" + id);
+    $.ajax({
+        method: "POST",
+        url: "/Admin/SetRoleUser",
+        data: { UserId: id, RoleId: roleID }
+    })
+      .done(function (msg) {
+          if (msg) {
+              //add(msg);
+              role.html(nameLast.trim());
+              alert("Thay đổi quyền thành công!")
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Phân quyền cho tài khoản này thất bại!");
+      });
+}
 function ManageInfracPosts_blockday() {
     $('.selectpicker').selectpicker();
 
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-
+    
 }
 
 function ManageInfracPosts_edittable() {
@@ -221,7 +282,7 @@ function uncheckStatus(id) {
 	  })
 	  .fail(function () {
 	      alert("fail error");
-	  });
+    });
 }
 
 function checkStatus(id) {

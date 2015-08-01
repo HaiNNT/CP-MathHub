@@ -13,7 +13,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Get Default Questions
         /// </summary>
         /// <returns></returns>
-        List<Discussion> GetDiscussions(string homeTab, int skip = 0);
+        List<Discussion> GetDiscussions(string type, int skip = 0, int take = 0);
 
         /// <summary>
         /// Get Discussions by Author

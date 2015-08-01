@@ -525,6 +525,33 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<MainPost>().Include(include).GetById(mainPostId);
         }
+        public List<MainPost> GetMainPosts(string type, int skip = 0, int take = 0)
+        {
+            List<MainPost> list = new List<MainPost>();
+            switch (type)
+            {
+                case "Invited":
+                    list = _dal.Repository<MainPost>().Get(
+                            (m => m.Invitations.Count(i => i.InviteeId == _loginUserId)>0),
+                            (m => m.OrderByDescending(a => a.CreatedDate)),
+                            "",
+                            skip,
+                            take
+                        ).ToList();
+                    break;
+                default:
+                    list = _dal.Repository<MainPost>().Get(
+                            (m => m.Invitations.Count(i => i.InviteeId == _loginUserId) > 0),
+                            (m => m.OrderByDescending(a => a.CreatedDate)),
+                            "",
+                            skip,
+                            take
+                        ).ToList();
+                    break;
+            }
+
+            return list;
+        }
         public Post GetPost(int postId, string include = "")
         {
             return _dal.Repository<Post>().Include(include).GetById(postId);
@@ -532,6 +559,16 @@ namespace CP_MathHub.Service.Services
         public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
         {
             return _aService.SearchFriend(name, userId, skip, take);
+        }
+        public int GetPlusReputation(string type)
+        {
+            switch (type)
+            {
+                case "":
+                    return 0;
+                default:
+                    return 0;
+            }
         }
     }
 }
