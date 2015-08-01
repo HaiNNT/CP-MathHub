@@ -123,6 +123,7 @@ function blockUser(id) {
     var userstatus = $("#userStatus-" + id)
     var activeButton = $("#activeUser-" + id);
     var deActiveButton = $("#deActiveUser-" + id);
+    deActiveButton.text("...");
     $.ajax({
         method: "POST",
         url: "/Admin/BlockUser",
@@ -134,6 +135,7 @@ function blockUser(id) {
               userstatus.html("Bị khóa");
               activeButton.removeClass("hidden");
               deActiveButton.addClass("hidden");
+              deActiveButton.text("Khóa");
               alert("Khóa tài khoản thành công!");
           }
           else {
@@ -143,6 +145,41 @@ function blockUser(id) {
       .fail(function () {
           alert("Khóa tài khoản này thất bại!");
       });
+}
+
+function unBlockUser(id) {
+    var status = 1;
+    //var list = $("#historyBlock-" + id);
+    var userstatus = $("#userStatus-" + id)
+    var activeButton = $("#activeUser-" + id);
+    var deActiveButton = $("#deActiveUser-" + id);
+    activeButton.text("...");
+    $.ajax({
+        method: "POST",
+        url: "/Admin/UnBlockUser",
+        data: { BannedUserId: id, Status: status }
+    })
+      .done(function (msg) {
+          if (msg) {
+              userstatus.html("Bình thường");
+              activeButton.addClass("hidden");
+              activeButton.text("Mở khóa");
+              deActiveButton.removeClass("hidden");
+              alert("Bỏ khóa tài khoản thành công!");
+          }
+          else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Khóa tài khoản này thất bại!");
+      });
+}
+
+function clearBlockUser(id) {
+    $("#select-" + id).selectpicker('deselectAll');
+    $("#dayresult-" + id).val('');
+    $("#des-" + id).val('');
 }
 
 function setRuleUser(id) {
@@ -258,6 +295,12 @@ function checkall() {
         }
     });
 }
+function clearDataModal(){
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        var id = $(this).attr("mh-id");
+        clearBlockUser(id);
+    });
+}
 $(document).ready(function () {
     switch ($("#mh-page").val()) {
         case "ManageUsers":
@@ -265,6 +308,7 @@ $(document).ready(function () {
             selectValue();
             selectValuePlus();
             tableManageUsers();
+            clearDataModal();
             //blockUser(id);
             break;
         case "ManageRules":

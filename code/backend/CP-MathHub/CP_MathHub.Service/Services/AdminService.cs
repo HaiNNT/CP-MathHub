@@ -161,5 +161,10 @@ namespace CP_MathHub.Service.Services
             }
             return result;
         }
+        public void UnBlockUser(User user)
+        {
+            dal.Repository<User>().Update(user);
+            dal.Save();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using CP_MathHub.Entity
 @model User
 @{
+    Model.BanAccounts.OrderByDescending(b => b.BannedDate);
     if (Model.BannedAccounts.Count > 0)
     {
         <a data-toggle="modal" data-target="#blocked-@Model.Id">@Model.BannedAccounts.Count lần</a>
@@ -12,7 +13,7 @@
                         <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa của <span class="mh-manage-user-username">@Model.UserName</span></h4>
                     </div>
                     <div class="modal-body">
-                        @for (int j = 0; j < Model.BannedAccounts.Count; j++)
+                        @for (int j = Model.BannedAccounts.Count()-1; j >= 0; j--)
                         {
                             BanAccount ban = Model.BannedAccounts.ElementAt(j);
                             <div class="mh-history-block-row">

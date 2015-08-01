@@ -72,6 +72,17 @@ namespace CP_MathHub.Controllers
             aService.BlockUser(banAccount);
             return PartialView("Partials/_HistoryBlockUserPartialView", banAccount.BannedUser);
         }
+        //Post: Unblock
+        [HttpPost]
+        public bool UnBlockUser(UnBlockUserViewModel model)
+        {
+            User unBanAcc = cService.GetUser(model.BannedUserId);
+            unBanAcc.Status = model.Status;
+            aService.UnBlockUser(unBanAcc);
+            return true;
+        }
+        //Post: Set role for user
+        [HttpPost]
         public bool SetRoleUser(SetRoleViewModel model)
         {
             aService.ClearRolesUser(model.UserId);
