@@ -133,12 +133,26 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         Post GetPost(int id);
 
-
+        /// <summary>
+        /// Get reported question
+        /// </summary>
+        /// <returns></returns>
         List<Question> GetReportedQuestion();
-
+        /// <summary>
+        /// Get reported article
+        /// </summary>
+        /// <returns></returns>
         List<Article> GetReportedArticle();
-
+        /// <summary>
+        /// Get reported discussion
+        /// </summary>
+        /// <returns></returns>
         List<Discussion> GetReportedDiscussion();
+        /// <summary>
+        /// Get reported answer
+        /// </summary>
+        /// <returns></returns>
+        List<Answer> GetReportedAnswer();
         /// <summary>
         /// Set role for user
         /// </summary>
@@ -149,5 +163,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         void ClearRolesUser(int id);
+
+        /// <summary>
+        /// Result duplicate tags
+        /// </summary>
+        /// <param name="tagIds"></param>
+        void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "");
     }
 }

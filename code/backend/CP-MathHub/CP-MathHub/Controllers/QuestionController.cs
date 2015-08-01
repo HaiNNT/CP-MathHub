@@ -35,7 +35,7 @@ namespace CP_MathHub.Controllers
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 qService = new QuestionService(context, _currentUserId);
-                cService = new CommonService(context);
+                cService = new CommonService(context, _currentUserId);
             }
             else
             {
@@ -361,9 +361,17 @@ namespace CP_MathHub.Controllers
         {
             Tag tag = new Tag();
             tag.Name = name;
-            cService.InsertTag(tag, User.Identity.GetUserId<int>());
-            ViewBag.System = Constant.String.QuestionSystem;
-            return PartialView("../CommonWidget/_TagPartialView", tag);
+
+            if (cService.InsertTag(tag, User.Identity.GetUserId<int>()))
+            {
+                return PartialView("../CommonWidget/_TagPartialView", tag);
+            }
+            else
+            {
+                tag = cService.GetTag(name);
+                return PartialView("../CommonWidget/_TagPartialView", tag);
+            }
+            
         }
 
         //Get: Question/SearchUsers

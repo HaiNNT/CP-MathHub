@@ -146,7 +146,30 @@ function blockUser(id) {
           alert("Khóa tài khoản này thất bại!");
       });
 }
-
+function resultDuplicateTag()
+{
+    var tagID = [];
+    var tagName = $("#tagName").val();
+    var description = $("#tagDescription").val();
+    $(".checkduplicate:checked").each(function () {
+        tagID.push($(this).val());
+    });
+    $.ajax({
+        method: "POST",
+        url: "/Admin/ResultDuplicateTags",
+        data: { tagIds: tagID, tagName: tagName, description : description }
+    })
+      .done(function (msg) {
+          if (msg) {
+              location.reload();
+          } else {
+              alert("false");
+          }
+      })
+      .fail(function () {
+          alert("Phân quyền cho tài khoản này thất bại!");
+      });
+}
 function setRuleUser(id) {
     var idCheckbox = "#checkbox-" + id;
     var roleID = [];
@@ -384,7 +407,6 @@ $(document).ready(function () {
             break;
         case "ManageInfracPosts":
             selectPicker();
-
             ManageInfracPosts_edittable();
             //uncheckStatus(id);
             //checkStatus(id);

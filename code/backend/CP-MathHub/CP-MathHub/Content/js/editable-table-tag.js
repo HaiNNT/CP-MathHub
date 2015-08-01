@@ -21,7 +21,7 @@
                 //jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" id="txtName" value="' + aData[1] + '">';
                 //jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control small" id="txtDes" value="' + aData[3] + '">';
+                jqTds[3].innerHTML = '<input type="text" class="form-control" id="txtDes" value="' + aData[3] + '">';
                 //jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
                 jqTds[5].innerHTML = '<a class="edit btn btn-primary" href="" mh-id="' + id + '">Lưu</a> <a class="cancel btn btn-danger" href="">Hủy</a>';
                 //jqTds[6].innerHTML = '<a class="cancel btn btn-danger" href="">Hủy</a>';

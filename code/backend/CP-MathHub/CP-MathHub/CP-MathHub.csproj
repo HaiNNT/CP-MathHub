@@ -848,7 +848,7 @@
     <Content Include="Views\Account\Partials\_UserListPartialView.cshtml" />
     <Content Include="Views\Account\Layouts\_UsersPageLayout.cshtml" />
     <Content Include="Views\Admin\Partials\RuleCreatePartialView.cshtml" />
-    <Content Include="Views\Admin\Views\ManageInfracPosts.cshtml" />
+    <Content Include="Views\Admin\Views\ManageInfracPostsView.cshtml" />
     <Content Include="Views\Account\Partials\_ConversationDetailPartialView.cshtml" />
     <Content Include="Views\Admin\Views\ManageTagsView.cshtml" />
     <Content Include="Views\Admin\Partials\_ManageTagsPartialView.cshtml" />

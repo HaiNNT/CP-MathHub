@@ -187,11 +187,12 @@ function createTag() {
 /*
     Search tags
 */
+var timeoutSearchTag;
 function searchTag() {
-    var timeout;
+    var timeoutSearchTag;
     var list = $("#mh-list-tag");
     var load = function () {
-        clearTimeout(timeout);
+
         var param = $("#mh-search-tag").val();
         var tab = $("#tab").val();
         $.ajax({
@@ -201,9 +202,7 @@ function searchTag() {
         })
       .done(function (msg) {
           if (msg != "\n") {
-              list.html($(msg));
-
-              
+              list.html($(msg));           
           }
       })
       .fail(function (msg) {
@@ -212,18 +211,19 @@ function searchTag() {
     }
     $("#mh-search-tag").keypress(function () {
         list.html("");
-        timeout = setTimeout(load, 1000);
+        clearTimeout(timeoutSearchTag);
+        timeoutSearchTag = setTimeout(load, 1000);
     });
 }
 
 /*
     Search users
 */
+var timeoutSearchUser;
 function searchUser() {
-    var timeout;
     var list = $("#mh-list-user");
     var load = function () {
-        clearTimeout(timeout);
+
         var param = $("#mh-search-user").val();
         var tab = $("#tab").val();
         $.ajax({
@@ -242,7 +242,8 @@ function searchUser() {
     }
     $("#mh-search-user").keypress(function () {
         list.html("");
-        timeout = setTimeout(load, 1000);
+        clearTimeout(timeoutSearchUser);
+        timeoutSearchUser = setTimeout(load, 1000);
     });
 }
 
