@@ -183,7 +183,7 @@ namespace CP_MathHub.Controllers
             }
             model.Items = tagsVM;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
-            ViewBag.Tab = loadType;
+            ViewBag.LoadType = loadType;
             return View("Views/ManageTagsView", model);
         }
         //Get: Admin/GetSelectedTags
