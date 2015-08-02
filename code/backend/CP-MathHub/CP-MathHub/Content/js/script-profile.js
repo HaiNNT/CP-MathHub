@@ -104,12 +104,42 @@ $(document).ready(function () {
         $('.hidden-image-data').val(imageData);
     });
     searchUser();
+    searchFriend();
     searchUserFriend();
 });
 /*
+    Search users
+*/
+var timeoutSearchUser;
+function searchUser() {
+    var list = $("#mh-list-user");
+    var load = function () {
+        var param = $("#mh-search-user").val();
+        var tab = $("#tab").val();
+        $.ajax({
+            method: "GET",
+            url: "/Account/SearchUser",
+            data: { name: param, tab: tab }
+        })
+      .done(function (msg) {
+          if (msg != "\n") {
+              list.html($(msg));
+          }
+      })
+      .fail(function (msg) {
+          alert(msg);
+      });
+    }
+    $("#mh-search-user").keypress(function () {
+        list.html("");
+        clearTimeout(timeoutSearchUser);
+        timeoutSearchUser = setTimeout(load, 1000);
+    });
+}
+/*
 Search Friends
 */
-function searchUser() {
+function searchFriend() {
     var timeout;
     var list = $("#mh-list-friend");
     var id = $("#user-id").val();

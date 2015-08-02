@@ -217,37 +217,6 @@ function searchTag() {
 }
 
 /*
-    Search users
-*/
-var timeoutSearchUser;
-function searchUser() {
-    var list = $("#mh-list-user");
-    var load = function () {
-
-        var param = $("#mh-search-user").val();
-        var tab = $("#tab").val();
-        $.ajax({
-            method: "GET",
-            url: "/Question/SearchUser",
-            data: { name: param, tab: tab }
-        })
-      .done(function (msg) {
-          if (msg != "\n") {
-              list.html($(msg));
-          }
-      })
-      .fail(function (msg) {
-          alert(msg);
-      });
-    }
-    $("#mh-search-user").keypress(function () {
-        list.html("");
-        clearTimeout(timeoutSearchUser);
-        timeoutSearchUser = setTimeout(load, 1000);
-    });
-}
-
-/*
     Comment for a post
 */
 function commentPost() {

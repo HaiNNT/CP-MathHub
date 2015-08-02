@@ -14,6 +14,8 @@ namespace CP_MathHub.Service.Helpers
     {
         public static string PostCreatedTime(this HtmlHelper html, DateTime time, string type)
         {
+            if (time == default(DateTime))
+                return "";
             TimeSpan period = (DateTime.Now - time);
 
             if ((int)period.TotalSeconds < 60)
@@ -193,6 +195,88 @@ namespace CP_MathHub.Service.Helpers
 
             label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
             return label.ToString(TagRenderMode.Normal);
+        }
+        public static int GetMainPostIdOfNormalPost(this HtmlHelper html, Post post)
+        {
+            //Question question = new Question();
+            //question = _dal.Repository<Question>().Table.First(q => q.Answers.Count(a => a.Id == id) >0);
+            if (post.GetType().BaseType == typeof(Answer))
+            {
+                return ((Answer)post).QuestionId;
+            }
+            else if (post.GetType().BaseType == typeof(Comment))
+            {
+                Comment comment = (Comment)post;
+                if (comment.Post.GetType().BaseType == typeof(Answer))
+                {
+                    return ((Answer)comment.Post).QuestionId;
+                }
+                else if (comment.Post.GetType().BaseType == typeof(Comment))
+                {
+                    return ((Comment)comment.Post).PostId;
+                }
+                else
+                {
+                    return comment.PostId;
+                }
+            }
+            return 0;
+        }
+        public static string GetMainPostType(this HtmlHelper html, MainPost mainpost)
+        {
+            if (mainpost.GetType().BaseType == typeof(Question))
+            {
+                return "Question";
+            }
+            else if (mainpost.GetType().BaseType == typeof(Discussion))
+            {
+                return "Discussion";
+            }
+            else
+            {
+                return "Blog";
+            }
+        }
+        public static string GetMainPostTypeNameOfNormalPost(this HtmlHelper html, Post post)
+        {
+            //Question question = new Question();
+            //question = _dal.Repository<Question>().Table.First(q => q.Answers.Count(a => a.Id == id) >0);
+            if (post.GetType().BaseType == typeof(Answer))
+            {
+                return "Question";
+            }
+            else if (post.GetType().BaseType == typeof(Comment))
+            {
+                Comment comment = (Comment)post;
+                if (comment.Post.GetType().BaseType == typeof(Answer))
+                {
+                    return "Question";
+                }
+                else if (comment.Post.GetType().BaseType == typeof(Comment))
+                {
+                    Comment c = (Comment)comment.Post;
+                    if (c.Post.GetType().BaseType == typeof(Discussion))
+                    {
+                        return "Discussion";
+                    }
+                    else
+                    {
+                        return "Blog";
+                    }
+                }
+                else
+                {
+                    if (comment.Post.GetType().BaseType == typeof(Discussion))
+                    {
+                        return "Discussion";
+                    }
+                    else
+                    {
+                        return "Blog";
+                    }
+                }
+            }
+            return "";
         }
     }
 }

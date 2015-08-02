@@ -164,7 +164,10 @@ namespace CP_MathHub.Service.Services
         {
             return dal.Repository<Answer>().Table.Where(p => p.Reports.Count > 0).ToList();
         }
-
+        public List<Comment> GetReportedComment()
+        {
+            return dal.Repository<Comment>().Table.Where(p => p.Reports.Count > 0).ToList();
+        }
         public void InsertTag(Tag tag)
         {
             dal.Repository<Tag>().Insert(tag);

@@ -437,7 +437,7 @@
                                 <a href="#" id="conversation-@conversation.Id" onclick="@("loadConversationDetail(this," + @conversation.Id + ")")">
                                     <div class="media">
                                         <div class="media-left">
-                                            <img src="@(conversation.Avatar != null ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                                            <img src="@(conversation.Avatar != "" ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
                                         </div>
                                         <div class="media-body">
                                             <span class="media-heading">@conversation.Name</span><br />
@@ -461,7 +461,7 @@
 </div>
 @section LeftPanel
 {
-    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
@@ -471,11 +471,11 @@
             Bạn bè
         </div>
     </a>
-    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Hoạt động
-        </div>
-    </a>
+    <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button active">
+    <div class="mh-profile-menu-div">
+        Hoạt động
+    </div>
+</a>
     <a href="@Url.Action("Privacy")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Quyền riêng tư

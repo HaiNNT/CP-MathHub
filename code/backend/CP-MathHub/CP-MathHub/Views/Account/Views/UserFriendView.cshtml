@@ -86,16 +86,16 @@
 <input type="hidden" value="@Model.Id" id="friend-id" />
 @section LeftPanel
 {
-    <a href="@Url.Action("UserProfile", new { @userId = Model.Id })" class="mh-profile-menu-button active">
+    <a href="@Url.Action("UserProfile", new { @userId = Model.Id })" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
     </a>
-    <a href="@Url.Action("UserFriend", new { @friendId = Model.Id })" class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Bạn bè
-        </div>
-    </a>
+    <a href="@Url.Action("UserFriend", new { @friendId = Model.Id })" class="mh-profile-menu-button active">
+    <div class="mh-profile-menu-div">
+        Bạn bè
+    </div>
+</a>
 }
 @section styles{
 

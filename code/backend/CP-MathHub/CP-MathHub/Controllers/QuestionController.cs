@@ -374,16 +374,7 @@ namespace CP_MathHub.Controllers
             
         }
 
-        //Get: Question/SearchUsers
-        [HttpGet]
-        public ActionResult SearchUser(string name = "", string tab = Constant.Question.String.UserReputationTab, int page = 0)
-        {
-            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
-            List<User> users = cService.GetUsers(name, skip, tab);
-
-            return PartialView("Partials/_UserListPartialView", users);
-        }
-
+       
         //Post: Question/PostComment
         [HttpPost]
         [Authorize]
