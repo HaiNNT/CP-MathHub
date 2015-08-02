@@ -4734,3 +4734,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     text-align: left;
 }
 /* editable-sample: end */
+#editable-manageUser .btn.btn-warning, #editable-manageUser .btn.btn-primary {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}

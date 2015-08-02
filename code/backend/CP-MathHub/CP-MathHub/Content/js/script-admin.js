@@ -25,81 +25,75 @@ function selectValuePlus() {
         var temp2 = $(this).val();
         //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
-            var total = 0;
+        var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-            }
+        }
         $('#dayresult-' + id).val(total + " ngày");
-        });
+    });
 }
 
 /*
     Data table: manage users
 */
 function tableManageUsers() {
-    //var oTable = $('#editable-manageUser').dataTable({
-    $('#editable-manageUser').dataTable({
-        "aLengthMenu": [
-            [5, 15, 20, -1],
-            [5, 15, 20, "Tất cả"] // change per page values here
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var role = data[6] || "";
+            var val = $('.selectpicker.roleFilter').val();
+
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(role.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+
+    var table = $('#editable-manageUser').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
         ],
-        // set the initial value
-        "iDisplayLength": 5,
+        "DisplayLength": 5,
         "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
             "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
-            "oPaginate": {
+                "oPaginate": {
+                "sFirst": "Đầu",
                 "sPrevious": "Trước",
-                "sNext": "Sau"
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
             },
             "sSearch": "Tìm kiếm",
-            "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục."
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sInfoPostFix": "",
+            "sUrl": ""
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [0, 7]
+            'aTargets': [7]
         }
         ]
     });
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+
     
-    //$('#editable-sample').on('click', 'a.block', function (e) {
-    //    e.preventDefault();
-    //    var id = $(this).attr("mh-id-user");
-    //    /* Get the row as a parent of the link that was clicked on */
-    //    var nRow = $(this).parents('tr')[0];
-
-    //        $.ajax({
-    //            type: 'POST',
-    //            url: '/Admin/BlockUser',
-    //            data: { tagId: id, name: Name, description: Des },
-    //            //contentType: 'application/json; charset=utf-8',
-
-    //            success: function (msg) {
-    //                // Notice that msg.d is used to retrieve the result object
-    //                if (msg) {
-    //                    saveRow(oTable, nEditing, id);
-    //                    nEditing = null;
-    //                }
-    //            }
-    //        });
-    //        //alert("Updated! Do not forget to do some ajax to sync with backend :)");
-    //});
-
-    //$('#editable-manageUser').on('click', 'a.delete', function (e) {
-    //    e.preventDefault();
-
-    //    if (confirm("Bạn có chắc chắn muốn xóa tài khoản này?") == false) {
-    //        return;
-    //    }
-
-    //    var nRow = $(this).parents('tr')[0];
-    //    oTable.fnDeleteRow(nRow);
-    //    alert("Deleted! Do not forget to do some ajax to sync with backend :)");
-    //});
+    $('.selectpicker.roleFilter').change(function () {
+        table.draw();
+    });
 }
 
 function tableRule() {
@@ -120,7 +114,7 @@ function blockUser(id) {
     var ids = [];
     $($("#select-" + id).prop("selectedOptions")).each(function () {
         ids.push($(this).attr("mh-id"));
-    });                                                                
+    });
     var list = $("#historyBlock-" + id);
     var userstatus = $("#userStatus-" + id)
     var activeButton = $("#activeUser-" + id);
@@ -177,8 +171,7 @@ function unBlockUser(id) {
           alert("Khóa tài khoản này thất bại!");
       });
 }
-function resultDuplicateTag()
-{
+function resultDuplicateTag() {
     var tagID = [];
     var tagName = $("#tagName").val();
     var description = $("#tagDescription").val();
@@ -188,7 +181,7 @@ function resultDuplicateTag()
     $.ajax({
         method: "POST",
         url: "/Admin/ResultDuplicateTags",
-        data: { tagIds: tagID, tagName: tagName, description : description }
+        data: { tagIds: tagID, tagName: tagName, description: description }
     })
       .done(function (msg) {
           if (msg) {
@@ -244,8 +237,8 @@ function ManageInfracPosts_blockday() {
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-    
-        }
+
+}
 
 function ManageInfracPosts_edittable() {
     $('#editable-manageInfracPosts').dataTable({
@@ -260,11 +253,18 @@ function ManageInfracPosts_edittable() {
         "oLanguage": {
             "sLengthMenu": "Hiện _MENU_ bài viết ở một trang",
             "oPaginate": {
+                "sFirst": "Đầu",
                 "sPrevious": "Trước",
-                "sNext": "Sau"
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
             },
             "sSearch": "Tìm kiếm",
-            "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoPostFix": "",
+            "sUrl": ""
         },
         "aoColumnDefs": [{
             'bSortable': false,
@@ -343,7 +343,7 @@ function uncheckStatus(id) {
 	  })
 	  .fail(function () {
 	      alert("fail error");
-    });
+	  });
 }
 
 function checkStatus(id) {
@@ -371,7 +371,7 @@ function checkStatus(id) {
 }
 
 //change status report
-function changeStatusReport(id,type) {
+function changeStatusReport(id, type) {
     var url = "/Admin/ChangeStatusReport";
     var data = { id: id, type: type };
     $.ajax({
@@ -425,7 +425,7 @@ function GetOptionSelect() {
     clearTimeout(timeoutMainpostFilter);
     var load = function () {
         $("#select-form").submit();
-    }   
+    }
     timeoutMainpostFilter = setTimeout(load, 1000);
 }
 
@@ -438,8 +438,16 @@ function GetUserOptionSelect() {
     timeoutUserFilter = setTimeout(load, 1000);
 }
 
+var timeoutManageUserFilter;
+function GetManageUserOptionSelect() {
+    clearTimeout(timeoutManageUserFilter);
+    var load = function () {
+        $("#select-form-manage-user").submit();
+    }
+    timeoutManageUserFilter = setTimeout(load, 1000);
+}
 
-function clearDataModal(){
+function clearDataModal() {
     $('body').on('hidden.bs.modal', '.modal', function () {
         var id = $(this).attr("mh-id");
         clearBlockUser(id);
@@ -448,32 +456,39 @@ function clearDataModal(){
 
 function dataTableManageInfracUsers() {
     $('#editable-manageInfracUsers').dataTable({
-            "aLengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
-            ],
-            // set the initial value
-            "iDisplayLength": 5,
-            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
-                "oPaginate": {
-                    "sPrevious": "Trước",
-                    "sNext": "Sau"
-                },
-                "sSearch": "Tìm kiếm",
-                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+        "aLengthMenu": [
+            [5, 15, 20, -1],
+            [5, 15, 20, "All"] // change per page values here
+        ],
+        // set the initial value
+        "iDisplayLength": 5,
+        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
+            "oPaginate": {
+                "sFirst": "Đầu",
+                "sPrevious": "Trước",
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
             },
-            "aoColumnDefs": [{
-                'bSortable': false,
-                'aTargets': [5,6]
-            }
-            ]
-        });
+            "sSearch": "Tìm kiếm",
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoPostFix": "",
+            "sUrl": ""
+        },
+        "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [5, 6]
+        }
+        ]
+    });
 
-        jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-        jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+    jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+    jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 }
 
 $(document).ready(function () {
@@ -484,6 +499,7 @@ $(document).ready(function () {
             selectValuePlus();
             tableManageUsers();
             clearDataModal();
+            //getValueFilter();
             break;
         case "ManageRules":
             tableRule();

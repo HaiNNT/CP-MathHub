@@ -60,7 +60,7 @@ namespace CP_MathHub.Controllers
         }
 
         //Get: Admin/ManageUsers
-        [HttpGet]
+
         public ActionResult ManageUsers()
         {
             ManageUsersViewModel model = new ManageUsersViewModel();
