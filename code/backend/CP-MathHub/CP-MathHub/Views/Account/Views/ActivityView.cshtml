@@ -472,10 +472,10 @@
         </div>
     </a>
     <a href="@Url.Action("MyActivity")" class="mh-profile-menu-button active">
-    <div class="mh-profile-menu-div">
-        Hoạt động
-    </div>
-</a>
+        <div class="mh-profile-menu-div">
+            Hoạt động
+        </div>
+    </a>
     <a href="@Url.Action("Privacy")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Quyền riêng tư
@@ -488,7 +488,7 @@
         var chat;
         $(function () {
             // Reference the auto-generated proxy for the hub.
-            chat = $.connection.chatHub;
+            chat = $.connection.realTimeHub;
 
             // Create a function that the hub can call back to display messages.
             chat.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {

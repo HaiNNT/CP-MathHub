@@ -21,7 +21,7 @@ using CP_MathHub.Models.RealTime;
 
 namespace CP_MathHub.Controllers
 {
-    [ChildActionOnly]
+    
     public partial class CommonWidgetController : BaseController
     {
         private CPMathHubModelContainer _context;
@@ -76,6 +76,8 @@ namespace CP_MathHub.Controllers
         //}
 
         #region User Widget
+
+        [ChildActionOnly]
         public virtual ActionResult ProfileWidget()
         {
             ProfileWidgetViewModel profileWidgetVm = null;
@@ -86,6 +88,7 @@ namespace CP_MathHub.Controllers
             }
             return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
         }
+        [ChildActionOnly]
         public virtual ActionResult UserHeaderWidget()
         {
             UserHeaderViewModel userHeaderVM = null;
@@ -97,13 +100,13 @@ namespace CP_MathHub.Controllers
 
             return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);
         }
-
+        [ChildActionOnly]
         public virtual ActionResult FavoriteTagWidget()
         {
             ICollection<Tag> tags = _aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
         }
-
+        [ChildActionOnly]
         public virtual ActionResult HotMainPost(string system)
         {
             List<MainPost> list = new List<MainPost>();
@@ -135,7 +138,7 @@ namespace CP_MathHub.Controllers
             }
             return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
         }
-
+        [ChildActionOnly]
         public virtual ActionResult RelatedMainPost(string system, int postId)
         {
             MainPost mainPost = _cService.GetMainPost(postId, "Tags");
@@ -186,10 +189,8 @@ namespace CP_MathHub.Controllers
         }
         public virtual ActionResult ActivityNotification()
         {
-            List<Conversation> convers = _rService.GetConversations(_currentUserId);
-            List<ConversationPreviewViewModel> conversations =
-                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
-            return PartialView("Widgets/_MessageNotificationPartialView", conversations);
+            List<Notification> model = _cService.GetNotifications();
+            return PartialView("Widgets/_MessageNotificationPartialView", model);
         }        
         #endregion
     }

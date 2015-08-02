@@ -1,16 +1,21 @@
-﻿
+﻿@using CP_MathHub.Entity
+@using CP_MathHub.Service.Helpers
+@model List<Notification>
 
-<div>
-    <a href="#">
-        <div class="media">
-            <div class="media-left">
-                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-image">
+@foreach (Notification item in Model)
+{
+    <div>
+        <a href="@Url.Content(item.Link)">
+            <div class="media">
+                <div class="media-left">
+                    <img src="@(item.Author.Avatar != null ? Url.Content(item.Author.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                </div>
+                <div class="media-body">
+                    <span class="media-heading">@item.Author.UserName</span>
+                    <span class="mh-notifi-content">@Html.GetNotificationString(item.Type) @item.Content</span><br />
+                    <span class="mh-time">@Html.PostCreatedTime(item.CreatedDate, "")</span>
+                </div>
             </div>
-            <div class="media-body">
-                <span class="media-heading">User</span>
-                <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span><br />
-                <span class="mh-time">58 phút trước</span>
-            </div>
-        </div>
-    </a>
-</div>
+        </a>
+    </div>
+}

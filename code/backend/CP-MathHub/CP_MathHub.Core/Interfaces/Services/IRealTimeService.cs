@@ -48,5 +48,23 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         void UpdateConversation(Conversation conversation);
+
+        /// <summary>
+        /// Count new activity notification
+        /// </summary>
+        /// <returns></returns>
+        int CountNewActivityNotification();
+
+        /// <summary>
+        /// Count new message notification
+        /// </summary>
+        /// <returns></returns>
+        int CountNewMessageNotification();
+
+        /// <summary>
+        /// Count new friend request notification
+        /// </summary>
+        /// <returns></returns>
+        int CountNewFriendRequestNotification();
     }
 }

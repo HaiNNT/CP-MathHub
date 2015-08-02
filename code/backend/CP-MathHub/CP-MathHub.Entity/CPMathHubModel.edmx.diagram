@@ -54,7 +54,7 @@
         <AssociationConnector Association="CPMathHubModel.AttendanceUser" />
         <AssociationConnector Association="CPMathHubModel.ShareMainPost" />
         <EntityTypeShape EntityType="CPMathHubModel.Activity" Width="2.25" PointX="18.125" PointY="8.125" />
-        <EntityTypeShape EntityType="CPMathHubModel.Notification" Width="1.5" PointX="15.75" PointY="1.625" />
+        <EntityTypeShape EntityType="CPMathHubModel.Notification" Width="1.5" PointX="16" PointY="1.25" />
         <EntityTypeShape EntityType="CPMathHubModel.UserFriendship" Width="1.5" PointX="7.625" PointY="11.25" />
         <AssociationConnector Association="CPMathHubModel.RequestFriend" />
         <AssociationConnector Association="CPMathHubModel.RequestedFriend" />
@@ -113,6 +113,7 @@
         <AssociationConnector Association="CPMathHubModel.UserUserLogin" />
         <AssociationConnector Association="CPMathHubModel.ProfileLocation" />
         <AssociationConnector Association="CPMathHubModel.ActivityUser" />
+        <AssociationConnector Association="CPMathHubModel.UserNotification" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

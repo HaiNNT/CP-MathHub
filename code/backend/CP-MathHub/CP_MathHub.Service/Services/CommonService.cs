@@ -19,11 +19,14 @@ namespace CP_MathHub.Service.Services
         private int _loginUserId;
         private IUnitOfWork _dal;
         private AccountService _aService;
+        //private Microsoft.AspNet.SignalR.IHubContext _hub;
+
         public CommonService(CPMathHubModelContainer context, int userId = 0)
         {
             _loginUserId = userId;
             _dal = new MathHubUoW(context);
             _aService = new AccountService(context);
+            //_hub = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<RealTimeHub>();
 
         }
         protected virtual void Dispose(bool disposing)
@@ -616,6 +619,23 @@ namespace CP_MathHub.Service.Services
             User user = _dal.Repository<User>().Table.First(u => u.Posts.Count(p => p.Id == postId) > 0);
             user.Reputation -= GetPlusReputation(type);
             _dal.Repository<User>().Update(user);
+            _dal.Save();
+        }
+        public List<Notification> GetNotifications()
+        {
+            List<Notification> list = new List<Notification>();
+            list = _dal.Repository<Notification>().Get(
+                    (n => n.UserId == _loginUserId),
+                    (n => n.OrderByDescending(t => t.CreatedDate)),
+                    "Author,User",
+                    0,
+                    0
+                ).ToList();
+            return list;
+        }
+        public void AddNotification (Notification notification)
+        {
+            _dal.Repository<Notification>().Insert(notification);
             _dal.Save();
         }
     }

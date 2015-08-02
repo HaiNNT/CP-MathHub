@@ -21,7 +21,9 @@ namespace CP_MathHub.Entity
         public string Link { get; set; }
         public NotificationSettingEnum Type { get; set; }
         public int UserId { get; set; }
+        public Nullable<int> AuthorId { get; set; }
     
         public virtual User User { get; set; }
+        public virtual User Author { get; set; }
     }
 }
