@@ -278,5 +278,18 @@ namespace CP_MathHub.Service.Helpers
             }
             return "";
         }
+
+        public static string GetNormalPostType(this HtmlHelper html, Post post)
+        {
+            if (post.GetType().BaseType == typeof(Answer))
+            {
+                return "Answer";
+            }
+            else if (post.GetType().BaseType == typeof(Comment))
+            {
+                return "Comment";
+            }
+            return "";
+        }
     }
 }

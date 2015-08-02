@@ -18,21 +18,25 @@
                         <h4>Hiển thị: </h4>
                     </div>
                     <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                        @using (Html.BeginForm("ManageInfracUsers", "Admin", FormMethod.Post, new { id = "select-form-user" }))
+                        @*@using (Html.BeginForm("ManageInfracUsers", "Admin", FormMethod.Post, new { id = "select-form-user" }))
                         {
                             <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
                                 <option value="1" @(Model.Filters != null && Model.Filters.Contains(1) ? "selected" : "")>Đã kiểm tra</option>
                                 <option value="2" @(Model.Filters != null && Model.Filters.Contains(2) ? "selected" : "")>Chưa kiểm tra</option>
                             </select>
                             <input type="hidden" value="@Model.Filters" />
-                        }
-
+                        }*@
+                        <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker userFilter" multiple="multiple" title="Không có gì được chọn">
+                            <option value="True">Đã kiểm tra</option>
+                            <option value="False">Chưa kiểm tra</option>
+                        </select>
                     </div>
                 </div>
                 <div class="space15"></div>
                 <table class="table table-striped table-hover table-bordered" id="editable-manageInfracUsers">
                     <thead>
                         <tr>
+                            <th class="hidden"></th>
                             <th>STT</th>
                             <th>Người bị báo cáo</th>
                             <th>Ngày báo cáo</th>
@@ -47,6 +51,7 @@
                         {
                             ManageInfracUsersViewModel user = Model.Items.ElementAt(i);
                             <tr class="">
+                                <td class="hidden">@user.Status</td>
                                 <td class="mh-cell-center">
                                     @(i + 1)
                                 </td>

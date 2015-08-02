@@ -79,7 +79,8 @@ function tableManageUsers() {
             "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
             "sInfoPostFix": "",
             "sUrl": ""
-        },
+        }
+        ,
         "aoColumnDefs": [{
             'bSortable': false,
             'aTargets': [7]
@@ -276,42 +277,32 @@ function ManageInfracPosts_blockday() {
 }
 
 function ManageInfracMainPosts_edittable() {
-    $('#editable-manageInfracMainPosts').dataTable({
-        "aLengthMenu": [
-            [5, 15, 20, -1],
-            [5, 15, 20, "Tất cả"] // change per page values here
-        ],
-        // set the initial value
-        "iDisplayLength": 5,
-        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
-        "sPaginationType": "bootstrap",
-        "oLanguage": {
-            "sLengthMenu": "Hiện _MENU_ bài viết ở một trang",
-            "oPaginate": {
-                "sPrevious": "Trước",
-                "sNext": "Sau"
-            },
-            "sSearch": "Tìm kiếm",
-            "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
-        },
-        "aoColumnDefs": [{
-            'bSortable': false,
-            'aTargets': [6, 7]
-        }
-        ]
-    });
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var post = data[0] || "";
+            var check = data[1] || "";
+            var val = $('.selectpicker.postFilter').val();
 
-    jQuery('#editable-manageInfracMainPosts_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-    jQuery('#editable-manageInfracMainPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-}
-function ManageInfracNormalPosts_edittable() {
-    $('#editable-manageInfracNormalPosts').dataTable({
-        "aLengthMenu": [
-            [5, 15, 20, -1],
-            [5, 15, 20, "Tất cả"] // change per page values here
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(post.trim()) != -1) {
+                return true;
+            }
+            else if (val.indexOf(check.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+    var table = $('#editable-manageInfracMainPosts').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
         ],
-        // set the initial value
-        "iDisplayLength": 5,
+        "DisplayLength": 5,
         "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
@@ -327,18 +318,85 @@ function ManageInfracNormalPosts_edittable() {
             "sProcessing": "Đang xử lý...",
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
             "sInfoPostFix": "",
             "sUrl": ""
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [6, 7]
+            'aTargets': [8,9]
+        }
+        ]
+    });
+
+    jQuery('#editable-manageInfracMainPosts_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+    jQuery('#editable-manageInfracMainPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+
+    $('.selectpicker.postFilter').change(function () {
+        table.draw();
+    });
+}
+function ManageInfracNormalPosts_edittable() {
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var normalPost = data[0] || "";
+            var check = data[1] || "";
+            var val = $('.selectpicker.normalPostFilter').val();
+
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(normalPost.trim()) != -1) {
+                return true;
+            }
+            else if (val.indexOf(check.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+    var table = $('#editable-manageInfracNormalPosts').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
+        ],
+        "DisplayLength": 5,
+        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Hiện _MENU_ bài viết ở một trang",
+            "oPaginate": {
+                "sFirst": "Đầu",
+                "sPrevious": "Trước",
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
+            },
+            "sSearch": "Tìm kiếm",
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sInfoPostFix": "",
+            "sUrl": ""
+        },
+        "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [8, 9]
         }
         ]
     });
 
     jQuery('#editable-manageInfracNormalPosts_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     jQuery('#editable-manageInfracNormalPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+
+    $('.selectpicker.normalPostFilter').change(function () {
+        table.draw();
+    });
 }
 function tableTag() {
     jQuery(document).ready(function () {
@@ -508,40 +566,56 @@ function GetUserOptionSelect() {
 }
 
 function dataTableManageInfracUsers() {
-    $('#editable-manageInfracUsers').dataTable({
-            "aLengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
-            ],
-            // set the initial value
-            "iDisplayLength": 5,
-            "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
-                "oPaginate": {
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var user = data[0] || "";
+            var val = $('.selectpicker.userFilter').val();
+
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(user.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+    var table = $('#editable-manageInfracUsers').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
+        ],
+        "DisplayLength": 5,
+        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Hiện _MENU_ người vi phạm ở một trang",
+            "oPaginate": {
                 "sFirst": "Đầu",
-                    "sPrevious": "Trước",
+                "sPrevious": "Trước",
                 "sNext": "Tiếp",
                 "sLast": "Cuối"
-                },
-                "sSearch": "Tìm kiếm",
+            },
+            "sSearch": "Tìm kiếm",
             "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
             "sProcessing": "Đang xử lý...",
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
             "sInfoPostFix": "",
             "sUrl": ""
-            },
-            "aoColumnDefs": [{
-                'bSortable': false,
-            'aTargets': [5, 6]
-            }
-            ]
-        });
+        }
+    });
 
-        jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
-        jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+    jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+    jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+
+    $('.selectpicker.userFilter').change(function () {
+        table.draw();
+    });
 }
 
 $(document).ready(function () {
@@ -555,7 +629,6 @@ $(document).ready(function () {
                 var id = $(this).attr("mh-id");
                 clearBlockUser(id);
             });
-            //blockUser(id);
             break;
         case "ManageRules":
             tableRule();
@@ -581,7 +654,10 @@ $(document).ready(function () {
             selectPicker();
             selectValuePlus();
             dataTableManageInfracUsers();
-            clearDataModal();
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                var id = $(this).attr("mh-id");
+                clearBlockUser(id);
+            });
             break;
         default:
             break;

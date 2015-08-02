@@ -11,13 +11,14 @@
     {
         case Constant.Admin.String.ManageUsersPage:
             @Styles.Render("~/Content/selectPickercss")
-            @Styles.Render("~/Content/adminManageUser")
+            @Styles.Render("~/Content/dt_bootstrapcss")
             break;
         case Constant.Admin.String.ManageInfracPosts:
             @Styles.Render("~/Content/adminManageInfracPostscss")
             break;
         case Constant.Admin.String.ManageInfracUsers:
             @Styles.Render("~/Content/selectPickercss")
+            @Styles.Render("~/Content/dt_bootstrapcss")
             break;
         default:
             break;
@@ -140,10 +141,10 @@
             @Scripts.Render("~/bundles/adminManageTagsjs")
             break;
         case Constant.Admin.String.ManageInfracPosts:
-            @Scripts.Render("~/bundles/adminManageInfracPostsjs")
+            @Scripts.Render("~/bundles/adminManageInfracjs")
             break;
         case Constant.Admin.String.ManageInfracUsers:
-            @Scripts.Render("~/bundles/adminManageInfracPostsjs")
+            @Scripts.Render("~/bundles/adminManageInfracjs")
             break;
         default:
             break;
