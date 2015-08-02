@@ -13,8 +13,10 @@ using CP_MathHub.Service.Helpers;
 using CP_MathHub.Models.Question;
 using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
+using CP_MathHub.RealTime;
 using AutoMapper;
 using System.Web.Routing;
+using System.Threading;
 
 namespace CP_MathHub.Controllers
 {
@@ -23,10 +25,12 @@ namespace CP_MathHub.Controllers
         private IQuestionService qService;
         private ICommonService cService;
         private CPMathHubModelContainer context;
+        private Microsoft.AspNet.SignalR.IHubContext _hub;
 
         public QuestionController()
-        {            
-            context = new CPMathHubModelContainer();           
+        {
+            context = new CPMathHubModelContainer();
+            _hub = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<RealTimeHub>();
         }
         protected override void Initialize(RequestContext requestContext)
         {
@@ -438,6 +442,13 @@ namespace CP_MathHub.Controllers
             answer.Status = PostStatusEnum.Active;
 
             qService.AnswerQuestion(answer);
+            new Thread(() =>
+            {
+                Question question = qService.GetQuestion(questionId);
+
+            }).Start();
+            
+
             return RedirectToAction("Detail", new { id = questionId });
         }
 

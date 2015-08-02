@@ -34,7 +34,6 @@ namespace CP_MathHub.Service.Helpers
             }
             return type + " vào ngày " + time.Date.ToShortDateString() + " lúc " + time.ToShortTimeString();
         }
-
         public static string CreatedTime(this HtmlHelper html, DateTime time)
         {
             if (time.Date == DateTime.Now.Date)
@@ -47,7 +46,56 @@ namespace CP_MathHub.Service.Helpers
             }
             return time.ToShortDateString();
         }
-
+        public static string GetNotificationString(this HtmlHelper html, NotificationSettingEnum type)
+        {
+            string result = "";
+            switch (type)
+            {
+                case NotificationSettingEnum.UserAnswerQuestion:
+                    result = "đã trả lời câu hỏi của bạn:";
+                    break;
+                case NotificationSettingEnum.UserCommentMainPost:
+                    result = "đã bình luận trong:";
+                    break;
+                case NotificationSettingEnum.Invited:
+                    result = "đã mời bạn vào:";
+                    break;
+                case NotificationSettingEnum.UserComment:
+                    result = "đã bình luận trả lời của bạn trong:";
+                    break;
+                case NotificationSettingEnum.AcceptedAnswer:
+                    result = "đã chấp nhận trả lời của bạn trong:";
+                    break;
+                case NotificationSettingEnum.UserLikeComment:
+                    result = "đã thích bình luận của bạn:";
+                    break;
+                case NotificationSettingEnum.ReceivedPrivilege:
+                    result = "bạn đã nhận được danh hiệu:";
+                    break;
+                case NotificationSettingEnum.Banned:
+                    result = "bạn đã bị khóa tài khoản:";
+                    break;
+                case NotificationSettingEnum.BlockedMainPost:
+                    result = "bạn đã bị khóa bài:";
+                    break;
+                case NotificationSettingEnum.BlockedPost:
+                    result = "bạn đã bị khóa bình luận:";
+                    break;
+                case NotificationSettingEnum.VotedQuestion:
+                    result = "đã bình chọn câu hỏi của bạn:";
+                    break;
+                case NotificationSettingEnum.VotedAnswer:
+                    result = "đã bình chọn câu trả lời của bạn tại:";
+                    break;
+                case NotificationSettingEnum.SettedRole:
+                    result = "bạn được phân quyền mới:";
+                    break;
+                default:
+                    result = "bạn có thông báo mới từ hệ thống:";
+                    break;
+            }
+            return result;
+        }
         public static string CheckStatusUser(this HtmlHelper html, UserStatusEnum? enU)
         {
             string s = "";
@@ -100,7 +148,6 @@ namespace CP_MathHub.Service.Helpers
             }
             return vote.Value + "";
         }
-
         public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)
         {
             string html = "";
@@ -128,7 +175,6 @@ namespace CP_MathHub.Service.Helpers
 
             return MvcHtmlString.Create(html);
         }
-
         public static MvcHtmlString RadioListForGenderEnum(this HtmlHelper htmlHelper, string name, GenderEnum? gender = default(GenderEnum))
         {
             string html = "";
@@ -144,7 +190,6 @@ namespace CP_MathHub.Service.Helpers
             html += InlineRadioForBoolean(false, "Không", name, receiveEmail == false, "mh-radio");
             return MvcHtmlString.Create(html);
         }
-
         private static string RadioForEnum(Enum mhEnum, string display, string name, string cssClass = "")
         {
             var div = new TagBuilder("div");
@@ -161,7 +206,6 @@ namespace CP_MathHub.Service.Helpers
             div.InnerHtml = label.ToString(TagRenderMode.Normal);
             return div.ToString(TagRenderMode.Normal);
         }
-
         private static string InlineRadioForEnum(Enum mhEnum, string display, string name, bool check = false, string cssClass = "")
         {
             var label = new TagBuilder("label");

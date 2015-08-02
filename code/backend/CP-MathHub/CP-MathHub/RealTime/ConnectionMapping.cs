@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CP_MathHub.RealTime.Chat
+namespace CP_MathHub.RealTime
 {
     public class ConnectionMapping<T>
     {

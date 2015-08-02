@@ -24,9 +24,9 @@
 
     <ul class="nav navbar-nav navbar-right mh-notification">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="javascript:;" onclick="@("loadFriendRequestNotification()")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <i class="fa fa-group"></i>
-                <span class="badge badge-default">3</span>
+                <span class="badge badge-default hidden" id="mh-request-number">3</span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>
@@ -35,8 +35,8 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <div class="mh-request-friend">
-                        @Html.Action("FriendRequestNotification","CommonWidget")
+                    <div class="mh-request-friend" id="mh-request-notification">
+                        @Html.Action("FriendRequestNotification", "CommonWidget")
                     </div>
                 </li>
                 <li>
@@ -45,9 +45,9 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="javascript:;" onclick="@("loadMessageNotification()")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <i class="fa fa-comments"></i>
-                <span class="badge badge-default">3</span>
+                <span class="badge badge-default hidden" id="mh-message-number">3</span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>
@@ -56,7 +56,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <div class="mh-notification-body">
+                    <div class="mh-notification-body" id="mh-activity-notification">
                         @Html.Action("MessageNotification", "CommonWidget")
                     </div>
                 </li>
@@ -66,9 +66,9 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <a href="javascript:;" onclick="@("loadActivityNotification()")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <i class="fa fa-globe"></i>
-                <span class="badge badge-default">3</span>
+                <span class="badge badge-default hidden" id="mh-activity-number">3</span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>
@@ -77,7 +77,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <div class="mh-notification-body">
+                    <div class="mh-message-body" id="mh-message-notification">
                         @Html.Action("ActivityNotification", "CommonWidget")
                     </div>
                 </li>

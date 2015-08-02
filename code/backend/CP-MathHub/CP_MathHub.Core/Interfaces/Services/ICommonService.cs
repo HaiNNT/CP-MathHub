@@ -236,5 +236,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="type"></param>
         void PlusReputation(int postId, string type);
+
+        /// <summary>
+        /// Get all notifications
+        /// </summary>
+        /// <returns></returns>
+        List<Notification> GetNotifications();
     }
 }

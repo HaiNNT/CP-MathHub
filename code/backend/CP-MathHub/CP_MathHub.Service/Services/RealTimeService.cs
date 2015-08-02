@@ -87,5 +87,30 @@ namespace CP_MathHub.Service.Services
             _dal.Repository<Conversation>().Update(conversation);
             _dal.Save();
         }
+
+        public int CountNewActivityNotification()
+        {
+            return _dal.Repository<Notification>().Table.Count(n => n.CreatedDate > n.User.Activity.LastSeenNotification);
+        }
+
+        public int CountNewMessageNotification()
+        {
+            Activity activity = _dal.Repository<Activity>().Table.First(a => a.User.Id == _loginUserId);
+            return _dal.Repository<Conversation>().Table
+                                                  .Count(c => c.Attendances.Count(a => a.UserId == _loginUserId) > 0 && 
+                                                              c.Attendances.Where(a => a.UserId != _loginUserId)
+                                                  .SelectMany(a => a.Messages)
+                                                  .OrderByDescending(m => m.CreatedDate)
+                                                  .First()
+                                                  .CreatedDate > activity.LastSeenMessage);
+        }
+
+        public int CountNewFriendRequestNotification()
+        {
+            return _dal.Repository<UserFriendship>()
+                       .Table
+                       .Count(u => u.TargetUserId == _loginUserId && 
+                                   u.CreatedDate > u.TargetUser.Activity.LastSeenFriendRequest);
+        }
     }
 }

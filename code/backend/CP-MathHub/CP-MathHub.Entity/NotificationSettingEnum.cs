@@ -21,8 +21,10 @@ namespace CP_MathHub.Entity
         UserLikeComment = 32,
         ReceivedPrivilege = 64,
         Banned = 128,
-        BlockedPost = 256,
-        Voted = 512,
-        SettedRole = 1024
+        BlockedMainPost = 256,
+        VotedQuestion = 512,
+        SettedRole = 1024,
+        BlockedPost = 2048,
+        VotedAnswer = 4096
     }
 }

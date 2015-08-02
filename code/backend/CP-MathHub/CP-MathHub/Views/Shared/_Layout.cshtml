@@ -183,6 +183,60 @@
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
             });
         }
+
+        function loadFriendRequestNotification() {
+            $.ajax({
+                method: "POST",
+                url: "/CommonWidget/FriendRequestNotification",
+                data: {}
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $("#mh-request-notification").html(msg);
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
+
+        function loadMessageNotification() {
+            $.ajax({
+                method: "POST",
+                url: "/CommonWidget/MessageNotification",
+                data: {}
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $("#mh-message-notification").html(msg);
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
+
+        function loadActivityNotification() {
+            $.ajax({
+                method: "POST",
+                url: "/CommonWidget/ActivityNotification",
+                data: {}
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $("#mh-activity-notification").html(msg);
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
     </script>
 </body>
 </html>

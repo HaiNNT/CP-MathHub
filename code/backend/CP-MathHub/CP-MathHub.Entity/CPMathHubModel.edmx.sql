@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/31/2015 17:15:02
+-- Date Created: 08/02/2015 15:10:40
 -- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
@@ -199,6 +199,9 @@ IF OBJECT_ID(N'[dbo].[FK_ProfileLocation]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ActivityUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Activities] DROP CONSTRAINT [FK_ActivityUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserNotification]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Notifications] DROP CONSTRAINT [FK_UserNotification];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
@@ -548,7 +551,8 @@ CREATE TABLE [dbo].[Notifications] (
     [Seen] bit  NOT NULL,
     [Link] nvarchar(max)  NOT NULL,
     [Type] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [AuthorId] int  NULL
 );
 GO
 
@@ -1990,6 +1994,21 @@ GO
 CREATE INDEX [IX_FK_ActivityUser]
 ON [dbo].[Activities]
     ([User_Id]);
+GO
+
+-- Creating foreign key on [AuthorId] in table 'Notifications'
+ALTER TABLE [dbo].[Notifications]
+ADD CONSTRAINT [FK_UserNotification]
+    FOREIGN KEY ([AuthorId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserNotification'
+CREATE INDEX [IX_FK_UserNotification]
+ON [dbo].[Notifications]
+    ([AuthorId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'

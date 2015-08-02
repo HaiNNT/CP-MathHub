@@ -298,6 +298,10 @@
       <End Role="Activity" EntitySet="Activities" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <AssociationSet Name="UserNotification" Association="CPMathHubModel.Store.UserNotification">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
       <End Role="Comment" EntitySet="Posts_Comment" />
@@ -503,6 +507,7 @@
     <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="UserFriendships">
     <Key>
@@ -1341,6 +1346,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserNotification">
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Notification" Type="CPMathHubModel.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TagMainPost_Tag">
     <End Role="Tag" Type="CPMathHubModel.Store.Tags" Multiplicity="1" />
     <End Role="TagMainPost" Type="CPMathHubModel.Store.TagMainPost" Multiplicity="*" />
@@ -1906,6 +1923,10 @@
             <End Role="Activity" EntitySet="Activities" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="UserNotification" Association="CPMathHubModel.UserNotification">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
           <Documentation>
@@ -2393,6 +2414,8 @@
           <Property Name="Type" Type="CPMathHubModel.NotificationSettingEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.NotificationUser" FromRole="Notification" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="CPMathHubModel.UserNotification" FromRole="Notification" ToRole="User" />
+          <Property Name="AuthorId" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="UserFriendship">
           <Key>
@@ -2541,9 +2564,11 @@
           <Member Name="UserLikeComment" Value="32" />
           <Member Name="ReceivedPrivilege" Value="64" />
           <Member Name="Banned" Value="128" />
-          <Member Name="BlockedPost" Value="256" />
-          <Member Name="Voted" Value="512" />
+          <Member Name="BlockedMainPost" Value="256" />
+          <Member Name="VotedQuestion" Value="512" />
           <Member Name="SettedRole" Value="1024" />
+          <Member Name="BlockedPost" Value="2048" />
+          <Member Name="VotedAnswer" Value="4096" />
         </EnumType>
         <EnumType Name="AnswerEnum">
           <Member Name="Answer" Value="1" />
@@ -3009,6 +3034,18 @@
           <End Type="CPMathHubModel.Activity" Role="Activity" Multiplicity="0..1" />
           <End Type="CPMathHubModel.User" Role="User" Multiplicity="1" />
         </Association>
+        <Association Name="UserNotification">
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CPMathHubModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3245,6 +3282,7 @@
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
