@@ -171,17 +171,39 @@ namespace CP_MathHub.Controllers
 
         //Get: Admin/ManageTags
         [HttpGet]
-        public ActionResult ManageTags()
+        public ActionResult ManageTags(string loadType = Constant.Admin.String.NormalLoadTags)
         {
             ManageTagsViewModel model = new ManageTagsViewModel();
             List<Tag> list = cService.GetAllTags();
-            List<Tag> list1 = cService.GetAllTagsOrderByName();
             ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
-            ICollection<TagViewModel> tagsVM1 = list1.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            if (loadType == "duplicate")
+            {
+                tagsVM = tagsVM.Where(t => t.CheckDuplicate).OrderBy(t => t.Name).ToList();
+            }         
             model.Items = tagsVM;
-            model.Items1 = tagsVM1;
             ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            ViewBag.LoadType = loadType;
             return View("Views/ManageTagsView", model);
+        }
+        //Get: Admin/GetSelectedTags
+        public ActionResult GetSelectedTags(List<int> tagIds)
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            List<Tag> list = cService.GetTags(tagIds);
+            ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            model.Items = tagsVM;
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;
+            return PartialView("Partials/_DuplicateTagsPartialView", model.Items);
+        }
+        //Get: Admin/GetDuplicateTags
+        public ActionResult GetDupicateTags(string tagName)
+        {
+            ManageTagsViewModel model = new ManageTagsViewModel();
+            List<Tag> list = cService.GetDupicateTags(tagName);
+            ICollection<TagViewModel> tagsVM = list.Select(Mapper.Map<Tag, TagViewModel>).ToList();
+            model.Items = tagsVM;
+            ViewBag.Page = Constant.Admin.String.ManagerTagsPage;          
+            return PartialView("Partials/_DuplicateTagsPartialView", model.Items);
         }
         //Post: Admin/InsertTag
         [HttpPost]
@@ -253,7 +275,7 @@ namespace CP_MathHub.Controllers
             List<MainPost> listMainPost = new List<MainPost>();
             List<ManageInfracMainPostViewModel> listMainPostChecked = new List<ManageInfracMainPostViewModel>();
             List<ManageInfracMainPostViewModel> listMainPostUnChecked = new List<ManageInfracMainPostViewModel>();
-            
+
             if (MainPostFilters == null)
             {
                 MainPostFilters = new List<int>();
@@ -359,13 +381,13 @@ namespace CP_MathHub.Controllers
                         listNormalPostUnChecked.Add(q);
                     }
                 }
-            }
+                    }
             listNormalPostChecked.AddRange(listNormalPostUnChecked);
             //models.NormalPosts = listNormalPostChecked;
             #endregion
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             return View("Views/ManageInfracPostsView", models);
-        }
+                }
 
         //public ActionResult ManageInfracUsers(List<int> Filters = null)
         //{
@@ -421,8 +443,8 @@ namespace CP_MathHub.Controllers
                     {
                         modelsChecked.Add(q);
                     }
+                    }
                 }
-            }
             if (Filters.Contains(2))//Filter checked
             {
                 foreach (ManageInfracUsersViewModel q in modelList.Items)
