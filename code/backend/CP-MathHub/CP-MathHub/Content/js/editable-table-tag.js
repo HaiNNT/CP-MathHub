@@ -62,11 +62,18 @@
                 "oLanguage": {
                     "sLengthMenu": "Hiện _MENU_ thẻ ở  một trang",
                     "oPaginate": {
+                        "sFirst": "Đầu",
                         "sPrevious": "Trước",
-                        "sNext": "Sau"
+                        "sNext": "Tiếp",
+                        "sLast": "Cuối"
                     },
                     "sSearch": "Tìm kiếm",
-                    "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục."
+                    "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                    "sProcessing": "Đang xử lý...",
+                    "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+                    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                    "sInfoPostFix": "",
+                    "sUrl": ""
                 },
                 "aoColumnDefs": [{
                     'bSortable': false,

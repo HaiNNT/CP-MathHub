@@ -37,28 +37,52 @@ function selectValuePlus() {
     Data table: manage users
 */
 function tableManageUsers() {
-    //var oTable = $('#editable-manageUser').dataTable({
-    $('#editable-manageUser').dataTable({
-        "aLengthMenu": [
-            [5, 15, 20, -1],
-            [5, 15, 20, "Tất cả"] // change per page values here
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var role = data[6] || "";
+            var val = $('.selectpicker.roleFilter').val();
+
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(role.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+
+    var table = $('#editable-manageUser').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
         ],
-        // set the initial value
-        "iDisplayLength": 5,
+        "DisplayLength": 5,
         "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
             "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
             "oPaginate": {
+                "sFirst": "Đầu",
                 "sPrevious": "Trước",
-                "sNext": "Sau"
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
             },
             "sSearch": "Tìm kiếm",
-            "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục."
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sInfoPostFix": "",
+            "sUrl": ""
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [0, 7]
+            'aTargets': [7]
         }
         ]
     });
@@ -66,40 +90,10 @@ function tableManageUsers() {
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
     
-    //$('#editable-sample').on('click', 'a.block', function (e) {
-    //    e.preventDefault();
-    //    var id = $(this).attr("mh-id-user");
-    //    /* Get the row as a parent of the link that was clicked on */
-    //    var nRow = $(this).parents('tr')[0];
 
-    //        $.ajax({
-    //            type: 'POST',
-    //            url: '/Admin/BlockUser',
-    //            data: { tagId: id, name: Name, description: Des },
-    //            //contentType: 'application/json; charset=utf-8',
-
-    //            success: function (msg) {
-    //                // Notice that msg.d is used to retrieve the result object
-    //                if (msg) {
-    //                    saveRow(oTable, nEditing, id);
-    //                    nEditing = null;
-    //                }
-    //            }
-    //        });
-    //        //alert("Updated! Do not forget to do some ajax to sync with backend :)");
-    //});
-
-    //$('#editable-manageUser').on('click', 'a.delete', function (e) {
-    //    e.preventDefault();
-
-    //    if (confirm("Bạn có chắc chắn muốn xóa tài khoản này?") == false) {
-    //        return;
-    //    }
-
-    //    var nRow = $(this).parents('tr')[0];
-    //    oTable.fnDeleteRow(nRow);
-    //    alert("Deleted! Do not forget to do some ajax to sync with backend :)");
-    //});
+    $('.selectpicker.roleFilter').change(function () {
+        table.draw();
+    });
 }
 
 function tableRule() {
@@ -323,11 +317,18 @@ function ManageInfracNormalPosts_edittable() {
         "oLanguage": {
             "sLengthMenu": "Hiện _MENU_ bài viết ở một trang",
             "oPaginate": {
+                "sFirst": "Đầu",
                 "sPrevious": "Trước",
-                "sNext": "Sau"
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
             },
             "sSearch": "Tìm kiếm",
-            "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoPostFix": "",
+            "sUrl": ""
         },
         "aoColumnDefs": [{
             'bSortable': false,
@@ -433,7 +434,7 @@ function checkStatus(id) {
 }
 
 //change status report
-function changeStatusReport(id,type) {
+function changeStatusReport(id, type) {
     var url = "/Admin/ChangeStatusReport";
     var data = { id: id, type: type };
     $.ajax({
@@ -519,15 +520,22 @@ function dataTableManageInfracUsers() {
             "oLanguage": {
                 "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
                 "oPaginate": {
+                "sFirst": "Đầu",
                     "sPrevious": "Trước",
-                    "sNext": "Sau"
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
                 },
                 "sSearch": "Tìm kiếm",
-                "sInfo" : "Hiển thị từ _START_ đến _END_ của _TOTAL_ mục"
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoPostFix": "",
+            "sUrl": ""
             },
             "aoColumnDefs": [{
                 'bSortable': false,
-                'aTargets': [5,6]
+            'aTargets': [5, 6]
             }
             ]
         });

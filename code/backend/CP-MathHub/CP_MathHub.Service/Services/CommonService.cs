@@ -434,7 +434,8 @@ namespace CP_MathHub.Service.Services
         }
         public List<User> GetUsers(string include = "")
         {
-            return _dal.Repository<User>().Include(include).Table.ToList();
+            //return _dal.Repository<User>().Include(include).Table.ToList();
+            return _dal.Repository<User>().Include(include).Table.Where(u => u.Assessments.Where(a=>a.RoleId != 4).Count()>0).ToList();
         }
 
         public List<Invitation> GetInvitations(List<int> userIds, int userId)

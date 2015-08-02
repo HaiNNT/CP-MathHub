@@ -4755,3 +4755,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-adin-manage-infrac-post .nav-tabs > li:hover > a {
     border-bottom: 0px;
 }
+#editable-manageUser .btn.btn-warning, #editable-manageUser .btn.btn-primary {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
