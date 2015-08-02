@@ -39,7 +39,7 @@ namespace CP_MathHub.Controllers
         {
             context = new CPMathHubModelContainer();
         }
-        #region Authentication
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -69,7 +69,7 @@ namespace CP_MathHub.Controllers
             }
 
         }
-
+        #region Authentication
         private ApplicationUserManager _userManager;
         public ApplicationUserManager UserManager
         {
@@ -752,7 +752,8 @@ namespace CP_MathHub.Controllers
         public ActionResult AcceptFriendRequest(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.AcceptFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
-            aService.CreateConversation(User.Identity.GetUserId<int>(), targetUserId);
+            if (!aService.CheckExistConversation(User.Identity.GetUserId<int>(), targetUserId))
+                aService.CreateConversation(User.Identity.GetUserId<int>(), targetUserId);
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
 
@@ -785,6 +786,7 @@ namespace CP_MathHub.Controllers
             List<UserItemViewModel> friendUserItems = Helper.ListHelper.ListUserToListUserItem(friends, User.Identity.GetUserId<int>());
             return PartialView("Partials/_UserFriendListPartialView", friendUserItems);
         }
+
         //Get: Account/Users
         [HttpGet]
         public ActionResult Users(string tab = Constant.Question.String.UserReputationTab, int page = 0)
@@ -809,6 +811,16 @@ namespace CP_MathHub.Controllers
                 return PartialView("Partials/_UserListPartialView", users);
             }
 
+        }
+        //Get: Account/SearchUsers
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SearchUser(string name = "", string tab = Constant.Question.String.UserReputationTab, int page = 0)
+        {
+            int skip = page * Constant.Question.Integer.UserPagingDefaultTake;
+            List<User> users = cService.GetUsers(name, skip, tab);
+
+            return PartialView("Partials/_UserListPartialView", users);
         }
         #endregion
         #region Activity
@@ -922,7 +934,7 @@ namespace CP_MathHub.Controllers
             conversation.Name = rService.GetConversationName(id);
             conversation.Id = id;
             Conversation conver = rService.GetConversation(id);
-            for (int i = 0; i < conver.Attendances.Count; i++ )
+            for (int i = 0; i < conver.Attendances.Count; i++)
             {
                 conver.Attendances.ElementAt(i).SeenDate = DateTime.Now;
             }

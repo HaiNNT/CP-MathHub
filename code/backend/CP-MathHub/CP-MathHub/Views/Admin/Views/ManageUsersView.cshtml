@@ -49,10 +49,12 @@
                         <h4>Hiển thị: </h4>
                     </div>
                     <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                        <select name="selValue" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
-                            <option value="1">Tất cả mọi người</option>
-                            <option value="2">Quản lý</option>
-                            <option value="3">Người dùng</option>
+                        @*@using (Html.BeginForm("ManageUsers", "Admin", FormMethod.Post, new { id = "select-form-manage-user" }))*@
+                        
+                        <select @*onchange="GetManageUserOptionSelect()"*@ name="RoleFilter" class="selectpicker roleFilter" multiple="multiple" title="Không có gì được chọn">
+                            <option value="Người dùng" @*@(Model.RoleFilter != null && Model.RoleFilter.Contains(1) ? "selected" : "")*@>Người dùng</option>
+                            <option value="Chuyên gia" @*@(Model.RoleFilter != null && Model.RoleFilter.Contains(2) ? "selected" : "")*@>Chuyên gia</option>
+                            <option value="Quản lý" @*@(Model.RoleFilter != null && Model.RoleFilter.Contains(3) ? "selected" : "")*@>Quản lý</option>
                         </select>
                     </div>
                 </div>
@@ -79,242 +81,14 @@
                                     <a data-toggle="modal" data-target="#user-@Model.Users.ElementAt(i).Id">@Model.Users.ElementAt(i).UserName</a>
                                     @Html.Partial("Partials/_UserInformationDetailPartialView", Model.Users.ElementAt(i))
                                     <!-- Modal -->
-                                    @*<div class="modal fade" id="user-@Model.Users.ElementAt(i).Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Thông tin của <span class="mh-manage-user-username">@Model.Users.ElementAt(i).UserName</span></h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h4>
-                                                        Đi đến
-                                                        <a href="#">trang thông tin cá nhân</a>
-                                                        của
-                                                        <span class="mh-manage-user-username">@Model.Users.ElementAt(i).UserName</span>
-                                                    </h4>
-                                                    <div>
-                                                        <h3>Thông tin chung</h3>
-                                                        <div class="mh-manage-user-info-detail">
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Tài khoản</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).UserName</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Email</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Email</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Điểm thưởng</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <div>
-                                                                        <span>@Model.Users.ElementAt(i).Reputation</span>
-                                                                        <i class="icon-circle mh-reputation-icon"></i>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <h3>Thông tin cơ bản</h3>
-                                                        <div class="mh-manage-user-info-detail">
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Họ tên</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Profile.FullName</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Giới tính</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@(Model.Users.ElementAt(i).Profile.Gender != null ? Constant.Account.Dictionary.GenderName[(int)Model.Users.ElementAt(i).Profile.Gender] : "")</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Ngày sinh</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@(Model.Users.ElementAt(i).Profile.Birthday != null ? Model.Users.ElementAt(i).Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <h3>Thông tin liên hệ</h3>
-                                                        <div class="mh-manage-user-info-detail">
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Địa chỉ</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Profile.Address</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Số điện thoại</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).PhoneNumber</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Facebook</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <a href="@Model.Users.ElementAt(i).Profile.Facebook">@Model.Users.ElementAt(i).Profile.Facebook</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <h3>Thông tin khác</h3>
-                                                        <div class="mh-manage-user-info-detail">
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Trường</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Profile.School</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Trình độ</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@(Model.Users.ElementAt(i).Profile.Education != null ? Constant.Account.Dictionary.EducationName[(int)Model.Users.ElementAt(i).Profile.Education] : "")</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Quan điểm</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Profile.ViewPoint</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row mh-profile-info-row">
-                                                                <div class="col-xs-3">
-                                                                    <label>Giới thiệu</label>
-                                                                </div>
-                                                                <div class="col-xs-9">
-                                                                    <span>@Model.Users.ElementAt(i).Profile.Summary</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>*@
+
                                 </td>
                                 <td class="mh-cell-middle">@Model.Users.ElementAt(i).Profile.FullName</td>
                                 <td class="mh-cell-middle">@Model.Users.ElementAt(i).Email</td>
                                 <td class="mh-cell-center" id="userStatus-@Model.Users.ElementAt(i).Id">@Html.CheckStatusUser(Model.Users.ElementAt(i).Status)</td>
                                 <td class="mh-cell-center" id="historyBlock-@Model.Users.ElementAt(i).Id">
                                     @Html.Partial("Partials/_HistoryBlockUserPartialView", Model.Users.ElementAt(i))
-                                    @*@{
-                                        if (Model.Users.ElementAt(i).BannedAccounts.Count > 0)
-                                        {
-                                            <a data-toggle="modal" data-target="#blocked-@Model.Users.ElementAt(i).Id">@Model.Users.ElementAt(i).BannedAccounts.Count lần</a>
-                                                <div class="modal fade" id="blocked-@Model.Users.ElementAt(i).Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                <h4 class="modal-title" id="myModalLabel">Lịch sử bị khóa của <span class="mh-manage-user-username">@Model.Users.ElementAt(i).UserName</span></h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                @for (int j = 0; j < Model.Users.ElementAt(i).BannedAccounts.Count; j++)
-                                                                {
-                                                                    BanAccount ban = Model.Users.ElementAt(i).BannedAccounts.ElementAt(j);
-                                                                    <div class="mh-history-block-row">
-                                                                        <h3>Lần @(j + 1):</h3>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Lý do:</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@(string.Join(", ", ban.BanReasons.Select(r => r.Name)))</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Tổng số ngày bị khóa</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@ban.Duration ngày</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Bị khóa bởi</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@ban.BanUser.UserName</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Ngày bị khóa</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@(ban.BannedDate != null ? ban.BannedDate.ToString("dd-MM-yyyy") : "")</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Ngày bỏ khóa</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@(ban.UnBanedDate != null ? ban.UnBanedDate.ToString("dd-MM-yyyy") : "")</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-xs-4">
-                                                                                <h5>Miêu tả</h5>
-                                                                            </div>
-                                                                            <div class="col-xs-8">
-                                                                                <h5>@ban.Description</h5>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                }
 
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        }
-                                        else
-                                        {
-                                            <span>Chưa</span>
-                                        }
-                                    }*@
-                                    @*@(user.BannedAccounts.Count > 0 ? user.BannedAccounts.Count+" lần" : "chưa")*@
                                 </td>
                                 <td class="mh-cell-center" id="role-@Model.Users.ElementAt(i).Id">
                                     @Html.GetRoleUser(Model.Users.ElementAt(i).Assessments.ToList())
@@ -322,60 +96,60 @@
                                 </td>
                                 <td class="mh-cell-center">
                                     @{
-                                        
+
                                         @*@(Html.CheckStatusUser(Model.Users.ElementAt(i).Status) == "Bị khóa" ? "" : "hidden")*@
                                         <a href="" id="activeUser-@Model.Users.ElementAt(i).Id" type="button" class="btn btn-warning @(Model.Users.ElementAt(i).Status.Value == UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" onclick="@("unBlockUser(" + @Model.Users.ElementAt(i).Id + ")")" data-target="#unblockuser-@Model.Users.ElementAt(i).Id">Bỏ khóa</a>
                                         <!-- Modal -->
                                         @*<div class="modal fade" id="unblockuser-@Model.Users.ElementAt(i).Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="myModalLabel">Bỏ khóa tài khoản: <span class="mh-manage-user-username">@Model.Users.ElementAt(i).UserName</span></h4>
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Bỏ khóa tài khoản: <span class="mh-manage-user-username">@Model.Users.ElementAt(i).UserName</span></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-xs-4">
+                                                                    <h5>Lý do:</h5>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-xs-4">
-                                                                            <h5>Lý do:</h5>
-                                                                        </div>
-                                                                        <div class="col-xs-8">
-                                                                            <h5>@(string.Join(", ", Model.Users.ElementAt(i).BannedAccounts.Last().BanReasons.Select(r => r.Name)))</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-xs-4">
-                                                                            <h5>Tổng số ngày bị khóa</h5>
-                                                                        </div>
-                                                                        <div class="col-xs-8">
-                                                                            <h5>@Model.Users.ElementAt(i).BannedAccounts.Last().Duration ngày</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-xs-4">
-                                                                            <h5>Số ngày bị khóa còn lại</h5>
-                                                                        </div>
-                                                                        <div class="col-xs-8">
-                                                                            <h5>@((Model.Users.ElementAt(i).BannedAccounts.Last().UnBanedDate - Model.Users.ElementAt(i).BannedAccounts.Last().BannedDate).Days) ngày</h5>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-xs-4">
-                                                                            <h5>Bị khóa bởi</h5>
-                                                                        </div>
-                                                                        <div class="col-xs-8">
-                                                                            <h5>@Model.Users.ElementAt(i).BannedAccounts.Last().BanUser.UserName</h5>
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="col-xs-8">
+                                                                    <h5>@(string.Join(", ", Model.Users.ElementAt(i).BannedAccounts.Last().BanReasons.Select(r => r.Name)))</h5>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                                    <button type="button" class="btn btn-warning">Bỏ khóa</button>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xs-4">
+                                                                    <h5>Tổng số ngày bị khóa</h5>
+                                                                </div>
+                                                                <div class="col-xs-8">
+                                                                    <h5>@Model.Users.ElementAt(i).BannedAccounts.Last().Duration ngày</h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xs-4">
+                                                                    <h5>Số ngày bị khóa còn lại</h5>
+                                                                </div>
+                                                                <div class="col-xs-8">
+                                                                    <h5>@((Model.Users.ElementAt(i).BannedAccounts.Last().UnBanedDate - Model.Users.ElementAt(i).BannedAccounts.Last().BannedDate).Days) ngày</h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xs-4">
+                                                                    <h5>Bị khóa bởi</h5>
+                                                                </div>
+                                                                <div class="col-xs-8">
+                                                                    <h5>@Model.Users.ElementAt(i).BannedAccounts.Last().BanUser.UserName</h5>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>*@
-                                        
-                                       @*@(Html.CheckStatusUser(Model.Users.ElementAt(i).Status) != "Bị khóa" ? "hidden" : "")*@
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                                            <button type="button" class="btn btn-warning">Bỏ khóa</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                        @*@(Html.CheckStatusUser(Model.Users.ElementAt(i).Status) != "Bị khóa" ? "hidden" : "")*@
                                         <a href="" id="deActiveUser-@Model.Users.ElementAt(i).Id" type="button" class="btn btn-warning @(Model.Users.ElementAt(i).Status.Value != UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" data-target="#blockuser-@Model.Users.ElementAt(i).Id">Khóa</a>
                                         <!-- Modal -->
                                         <div class="modal fade" id="blockuser-@Model.Users.ElementAt(i).Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" mh-id="@Model.Users.ElementAt(i).Id">
@@ -447,7 +221,7 @@
                                                         Chuyên gia
                                                     </label><br />
                                                     <label>
-                                                        <input type="checkbox" mh-name=" Người dùng,"  value="1" @(Model.Users.ElementAt(i).Assessments.Count(a => a.RoleId == 1) > 0 ? "checked" : "")>
+                                                        <input type="checkbox" mh-name=" Người dùng," value="1" @(Model.Users.ElementAt(i).Assessments.Count(a => a.RoleId == 1) > 0 ? "checked" : "")>
                                                         Người dùng
                                                     </label>
                                                 </div>

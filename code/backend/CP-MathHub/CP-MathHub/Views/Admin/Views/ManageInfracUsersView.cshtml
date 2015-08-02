@@ -7,7 +7,6 @@
     ViewBag.Title = "ManageInfracUsersView";
     Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
 }
-
 <section class="wrapper">
     <h3>Quản lý vi phạm của người dùng</h3>
     <!-- table: start -->
@@ -25,9 +24,9 @@
                                 <option value="1" @(Model.Filters != null && Model.Filters.Contains(1) ? "selected" : "")>Đã kiểm tra</option>
                                 <option value="2" @(Model.Filters != null && Model.Filters.Contains(2) ? "selected" : "")>Chưa kiểm tra</option>
                             </select>
-                            <input type="hidden" value="@Model.Filters"/>
+                            <input type="hidden" value="@Model.Filters" />
                         }
-                        
+
                     </div>
                 </div>
                 <div class="space15"></div>
@@ -37,7 +36,7 @@
                             <th>STT</th>
                             <th>Người bị báo cáo</th>
                             <th>Ngày báo cáo</th>
-                            <th>Người báo cáo</th>
+                            <th>Số người báo cáo</th>
                             <th>Lí do</th>
                             <th>Đã kiểm tra</th>
                             <th></th>
@@ -57,33 +56,53 @@
                                     @Html.Partial("Partials/_UserInformationDetailPartialView", user.User)
                                 </td>
                                 <td class="mh-cell-center">
-                                    @user.ReportedDate
+                                    @user.ReportedDate.ToString("dd-MM-yyyy")
                                 </td>
                                 <td class="mh-cell-center">
-                                    <a data-toggle="modal" data-target="#userReport-@(i+1)">@user.Reporters.Count</a>
+                                    <a data-toggle="modal" data-target="#userReport-@(i+1)">@user.Reporters.Count người</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="userReport-@(i+1)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Người báo cáo</h4>
+                                                    <h4 class="modal-title" id="myModalLabel">Danh sách người báo cáo</h4>
                                                 </div>
                                                 <div class="modal-body">
+                                                    @{
+                            String description = "";
+                                                    }
+                                                    <div class="row mh-admin-title">
+                                                        <div class="col-lg-3">
+                                                            Người báo cáo
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            Miêu tả
+                                                        </div>
+                                                    </div>
                                                     @foreach (User u in user.Reporters)
                                                     {
+                                                        foreach (Report r in u.Reports)
+                                                        {
+                                                            if (r.ReporterId == u.Id)
+                                                            {
+                                                                description = r.Description;
+                                                            }
+                                                        }
                                                         <div class="media mh-user-report">
                                                             <div class="media-left">
                                                                 <a href="#">
-                                                                    <img class="mh-user-icon" src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="...">
+                                                                    <img class="mh-user-icon" src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" />
                                                                 </a>
                                                             </div>
                                                             <div class="media-body">
-                                                                <a href="@Url.Action("UserProfile", "Account", new { userId= u.Id })"><span>@u.UserName</span></a>
-</div>
+                                                                <a href="@Url.Action("UserProfile", "Account", new { userId= user.Id })"><span>@u.UserName</span></a>
+                                                            </div>
+                                                            <div class="media-right">
+                                                                @description
+                                                            </div>
                                                         </div>
                                                     }
-
 
                                                 </div>
                                                 <div class="modal-footer">
@@ -94,7 +113,14 @@
                                     </div>
                                 </td>
                                 <td class="mh-cell-middle">
-                                    <a data-toggle="modal" data-target="#causePost-@(i+1)">@user.Reasons.Count</a>
+                                    <a data-toggle="modal" data-target="#causePost-@(i+1)">
+                                        @{List<string> listReasonUser = new List<string>();}
+                                        @foreach (KeyValuePair<ReportTypeEnum, int> reason in user.Reasons)
+                                        {
+                                            listReasonUser.Add(CP_MathHub.Core.Configuration.Constant.Account.Dictionary.ReportType[(int)@reason.Key]);
+                                        }
+                                        @(string.Join(", ", listReasonUser))
+                                    </a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="causePost-@(i+1)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                         <div class="modal-dialog" role="document">
@@ -104,11 +130,19 @@
                                                     <h4 class="modal-title" id="myModalLabel">Lí do</h4>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <div class="row mh-admin-title">
+                                                        <div class="col-lg-8">
+                                                            Lý do
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            Số lần bị báo cáo
+                                                        </div>
+                                                    </div>
                                                     @foreach (KeyValuePair<ReportTypeEnum, int> reason in user.Reasons)
                                                     {
                                                         <div class="row">
-                                                            <div class="col-xs-7">@CP_MathHub.Core.Configuration.Constant.Account.Dictionary.ReportType[(int)@reason.Key]</div>
-                                                            <div class="col-xs-5">@reason.Value</div>
+                                                            <div class="col-lg-8">@CP_MathHub.Core.Configuration.Constant.Account.Dictionary.ReportType[(int)@reason.Key]</div>
+                                                            <div class="col-lg-4">@reason.Value lần</div>
                                                         </div>
                                                     }
                                                 </div>
@@ -177,7 +211,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
                             </tr>
                         }
@@ -188,6 +221,4 @@
     </section>
     <!-- table: end -->
 </section>
-
 <input id="mh-page" type="hidden" value="@ViewBag.Page" />
-

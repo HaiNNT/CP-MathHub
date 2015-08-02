@@ -52,7 +52,7 @@ namespace CP_MathHub
             bundles.Add(new ScriptBundle("~/bundles/adminManageUsersjs").Include(
                       "~/Content/js/count.js",
                       "~/Content/js/bootstrap-select.js",
-                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/jquery.dataTables-1.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/adminManageRulesjs").Include(

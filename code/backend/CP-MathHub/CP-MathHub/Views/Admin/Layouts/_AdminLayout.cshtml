@@ -48,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
+                            <li><a href="@Url.Action("MyProfile","Account")"><i class=" icon-suitcase"></i>Profile</a></li>
                             <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
                             <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
                             <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
@@ -95,7 +95,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="admin-ManageTags.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManagerTagsPage ? "active" : "")" href="~/Admin/ManageTags">
                             <i class="icon-tags"></i>
                             <span>Quản lý thẻ</span>
                         </a>

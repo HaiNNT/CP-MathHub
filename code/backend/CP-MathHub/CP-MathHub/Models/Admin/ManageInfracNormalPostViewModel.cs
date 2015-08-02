@@ -12,7 +12,6 @@ namespace CP_MathHub.Models.Admin
 
         public Post Post { get; set; }
 
-
         public Dictionary<ReportTypeEnum, int> Reasons { get; set; }
 
         public DateTime ReportedDate { get; set; }
@@ -20,6 +19,8 @@ namespace CP_MathHub.Models.Admin
         public List<User> Reporters { get; set; }
 
         public bool Status { get; set; }
+
+        
 
     }
 }

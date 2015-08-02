@@ -379,8 +379,9 @@ function sendReport(id) {
     var formId = "#report-form-" + id;
     $.post('/Blog/Report', $(formId).serialize())
         .done(function (msg) {
-            console.log(msg);
             $(formId).trigger("reset");
+            if (msg == "False")
+                alert("Bạn không thể báo cáo nhiều hơn 1 lần");
         })
          .fail(function () {
              alert("fail error");

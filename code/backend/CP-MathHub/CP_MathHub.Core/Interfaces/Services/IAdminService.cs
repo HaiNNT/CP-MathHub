@@ -154,6 +154,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <returns></returns>
         List<Answer> GetReportedAnswer();
         /// <summary>
+        /// Get reported comment
+        /// </summary>
+        /// <returns></returns>
+        List<Comment> GetReportedComment();
+        /// <summary>
         /// Set role for user
         /// </summary>
         /// <param name="assessment"></param>

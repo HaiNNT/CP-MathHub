@@ -16,14 +16,17 @@ namespace CP_MathHub.Models.RealTime
         {
             Dates = new List<MesagesOfDate>();
             messages = messages.OrderBy(m => m.CreatedDate).ToList();
-            for (DateTime i = DateTime.Now.Date; i >= messages.FirstOrDefault().CreatedDate.Date; i = i.AddDays(-1) )
+            if (messages.Count > 0)
             {
-                MesagesOfDate date = new MesagesOfDate();
-                date.Date = i;
-                date.Messages = messages.Where(m => m.CreatedDate.Date == i).ToList();
-                Dates.Add(date);
+                for (DateTime i = DateTime.Now.Date; i >= messages.FirstOrDefault().CreatedDate.Date; i = i.AddDays(-1))
+                {
+                    MesagesOfDate date = new MesagesOfDate();
+                    date.Date = i;
+                    date.Messages = messages.Where(m => m.CreatedDate.Date == i).ToList();
+                    Dates.Add(date);
+                }
+                Dates = Dates.OrderBy(d => d.Date).ToList();
             }
-            Dates = Dates.OrderBy(d => d.Date).ToList();
         }
     }
 

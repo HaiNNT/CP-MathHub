@@ -84,6 +84,11 @@ namespace CP_MathHub.Helper
                                                         .Messages
                                                             .OrderByDescending(m => m.CreatedDate)
                                                             .FirstOrDefault();
+                    if (model.LastMessage == default(Message))
+                    {
+                        model.LastMessage = new Message();
+                        model.LastMessage.Content = "";
+                    }
                     model.NewMessageNum = conversation.Attendances
                                                         .Where(m => m.UserId != userId)
                                                         .FirstOrDefault()

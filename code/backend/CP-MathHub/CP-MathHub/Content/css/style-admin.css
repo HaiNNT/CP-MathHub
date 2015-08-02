@@ -4694,7 +4694,19 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     border-bottom: 0px;
 }
 .editable-table .table > tbody .modal-body .mh-user-report .media-body {
-    vertical-align: middle;
+    width: 15%;
+}
+.editable-table .table > tbody .modal-body .mh-user-report .media-right  {
+    width: 85%;
+}
+.editable-table .table > tbody .modal-body .mh-admin-title {
+    font-weight: bold;
+}
+.editable-table .table > tbody .modal-body .row .col-lg-3 {
+    width: 19.4%;
+}
+.editable-table .table > tbody .modal-body .row .col-lg-4 {
+    text-align: center;
 }
 .mh-admin-send-notification-body {
     padding: 15px;
@@ -4734,3 +4746,16 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     text-align: left;
 }
 /* editable-sample: end */
+.mh-adin-manage-infrac-post .nav-tabs, .mh-adin-manage-infrac-post .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    border: 0px;
+}
+.mh-adin-manage-infrac-post .tab-content {
+    margin-top: -1px;
+}
+.mh-adin-manage-infrac-post .nav-tabs > li:hover > a {
+    border-bottom: 0px;
+}
+#editable-manageUser .btn.btn-warning, #editable-manageUser .btn.btn-primary {
+    margin-bottom: 2px;
+    margin-top: 2px;
+}

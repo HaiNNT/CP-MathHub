@@ -170,7 +170,7 @@
 </div>
 @section LeftPanel
 {
-    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button active">
+    <a href="@Url.Action("MyProfile")" class="mh-profile-menu-button">
         <div class="mh-profile-menu-div">
             Thông tin cá nhân
         </div>
@@ -185,11 +185,11 @@
             Hoạt động
         </div>
     </a>
-    <a href="@Url.Action("Privacy")" class="mh-profile-menu-button">
-        <div class="mh-profile-menu-div">
-            Quyền riêng tư
-        </div>
-    </a>
+    <a href="@Url.Action("Privacy")" class="mh-profile-menu-button active">
+    <div class="mh-profile-menu-div">
+        Quyền riêng tư
+    </div>
+</a>
 }
 @section styles{
 

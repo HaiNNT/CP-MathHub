@@ -166,5 +166,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="userId"></param>
         void LogLastLogin(string username);
+
+        /// <summary>
+        /// Check if conversation of 2 users is existed
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="tagUserId"></param>
+        /// <returns></returns>
+        bool CheckExistConversation(int userId, int tagUserId);
     }
 }

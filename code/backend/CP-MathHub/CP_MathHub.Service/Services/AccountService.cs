@@ -154,6 +154,11 @@ namespace CP_MathHub.Service.Services
             _dal.Repository<UserFriendship>().Update(friendship);
             _dal.Save();
         }
+        public bool CheckExistConversation(int userId, int tagUserId)
+        {
+            Conversation con = _dal.Repository<Conversation>().Table.FirstOrDefault(t => t.Attendances.Count == 2 && t.Attendances.Count(a => a.UserId == userId || a.UserId == tagUserId) == 2);
+            return con != default(Conversation);
+        }
 
         public void CreateConversation(int userId, int targetUserId)
         {
@@ -169,6 +174,7 @@ namespace CP_MathHub.Service.Services
             con.Attendances.Add(att1);
             con.Attendances.Add(att2);
             con.Name = "";
+            con.Avatar = "";
             con.CreatedDate = DateTime.Now;
             _dal.Repository<Conversation>().Insert(con);
             _dal.Save();
