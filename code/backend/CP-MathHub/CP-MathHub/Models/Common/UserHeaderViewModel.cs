@@ -13,6 +13,9 @@ namespace CP_MathHub.Models.Common
         public int Id { get; set; }
         public UserStatusEnum Status { get; set; }
         public DateTime CreateMainPostDate { get; set; }
+        public int CountNewFriendRequest { get; set; }
+        public int CountNewMessage { get; set; }
+        public int CountNewActivity {get;set;}
 
         public Image Avatar { get; set; }
     }

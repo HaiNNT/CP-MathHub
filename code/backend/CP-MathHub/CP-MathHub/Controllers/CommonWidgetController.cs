@@ -96,6 +96,9 @@ namespace CP_MathHub.Controllers
             {
                 User user = _cService.GetUser(User.Identity.GetUserId<int>());
                 userHeaderVM = Mapper.Map<User, UserHeaderViewModel>(user);
+                userHeaderVM.CountNewActivity = _rService.CountNewActivityNotification();
+                userHeaderVM.CountNewFriendRequest = _rService.CountNewFriendRequestNotification();
+                userHeaderVM.CountNewMessage = _rService.CountNewMessageNotification();
             }
 
             return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);

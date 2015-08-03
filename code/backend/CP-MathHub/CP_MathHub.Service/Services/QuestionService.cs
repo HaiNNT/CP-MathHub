@@ -118,6 +118,10 @@ namespace CP_MathHub.Service.Services
                     skip
                 ).ToList();
         }
+        public Answer GetAnswer(int id)
+        {
+            return _dal.Repository<Answer>().GetById(id);
+        }
         //public List<Question> GetRelatedQuestions(int tagId, int skip = 0)
         //{
         //    return dal.Repository<Question>()
