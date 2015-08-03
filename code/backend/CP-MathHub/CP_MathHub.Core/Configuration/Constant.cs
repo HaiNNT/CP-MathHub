@@ -217,10 +217,11 @@ namespace CP_MathHub.Core.Configuration
                 public const string ManageInfracPosts = "ManageInfracPosts";
                 public const string ManagerTagsPage = "ManageTags";
                 public const string ManageInfracUsers = "ManageInfracUsers";
-                public const string SendEmail = "ManageEmail";
+                public const string ManageContact = "ManageContact";
 
                 public const string NormalLoadTags = "default";
                 public const string AllDuplicatetags = "duplicate";
+                public const string SendEMail = "SendEMail";
             }
         }
     }

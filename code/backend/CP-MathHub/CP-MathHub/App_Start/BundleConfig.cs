@@ -72,6 +72,22 @@ namespace CP_MathHub
                       "~/Content/assets/data-tables/DT_bootstrap.js",
                       "~/Content/js/bootstrap-select.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/sendEMailjs").Include(
+                      "~/Content/assets/data-tables/jquery.dataTables-1.js",
+                      "~/Content/assets/data-tables/DT_bootstrap.js",
+                      "~/Content/js/bootstrap-select.js",
+                      "~/Content/ckeditor/ckeditor.js"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/adminManageContactjs").Include(
+            //          "~/Content/assets/jquery-file-upload/js/vendor/jquery.ui.widget.js",
+            //          "~/Content/assets/jquery-file-upload/js/vendor/tmpl.min.js",
+            //          "~/Content/assets/jquery-file-upload/js/vendor/load-image.min.js",
+            //          "~/Content/assets/jquery-file-upload/js/vendor/canvas-to-blob.min.js",
+            //          "~/Content/assets/jquery-file-upload/js/jquery.iframe-transport.js",
+            //          "~/Content/assets/jquery-file-upload/js/jquery.fileupload.js",
+            //          "~/Content/assets/jquery-file-upload/js/jquery.fileupload-fp.js",
+            //          "~/Content/assets/jquery-file-upload/js/jquery.fileupload-ui.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/realtimejs").Include(
                       "~/Scripts/jquery.signalR-2.1.2.min.js",
                       "~/signalr/hubs"));
@@ -115,6 +131,8 @@ namespace CP_MathHub
             bundles.Add(new StyleBundle("~/Content/adminManageInfracPostscss").Include(
                       "~/Content/assets/data-tables/DT_bootstrap.css",
                       "~/Content/css/bootstrap-select.css"));
+            //bundles.Add(new StyleBundle("~/Content/adminManageContactcss").Include(
+            //          "~/Content/assets/jquery-file-upload/css/jquery.fileupload-ui.css"));
         }
 
     }

@@ -14,11 +14,21 @@
             @Styles.Render("~/Content/dt_bootstrapcss")
             break;
         case Constant.Admin.String.ManageInfracPosts:
-            @Styles.Render("~/Content/adminManageInfracPostscss")
+        @Styles.Render("~/Content/adminManageInfracPostscss")
             break;
         case Constant.Admin.String.ManageInfracUsers:
-            @Styles.Render("~/Content/selectPickercss")
-            @Styles.Render("~/Content/dt_bootstrapcss")
+        @Styles.Render("~/Content/selectPickercss")
+        @Styles.Render("~/Content/dt_bootstrapcss")
+            break;
+        case Constant.Admin.String.ManageRulePage:
+        @Styles.Render("~/Content/dt_bootstrapcss")
+            break;
+        case Constant.Admin.String.ManagerTagsPage:
+        @Styles.Render("~/Content/dt_bootstrapcss")
+            break;
+        case Constant.Admin.String.SendEMail:
+        @Styles.Render("~/Content/selectPickercss")
+        @Styles.Render("~/Content/dt_bootstrapcss")
             break;
         default:
             break;
@@ -71,28 +81,34 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li>
+                            <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="~/Admin/ManageUsers">
+                                <i class="icon-group"></i>
+                                <span>Quản lý người dùng</span>
+                            </a>
+                        </li>
+                    }
                     <li>
-                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageUsersPage ? "active" : "")" href="~/Admin/ManageUsers">
-                            <i class="icon-group"></i>
-                            <span>Quản lý người dùng</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="admin-SendMailNotification.html">
+                        <a class="@(ViewBag.Page == Constant.Admin.String.ManageContact ? "active" : "")" href="~/Admin/ManageContact">
                             <i class="icon-envelope"></i>
                             <span>Gửi thông báo</span>
                             <span class="label label-danger pull-right mail-info">2</span>
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" class="@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "active" : "")">
+                        <a href="javascript:;" class="@(ViewBag.Page == Constant.Admin.String.ManageRulePage || ViewBag.Page == Constant.Admin.String.ManageInfracPosts || ViewBag.Page == Constant.Admin.String.ManageInfracUsers ? "active" : "")">
                             <i class="icon-flag"></i>
                             <span>Quản lý vi phạm</span>
                         </a>
                         <ul class="sub">
                             <li><a href="@Url.Action("ManageInfracPosts","Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageInfracPosts ? "red" : "")">Bài viết</a></li>
                             <li><a href="@Url.Action("ManageInfracUsers", "Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageInfracUsers ? "red" : "")">Người dùng</a></li>
-                            <li><a href="@Url.Action("ManageRule", "Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "red" : "")">Quy định</a></li>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li><a href="@Url.Action("ManageRule", "Admin")" style="color:@(ViewBag.Page == Constant.Admin.String.ManageRulePage ? "red" : "")">Quy định</a></li>
+                            }
                         </ul>
                     </li>
                     <li>
@@ -132,19 +148,25 @@
             @Scripts.Render("~/bundles/adminDashboardjs")
             break;
         case Constant.Admin.String.ManageUsersPage:
-            @Scripts.Render("~/bundles/adminManageUsersjs")
+        @Scripts.Render("~/bundles/adminManageUsersjs")
             break;
         case Constant.Admin.String.ManageRulePage:
-            @Scripts.Render("~/bundles/adminManageRulesjs")
+        @Scripts.Render("~/bundles/adminManageRulesjs")
             break;
         case Constant.Admin.String.ManagerTagsPage:
-            @Scripts.Render("~/bundles/adminManageTagsjs")
+        @Scripts.Render("~/bundles/adminManageTagsjs")
             break;
         case Constant.Admin.String.ManageInfracPosts:
-            @Scripts.Render("~/bundles/adminManageInfracjs")
+        @Scripts.Render("~/bundles/adminManageInfracjs")
             break;
         case Constant.Admin.String.ManageInfracUsers:
-            @Scripts.Render("~/bundles/adminManageInfracjs")
+        @Scripts.Render("~/bundles/adminManageInfracjs")
+            break;
+        @*case Constant.Admin.String.ManageContact:
+        @Scripts.Render("~/bundles/adminManageContactjs")
+            break;*@
+        case Constant.Admin.String.SendEMail:
+        @Scripts.Render("~/bundles/sendEMailjs")
             break;
         default:
             break;
