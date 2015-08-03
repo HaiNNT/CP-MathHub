@@ -30,9 +30,18 @@
                 </a>
             </div>
             <div class="col-xs-10 user">
-                <a href="#">
-                    <span style="@(Model.UserInfo.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.UserInfo.Username</span>
-                </a>
+                @if (Model.UserId == User.Identity.GetUserId<int>())
+                {
+                    <a href="@Url.Action("MyProfile","Account")">
+                        <span style="@(Model.UserInfo.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.UserInfo.Username</span>
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("UserProfile", "Account", new  {userid = @Model.UserId })">
+                        <span style="@(Model.UserInfo.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.UserInfo.Username</span>
+                    </a>
+                }
                 -
                 <span>@Model.UserInfo.Reputation</span>
                 <i class="fa fa-circle mh-reputation-icon"></i>

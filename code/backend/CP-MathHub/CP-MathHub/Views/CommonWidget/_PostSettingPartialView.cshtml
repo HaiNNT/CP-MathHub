@@ -15,7 +15,7 @@
                     Báo cáo vi phạm
                 </a>
             </li>
-            if (User.IsInRole("Expert"))
+            if (User.IsInRole("Expert") || User.IsInRole("Moderator") || User.IsInRole("Administrator"))
             {
                 switch ((string)@ViewData["PostType"])
                 {
