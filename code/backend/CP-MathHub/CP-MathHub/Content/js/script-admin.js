@@ -83,7 +83,7 @@ function tableManageUsers() {
         ,
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [7]
+            'aTargets': []
         }
         ]
     });
@@ -325,7 +325,7 @@ function ManageInfracMainPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8,9]
+            'aTargets': [8]
         }
         ]
     });
@@ -386,7 +386,7 @@ function ManageInfracNormalPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8, 9]
+            'aTargets': [8]
         }
         ]
     });
@@ -607,7 +607,12 @@ function dataTableManageInfracUsers() {
             "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
             "sInfoPostFix": "",
             "sUrl": ""
+        },
+        "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [6]
         }
+        ]
     });
 
     jQuery('#editable-manageInfracUsers_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
@@ -616,6 +621,118 @@ function dataTableManageInfracUsers() {
     $('.selectpicker.userFilter').change(function () {
         table.draw();
     });
+}
+
+function tableRecevierMail() {
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var role = data[1] || "";
+            var val = $('.selectpicker.roleFilter').val();
+
+            if (val == null) {
+                return true;
+            }
+            else if (val.indexOf(role.trim()) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    );
+
+    var table = $('#editable-receiver').DataTable({
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "Tất cả"]
+        ],
+        "DisplayLength": 5,
+        "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "Hiện _MENU_ người dùng ở một trang",
+            "oPaginate": {
+                "sFirst": "Đầu",
+                "sPrevious": "Trước",
+                "sNext": "Tiếp",
+                "sLast": "Cuối"
+            },
+            "sSearch": "Tìm kiếm",
+            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            "sProcessing": "Đang xử lý...",
+            "sZeroRecords": "Không tìm thấy mục nào phù hợp",
+            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sInfoPostFix": "",
+            "sUrl": ""
+        }
+        ,
+        "aoColumnDefs": [{
+            'bSortable': false,
+            'aTargets': [0]
+        }]
+    });
+
+    $('#editable-receiver_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
+    $('#editable-receiver_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
+    
+
+    $('.selectpicker.roleFilter').change(function () {
+        table.draw();
+    });
+}
+
+function receiverCheckAll() {
+    $('#all').change(function () {
+        var checkboxes = $(this).closest('#editable-receiver').find(':checkbox');
+        if ($(this).is(':checked')) {
+            checkboxes.prop('checked', true);
+        } else {
+            checkboxes.prop('checked', false);
+        }
+    });
+}
+
+function receiverEditor() {
+    var list = [];
+    $(".editor").each(function () {
+        list.push($(this).attr("id"));
+    });
+    for (var item in list) {
+        CKEDITOR.replace(list[item], {
+            toolbar: [
+               { name: 'document', items: ['NewPage', 'DocProps', 'Preview', 'Print', '-', 'Templates'] },
+               { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+               { name: 'editing', items: ['Find', 'Replace', '-', 'SelectAll', '-', 'SpellChecker', 'Scayt'] },
+               {
+                   name: 'forms', items: ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
+                       'HiddenField']
+               },
+               '/',
+               { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+               {
+                   name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv',
+                   '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language']
+               },
+               { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+               { name: 'insert', items: ['Chart', 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe', 'Youtube', 'EqnEditor'] },
+               '/',
+               { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+               { name: 'colors', items: ['TextColor', 'BGColor'] },
+               { name: 'tools', items: ['Maximize', 'ShowBlocks', 'Fieldset', '-', 'About'] }
+            ],
+        });
+    }
+}
+
+function selectReceiver() {
+    var email = "";
+    $(".mh-receiver-user-checkbox:checked").each(function () {
+        email += ($(this).val()) + ", ";
+    });
+    email = email.slice(0, -2);
+    reciever = $(".mh-admin-receiver-input").val(email.trim());
 }
 
 $(document).ready(function () {
@@ -659,6 +776,11 @@ $(document).ready(function () {
                 clearBlockUser(id);
             });
             break;
+        case "SendEMail":
+            selectPicker();
+            tableRecevierMail();
+            receiverCheckAll();
+            receiverEditor();
         default:
             break;
     }

@@ -57,12 +57,12 @@ namespace CP_MathHub.Controllers
             model.NewTagNumber = aService.CountNewTag(user.Activity.LastLogin);
             model.NewReportMainpostNumber = aService.CountMainPostReport(user.Activity.LastLogin);
             model.NewReportUserNumber = aService.CountUserReport(user.Activity.LastLogin);
-            ViewBag.Page = Constant.Admin.String.DashboardPage;
+            ViewBag.Page = Constant.Admin.String.DashboardPage;            
             return View("Views/DashboardView", model);
         }
 
+        [Authorize(Roles = "Administrator")]
         //Get: Admin/ManageUsers
-
         public ActionResult ManageUsers()
         {
             ManageUsersViewModel model = new ManageUsersViewModel();
@@ -100,6 +100,7 @@ namespace CP_MathHub.Controllers
             return true;
         }
         //Post: Set role for user
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public bool SetRoleUser(SetRoleViewModel model)
         {
@@ -115,7 +116,7 @@ namespace CP_MathHub.Controllers
             }
             return true;
         }
-
+        [Authorize(Roles = "Administrator")]
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
@@ -125,6 +126,7 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageRulePage;
             return View("Views/ManageRulesView", model);
         }
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public bool EditRule(RuleEditViewModel model)
         {
@@ -137,7 +139,7 @@ namespace CP_MathHub.Controllers
             return true;
         }
 
-
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult InsertRule(RulesViewModel model)
         {
@@ -171,7 +173,6 @@ namespace CP_MathHub.Controllers
         //    ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
         //    return View("Views/ManageInfracPostsView", models);
         //}
-
         //Get: Admin/ManageTags
         [HttpGet]
         public ActionResult ManageTags(string loadType = Constant.Admin.String.NormalLoadTags)
@@ -188,6 +189,7 @@ namespace CP_MathHub.Controllers
             ViewBag.LoadType = loadType;
             return View("Views/ManageTagsView", model);
         }
+
         //Get: Admin/GetSelectedTags
         public ActionResult GetSelectedTags(List<int> tagIds)
         {
@@ -244,7 +246,16 @@ namespace CP_MathHub.Controllers
             aService.ResultDuplicateTags(tagIds, tagName, description);
             return true;
         }
-        //Post: Admin/SendMail
+        //Get: Admin/SendEMail
+        public ActionResult SendEmail()
+        {
+            SendMailViewModel model = new SendMailViewModel();
+            User user = cService.GetUser(User.Identity.GetUserId<int>(), "Activity");
+            model.Users = cService.GetUsers("Profile,BannedAccounts,Avatar");
+            ViewBag.Page = Constant.Admin.String.SendEMail;
+            return View("Views/SendEMailView", model);
+        }
+        //Post: Admin/SendEMail
         [HttpPost]
         public ActionResult SendEmail(SendMailViewModel model)
         {
@@ -268,10 +279,16 @@ namespace CP_MathHub.Controllers
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.SendMailAsync(message);
-                return RedirectToAction("Sent");
-            }
-            return View();
+                return RedirectToAction("ManageContact");
+            }            
         }
+        //Post: Admin/ManageContact
+        
+        public ActionResult ManageContact()
+        {
+            return View("Views/ManageContactView");
+        }
+
         //Post: Admin/ChangeStatusReport
         [HttpPost]
         public bool ChangeStatusReport(int id, int type)
@@ -279,7 +296,6 @@ namespace CP_MathHub.Controllers
             aService.changeStatus(id, type);
             return true;
         }
-
         //Post: Admin/BlockPost
         [HttpPost]
         public bool BlockPost(int id)
@@ -297,7 +313,7 @@ namespace CP_MathHub.Controllers
             post.Status = PostStatusEnum.Active;
             return aService.UpdatePost(post);
         }
-
+        [Authorize(Roles = "Administrator,Moderator")]
         //Admin/ManageInfracPosts
         public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null, string tab = "mainposts")
         {

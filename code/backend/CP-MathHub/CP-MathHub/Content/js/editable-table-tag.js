@@ -19,9 +19,9 @@
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
                 //jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';
-                jqTds[1].innerHTML = '<input type="text" class="form-control small" id="txtName" value="' + aData[1] + '">';
+                jqTds[1].innerHTML = '<input type="text" style="width: 100%;" class="form-control small" id="txtName" value="' + aData[1] + '">';
                 //jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control" id="txtDes" value="' + aData[3] + '">';
+                jqTds[3].innerHTML = '<input type="text" style="width: 100%;"  class="form-control" id="txtDes" value="' + aData[3] + '">';
                 //jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
                 jqTds[5].innerHTML = '<a class="edit btn btn-primary" href="" mh-id="' + id + '">Lưu</a> <a class="cancel btn btn-danger" href="">Hủy</a>';
                 //jqTds[6].innerHTML = '<a class="cancel btn btn-danger" href="">Hủy</a>';
@@ -51,16 +51,15 @@
             }
 
             var oTable = $('#editable-sample').dataTable({
-                "aLengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
+                "alengthMenu": [
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, "Tất cả"]
                 ],
-                // set the initial value
                 "iDisplayLength": 5,
                 "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
-                    "sLengthMenu": "Hiện _MENU_ thẻ ở  một trang",
+                    "sLengthMenu": "Hiện _MENU_ thẻ ở một trang",
                     "oPaginate": {
                         "sFirst": "Đầu",
                         "sPrevious": "Trước",
@@ -72,12 +71,14 @@
                     "sProcessing": "Đang xử lý...",
                     "sZeroRecords": "Không tìm thấy mục nào phù hợp",
                     "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                    "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                    "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
                     "sInfoPostFix": "",
                     "sUrl": ""
                 },
                 "aoColumnDefs": [{
                     'bSortable': false,
-                    'aTargets': [4, 5, 6, 7]
+                    'aTargets': [5, 6, 7]
                 }
                 ]
             });

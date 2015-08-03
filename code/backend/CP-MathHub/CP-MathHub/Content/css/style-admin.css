@@ -4715,9 +4715,12 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.mh-admin-sender-input, .mh-admin-receiver-input {
+.mh-admin-receiver-input, .mh-admin-send-mail-input {
     width: 100%;
     padding: 5px 10px;
+}
+.mh-admin-receiver-input {
+    color: #337ab7;
 }
 .mh-admin-send-notification-footer {
     text-align: right;
@@ -4755,7 +4758,14 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-adin-manage-infrac-post .nav-tabs > li:hover > a {
     border-bottom: 0px;
 }
-#editable-manageUser .btn.btn-warning, #editable-manageUser .btn.btn-primary {
+#editable-manageUser .btn.btn-warning, #editable-manageUser .btn.btn-primary, #editable-sample .btn.btn-primary, #editable-sample .btn.btn-danger,
+#editable-sample .spinner-input {
     margin-bottom: 2px;
     margin-top: 2px;
+}
+.mh-adin-manage-infrac-post {
+    margin-top: 30px;
+}
+.mh-adin-manage-infrac-post .nav-tabs > li > a {
+    font-size: 20px;
 }
