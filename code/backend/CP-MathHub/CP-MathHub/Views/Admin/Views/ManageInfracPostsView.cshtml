@@ -28,24 +28,31 @@
                                     <h4>Hiển thị: </h4>
                                 </div>
                                 <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                                    @using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form" }))
+                                    @*@using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form" }))
                                     {
                                         <select onchange="GetOptionSelect()" id="selectMainPostFilterId" name="MainPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
                                             <option value="1" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(1) ? "selected" : "")>Câu Hỏi</option>
                                             <option value="2" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(2) ? "selected" : "")>Blog</option>
                                             <option value="3" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(3) ? "selected" : "")>Thảo luận</option>
-                                            @*<option value="4">Chỉ Câu trả lời</option>
-                                                <option value="5">Chỉ Bình luận</option>*@
                                             <option value="4" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(4) ? "selected" : "")>Đã kiểm tra</option>
                                             <option value="5" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(5) ? "selected" : "")>Chưa kiểm tra</option>
                                         </select>
-                                    }
+                                    }*@
+                                    <select onchange="GetOptionSelect()" id="selectMainPostFilterId" name="MainPostFilters" class="selectpicker postFilter" multiple="multiple" title="Tất cả">
+                                        <option value="Question">Câu Hỏi</option>
+                                        <option value="Blog">Blog</option>
+                                        <option value="Discussion">Thảo luận</option>
+                                        <option value="True">Đã kiểm tra</option>
+                                        <option value="False">Chưa kiểm tra</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="space15"></div>
                             <table class="table table-striped table-hover table-bordered" id="editable-manageInfracMainPosts">
                                 <thead>
                                     <tr>
+                                        <th class="hidden"></th>
+                                        <th class="hidden"></th>
                                         <th>STT</th>
                                         <th>Tên bài viết</th>
                                         <th>Chủ bài viết</th>
@@ -61,6 +68,12 @@
                                     {
                                         ManageInfracMainPostViewModel iPost = Model.MainPosts.ElementAt(i);
                                         <tr class="">
+                                            <td class="hidden">
+                                                @Html.GetMainPostType(iPost.MainPost)
+                                            </td>
+                                            <td class="hidden">
+                                                @iPost.Status
+                                            </td>
                                             <td class="mh-cell-center">
                                                 @(i + 1)
                                             </td>
@@ -201,7 +214,7 @@
                                     <h4>Hiển thị: </h4>
                                 </div>
                                 <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
-                                    @using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form-normalpost" }))
+                                    @*@using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form-normalpost" }))
                                     {
                                         <select onchange="GetOptionSelectNormalPost()" id="selectNormalPostFilterId" name="NormalPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
                                             <option value="1" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(1) ? "selected" : "")>Câu trả lời</option>
@@ -210,13 +223,21 @@
                                             <option value="4" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(4) ? "selected" : "")>Chưa kiểm tra</option>
                                         </select>
                                         <input type="hidden" name="tab" value="normalposts" />
-                                    }
+                                    }*@
+                                    <select onchange="GetOptionSelectNormalPost()" id="selectNormalPostFilterId" name="NormalPostFilters" class="selectpicker normalPostFilter" multiple="multiple" title="Tất cả">
+                                        <option value="Answer">Câu trả lời</option>
+                                        <option value="Comment">Bình luận</option>
+                                        <option value="True">Đã kiểm tra</option>
+                                        <option value="False">Chưa kiểm tra</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="space15"></div>
                             <table class="table table-striped table-hover table-bordered" id="editable-manageInfracNormalPosts">
                                 <thead>
                                     <tr>
+                                        <th class="hidden"></th>
+                                        <th class="hidden"></th>
                                         <th>STT</th>
                                         <th>Nội dung bài viết</th>
                                         <th>Chủ bài viết</th>
@@ -233,6 +254,8 @@
                                         ManageInfracNormalPostViewModel nPost = Model.NormalPosts.ElementAt(i);
                                         //ManageInfracMainPostViewModel iPost = Model.MainPosts.ElementAt(i);
                                         <tr class="">
+                                            <td class="hidden">@Html.GetNormalPostType(nPost.Post)</td>
+                                            <td class="hidden">@nPost.Status</td>
                                             <td class="mh-cell-center">
                                                 @(i + 1)
                                             </td>

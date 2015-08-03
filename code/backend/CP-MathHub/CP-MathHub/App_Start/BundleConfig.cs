@@ -66,9 +66,9 @@ namespace CP_MathHub
                       "~/Content/assets/data-tables/DT_bootstrap.js",
                       "~/Content/js/editable-table-tag.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/adminManageInfracPostsjs").Include(
+            bundles.Add(new ScriptBundle("~/bundles/adminManageInfracjs").Include(
                       "~/Content/js/bootstrap-switch.js",
-                      "~/Content/assets/data-tables/jquery.dataTables.js",
+                      "~/Content/assets/data-tables/jquery.dataTables-1.js",
                       "~/Content/assets/data-tables/DT_bootstrap.js",
                       "~/Content/js/bootstrap-select.js"));
 
@@ -109,7 +109,7 @@ namespace CP_MathHub
             bundles.Add(new StyleBundle("~/Content/selectPickercss").Include(
                       "~/Content/css/bootstrap-select.css"));
 
-            bundles.Add(new StyleBundle("~/Content/adminManageUser").Include(
+            bundles.Add(new StyleBundle("~/Content/dt_bootstrapcss").Include(
                       "~/Content/assets/data-tables/DT_bootstrap.css"));
 
             bundles.Add(new StyleBundle("~/Content/adminManageInfracPostscss").Include(

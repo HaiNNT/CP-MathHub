@@ -42,7 +42,21 @@ namespace CP_MathHub.Service.Services
         {
             List<Conversation> conversations = new List<Conversation>();
             conversations = _dal.Repository<Conversation>().Get(
-                    (c => c.Attendances.Count(a => a.UserId == userId)>0),
+                    (c => c.Attendances.Count(a => a.UserId == userId) > 0),
+                    (c => c.OrderByDescending(m => m.CreatedDate)),
+                    "Attendances",
+                    0,
+                    0
+                ).ToList();
+            return conversations;
+        }
+
+        public List<Conversation> GetNotificationConversations(int userId)
+        {
+            List<Conversation> conversations = new List<Conversation>();
+            conversations = _dal.Repository<Conversation>().Get(
+                    (c => c.Attendances.Count(a => a.UserId == userId) > 0 && 
+                          c.Attendances.SelectMany(a => a.Messages).Count() > 0),
                     (c => c.OrderByDescending(m => m.CreatedDate)),
                     "Attendances",
                     0,
@@ -56,7 +70,7 @@ namespace CP_MathHub.Service.Services
             List<Message> messages = new List<Message>();
             messages = _dal.Repository<Message>().Get(
                     (m => m.Attendance.ConversationId == conversationId),
-                    (m => m.OrderBy( a => a.CreatedDate)),
+                    (m => m.OrderBy(a => a.CreatedDate)),
                     "Attendance",
                     0,
                     0
@@ -75,11 +89,16 @@ namespace CP_MathHub.Service.Services
             _dal.Save();
         }
 
-        public string GetConversationName(int id)
+        public string GetConversationName(Conversation conversation)
         {
-            Conversation conversation = GetConversation(id);
-            string name = string.Join(",", conversation.Attendances.Where(a => a.UserId != _loginUserId).Select(a => a.User.UserName).ToArray());           
+            string name = string.Join(",", conversation.Attendances.Where(a => a.UserId != _loginUserId).Select(a => a.User.UserName).ToArray());
             return name;
+        }
+
+        public string GetConversationAvatar(Conversation conversation)
+        {
+            string avatar = conversation.Attendances.FirstOrDefault(a => a.UserId != _loginUserId).User.Avatar.Url;
+            return avatar;
         }
 
         public void UpdateConversation(Conversation conversation)
@@ -95,13 +114,13 @@ namespace CP_MathHub.Service.Services
 
         public int CountNewMessageNotification()
         {
-            Activity activity = _dal.Repository<Activity>().Table.First(a => a.User.Id == _loginUserId);
+            Activity activity = _dal.Repository<Activity>().Table.FirstOrDefault(a => a.User.Id == _loginUserId);
             return _dal.Repository<Conversation>().Table
-                                                  .Count(c => c.Attendances.Count(a => a.UserId == _loginUserId) > 0 && 
+                                                  .Count(c => c.Attendances.Count(a => a.UserId == _loginUserId) > 0 &&
                                                               c.Attendances.Where(a => a.UserId != _loginUserId)
                                                   .SelectMany(a => a.Messages)
                                                   .OrderByDescending(m => m.CreatedDate)
-                                                  .First()
+                                                  .FirstOrDefault()
                                                   .CreatedDate > activity.LastSeenMessage);
         }
 
@@ -109,7 +128,7 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<UserFriendship>()
                        .Table
-                       .Count(u => u.TargetUserId == _loginUserId && 
+                       .Count(u => u.TargetUserId == _loginUserId &&
                                    u.CreatedDate > u.TargetUser.Activity.LastSeenFriendRequest);
         }
     }

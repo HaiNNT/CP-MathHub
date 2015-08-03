@@ -28,7 +28,7 @@
                 <i class="fa fa-group"></i>
                 <span class="badge badge-default @(Model.CountNewFriendRequest == 0 ? "hidden" : "") id=" mh-request-number">@Model.CountNewFriendRequest</span>
             </a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" onclick="event.stopPropagation();">
                 <li>
                     <h3>Lời mời kết bạn</h3>
                     <a href="#" class="mh-notification-setting">Cài đặt</a>
@@ -49,7 +49,7 @@
                 <i class="fa fa-comments"></i>
                 <span class="badge badge-default @(Model.CountNewMessage == 0 ? "hidden":"")" id="mh-message-number">@Model.CountNewMessage</span>
             </a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" onclick="event.stopPropagation();">
                 <li>
                     <h3>Tin nhắn</h3>
                     <a href="#" class="mh-notification-setting">Gửi tin nhắn mới</a>
@@ -70,14 +70,14 @@
                 <i class="fa fa-globe"></i>
                 <span class="badge badge-default @(Model.CountNewActivity == 0 ? "hidden" : "")" id="mh-activity-number">@Model.CountNewActivity</span>
             </a>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" onclick="event.stopPropagation();">
                 <li>
                     <h3>Thông báo</h3>
                     <a href="#" class="mh-notification-setting">Cài đặt</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <div class="mh-message-body" id="mh-message-notification">
+                    <div class="mh-message-body" id="mh-activity-notification">
                         @Html.Action("ActivityNotification", "CommonWidget")
                     </div>
                 </li>

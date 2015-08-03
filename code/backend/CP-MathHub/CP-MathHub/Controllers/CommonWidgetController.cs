@@ -185,7 +185,7 @@ namespace CP_MathHub.Controllers
         }
         public virtual ActionResult MessageNotification()
         {
-            List<Conversation> convers = _rService.GetConversations(_currentUserId);
+            List<Conversation> convers = _rService.GetNotificationConversations(_currentUserId);
             List<ConversationPreviewViewModel> conversations =
                 CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
             return PartialView("Widgets/_MessageNotificationPartialView", conversations);
@@ -193,7 +193,7 @@ namespace CP_MathHub.Controllers
         public virtual ActionResult ActivityNotification()
         {
             List<Notification> model = _cService.GetNotifications();
-            return PartialView("Widgets/_MessageNotificationPartialView", model);
+            return PartialView("Widgets/_ActivityNotificationPartialView", model);
         }        
         #endregion
     }

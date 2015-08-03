@@ -15,6 +15,8 @@ using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
 using System.Web.Routing;
+using System.Net;
+using System.Net.Mail;
 
 namespace CP_MathHub.Controllers
 {
@@ -235,11 +237,45 @@ namespace CP_MathHub.Controllers
             aService.DeleteTag(tagId);
             return true;
         }
+        //Post: Admin/ResultDuplicateTag
         [HttpPost]
         public bool ResultDuplicateTags(List<int> tagIds, string tagName, string description)
         {
             aService.ResultDuplicateTags(tagIds, tagName, description);
             return true;
+        }
+        //Get: Admin/SendEmail
+        [HttpGet]
+        public ActionResult SendEmail()
+        {
+            ViewBag.Page = Constant.Admin.String.SendEmail;
+            return View("Views/SendMailView");
+        }
+        //Post: Admin/SendEMail
+        [HttpPost]
+        public ActionResult SendEmail(SendMailViewModel model)
+            {
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("hainnt1302@gmail.com"));  // replace with valid value 
+            message.From = new MailAddress("wssb495@gmail.com");  // replace with valid value
+            message.Subject = "Quan san";
+            message.Body = string.Format("Nghia vu quan su trieu hoi");
+            message.IsBodyHtml = false;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "wssb495@gmail.com",  // replace with valid value
+                    Password = "bluesea495"  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+                return RedirectToAction("ManageTags");
+            }
         }
         //Post: Admin/ChangeStatusReport
         [HttpPost]

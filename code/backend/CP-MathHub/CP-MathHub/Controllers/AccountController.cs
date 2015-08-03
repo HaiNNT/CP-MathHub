@@ -845,7 +845,7 @@ namespace CP_MathHub.Controllers
                 CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
             ConversationDetailViewModel conversation = new ConversationDetailViewModel();
             conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
-            conversation.Name = rService.GetConversationName(convers.First().Id);
+            conversation.Name = rService.GetConversationName(convers.First());
             conversation.Id = convers.First().Id;
 
             Conversation conver = rService.GetConversation(convers.First().Id);
@@ -931,7 +931,7 @@ namespace CP_MathHub.Controllers
         {
             ConversationDetailViewModel conversation = new ConversationDetailViewModel();
             conversation.SetDates(rService.GetAllConversationMessages(id));
-            conversation.Name = rService.GetConversationName(id);
+            conversation.Name = rService.GetConversationName(rService.GetConversation(id));
             conversation.Id = id;
             Conversation conver = rService.GetConversation(id);
             for (int i = 0; i < conver.Attendances.Count; i++)

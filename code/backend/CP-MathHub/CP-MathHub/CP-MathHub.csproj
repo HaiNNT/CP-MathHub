@@ -212,6 +212,7 @@
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
     <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
+    <Compile Include="Models\Admin\SendMailViewModel.cs" />
     <Compile Include="Models\Admin\SetRoleViewModel.cs" />
     <Compile Include="Models\Admin\TagEditViewModel.cs" />
     <Compile Include="Models\Admin\TagViewModel.cs" />

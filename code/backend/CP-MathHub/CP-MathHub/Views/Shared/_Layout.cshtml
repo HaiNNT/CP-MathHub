@@ -146,27 +146,30 @@
     @Scripts.Render("~/bundles/script")
     @RenderSection("scripts", required: false)
     <script>
-        function acceptFriend(item, id) {
+        function acceptFriend(e, item, id) {
+            e.preventDefault();
+            e.stopPropagation();
             $.ajax({
                 method: "POST",
                 url: "/Account/AcceptFriendRequest",
                 data: { targetUserId: id }
             })
-	        .done(function (msg) {
-	            if (msg != "" && msg != "\n") {
-	                $(item).addClass("hidden");
-	                $(item).siblings("button").addClass("hidden");
-	                $(item).siblings("span").removeClass("hidden").text("Bạn bè");
-	            } else {
-	                alert("Có sự cố hệ thống. Hãy thử lại.");
-	            }
-	        })
-	        .fail(function () {
-	            alert("Có sự cố về mạng. Hãy thử lại sau.");
-	        });
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $(item).addClass("hidden");
+                    $(item).siblings("button").addClass("hidden");
+                    $(item).siblings("span").removeClass("hidden").text("Bạn bè");
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
         }
 
-        function refuseFriend(item, id) {
+        function refuseFriend(e, item, id) {
+            e.preventDefault();
             $.ajax({
                 method: "POST",
                 url: "/Account/CancelFriend",
@@ -193,13 +196,9 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
-                    $("#mh-request-number").addClass("hidden");
-                    $("#mh-request-number").html(0);
-                    $("#mh-request-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
+                $("#mh-activity-number").addClass("hidden");
+                $("#mh-request-number").addClass("hidden");
+                $("#mh-request-number").html(0);
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -213,13 +212,9 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
-                    $("#mh-message-number").addClass("hidden");
-                    $("#mh-message-number").html(0);
-                    $("#mh-message-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
+                $("#mh-message-notification").html(msg);
+                $("#mh-message-number").addClass("hidden");
+                $("#mh-message-number").html(0);
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -233,13 +228,9 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
-                    $("#mh-activity-number").addClass("hidden");
-                    $("#mh-activity-number").html(0);
-                    $("#mh-activity-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
+                $("#mh-activity-notification").html(msg);
+                $("#mh-activity-number").addClass("hidden");
+                $("#mh-activity-number").html(0);
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -279,11 +270,11 @@
                 $('.conversation-status-' + id).attr("class", cssClass);
             }
 
-            realTime.client.notifyNewActivity = function (count) {
-                if(count != 0){
+            realTime.client.notifyNewFriendRequest = function (count) {
+                if (count != 0) {
                     $("#mh-request-number").html(count);
                     $("#mh-request-number").removeClass("hidden");
-                }            
+                }
             }
 
             realTime.client.notifyNewMessage = function (count) {
@@ -293,7 +284,7 @@
                 }
             }
 
-            realTime.client.notifyNewFriendRequest = function (count) {
+            realTime.client.notifyNewActivity = function (count) {
                 if (count != 0) {
                     $("#mh-activity-number").html(count);
                     $("#mh-activity-number").removeClass("hidden");
