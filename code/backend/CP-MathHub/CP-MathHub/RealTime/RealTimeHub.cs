@@ -15,8 +15,8 @@ namespace CP_MathHub.RealTime
     [Authorize]
     public class RealTimeHub : Hub
     {
-        private readonly static ConnectionMapping<string> _connections = new ConnectionMapping<string>();
-        public static ConnectionMapping<string> Connections { get { return _connections; } }
+        private readonly static ConnectionMapping<int> _connections = new ConnectionMapping<int>();
+        public static ConnectionMapping<int> Connections { get { return _connections; } }
         public void GetOnlineUser()
         {
             // Call the addNewMessageToPage method to update clients.
@@ -27,8 +27,8 @@ namespace CP_MathHub.RealTime
             using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
             {
                 Conversation conversation = rService.GetConversation(id);
-                List<User> users = conversation.Attendances.Select(c => c.User).ToList();
-                int count = users.Count(u => _connections.TrackOnlineUser(u.UserName));
+                List<int> users = conversation.Attendances.Select(c => c.User.Id).ToList();
+                int count = users.Count(u => _connections.TrackOnlineUser(u));
                 string cssClass = count > 1 ? "fa fa-circle mh-chat-status-icon-on conversation-status-" + id : "fa fa-circle mh-chat-status-icon-off conversation-status-" + id;
                 Clients.Group(id + "").checkOnlineTrigger(id, cssClass);
             }
@@ -47,15 +47,14 @@ namespace CP_MathHub.RealTime
                 #endregion
 
                 #region Message
-                string name = Context.User.Identity.Name;
                 User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
                 if (user.Avatar == default(Image))
                 {
                     user.Avatar.Url = "~/Content/img/user.jpg";
                 }
-                if (!_connections.GetConnections(name).Contains(Context.ConnectionId))
+                if (!_connections.GetConnections(Context.User.Identity.GetUserId<int>()).Contains(Context.ConnectionId))
                 {
-                    _connections.Add(name, Context.ConnectionId, user.Id + "", user.Avatar.Url);
+                    _connections.Add(Context.User.Identity.GetUserId<int>(), Context.ConnectionId, user.Id + "", user.Avatar.Url);
                 }
                 List<Conversation> conversations = rService.GetConversations(user.Id);
                 foreach (Conversation conversation in conversations)
@@ -71,8 +70,7 @@ namespace CP_MathHub.RealTime
         {
             using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
             {
-                string name = Context.User.Identity.Name;
-                _connections.Remove(name, Context.ConnectionId);
+                _connections.Remove(Context.User.Identity.GetUserId<int>(), Context.ConnectionId);
                 List<Conversation> conversations = rService.GetConversations(Context.User.Identity.GetUserId<int>());
                 foreach (Conversation conversation in conversations)
                 {
@@ -95,15 +93,14 @@ namespace CP_MathHub.RealTime
                 #endregion
 
                 #region Message
-                string name = Context.User.Identity.Name;
                 User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
                 if (user.Avatar == default(Image))
                 {
                     user.Avatar.Url = "~/Content/img/user.jpg";
                 }
-                if (!_connections.GetConnections(name).Contains(Context.ConnectionId))
+                if (!_connections.GetConnections(Context.User.Identity.GetUserId<int>()).Contains(Context.ConnectionId))
                 {
-                    _connections.Add(name, Context.ConnectionId, user.Id + "", user.Avatar.Url);
+                    _connections.Add(Context.User.Identity.GetUserId<int>(), Context.ConnectionId, user.Id + "", user.Avatar.Url);
                 }
                 List<Conversation> conversations = rService.GetConversations(user.Id);
                 foreach (Conversation conversation in conversations)

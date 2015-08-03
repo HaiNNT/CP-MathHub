@@ -195,7 +195,7 @@
                 data: {}
             })
             .done(function (msg) {
-                $("#mh-activity-number").addClass("hidden");
+                $("#mh-request-notification").html(msg);
                 $("#mh-request-number").addClass("hidden");
                 $("#mh-request-number").html(0);
             })

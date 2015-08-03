@@ -56,12 +56,12 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <div class="mh-notification-body" id="mh-activity-notification">
+                    <div class="mh-notification-body" id="mh-message-notification">
                         @Html.Action("MessageNotification", "CommonWidget")
                     </div>
                 </li>
                 <li>
-                    <a href="@Url.Action("Activity", "Account", new { tab = "conversations" })" class="mh-see-all">Xem tất cả</a>
+                    <a href="@Url.Action("MyActivity", "Account", new { tab = "conversations" })" class="mh-see-all">Xem tất cả</a>
                 </li>
             </ul>
         </li>
@@ -81,9 +81,8 @@
                         @Html.Action("ActivityNotification", "CommonWidget")
                     </div>
                 </li>
-                <li class="divider"></li>
                 <li>
-                    <a href="@Url.Action("Activity", "Account", new { tab = "notifications" })" class="mh-see-all">Xem tất cả</a>
+                    <a href="@Url.Action("MyActivity", "Account", new { tab = "notifications" })" class="mh-see-all">Xem tất cả</a>
                 </li>
             </ul>
         </li>

@@ -20,7 +20,7 @@ namespace CP_MathHub.Service.Helpers
 
             if ((int)period.TotalSeconds < 60)
             {
-                return "vừa " + type;
+                return (type != "" ? "vừa " + type : "mới đây");
             }
             if ((int)period.TotalSeconds >= 60 && (int)period.TotalHours < 1)
             {
