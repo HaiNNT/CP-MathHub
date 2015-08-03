@@ -24,6 +24,7 @@ namespace CP_MathHub.Controllers
     {
         private IQuestionService qService;
         private ICommonService cService;
+        //private IRealTimeService rService;
         private CPMathHubModelContainer context;
         private Microsoft.AspNet.SignalR.IHubContext _hub;
 
@@ -40,11 +41,13 @@ namespace CP_MathHub.Controllers
             {
                 qService = new QuestionService(context, _currentUserId);
                 cService = new CommonService(context, _currentUserId);
+                //rService = new RealTimeService(context, _currentUserId);
             }
             else
             {
                 qService = new QuestionService(context);
                 cService = new CommonService(context);
+                //rService = new RealTimeService(context);
             }
 
         }
@@ -63,8 +66,8 @@ namespace CP_MathHub.Controllers
             {
                 questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    questionPreviewVMs.ElementAt(i).Bookmarked = 
-                        questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                    questionPreviewVMs.ElementAt(i).Bookmarked =
+                        questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
                         && questions.ElementAt(i).BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
@@ -176,7 +179,7 @@ namespace CP_MathHub.Controllers
             questionDetailVM.VoteVM = new VoteViewModel(question, User.Identity.GetUserId<int>());
             AnswerViewModel answerVM = new AnswerViewModel(qService, id, User.Identity.GetUserId<int>());
             //answerVM.Answers = qService.GetAnswers(id, AnswerEnum.Answer);
-    
+
             //answerVM.Hints = qService.GetAnswers(id, AnswerEnum.Hint);
             ViewBag.System = Constant.String.QuestionSystem;
             questionDetailVM.AnswerVMs = answerVM;
@@ -228,6 +231,27 @@ namespace CP_MathHub.Controllers
             //Console.WriteLine(questionVM.Tags[0]);
             if (question.Id != 0)
             {
+                new Thread(() =>
+                {
+                    foreach (User invite in question.Invitations.Select(i => i.Invitee))
+                    {
+                        Notification notification = new Notification();
+                        notification.AuthorId = _currentUserId;
+                        notification.CreatedDate = DateTime.Now;
+                        notification.Content = question.Title;
+                        notification.Seen = false;
+                        notification.Type = NotificationSettingEnum.Invited;
+                        notification.UserId = invite.Id;
+                        notification.Link = Url.Action("Detail", "Question", new { id = question.Id });
+                        cService.AddNotification(notification);
+                        using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                        {
+                            string connectionId = RealTimeHub.Connections.GetConnectionId(invite.UserName);
+                            _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                        }
+                    }
+                }
+            ).Start();
                 return RedirectToAction("Index");
             }
             else
@@ -375,10 +399,10 @@ namespace CP_MathHub.Controllers
                 tag = cService.GetTag(name);
                 return PartialView("../CommonWidget/_TagPartialView", tag);
             }
-            
+
         }
 
-       
+
         //Post: Question/PostComment
         [HttpPost]
         [Authorize]
@@ -397,6 +421,31 @@ namespace CP_MathHub.Controllers
 
             cService.CommentPost(comment);
             comment.Author = cService.GetUser(comment.UserId);
+            if (comment.Post.GetType().BaseType == typeof(Question))
+            {
+                new Thread(() =>
+                {
+                    Question question = qService.GetQuestion(comment.PostId);
+                    Notification notification = new Notification();
+                    notification.AuthorId = _currentUserId;
+                    notification.CreatedDate = DateTime.Now;
+                    notification.Content = question.Title;
+                    notification.Seen = false;
+                    notification.Type = NotificationSettingEnum.UserCommentMainPost;
+                    notification.UserId = question.UserId;
+                    notification.Link = Url.Action("Detail", "Question", new { id = question.Id });
+                    cService.AddNotification(notification);
+
+                    using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                    {
+                        Entity.User user = cService.GetUser(notification.UserId);
+                        string connectionId = RealTimeHub.Connections.GetConnectionId(user.UserName);
+                        _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                    }
+                }
+            ).Start();
+            }
+
             return PartialView("Partials/_CommentItemPartialView", comment);
         }
 
@@ -436,9 +485,24 @@ namespace CP_MathHub.Controllers
             new Thread(() =>
             {
                 Question question = qService.GetQuestion(questionId);
+                Notification notification = new Notification();
+                notification.AuthorId = _currentUserId;
+                notification.CreatedDate = DateTime.Now;
+                notification.Content = question.Title;
+                notification.Seen = false;
+                notification.Type = NotificationSettingEnum.UserAnswerQuestion;
+                notification.UserId = question.UserId;
+                notification.Link = Url.Action("Detail", "Question", new { id = question.Id });
+                cService.AddNotification(notification);
 
-            }).Start();
-            
+                using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                {
+                    Entity.User user = cService.GetUser(notification.UserId);
+                    string connectionId = RealTimeHub.Connections.GetConnectionId(user.UserName);
+                    _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                }
+            }
+            ).Start();
 
             return RedirectToAction("Detail", new { id = questionId });
         }
@@ -451,7 +515,7 @@ namespace CP_MathHub.Controllers
             Answer answer = new Answer();
             answer.Content = content;
             answer.Id = id;
-            answer = qService.EditAnswer(answer, User.Identity.GetUserId<int>(), User.IsInRole("Expert"));
+            answer = qService.EditAnswer(answer, _currentUserId, User.IsInRole("Expert"));
             return RedirectToAction("Detail", new { id = answer.QuestionId });
         }
 
@@ -460,7 +524,7 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult Vote(int postId, VoteEnum type)
         {
-            if (cService.GetPost(postId).UserId == User.Identity.GetUserId<int>())
+            if (cService.GetPost(postId).UserId == _currentUserId)
             {
                 return Json(new { result = "", message = "Bạn không thể tự bình chọn cho chính mình." });
             }
@@ -468,10 +532,46 @@ namespace CP_MathHub.Controllers
             vote.PostId = postId;
             vote.VotedDate = DateTime.Now;
             vote.Type = type;
-            vote.UserId = Int32.Parse(User.Identity.GetUserId());
+            vote.UserId = _currentUserId;
             bool check = qService.Vote(vote);
             if (check && type == VoteEnum.VoteUp)
             {
+                new Thread(() =>
+                {
+                    Question question;
+                    NotificationSettingEnum notiType;
+                    int userId;
+                    if (vote.Post.GetType().BaseType == typeof(Question))
+                    {
+                        question = qService.GetQuestion(vote.PostId);
+                        notiType = NotificationSettingEnum.VotedQuestion;
+                        userId = question.UserId;
+                    }
+                    else
+                    {
+                        question = qService.GetQuestion(((Answer)vote.Post).QuestionId);
+                        notiType = NotificationSettingEnum.VotedAnswer;
+                        userId = vote.Post.UserId;
+                    }
+
+                    Notification notification = new Notification();
+                    notification.AuthorId = _currentUserId;
+                    notification.CreatedDate = DateTime.Now;
+                    notification.Content = question.Title;
+                    notification.Seen = false;
+                    notification.Type = notiType;
+                    notification.UserId = userId;
+                    notification.Link = Url.Action("Detail", "Question", new { id = question.Id });
+                    cService.AddNotification(notification);
+
+                    using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                    {
+                        Entity.User user = cService.GetUser(notification.UserId);
+                        string connectionId = RealTimeHub.Connections.GetConnectionId(user.UserName);
+                        _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                    }
+                }
+                ).Start();
                 return Json(new { result = "up" });
             }
             else if (check && type == VoteEnum.VoteDown)
@@ -527,7 +627,34 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public bool Accept(int answerId)
         {
-            return qService.Accept(answerId);
+            bool result = qService.Accept(answerId);
+            if (result)
+            {
+                new Thread(() =>
+                {
+                    Answer answer = qService.GetAnswer(answerId);
+                    Question question = answer.Question;
+                    Notification notification = new Notification();
+                    notification.AuthorId = _currentUserId;
+                    notification.CreatedDate = DateTime.Now;
+                    notification.Content = question.Title;
+                    notification.Seen = false;
+                    notification.Type = NotificationSettingEnum.AcceptedAnswer;
+                    notification.UserId = answer.UserId;
+                    notification.Link = Url.Action("Detail", "Question", new { id = question.Id });
+                    cService.AddNotification(notification);
+
+                    using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                    {
+                        Entity.User user = cService.GetUser(notification.UserId);
+                        string connectionId = RealTimeHub.Connections.GetConnectionId(user.UserName);
+                        _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                    }
+                }
+               ).Start();
+            }
+
+            return result;
         }
 
 

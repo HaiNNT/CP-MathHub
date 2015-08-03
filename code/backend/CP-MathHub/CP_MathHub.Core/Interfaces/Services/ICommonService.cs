@@ -242,5 +242,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         List<Notification> GetNotifications();
+
+        /// <summary>
+        /// Add notification
+        /// </summary>
+        /// <param name="notification"></param>
+        void AddNotification(Notification notification);
     }
 }
