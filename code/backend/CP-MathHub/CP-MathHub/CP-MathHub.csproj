@@ -867,7 +867,6 @@
     <Content Include="Views\CommonWidget\Widgets\_MessageNotificationPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_ActivityNotificationPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_AllDuplicateTagsPartialView.cshtml" />
-    <Content Include="Views\Admin\Views\SendMailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

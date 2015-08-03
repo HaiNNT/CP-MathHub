@@ -244,33 +244,38 @@ namespace CP_MathHub.Controllers
             aService.ResultDuplicateTags(tagIds, tagName, description);
             return true;
         }
-        //Post: Admin/SendMail
+        //Get: Admin/SendEmail
+        [HttpGet]
+        public ActionResult SendEmail()
+        {
+            ViewBag.Page = Constant.Admin.String.SendEmail;
+            return View("Views/SendMailView");
+        }
+        //Post: Admin/SendEMail
         [HttpPost]
         public ActionResult SendEmail(SendMailViewModel model)
-        {
-            var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+            {
             var message = new MailMessage();
-            message.To.Add(new MailAddress("minhdaude0812@gmail.com"));  // replace with valid value 
-            message.From = new MailAddress("vinaheo1407@gmail.com");  // replace with valid value
-            message.Subject = "Your email subject";
-            message.Body = string.Format(body, "Minh", "Minhdaude", model.Message);
-            message.IsBodyHtml = true;
+            message.To.Add(new MailAddress("hainnt1302@gmail.com"));  // replace with valid value 
+            message.From = new MailAddress("wssb495@gmail.com");  // replace with valid value
+            message.Subject = "Quan san";
+            message.Body = string.Format("Nghia vu quan su trieu hoi");
+            message.IsBodyHtml = false;
 
             using (var smtp = new SmtpClient())
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "user@outlook.com",  // replace with valid value
-                    Password = "password"  // replace with valid value
+                    UserName = "wssb495@gmail.com",  // replace with valid value
+                    Password = "bluesea495"  // replace with valid value
                 };
                 smtp.Credentials = credential;
-                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
-                smtp.SendMailAsync(message);
-                return RedirectToAction("Sent");
+                smtp.Send(message);
+                return RedirectToAction("ManageTags");
             }
-            return View();
         }
         //Post: Admin/ChangeStatusReport
         [HttpPost]
