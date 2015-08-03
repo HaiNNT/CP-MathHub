@@ -58,7 +58,7 @@ namespace CP_MathHub.RealTime
                 return connections.ElementAt(0);
             }
 
-            return "";
+            return default(string);
         }
 
         public void Remove(T key, string connectionId)

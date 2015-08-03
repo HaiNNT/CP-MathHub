@@ -109,7 +109,7 @@ namespace CP_MathHub.Service.Services
 
         public int CountNewActivityNotification()
         {
-            return _dal.Repository<Notification>().Table.Count(n => n.CreatedDate > n.User.Activity.LastSeenNotification);
+            return _dal.Repository<Notification>().Table.Count(n => n.CreatedDate > n.User.Activity.LastSeenNotification && n.UserId == _loginUserId);
         }
 
         public int CountNewMessageNotification()
@@ -129,7 +129,8 @@ namespace CP_MathHub.Service.Services
             return _dal.Repository<UserFriendship>()
                        .Table
                        .Count(u => u.TargetUserId == _loginUserId &&
-                                   u.CreatedDate > u.TargetUser.Activity.LastSeenFriendRequest);
+                                   u.CreatedDate > u.TargetUser.Activity.LastSeenFriendRequest &&
+                                   u.Status == RelationshipEnum.Requesting);
         }
     }
 }
