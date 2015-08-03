@@ -144,7 +144,9 @@
     @Scripts.Render("~/bundles/script")
     @RenderSection("scripts", required: false)
     <script>
-        function acceptFriend(item, id) {
+        function acceptFriend(e, item, id) {
+            e.preventDefault();
+            e.stopPropagation();
             $.ajax({
                 method: "POST",
                 url: "/Account/AcceptFriendRequest",
@@ -164,7 +166,8 @@
 	        });
         }
 
-        function refuseFriend(item, id) {
+        function refuseFriend(e, item, id) {
+            e.preventDefault();
             $.ajax({
                 method: "POST",
                 url: "/Account/CancelFriend",
@@ -191,11 +194,9 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
+
                     $("#mh-request-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
+
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -209,11 +210,7 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
                     $("#mh-message-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -227,11 +224,7 @@
                 data: {}
             })
             .done(function (msg) {
-                if (msg != "" && msg != "\n") {
                     $("#mh-activity-notification").html(msg);
-                } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
-                }
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");

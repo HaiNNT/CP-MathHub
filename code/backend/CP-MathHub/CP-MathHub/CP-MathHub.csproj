@@ -212,6 +212,7 @@
     <Compile Include="Models\Admin\RulesViewModel.cs" />
     <Compile Include="Models\Admin\RuleViewModel.cs" />
     <Compile Include="Models\Admin\ManageUsersViewModel.cs" />
+    <Compile Include="Models\Admin\SendMailViewModel.cs" />
     <Compile Include="Models\Admin\SetRoleViewModel.cs" />
     <Compile Include="Models\Admin\TagEditViewModel.cs" />
     <Compile Include="Models\Admin\TagViewModel.cs" />
@@ -866,6 +867,7 @@
     <Content Include="Views\CommonWidget\Widgets\_MessageNotificationPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_ActivityNotificationPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_AllDuplicateTagsPartialView.cshtml" />
+    <Content Include="Views\Admin\Views\SendMailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

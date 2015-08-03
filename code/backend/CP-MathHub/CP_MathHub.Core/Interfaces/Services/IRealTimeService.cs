@@ -15,6 +15,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="userId"></param>
         /// <returns></returns>
         List<Conversation> GetConversations(int userId);
+
+        /// <summary>
+        /// Get all conversations that have nessage
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<Conversation> GetNotificationConversations(int userId);
         
         /// <summary>
         /// Get all messages of a conversation
@@ -41,7 +48,14 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="conversation"></param>
         /// <returns></returns>
-        string GetConversationName(int id);
+        string GetConversationName(Conversation conversation);
+
+        /// <summary>
+        /// Get Avatar for conversation
+        /// </summary>
+        /// <param name="conversation"></param>
+        /// <returns></returns>
+        string GetConversationAvatar(Conversation conversation);
 
         /// <summary>
         /// Update s conversation

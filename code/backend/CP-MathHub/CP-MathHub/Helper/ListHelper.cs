@@ -76,8 +76,8 @@ namespace CP_MathHub.Helper
                 {
                     ConversationPreviewViewModel model = new ConversationPreviewViewModel();
                     model.Id = conversation.Id;
-                    model.Avatar = conversation.Avatar;
-                    model.Name = rSercive.GetConversationName(conversation.Id);
+                    model.Avatar = rSercive.GetConversationAvatar(conversation);
+                    model.Name = rSercive.GetConversationName(conversation);
                     model.LastMessage = conversation.Attendances
                                                         .Where(m => m.UserId != userId)
                                                         .FirstOrDefault()

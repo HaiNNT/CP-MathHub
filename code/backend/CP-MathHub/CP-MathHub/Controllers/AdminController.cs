@@ -15,6 +15,8 @@ using CP_MathHub.Models.Common;
 using CP_MathHub.Entity;
 using AutoMapper;
 using System.Web.Routing;
+using System.Net;
+using System.Net.Mail;
 
 namespace CP_MathHub.Controllers
 {
@@ -235,11 +237,40 @@ namespace CP_MathHub.Controllers
             aService.DeleteTag(tagId);
             return true;
         }
+        //Post: Admin/ResultDuplicateTag
         [HttpPost]
         public bool ResultDuplicateTags(List<int> tagIds, string tagName, string description)
         {
             aService.ResultDuplicateTags(tagIds, tagName, description);
             return true;
+        }
+        //Post: Admin/SendMail
+        [HttpPost]
+        public ActionResult SendEmail(SendMailViewModel model)
+        {
+            var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("minhdaude0812@gmail.com"));  // replace with valid value 
+            message.From = new MailAddress("vinaheo1407@gmail.com");  // replace with valid value
+            message.Subject = "Your email subject";
+            message.Body = string.Format(body, "Minh", "Minhdaude", model.Message);
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "user@outlook.com",  // replace with valid value
+                    Password = "password"  // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.SendMailAsync(message);
+                return RedirectToAction("Sent");
+            }
+            return View();
         }
         //Post: Admin/ChangeStatusReport
         [HttpPost]

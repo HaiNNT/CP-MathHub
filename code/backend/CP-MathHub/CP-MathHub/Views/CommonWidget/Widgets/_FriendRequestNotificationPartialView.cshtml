@@ -17,8 +17,8 @@
             </div>
         </div>
         <div class="col-xs-6 mh-request-friend-button">
-            <button onclick="@("acceptFriend(this,"+user.Id+")")" type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
-            <button onclick="@("refuseFriend(this,"+user.Id+")")" type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
+            <button onclick="@("acceptFriend(event,this," + user.Id + ")")" type="button" class="btn btn-primary mh-request-button">Chấp nhận</button>
+            <button onclick="@("refuseFriend(event,this," + user.Id + ")")" type="button" class="btn btn-default mh-request-button">Xóa yêu cầu</button>
             <span class="mh-request-button"></span>
         </div>
     </div>
