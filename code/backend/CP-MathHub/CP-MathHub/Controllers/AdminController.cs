@@ -256,14 +256,21 @@ namespace CP_MathHub.Controllers
             return View("Views/SendEMailView", model);
         }
         //Post: Admin/SendEMail
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult SendEmail(SendMailViewModel model)
         {
             var message = new MailMessage();
-            message.To.Add(new MailAddress("hainnt1302@gmail.com"));  // replace with valid value 
+            string TargetEmail = model.UserEmails;
+            List<string> TargetEmails = TargetEmail.Replace(" ","").Split(',').ToList();
+            foreach (string s in TargetEmails)
+            {
+                message.To.Add(new MailAddress(s));
+            }
+            //message.To.Add(new MailAddress("hainnt1302@gmail.com"));  // replace with valid value 
+            //message.To.Add(new MailAddress("vinaheo1407@gmail.com"));
             message.From = new MailAddress("wssb495@gmail.com");  // replace with valid value
-            message.Subject = "Quan san";
-            message.Body = string.Format("Nghia vu quan su trieu hoi");
+            message.Subject = model.Subject;
+            message.Body = model.Message;
             message.IsBodyHtml = false;
 
             using (var smtp = new SmtpClient())
@@ -278,7 +285,7 @@ namespace CP_MathHub.Controllers
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.Send(message);
-                return RedirectToAction("ManageTags");
+                return RedirectToAction("ManageContact");
             }
         }
         //Post: Admin/ManageContact

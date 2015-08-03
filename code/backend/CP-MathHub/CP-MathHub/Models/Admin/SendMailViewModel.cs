@@ -8,7 +8,8 @@ namespace CP_MathHub.Models.Admin
 {
     public class SendMailViewModel
     {
-        public string UserEmail { get; set; }
+        public string UserEmails { get; set; }
+        public string Subject { get; set; }
         public string Message { get; set; }
         public List<User> Users { get; set; }
     }

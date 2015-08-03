@@ -1,0 +1,115 @@
+﻿@using CP_MathHub.Models.Admin
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Entity
+@using CP_MathHub.Service.Helpers
+@model SendMailViewModel
+@{
+    ViewBag.Title = "SendEMailView";
+    Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
+}
+<section class="wrapper site-min-height">
+    <!-- page start-->
+    <h3>Gửi thông báo</h3>
+    <div class="mh-admin-send-notification-body">
+        @using (Html.BeginForm("SendEMail", "Admin", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-lg-2">
+                    <label>Người nhận</label>
+                </div>
+                <div class="col-lg-10">
+                    <input type="text" value="" name="UserEmails" class="mh-admin-receiver-input" data-toggle="modal" data-target="#receiver" readonly />
+                    <!-- Modal -->
+                    <div class="modal fade" id="receiver" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Chọn người nhận thông báo</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- table: start -->
+                                    <div class="adv-table editable-table ">
+                                        <div class="row">
+                                            <div class="col-xs-4 cols-sm-2 col-md-2 col-lg-2">
+                                                <h4>Hiển thị: </h4>
+                                            </div>
+                                            <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
+                                                <select name="RoleFilter" class="selectpicker roleFilter" multiple="multiple" title="Không có gì được chọn">
+                                                    <option value="Người dùng">Người dùng</option>
+                                                    <option value="Chuyên gia">Chuyên gia</option>
+                                                    <option value="Quản lý">Quản lý</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="space15"></div>
+                                        <table class="table table-striped table-hover table-bordered" id="editable-receiver">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label>
+                                                            <input type="checkbox" id="all">
+                                                        </label>
+                                                    </th>
+                                                    <th>STT</th>
+                                                    <th>Chức vụ</th>
+                                                    <th>Tài khoản</th>
+                                                    <th>Họ tên</th>
+                                                    <th>Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.Users.Count; i++)
+                                                {
+                                                    <tr class="">
+                                                        <td class="mh-cell-center">
+                                                            <label>
+                                                                <input type="checkbox" value="@Model.Users.ElementAt(i).Email" id="checkbox-@Model.Users.ElementAt(i).Id" mh-id="@Model.Users.ElementAt(i).Id" class="mh-receiver-user-checkbox">
+                                                            </label>
+                                                        </td>
+                                                        <td class="mh-cell-center">@(i + 1)</td>
+                                                        <td class="mh-cell-center" id="role-@Model.Users.ElementAt(i).Id">
+                                                            @Html.GetRoleUser(Model.Users.ElementAt(i).Assessments.ToList())
+                                                        </td>
+                                                        <td class="mh-cell-center">
+                                                            <a href="#">@Model.Users.ElementAt(i).UserName</a>
+                                                        </td>
+                                                        <td class="mh-cell-middle">@Model.Users.ElementAt(i).Profile.FullName</td>
+                                                        <td class="mh-cell-middle">@Model.Users.ElementAt(i).Email</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- table: end -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectReceiver()">Chọn</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <label>Chủ đề</label>
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(m => m.Subject, new { @class = "mh-admin-send-mail-input", @placeholder = "Nhập chủ đề" })
+                </div>
+            </div>
+            <div>
+                <label>Nội dung thông báo</label>
+                @Html.TextAreaFor(m => m.Message, new { @name = "editor", @id="editor", @rows="15", @cols="80", @class="editor", @placeholder = "Nhập nội dung" })
+                @*<textarea name="editor" id="editor" rows="15" cols="80" class="editor"></textarea>*@
+            </div>
+            <div class="mh-admin-send-notification-footer">
+                <input type="submit" class="btn btn-primary btn-lg mh-send-notification-button" value="Gửi" />
+            </div>
+        }
+    </div>
+    <!-- page end-->
+</section>
+<input id="mh-page" type="hidden" value="@ViewBag.Page" />
