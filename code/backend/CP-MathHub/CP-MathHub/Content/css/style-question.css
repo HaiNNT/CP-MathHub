@@ -281,4 +281,7 @@
     vertical-align: top;
     font-size: 13pt;
 }
+#list-questions {
+    border-right: 0px;
+}
 

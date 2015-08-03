@@ -50,6 +50,17 @@ namespace CP_MathHub.RealTime
             return Enumerable.Empty<string>();
         }
 
+        public string GetConnectionId(T key)
+        {
+            HashSet<string> connections;
+            if (_connections.TryGetValue(key, out connections))
+            {
+                return connections.ElementAt(0);
+            }
+
+            return "";
+        }
+
         public void Remove(T key, string connectionId)
         {
             lock (_connections)

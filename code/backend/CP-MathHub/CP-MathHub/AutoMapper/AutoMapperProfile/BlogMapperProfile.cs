@@ -27,6 +27,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     d => d.MapFrom(m => new MathHubUoW().Repository<Report>()
                         .Table.Count(p => p.PostId == m.Id))
                 )
+                //.ForMember(
+                //    s => s.Content,
+                //    d => d.MapFrom(m => "")
+                //)
                 .ForMember(
                     s => s.BookmarkNum,
                     d => d.MapFrom(m => m.BookmarkUsers.Count)
@@ -90,10 +94,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.Status,
                    d => d.MapFrom(m => PostStatusEnum.Active)
                )
-               //.ForMember(
-               //    s => s.PublicDate,
-               //    d => d.MapFrom(m => m.PublicDate)
-               //)
+                //.ForMember(
+                //    s => s.PublicDate,
+                //    d => d.MapFrom(m => m.PublicDate)
+                //)
                .ForMember(
                    s => s.LastEditedDate,
                    d => d.MapFrom(m => DateTime.Now)
@@ -133,12 +137,12 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     s => s.Edited,
                     d => d.MapFrom(m => m.EditedContents.Count > 1)
             )
-            //.ForMember(
-            //        s => s.Liked,
-            //        d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
-            //                                                        new CPMathHubModelContainer())
-            //                                                            .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
-            //    )
+                //.ForMember(
+                //        s => s.Liked,
+                //        d => d.MapFrom(m => m.Votes.Where(v => v.UserId == new CommonService(
+                //                                                        new CPMathHubModelContainer())
+                //                                                            .GetLoginUser().Id && v.Type == VoteEnum.VoteUp).Count() > 0)
+                //    )
             .ForMember(
                 s => s.Tags,
                 d => d.MapFrom(m => m.Tags)

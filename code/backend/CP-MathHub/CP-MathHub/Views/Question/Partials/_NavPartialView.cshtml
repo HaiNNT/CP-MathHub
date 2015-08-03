@@ -6,7 +6,7 @@
             @Html.ActionLink("Hot", "Index", new { @tab = Constant.Question.String.HomeHotTab }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeHotTab ? "active" : "") })
             @Html.ActionLink("Chưa trả lời", "Index", new { @tab = Constant.Question.String.HomeUnAnsweredTab }, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeUnAnsweredTab ? "active" : "") })
             @Html.ActionLink("Thẻ", "Tags", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeTagTab ? "active" : "") })
-            @Html.ActionLink("Người dùng", "Users", "Account", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeUserTab ? "active" : "") })
+            @Html.ActionLink("Thành viên", "Users", "Account", null, new { @class = "btn btn-danger btn-sm " + (ViewBag.Tab == Constant.Question.String.HomeUserTab ? "active" : "") })
             @if (ViewBag.MhPage != "question-create") { 
                 <a href="@Url.Action("Create", "Question")" class="btn btn-success btn-sm hidden-md hidden-lg">Đặt câu hỏi</a>
             }
