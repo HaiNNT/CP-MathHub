@@ -4,15 +4,70 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
-@ViewBag.Repu.ArticleLike
+<div class="container mh-body">
+    <div class="row mh-contact-body">
+        <div class="col-sm-6">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">Ý kiến phản hồi</legend>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <span class="mh-contact-require">* (Bắt buộc phải có tên của bạn)</span>
+                                <input id="fullname" name="name" type="text" placeholder="Họ tên" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="email" name="email" type="text" placeholder="Địa chỉ email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input id="phone" name="phone" type="text" placeholder="Số điện thoại" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-1">
+                                <span class="mh-contact-require">* (Bắt buộc phải có nội dung)</span>
+                                <textarea class="form-control" id="message" name="message" placeholder="Nhập nội dung" rows="9"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg mh-contact-send-feedback-button">Gửi</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <div class="panel panel-default">
+                    <div class="text-center header">Thông tin liên hệ</div>
+                    <div class="panel-body text-center">
+                        <div class="mh-contact-info">
+                            137 Nguyễn Thị Thập, Quận Liên Chiểu<br />
+                            thành phố Đà Nẵng<br />
+                            01227 527 757<br />
+                            MathHub@gmail.com<br />
+                            <a href="#">
+                                <img src="img/icon-facebook.ico" class="mh-contact-social-media-icon">
+                            </a>
+                            <a href="#">
+                                <img src="img/icon-google.ico" class="mh-contact-social-media-icon">
+                            </a>
+                            <a href="#">
+                                <img src="img/icon-twitter.ico" class="mh-contact-social-media-icon">
+                            </a>
+                        </div>
+                        <hr />
+                        <div id="map" class="map">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

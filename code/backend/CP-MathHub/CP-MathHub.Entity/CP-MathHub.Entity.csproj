@@ -108,6 +108,9 @@
     <Compile Include="EducationEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Feedback.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FriendRequestEnum.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>

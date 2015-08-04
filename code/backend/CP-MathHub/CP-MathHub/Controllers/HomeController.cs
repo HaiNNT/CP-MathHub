@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CP_MathHub.Framework.Controllers;
+using CP_MathHub.Core.Configuration;
 namespace CP_MathHub.Controllers
 {
     public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            ViewBag.System = "question";
+            ViewBag.System = Constant.String.QuestionSystem;
             return View();
         }
 
@@ -22,11 +23,7 @@ namespace CP_MathHub.Controllers
 
         public ActionResult Contact()
         {
-            return View();
-        }
-
-        public ActionResult DemoChat()
-        {
+            ViewBag.System = Constant.String.QuestionSystem;
             return View();
         }
     }

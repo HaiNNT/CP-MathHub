@@ -38,6 +38,7 @@
     <EntitySet Name="Locations" EntityType="CPMathHubModel.Store.Locations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserClaims" EntityType="CPMathHubModel.Store.UserClaims" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserLogins" EntityType="CPMathHubModel.Store.UserLogins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Feedbacks" EntityType="CPMathHubModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Comment" EntityType="CPMathHubModel.Store.Posts_Comment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_MainPost" EntityType="CPMathHubModel.Store.Posts_MainPost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Posts_Question" EntityType="CPMathHubModel.Store.Posts_Question" store:Type="Tables" Schema="dbo" />
@@ -301,6 +302,10 @@
     <AssociationSet Name="UserNotification" Association="CPMathHubModel.Store.UserNotification">
       <End Role="User" EntitySet="Users" />
       <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FeedbackUser" Association="CPMathHubModel.Store.FeedbackUser">
+      <End Role="Feedback" EntitySet="Feedbacks" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_inherits_Post" Association="CPMathHubModel.Store.FK_Comment_inherits_Post">
       <End Role="Post" EntitySet="Posts" />
@@ -688,6 +693,19 @@
     <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Feedbacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Posts_Comment">
     <Key>
@@ -1358,6 +1376,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FeedbackUser">
+    <End Role="Feedback" Type="CPMathHubModel.Store.Feedbacks" Multiplicity="*" />
+    <End Role="User" Type="CPMathHubModel.Store.Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TagMainPost_Tag">
     <End Role="Tag" Type="CPMathHubModel.Store.Tags" Multiplicity="1" />
     <End Role="TagMainPost" Type="CPMathHubModel.Store.TagMainPost" Multiplicity="*" />
@@ -1927,6 +1957,11 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Notification" EntitySet="Notifications" />
           </AssociationSet>
+          <EntitySet Name="Feedbacks" EntityType="CPMathHubModel.Feedback" />
+          <AssociationSet Name="FeedbackUser" Association="CPMathHubModel.FeedbackUser">
+            <End Role="Feedback" EntitySet="Feedbacks" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Post" Abstract="true">
           <Documentation>
@@ -2013,6 +2048,7 @@
           <NavigationProperty Name="UserClaims" Relationship="CPMathHubModel.UserUserClaim" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogins" Relationship="CPMathHubModel.UserUserLogin" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="Activity" Relationship="CPMathHubModel.ActivityUser" FromRole="User" ToRole="Activity" />
+          <NavigationProperty Name="Feedbacks" Relationship="CPMathHubModel.FeedbackUser" FromRole="User" ToRole="Feedback" />
           </EntityType>
         <Association Name="PostUser">
           <End Type="CPMathHubModel.Post" Role="Post" Multiplicity="*" />
@@ -3046,6 +3082,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="true" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="CPMathHubModel.FeedbackUser" FromRole="Feedback" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="FeedbackUser">
+          <End Type="CPMathHubModel.Feedback" Role="Feedback" Multiplicity="*" />
+          <End Type="CPMathHubModel.User" Role="User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3473,6 +3535,20 @@
         <MappingFragment StoreEntitySet="UserLogins">
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
           <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feedbacks">
+      <EntityTypeMapping TypeName="IsTypeOf(CPMathHubModel.Feedback)">
+        <MappingFragment StoreEntitySet="Feedbacks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>

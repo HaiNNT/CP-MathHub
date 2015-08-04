@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2015 15:10:40
--- Generated from EDMX file: D:\FPT\Capstone Project\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 08/04/2015 22:21:46
+-- Generated from EDMX file: C:\Users\QuanVMH\Desktop\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -734,6 +734,19 @@ CREATE TABLE [dbo].[UserLogins] (
 );
 GO
 
+-- Creating table 'Feedbacks'
+CREATE TABLE [dbo].[Feedbacks] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FullName] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NULL,
+    [PhoneNumber] nvarchar(max)  NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [CreatedDate] datetime  NOT NULL,
+    [Status] int  NOT NULL,
+    [UserId] int  NULL
+);
+GO
+
 -- Creating table 'Posts_Comment'
 CREATE TABLE [dbo].[Posts_Comment] (
     [PostId] int  NOT NULL,
@@ -1045,6 +1058,12 @@ GO
 ALTER TABLE [dbo].[UserLogins]
 ADD CONSTRAINT [PK_UserLogins]
     PRIMARY KEY CLUSTERED ([LoginProvider], [ProviderKey], [UserId] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Feedbacks'
+ALTER TABLE [dbo].[Feedbacks]
+ADD CONSTRAINT [PK_Feedbacks]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Posts_Comment'
@@ -2009,6 +2028,21 @@ GO
 CREATE INDEX [IX_FK_UserNotification]
 ON [dbo].[Notifications]
     ([AuthorId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Feedbacks'
+ALTER TABLE [dbo].[Feedbacks]
+ADD CONSTRAINT [FK_FeedbackUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FeedbackUser'
+CREATE INDEX [IX_FK_FeedbackUser]
+ON [dbo].[Feedbacks]
+    ([UserId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Posts_Comment'
