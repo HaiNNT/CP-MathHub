@@ -321,7 +321,8 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.ViewPoint</span>
-                        @Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })
+                        @*@Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })*@
+                        <textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.ViewPoint">@Model.Profile.ViewPoint</textarea>
                         <input type="hidden" name="Property" value="ViewPoint" />
                     </div>
                     <div class="col-xs-4">
@@ -341,8 +342,8 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.Summary</span>
-                        @Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })
-                        @*<textarea rows="5" cols="8" class="mh-profile-input-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
+                        @*@Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })*@
+                        <textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>
                         <input type="hidden" name="Property" value="Summary" />
                     </div>
                     <div class="col-xs-4">

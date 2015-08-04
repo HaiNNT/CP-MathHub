@@ -4769,3 +4769,12 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .mh-adin-manage-infrac-post .nav-tabs > li > a {
     font-size: 20px;
 }
+.control-label {
+    margin-top: 10px;
+    padding: 0;
+}
+.mh-send-mail-attach .mh-send-mail-attach-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0;
+}
