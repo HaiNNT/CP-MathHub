@@ -146,7 +146,8 @@ a {
     color: #337ab7;
 }
 
-.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
+.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover, .mh-notification > .dropdown > ul > li > .mh-notification-setting:focus,
+.mh-notification > .dropdown > ul > li:hover > .mh-notification-setting {
     color: #3b5998;
     text-decoration: underline;
     background-color: #fff;
