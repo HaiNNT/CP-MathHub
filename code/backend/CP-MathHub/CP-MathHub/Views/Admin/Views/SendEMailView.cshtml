@@ -105,9 +105,9 @@
                 @Html.TextAreaFor(m => m.Message, new { @name = "editor", @id = "editor", @rows = "15", @cols = "80", @class = "editor", @placeholder = "Nhập nội dung" })
                 @*<textarea name="editor" id="editor" rows="15" cols="80" class="editor"></textarea>*@
             </div>
-            <div>
-                @Html.LabelFor(m => m.Upload, new { @class = "col-md-10 control-label" })
-                <div class="col-md-10">
+            <div class="mh-send-mail-attach">
+                @*@Html.LabelFor(m => m.Upload, new { @class = "col-md-10 control-label" })*@
+                <div class="col-md-10 mh-send-mail-attach-input">
                     <input type="file" name="upload" />
                 </div>
             </div>

@@ -13,7 +13,7 @@
     <!--mail inbox start-->
     <div class="mail-box">
         <aside class="sm-side">
-            <div class="user-head">
+            @*<div class="user-head">
                 <a href="javascript:;" class="inbox-avatar">
                     <img src="img/mail-avatar.jpg" alt="">
                 </a>
@@ -24,30 +24,33 @@
                 <a href="javascript:;" class="mail-dropdown pull-right">
                     <i class="icon-chevron-down"></i>
                 </a>
-            </div>
-            <div class="inbox-body">
+            </div>*@
+            <div class="inbox-body" style="background: #E5E8EF; padding-bottom: 14px;">
                 <a class="btn btn-compose" data-toggle="modal" href="@Url.Action("SendEMail")">
                     Gửi Mail Cho Thành Viên
                 </a>
             </div>
             <ul class="inbox-nav inbox-divider">
                 <li class="active">
-                    <a href="#"><i class="icon-inbox"></i> Inbox <span class="label label-danger pull-right">2</span></a>
+                    <a href="#"><i class="icon-inbox"></i> Hộp thư đến <span class="label label-danger pull-right">2</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="icon-envelope-alt"></i> Sent Mail</a>
+                    <a href="#"><i class="icon-envelope-alt"></i> Thư đã gửi </a>
                 </li>
                 <li>
-                    <a href="#"><i class=" icon-trash"></i> Trash <span class="label label-info pull-right">30</span></a>
+                    <a href="#"><i class="icon-bell"></i> Tin phản hồi</a>
+                </li>
+                <li>
+                    <a href="#"><i class=" icon-trash"></i> Thùng rác <span class="label label-info pull-right">30</span></a>
                 </li>
             </ul>
         </aside>
         <aside class="lg-side">
             <div class="inbox-head">
-                <h3>Inbox</h3>
+                <h3>Hộp thư đến</h3>
                 <form class="pull-right position" action="#">
                     <div class="input-append">
-                        <input type="text" placeholder="Search Mail" class="sr-input">
+                        <input type="text" placeholder="Tìm kiếm thư..." class="sr-input">
                         <button type="button" class="btn sr-btn"><i class="icon-search"></i></button>
                     </div>
                 </form>
@@ -58,13 +61,12 @@
                         <input type="checkbox" class="mail-checkbox mail-group-checkbox">
                         <div class="btn-group">
                             <a class="btn mini all" href="#" data-toggle="dropdown">
-                                All
+                                Tất cả
                                 <i class="icon-angle-down "></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"> None</a></li>
-                                <li><a href="#"> Read</a></li>
-                                <li><a href="#"> Unread</a></li>
+                                <li><a href="#"> Đọc </a></li>
+                                <li><a href="#"> Chưa đọc </a></li>
                             </ul>
                         </div>
                     </div>
