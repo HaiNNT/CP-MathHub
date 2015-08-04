@@ -15,11 +15,10 @@ var IL_TYPE_SEARCH_USER = "searchuser";
 var IL_TYPE_SEARCH_TAG = "searchtag";
 
 $(document).ready(function () {
-    var type = $("#system").val();
-
     $(window).scroll(function () {
         if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && il_ready) {
             il_ready = false;
+            var type = $("#system").val();
             getMoreMainPost(type);
         }
     });
@@ -118,7 +117,7 @@ function getMoreMainPost(type) {
         case IL_TYPE_USER:
             list = $("#mh-list-user");
             var tab = $("#tab").val();
-            url = "/Question/Users";
+            url = "/Account/Users";
             data = { tab: tab, page: ++il_page };
             break;
         case IL_TYPE_TAG:
@@ -131,7 +130,7 @@ function getMoreMainPost(type) {
             list = $("#mh-list-user");
             var tab = $("#tab").val();
             var name = $("#tab-param");
-            url = "/Question/Users";
+            url = "/Account/Users";
             data = { tab: tab, page: ++il_page, name: name };
             break;
         case IL_TYPE_SEARCH_TAG:

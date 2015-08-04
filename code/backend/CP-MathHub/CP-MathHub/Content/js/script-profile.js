@@ -106,6 +106,7 @@ $(document).ready(function () {
     searchUser();
     searchFriend();
     searchUserFriend();
+    applyInfinityLoading();
 });
 /*
     Search users
@@ -116,6 +117,8 @@ function searchUser() {
     var load = function () {
         var param = $("#mh-search-user").val();
         var tab = $("#tab").val();
+        $("#tab-param").val(param);
+        $("#system").val("searchuser");
         $.ajax({
             method: "GET",
             url: "/Account/SearchUser",
@@ -225,4 +228,11 @@ function loadConversationDetail(item, id) {
 	  .fail(function () {
 	      alert("fail error");
 	  });
+}
+
+/*
+    Apply Infinity loading
+*/
+function applyInfinityLoading() {
+    il_ready = true;
 }

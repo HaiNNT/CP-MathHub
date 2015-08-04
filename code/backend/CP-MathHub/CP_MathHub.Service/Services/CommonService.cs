@@ -476,6 +476,10 @@ namespace CP_MathHub.Service.Services
         public Comment UpdateComment(Comment c, int userId)
         {
             Comment comment = _dal.Repository<Comment>().GetById(c.Id);
+            if (comment.Content == c.Content)
+            {
+                return comment;
+            }
             comment.Content = c.Content;
             comment.LastEditedDate = DateTime.Now;
             _dal.Repository<Comment>().Update(comment);

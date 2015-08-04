@@ -144,6 +144,86 @@
     <script src="~/signalr/hubs"></script>
     @Scripts.Render("~/bundles/script")
     @RenderSection("scripts", required: false)
+
+    <script>
+    var realTime;
+    $(function () {
+        // Reference the auto-generated proxy for the hub.
+        realTime = $.connection.realTimeHub;
+
+        // Create a function that the hub can call back to display messages.
+        realTime.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {
+            var result = '<div class="media mh-profile-chat-detail-row">'
+                            + '<div class="media-left">'
+                                 + '<a href="' + profileUrl + '">'
+                                    + '<img class="media-object mh-user-icon" src="' + avatarUrl + '" alt="...">'
+                                 + '</a>'
+                            + '</div>'
+                            + '<div class="media-body">'
+                                 + '<a href="' + profileUrl + '">'
+                                     + '<h5 class="media-heading">' + username + '</h5>'
+                                 + '</a>'
+                                 + '<span>' + content + '</span>'
+                            + '</div>'
+                            + '<div class="media-right">'
+                                  + time
+                            + '</div>'
+                        + '</div>';
+            $(".mh-profile-chat-detail").append(result);
+        }
+
+        // Check online conversation
+        realTime.client.checkOnlineTrigger = function (id, cssClass) {
+            $('.conversation-status-' + id).attr("class", cssClass);
+        }
+
+        realTime.client.notifyNewFriendRequest = function (count) {
+            if (count != 0) {
+                $("#mh-request-number").html(count);
+                $("#mh-request-number").removeClass("hidden");
+            }
+        }
+
+        realTime.client.notifyNewMessage = function (count) {
+            if (count != 0) {
+                $("#mh-message-number").html(count);
+                $("#mh-message-number").removeClass("hidden");
+            }
+        }
+
+        realTime.client.notifyNewActivity = function (count) {
+            if (count != 0) {
+                $("#mh-activity-number").html(count);
+                $("#mh-activity-number").removeClass("hidden");
+            }
+        }
+
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            $('.mh-profile-chat-footer-textarea').keypress(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if ($(this).val().trim() != "") {
+                        realTime.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
+                        $(this).val("").focus();
+                    }
+                }
+            });
+        });
+    });
+    // This optional function html-encodes messages for display in the page.
+    function htmlEncode(value) {
+        var encodedValue = $('<div />').text(value).html();
+        return encodedValue;
+    }
+    //function renderMessage(profileUrl, avatarUrl, username, content, time)
+    //function checkOnlineTrigger(cssClass)
+    function checkOnline(id) {
+        realTime.server.checkOnline(id);
+    }
+    </script>
+
     <script>
         function acceptFriend(e, item, id) {
             e.preventDefault();
@@ -198,6 +278,7 @@
                 $("#mh-request-notification").html(msg);
                 $("#mh-request-number").addClass("hidden");
                 $("#mh-request-number").html(0);
+                realTime.server.refreshRequestNum();
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -214,6 +295,7 @@
                 $("#mh-message-notification").html(msg);
                 $("#mh-message-number").addClass("hidden");
                 $("#mh-message-number").html(0);
+                realTime.server.refreshMessageNum();
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -230,6 +312,7 @@
                 $("#mh-activity-notification").html(msg);
                 $("#mh-activity-number").addClass("hidden");
                 $("#mh-activity-number").html(0);
+                realTime.server.refreshActivityNum();
             })
             .fail(function () {
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
@@ -237,84 +320,7 @@
         }
     </script>
 
-    <script>
-        var realTime;
-        $(function () {
-            // Reference the auto-generated proxy for the hub.
-            realTime = $.connection.realTimeHub;
-
-            // Create a function that the hub can call back to display messages.
-            realTime.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {
-                var result = '<div class="media mh-profile-chat-detail-row">'
-                                + '<div class="media-left">'
-                                     + '<a href="' + profileUrl + '">'
-                                        + '<img class="media-object mh-user-icon" src="' + avatarUrl + '" alt="...">'
-                                     + '</a>'
-                                + '</div>'
-                                + '<div class="media-body">'
-                                     + '<a href="' + profileUrl + '">'
-                                         + '<h5 class="media-heading">' + username + '</h5>'
-                                     + '</a>'
-                                     + '<span>' + content + '</span>'
-                                + '</div>'
-                                + '<div class="media-right">'
-                                      + time
-                                + '</div>'
-                            + '</div>';
-                $(".mh-profile-chat-detail").append(result);
-            }
-
-            // Check online conversation
-            realTime.client.checkOnlineTrigger = function (id, cssClass) {
-                $('.conversation-status-' + id).attr("class", cssClass);
-            }
-
-            realTime.client.notifyNewFriendRequest = function (count) {
-                if (count != 0) {
-                    $("#mh-request-number").html(count);
-                    $("#mh-request-number").removeClass("hidden");
-                }
-            }
-
-            realTime.client.notifyNewMessage = function (count) {
-                if (count != 0) {
-                    $("#mh-message-number").html(count);
-                    $("#mh-message-number").removeClass("hidden");
-                }
-            }
-
-            realTime.client.notifyNewActivity = function (count) {
-                if (count != 0) {
-                    $("#mh-activity-number").html(count);
-                    $("#mh-activity-number").removeClass("hidden");
-                }
-            }
-
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                $('.mh-profile-chat-footer-textarea').keypress(function (e) {
-                    if (e.keyCode === 13) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if ($(this).val().trim() != "") {
-                            realTime.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
-                            $(this).val("").focus();
-                        }
-                    }
-                });
-            });
-        });
-        // This optional function html-encodes messages for display in the page.
-        function htmlEncode(value) {
-            var encodedValue = $('<div />').text(value).html();
-            return encodedValue;
-        }
-        //function renderMessage(profileUrl, avatarUrl, username, content, time)
-        //function checkOnlineTrigger(cssClass)
-        function checkOnline(id) {
-            realTime.server.checkOnline(id);
-        }
-    </script>
+  
 
 </body>
 </html>

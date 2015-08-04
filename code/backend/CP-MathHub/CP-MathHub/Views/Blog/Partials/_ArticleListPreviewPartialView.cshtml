@@ -25,14 +25,14 @@
                 </span>
             </div>
             <div class="mh-row-info">
-                <a href="#">
-                    <img src="~/Content/img/user.jpg" class="mh-user-smallest">
+                <a href="@Url.Action("UserProfile", "Account", new  {userid = Model.UserId })">
+                    <img src="@(Model.UserInfo.Avatar != null ? Url.Content(Model.UserInfo.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-smallest">
                 </a>
-                <a href="#">
+                <a href="@Url.Action("UserProfile", "Account", new  {userid = Model.UserId })">
                     <span style="@(Model.UserInfo.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.UserInfo.Username</span>
                 </a>
                 -
-                <span>@Model.UserInfo.Reputation</span>
+                <span>@Html.ReputationNumer(Model.UserInfo.Reputation)</span>
                 <i class="fa fa-circle mh-reputation-icon"></i>
             </div>
         </div>

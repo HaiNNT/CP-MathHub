@@ -493,7 +493,6 @@ $(document).ready(function () {
             break;
         case "question-users":
             applyInfinityLoading();
-            searchUser();
             break;
         case "question-detail":
             initCkeditor(false);

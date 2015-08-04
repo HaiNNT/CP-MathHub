@@ -56,6 +56,9 @@ namespace CP_MathHub.Service.Helpers
                 case NotificationSettingEnum.UserAnswerQuestion:
                     result = "đã trả lời câu hỏi của bạn:";
                     break;
+                case NotificationSettingEnum.UserHintQuestion:
+                    result = "đã gợi ý cho câu hỏi của bạn:";
+                    break;
                 case NotificationSettingEnum.UserCommentMainPost:
                     result = "đã bình luận trong:";
                     break;
@@ -146,9 +149,21 @@ namespace CP_MathHub.Service.Helpers
             }
             if (Math.Abs(vote.Value) > 1000)
             {
-                return vote.Value / 1000 + "K";
+                return Math.Round((double)vote.Value / 1000, 1) + "K";
             }
             return vote.Value + "";
+        }
+        public static string ReputationNumer(this HtmlHelper html, int reputation)
+        {
+            if (reputation == default(int))
+            {
+                return "0";
+            }
+            if (Math.Abs(reputation) > 1000)
+            {
+                return Math.Round((double)reputation / 1000, 1) + "K";
+            }
+            return reputation + "";
         }
         public static MvcHtmlString RadioListForReporttypeEnum(this HtmlHelper htmlHelper, string name, string type)
         {

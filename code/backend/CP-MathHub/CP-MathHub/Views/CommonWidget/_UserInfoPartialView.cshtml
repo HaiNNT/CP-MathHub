@@ -3,7 +3,7 @@
 @using CP_MathHub.Entity
 <div class="mh-user-info">
     <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
-        <img src="~/Content/img/user.jpg" class="mh-user-avatar">
+        <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar">
     </a>
     <div>
         <div>
@@ -17,7 +17,7 @@
             </span>
         </div>
         <div class="detail-reputation">
-            <span>@Model.Reputation</span>
+            <span>@Html.ReputationNumer(Model.Reputation)</span>
             <i class="fa fa-circle mh-reputation-icon"></i>
         </div>
     </div>

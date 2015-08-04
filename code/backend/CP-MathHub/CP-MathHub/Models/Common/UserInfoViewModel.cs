@@ -14,6 +14,6 @@ namespace CP_MathHub.Models.Common
         public UserStatusEnum Status { get; set; }
         public DateTime CreateMainPostDate { get; set; }
 
-        //public Image Avatar { get; set; }
+        public Image Avatar { get; set; }
     }
 }

@@ -847,13 +847,15 @@ namespace CP_MathHub.Controllers
             List<Article> articles = bService.GetArticles(User.Identity.GetUserId<int>());
             List<Answer> answers = qService.GetAnswers(User.Identity.GetUserId<int>());
 
-            //Follow
-            List<Discussion> followDiscussions = dService.GetDiscussions(Constant.Discussion.String.FollowDiscussion);
-            List<Question> followQuestions = qService.GetQuestions(Constant.Question.String.FollowQuestion);
-            List<Article> followArticles = bService.GetArticles(Constant.Blog.String.FollowArticle);
+            //Bookmark
+            List<Discussion> bookmarkDiscussions = dService.GetDiscussions(Constant.Discussion.String.BookmarkDiscussion);
+            List<Question> bookmarkQuestions = qService.GetQuestions(Constant.Question.String.BookmarkQuestion);
+            List<Article> bookmarkArticles = bService.GetArticles(Constant.Blog.String.BookmarkArticle);
+
             //Invited
             List<MainPost> invitedMainPosts = cService.GetMainPosts("Invited");
 
+            List<Notification> notifications = cService.GetNotifications();
             List<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
             List<Conversation> convers = rService.GetConversations(_currentUserId);
             List<ConversationPreviewViewModel> conversations =
@@ -876,13 +878,14 @@ namespace CP_MathHub.Controllers
             model.QuestionList = questions;
             model.ArticleList = articles;
             model.AnswerList = answers;
-            //Follow
-            model.FollowArticleList = followArticles;
-            model.FollowDiscussionList = followDiscussions;
-            model.FollowQuestionList = followQuestions;
+            //bookmark
+            model.BookmarkArticleList = bookmarkArticles;
+            model.BookmarkDiscussionList = bookmarkDiscussions;
+            model.BookmarkQuestionList = bookmarkQuestions;
             //Invited
             model.InvitedList = invitedMainPosts;
 
+            model.NotificationList = notifications;
             model.TagList = tags;
             //model.AnswerNum = qService.CountUserAnswer(User.Identity.GetUserId<int>());
             //model.ArticleNum = bService.CountUserArticle(User.Identity.GetUserId<int>());

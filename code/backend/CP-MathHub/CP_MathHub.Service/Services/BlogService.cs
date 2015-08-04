@@ -117,10 +117,10 @@ namespace CP_MathHub.Service.Services
                                     skip
                                 ).ToList();
                     break;
-                case Constant.Blog.String.FollowArticle:
+                case Constant.Blog.String.BookmarkArticle:
                     list = _dal.Repository<Article>()
                                 .Get(
-                                    ExpressionHelper.BlogHelper.FollowArticle(_loginUserId),
+                                    ExpressionHelper.BlogHelper.BookmarkArticle(_loginUserId, _loginUserId),
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip,

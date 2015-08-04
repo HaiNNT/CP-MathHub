@@ -150,6 +150,30 @@ namespace CP_MathHub.RealTime
 
         #region Notification
 
+        public void RefreshActivityNum()
+        {
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            {
+                rService.UpdateLastSeenNotification();
+            }
+        }
+
+        public void RefreshRequestNum()
+        {
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            {
+                rService.UpdateLastSeenRequest();
+            }
+        }
+
+        public void RefreshMessageNum()
+        {
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            {
+                rService.UpdateLastSeenMessage();
+            }
+        }
+
         #endregion
 
     }

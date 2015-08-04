@@ -80,5 +80,20 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         int CountNewFriendRequestNotification();
+
+        /// <summary>
+        /// Update last seen notifcations
+        /// </summary>
+        void UpdateLastSeenNotification();
+
+        /// <summary>
+        /// Update last seen new messages
+        /// </summary>
+        void UpdateLastSeenMessage();
+
+        /// <summary>
+        /// Update last seen friend requests
+        /// </summary>
+        void UpdateLastSeenRequest();
     }
 }

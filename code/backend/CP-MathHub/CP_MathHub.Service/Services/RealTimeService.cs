@@ -55,7 +55,7 @@ namespace CP_MathHub.Service.Services
         {
             List<Conversation> conversations = new List<Conversation>();
             conversations = _dal.Repository<Conversation>().Get(
-                    (c => c.Attendances.Count(a => a.UserId == userId) > 0 && 
+                    (c => c.Attendances.Count(a => a.UserId == userId) > 0 &&
                           c.Attendances.SelectMany(a => a.Messages).Count() > 0),
                     (c => c.OrderByDescending(m => m.CreatedDate)),
                     "Attendances",
@@ -115,13 +115,16 @@ namespace CP_MathHub.Service.Services
         public int CountNewMessageNotification()
         {
             Activity activity = _dal.Repository<Activity>().Table.FirstOrDefault(a => a.User.Id == _loginUserId);
-            return _dal.Repository<Conversation>().Table
-                                                  .Count(c => c.Attendances.Count(a => a.UserId == _loginUserId) > 0 &&
-                                                              c.Attendances.Where(a => a.UserId != _loginUserId)
-                                                  .SelectMany(a => a.Messages)
-                                                  .OrderByDescending(m => m.CreatedDate)
-                                                  .FirstOrDefault()
-                                                  .CreatedDate > activity.LastSeenMessage);
+            if (activity == default(Activity))
+                return 0;
+            else
+                return _dal.Repository<Conversation>().Table
+                                                      .Count(c => c.Attendances.Count(a => a.UserId == _loginUserId) > 0 &&
+                                                                  c.Attendances.Where(a => a.UserId != _loginUserId)
+                                                                                  .SelectMany(a => a.Messages)
+                                                                                  .OrderByDescending(m => m.CreatedDate)
+                                                                                  .FirstOrDefault()
+                                                                                  .CreatedDate > activity.LastSeenMessage);
         }
 
         public int CountNewFriendRequestNotification()
@@ -131,6 +134,30 @@ namespace CP_MathHub.Service.Services
                        .Count(u => u.TargetUserId == _loginUserId &&
                                    u.CreatedDate > u.TargetUser.Activity.LastSeenFriendRequest &&
                                    u.Status == RelationshipEnum.Requesting);
+        }
+
+        public void UpdateLastSeenNotification()
+        {
+            Activity activity = _dal.Repository<Activity>().Table.FirstOrDefault(a => a.User.Id == _loginUserId);
+            activity.LastSeenNotification = DateTime.Now;
+            _dal.Repository<Activity>().Update(activity);
+            _dal.Save();
+        }
+
+        public void UpdateLastSeenMessage()
+        {
+            Activity activity = _dal.Repository<Activity>().Table.FirstOrDefault(a => a.User.Id == _loginUserId);
+            activity.LastSeenMessage = DateTime.Now;
+            _dal.Repository<Activity>().Update(activity);
+            _dal.Save();
+        }
+
+        public void UpdateLastSeenRequest()
+        {
+            Activity activity = _dal.Repository<Activity>().Table.FirstOrDefault(a => a.User.Id == _loginUserId);
+            activity.LastSeenFriendRequest = DateTime.Now;
+            _dal.Repository<Activity>().Update(activity);
+            _dal.Save();
         }
     }
 }

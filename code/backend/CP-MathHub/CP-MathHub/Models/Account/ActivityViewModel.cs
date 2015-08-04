@@ -16,11 +16,12 @@ namespace CP_MathHub.Models.Account
         public List<Tag> TagList { get; set; }
         public int CountTagPost { get; set; }
 
-        public List<Entity.Discussion> FollowDiscussionList { get; set; }
-        public List<Entity.Question> FollowQuestionList { get; set; }
-        public List<Entity.Article> FollowArticleList { get; set; }
+        public List<Entity.Discussion> BookmarkDiscussionList { get; set; }
+        public List<Entity.Question> BookmarkQuestionList { get; set; }
+        public List<Entity.Article> BookmarkArticleList { get; set; }
         public List<Entity.MainPost> InvitedList { get; set; }
 
+        public List<Notification> NotificationList { get; set; }
         public List<ConversationPreviewViewModel> Conversations { get; set; }
         public ConversationDetailViewModel Conversation { get; set; }
     }

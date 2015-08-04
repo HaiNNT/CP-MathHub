@@ -109,50 +109,6 @@ namespace CP_MathHub.Controllers
             ICollection<Tag> tags = _aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
         }
-        [ChildActionOnly]
-        public virtual ActionResult HotMainPost(string system)
-        {
-            List<MainPost> list = new List<MainPost>();
-            RecommendedMainPostViewModel model = new RecommendedMainPostViewModel();
-            model.System = system;
-            switch (system)
-            {
-                case "Question":
-                    model.Name = "Câu hỏi";
-                    model.Type = RecommendedMainPostTypeEnum.Hot;               
-                    model.MainPosts = _qService.GetQuestions(Constant.Question.String.HomeHotTab).Take(5).ToList<MainPost>();
-                    break;
-                case "Blog":
-                    model.Name = "Bài viết";
-                    model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
-                    break;
-                case "Discussion":
-                    model.Name = "Thảo luận";
-                    model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.MainPosts = _dService.GetDiscussions(Constant.Discussion.String.HomeHotTab).Take(5).ToList<MainPost>();
-                    break;
-                default:
-                    model.Name = "Bài Viết";
-                    model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.System = "Blog";
-                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, 0).Take(5).ToList<MainPost>();
-                    break;
-            }
-            return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
-        }
-        [ChildActionOnly]
-        public virtual ActionResult RelatedMainPost(string system, int postId)
-        {
-            MainPost mainPost = _cService.GetMainPost(postId, "Tags");
-            List<MainPost> list = new List<MainPost>();
-            RecommendedMainPostViewModel model = new RecommendedMainPostViewModel();
-            model.Name = "Bài viết";
-            model.Type = RecommendedMainPostTypeEnum.Related;
-            model.System = system;
-            model.MainPosts = _bService.GetRelatedArticles(mainPost, 0).Take(5).ToList<MainPost>();
-            return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
-        }
 
         //public virtual ActionResult GroupWidget()
         //{
@@ -175,6 +131,53 @@ namespace CP_MathHub.Controllers
         //{
         //    return PartialView("_YourActivityWidget");
         //}
+        #endregion
+
+        #region MainPost Widget
+        [ChildActionOnly]
+        public virtual ActionResult HotMainPost(string system)
+        {
+            List<MainPost> list = new List<MainPost>();
+            RecommendedMainPostViewModel model = new RecommendedMainPostViewModel();
+            model.System = system;
+            switch (system)
+            {
+                case "Question":
+                    model.Name = "Câu hỏi";
+                    model.Type = RecommendedMainPostTypeEnum.Hot;
+                    model.MainPosts = _qService.GetQuestions(Constant.Question.String.HomeHotTab).Take(5).ToList<MainPost>();
+                    break;
+                case "Blog":
+                    model.Name = "Bài viết";
+                    model.Type = RecommendedMainPostTypeEnum.Hot;
+                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, _currentUserId).Take(5).ToList<MainPost>();
+                    break;
+                case "Discussion":
+                    model.Name = "Thảo luận";
+                    model.Type = RecommendedMainPostTypeEnum.Hot;
+                    model.MainPosts = _dService.GetDiscussions(Constant.Discussion.String.HomeHotTab).Take(5).ToList<MainPost>();
+                    break;
+                default:
+                    model.Name = "Bài Viết";
+                    model.Type = RecommendedMainPostTypeEnum.Hot;
+                    model.System = "Blog";
+                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, _currentUserId).Take(5).ToList<MainPost>();
+                    break;
+            }
+            return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
+        }
+        [ChildActionOnly]
+        public virtual ActionResult RelatedMainPost(string system, int postId)
+        {
+            MainPost mainPost = _cService.GetMainPost(postId, "Tags");
+            List<MainPost> list = new List<MainPost>();
+            RecommendedMainPostViewModel model = new RecommendedMainPostViewModel();
+            model.Name = "Bài viết";
+            model.Type = RecommendedMainPostTypeEnum.Related;
+            model.System = system;
+            model.MainPosts = _bService.GetRelatedArticles(mainPost, 0).Take(5).ToList<MainPost>();
+            return PartialView("../CommonWidget/Widgets/_RecommendedMainPost", model);
+        }
         #endregion
 
         #region Notification

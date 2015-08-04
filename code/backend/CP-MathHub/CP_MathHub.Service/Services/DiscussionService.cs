@@ -71,10 +71,10 @@ namespace CP_MathHub.Service.Services
                                     take
                                 ).ToList();
                     break;
-                case Constant.Discussion.String.FollowDiscussion:
+                case Constant.Discussion.String.BookmarkDiscussion:
                     list = _dal.Repository<Discussion>()
                                 .Get(
-                                    ExpressionHelper.DiscussionHelper.FollowDiscussion(_loginUserId),// Get hot Discussion lambda expression
+                                    ExpressionHelper.DiscussionHelper.BookmarkDiscussion(_loginUserId),// Get hot Discussion lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip,
@@ -123,7 +123,7 @@ namespace CP_MathHub.Service.Services
         {
             return _dal.Repository<Discussion>() //Get Question Repository
                 .Get(
-                    (a => a.Tags.Where(t => t.Id == tagId).Count() > 0), //Filter Question by Author
+                    ExpressionHelper.DiscussionHelper.TagDiscussion(tagId, _loginUserId), //Filter Question by Author
                     (p => p.OrderBy(s => s.CreatedDate)), //Order Question by CreatedDate
                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                     skip,

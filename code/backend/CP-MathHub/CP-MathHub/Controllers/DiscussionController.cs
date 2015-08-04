@@ -76,17 +76,27 @@ namespace CP_MathHub.Controllers
         {
             int skip = page * Constant.Discussion.Integer.PagingDefaultTake;
             List<Discussion> discussions = dService.GetDiscussionCategorys(tagId, skip);
-            List<DiscussionPreviewViewModel> discussionTagPreviewVM =
+            List<DiscussionPreviewViewModel> discussionPreviewVMs =
                 discussions.Select(Mapper.Map<Discussion, DiscussionPreviewViewModel>) // Using Mapper with Collection
                 .ToList();
-            for (int i = 0; i < discussionTagPreviewVM.Count; i++)
+            for (int i = 0; i < discussionPreviewVMs.Count; i++)
             {
-                discussionTagPreviewVM.ElementAt(i).UserInfo.CreateMainPostDate = discussionTagPreviewVM.ElementAt(i).CreatedDate;
+                discussionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = discussionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
-                    discussionTagPreviewVM.ElementAt(i).Bookmarked =
-                        discussionTagPreviewVM.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                    discussionPreviewVMs.ElementAt(i).Bookmarked =
+                        discussionPreviewVMs.ElementAt(i).UserId != _currentUserId
                         && discussions.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                                                .Count(u => u.Id == _currentUserId) > 0;
+                discussionPreviewVMs.ElementAt(i).Liked = discussions.ElementAt(i).Votes.Count(v => v.UserId == _currentUserId) > 0;
+                foreach (CommentViewModel m in discussionPreviewVMs.ElementAt(i).Comments)
+                {
+                    m.Liked = m.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    foreach (CommentViewModel r in m.Comments)
+                    {
+                        r.Liked = r.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    }
+                }
+
             }
             if (page == 0)
             {
@@ -96,7 +106,7 @@ namespace CP_MathHub.Controllers
                 ViewBag.TabParam = tagId;
                 ViewBag.System = Constant.String.DiscussionSystem;
                 discussionTagHomeVM.Id = tagId;
-                discussionTagHomeVM.Items = discussionTagPreviewVM;
+                discussionTagHomeVM.Items = discussionPreviewVMs;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
@@ -104,7 +114,7 @@ namespace CP_MathHub.Controllers
             }
             else
             {
-                return PartialView("Partials/_DiscussionListPartialView", discussionTagPreviewVM);
+                return PartialView("Partials/_DiscussionListPartialView", discussionPreviewVMs);
             }
         }
         //Post: CategoryIndex
@@ -167,9 +177,18 @@ namespace CP_MathHub.Controllers
                 discussionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = discussionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
                     discussionPreviewVMs.ElementAt(i).Bookmarked =
-                        discussionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        discussionPreviewVMs.ElementAt(i).UserId != _currentUserId
                         && discussions.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                                                .Count(u => u.Id == _currentUserId) > 0;
+                discussionPreviewVMs.ElementAt(i).Liked = discussions.ElementAt(i).Votes.Count(v => v.UserId == _currentUserId) > 0;
+                foreach (CommentViewModel m in discussionPreviewVMs.ElementAt(i).Comments)
+                {
+                    m.Liked = m.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    foreach (CommentViewModel r in m.Comments)
+                    {
+                        r.Liked = r.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    }
+                }
             }
 
             if (page == 0)
@@ -204,10 +223,18 @@ namespace CP_MathHub.Controllers
                 discussionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = discussionPreviewVMs.ElementAt(i).CreatedDate;
                 if (Request.IsAuthenticated)
                     discussionPreviewVMs.ElementAt(i).Bookmarked =
-                        discussionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        discussionPreviewVMs.ElementAt(i).UserId != _currentUserId
                         && discussions.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
-                discussionPreviewVMs.ElementAt(i).Liked = discussions.ElementAt(i).Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
+                                                .Count(u => u.Id == _currentUserId) > 0;
+                discussionPreviewVMs.ElementAt(i).Liked = discussions.ElementAt(i).Votes.Count(v => v.UserId == _currentUserId) > 0;
+                foreach (CommentViewModel m in discussionPreviewVMs.ElementAt(i).Comments)
+                {
+                    m.Liked = m.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    foreach (CommentViewModel r in m.Comments)
+                    {
+                        r.Liked = r.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                    }
+                }
             }
 
             if (page == 0)
@@ -241,12 +268,16 @@ namespace CP_MathHub.Controllers
             discussionDetailVM = Mapper.Map<Discussion, DiscussionDetailViewModel>(discussion);
             foreach (CommentViewModel m in discussionDetailVM.Comments)
             {
-                m.Liked = m.Votes.Where(v => v.UserId == User.Identity.GetUserId<int>()).Count() > 0;
+                m.Liked = m.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                foreach (CommentViewModel r in m.Comments)
+                {
+                    r.Liked = r.Votes.Count(v => v.UserId == _currentUserId) > 0;
+                }
             }
             discussionDetailVM.UserInfo.CreateMainPostDate = discussionDetailVM.CreatedDate;
             discussionDetailVM.Bookmarked = discussion.BookmarkUsers
                                                 .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
-            discussionDetailVM.Liked = discussion.Votes.Where(d => d.UserId == User.Identity.GetUserId<int>()).Count() > 0;
+            discussionDetailVM.Liked = discussion.Votes.Count(d => d.UserId == _currentUserId) > 0;
             discussionDetailVM.Name = "THẢO LUẬN";
             dService.IncreaseViewDiscussion(discussion);
             List<EditedLog> editedlogs = dService.GetEditedLog(id);
@@ -336,11 +367,20 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
             Discussion discussion = dService.GetDiscussion(id);
-            discussionEditVM = Mapper.Map<Discussion, DiscussionEditViewModel>(discussion);
-            ViewBag.System = Constant.String.DiscussionSystem;
-            return View("Views/DiscussionEditView", discussionEditVM);
+            if (discussion.UserId == _currentUserId || User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Expert"))
+            {
+                DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
+
+                discussionEditVM = Mapper.Map<Discussion, DiscussionEditViewModel>(discussion);
+                ViewBag.System = Constant.String.DiscussionSystem;
+                return View("Views/DiscussionEditView", discussionEditVM);
+            }
+            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (returnUrl == default(string))
+                return RedirectToAction("Detail", new { id = id });
+            else
+                return Redirect(Url.Content(returnUrl));
         }
         //Post: Discussion/Edit
         [Authorize]
@@ -348,24 +388,35 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(DiscussionEditViewModel discussionEditVM)
         {
             Discussion discussion = dService.GetDiscussion(discussionEditVM.Id);
+            if (discussion.Content == discussionEditVM.Content)
+            {
+                return RedirectToAction("Detail", new { id = discussion.Id });
+            }
+            if (discussion.UserId == _currentUserId || User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Expert"))
+            {
+                EditedLog editedlog = new EditedLog();
+                editedlog.Content = discussionEditVM.Content;
+                editedlog.CreatedDate = DateTime.Now;
+                editedlog.Title = discussionEditVM.Title;
+                editedlog.PostId = discussion.Id;
+                editedlog.UserId = _currentUserId;
 
-            EditedLog editedlog = new EditedLog();
-            editedlog.Content = discussion.Content;
-            editedlog.CreatedDate = DateTime.Now;
-            editedlog.Title = discussionEditVM.Title;
-            editedlog.PostId = discussion.Id;
-            editedlog.UserId = User.Identity.GetUserId<int>();
+                discussion.Title = discussionEditVM.Title;
+                discussion.Content = discussionEditVM.Content;
+                discussion.Privacy = discussionEditVM.Privacy;
 
-            discussion.Title = discussionEditVM.Title;
-            discussion.Content = discussionEditVM.Content;
-            discussion.Privacy = discussionEditVM.Privacy;
+                discussion.LastEditedDate = editedlog.CreatedDate;
+                discussion.EditedContents.Add(editedlog);
 
-            discussion.LastEditedDate = editedlog.CreatedDate;
-            discussion.EditedContents.Add(editedlog);
+                dService.EditDiscussion(discussion);
 
-            dService.EditDiscussion(discussion);
-
-            return RedirectToAction("Detail", new { id = discussion.Id });
+                return RedirectToAction("Detail", new { id = discussion.Id });
+            }
+            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (returnUrl == default(string))
+                return RedirectToAction("Detail", new { id = discussion.Id });
+            else
+                return Redirect(Url.Content(returnUrl));
         }
 
         //Discussion/Delete
@@ -572,7 +623,6 @@ namespace CP_MathHub.Controllers
             comment.Content = content.Trim();
             comment = cService.UpdateComment(comment, User.Identity.GetUserId<int>());
             //CommentViewModel model = Mapper.Map<Comment, CommentViewModel>(comment);
-
             return true;
         }
 

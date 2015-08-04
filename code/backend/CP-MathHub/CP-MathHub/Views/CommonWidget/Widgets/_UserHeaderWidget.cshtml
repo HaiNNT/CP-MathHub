@@ -13,12 +13,14 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="@Url.Action("MyProfile","Account")">Thông tin cá nhân</a></li>
-                    <li><a href="#">Thiết lập quyền riêng tư</a></li>
+                    <li><a href="@Url.Action("Friend","Account")">Bạn bè</a></li>
+                    <li><a href="@Url.Action("MyActivity","Account")">Hoạt động</a></li>
+                    <li><a href="@Url.Action("Privacy","Account")">Thiết lập quyền riêng tư</a></li>
                     <li class="divider"></li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
                 </ul>
             </li>
-            <li><a href="@Url.Action("MyProfile","Account")"><img class="mh-user-icon" alt="User Icon" src="~/Content/img/user.jpg" /></a></li>
+            <li><a href="@Url.Action("MyProfile","Account")"><img class="mh-user-icon" alt="User Icon" src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" /></a></li>
         </ul>
     }
 

@@ -68,10 +68,10 @@ namespace CP_MathHub.Service.Services
                                     skip
                                 ).ToList();
                     break;
-                case Constant.Question.String.FollowQuestion:
+                case Constant.Question.String.BookmarkQuestion:
                     list = _dal.Repository<Question>()
                                 .Get(
-                                    ExpressionHelper.QuestionHelper.FollowQuestion(_loginUserId),// Get hot Question lambda expression
+                                    ExpressionHelper.QuestionHelper.BookmarkQuestion(_loginUserId),// Get hot Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip

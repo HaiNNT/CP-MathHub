@@ -1,0 +1,21 @@
+﻿@using CP_MathHub.Entity
+@using CP_MathHub.Service.Helpers
+@model List<Notification>
+
+@foreach (Notification item in Model)
+{
+    <div class="mh-profile-notification">
+        <a href="@Url.Content(item.Link)">
+            <div class="media">
+                <div class="media-left">
+                    <img src="@(item.Author.Avatar != null ? Url.Content(item.Author.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-icon">
+                </div>
+                <div class="media-body">
+                    <span class="media-heading">@item.Author.UserName</span>
+                    <span class="mh-notifi-content">@Html.GetNotificationString(item.Type) @item.Content</span><br />
+                    <span class="mh-time">@Html.PostCreatedTime(item.CreatedDate, "")</span>
+                </div>
+            </div>
+        </a>
+    </div>
+}

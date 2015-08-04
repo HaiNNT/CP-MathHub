@@ -109,7 +109,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string TagNameTab = "name";
                 public const string UserFavoriteTag = "favorite";
                 //Type
-                public const string FollowQuestion = "Follow";
+                public const string BookmarkQuestion = "Bookmark";
             }
 
         }
@@ -138,7 +138,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string MyArticleTab = "Mine";
                 public const string UserArticleTab = "User";
                 public const string UserBookmarkTab = "UserBookmark";
-                public const string FollowArticle = "Follow";
+                public const string BookmarkArticle = "BookmarkArticle";
 
                 public const string GridView = "grid";
                 public const string ListView = "list";
@@ -176,7 +176,7 @@ namespace CP_MathHub.Core.Configuration
                 public const string TagPopularTab = "popular";
                 public const string TagNameTab = "name";
                 //Type
-                public const string FollowDiscussion = "Follow";
+                public const string BookmarkDiscussion = "Bookmark";
             }
 
         }

@@ -76,8 +76,8 @@ namespace CP_MathHub.Controllers
                 {
                     articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                     if (Request.IsAuthenticated)
-                        articlePreviewVMs.ElementAt(i).Bookmarked = 
-                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>() 
+                        articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
                             && articles.ElementAt(i).BookmarkUsers
                                                     .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
                 }
@@ -394,11 +394,20 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            ArticleEditViewModel articleEditVM = new ArticleEditViewModel();
-            Article article = bService.GetArticle(id, User.Identity.GetUserId<int>());
-            articleEditVM = Mapper.Map<Article, ArticleEditViewModel>(article);
-            ViewBag.System = Constant.String.BlogSystem;
-            return View("Views/BlogEditView", articleEditVM);
+            Article article = bService.GetArticle(id, _currentUserId);
+            if (article != default(Article) || User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Expert"))
+            {
+                ArticleEditViewModel articleEditVM = new ArticleEditViewModel();
+
+                articleEditVM = Mapper.Map<Article, ArticleEditViewModel>(article);
+                ViewBag.System = Constant.String.BlogSystem;
+                return View("Views/BlogEditView", articleEditVM);
+            }
+            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (returnUrl == default(string))
+                return RedirectToAction("Detail", new { id = id });
+            else
+                return Redirect(Url.Content(returnUrl));
         }
         //Post: Blog/Edit
         [Authorize]
@@ -406,27 +415,39 @@ namespace CP_MathHub.Controllers
         public ActionResult Edit(ArticleEditViewModel articleEditVM)
         {
             Article article = bService.GetArticle(articleEditVM.Id);
-            article.Title = articleEditVM.Title;
-            article.Content = articleEditVM.Content;
-            article.Privacy = articleEditVM.Privacy;
-            if (article.UserId == User.Identity.GetUserId<int>())
+            if (article.Content == articleEditVM.Content)
             {
-                article.PublicDate = articleEditVM.PublicDate.Value;
+                return RedirectToAction("Detail", new { id = article.Id });
             }
-            if (article.PublicDate <= DateTime.Now)
+            if (article.UserId == _currentUserId || User.IsInRole("Administrator") || User.IsInRole("Moderator") || User.IsInRole("Expert"))
             {
-                EditedLog editedlog = new EditedLog();
-                editedlog.Content = articleEditVM.Content;
-                editedlog.CreatedDate = DateTime.Now;
-                editedlog.PostId = article.Id;
-                editedlog.Title = articleEditVM.Title;
-                editedlog.UserId = User.Identity.GetUserId<int>();
-                article.LastEditedDate = editedlog.CreatedDate;
-                article.EditedContents.Add(editedlog);
-            }
-            bService.UpdateArticle(article);
+                article.Title = articleEditVM.Title;
+                article.Content = articleEditVM.Content;
+                article.Privacy = articleEditVM.Privacy;
+                if (article.UserId == _currentUserId)
+                {
+                    article.PublicDate = articleEditVM.PublicDate.Value;
+                }
+                if (article.PublicDate <= DateTime.Now)
+                {
+                    EditedLog editedlog = new EditedLog();
+                    editedlog.Content = articleEditVM.Content;
+                    editedlog.CreatedDate = DateTime.Now;
+                    editedlog.PostId = article.Id;
+                    editedlog.Title = articleEditVM.Title;
+                    editedlog.UserId = User.Identity.GetUserId<int>();
+                    article.LastEditedDate = editedlog.CreatedDate;
+                    article.EditedContents.Add(editedlog);
+                }
+                bService.UpdateArticle(article);
 
-            return RedirectToAction("Detail", new { id = article.Id });
+                return RedirectToAction("Detail", new { id = article.Id });
+            }
+            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (returnUrl == default(string))
+                return RedirectToAction("Detail", new { id = article.Id });
+            else
+                return Redirect(Url.Content(returnUrl));
         }
         //Post: Blog/Bookmark
         [HttpPost]
@@ -465,7 +486,7 @@ namespace CP_MathHub.Controllers
                 comment.VoteDown = 0;
                 comment.VoteUp = 0;
 
-                cService.CommentPost(comment);               
+                cService.CommentPost(comment);
 
                 List<Comment> comments = cService.GetComments(postId);
                 ICollection<CommentViewModel> commentsVM;
@@ -551,7 +572,7 @@ namespace CP_MathHub.Controllers
         public ActionResult DisableComment(int id)
         {
             cService.DisableComment(id);
-            return RedirectToAction("Detail", new {@id = id });
+            return RedirectToAction("Detail", new { @id = id });
         }
 
         //Get: Blog/EnableComment
