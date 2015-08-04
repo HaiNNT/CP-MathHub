@@ -163,7 +163,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Func<IQueryable<Answer>, IOrderedQueryable<Answer>> OrderUsefulAnswer()
             {
-                return (a => a.OrderByDescending(m => m.Accepted).OrderByDescending(m => (m.VoteUp - m.VoteDown)));
+                return (a => a.OrderByDescending(m => m.Accepted).ThenByDescending(m => (m.VoteUp - m.VoteDown)));
             }
         }
         public class DiscussionHelper
@@ -361,7 +361,7 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Article, bool>> DetailArticle(int id, int loginUserId)
             {
-                return (q => (q.Id == id && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
+                return (q => (q.Id == id && (q.PublicDate <= DateTime.Now ||q.UserId == loginUserId)) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == loginUserId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == loginUserId) > 0
