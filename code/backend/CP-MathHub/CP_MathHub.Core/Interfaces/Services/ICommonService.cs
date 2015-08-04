@@ -99,7 +99,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        bool Like(int id, int userId);
+        Constant.Enum.LikeResult Like(int id, int userId);
 
         /// <summary>
         /// Get an entity User that logging in with current session

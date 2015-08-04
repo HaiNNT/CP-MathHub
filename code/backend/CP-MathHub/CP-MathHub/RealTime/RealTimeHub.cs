@@ -35,7 +35,7 @@ namespace CP_MathHub.RealTime
         }
         public override Task OnConnected()
         {
-            using (AccountService aSercive = new AccountService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            using (AccountService aService = new AccountService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
             using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
             {
                 #region Notification
@@ -47,7 +47,7 @@ namespace CP_MathHub.RealTime
                 #endregion
 
                 #region Message
-                User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
+                User user = aService.GetUser(Context.User.Identity.GetUserId<int>());
                 if (user.Avatar == default(Image))
                 {
                     user.Avatar.Url = "~/Content/img/user.jpg";
@@ -125,30 +125,31 @@ namespace CP_MathHub.RealTime
         }
 
         public void SendToConversation(string content, int conversationId)
-        {   
+        {
             //profileUrl, avatarUrl, username, content, time
-            using (AccountService aSercive = new AccountService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
-            using (RealTimeService rSercive = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            using (AccountService aService = new AccountService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
             {
-                User user = aSercive.GetUser(Context.User.Identity.GetUserId<int>());
+                User user = aService.GetUser(Context.User.Identity.GetUserId<int>());
                 string profileUrl = user.Id == Context.User.Identity.GetUserId<int>() ? "/Account/MyProfile" : "/Account/UserProfile?userId=" + user.Id;
-                string avatarUrl = user.Avatar.Url.Replace("~","");
+                string avatarUrl = user.Avatar.Url.Replace("~", "");
                 string username = user.UserName;
                 string time = DateTime.Now.ToShortTimeString();
-                Conversation conversation = rSercive.GetConversation(conversationId);               
+                Conversation conversation = rService.GetConversation(conversationId);
                 Message message = new Message();
                 message.AttendanceId = conversation.Attendances.First(a => a.UserId == user.Id).Id;
                 message.Content = content;
                 message.CreatedDate = DateTime.Now;
-                rSercive.AddMessage(message);
-                Clients.Group(conversationId+"").addChatMessage(profileUrl, avatarUrl, username, content, time);
+                rService.AddMessage(message);
+                Clients.Group(conversationId + "").addChatMessage(profileUrl, avatarUrl, username, content, time);
+                Clients.OthersInGroup(conversationId + "").notifyNewMessage(rService.CountNewMessageNotification());
             }
-           
+
         }
         #endregion
 
         #region Notification
-            
+
         #endregion
 
     }

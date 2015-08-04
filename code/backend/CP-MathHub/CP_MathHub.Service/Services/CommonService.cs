@@ -254,7 +254,7 @@ namespace CP_MathHub.Service.Services
             _dal.Save();
             return true;
         }
-        public bool Like(int id, int userId)
+        public Constant.Enum.LikeResult Like(int id, int userId)
         {
             try
             {
@@ -275,16 +275,21 @@ namespace CP_MathHub.Service.Services
                     if (post.GetType().BaseType == typeof(Article))
                     {
                         PlusReputation(id, Constant.String.ReputationArticleLike);
+                        return Constant.Enum.LikeResult.Article;
                     }
                     else if (post.GetType().BaseType == typeof(Discussion))
                     {
                         PlusReputation(id, Constant.String.ReputationDiscussionLike);
+                        return Constant.Enum.LikeResult.Discussion;
                     }
                     else
                     {
                         PlusReputation(id, Constant.String.ReputationCommentLike);
+                        if (((Comment)post).Post.GetType().BaseType == typeof(Comment))
+                            return Constant.Enum.LikeResult.Reply;
+                        else
+                            return Constant.Enum.LikeResult.Comment;
                     }
-                    return true;
                 }
                 else
                 {
@@ -304,12 +309,12 @@ namespace CP_MathHub.Service.Services
                     {
                         MinusReputation(id, Constant.String.ReputationCommentLike);
                     }
-                    return true;
+                    return Constant.Enum.LikeResult.Unlike;
                 }
             }
             catch
             {
-                return false;
+                return Constant.Enum.LikeResult.Fail;
             }
         }
         public User GetLoginUser()
@@ -438,7 +443,7 @@ namespace CP_MathHub.Service.Services
         public List<User> GetUsers(string include = "")
         {
             //return _dal.Repository<User>().Include(include).Table.ToList();
-            return _dal.Repository<User>().Include(include).Table.Where(u => u.Assessments.Where(a=>a.RoleId != 4).Count()>0).ToList();
+            return _dal.Repository<User>().Include(include).Table.Where(u => u.Assessments.Where(a => a.RoleId != 4).Count() > 0).ToList();
         }
 
         public List<Invitation> GetInvitations(List<int> userIds, int userId)
@@ -633,7 +638,7 @@ namespace CP_MathHub.Service.Services
                 ).ToList();
             return list;
         }
-        public void AddNotification (Notification notification)
+        public void AddNotification(Notification notification)
         {
             _dal.Repository<Notification>().Insert(notification);
             _dal.Save();

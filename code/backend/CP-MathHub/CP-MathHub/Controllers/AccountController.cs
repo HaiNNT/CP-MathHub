@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Web.Routing;
+using CP_MathHub.RealTime;
 
 namespace CP_MathHub.Controllers
 {
@@ -35,9 +36,11 @@ namespace CP_MathHub.Controllers
         private IBlogService bService;
         private IRealTimeService rService;
         private CPMathHubModelContainer context;
+        private Microsoft.AspNet.SignalR.IHubContext _hub;
         public AccountController()
         {
             context = new CPMathHubModelContainer();
+            _hub = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<RealTimeHub>();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -746,6 +749,14 @@ namespace CP_MathHub.Controllers
         public ActionResult SendFriendRequest(int targetUserId, int friendId = 0, string tab = "allfriend", string returnPage = "UserProfile")
         {
             aService.SendFriendRequest(User.Identity.GetUserId<int>(), targetUserId);
+
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), targetUserId))
+            {
+                string connectionId = RealTimeHub.Connections.GetConnectionId(targetUserId);
+                if (connectionId != default(string))
+                    _hub.Clients.Client(connectionId).notifyNewFriendRequest(rService.CountNewFriendRequestNotification());
+            }
+
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });
         }
         //Account/AcceptFriend

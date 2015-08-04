@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Constant.cs" />
-    <Compile Include="Configuration\Enum.cs" />
     <Compile Include="Interfaces\Services\IAccountService.cs" />
     <Compile Include="Interfaces\Services\IAdminService.cs" />
     <Compile Include="Interfaces\Services\IBlogService.cs" />

@@ -2569,6 +2569,7 @@
           <Member Name="SettedRole" Value="1024" />
           <Member Name="BlockedPost" Value="2048" />
           <Member Name="VotedAnswer" Value="4096" />
+          <Member Name="UserLikeMainPost" Value="8192" />
         </EnumType>
         <EnumType Name="AnswerEnum">
           <Member Name="Answer" Value="1" />

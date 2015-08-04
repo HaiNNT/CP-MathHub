@@ -61,6 +61,19 @@ namespace CP_MathHub.Core.Configuration
             public const int DefaultTake = 10;
         }
 
+        public static class Enum
+        {
+            public enum LikeResult : int
+            {
+                Fail = 0,
+                Article = 1,
+                Discussion = 2,
+                Comment = 3,
+                Reply = 4,
+                Unlike = 5
+            }
+        }
+
         /// <summary>
         /// Constant group for Question
         /// </summary>
