@@ -248,5 +248,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="notification"></param>
         void AddNotification(Notification notification);
+
+        /// <summary>
+        /// Insert feedback
+        /// </summary>
+        /// <param name="feedback"></param>
+        void InsertFeedback(Feedback feedback);
     }
 }

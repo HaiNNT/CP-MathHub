@@ -240,6 +240,7 @@
     <Compile Include="Models\Discussion\CategoryViewModel.cs" />
     <Compile Include="Models\Discussion\TagsPageViewModel.cs" />
     <Compile Include="Models\Discussion\UsersPageViewModel.cs" />
+    <Compile Include="Models\Home\ContactViewModel.cs" />
     <Compile Include="Models\Question\AnswerViewModel.cs" />
     <Compile Include="Models\Question\HotQuestionViewModel.cs" />
     <Compile Include="Models\Question\QuestionCreateViewModel.cs" />
@@ -871,6 +872,7 @@
     <Content Include="Views\Admin\Partials\_AllDuplicateTagsPartialView.cshtml" />
     <Content Include="Views\Admin\Views\SendEMailView.cshtml" />
     <Content Include="Views\Admin\Views\ManageContactView.cshtml" />
+    <Content Include="Views\Home\Rule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

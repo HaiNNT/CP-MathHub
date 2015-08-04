@@ -638,5 +638,10 @@ namespace CP_MathHub.Service.Services
             _dal.Repository<Notification>().Insert(notification);
             _dal.Save();
         }
+        public void InsertFeedback(Feedback feedback)
+        {
+            _dal.Repository<Feedback>().Insert(feedback);
+            _dal.Save();
+        }
     }
 }
