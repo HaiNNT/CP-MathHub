@@ -12,5 +12,6 @@ namespace CP_MathHub.Models.Admin
         public string Subject { get; set; }
         public string Message { get; set; }
         public List<User> Users { get; set; }
+        public HttpPostedFileBase Upload { get; set; }
     }
 }
