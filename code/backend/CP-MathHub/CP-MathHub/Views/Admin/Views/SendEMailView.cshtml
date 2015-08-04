@@ -11,14 +11,14 @@
     <!-- page start-->
     <h3>Gửi thông báo</h3>
     <div class="mh-admin-send-notification-body">
-        @using (Html.BeginForm("SendEMail", "Admin", FormMethod.Post))
+        @using (Html.BeginForm("SendEMail", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
                 <div class="col-lg-2">
                     <label>Người nhận</label>
                 </div>
                 <div class="col-lg-10">
-                    <input type="text" value="" name="UserEmails" class="mh-admin-receiver-input" data-toggle="modal" data-target="#receiver" readonly />
+                    <input type="text" value="" name="UserEmails" class="mh-admin-receiver-input" data-toggle="modal" data-target="#receiver" />
                     <!-- Modal -->
                     <div class="modal fade" id="receiver" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
@@ -102,8 +102,14 @@
             </div>
             <div>
                 <label>Nội dung thông báo</label>
-                @Html.TextAreaFor(m => m.Message, new { @name = "editor", @id="editor", @rows="15", @cols="80", @class="editor", @placeholder = "Nhập nội dung" })
+                @Html.TextAreaFor(m => m.Message, new { @name = "editor", @id = "editor", @rows = "15", @cols = "80", @class = "editor", @placeholder = "Nhập nội dung" })
                 @*<textarea name="editor" id="editor" rows="15" cols="80" class="editor"></textarea>*@
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Upload, new { @class = "col-md-10 control-label" })
+                <div class="col-md-10">
+                    <input type="file" name="upload" />
+                </div>
             </div>
             <div class="mh-admin-send-notification-footer">
                 <input type="submit" class="btn btn-primary btn-lg mh-send-notification-button" value="Gửi" />

@@ -617,6 +617,10 @@ namespace CP_MathHub.Controllers
         //Get: /Account/UserProfile
         public ActionResult UserProfile(int userId)
         {
+            if (userId == _currentUserId)
+            {
+                return RedirectToAction("MyProfile");
+            }
             Entity.User user = new User();
             user = aService.GetUser(userId, "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);

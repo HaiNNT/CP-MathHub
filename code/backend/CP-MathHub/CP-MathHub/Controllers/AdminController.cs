@@ -17,6 +17,7 @@ using AutoMapper;
 using System.Web.Routing;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
 
 namespace CP_MathHub.Controllers
 {
@@ -261,35 +262,26 @@ namespace CP_MathHub.Controllers
         {
             var message = new MailMessage();
             string TargetEmail = model.UserEmails;
-            List<string> TargetEmails = TargetEmail.Replace(" ","").Split(',').ToList();
+            List<string> TargetEmails = TargetEmail.Replace(" ", "").Split(',').ToList();
             foreach (string s in TargetEmails)
             {
-                message.To.Add(new MailAddress(s));
+                message.To.Add(new MailAddress(s)); //Get mail list
             }
-            //message.To.Add(new MailAddress("hainnt1302@gmail.com"));  // replace with valid value 
-            //message.To.Add(new MailAddress("vinaheo1407@gmail.com"));
-            message.From = new MailAddress("wssb495@gmail.com");  // replace with valid value
             message.Subject = model.Subject;
             message.Body = model.Message;
-            message.IsBodyHtml = false;
-
+            message.IsBodyHtml = true;
+            if (model.Upload != null && model.Upload.ContentLength > 0)
+            {
+                message.Attachments.Add(new Attachment(model.Upload.InputStream, Path.GetFileName(model.Upload.FileName)));
+            }
             using (var smtp = new SmtpClient())
             {
-                var credential = new NetworkCredential
-                {
-                    UserName = "wssb495@gmail.com",  // replace with valid value
-                    Password = "bluesea495"  // replace with valid value
-                };
-                smtp.Credentials = credential;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
                 smtp.Send(message);
                 return RedirectToAction("ManageContact");
             }
         }
         //Post: Admin/ManageContact
-        
+
         public ActionResult ManageContact()
         {
             return View("Views/ManageContactView");
