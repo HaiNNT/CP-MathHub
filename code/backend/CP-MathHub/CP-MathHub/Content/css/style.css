@@ -146,7 +146,8 @@ a {
     color: #337ab7;
 }
 
-.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover {
+.mh-notification > .dropdown > ul > li > .mh-notification-setting:hover, .mh-notification > .dropdown > ul > li > .mh-notification-setting:focus,
+.mh-notification > .dropdown > ul > li:hover > .mh-notification-setting {
     color: #3b5998;
     text-decoration: underline;
     background-color: #fff;
@@ -699,14 +700,32 @@ footer > .container > .row {
     text-align: center;
 }
 
-.mh-footer-social a:hover {
+.mh-footer-social a:hover, .mh-footer-social a:focus {
     opacity: 0.7;
+    text-decoration: none;
 }
 
 .mh-copyright-content {
     text-align: center;
     padding: 10px;
     font-size: 10pt;
+}
+
+.margin-bottom-40 {
+    font-size: 17px;
+}
+
+.margin-bottom-40 > a {
+    color: #DED1D1;
+}
+
+.margin-bottom-40 > a > i{
+    font-size: 9px;
+    vertical-align: middle;
+}
+
+.margin-bottom-40 > a:hover {
+    color: #fff;
 }
 /*  footer: end */
 
@@ -1580,3 +1599,41 @@ footer > .container > .row {
 	margin-left: 15px;
 }
   /* QA User: end */
+  .map {
+    /*min-width: 300px;*/
+    min-height: 309px;
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    background-color: #F5F5F5;
+    color: #36A0FF;
+    height: 70px;
+    font-size: 27px;
+    padding: 10px;
+}
+.mh-contact-social-media-icon {
+    margin-top: 5px;
+    height: 30px;
+}
+.mh-contact-body .mh-contact-info > a:hover,.mh-contact-body .mh-contact-info > a:focus  {
+    opacity: 0.7;
+    text-decoration: none;
+}
+.mh-contact-require {
+    color: red;
+}
+.mh-contact-send-feedback-button {
+    width: 100px;
+}
+/*Contact: end*/
+/* Rule: start */
+.mh-rule {
+    padding: 15px;
+    text-align: justify;
+}
+.mh-rule h2 {
+    text-align: center;
+}
+/* Rule: end */

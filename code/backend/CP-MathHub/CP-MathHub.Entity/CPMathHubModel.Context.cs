@@ -57,5 +57,6 @@ namespace CP_MathHub.Entity
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<UserClaim> UserClaims { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
     }
 }

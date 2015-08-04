@@ -114,6 +114,8 @@
         <AssociationConnector Association="CPMathHubModel.ProfileLocation" />
         <AssociationConnector Association="CPMathHubModel.ActivityUser" />
         <AssociationConnector Association="CPMathHubModel.UserNotification" />
+        <EntityTypeShape EntityType="CPMathHubModel.Feedback" Width="1.5" PointX="12.875" PointY="17.75" />
+        <AssociationConnector Association="CPMathHubModel.FeedbackUser" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
