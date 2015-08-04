@@ -197,7 +197,7 @@ footer {
 .mh-discussion-post >.mh-user-comment {
     padding: 15px;
 }
-.mh-discussion-post .mh-bookmark-icon {
+.mh-discussion-post .mh-bookmark-icon, .mh-discussion-post .mh-bookmarked-icon {
   vertical-align: top;
   font-size: 13pt;
 }

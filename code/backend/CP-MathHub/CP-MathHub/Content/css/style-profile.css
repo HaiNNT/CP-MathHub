@@ -75,6 +75,10 @@ form:last-child .mh-profile-info-row {
     padding: 10px 5px;
     height: 23px;
     margin-top: -2px;
+    width: 100%;
+}
+.mh-profile-txtArea-edit {
+    height: auto;
 }
 .mh-profile-save-change{
     display: none;

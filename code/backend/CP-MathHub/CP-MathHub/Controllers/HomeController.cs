@@ -41,7 +41,10 @@ namespace CP_MathHub.Controllers
             ViewBag.System = Constant.String.QuestionSystem;
             return View();
         }
-
+        public ActionResult Rule()
+        {
+            return View("Rule");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -51,7 +54,6 @@ namespace CP_MathHub.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.System = Constant.String.QuestionSystem;
             return View();
         }
         //Post Home/Contact
