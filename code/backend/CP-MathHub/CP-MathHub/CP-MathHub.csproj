@@ -845,7 +845,6 @@
     <Content Include="Views\Account\Partials\_UserFriendListPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_UserFollowerListPartialView.cshtml" />
     <Content Include="Views\CommonWidget\_InviteAutoCompletePartialView.cshtml" />
-    <Content Include="Views\Home\DemoChat.cshtml" />
     <Content Include="Views\Admin\Layouts\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Views\DashboardView.cshtml" />
     <Content Include="Views\Admin\Views\ManageRulesView.cshtml" />
