@@ -43,6 +43,7 @@ namespace CP_MathHub.Entity
             this.InvitedInvitations = new HashSet<Invitation>();
             this.UserClaims = new HashSet<UserClaim>();
             this.UserLogins = new HashSet<UserLogin>();
+            this.Feedbacks = new HashSet<Feedback>();
         }
     
         public int Id { get; set; }
@@ -92,5 +93,6 @@ namespace CP_MathHub.Entity
         public virtual ICollection<UserClaim> UserClaims { get; set; }
         public virtual ICollection<UserLogin> UserLogins { get; set; }
         public virtual Activity Activity { get; set; }
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }
