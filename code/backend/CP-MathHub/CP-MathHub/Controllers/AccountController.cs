@@ -606,7 +606,7 @@ namespace CP_MathHub.Controllers
                         string filename = Path.GetFileName(User.Identity.Name + ".png");
                         image.Save(Path.Combine(pathToSave, filename));
                         user.Avatar = new Image();
-                        user.Avatar.Url = Path.Combine("/Content/upload/", filename);
+                        user.Avatar.Url = Path.Combine("~/Content/upload/", filename);
                         user.Avatar.Caption = "";
                     }
                     break;
