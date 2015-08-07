@@ -495,11 +495,29 @@ function checkStatus(id) {
 function changeStatusReport(id, type) {
     var url = "/Admin/ChangeStatusReport";
     var data = { id: id, type: type };
+    //var statusId = $("#status-" + id);
+    //var status = statusId.attr("mh-status").trim();
     $.ajax({
         method: "POST",
         url: url,
         data: data
-    });
+    })
+    //.done(function (msg) {
+    //    if (msg) {
+    //        if (status == "True") {
+    //            statusId.text("False");
+    //        }
+    //        else {
+    //            statusId.text("True");
+    //        }
+    //    }
+    //    else {
+    //        alert("false");
+    //    }
+    //})
+    //  .fail(function () {
+    //      alert("Thất bại!");
+    //  });
 }
 
 //block post

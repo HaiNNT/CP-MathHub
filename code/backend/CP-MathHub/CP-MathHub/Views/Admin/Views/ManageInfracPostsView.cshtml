@@ -52,7 +52,7 @@
                                 <thead>
                                     <tr>
                                         <th class="hidden"></th>
-                                        <th class="hidden"></th>
+                                        <th class ="hidden"></th>
                                         <th>STT</th>
                                         <th>Tên bài viết</th>
                                         <th>Chủ bài viết</th>
@@ -71,7 +71,7 @@
                                             <td class="hidden">
                                                 @Html.GetMainPostType(iPost.MainPost)
                                             </td>
-                                            <td class="hidden">
+                                            <td id="status-@iPost.MainPost.Id" mh-status="@iPost.Status.ToString()" class="hidden">
                                                 @iPost.Status
                                             </td>
                                             <td class="mh-cell-center">
