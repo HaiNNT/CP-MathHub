@@ -51,7 +51,7 @@
                         {
                             ManageInfracUsersViewModel user = Model.Items.ElementAt(i);
                             <tr class="">
-                                <td class="hidden">@user.Status</td>
+                                <td class="hidden" id="status-@user.Id">@user.Status</td>
                                 <td class="mh-cell-center">
                                     @(i + 1)
                                 </td>
@@ -162,7 +162,7 @@
                                     <div class="switch switch-square"
                                          data-on-label="<i class=' icon-ok'></i>"
                                                    data-off-label="<i class='icon-remove'></i>">
-                                        <input type="checkbox" @(user.Status == true ? "checked" : "") onchange="changeStatusReport(@user.User.Id,2)" />
+                                        <input type="checkbox" @(user.Status == true ? "checked" : "") onchange="changeStatusReportUser(@user.User.Id,2)" />
                                           </div>
                                 </td>
                                 <td class="mh-cell-center">

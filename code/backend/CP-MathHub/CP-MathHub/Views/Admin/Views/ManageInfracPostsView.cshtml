@@ -52,7 +52,7 @@
                                 <thead>
                                     <tr>
                                         <th class="hidden"></th>
-                                        <th class="hidden"></th>
+                                        <th class ="hidden"></th>
                                         <th>STT</th>
                                         <th>Tên bài viết</th>
                                         <th>Chủ bài viết</th>
@@ -71,7 +71,7 @@
                                             <td class="hidden">
                                                 @Html.GetMainPostType(iPost.MainPost)
                                             </td>
-                                            <td class="hidden">
+                                            <td id="status-@iPost.MainPost.Id" class="hidden">
                                                 @iPost.Status
                                             </td>
                                             <td class="mh-cell-center">
@@ -186,7 +186,7 @@
                                                 <div class="switch switch-square"
                                                      data-on-label="@("<i class=' icon-ok'></i>")"
                                                      data-off-label="@("<i class='icon-remove'></i>")">
-                                                    <input type="checkbox" @(iPost.Status == true ? "checked" : "") onchange="changeStatusReport(@iPost.MainPost.Id,1)" />
+                                                    <input type="checkbox" @(iPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracMainPost(@iPost.MainPost.Id,1)" />
                                                     @*<input onclick="uncheckStatus(@iPost.MainPost.Id)" type="checkbox" class="checked-@iPost.MainPost.Id @(iPost.Status==true ? "":"hidden")" @(iPost.Status == true ? "checked" : "") />*@
                                                     @*<input onclick="checkStatus(@iPost.MainPost.Id)" type="checkbox" class="check-@iPost.MainPost.Id @(iPost.Status == true ? "hidden" : "")" @(iPost.Status == true ? "checked" : "") />*@
                                                 </div>
@@ -237,7 +237,7 @@
                                 <thead>
                                     <tr>
                                         <th class="hidden"></th>
-                                        <th class="hidden"></th>
+                                        <th class=""></th>
                                         <th>STT</th>
                                         <th>Nội dung bài viết</th>
                                         <th>Chủ bài viết</th>
@@ -255,7 +255,7 @@
                                         //ManageInfracMainPostViewModel iPost = Model.MainPosts.ElementAt(i);
                                         <tr class="">
                                             <td class="hidden">@Html.GetNormalPostType(nPost.Post)</td>
-                                            <td class="hidden">@nPost.Status</td>
+                                            <td class="" id="status-@nPost.Id">@nPost.Status</td>
                                             <td class="mh-cell-center">
                                                 @(i + 1)
                                             </td>
@@ -371,7 +371,7 @@
                                                 <div class="switch switch-square"
                                                      data-on-label="@("<i class=' icon-ok'></i>")"
                                                      data-off-label="@("<i class='icon-remove'></i>")">
-                                                    <input type="checkbox" @(nPost.Status == true ? "checked" : "") onchange="changeStatusReport(@nPost.Post.Id,1)" />
+                                                    <input type="checkbox" @(nPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracNormalPost(@nPost.Post.Id,1)" />
                                                     @*<input onclick="uncheckStatus(@iPost.MainPost.Id)" type="checkbox" class="checked-@iPost.MainPost.Id @(iPost.Status==true ? "":"hidden")" @(iPost.Status == true ? "checked" : "") />*@
                                                     @*<input onclick="checkStatus(@iPost.MainPost.Id)" type="checkbox" class="check-@iPost.MainPost.Id @(iPost.Status == true ? "hidden" : "")" @(iPost.Status == true ? "checked" : "") />*@
                                                 </div>

@@ -415,6 +415,7 @@ namespace CP_MathHub.Controllers
             {
                 ManageInfracNormalPostViewModel model = new ManageInfracNormalPostViewModel();
                 model.Post = post;
+                model.Id = post.Id;
                 model.ReportedDate = post.Reports.OrderByDescending(p => p.ReportedDate).First().ReportedDate;
                 model.Reporters = post.Reports.Select(r => r.Reporter).ToList();
                 model.Reasons = post.Reports.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());

@@ -1,4 +1,8 @@
-﻿/*
+﻿var tableInfracMainPost;
+var tableInfracNormailPost;
+var tableInfracUsers;
+
+/*
     Select Picker
 */
 function selectPicker() {
@@ -297,7 +301,7 @@ function ManageInfracMainPosts_edittable() {
             }
         }
     );
-    var table = $('#editable-manageInfracMainPosts').DataTable({
+    tableInfracMainPost = $('#editable-manageInfracMainPosts').DataTable({
         "lengthMenu": [
             [5, 10, 25, 50, -1],
             [5, 10, 25, 50, "Tất cả"]
@@ -334,7 +338,7 @@ function ManageInfracMainPosts_edittable() {
     jQuery('#editable-manageInfracMainPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 
     $('.selectpicker.postFilter').change(function () {
-        table.draw();
+        tableInfracMainPost.draw();
     });
 }
 function ManageInfracNormalPosts_edittable() {
@@ -358,7 +362,7 @@ function ManageInfracNormalPosts_edittable() {
             }
         }
     );
-    var table = $('#editable-manageInfracNormalPosts').DataTable({
+    tableInfracNormailPost = $('#editable-manageInfracNormalPosts').DataTable({
         "lengthMenu": [
             [5, 10, 25, 50, -1],
             [5, 10, 25, 50, "Tất cả"]
@@ -395,7 +399,7 @@ function ManageInfracNormalPosts_edittable() {
     jQuery('#editable-manageInfracNormalPosts_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 
     $('.selectpicker.normalPostFilter').change(function () {
-        table.draw();
+        tableInfracNormailPost.draw();
     });
 }
 function tableTag() {
@@ -491,15 +495,95 @@ function checkStatus(id) {
 	  });
 }
 
-//change status report
-function changeStatusReport(id, type) {
+//change status report InfracMainPost
+function changeStatusReportInfracMainPost(id, type) {
     var url = "/Admin/ChangeStatusReport";
     var data = { id: id, type: type };
+    var statusId = $("#status-" + id);
+    var status = statusId.text().trim();
     $.ajax({
         method: "POST",
         url: url,
         data: data
-    });
+    })
+    .done(function (msg) {
+        if (msg) {
+            if (status.trim() == "True") {
+                tableInfracMainPost.cell(statusId).data("False").draw();
+            }
+            else {
+                tableInfracMainPost.cell(statusId).data("True").draw();
+            }
+            
+        }
+        else {
+            alert("false");
+        }
+    })
+      .fail(function () {
+          alert("Thất bại!");
+      });
+} 
+
+
+//change status report InfracNormalPost
+function changeStatusReportInfracNormalPost(id, type) {
+    var url = "/Admin/ChangeStatusReport";
+    var data = { id: id, type: type };
+    var statusId = $("#status-" + id);
+    var status = statusId.text().trim();
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+    .done(function (msg) {
+        if (msg) {
+            if (status.trim() == "True") {
+                tableInfracNormailPost.cell(statusId).data("False").draw();
+            }
+            else {
+                tableInfracNormailPost.cell(statusId).data("True").draw();
+            }
+
+        }
+        else {
+            alert("false");
+        }
+    })
+      .fail(function () {
+          alert("Thất bại!");
+      });
+}
+
+//change status report InfracUser
+function changeStatusReportUser(id, type) {
+    var url = "/Admin/ChangeStatusReport";
+    var data = { id: id, type: type };
+    var statusId = $("#status-" + id);
+    var status = statusId.text().trim();
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+    .done(function (msg) {
+        if (msg) {
+            if (status.trim() == "True") {
+                tableInfracNormailPost.cell(statusId).data("False").draw();
+            }
+            else {
+                tableInfracNormailPost.cell(statusId).data("True").draw();
+            }
+
+        }
+        else {
+            alert("false");
+        }
+    })
+      .fail(function () {
+          alert("Thất bại!");
+      });
 }
 
 //block post
@@ -582,7 +666,7 @@ function dataTableManageInfracUsers() {
             }
         }
     );
-    var table = $('#editable-manageInfracUsers').DataTable({
+    tableInfracUsers = $('#editable-manageInfracUsers').DataTable({
         "lengthMenu": [
             [5, 10, 25, 50, -1],
             [5, 10, 25, 50, "Tất cả"]
@@ -619,7 +703,7 @@ function dataTableManageInfracUsers() {
     jQuery('#editable-manageInfracUsers_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
 
     $('.selectpicker.userFilter').change(function () {
-        table.draw();
+        tableInfracUsers.draw();
     });
 }
 
