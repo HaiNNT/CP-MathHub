@@ -670,9 +670,121 @@
                 <div class="panel panel-warning mh-question-preview">
                     <div class="panel-heading">
                         <div class="mh-user-info">
-                            <a href="#">
+                            <a href="#" id="user-id">
                                 <img src="img/user.jpg" class="mh-user-avatar">
                             </a>
+                            <div id="idUser-1" class="mh-user-hover">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="img/user.jpg" class="mh-image-user-profile">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#" class="media-heading">
+                                            <h3>HaiNNT</h3>
+                                        </a>
+                                        <div class="detail-reputation">
+                                            <span>612</span>
+                                            <i class="fa fa-circle mh-reputation-icon"></i>
+                                        </div>
+                                        <div>
+                                            thành phố Hồ Chí Minh
+                                        </div>
+                                        <div>
+                                            Trình độ học vấn
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mh-user-hover-footer">
+                                    <!-- Nút kết bạn -->
+                                    <!--<div class="btn-group">
+                                        <button type="button" class="btn btn-primary mh-profile-friend-button">
+                                            <i class="fa fa-user-plus"></i>
+                                            Kết bạn
+                                        </button>
+                                        <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-rss"></i>
+                                                    Theo dõi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-comments"></i>
+                                                    Tin nhắn
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>-->
+                                    <!-- Nút sau khi kết bạn -->
+                                    <!--<div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-check"></i>
+                                            Bạn bè
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-rss"></i>
+                                                    Theo dõi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-comments"></i>
+                                                    Tin nhắn
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-user-times"></i>
+                                                    Hủy bạn bè
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>-->
+                                    <!-- Nút đã gửi mời kết bạn -->
+                                    <!--<div class="btn-group">
+                                        <button type="button" class="btn btn-default mh-profile-friend-button">
+                                            <i class="fa fa-user-plus"></i>
+                                            Đã gửi lời mời kết bạn
+                                        </button>
+                                    </div>-->
+                                    <!-- Nút trả lời lời mời kết bạn-->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-user-plus"></i>
+                                            Trả lời lời mời kết bạn
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Chấp nhận</a></li>
+                                            <li><a href="#">Từ chối</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Nút Follow -->
+                                    <!--<button type="button" class="btn btn-default">
+                                        <i class="fa fa-rss"></i>
+                                        Theo dõi
+                                    </button>-->
+                                    <button type="button" class="btn btn-default">
+                                        <i class="fa fa-check"></i>
+                                        Bỏ theo dõi
+                                    </button>
+                                    <!-- Nút tin nhắn -->
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-comments"></i>
+                                        Tin nhắn
+                                    </button>
+                                </div>
+                            </div>
                             <div>
                                 <div>
                                     <a href="#">
@@ -1686,6 +1798,10 @@
         $(function () {
             $('[data-toggle="tooltip"],.mh-chat-popup-setting').tooltip()
         });
+    </script>
+    <script>
+        $(".mh-user-info > #user-id").hover(function () { $('#idUser-1').toggle() })
+        $("#idUser-1").hover(function () { $('#idUser-1').toggle() })
     </script>
 </body>
 </html>

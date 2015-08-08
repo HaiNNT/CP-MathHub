@@ -1498,3 +1498,26 @@ footer > .container > .row {
     text-align: center;
 }
 /* Rule: end */
+/* Hover user: start */
+.mh-user-hover {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    display: none;
+    background-color: #fff;
+    z-index: 1001;
+    padding: 10px;
+    width: 436px;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .35);
+}
+.mh-user-hover .media-body h3 {
+    margin: 0px;
+}
+.mh-user-hover-footer {
+    padding-top: 5px;
+    border-top: 1px solid #c0c0c0;
+    text-align: right;
+}
+/* Hover user: end */
