@@ -114,7 +114,7 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login([ModelBinder(typeof(LoginViewModelBinder))]LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -536,7 +536,7 @@ namespace CP_MathHub.Controllers
 
         //Post: /Account/UpdateProfile
         [HttpPost]
-        public ActionResult UpdateProfile([ModelBinder(typeof(BindingHelper))]ProfileViewModel model, string Property, string Image = "")
+        public ActionResult UpdateProfile([ModelBinder(typeof(ProfileViewModelBinder))]ProfileViewModel model, string Property, string Image = "")
         {
             if (!ModelState.IsValid)
             {
