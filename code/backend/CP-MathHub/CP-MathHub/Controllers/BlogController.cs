@@ -375,9 +375,11 @@ namespace CP_MathHub.Controllers
                     cService.AddNotification(notification);
                     using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
                     {
-                        string connectionId = RealTimeHub.Connections.GetConnectionId(notification.UserId);
-                        if (connectionId != default(string))
-                            _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                        IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                        foreach (string conId in connectionIds)
+                        {
+                            _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                        } 
                     }
                 }
                 //    }
@@ -517,9 +519,11 @@ namespace CP_MathHub.Controllers
 
                         using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
                         {
-                            string connectionId = RealTimeHub.Connections.GetConnectionId(notification.UserId);
-                            if (connectionId != default(string))
-                                _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                            IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                            foreach (string conId in connectionIds)
+                            {
+                                _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                            } 
                         }
 
                         return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
@@ -541,9 +545,11 @@ namespace CP_MathHub.Controllers
 
                         using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
                         {
-                            string connectionId = RealTimeHub.Connections.GetConnectionId(notification.UserId);
-                            if (connectionId != default(string))
-                                _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                            IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                            foreach (string conId in connectionIds)
+                            {
+                                _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                            } 
                         }
 
                         return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
@@ -658,9 +664,11 @@ namespace CP_MathHub.Controllers
 
                 using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
                 {
-                    string connectionId = RealTimeHub.Connections.GetConnectionId(notification.UserId);
-                    if (connectionId != default(string))
-                        _hub.Clients.Client(connectionId).notifyNewActivity(rService.CountNewActivityNotification());
+                    IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                    foreach (string conId in connectionIds)
+                    {
+                        _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                    } 
                 }
                 //}
                 //).Start();

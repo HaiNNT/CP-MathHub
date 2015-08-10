@@ -18,6 +18,7 @@ using System.Web.Routing;
 using System.Net;
 using System.Net.Mail;
 using System.IO;
+using CP_MathHub.RealTime;
 
 namespace CP_MathHub.Controllers
 {
@@ -27,9 +28,12 @@ namespace CP_MathHub.Controllers
         private IAdminService aService;
         private ICommonService cService;
         private CPMathHubModelContainer context;
+        private Microsoft.AspNet.SignalR.IHubContext _hub;
+
         public AdminController()
         {
             context = new CPMathHubModelContainer();
+            _hub = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<RealTimeHub>();
 
         }
         protected override void Initialize(RequestContext requestContext)
@@ -84,11 +88,31 @@ namespace CP_MathHub.Controllers
             banAccount.Duration = model.Duration;
             banAccount.UnBanedDate = DateTime.Now.AddDays(banAccount.Duration);
             banAccount.BannedUser = cService.GetUser(model.BannedUserId);
-            banAccount.BannedUser.Status = model.Status;
+            banAccount.BannedUser.Status = UserStatusEnum.Banned;
             banAccount.BanUser = cService.GetUser(User.Identity.GetUserId<int>());
             banAccount.Description = model.Description;
             banAccount.BanReasons = aService.GetListBanReason(model.Reasons);
             aService.BlockUser(banAccount);
+
+            Notification notification = new Notification();
+            notification.AuthorId = _currentUserId;
+            notification.CreatedDate = DateTime.Now;
+            notification.Content = banAccount.Duration + " ngày. Bắt đầu từ ngày " + banAccount.BannedDate.ToShortDateString();
+            notification.Seen = false;
+            notification.Type = NotificationSettingEnum.Banned;
+            notification.UserId = model.BannedUserId;
+            notification.Link = Url.Action("BannedPage", "Account");
+            cService.AddNotification(notification);
+
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+            {
+                IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                foreach (string conId in connectionIds)
+                {
+                    _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                }
+            }
+
             return PartialView("Partials/_HistoryBlockUserPartialView", banAccount.BannedUser);
         }
         //Post: Unblock
@@ -114,6 +138,25 @@ namespace CP_MathHub.Controllers
                 assess.AccessedDate = DateTime.Now;
                 assess.ExpireDate = DateTime.Now.AddYears(1);
                 aService.SetRoleUser(assess);
+            }
+            User user = cService.GetUser(model.UserId);
+            Notification notification = new Notification();
+            notification.AuthorId = _currentUserId;
+            notification.CreatedDate = DateTime.Now;
+            notification.Content = string.Join(",", user.Assessments.Select(u => u.Role.Name));
+            notification.Seen = false;
+            notification.Type = NotificationSettingEnum.Banned;
+            notification.UserId = model.UserId;
+            notification.Link = Url.Action("BannedPage", "Account");
+            cService.AddNotification(notification);
+
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+            {
+                IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                foreach (string conId in connectionIds)
+                {
+                    _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                }
             }
             return true;
         }
@@ -300,7 +343,96 @@ namespace CP_MathHub.Controllers
         {
             Post post = aService.GetPost(id);
             post.Status = PostStatusEnum.Hidden;
-            return aService.UpdatePost(post);
+            bool check = aService.UpdatePost(post);
+            if (check)
+            {
+                Notification notification = new Notification();
+                notification.AuthorId = _currentUserId;
+                notification.CreatedDate = DateTime.Now;
+                notification.Seen = false;
+                notification.UserId = post.UserId;
+
+                #region Track Post Type
+                if (post is MainPost)
+                {
+                    notification.Type = NotificationSettingEnum.BlockedMainPost;
+                    notification.Content = ((MainPost)post).Title;
+                    if (post is Question)
+                    {
+                        notification.Link = Url.Action("Detail", "Question", new { id = id });
+                    }
+                    else if (post is Discussion)
+                    {
+                        notification.Link = Url.Action("Detail", "Discussion", new { id = id });
+                    }
+                    else
+                    {
+                        notification.Link = Url.Action("Detail", "Blog", new { id = id });
+                    }
+
+                }
+                else if (post is Answer)
+                {
+                    notification.Type = NotificationSettingEnum.BlockedAnswer;
+                    notification.Content = ((Answer)post).Question.Title;
+                    notification.Link = Url.Action("Detail", "Question", new { id = ((Answer)post).Question.Id });
+                }
+                else if (post is Comment)
+                {
+                    notification.Type = NotificationSettingEnum.BlockedComment;
+                    Comment comment = (Comment)post;
+                    if (comment.Post is Answer)
+                    {
+                        notification.Content = ((Answer)comment.Post).Question.Title;
+                        notification.Link = Url.Action("Detail", "Question", new { id = ((Answer)comment.Post).Question.Id });
+                    }
+                    else if (comment.Post is Comment)
+                    {
+                        Comment c = (Comment)comment.Post;
+                        if (c.Post is Discussion)
+                        {
+                            notification.Content = ((Discussion)c.Post).Title;
+                            notification.Link = Url.Action("Detail", "Discussion", new { id = ((Discussion)c.Post).Id });
+                        }
+                        else
+                        {
+                            notification.Content = ((Article)c.Post).Title;
+                            notification.Link = Url.Action("Detail", "Blog", new { id = ((Article)c.Post).Id });
+                        }
+                    }
+                    else
+                    {
+                        if (comment.Post is Discussion)
+                        {
+                            notification.Content = ((Discussion)comment.Post).Title;
+                            notification.Link = Url.Action("Detail", "Discussion", new { id = ((Discussion)comment.Post).Id });
+                        }
+                        else if (comment.Post is Question)
+                        {
+                            notification.Content = ((Question)comment.Post).Title;
+                            notification.Link = Url.Action("Detail", "Question", new { id = ((Question)comment.Post).Id });
+                        }
+                        else
+                        {
+                            notification.Content = ((Article)comment.Post).Title;
+                            notification.Link = Url.Action("Detail", "Blog", new { id = ((Article)comment.Post).Id });
+                        }
+                    }
+                }
+                #endregion
+
+                cService.AddNotification(notification);
+
+                using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                {
+                    IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                    foreach (string conId in connectionIds)
+                    {
+                        _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                    }
+                }
+            }
+            return check;
         }
 
         //Post: Admin/ActivePost

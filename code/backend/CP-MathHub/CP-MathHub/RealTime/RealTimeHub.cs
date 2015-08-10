@@ -47,16 +47,16 @@ namespace CP_MathHub.RealTime
                 #endregion
 
                 #region Message
-                User user = aService.GetUser(Context.User.Identity.GetUserId<int>());
-                if (user.Avatar == default(Image))
-                {
-                    user.Avatar.Url = "~/Content/img/user.jpg";
-                }
+                //User user = aService.GetUser(Context.User.Identity.GetUserId<int>());
+                //if (user.Avatar == default(Image))
+                //{
+                //    user.Avatar.Url = "~/Content/img/user.jpg";
+                //}
                 if (!_connections.GetConnections(Context.User.Identity.GetUserId<int>()).Contains(Context.ConnectionId))
                 {
-                    _connections.Add(Context.User.Identity.GetUserId<int>(), Context.ConnectionId, user.Id + "", user.Avatar.Url);
+                    _connections.Add(Context.User.Identity.GetUserId<int>(), Context.ConnectionId);
                 }
-                List<Conversation> conversations = rService.GetConversations(user.Id);
+                List<Conversation> conversations = rService.GetConversations(Context.User.Identity.GetUserId<int>());
                 foreach (Conversation conversation in conversations)
                 {
                     JoinConversation(conversation.Id + "");

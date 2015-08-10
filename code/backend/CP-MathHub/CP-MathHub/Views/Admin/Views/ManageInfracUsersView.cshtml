@@ -19,13 +19,13 @@
                     </div>
                     <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
                         @*@using (Html.BeginForm("ManageInfracUsers", "Admin", FormMethod.Post, new { id = "select-form-user" }))
-                        {
-                            <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
-                                <option value="1" @(Model.Filters != null && Model.Filters.Contains(1) ? "selected" : "")>Đã kiểm tra</option>
-                                <option value="2" @(Model.Filters != null && Model.Filters.Contains(2) ? "selected" : "")>Chưa kiểm tra</option>
-                            </select>
-                            <input type="hidden" value="@Model.Filters" />
-                        }*@
+                            {
+                                <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker" multiple="multiple" title="Không có gì được chọn">
+                                    <option value="1" @(Model.Filters != null && Model.Filters.Contains(1) ? "selected" : "")>Đã kiểm tra</option>
+                                    <option value="2" @(Model.Filters != null && Model.Filters.Contains(2) ? "selected" : "")>Chưa kiểm tra</option>
+                                </select>
+                                <input type="hidden" value="@Model.Filters" />
+                            }*@
                         <select onchange="GetUserOptionSelect()" name="Filters" class="selectpicker userFilter" multiple="multiple" title="Không có gì được chọn">
                             <option value="True">Đã kiểm tra</option>
                             <option value="False">Chưa kiểm tra</option>
@@ -108,7 +108,6 @@
                                                             </div>
                                                         </div>
                                                     }
-
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -160,10 +159,10 @@
                                 </td>
                                 <td class="mh-cell-center">
                                     <div class="switch switch-square"
-                                         data-on-label="<i class=' icon-ok'></i>"
-                                                   data-off-label="<i class='icon-remove'></i>">
+                                         data-on-label="@("<i class=' icon-ok'></i>")"
+                                         data-off-label="@("<i class='icon-remove'></i>")">
                                         <input type="checkbox" @(user.Status == true ? "checked" : "") onchange="changeStatusReportUser(@user.User.Id,2)" />
-                                          </div>
+                                    </div>
                                 </td>
                                 <td class="mh-cell-center">
                                     <a href="" id="activeUser-@user.User.Id" type="button" class="btn btn-warning @(user.User.Status.Value == UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" onclick="@("unBlockUser(" + @user.User.Id + ")")" data-target="#unblockuser-@user.User.Id">Bỏ khóa</a>

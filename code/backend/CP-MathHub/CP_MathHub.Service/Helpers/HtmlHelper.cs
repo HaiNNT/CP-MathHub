@@ -83,8 +83,11 @@ namespace CP_MathHub.Service.Helpers
                 case NotificationSettingEnum.BlockedMainPost:
                     result = "bạn đã bị khóa bài:";
                     break;
-                case NotificationSettingEnum.BlockedPost:
-                    result = "bạn đã bị khóa bình luận:";
+                case NotificationSettingEnum.BlockedComment:
+                    result = "bạn đã bị khóa bình luận trong bài:";
+                    break;
+                case NotificationSettingEnum.BlockedAnswer:
+                    result = "bạn đã bị khóa câu trả lời trong câu hỏi:";
                     break;
                 case NotificationSettingEnum.VotedQuestion:
                     result = "đã bình chọn câu hỏi của bạn:";
@@ -93,7 +96,7 @@ namespace CP_MathHub.Service.Helpers
                     result = "đã bình chọn câu trả lời của bạn tại:";
                     break;
                 case NotificationSettingEnum.SettedRole:
-                    result = "bạn được phân quyền mới:";
+                    result = "bạn được phân quyền:";
                     break;
                 default:
                     result = "bạn có thông báo mới từ hệ thống:";
@@ -259,18 +262,18 @@ namespace CP_MathHub.Service.Helpers
         {
             //Question question = new Question();
             //question = _dal.Repository<Question>().Table.First(q => q.Answers.Count(a => a.Id == id) >0);
-            if (post.GetType().BaseType == typeof(Answer))
+            if (post is Answer)
             {
                 return ((Answer)post).QuestionId;
             }
-            else if (post.GetType().BaseType == typeof(Comment))
+            else if (post is Comment)
             {
                 Comment comment = (Comment)post;
-                if (comment.Post.GetType().BaseType == typeof(Answer))
+                if (comment.Post is Answer)
                 {
                     return ((Answer)comment.Post).QuestionId;
                 }
-                else if (comment.Post.GetType().BaseType == typeof(Comment))
+                else if (comment.Post is Comment)
                 {
                     return ((Comment)comment.Post).PostId;
                 }
@@ -283,11 +286,11 @@ namespace CP_MathHub.Service.Helpers
         }
         public static string GetMainPostType(this HtmlHelper html, MainPost mainpost)
         {
-            if (mainpost.GetType().BaseType == typeof(Question))
+            if (mainpost is Question)
             {
                 return "Question";
             }
-            else if (mainpost.GetType().BaseType == typeof(Discussion))
+            else if (mainpost is Discussion)
             {
                 return "Discussion";
             }
@@ -300,21 +303,21 @@ namespace CP_MathHub.Service.Helpers
         {
             //Question question = new Question();
             //question = _dal.Repository<Question>().Table.First(q => q.Answers.Count(a => a.Id == id) >0);
-            if (post.GetType().BaseType == typeof(Answer))
+            if (post is Answer)
             {
                 return "Question";
             }
-            else if (post.GetType().BaseType == typeof(Comment))
+            else if (post is Comment)
             {
                 Comment comment = (Comment)post;
-                if (comment.Post.GetType().BaseType == typeof(Answer))
+                if (comment.Post is Answer)
                 {
                     return "Question";
                 }
-                else if (comment.Post.GetType().BaseType == typeof(Comment))
+                else if (comment.Post is Comment)
                 {
                     Comment c = (Comment)comment.Post;
-                    if (c.Post.GetType().BaseType == typeof(Discussion))
+                    if (c.Post is Discussion)
                     {
                         return "Discussion";
                     }
@@ -325,9 +328,13 @@ namespace CP_MathHub.Service.Helpers
                 }
                 else
                 {
-                    if (comment.Post.GetType().BaseType == typeof(Discussion))
+                    if (comment.Post is Discussion)
                     {
                         return "Discussion";
+                    }
+                    else if(comment.Post is Question)
+                    {
+                        return "Question";
                     }
                     else
                     {
@@ -340,11 +347,11 @@ namespace CP_MathHub.Service.Helpers
 
         public static string GetNormalPostType(this HtmlHelper html, Post post)
         {
-            if (post.GetType().BaseType == typeof(Answer))
+            if (post is Answer)
             {
                 return "Answer";
             }
-            else if (post.GetType().BaseType == typeof(Comment))
+            else if (post is Comment)
             {
                 return "Comment";
             }

@@ -758,9 +758,11 @@ namespace CP_MathHub.Controllers
 
             using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), targetUserId))
             {
-                string connectionId = RealTimeHub.Connections.GetConnectionId(targetUserId);
-                if (connectionId != default(string))
-                    _hub.Clients.Client(connectionId).notifyNewFriendRequest(rService.CountNewFriendRequestNotification());
+                IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(targetUserId);
+                foreach (string conId in connectionIds)
+                {
+                    _hub.Clients.Client(conId).notifyNewFriendRequest(rService.CountNewFriendRequestNotification());
+                }
             }
 
             return RedirectToAction(returnPage, new { @userId = targetUserId, @tab = tab, @friendId = friendId });

@@ -19,7 +19,7 @@ namespace CP_MathHub.RealTime
             }
         }
 
-        public void Add(T key, string connectionId, string userId, string avatar)
+        public void Add(T key, string connectionId, string userId = "", string avatar = "")
         {
             lock (_connections)
             {
@@ -33,8 +33,8 @@ namespace CP_MathHub.RealTime
                 lock (connections)
                 {
                     connections.Add(connectionId);
-                    connections.Add(userId);
-                    connections.Add(avatar);
+                    //connections.Add(userId);
+                    //connections.Add(avatar);
                 }
             }
         }
@@ -50,16 +50,13 @@ namespace CP_MathHub.RealTime
             return Enumerable.Empty<string>();
         }
 
-        public string GetConnectionId(T key)
-        {
-            HashSet<string> connections;
-            if (_connections.TryGetValue(key, out connections))
-            {
-                return connections.ElementAt(0);
-            }
+        //public HashSet<string> GetConnectionId(T key)
+        //{
+        //    HashSet<string> connections;
+        //    _connections.TryGetValue(key, out connections);
 
-            return default(string);
-        }
+        //    return connections;
+        //}
 
         public void Remove(T key, string connectionId)
         {
@@ -73,7 +70,7 @@ namespace CP_MathHub.RealTime
 
                 lock (connections)
                 {
-                    connections.Clear();
+                    connections.Remove(connectionId);
 
                     if (connections.Count == 0)
                     {

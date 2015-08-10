@@ -24,9 +24,10 @@ namespace CP_MathHub.Entity
         BlockedMainPost = 256,
         VotedQuestion = 512,
         SettedRole = 1024,
-        BlockedPost = 2048,
+        BlockedComment = 2048,
         VotedAnswer = 4096,
         UserLikeMainPost = 8192,
-        UserHintQuestion = 16384
+        UserHintQuestion = 16384,
+        BlockedAnswer = 32768
     }
 }
