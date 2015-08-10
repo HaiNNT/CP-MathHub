@@ -91,19 +91,18 @@
                     </div>
                     <div class="collapse in" id="collapseExample">
                         <div class="well">
-                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />*@
                                     @Html.TextBoxFor(m => m.Username, new { @class = "mh-login-mathHub-username", @placeholder = "Tên đăng nhập" })
-                                    <i class="fa fa-user mh-login-mathHub-username-icon"></i>
+                                    <i class="fa fa-user mh-mathHub-login_register-icon"></i>
                                 </div>
-                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="password" placeholder="Mật khẩu" class="mh-login-mathHub-password" />*@
                                     @Html.PasswordFor(m => m.Password, new { @class = "mh-login-mathHub-password", @placeholder = "Mật khẩu" })
-                                    <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
+                                    <i class="fa fa-lock mh-mathHub-login_register-icon"></i>
                                 </div>
                                 <div class="mh-login_register-pre-button">
                                     <div class="row">
@@ -153,25 +152,25 @@
                             @using (Html.BeginForm("Register", "Account", FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />*@
                                     @Html.TextBoxFor(m => m.Username, new { @class = "mh-login-mathHub-username", @placeholder = "Tên đăng nhập" })
-                                    <i class="fa fa-user mh-login-mathHub-username-icon"></i>
+                                    <i class="fa fa-user mh-mathHub-login_register-icon"></i>
                                 </div>
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="text" placeholder="E-mail" class="mh-login-mathHub-email" />*@
                                     @Html.TextBoxFor(m => m.Email, new { @class = "mh-login-mathHub-email", @placeholder = "Email" })
-                                    <i class="fa fa-envelope-o mh-login-mathHub-email-icon"></i>
+                                    <i class="fa fa-envelope-o mh-mathHub-login_register-icon"></i>
                                 </div>
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="password" placeholder="Mật khẩu" class="mh-login-mathHub-password" />*@
                                     @Html.PasswordFor(m => m.Password, new { @class = "mh-login-mathHub-password", @placeholder = "Mật khẩu" })
-                                    <i class="fa fa-lock mh-login-mathHub-password-icon"></i>
+                                    <i class="fa fa-lock mh-mathHub-login_register-icon"></i>
                                 </div>
-                                <div>
+                                <div class="mh-login_register-div">
                                     @*<input type="password" placeholder="Nhập lại mật khẩu" class="mh-login-mathHub-password" />*@
                                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "mh-login-mathHub-password", @placeholder = "Nhập lại mật khẩu" })
-                                    <i class="fa fa-lock mh-login-mathHub-password-icon1"></i>
+                                    <i class="fa fa-lock mh-mathHub-login_register-icon"></i>
                                 </div>
                                 <div>
                                     <div>
@@ -315,7 +314,7 @@
     <div class="col-sm-2 col-md-3 col-lg-3"></div>
 </div>
 @section styles {
-    <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
-    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+<link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+<link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/authentication/css");
 }

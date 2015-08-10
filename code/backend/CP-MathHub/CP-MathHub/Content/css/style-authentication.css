@@ -49,22 +49,19 @@
     background-color: #fff;
     position: relative;
 }
+.mh-login_register-div {
+    position: relative;
+}
 .mh-login-mathHub-username, .mh-login-mathHub-password, .mh-login-mathHub-email {
     width: 100%;
     margin-bottom: 5px;
     margin-top: 5px;
-    padding: 5px 10px 5px 28px;
+    padding: 5px 10px 5px 33px;
 }
-.mh-login-mathHub-username-icon {
+.mh-mathHub-login_register-icon {
     position: absolute;
-    top: 31px;
-    left: 27px;
-    font-size: 20px;
-}
-.mh-login-mathHub-password-icon {
-    position: absolute;
-    top: 75px;
-    left: 28px;
+    top: 12px;
+    left: 6px;
     font-size: 20px;
 }
 #register .mh-login-mathHub-password-icon {
