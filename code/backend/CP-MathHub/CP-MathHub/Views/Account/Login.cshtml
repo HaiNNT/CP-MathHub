@@ -91,7 +91,7 @@
                     </div>
                     <div class="collapse in" id="collapseExample">
                         <div class="well">
-                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div>
@@ -99,6 +99,7 @@
                                     @Html.TextBoxFor(m => m.Username, new { @class = "mh-login-mathHub-username", @placeholder = "Tên đăng nhập" })
                                     <i class="fa fa-user mh-login-mathHub-username-icon"></i>
                                 </div>
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
                                 <div>
                                     @*<input type="password" placeholder="Mật khẩu" class="mh-login-mathHub-password" />*@
                                     @Html.PasswordFor(m => m.Password, new { @class = "mh-login-mathHub-password", @placeholder = "Mật khẩu" })
@@ -314,7 +315,7 @@
     <div class="col-sm-2 col-md-3 col-lg-3"></div>
 </div>
 @section styles {
-<link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
-<link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+    <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/authentication/css");
 }
