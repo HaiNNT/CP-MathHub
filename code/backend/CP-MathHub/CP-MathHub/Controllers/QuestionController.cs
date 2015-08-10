@@ -208,7 +208,10 @@ namespace CP_MathHub.Controllers
         [BannedUser]
         public ActionResult Create(QuestionCreateViewModel questionVM)
         {
-
+            if (!ModelState.IsValid)
+            {
+                return View("Views/QuestionCreateView", questionVM);
+            }
             Question question = new Question();
             question = Mapper.Map<QuestionCreateViewModel, Question>(questionVM);
             question.CreatedDate = DateTime.Now;
@@ -289,6 +292,10 @@ namespace CP_MathHub.Controllers
         [Authorize]
         public ActionResult Edit(QuestionEditViewModel questionVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/QuestionEditView", questionVM);
+            }
             Question question = qService.GetQuestion(questionVM.Id);
             if (question.Content == questionVM.Content)
             {

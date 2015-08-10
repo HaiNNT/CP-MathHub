@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CP_MathHub.Entity;
 using CP_MathHub.Helper;
+using System.ComponentModel.DataAnnotations;
 
 namespace CP_MathHub.Models.Account
 {
@@ -12,6 +13,7 @@ namespace CP_MathHub.Models.Account
     {
         public int Id { get; set; }
         public string UserName { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public Nullable<int> Reputation { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

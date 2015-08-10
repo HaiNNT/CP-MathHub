@@ -1,4 +1,5 @@
 ﻿@model CP_MathHub.Models.Blog.ArticleCreateViewModel
+@using CP_MathHub.Entity
 @using CP_MathHub.Core.Configuration
 @{
     ViewBag.Title = "Tạo Bài Viết";
@@ -23,17 +24,17 @@
     </div>
 </div>
 <div class="mh-body-content-mid">
-    @using (Html.BeginForm("Create", "Blog", FormMethod.Post))
+    @using (Html.BeginForm("Create", "Blog", FormMethod.Post, new { @role = "form" }))
     {
         <div class="mh-body-title">
             @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
             @Html.TextBoxFor(m => m.Title, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
-            @Html.ValidationMessageFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title,"", new { @class = "text-danger" })
         </div>
         <div class="mh-ckeditor">
             @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
             @Html.TextAreaFor(model => model.Content, new { @class = "editor", @id = "editor1", @rows = "15", @cols = "80" })
-            @Html.ValidationMessageFor(model => model.Content)
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
         </div>
         <div class="mh-preview">
             <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
@@ -46,7 +47,7 @@
                     @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
                 </div>
                 <div class="col-sm-6 col-md-7 col-lg-8">
-                    @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
+                    @Html.SelectForEnum(Model.Privacy, typeof(MainPostPrivacyEnum), new Dictionary<string, string> { { "id", "mh-mainpost-privacy" }, { "name", "Privacy" } })
                 </div>
             </div>
         </div>

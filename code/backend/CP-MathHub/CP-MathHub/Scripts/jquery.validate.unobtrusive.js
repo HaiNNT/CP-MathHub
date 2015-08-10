@@ -334,8 +334,9 @@
             return true;
         }
 
-        match = new RegExp(params).exec(value);
-        return (match && (match.index === 0) && (match[0].length === value.length));
+        //match = new RegExp(params).exec(value);
+        match = new XRegExp(params).test(value);
+        return match;
     });
 
     $jQval.addMethod("nonalphamin", function (value, element, nonalphamin) {

@@ -2,6 +2,7 @@
 @using CP_MathHub.Core.Configuration
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.Owin;
+@using CP_MathHub.Entity
 @{
     ViewBag.Title = "Chỉnh sửa câu hỏi";
     ViewBag.MhPage = Constant.String.QuestionEditPage;
@@ -21,12 +22,11 @@
         <div class="mh-body-title">
             @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
             @Html.TextBoxFor(m => m.Title, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
-            @Html.ValidationMessageFor(model => model.Title)
-        </div>
+            @Html.ValidationMessageFor(model => model.Title,"", new { @class = "text-danger" })
         <div class="mh-ckeditor">
             @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
             @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
-            @Html.ValidationMessageFor(model => model.Content)
+            @Html.ValidationMessageFor(model => model.Content,"", new { @class = "text-danger" })
         </div>
         <div class="mh-preview">
             <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
@@ -41,7 +41,7 @@
                         @Html.Label("Ai thấy bài viết của bạn: ", new { @class = "mh-create-label" })<br />
                     </div>
                     <div class="col-sm-6 col-md-7 col-lg-8">
-                        @Html.EnumDropDownListFor(m => m.Privacy, new { @id = "mh-mainpost-privacy" })
+                        @Html.SelectForEnum(Model.Privacy, typeof(MainPostPrivacyEnum), new Dictionary<string, string> { { "id", "mh-mainpost-privacy" }, { "name", "Privacy" } })
                     </div>
                 </div>
             </div>
