@@ -538,6 +538,10 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public ActionResult UpdateProfile([ModelBinder(typeof(BindingHelper))]ProfileViewModel model, string Property, string Image = "")
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/ProfileView", model);
+            }
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
 

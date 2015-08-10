@@ -10,6 +10,7 @@ namespace CP_MathHub
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Content/js/jquery-{version}.js",
+                        "~/Scripts/xregexp-all-min.js",
                         "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
