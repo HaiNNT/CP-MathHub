@@ -309,6 +309,10 @@ namespace CP_MathHub.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(DiscussionCreateViewModel discussionCreateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/DiscussionCreateView", discussionCreateVM);
+            }
             Discussion discussion = new Discussion();
             discussion = Mapper.Map<DiscussionCreateViewModel, Discussion>(discussionCreateVM);
             discussion.LastEditedDate = DateTime.Now;
@@ -387,6 +391,10 @@ namespace CP_MathHub.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Edit(DiscussionEditViewModel discussionEditVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/DiscussionEditView", discussionEditVM);
+            }
             Discussion discussion = dService.GetDiscussion(discussionEditVM.Id);
             if (discussion.Content == discussionEditVM.Content)
             {

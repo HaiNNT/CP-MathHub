@@ -2,6 +2,7 @@
 @model ProfileViewModel
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Service.Helpers
+@using CP_MathHub.Entity
 @{
     ViewBag.Title = Model.UserName;
     ViewBag.MhPage = Constant.String.ProfilePage;
@@ -300,15 +301,15 @@
                         <label>Trình độ</label>
                     </div>
                     <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationName[(int)Model.Profile.Education] : "")</span>
-                        @Html.EnumDropDownListFor(m => m.Profile.Education, new { @class = "mh-profile-select-edit" })
+                        <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationAndPostPrivacyName[Model.Profile.Education.ToString()] : "")</span>
+                        @Html.SelectForEnum(Model.Profile.Education, typeof(EducationEnum), new Dictionary<string, string> { {"class" , "mh-profile-select-edit" }, {"name", "Profile.Education"}})
                         <input type="hidden" name="Property" value="Education" />
                     </div>
                     <div class="col-xs-4">
                         <a href="" class="mh-profile-edit-button" mh-type="select">
                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                         </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.Profile.Education" mh-type="select">Hủy</button>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@((int)Model.Profile.Education)" mh-type="select">Hủy</button>
                         <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>

@@ -339,6 +339,10 @@ namespace CP_MathHub.Controllers
         [BannedUser]
         public ActionResult Create(ArticleCreateViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/BlogCreateView", model);
+            }
             Article article = new Article();
             article = Mapper.Map<ArticleCreateViewModel, Article>(model);
             article.UserId = User.Identity.GetUserId<int>();
@@ -414,6 +418,10 @@ namespace CP_MathHub.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Edit(ArticleEditViewModel articleEditVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Views/BlogEditView", articleEditVM);
+            }
             Article article = bService.GetArticle(articleEditVM.Id);
             if (article.Content == articleEditVM.Content)
             {

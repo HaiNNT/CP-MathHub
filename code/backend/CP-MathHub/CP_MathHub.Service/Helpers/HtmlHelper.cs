@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using CP_MathHub.Entity;
+using CP_MathHub.Core.Configuration;
 
 namespace CP_MathHub.Service.Helpers
 {
@@ -254,6 +255,30 @@ namespace CP_MathHub.Service.Helpers
 
             label.InnerHtml = input.ToString(TagRenderMode.SelfClosing) + display;
             return label.ToString(TagRenderMode.Normal);
+        }
+        public static MvcHtmlString SelectForEnum(this HtmlHelper htmlHelper, Enum mhEnum, Type type, IDictionary<string, string> htmlAttributes)
+        {
+            var select = new TagBuilder("select");
+            foreach (KeyValuePair<string, string> attr in htmlAttributes)
+            {
+                select.MergeAttribute(attr.Key, attr.Value);
+            }
+            foreach ( var e in Enum.GetValues(type)) // never ye mind about languages
+            {
+                TagBuilder option = new TagBuilder("option");
+                option.MergeAttribute("value", ((int)e)+"");
+
+                if (mhEnum.ToString() == e.ToString())
+                {
+                    option.MergeAttribute("selected", "selected");
+                }
+
+                option.InnerHtml = Constant.Account.Dictionary.EducationAndPostPrivacyName[e.ToString()];
+                // And now, the money-code:
+                select.InnerHtml += option.ToString();
+            }
+
+            return MvcHtmlString.Create(select.ToString(TagRenderMode.Normal));
         }
         public static int GetMainPostIdOfNormalPost(this HtmlHelper html, Post post)
         {
