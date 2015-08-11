@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using System.Globalization;
 using CP_MathHub.Models.Account;
 using CP_MathHub.Entity;
+using System.ComponentModel;
 
 namespace CP_MathHub.Helper
 {
-    public class BindingHelper : DefaultModelBinder
+    public class ProfileViewModelBinder : DefaultModelBinder
     {
         // protected override object GetPropertyValue(ControllerContext controllerContext,
         //ModelBindingContext bindingContext,
@@ -35,7 +36,7 @@ namespace CP_MathHub.Helper
         //     //let the default model binder do it's thing
         //     return base.GetPropertyValue(controllerContext, bindingContext, propertyDescriptor, propertyBinder);
         // }
-        protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, System.ComponentModel.PropertyDescriptor propertyDescriptor)
+        protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
         {
             if (propertyDescriptor.Name == "Profile")
             {
@@ -66,5 +67,22 @@ namespace CP_MathHub.Helper
 
         }
     }
-   
+    public class LoginViewModelBinder : DefaultModelBinder
+    {
+        protected override bool OnPropertyValidating(ControllerContext controllerContext,
+                                                    ModelBindingContext bindingContext,
+                                                    PropertyDescriptor propertyDescriptor,
+                                                    object value)
+        {
+            if (propertyDescriptor.Name == "ConfirmPassword" ||
+                propertyDescriptor.Name == "Email")
+            {
+                return true;
+            }
+            else
+            {
+                return base.OnPropertyValidating(controllerContext, bindingContext, propertyDescriptor, value);
+            }
+        }
+    }
 }

@@ -24,7 +24,7 @@
             <a href="@Url.Action("MyProfile")" class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
             <a href="@Url.Action("Friend")" class="btn btn-danger btn-sm">Bạn bè</a>
             <a href="@Url.Action("MyActivity")" class="btn btn-danger btn-sm">Hoạt động</a>
-            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a> 
+            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a>
         </div>
     </div>
 </div>
@@ -80,32 +80,32 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Tài khoản</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.User.UserName</span>
-                        @* @Html.EditorFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })*@
-                    </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Tài khoản</label>
                 </div>
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Email</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Email</span>
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.User.UserName</span>
+                    @* @Html.EditorFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })*@
                 </div>
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Điểm thưởng</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Reputation != null ? @Model.Reputation : 0)</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Email</label>
                 </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Email</span>
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Điểm thưởng</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(Model.Reputation != null ? @Model.Reputation : 0)</span>
+                    <i class="fa fa-circle mh-reputation-icon"></i>
+                </div>
+            </div>
             @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
             {
                 <div class="row mh-profile-info-row">
@@ -143,7 +143,7 @@
     <div>
         <h3>Thông tin cơ bản</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
@@ -302,7 +302,7 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationAndPostPrivacyName[Model.Profile.Education.ToString()] : "")</span>
-                        @Html.SelectForEnum(Model.Profile.Education, typeof(EducationEnum), new Dictionary<string, string> { {"class" , "mh-profile-select-edit" }, {"name", "Profile.Education"}})
+                        @Html.SelectForEnum(Model.Profile.Education, typeof(EducationEnum), new Dictionary<string, string> { { "class", "mh-profile-select-edit" }, { "name", "Profile.Education" } })
                         <input type="hidden" name="Property" value="Education" />
                     </div>
                     <div class="col-xs-4">

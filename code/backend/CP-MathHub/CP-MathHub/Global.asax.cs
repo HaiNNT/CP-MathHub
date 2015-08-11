@@ -34,7 +34,9 @@ namespace CP_MathHub
             Mapper.Initialize(a => profiles.ToList().ForEach(a.AddProfile));
 
             // Initalize Binding Helper for binding model
-            ModelBinders.Binders.Add(typeof(ProfileViewModel), new BindingHelper());
+            ModelBinders.Binders.Add(typeof(ProfileViewModel), new ProfileViewModelBinder());
+            ModelBinders.Binders.Add(typeof(LoginViewModel), new LoginViewModelBinder());
+
         }
     }
 }
