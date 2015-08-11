@@ -271,7 +271,7 @@ namespace CP_MathHub.Service.Helpers
                 TagBuilder option = new TagBuilder("option");
                 option.MergeAttribute("value", ((int)e)+"");
 
-                if (mhEnum.ToString() == e.ToString())
+                if (mhEnum != null && mhEnum.ToString() == e.ToString())
                 {
                     option.MergeAttribute("selected", "selected");
                 }
