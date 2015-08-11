@@ -216,7 +216,7 @@ function loadConversationDetail(item, id) {
 	                  e.preventDefault();
 	                  e.stopPropagation();
 	                  if ($(this).val().trim() != "") {
-	                      chat.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
+	                      realTime.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
 	                      $(this).val("").focus();
 	                  }
 	              }
