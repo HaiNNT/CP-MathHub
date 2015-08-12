@@ -152,6 +152,7 @@
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.FullName</span>
                         @Html.TextBoxFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="FullName" />
                     </div>
                     <div class="col-xs-4">
@@ -209,7 +210,7 @@
     <div>
         <h3>Thông tin liên hệ</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
@@ -229,7 +230,7 @@
                     </div>
                 </div>
             }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
@@ -274,7 +275,7 @@
     <div>
         <h3>Thông tin khác</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
@@ -309,12 +310,12 @@
                         <a href="" class="mh-profile-edit-button" mh-type="select">
                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                         </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@((int)Model.Profile.Education)" mh-type="select">Hủy</button>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@((int?)Model.Profile.Education)" mh-type="select">Hủy</button>
                         <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>
             }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
@@ -335,7 +336,7 @@
                     </div>
                 </div>
             }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
+            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { role = "form" }))
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-3">
