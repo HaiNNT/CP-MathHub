@@ -122,6 +122,7 @@
                                 <div class="mh-login-register-button">
                                     <button type="submit" class="btn btn-info">Đăng nhập</button>
                                 </div>
+                                <span class="text-danger">@ViewBag.Message</span>
                             }
                         </div>
                     </div>
@@ -158,6 +159,7 @@
                                     @*<input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />*@
                                     @Html.TextBoxFor(m => m.Username, new { @class = "mh-login-mathHub-username", @placeholder = "Tên đăng nhập" })
                                     @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                                    <span class="text-danger">@ViewBag.Message</span>
                                     <i class="fa fa-user mh-mathHub-login_register-icon"></i>
                                 </div>
                                 <div class="mh-login_register-div">
@@ -180,10 +182,8 @@
                                 </div>
                                 <div>
                                     <div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Tôi đồng ý với các
-                                            </label>
+                                        <div>
+                                            Khi nhấn đăng ký nghĩa là bạn đã đồng ý với các
                                             <a data-toggle="modal" data-target=".bs-example-modal-lg">
                                                 điều khoản sử dụng
                                             </a>
