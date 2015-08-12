@@ -1638,3 +1638,7 @@ footer > .container > .row {
     text-align: center;
 }
 /* Rule: end */
+
+.mh-body-page {
+    height: 275px;
+}
