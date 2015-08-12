@@ -560,24 +560,25 @@ a {
 }
 
 .mh-profile > a {
-    width: 60px;
+    width: 50px;
     float: left;
-    margin-left: 10%;
+    margin-left: 3%;
 }
 
 .mh-profile > div {
     width: 50%;
     float: left;
-    margin-left: 10px;
-    margin-top: 5px;
+    margin-left: 0px;
+    margin-top: 0px;
 }
 
 .mh-profile > div > a {
-    font-size: 15pt;
+    font-size: 9pt;
+    font-weight: bold;
 }
 
 .mh-profile > div > div > span {
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 .mh-table-info a {
