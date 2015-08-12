@@ -20,21 +20,7 @@ namespace CP_MathHub.Models.Account
         public Nullable<UserStatusEnum> Status { get; set; }
         [RegularExpression(@"^[0-9\s]*$", ErrorMessage="Số điện thoại không hợp lệ.")]
         public string PhoneNumber { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-        //[DataType(DataType.Password)]
-        //[Compare("Password", ErrorMessage = "Xác nhận mật khẩu không đúng")]
-        public string OldPassword { get; set; }
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
-        public string NewPassword { get; set; }
-        [DataType(DataType.Password)]
-        [Display(Name = "Xác nhận mật khẩu")]
-        [Compare("NewPassword", ErrorMessage = "Xác nhận mật khẩu không đúng")]
-        public string ConfirmPassword { get; set; }
-
+        public ChangePasswordViewModel Password { get; set; }
         public Profile Profile { get; set; }
         [StringLength(30, MinimumLength=5, ErrorMessage="Họ tên từ 5 đến 30 ký tự.")]
         public string FullName { get; set; }
@@ -51,6 +37,10 @@ namespace CP_MathHub.Models.Account
         public int FriendNumber { get; set; }
         public FriendStatusEnum RequestStatus { get; set; }
         public bool FollowStatus { get; set; }
+        public ProfileViewModel()
+        {
+            Password = new ChangePasswordViewModel();
+        }
     }
 
     public enum FriendStatusEnum : int

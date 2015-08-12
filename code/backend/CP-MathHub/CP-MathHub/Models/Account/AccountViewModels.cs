@@ -59,7 +59,7 @@ namespace CP_MathHub.Models.Account
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
-        [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu gồm từ 6 đến 100 ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
@@ -83,7 +83,7 @@ namespace CP_MathHub.Models.Account
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
-        [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu gồm từ 6 đến 100 ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
@@ -105,7 +105,7 @@ namespace CP_MathHub.Models.Account
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mật khẩu gồm từ 6 đến 100 ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
