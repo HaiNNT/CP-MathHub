@@ -206,6 +206,7 @@ namespace CP_MathHub.Core.Configuration
             {
                 public static Dictionary<int, string> GenderName = new Dictionary<int, string> { { 1, "Nam" }, { 2, "Nữ" }, { 0, "Khác" } };
                 public static Dictionary<string, string> EducationAndPostPrivacyName = new Dictionary<string, string> { { "PrimarySchool", "Cấp 1" }, { "SecondarySchool", "Cấp 2" }, { "HighSchool", "Cấp 3" }, { "Student", "Sinh viên" }, { "Bachelor", "Cử nhân" }, { "Master", "Thạc sĩ" }, { "Doctor", "Tiến sĩ" }, { "Professor", "Giáo sư" }, { "Others", "Khác" }, { "Everyone", "Mọi người" }, { "Friend", "Bạn bè" }, { "Invited", "Người được mời" } };
+                public static Dictionary<int, string> EducationName = new Dictionary<int, string> { { 1, "Cấp 1" }, { 2, "Cấp 2" }, { 3, "Cấp 3" }, { 4, "Sinh viên" }, { 5, "Cử nhân" }, { 6, "Thạc sĩ" }, { 7, "Tiến sĩ" }, { 8, "Giáo sư" }, { 0, "Khác" } };
                 public static Dictionary<int, string> RequestSend = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn của bạn bè" } };
                 public static Dictionary<int, string> SeenBlog = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn bè" }, { 3, "Bạn của bạn bè" } };
                 public static Dictionary<int, string> ReportType = new Dictionary<int, string> {{1,"Câu hỏi trùng"}, {2,"Sử dụng từ ngữ không phù hợp"}, {3,"Bình luận spam"},

@@ -329,7 +329,7 @@ function ManageInfracMainPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8]
+            'aTargets': [8,9]
         }
         ]
     });
@@ -390,7 +390,7 @@ function ManageInfracNormalPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8]
+            'aTargets': [8,9]
         }
         ]
     });

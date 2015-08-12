@@ -199,6 +199,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account\AccountViewModels.cs" />
     <Compile Include="Models\Account\ActivityViewModel.cs" />
+    <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\FriendViewModel.cs" />
     <Compile Include="Models\Account\IdentityModels.cs" />
     <Compile Include="Models\Account\PrivacyViewModel.cs" />
@@ -890,6 +891,7 @@
     <Content Include="Views\Admin\Views\ManageContactView.cshtml" />
     <Content Include="Views\Home\Rule.cshtml" />
     <Content Include="Views\Account\Partials\_NotificationPartialView.cshtml" />
+    <Content Include="Views\Account\Partials\_ChangePasswordPartialView.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

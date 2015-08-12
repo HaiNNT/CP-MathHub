@@ -1,7 +1,7 @@
 ﻿@model CP_MathHub.Models.Common.ProfileWidgetViewModel
            @using CP_MathHub.Entity
 <div class="mh-profile row">
-    <a href="#"><img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-image"></a>
+    <a href="#"><img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar"></a>
     @*<a href="@Url.Action("Index", "Account")"><img src="@Model.Avatar.Url"></a>*@
     <div>
         <a href="#" style="@(Model.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.Username</a>

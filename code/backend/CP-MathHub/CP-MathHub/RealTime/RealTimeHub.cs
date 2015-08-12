@@ -192,6 +192,14 @@ namespace CP_MathHub.RealTime
             }
         }
 
+        public void GetNewMessageNum()
+        {
+            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), Context.User.Identity.GetUserId<int>()))
+            {
+                Clients.Caller.notifyNewMessage(rService.CountNewMessageNotification());
+            }
+        }
+
         #endregion
 
     }

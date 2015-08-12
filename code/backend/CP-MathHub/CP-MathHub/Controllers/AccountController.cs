@@ -116,10 +116,10 @@ namespace CP_MathHub.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login([ModelBinder(typeof(LoginViewModelBinder))]LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
 
             // This doen't count login failures towards lockout only two factor authentication
             // To enable password failures to trigger lockout, change to shouldLockout: true
@@ -135,9 +135,11 @@ namespace CP_MathHub.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return View(model);
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return View(model);
             }
         }
@@ -219,7 +221,7 @@ namespace CP_MathHub.Controllers
                 }
                 AddErrors(result);
             }
-
+            ViewBag.Message = "Tên tài khoản đã được sử dụng.";
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -548,7 +550,7 @@ namespace CP_MathHub.Controllers
             switch (Property)
             {
                 case "FullName":
-                    user.Profile.FullName = model.Profile.FullName;
+                    user.Profile.FullName = model.FullName;
                     break;
                 case "Gender":
                     user.Profile.Gender = model.Profile.Gender;
@@ -557,7 +559,7 @@ namespace CP_MathHub.Controllers
                     user.Profile.Birthday = model.Profile.Birthday != null ? model.Profile.Birthday : DateTime.Now;
                     break;
                 case "Address":
-                    user.Profile.Address = model.Profile.Address;
+                    user.Profile.Address = model.Address;
                     break;
                 case "PhoneNumber":
                     user.PhoneNumber = model.PhoneNumber;
@@ -569,7 +571,7 @@ namespace CP_MathHub.Controllers
                     user.Profile.Facebook = model.Profile.Facebook;
                     break;
                 case "School":
-                    user.Profile.School = model.Profile.School;
+                    user.Profile.School = model.School;
                     break;
                 case "Education":
                     user.Profile.Education = model.Profile.Education;
@@ -580,16 +582,6 @@ namespace CP_MathHub.Controllers
                 case "Summary":
                     user.Profile.Summary = model.Profile.Summary;
                     break;
-                case "Password":
-                    //PasswordHasher hash = new PasswordHasher();
-                    if (UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword).Succeeded)
-                    {
-                        return RedirectToAction("MyProfile");
-                    }
-                    else
-                    {
-                        return RedirectToAction("MyProfile");
-                    }
                 //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
                 //    && model.NewPassword == model.ConfirmPassword)
                 //{
@@ -622,7 +614,20 @@ namespace CP_MathHub.Controllers
             aService.UpdateUser(user);
             return RedirectToAction("MyProfile");
         }
-
+        //Post: Account/ChangePassword
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("MyProfile");
+            }
+            else
+            {
+                ViewBag.Message = "Mật khẩu không đúng.";
+                return MyProfile();
+            }
+        }
         //Get: /Account/UserProfile
         public ActionResult UserProfile(int userId)
         {
