@@ -50,11 +50,12 @@ namespace CP_MathHub.Models.Account
         public bool RememberMe { get; set; }
 
         [Required]
+        [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Địa chỉ Email không hợp lệ.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -73,11 +74,12 @@ namespace CP_MathHub.Models.Account
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Địa chỉ Email không hợp lệ.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -99,7 +101,7 @@ namespace CP_MathHub.Models.Account
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage="Địa chỉ Email không hợp lệ.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

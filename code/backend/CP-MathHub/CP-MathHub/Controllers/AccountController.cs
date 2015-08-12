@@ -530,6 +530,7 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+            model.Password = user.PasswordHash;
             ViewBag.System = Constant.String.ProfileSystem;
             return View("Views/ProfileView", model);
         }
@@ -548,7 +549,7 @@ namespace CP_MathHub.Controllers
             switch (Property)
             {
                 case "FullName":
-                    user.Profile.FullName = model.Profile.FullName;
+                    user.Profile.FullName = model.FullName;
                     break;
                 case "Gender":
                     user.Profile.Gender = model.Profile.Gender;
@@ -557,7 +558,7 @@ namespace CP_MathHub.Controllers
                     user.Profile.Birthday = model.Profile.Birthday != null ? model.Profile.Birthday : DateTime.Now;
                     break;
                 case "Address":
-                    user.Profile.Address = model.Profile.Address;
+                    user.Profile.Address = model.Address;
                     break;
                 case "PhoneNumber":
                     user.PhoneNumber = model.PhoneNumber;
@@ -569,7 +570,7 @@ namespace CP_MathHub.Controllers
                     user.Profile.Facebook = model.Profile.Facebook;
                     break;
                 case "School":
-                    user.Profile.School = model.Profile.School;
+                    user.Profile.School = model.School;
                     break;
                 case "Education":
                     user.Profile.Education = model.Profile.Education;
@@ -582,13 +583,16 @@ namespace CP_MathHub.Controllers
                     break;
                 case "Password":
                     //PasswordHasher hash = new PasswordHasher();
-                    if (UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword).Succeeded)
+                    IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
                     {
-                        return RedirectToAction("MyProfile");
+                        ViewBag.Message = "Bạn đã thay đổi mật khẩu thành công.";
+                        return MyProfile();
                     }
                     else
                     {
-                        return RedirectToAction("MyProfile");
+                        ViewBag.Message = "Mật khẩu không đúng.";
+                        return MyProfile();
                     }
                 //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
                 //    && model.NewPassword == model.ConfirmPassword)

@@ -17,23 +17,24 @@
 </div>
 @Html.Partial("Partials/_NavPartialView")
 <div class="mh-body-content-mid">
-    @using (Html.BeginForm("Edit", "Question", FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Question", FormMethod.Post, new { @role = "form" }))
     {
         <div class="mh-body-title">
             @Html.Label("Tiêu đề:", new { @class = "mh-create-label" })<br />
             @Html.TextBoxFor(m => m.Title, new { @class = "mh-create-input", @placeholder = "Nhập tiêu đề..." })
-            @Html.ValidationMessageFor(model => model.Title,"", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
         <div class="mh-ckeditor">
             @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
             @Html.TextAreaFor(model => model.Content, new { @class = "editor", @name = "editor1", @id = "editor1", @rows = "15", @cols = "80" })
-            @Html.ValidationMessageFor(model => model.Content,"", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
         </div>
         <div class="mh-preview">
             <button type="button" class="btn btn-info mh-preview-button">Xem trước</button>
             <div class="mh-preview-content">
             </div>
         </div>
-        if (Model.UserId == User.Identity.GetUserId<int>())
+        @if (Model.UserId == User.Identity.GetUserId<int>())
         {
             <div class="mh-create-privacy">
                 <div class="row">
@@ -62,10 +63,10 @@
 {
     @if (Request.IsAuthenticated)
     {
-    @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
-    @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
-        @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
-    @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+        @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+        @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+            @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+        @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
     }
 }
 @section styles{
