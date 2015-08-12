@@ -11,7 +11,7 @@ namespace CP_MathHub.Models.Discussion
     {
         [Required(ErrorMessage = "Bạn phải nhập tiêu đề!")]
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Tiêu đề từ 10 - 100 ký tự.")]
-        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\-\*\/\=\p{L}]*$",
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
         ErrorMessage = "Tiêu đề không được có ký tự đặt biệt.")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Bạn phải nhập nội dung!")]

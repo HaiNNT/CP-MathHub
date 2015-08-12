@@ -50,6 +50,8 @@ namespace CP_MathHub.Models.Account
 
         [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
         [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Tên tài khoản không được có ký tự đặt biệt.")]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
@@ -74,6 +76,8 @@ namespace CP_MathHub.Models.Account
     {
         [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
         [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Tên tài khoản không được có ký tự đặt biệt.")]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 

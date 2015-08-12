@@ -23,14 +23,24 @@ namespace CP_MathHub.Models.Account
         public ChangePasswordViewModel Password { get; set; }
         public Profile Profile { get; set; }
         [StringLength(30, MinimumLength=5, ErrorMessage="Họ tên từ 5 đến 30 ký tự.")]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Họ tên không được có ký tự đặt biệt.")]
         public string FullName { get; set; }
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Địa chỉ từ 10 đến 100 ký tự.")]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Địa chỉ không được có ký tự đặt biệt.")]
         public string Address { get; set; }
-        [StringLength(300, MinimumLength = 10, ErrorMessage = "Quan điểm từ 10 đến 100 ký tự.")]
-        public string School { get; set; }
+        [StringLength(300, MinimumLength = 10, ErrorMessage = "Quan điểm từ 10 đến 300 ký tự.")]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Quan điểm không được có ký tự đặt biệt.")]
+        public string ViewPoint { get; set; }       
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Tên trường từ 10 đến 100 ký tự.")]
-        public string ViewPoint { get; set; }
-        [StringLength(300, MinimumLength = 10, ErrorMessage = "Tóm tắt từ 10 đến 100 ký tự.")]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Tên trường không được có ký tự đặt biệt.")]
+        public string School { get; set; }
+        [StringLength(300, MinimumLength = 10, ErrorMessage = "Giới thiệu từ 10 đến 300 ký tự.")]
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Giới thiệu không được có ký tự đặt biệt.")]
         public string Summary { get; set; }
         public Image Avatar { get; set; }
 
