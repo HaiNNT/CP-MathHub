@@ -271,22 +271,6 @@
         <div id="notification" class="tab-pane @(ViewBag.Tab == "notifications" ? "active" : "")">
             <h4>Thông báo của bạn</h4>
             <div class="mh-profile-notifications">
-                <div class="mh-profile-notification">
-                    <a href="#">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="~/Content/img/user.jpg" alt="..." class="mh-user-icon">
-                            </div>
-                            <div class="media-body">
-                                <span class="media-heading">
-                                    User
-                                </span>
-                                <span class="mh-notifi-content"> đã trả lời câu hỏi của bạn: Tại sao đường tròn lại tập hợp một chuỗi các đường thẳng?</span><br />
-                                <span class="mh-time">58 phút trước</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
                 @Html.Partial("Partials/_NotificationPartialView", Model.NotificationList)
             </div>
         </div>

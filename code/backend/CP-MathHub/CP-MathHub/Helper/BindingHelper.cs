@@ -84,5 +84,22 @@ namespace CP_MathHub.Helper
                 return base.OnPropertyValidating(controllerContext, bindingContext, propertyDescriptor, value);
             }
         }
+
+        protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
+        {
+            if (propertyDescriptor.Name == "ConfirmPassword" ||
+                propertyDescriptor.Name == "Email")
+            {
+                var model = (LoginViewModel)bindingContext.Model;
+                model.ConfirmPassword = model.Password;
+                model.Email = "abc@gmail.com";
+            }
+            else
+            {
+                //let the default model binder do it's thing
+                base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
+            }
+
+        }
     }
 }
