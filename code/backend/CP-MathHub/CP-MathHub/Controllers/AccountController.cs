@@ -135,9 +135,11 @@ namespace CP_MathHub.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl });
                 case SignInStatus.Failure:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return View(model);
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
+                    ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return View(model);
             }
         }
@@ -219,7 +221,7 @@ namespace CP_MathHub.Controllers
                 }
                 AddErrors(result);
             }
-
+            ViewBag.Message = "Tên tài khoản đã được sử dụng.";
             // If we got this far, something failed, redisplay form
             return View(model);
         }

@@ -45,21 +45,20 @@ namespace CP_MathHub.Models.Account
 
     public class LoginViewModel
     {
-
         [Display(Name = "Ghi nhớ đăng nhập")]
         public bool RememberMe { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập tên tiêu đề.")]
         [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập Email.")]
         [EmailAddress(ErrorMessage = "Địa chỉ Email không hợp lệ.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
         [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
@@ -73,17 +72,17 @@ namespace CP_MathHub.Models.Account
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
         [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập Email.")]
         [EmailAddress(ErrorMessage = "Địa chỉ Email không hợp lệ.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập mật khẩu.")]
         [StringLength(100, ErrorMessage = "{0} phải có độ dài ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
