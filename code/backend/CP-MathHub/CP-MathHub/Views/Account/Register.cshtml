@@ -1,6 +1,6 @@
 ﻿@model CP_MathHub.Models.Account.RegisterViewModel
 @{
-    ViewBag.Title = "Đăng ký";
+    ViewBag.Title = "Đăng Nhập & Đăng Ký";
 }
 
 @*<h2>@ViewBag.Title.</h2>
@@ -141,7 +141,7 @@
                     <div class="collapse in" id="collapseExample1">
                         <div class="well">
                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role="form" }))
-                           {
+                            {
                                @Html.AntiForgeryToken()
                                 <div class="mh-login_register-div">
                                     @*<input type="text" placeholder="Tên đăng nhập" class="mh-login-mathHub-username" />*@
