@@ -383,7 +383,7 @@ namespace CP_MathHub.Controllers
                         foreach (string conId in connectionIds)
                         {
                             _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
-                        } 
+                        }
                     }
                 }
                 //    }
@@ -514,26 +514,28 @@ namespace CP_MathHub.Controllers
                         commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
 
                         Comment cm = cService.GetComment(comment.PostId);
-                        article = bService.GetArticle(cm.PostId);
-                        notification = new Notification();
-                        notification.AuthorId = _currentUserId;
-                        notification.CreatedDate = DateTime.Now;
-                        notification.Content = article.Title;
-                        notification.Seen = false;
-                        notification.Type = NotificationSettingEnum.UserComment;
-                        notification.UserId = cm.UserId;
-                        notification.Link = Url.Action("Detail", "Article", new { id = article.Id });
-                        cService.AddNotification(notification);
-
-                        using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                        if (cm.UserId != _currentUserId)
                         {
-                            IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
-                            foreach (string conId in connectionIds)
-                            {
-                                _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
-                            } 
-                        }
+                            article = bService.GetArticle(cm.PostId);
+                            notification = new Notification();
+                            notification.AuthorId = _currentUserId;
+                            notification.CreatedDate = DateTime.Now;
+                            notification.Content = article.Title;
+                            notification.Seen = false;
+                            notification.Type = NotificationSettingEnum.UserComment;
+                            notification.UserId = cm.UserId;
+                            notification.Link = Url.Action("Detail", "Article", new { id = article.Id });
+                            cService.AddNotification(notification);
 
+                            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                            {
+                                IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                                foreach (string conId in connectionIds)
+                                {
+                                    _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                                }
+                            }
+                        }
                         return PartialView("../CommonWidget/_ReplyListPartialView", commentsVM);
                     default:
                         bService.IncludeUserForComments(comments);
@@ -541,25 +543,27 @@ namespace CP_MathHub.Controllers
                         commentsVM = comments.Select(Mapper.Map<Comment, CommentViewModel>).ToList();
 
                         article = bService.GetArticle(comment.PostId);
-                        notification = new Notification();
-                        notification.AuthorId = _currentUserId;
-                        notification.CreatedDate = DateTime.Now;
-                        notification.Content = article.Title;
-                        notification.Seen = false;
-                        notification.Type = NotificationSettingEnum.UserCommentMainPost;
-                        notification.UserId = article.UserId;
-                        notification.Link = Url.Action("Detail", "Discussion", new { id = article.Id });
-                        cService.AddNotification(notification);
-
-                        using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                        if (article.UserId != _currentUserId)
                         {
-                            IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
-                            foreach (string conId in connectionIds)
-                            {
-                                _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
-                            } 
-                        }
+                            notification = new Notification();
+                            notification.AuthorId = _currentUserId;
+                            notification.CreatedDate = DateTime.Now;
+                            notification.Content = article.Title;
+                            notification.Seen = false;
+                            notification.Type = NotificationSettingEnum.UserCommentMainPost;
+                            notification.UserId = article.UserId;
+                            notification.Link = Url.Action("Detail", "Discussion", new { id = article.Id });
+                            cService.AddNotification(notification);
 
+                            using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
+                            {
+                                IEnumerable<string> connectionIds = RealTimeHub.Connections.GetConnections(notification.UserId);
+                                foreach (string conId in connectionIds)
+                                {
+                                    _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
+                                }
+                            }
+                        }
                         return PartialView("../CommonWidget/_CommentListPartialView", commentsVM);
                 }
             }
@@ -605,11 +609,13 @@ namespace CP_MathHub.Controllers
         {
             //User user = cService.GetUser(User.Identity.GetUserId<int>());
             Constant.Enum.LikeResult result = cService.Like(id, _currentUserId);
-            if (result != Constant.Enum.LikeResult.Fail && result != Constant.Enum.LikeResult.Unlike)
+            Post post = cService.GetPost(id);
+            if (post.UserId != _currentUserId &&
+                result != Constant.Enum.LikeResult.Fail &&
+                result != Constant.Enum.LikeResult.Unlike)
             {
                 //new Thread(() =>
                 //{
-                Post post = cService.GetPost(id);
                 NotificationSettingEnum notiType = default(NotificationSettingEnum);
                 int userId = 0;
                 int mainPostId = 0;
@@ -676,7 +682,7 @@ namespace CP_MathHub.Controllers
                     foreach (string conId in connectionIds)
                     {
                         _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
-                    } 
+                    }
                 }
                 //}
                 //).Start();

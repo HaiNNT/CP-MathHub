@@ -293,7 +293,7 @@ namespace CP_MathHub.Service.Services
             if (vote.Type == VoteEnum.VoteUp)
             {
                 ++post.VoteUp;
-                if (post.GetType().BaseType == typeof(Question))
+                if (post is Question)
                 {
                     _cService.PlusReputation(vote.PostId, Constant.String.ReputationQuestionUpVote);
                 }
@@ -305,7 +305,7 @@ namespace CP_MathHub.Service.Services
             else
             {
                 ++post.VoteDown;
-                if (post.GetType().BaseType == typeof(Question))
+                if (post is Question)
                 {
                     _cService.PlusReputation(vote.PostId, Constant.String.ReputationQuestionDownVote);
                 }

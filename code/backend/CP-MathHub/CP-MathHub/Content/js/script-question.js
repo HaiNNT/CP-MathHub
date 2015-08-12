@@ -222,7 +222,7 @@ function searchTag() {
 function commentPost() {
     $(".mh-form-input-comment").each(function () {
         var input = $(this);
-        var list = $(input.parent().siblings(".mh-comment-list")[2]);
+        var commentDiv = $(".mh-comment");
         input.keypress(function (e) {
             if (e.keyCode === 13) {
                 var content = input.val();
@@ -236,7 +236,7 @@ function commentPost() {
                 })
                 .done(function (msg) {
                     if (msg != "\n") {
-                        list.append($(msg));
+                        commentDiv.html(msg);
                         input.val("");
                     }
                 })

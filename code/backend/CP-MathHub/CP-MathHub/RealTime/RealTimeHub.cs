@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using CP_MathHub.Entity;
 using CP_MathHub.Core.Interfaces.Services;
 using CP_MathHub.Service.Services;
@@ -15,12 +16,14 @@ namespace CP_MathHub.RealTime
     [Authorize]
     public class RealTimeHub : Hub
     {
-        private readonly static ConnectionMapping<int> _connections = new ConnectionMapping<int>();
-        public static ConnectionMapping<int> Connections { get { return _connections; } }
-        public void GetOnlineUser()
+        private readonly static ConnectionMapping<int, int> _connections = new ConnectionMapping<int, int>();
+        public static ConnectionMapping<int, int> Connections { get { return _connections; } }
+        public void GetOnlineFriends()
         {
-            // Call the addNewMessageToPage method to update clients.
-            Clients.All.showOnlineUser(_connections.GetListUser(), _connections.Count);
+            //Show all online users
+            Clients.Caller.showOnlineFriends(JsonConvert.SerializeObject(_connections.GetOnlineFriendConversationIds(
+                                                 Context.User.Identity.GetUserId<int>()
+                                            ), Formatting.Indented));
         }
         public void CheckOnline(int id)
         {
@@ -59,9 +62,15 @@ namespace CP_MathHub.RealTime
                 List<Conversation> conversations = rService.GetConversations(Context.User.Identity.GetUserId<int>());
                 foreach (Conversation conversation in conversations)
                 {
+                    _connections.AddUserToConversation(conversation.Id, Context.User.Identity.GetUserId<int>());
                     JoinConversation(conversation.Id + "");
                     CheckOnline(conversation.Id);
+                    Clients.OthersInGroup(conversation.Id + "").getOnlineFriends();
                 }
+                //Show all online users
+                Clients.Caller.showOnlineFriends(JsonConvert.SerializeObject(_connections.GetOnlineFriendConversationIds(
+                                     Context.User.Identity.GetUserId<int>()
+                                ), Formatting.Indented));
                 #endregion
             }
             return base.OnConnected();
@@ -74,7 +83,10 @@ namespace CP_MathHub.RealTime
                 List<Conversation> conversations = rService.GetConversations(Context.User.Identity.GetUserId<int>());
                 foreach (Conversation conversation in conversations)
                 {
+                    _connections.RemoveUserFromConversation(conversation.Id, Context.User.Identity.GetUserId<int>());
                     CheckOnline(conversation.Id);
+                    //Show all online users
+                    Clients.OthersInGroup(conversation.Id + "").getOnlineFriends();
                 }
             }
             return base.OnDisconnected(stopCalled);
@@ -105,9 +117,15 @@ namespace CP_MathHub.RealTime
                 List<Conversation> conversations = rService.GetConversations(user.Id);
                 foreach (Conversation conversation in conversations)
                 {
+                    _connections.AddUserToConversation(conversation.Id, Context.User.Identity.GetUserId<int>());
                     JoinConversation(conversation.Id + "");
                     CheckOnline(conversation.Id);
+                    Clients.OthersInGroup(conversation.Id + "").getOnlineFriends();
                 }
+                //Show all online users
+                Clients.Caller.showOnlineFriends(JsonConvert.SerializeObject(_connections.GetOnlineFriendConversationIds(
+                                     Context.User.Identity.GetUserId<int>()
+                                ), Formatting.Indented));
                 #endregion
             }
             return base.OnReconnected();

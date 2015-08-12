@@ -79,16 +79,16 @@ namespace CP_MathHub.Service.Helpers
                     result = "bạn đã nhận được danh hiệu:";
                     break;
                 case NotificationSettingEnum.Banned:
-                    result = "bạn đã bị khóa tài khoản:";
+                    result = "đã khóa tài khoản của bạn:";
                     break;
                 case NotificationSettingEnum.BlockedMainPost:
-                    result = "bạn đã bị khóa bài:";
+                    result = "đã khóa bài của bạn:";
                     break;
                 case NotificationSettingEnum.BlockedComment:
-                    result = "bạn đã bị khóa bình luận trong bài:";
+                    result = "đã khóa khóa bình luận của bạn trong bài:";
                     break;
                 case NotificationSettingEnum.BlockedAnswer:
-                    result = "bạn đã bị khóa câu trả lời trong câu hỏi:";
+                    result = "đã khóa câu trả lời của bạn trong câu hỏi:";
                     break;
                 case NotificationSettingEnum.VotedQuestion:
                     result = "đã bình chọn câu hỏi của bạn:";
@@ -97,7 +97,7 @@ namespace CP_MathHub.Service.Helpers
                     result = "đã bình chọn câu trả lời của bạn tại:";
                     break;
                 case NotificationSettingEnum.SettedRole:
-                    result = "bạn được phân quyền:";
+                    result = "đã phân quyền cho bạn:";
                     break;
                 default:
                     result = "bạn có thông báo mới từ hệ thống:";

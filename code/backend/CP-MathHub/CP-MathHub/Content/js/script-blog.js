@@ -273,14 +273,16 @@ function seemore(obj) {
 function commentPost() {
     $(".mh-input-comment").each(function () {
         var input = $(this);
+        var type = input.siblings(".type").val();
         var list = $(input.parents(".mh-input-commnent-div").siblings(".mh-comment-list-full"));
-        var commentNum = parseInt($(".comment").text());
+        //var commentNum = parseInt(input.parents(".mh-discussion-post").find(".comment").text());
         input.keypress(function (e) {
             if (e.keyCode === 13 && commentReady) {
                 commentReady = false;
                 var content = input.val();
                 var postId = input.siblings(".post-id").val();
-                var type = input.siblings(".type").val();
+                console.log(content);
+                console.log(postId);
                 $.ajax({
                     method: "Post",
                     url: "/Blog/PostComment",
@@ -290,7 +292,10 @@ function commentPost() {
 				    if (msg != "\n") {
 				        list.html("");
 				        list.append($(msg));
-				        parseInt($(".comment").text(++commentNum));
+				        if (type != "reply") {
+				            var count = $(list).find(".media mh-comment-div").length;
+				            input.parents(".mh-discussion-post").find(".comment").text(count);
+				        }
 				        input.val("");
 				        commentPost();
 				        commentReady = true;

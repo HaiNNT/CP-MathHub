@@ -200,6 +200,16 @@
             }
         }
 
+        realTime.client.showOnlineFriends = function (json) {
+            var data = JSON.parse(json);
+            console.log(json);
+            console.log(data);
+        }
+
+        realTime.client.getOnlineFriends = function () {
+            realTime.server.getOnlineFriends();
+        }
+
         // Start the connection.
         $.connection.hub.start().done(function () {
             $('.mh-profile-chat-footer-textarea').keypress(function (e) {

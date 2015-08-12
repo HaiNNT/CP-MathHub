@@ -64,7 +64,9 @@
             </div>
         </div>
     </div>
-    @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id }, { "Status", Model.Status } })
+    <div class="panel-body mh-comment">
+        @Html.Partial("Partials/_CommentListPartialView", Model.Comments, new ViewDataDictionary { { "PostId", Model.Id }, { "Status", Model.Status } })
+    </div>
 </div>
 
 @Html.Partial("Partials/_AnswerPartialView", Model.AnswerVMs, new ViewDataDictionary { { "Status", Model.Status }, {"UserId", Model.UserId} })
