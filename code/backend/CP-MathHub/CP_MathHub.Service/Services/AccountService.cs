@@ -325,7 +325,7 @@ namespace CP_MathHub.Service.Services
                     break;
                 case Constant.Account.String.FollowerTab:
                     friends = _dal.Repository<User>().Get(
-                            ( u => u.Followees.Where(t => t.Id == userId).Count() >0)
+                            (u => u.Followees.Where(t => t.Id == userId).Count() > 0)
                             , (u => u.OrderByDescending(m => m.UserName))
                             , ""
                             , skip
@@ -333,7 +333,7 @@ namespace CP_MathHub.Service.Services
                     break;
                 case Constant.Account.String.FolloweeTab:
                     friends = _dal.Repository<User>().Get(
-                            ( u => u.Followers.Where(t => t.Id == userId).Count() >0)
+                            (u => u.Followers.Where(t => t.Id == userId).Count() > 0)
                             , (u => u.OrderByDescending(m => m.UserName))
                             , ""
                             , skip
@@ -351,6 +351,7 @@ namespace CP_MathHub.Service.Services
             }
             return friends;
         }
+
         public List<Tag> GetFavoriteTags(int userId, int take = 0)
         {
             List<Tag> tags = new List<Tag>();
@@ -370,14 +371,14 @@ namespace CP_MathHub.Service.Services
             //    }
             //}
             tags = posts.Select(p => p.Tags).SelectMany(t => t).GroupBy(t => t.Id).Select(t => t.FirstOrDefault()).ToList();
-            if(take == 0)
+            if (take == 0)
             {
                 return tags;
             }
             else
             {
                 return tags.Skip(0).Take(take).ToList();
-            }           
+            }
         }
         public List<User> SearchFriend(string name, int userId, int skip = 0, int take = 0)
         {

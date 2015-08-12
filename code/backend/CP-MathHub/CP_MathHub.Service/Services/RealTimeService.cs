@@ -57,7 +57,7 @@ namespace CP_MathHub.Service.Services
             conversations = _dal.Repository<Conversation>().Get(
                     (c => c.Attendances.Count(a => a.UserId == userId) > 0 &&
                           c.Attendances.SelectMany(a => a.Messages).Count() > 0),
-                    (c => c.OrderByDescending(m => m.CreatedDate)),
+                    (c => c.OrderByDescending(p => p.Attendances.SelectMany(a => a.Messages).Select(m => m.CreatedDate).FirstOrDefault())),
                     "Attendances",
                     0,
                     0

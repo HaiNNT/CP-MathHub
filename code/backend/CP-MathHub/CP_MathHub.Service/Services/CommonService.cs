@@ -272,12 +272,12 @@ namespace CP_MathHub.Service.Services
                     ++post.VoteUp;
                     _dal.Repository<Post>().Update(post);
                     _dal.Save();
-                    if (post.GetType().BaseType == typeof(Article))
+                    if (post is Article)
                     {
                         PlusReputation(id, Constant.String.ReputationArticleLike);
                         return Constant.Enum.LikeResult.Article;
                     }
-                    else if (post.GetType().BaseType == typeof(Discussion))
+                    else if (post is Discussion)
                     {
                         PlusReputation(id, Constant.String.ReputationDiscussionLike);
                         return Constant.Enum.LikeResult.Discussion;
@@ -285,7 +285,7 @@ namespace CP_MathHub.Service.Services
                     else
                     {
                         PlusReputation(id, Constant.String.ReputationCommentLike);
-                        if (((Comment)post).Post.GetType().BaseType == typeof(Comment))
+                        if (((Comment)post).Post is Comment)
                             return Constant.Enum.LikeResult.Reply;
                         else
                             return Constant.Enum.LikeResult.Comment;
@@ -297,11 +297,11 @@ namespace CP_MathHub.Service.Services
                     post.VoteUp = post.VoteUp > 0 ? --post.VoteUp : 0;
                     _dal.Repository<Vote>().Delete(vote);
                     _dal.Save();
-                    if (post.GetType().BaseType == typeof(Article))
+                    if (post is Article)
                     {
                         MinusReputation(id, Constant.String.ReputationArticleLike);
                     }
-                    else if (post.GetType().BaseType == typeof(Discussion))
+                    else if (post is Discussion)
                     {
                         MinusReputation(id, Constant.String.ReputationDiscussionLike);
                     }

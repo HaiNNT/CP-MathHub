@@ -532,7 +532,6 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
-            model.Password = user.PasswordHash;
             ViewBag.System = Constant.String.ProfileSystem;
             return View("Views/ProfileView", model);
         }
@@ -583,19 +582,6 @@ namespace CP_MathHub.Controllers
                 case "Summary":
                     user.Profile.Summary = model.Profile.Summary;
                     break;
-                case "Password":
-                    //PasswordHasher hash = new PasswordHasher();
-                    IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.OldPassword, model.NewPassword);
-                    if (result.Succeeded)
-                    {
-                        ViewBag.Message = "Bạn đã thay đổi mật khẩu thành công.";
-                        return MyProfile();
-                    }
-                    else
-                    {
-                        ViewBag.Message = "Mật khẩu không đúng.";
-                        return MyProfile();
-                    }
                 //if (hash.VerifyHashedPassword(user.PasswordHash, model.Password) == PasswordVerificationResult.Success
                 //    && model.NewPassword == model.ConfirmPassword)
                 //{
@@ -628,7 +614,20 @@ namespace CP_MathHub.Controllers
             aService.UpdateUser(user);
             return RedirectToAction("MyProfile");
         }
-
+        //Post: Account/ChangePassword
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("MyProfile");
+            }
+            else
+            {
+                ViewBag.Message = "Mật khẩu không đúng.";
+                return MyProfile();
+            }
+        }
         //Get: /Account/UserProfile
         public ActionResult UserProfile(int userId)
         {
