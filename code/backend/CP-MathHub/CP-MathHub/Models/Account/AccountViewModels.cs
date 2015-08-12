@@ -48,7 +48,7 @@ namespace CP_MathHub.Models.Account
         [Display(Name = "Ghi nhớ đăng nhập")]
         public bool RememberMe { get; set; }
 
-        [Required(ErrorMessage = "Bạn phải nhập tên tiêu đề.")]
+        [Required(ErrorMessage = "Bạn phải nhập tên tài khoản.")]
         [StringLength(12, ErrorMessage = "Tên tài khoản phải gồm từ 5 đến 12 ký tự.", MinimumLength = 5)]
         [Display(Name = "Tên tài khoản")]
         public string Username { get; set; }
