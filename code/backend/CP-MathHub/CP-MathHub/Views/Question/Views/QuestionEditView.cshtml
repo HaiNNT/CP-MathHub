@@ -34,7 +34,7 @@
             <div class="mh-preview-content">
             </div>
         </div>
-        @if (Model.UserId == User.Identity.GetUserId<int>())
+        if (Model.UserId == User.Identity.GetUserId<int>())
         {
             <div class="mh-create-privacy">
                 <div class="row">
