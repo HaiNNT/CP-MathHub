@@ -9,6 +9,7 @@ using CP_MathHub.Models.Common;
 using CP_MathHub.Models.Discussion;
 using CP_MathHub.DAL;
 using CP_MathHub.Service.Services;
+using CP_MathHub.Models.RealTime;
 
 namespace CP_MathHub.AutoMapper.AutoMapperProfile
 {
@@ -23,6 +24,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
             Mapper.CreateMap<User, UserInfoViewModel>();
             Mapper.CreateMap<User, ProfileWidgetViewModel>();
             Mapper.CreateMap<User, UserHeaderViewModel>();
+            Mapper.CreateMap<User, CP_MathHub.Models.Admin.UserHeaderViewModel>();            
             #endregion
 
             #region Tag
@@ -86,6 +88,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                 //)
                 ;
             #endregion
+
         }
     }
 }

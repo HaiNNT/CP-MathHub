@@ -51,6 +51,20 @@ namespace CP_MathHub.Service.Services
             return conversations;
         }
 
+        public List<Conversation> GetConversations(List<int> ids)
+        {
+            List<Conversation> conversations = new List<Conversation>();
+            foreach (int id in ids)
+            {
+                conversations.Add(GetConversation(id));
+            }
+            if (ids.Count == 0)
+            {
+                conversations = GetConversations(_loginUserId);
+            }
+            return conversations;
+        }
+
         public List<Conversation> GetNotificationConversations(int userId)
         {
             List<Conversation> conversations = new List<Conversation>();

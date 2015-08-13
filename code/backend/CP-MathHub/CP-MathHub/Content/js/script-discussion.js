@@ -57,7 +57,7 @@ function like(id, like) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
 	  });
 }
 
@@ -84,7 +84,7 @@ function bookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
 	  });
 }
 
@@ -111,7 +111,7 @@ function unBookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
 	  });
 }
 
@@ -205,7 +205,7 @@ function createTag() {
           }
       })
       .fail(function () {
-          alert("fail error");
+          alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
       });
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
@@ -397,9 +397,11 @@ function sendReport(id) {
             $(formId).trigger("reset");
             if (msg == "False")
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+            else
+                alert("Báo cáo vi phạm thành công");
         })
          .fail(function () {
-             alert("fail error");
+             alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
          });
 }
 
@@ -419,7 +421,7 @@ function loadEditedLog(id, type) {
          $('[data-toggle="tooltip"]').tooltip();
      })
      .fail(function () {
-         alert("fail error");
+         alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
      });
 }
 

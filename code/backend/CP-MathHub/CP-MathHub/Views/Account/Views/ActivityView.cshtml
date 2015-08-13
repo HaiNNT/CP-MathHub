@@ -4,7 +4,7 @@
 @using CP_MathHub.Service.Helpers
 @using CP_MathHub.Models.RealTime
 @{
-    ViewBag.Title = "ActivityView";
+    ViewBag.Title = "Hoạt động";
     Layout = "~/Views/Account/Layouts/_ProfileLayout.cshtml";
 }
 <div class="mh-top-content">
@@ -71,7 +71,7 @@
             </a>
         </li>
         <li role="presentation" class="@(ViewBag.Tab == "conversations" ? "active" : "")">
-            <a href="#message" aria-controls="message" role="tab" data-toggle="tab">
+            <a href="#message" onclick="scrollToBottom()" aria-controls="message" role="tab" data-toggle="tab">
                 Tin nhắn
             </a>
         </li>

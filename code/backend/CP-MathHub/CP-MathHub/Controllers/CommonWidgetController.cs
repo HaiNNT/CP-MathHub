@@ -21,7 +21,7 @@ using CP_MathHub.Models.RealTime;
 
 namespace CP_MathHub.Controllers
 {
-    
+
     public partial class CommonWidgetController : BaseController
     {
         private CPMathHubModelContainer _context;
@@ -78,6 +78,7 @@ namespace CP_MathHub.Controllers
         #region User Widget
 
         [ChildActionOnly]
+        [Authorize]
         public virtual ActionResult ProfileWidget()
         {
             ProfileWidgetViewModel profileWidgetVm = null;
@@ -88,6 +89,7 @@ namespace CP_MathHub.Controllers
             }
             return PartialView("Widgets/_ProfileWidget", profileWidgetVm);
         }
+
         [ChildActionOnly]
         public virtual ActionResult UserHeaderWidget()
         {
@@ -103,11 +105,24 @@ namespace CP_MathHub.Controllers
 
             return PartialView("Widgets/_UserHeaderWidget", userHeaderVM);
         }
+
         [ChildActionOnly]
+        [Authorize]
         public virtual ActionResult FavoriteTagWidget()
         {
             ICollection<Tag> tags = _aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
+        }
+
+        [ChildActionOnly]
+        [Authorize(Roles = Constant.String.RoleAdmin + "," + Constant.String.RoleMod)]
+        public virtual ActionResult AdminHeaderWidget()
+        {
+            CP_MathHub.Models.Admin.UserHeaderViewModel userHeaderVM;
+            User user = _cService.GetUser(User.Identity.GetUserId<int>());
+            userHeaderVM = Mapper.Map<User, CP_MathHub.Models.Admin.UserHeaderViewModel>(user);
+
+            return PartialView("../Admin/Partials/_UserHeaderPartialView", userHeaderVM);
         }
 
         //public virtual ActionResult GroupWidget()
@@ -181,23 +196,38 @@ namespace CP_MathHub.Controllers
         #endregion
 
         #region Notification
-        public virtual ActionResult FriendRequestNotification()
+        public ActionResult FriendRequestNotification()
         {
             List<User> model = _aService.GetFriends(_currentUserId, Constant.Account.String.RequestTab);
             return PartialView("Widgets/_FriendRequestNotificationPartialView", model);
         }
-        public virtual ActionResult MessageNotification()
+        public ActionResult MessageNotification()
         {
             List<Conversation> convers = _rService.GetNotificationConversations(_currentUserId);
             List<ConversationPreviewViewModel> conversations =
                 CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
             return PartialView("Widgets/_MessageNotificationPartialView", conversations);
         }
-        public virtual ActionResult ActivityNotification()
+        public ActionResult ActivityNotification()
         {
             List<Notification> model = _cService.GetNotifications();
             return PartialView("Widgets/_ActivityNotificationPartialView", model);
-        }        
+        }
+        #endregion
+
+        #region Message
+        [Authorize]
+        public ActionResult GetOnlineConversation(List<int> ids)
+        {
+            if (ids == null)
+            {
+                ids = new List<int>();
+            }
+            List<Conversation> conversations = _rService.GetConversations(ids);
+            List<ConversationPreviewViewModel> models =
+                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(conversations, _currentUserId, true);
+            return PartialView("Widgets/_ChatWidget", models);
+        }
         #endregion
     }
 }

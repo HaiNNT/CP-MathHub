@@ -230,6 +230,11 @@ function loadConversationDetail(item, id) {
 	  });
 }
 
+function scrollToBottom() {
+    var objDiv = $(".mh-profile-chat-detail")[0];
+    objDiv.scrollTop = objDiv.scrollHeight;
+}
+
 /*
     Apply Infinity loading
 */

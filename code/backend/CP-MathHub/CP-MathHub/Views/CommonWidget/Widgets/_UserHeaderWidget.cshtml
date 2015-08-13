@@ -1,6 +1,7 @@
 ﻿@model CP_MathHub.Models.Common.UserHeaderViewModel
 @using Microsoft.AspNet.Identity
 @using CP_MathHub.Entity
+@using CP_MathHub.Core.Configuration
 @if (Model != null)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -15,6 +16,10 @@
                     <li><a href="@Url.Action("MyProfile","Account")">Thông tin cá nhân</a></li>
                     <li><a href="@Url.Action("Friend","Account")">Bạn bè</a></li>
                     <li><a href="@Url.Action("MyActivity","Account")">Hoạt động</a></li>
+                    @if (User.IsInRole(Constant.String.RoleAdmin) || User.IsInRole(Constant.String.RoleMod))
+                    {
+                        <li><a href="@Url.Action("Index","Admin")">Quản lý</a></li>
+                    }
                     <li><a href="@Url.Action("Privacy","Account")">Thiết lập quyền riêng tư</a></li>
                     <li class="divider"></li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
@@ -28,7 +33,7 @@
         <li class="dropdown">
             <a href="javascript:;" onclick="@("loadFriendRequestNotification()")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <i class="fa fa-group"></i>
-                <span class="badge badge-default @(Model.CountNewFriendRequest == 0 ? "hidden" : "") id=" mh-request-number">@Model.CountNewFriendRequest</span>
+                <span class="badge badge-default @(Model.CountNewFriendRequest == 0 ? "hidden" : "")" id="mh-request-number">@Model.CountNewFriendRequest</span>
             </a>
             <ul class="dropdown-menu" role="menu" onclick="event.stopPropagation();">
                 <li>

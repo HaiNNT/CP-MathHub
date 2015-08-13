@@ -427,3 +427,7 @@ form:last-child .mh-profile-info-row {
     cursor: move;
     margin-left: 28%;
 }
+
+.mh-profile-change-password {
+    padding: 3px 5px;
+}

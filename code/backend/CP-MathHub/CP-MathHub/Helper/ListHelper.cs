@@ -13,6 +13,12 @@ namespace CP_MathHub.Helper
 {
     public static class ListHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="users"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static List<UserItemViewModel> ListUserToListUserItem(List<User> users, int userId)
         {
             List<UserItemViewModel> result = new List<UserItemViewModel>();
@@ -67,7 +73,14 @@ namespace CP_MathHub.Helper
             }
             return result;
         }
-        public static List<ConversationPreviewViewModel> ConversationsToConversationViewModels(List<Conversation> conversations, int userId)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="conversations"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public static List<ConversationPreviewViewModel> ConversationsToConversationViewModels(List<Conversation> conversations, int userId, bool isShortcut = false)
         {
             using (RealTimeService rSercive = new RealTimeService(new CPMathHubModelContainer(), userId))
             {
@@ -78,25 +91,30 @@ namespace CP_MathHub.Helper
                     model.Id = conversation.Id;
                     model.Avatar = rSercive.GetConversationAvatar(conversation);
                     model.Name = rSercive.GetConversationName(conversation);
-                    model.LastMessage = conversation.Attendances
-                                                        .Where(m => m.UserId != userId)
-                                                        .FirstOrDefault()
-                                                        .Messages
-                                                            .OrderByDescending(m => m.CreatedDate)
-                                                            .FirstOrDefault();
-                    if (model.LastMessage == default(Message))
+                    if (!isShortcut)
                     {
-                        model.LastMessage = new Message();
-                        model.LastMessage.Content = "";
+                        model.LastMessage = conversation.Attendances
+                                                                                .Where(m => m.UserId != userId)
+                                                                                .FirstOrDefault()
+                                                                                .Messages
+                                                                                    .OrderByDescending(m => m.CreatedDate)
+                                                                                    .FirstOrDefault();
+                        if (model.LastMessage == default(Message))
+                        {
+                            model.LastMessage = new Message();
+                            model.LastMessage.Content = "";
+                        }
+                        model.NewMessageNum = conversation.Attendances
+                                                            .Where(m => m.UserId != userId)
+                                                            .FirstOrDefault()
+                                                            .Messages.Count(m => m.Attendance.SeenDate <= m.CreatedDate);
                     }
-                    model.NewMessageNum = conversation.Attendances
-                                                        .Where(m => m.UserId != userId)
-                                                        .FirstOrDefault()
-                                                        .Messages.Count(m => m.Attendance.SeenDate <= m.CreatedDate);
+                    model.IsOnline = true;
                     models.Add(model);
                 }         
             return models;
             }
         }
+
     }
 }

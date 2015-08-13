@@ -1,0 +1,40 @@
+﻿@using CP_MathHub.Entity
+@using CP_MathHub.Models.RealTime
+@model List<ConversationPreviewViewModel>
+
+<div class="mh-chat-left">
+    @foreach (ConversationPreviewViewModel conversation in Model)
+    {
+        <div class="mh-chat-user">
+            <img class="mh-user-icon" src="@(conversation.Avatar != null && conversation.Avatar != "" ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="...">
+            <span>@conversation.Name</span>
+        </div>
+    }
+    <div style="clear:both"></div>
+</div>
+<div class="mh-chat-right">
+    @foreach (ConversationPreviewViewModel conversation in Model)
+    {
+        <div class="mh-chat-status">
+            <i class="fa fa-circle @(conversation.IsOnline ? "mh-chat-status-icon-on" : "mh-chat-status-icon-off")"></i>
+        </div>
+    }
+    <div style="clear:both"></div>
+</div>
+<div class="mh-chat-footer">
+    <div class="mh-chat-footer-left">
+        <i class="fa fa-search mh-chat-area-search"></i>
+        <input type="text" placeholder="Tìm kiếm..." class="mh-chat-area-input">
+    </div>
+    <div class="dropup mh-chat-footer-right">
+        <a id="chatsetting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-cog mh-chat-area-setting"></i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="chatsetting">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+        </ul>
+    </div>
+</div>
