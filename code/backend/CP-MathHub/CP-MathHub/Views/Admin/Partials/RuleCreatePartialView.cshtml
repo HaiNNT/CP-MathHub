@@ -1,6 +1,6 @@
 ﻿@model CP_MathHub.Models.Admin.RuleCreateViewModel
 
-@using (Html.BeginForm("Create", "Admin", FormMethod.Post))
+@using (Html.BeginForm("InsertRule", "Admin", FormMethod.Post, new { role = "form" }))
 {
     <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +13,9 @@
                     <label>Tên quy định:</label>
                 </div>
                 <div class="col-xs-9">
-                    <input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" value="@Model.Name"/>
+                    @*<input type="text" placeholder="Nhập tên quy định" class="mh-admin-row-input" value="@Model.Name"/>*@
+                    @Html.TextBoxFor(m => m.Name, new { @class = "mh-admin-row-input", @placeholder = "Nhập tên quy định" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row mh-admin-row">
@@ -21,7 +23,9 @@
                     <label>Miêu tả:</label>
                 </div>
                 <div class="col-xs-9">
-                    <input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" value="@Model.Description"/>
+                    @*<input type="text" placeholder="Nhập miêu tả cho quy định này" class="mh-admin-row-input" value="@Model.Description"/>*@
+                    @Html.TextBoxFor(m => m.Description, new { @class = "mh-admin-row-input", @placeholder = "Nhập miêu tả" })
+                    @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row mh-admin-row">
@@ -36,7 +40,8 @@
                                     <i class="icon-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="spinner-input form-control" maxlength="3" value="@Model.Duration">
+                            @*<input type="text" class="spinner-input form-control" maxlength="3" value="@Model.Duration">*@
+                            @Html.TextBoxFor(m => m.Duration, new { @class = "spinner-input form-control", @maxlength = "3" })
                             <div class="spinner-buttons input-group-btn">
                                 <button type="button" class="btn spinner-up btn-warning">
                                     <i class="icon-plus"></i>

@@ -14,9 +14,9 @@ namespace CP_MathHub.Models.Admin
         [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
         ErrorMessage = "Tên quy định không được có ký tự đặt biệt.")]
         public string Name { get; set; }
-        [StringLength(100, ErrorMessage = "Tên quy định từ 6 đến 100 ký tự.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Mô tả từ 6 đến 100 ký tự.", MinimumLength = 6)]
         [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
-        ErrorMessage = "Tên quy định không được có ký tự đặt biệt.")]
+        ErrorMessage = "Mô tả không được có ký tự đặt biệt.")]
         public string Description { get; set; }
         public int Duration { get; set; }
     }
