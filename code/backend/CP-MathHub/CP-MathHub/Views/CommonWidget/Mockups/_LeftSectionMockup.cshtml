@@ -1,33 +1,45 @@
 ﻿<div class="mh-table-info">
-    <div class="mh-table-info-title">Hoạt động</div>
+    <div class="mh-table-info-title">
+        <a href="">Bài yêu thích</a>
+    </div>
     <div class="mh-table-info-body">
         <a href="#">
             <div class="row mh-table-info-row">
                 <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                    Inbox
+                    Câu hỏi yêu thích
                 </div>
                 <div class="col-sm-3 col-md-3 mh-table-info-num">
-                    <span class="badge mh-num-icon">42</span>
+                    <span class="badge mh-num-icon">10</span>
                 </div>
             </div>
         </a>
         <a href="#">
             <div class="row mh-table-info-row">
                 <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                    Inbox
+                    Bài viết yêu thích
                 </div>
                 <div class="col-sm-3 col-md-3 mh-table-info-num">
-                    <span class="badge mh-num-icon">42</span>
+                    <span class="badge mh-num-icon">14</span>
                 </div>
             </div>
         </a>
         <a href="#">
             <div class="row mh-table-info-row">
                 <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
-                    Inbox
+                    Thảo luận yêu thích
                 </div>
                 <div class="col-sm-3 col-md-3 mh-table-info-num">
-                    <span class="badge mh-num-icon">42</span>
+                    <span class="badge mh-num-icon">1</span>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="row mh-table-info-row">
+                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+                    Bài viết được mời
+                </div>
+                <div class="col-sm-3 col-md-3 mh-table-info-num">
+                    <span class="badge mh-num-icon">23</span>
                 </div>
             </div>
         </a>
@@ -35,9 +47,21 @@
 </div>
 @Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
 <div class="mh-table-info">
-    <div class="mh-table-info-title">Theo dõi</div>
+    <div class="mh-table-info-title">
+        <a href="">Theo dõi</a>
+    </div>
     <div class="mh-table-info-body">
         <a href="#">
+            <div class="media">
+                <div class="media-left">
+                    <img src="~/Content/img/user.jpg" class="mh-user-small">
+                </div>
+                <div class="media-body mh-follow-user-name">
+                    nguyencuong8
+                </div>
+            </div>
+        </a>
+        @*<a href="#">
             <div class="row mh-table-info-row">
                 <div class="col-sm-3 col-md-3">
                     <img src="~/Content/img/user.jpg" class="mh-user-icon">
@@ -62,19 +86,6 @@
                     <span class="badge mh-num-icon">42</span>
                 </div>
             </div>
-        </a>
-        <a href="#">
-            <div class="row mh-table-info-row">
-                <div class="col-sm-3 col-md-3">
-                    <img src="~/Content/img/user.jpg" class="mh-user-icon">
-                </div>
-                <div class="col-sm-6 col-md-6 mh-table-info-body-letter">
-                    Inbox
-                </div>
-                <div class="col-sm-3 col-md-3 mh-table-info-num">
-                    <span class="badge mh-num-icon">42</span>
-                </div>
-            </div>
-        </a>
+        </a>*@
     </div>
 </div>
