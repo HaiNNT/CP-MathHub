@@ -17,6 +17,13 @@ namespace CP_MathHub.Core.Configuration
         /// </summary>
         public static class String
         {
+            //Role constant
+            public const string RoleAdmin = "Administrator";
+            public const string RoleMod = "Moderator";
+            public const string RoleExpert = "Expert";
+            public const string RoleUser = "User";
+
+            //System name constant
             public const string QuestionSystem = "Question";
             public const string BlogSystem = "Blog";
             public const string DiscussionSystem = "Discussion";

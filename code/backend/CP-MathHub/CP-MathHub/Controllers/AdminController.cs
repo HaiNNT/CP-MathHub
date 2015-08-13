@@ -22,7 +22,7 @@ using CP_MathHub.RealTime;
 
 namespace CP_MathHub.Controllers
 {
-    [Authorize(Roles = "Administrator,Moderator")]
+    [Authorize(Roles = Constant.String.RoleAdmin + "," + Constant.String.RoleMod)]
     public class AdminController : BaseController
     {
         private IAdminService aService;
@@ -66,7 +66,7 @@ namespace CP_MathHub.Controllers
             return View("Views/DashboardView", model);
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constant.String.RoleAdmin)]
         //Get: Admin/ManageUsers
         public ActionResult ManageUsers()
         {
@@ -125,7 +125,7 @@ namespace CP_MathHub.Controllers
             return true;
         }
         //Post: Set role for user
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constant.String.RoleAdmin)]
         [HttpPost]
         public bool SetRoleUser(SetRoleViewModel model)
         {
@@ -160,7 +160,7 @@ namespace CP_MathHub.Controllers
             }
             return true;
         }
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constant.String.RoleAdmin)]
         public ActionResult ManageRule()
         {
             List<BanReason> list = aService.GetBanReasons();
@@ -170,7 +170,7 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageRulePage;
             return View("Views/ManageRulesView", model);
         }
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constant.String.RoleAdmin)]
         [HttpPost]
         public bool EditRule(RuleEditViewModel model)
         {
@@ -183,7 +183,7 @@ namespace CP_MathHub.Controllers
             return true;
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constant.String.RoleAdmin)]
         [HttpPost]
         public ActionResult InsertRule(RulesViewModel model)
         {
@@ -443,7 +443,6 @@ namespace CP_MathHub.Controllers
             post.Status = PostStatusEnum.Active;
             return aService.UpdatePost(post);
         }
-        [Authorize(Roles = "Administrator,Moderator")]
         //Admin/ManageInfracPosts
         public ActionResult ManageInfracPosts(List<int> MainPostFilters = null, List<int> NormalPostFilters = null, string tab = "mainposts")
         {

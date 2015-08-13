@@ -348,8 +348,11 @@ namespace CP_MathHub.Controllers
             article.UserId = User.Identity.GetUserId<int>();
             article.Tags = cService.GetTags(model.TagIds);
             article.Invitations = cService.GetInvitations(model.InviteIds, User.Identity.GetUserId<int>());
-            article.Status = PostStatusEnum.Active;
-
+            if (article.PublicDate.Value.Date == DateTime.Now.Date)
+            {
+                article.PublicDate = DateTime.Now;
+            }
+            
             bService.InsertArticle(article);
 
             EditedLog editedlog = new EditedLog();

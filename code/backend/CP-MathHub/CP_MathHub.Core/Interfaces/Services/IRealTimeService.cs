@@ -17,6 +17,13 @@ namespace CP_MathHub.Core.Interfaces.Services
         List<Conversation> GetConversations(int userId);
 
         /// <summary>
+        /// Get all conversations by list id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        List<Conversation> GetConversations(List<int> ids);
+
+        /// <summary>
         /// Get all conversations that have nessage
         /// </summary>
         /// <param name="userId"></param>

@@ -224,6 +224,7 @@
     <Compile Include="Models\Admin\TagEditViewModel.cs" />
     <Compile Include="Models\Admin\TagViewModel.cs" />
     <Compile Include="Models\Admin\UnBlockUserViewModel.cs" />
+    <Compile Include="Models\Admin\UserHeaderViewModel.cs" />
     <Compile Include="Models\Blog\ArticleCreateViewModel.cs" />
     <Compile Include="Models\Blog\ArticleDetailViewModel.cs" />
     <Compile Include="Models\Blog\ArticleEditViewModel.cs" />
@@ -892,6 +893,8 @@
     <Content Include="Views\Home\Rule.cshtml" />
     <Content Include="Views\Account\Partials\_NotificationPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_ChangePasswordPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\_UserHeaderPartialView.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_ChatWidget.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

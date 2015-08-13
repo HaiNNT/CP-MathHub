@@ -13,5 +13,6 @@ namespace CP_MathHub.Models.RealTime
         public string Avatar { get; set; }
         public Message LastMessage { get; set; }
         public int NewMessageNum { get; set; }
+        public bool IsOnline { get; set; }
     }
 }

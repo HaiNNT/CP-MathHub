@@ -8,7 +8,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @RenderSection("styles", false)
-
     @*@RenderSection("styles", required: false)*@
     @Scripts.Render("~/bundles/modernizr")
     @*<link rel="stylesheet" type="text/css" href="~/Content/css/style-question.css" />*@
@@ -95,6 +94,186 @@
     <div class="container mh-body @(ViewBag.MhPage == "home" ? "mh-body-home" : "")">
         @RenderBody()
     </div>
+    <!-- Chat: start -->
+    <div class="mh-chat" id="mh-chat">
+    </div>
+    @*<div class="mh-chat-popups">
+        <div class="mh-chat-popup" style="right: 220px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content">
+                    <div class="mh-chat-popup-content-row">
+                        <div class="row">
+                            <div class="mh-chat-user-image">
+                                <a href="#">
+                                    <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="popover right">
+                                <div class="arrow"></div>
+                                <div class="popover-content">
+                                    <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mh-chat-popup-content-row">
+                        <div class="row">
+                            <div class="popover left">
+                                <div class="arrow"></div>
+                                <div class="popover-content">
+                                    <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mh-chat-popup-content-row">
+                        <div class="row">
+                            <div class="mh-chat-user-image">
+                                <a href="#">
+                                    <img class="mh-user-icon" src="img/user.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="popover right">
+                                <div class="arrow"></div>
+                                <div class="popover-content">
+                                    <p>uhm</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mh-chat-popup-content-row">
+                        <div class="row">
+                            <div class="popover left">
+                                <div class="arrow"></div>
+                                <div class="popover-content">
+                                    <p>ok</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mh-chat-popup" style="right: 497px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content"></div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="mh-chat-popup" style="right: 774px;">
+            <div class="mh-chat-popup-head">
+                <div class="mh-chat-popup-name">
+                    <h4>
+                        <i class="fa fa-circle mh-chat-status-icon-on"></i>
+                        <a href="">Văn Tâm 1</a>
+                    </h4>
+                </div>
+                <div class="mh-chat-popup-button-head">
+                    <a class="mh-chat-popup-add-friend-icon" data-toggle="tooltip" data-placement="top" title="Thêm bạn bè khác vào cuộc trò chuyện">
+                        <i class="fa fa-user-plus mh-chat-popup-head-icon"></i>
+                    </a>
+                    <a class="mh-chat-popup-setting" data-placement="top" title="Tùy chọn">
+                        <i class="fa fa-cog mh-chat-popup-head-icon"></i>
+                    </a>
+                    <ul class="mh-chat-popup-setting-show hidden">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                    <a href="" data-toggle="tooltip" data-placement="top" title="Đóng tab">
+                        <i class="fa fa-close mh-chat-popup-head-icon"></i>
+                    </a>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="mh-chat-popup-body">
+                <div class="mh-chat-popup-add-friend">
+                    <input type="text" class="mh-chat-popup-input-add-more" placeholder="Thêm bạn bè vào cuộc trò chuyện" />
+                    <button class="btn btn-danger mh-chat-popup-button-add-done">Xong</button>
+                </div>
+                <div class="mh-chat-popup-content"></div>
+                <div class="mh-chat-popup-inputs">
+                    <input type="text" class="mh-chat-popup-input" />
+                    <a>
+                        <i class="fa fa-smile-o mh-chat-popup-footer-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <!-- Chat: end -->
     <footer>
         <div class="container">
             <div class="row">
@@ -134,7 +313,7 @@
                 </div>
             </div>
         </div>
-    </footer><!--  footer: end -->
+    </footer>
     <div class="mh-copyright">
         <div class="mh-copyright-content">
             2015 © MathHub Team
@@ -146,98 +325,109 @@
     <script src="~/signalr/hubs"></script>
     @Scripts.Render("~/bundles/script")
     @RenderSection("scripts", required: false)
-
     <script>
-    var realTime;
-    $(function () {
-        // Reference the auto-generated proxy for the hub.
-        realTime = $.connection.realTimeHub;
+        var realTime;
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            realTime = $.connection.realTimeHub;
 
-        // Create a function that the hub can call back to display messages.
-        realTime.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {
-            realTime.server.getNewMessageNum();
-            var result = '<div class="media mh-profile-chat-detail-row">'
-                            + '<div class="media-left">'
-                                 + '<a href="' + profileUrl + '">'
-                                    + '<img class="media-object mh-user-icon" src="' + avatarUrl + '" alt="...">'
-                                 + '</a>'
-                            + '</div>'
-                            + '<div class="media-body">'
-                                 + '<a href="' + profileUrl + '">'
-                                     + '<h5 class="media-heading">' + username + '</h5>'
-                                 + '</a>'
-                                 + '<span>' + content + '</span>'
-                            + '</div>'
-                            + '<div class="media-right">'
-                                  + time
-                            + '</div>'
-                        + '</div>';
-            $(".mh-profile-chat-detail").append(result);
-        }
-                
-
-        // Check online conversation
-        realTime.client.checkOnlineTrigger = function (id, cssClass) {
-            $('.conversation-status-' + id).attr("class", cssClass);
-        }
-
-        realTime.client.notifyNewFriendRequest = function (count) {
-            if (count != 0) {
-                $("#mh-request-number").html(count);
-                $("#mh-request-number").removeClass("hidden");
+            // Create a function that the hub can call back to display messages.
+            realTime.client.addChatMessage = function (profileUrl, avatarUrl, username, content, time) {
+                realTime.server.getNewMessageNum();
+                var result = '<div class="media mh-profile-chat-detail-row">'
+                                + '<div class="media-left">'
+                                     + '<a href="' + profileUrl + '">'
+                                        + '<img class="media-object mh-user-icon" src="' + avatarUrl + '" alt="...">'
+                                     + '</a>'
+                                + '</div>'
+                                + '<div class="media-body">'
+                                     + '<a href="' + profileUrl + '">'
+                                         + '<h5 class="media-heading">' + username + '</h5>'
+                                     + '</a>'
+                                     + '<span>' + content + '</span>'
+                                + '</div>'
+                                + '<div class="media-right">'
+                                      + time
+                                + '</div>'
+                            + '</div>';
+                $(".mh-profile-chat-detail").append(result);
             }
-        }
 
-        realTime.client.notifyNewMessage = function (count) {
-            if (count != 0) {
-                $("#mh-message-number").html(count);
-                $("#mh-message-number").removeClass("hidden");
+
+            // Check online conversation
+            realTime.client.checkOnlineTrigger = function (id, cssClass) {
+                $('.conversation-status-' + id).attr("class", cssClass);
             }
-        }
 
-        realTime.client.notifyNewActivity = function (count) {
-            if (count != 0) {
-                $("#mh-activity-number").html(count);
-                $("#mh-activity-number").removeClass("hidden");
-            }
-        }
-
-        realTime.client.showOnlineFriends = function (json) {
-            var data = JSON.parse(json);
-            console.log(json);
-            console.log(data);
-        }
-
-        realTime.client.getOnlineFriends = function () {
-            realTime.server.getOnlineFriends();
-        }
-
-        // Start the connection.
-        $.connection.hub.start().done(function () {
-            $('.mh-profile-chat-footer-textarea').keypress(function (e) {
-                if (e.keyCode === 13) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if ($(this).val().trim() != "") {
-                        realTime.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
-                        $(this).val("").focus();
-                    }
+            realTime.client.notifyNewFriendRequest = function (count) {
+                if (count != 0) {
+                    $("#mh-request-number").html(count);
+                    $("#mh-request-number").removeClass("hidden");
                 }
+            }
+
+            realTime.client.notifyNewMessage = function (count) {
+                if (count != 0) {
+                    $("#mh-message-number").html(count);
+                    $("#mh-message-number").removeClass("hidden");
+                }
+            }
+
+            realTime.client.notifyNewActivity = function (count) {
+                if (count != 0) {
+                    $("#mh-activity-number").html(count);
+                    $("#mh-activity-number").removeClass("hidden");
+                }
+            }
+
+            realTime.client.showOnlineFriends = function (json) {
+                var array = JSON.parse(json);
+                console.log(json);
+                console.log(array);
+                $.ajax({
+                    method: "POST",
+                    url: "/CommonWidget/GetOnlineConversation",
+                    data: { ids: array }
+                })
+                .done(function (msg) {
+                    if (msg != "\n")
+                        $("#mh-chat").html(msg);
+                })
+                .fail(function () {
+
+                });
+            }
+
+            realTime.client.getOnlineFriends = function () {
+                realTime.server.getOnlineFriends();
+            }
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('.mh-profile-chat-footer-textarea').keypress(function (e) {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if ($(this).val().trim() != "") {
+                            realTime.server.sendToConversation($(this).val(), $(this).attr("mh-id"));
+                            scrollToBottom();
+                            $(this).val("").focus();
+                        }
+                    }
+                });
             });
         });
-    });
-    // This optional function html-encodes messages for display in the page.
-    function htmlEncode(value) {
-        var encodedValue = $('<div />').text(value).html();
-        return encodedValue;
-    }
-    //function renderMessage(profileUrl, avatarUrl, username, content, time)
-    //function checkOnlineTrigger(cssClass)
-    function checkOnline(id) {
-        realTime.server.checkOnline(id);
-    }
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+        //function renderMessage(profileUrl, avatarUrl, username, content, time)
+        //function checkOnlineTrigger(cssClass)
+        function checkOnline(id) {
+            realTime.server.checkOnline(id);
+        }
     </script>
-
     <script>
         function acceptFriend(e, item, id) {
             e.preventDefault();
@@ -332,9 +522,11 @@
                 alert("Có sự cố về mạng. Hãy thử lại sau.");
             });
         }
+
+        function resetMessageNum() {
+            $("#mh-message-number").addClass("hidden");
+            $("#mh-message-number").html(0);
+        }
     </script>
-
-  
-
 </body>
 </html>

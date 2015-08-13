@@ -2,6 +2,7 @@
 @using CP_MathHub.Service.Helpers
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.Owin;
+@using CP_MathHub.Core.Configuration
 @if (Request.IsAuthenticated) { 
 <div class="dropdown mh-posts-setting">
     <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Chỉnh sửa hoặc xóa">
@@ -15,22 +16,22 @@
                     Báo cáo vi phạm
                 </a>
             </li>
-            if (User.IsInRole("Expert") || User.IsInRole("Moderator") || User.IsInRole("Administrator"))
+            if (User.IsInRole(Constant.String.RoleExpert) || User.IsInRole(Constant.String.RoleMod) || User.IsInRole(Constant.String.RoleAdmin))
             {
-                switch ((string)@ViewData["PostType"])
+                switch ((string)ViewData["PostType"])
                 {
                     case "question":
                         <li><a href="@Url.Action("Edit", "Question", new { @id = ViewData["PostId"] })">Chỉnh sửa câu hỏi</a></li>
                         break;
                     case "discussion":
-                    <li><a href="@Url.Action("Edit", "Discussion", new { @id = ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
+                        <li><a href="@Url.Action("Edit", "Discussion", new { @id = ViewData["PostId"] })">Chỉnh sửa thảo luận</a></li>
                         break;
                     case "blog":
-                    <li><a href="@Url.Action("Edit", "Blog", new { @id = ViewData["PostId"] })">Chỉnh sửa bài viết</a></li>
+                        <li><a href="@Url.Action("Edit", "Blog", new { @id = ViewData["PostId"] })">Chỉnh sửa bài viết</a></li>
                         break;
                     case "answer":
-                    <li><a onclick="@("editAnswer(this)")">Chỉnh sửa</a></li>
-                    @*<li><a href="@Url.Action("Close", "Question", new { @id = ViewData["PostId"] })">Đóng câu hỏi</a></li>*@
+                        <li><a onclick="@("editAnswer(this)")">Chỉnh sửa</a></li>
+                        @*<li><a href="@Url.Action("Close", "Question", new { @id = ViewData["PostId"] })">Đóng câu hỏi</a></li>*@
                         break;
                     default:
                         break;
