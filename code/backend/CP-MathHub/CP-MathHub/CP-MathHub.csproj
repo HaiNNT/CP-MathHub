@@ -207,6 +207,7 @@
     <Compile Include="Models\Account\UserItemViewModel.cs" />
     <Compile Include="Models\Account\UsersPageViewModel.cs" />
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
+    <Compile Include="Models\Admin\CreateTagViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracNormalPostViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracUserListViewModel.cs" />
@@ -893,6 +894,7 @@
     <Content Include="Views\Home\Rule.cshtml" />
     <Content Include="Views\Account\Partials\_NotificationPartialView.cshtml" />
     <Content Include="Views\Account\Partials\_ChangePasswordPartialView.cshtml" />
+    <Content Include="Views\Admin\Partials\_CreateTagPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_UserHeaderPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_ChatWidget.cshtml" />
     <None Include="Web.Test.config">

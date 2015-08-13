@@ -12,6 +12,10 @@ namespace CP_MathHub.Models.Admin
         public string Name { get; set; }
         public string Description { get; set; }
         public int Duration { get; set; }
-
+        public RuleCreateViewModel CreateRule { get; set; }
+        public RulesViewModel()
+        {
+            CreateRule = new RuleCreateViewModel();
+        }
     }
 }

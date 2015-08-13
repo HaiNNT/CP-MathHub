@@ -187,6 +187,10 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public ActionResult InsertRule(RulesViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Partials/RuleCreatePartialView", model);
+            }
             BanReason banReason = new BanReason();
             banReason.Name = model.Name;
             banReason.Description = model.Description;
@@ -256,8 +260,12 @@ namespace CP_MathHub.Controllers
         }
         //Post: Admin/InsertTag
         [HttpPost]
-        public ActionResult InsertTag(TagViewModel model)
+        public ActionResult InsertTag(CreateTagViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Partials/_CreateTagPartialView", model);
+            }
             Tag tag = new Tag();
             tag.Name = model.Name;
             tag.CreatedDate = DateTime.Now;
