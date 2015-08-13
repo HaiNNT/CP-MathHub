@@ -10,7 +10,7 @@ namespace CP_MathHub.Models.Account
     {
         public Boolean ReceiveEmail { get; set; }
         public FriendRequestEnum SendRequest { get; set; }
-        public SeenBlogEnum SeenBlog { get; set; }
+        public ChatPrivacyEnum ChatPrivacy { get; set; }
         public int Notification { get; set; }
 
     }

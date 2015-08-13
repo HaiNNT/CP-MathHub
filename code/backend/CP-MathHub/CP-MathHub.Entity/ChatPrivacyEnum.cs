@@ -10,16 +10,9 @@
 namespace CP_MathHub.Entity
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PrivacySetting
+    public enum ChatPrivacyEnum : int
     {
-        public int Id { get; set; }
-        public bool ReceiveEmail { get; set; }
-        public FriendRequestEnum SendRequest { get; set; }
-        public ChatPrivacyEnum ChatPrivacy { get; set; }
-        public int Notification { get; set; }
-    
-        public virtual User User { get; set; }
+        Friend = 1
     }
 }

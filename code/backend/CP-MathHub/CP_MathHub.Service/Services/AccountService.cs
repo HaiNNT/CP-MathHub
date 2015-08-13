@@ -81,7 +81,7 @@ namespace CP_MathHub.Service.Services
             privacy.User = GetUser(userId);
             privacy.Notification = 0;
             privacy.ReceiveEmail = true;
-            privacy.SeenBlog = SeenBlogEnum.Everyone;
+            privacy.ChatPrivacy = ChatPrivacyEnum.Friend;
             privacy.SendRequest = FriendRequestEnum.Everyone;
             _dal.Repository<PrivacySetting>().Insert(privacy);
             _dal.Save();

@@ -617,6 +617,10 @@ namespace CP_MathHub.Controllers
         //Post: Account/ChangePassword
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
+            if (Request.HttpMethod.ToString() == "GET")
+            {
+                return RedirectToAction("MyProfile");
+            }
             IdentityResult result = UserManager.ChangePassword(User.Identity.GetUserId<int>(), model.Password, model.NewPassword);
             if (result.Succeeded)
             {
@@ -940,8 +944,8 @@ namespace CP_MathHub.Controllers
                 case "SendRequest":
                     user.PrivacySetting.SendRequest = model.SendRequest;
                     break;
-                case "SeenBlog":
-                    user.PrivacySetting.SeenBlog = model.SeenBlog;
+                case "ChatPrivacy":
+                    user.PrivacySetting.ChatPrivacy = model.ChatPrivacy;
                     break;
                 case "Notification":
                     user.PrivacySetting.Notification = model.Notification;

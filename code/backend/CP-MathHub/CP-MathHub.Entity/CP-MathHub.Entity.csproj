@@ -78,6 +78,9 @@
     <Compile Include="BanReason.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChatPrivacyEnum.cs">
+      <DependentUpon>CPMathHubModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Comment.cs">
       <DependentUpon>CPMathHubModel.tt</DependentUpon>
     </Compile>
