@@ -93,7 +93,7 @@ namespace CP_MathHub.Controllers
         {
             if (returnUrl == default(string) || returnUrl == "")
             {
-                returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : "";
+                returnUrl = _previousUrl;
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();

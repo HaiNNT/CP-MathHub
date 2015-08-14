@@ -218,7 +218,8 @@ namespace CP_MathHub.Core.Configuration
                 public static Dictionary<int, string> SeenBlog = new Dictionary<int, string> { { 1, "Mọi người" }, { 2, "Bạn bè" }, { 3, "Bạn của bạn bè" } };
                 public static Dictionary<int, string> ReportType = new Dictionary<int, string> {{1,"Câu hỏi trùng"}, {2,"Sử dụng từ ngữ không phù hợp"}, {3,"Bình luận spam"},
                                                                                                {4,"Trả lời spam"}, {5,"Sử dụng tài khoản ão"},{6,"Câu hỏi spam"}, {7,"Sai vị trí"}, {0,"Lý do khác"}};
-
+                public static Dictionary<string, string> RoleColor =
+                    new Dictionary<string, string> { { Constant.String.RoleAdmin, "red" }, { Constant.String.RoleMod, "yellow" }, { Constant.String.RoleExpert, "green" }, { Constant.String.RoleUser, "black" } };
             }
         }
         /// <summary>

@@ -301,6 +301,7 @@ namespace CP_MathHub.Controllers
             model.Privacy = MainPostPrivacyEnum.Everyone;
             model.TagList = cService.GetCategorys();
             model.tagId = tagId;
+            ViewBag.ReturnUrl = _previousUrl == default(string) ? Url.Action("Index") : Url.Content(_previousUrl);
             return View("Views/DiscussionCreateView", model);
         }
         //Post: Discussion/Create
@@ -379,14 +380,15 @@ namespace CP_MathHub.Controllers
                 DiscussionEditViewModel discussionEditVM = new DiscussionEditViewModel();
 
                 discussionEditVM = Mapper.Map<Discussion, DiscussionEditViewModel>(discussion);
+                ViewBag.ReturnUrl = _previousUrl == default(string) ? Url.Action("Detail", new { id = id }) : Url.Content(_previousUrl);
                 ViewBag.System = Constant.String.DiscussionSystem;
                 return View("Views/DiscussionEditView", discussionEditVM);
             }
-            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
-            if (returnUrl == default(string))
+            //string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (_previousUrl == default(string))
                 return RedirectToAction("Detail", new { id = id });
             else
-                return Redirect(Url.Content(returnUrl));
+                return Redirect(Url.Content(_previousUrl));
         }
         //Post: Discussion/Edit
         [Authorize]
@@ -422,11 +424,11 @@ namespace CP_MathHub.Controllers
 
                 return RedirectToAction("Detail", new { id = discussion.Id });
             }
-            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
-            if (returnUrl == default(string))
+            //string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (_previousUrl == default(string))
                 return RedirectToAction("Detail", new { id = discussion.Id });
             else
-                return Redirect(Url.Content(returnUrl));
+                return Redirect(Url.Content(_previousUrl));
         }
 
         //Discussion/Delete
