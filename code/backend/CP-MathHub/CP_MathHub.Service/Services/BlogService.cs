@@ -138,6 +138,10 @@ namespace CP_MathHub.Service.Services
             }
             return list;
         }
+        public int CountBookmarkArticle()
+        {
+            return _dal.Repository<Article>().Table.Count(ExpressionHelper.BlogHelper.BookmarkArticle(_loginUserId, _loginUserId));
+        }
         public List<Article> GetArticles(int userId, string tab, int skip)
         {
             //User user = _cService.GetUser(userId);

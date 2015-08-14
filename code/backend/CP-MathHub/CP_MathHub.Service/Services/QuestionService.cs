@@ -71,7 +71,7 @@ namespace CP_MathHub.Service.Services
                 case Constant.Question.String.BookmarkQuestion:
                     list = _dal.Repository<Question>()
                                 .Get(
-                                    ExpressionHelper.QuestionHelper.BookmarkQuestion(_loginUserId),// Get hot Question lambda expression
+                                    ExpressionHelper.QuestionHelper.BookmarkQuestion(_loginUserId),// Get favorite Question lambda expression
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
@@ -87,6 +87,10 @@ namespace CP_MathHub.Service.Services
                     break;
             }
             return list;
+        }
+        public int CountBookmarkQuestion()
+        {
+            return _dal.Repository<Question>().Table.Count(ExpressionHelper.QuestionHelper.BookmarkQuestion(_loginUserId));
         }
         public List<Question> GetQuestions(int authorId, int skip = 0)
         {

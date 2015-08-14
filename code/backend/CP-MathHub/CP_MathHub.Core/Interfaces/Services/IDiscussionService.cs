@@ -138,5 +138,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="discussion"></param>
         void IncreaseViewDiscussion(Discussion discussion);
+
+        /// <summary>
+        /// Count bookmark Discussion
+        /// </summary>
+        /// <returns></returns>
+        int CountBookmarkDiscussion();
     }
 }

@@ -254,5 +254,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="feedback"></param>
         void InsertFeedback(Feedback feedback);
+        
+        /// <summary>
+        /// Count invited mainpost
+        /// </summary>
+        /// <returns></returns>
+        int CountInvitedMainPost();
     }
 }

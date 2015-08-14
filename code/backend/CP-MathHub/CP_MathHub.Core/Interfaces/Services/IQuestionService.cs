@@ -171,5 +171,11 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="answerId"></param>
         /// <returns></returns>
         bool Accept(int answerId);
+
+        /// <summary>
+        /// Count bookmark discussion
+        /// </summary>
+        /// <returns></returns>
+        int CountBookmarkQuestion();
     }
 }

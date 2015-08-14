@@ -233,6 +233,7 @@
     <Compile Include="Models\Blog\ArticlePreviewViewModel.cs" />
     <Compile Include="Models\Blog\MyBlogViewModel.cs" />
     <Compile Include="Models\Common\CommentViewModel.cs" />
+    <Compile Include="Models\Common\FavoritePostViewModel.cs" />
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\RecommendedMainPostViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
@@ -897,6 +898,8 @@
     <Content Include="Views\Admin\Partials\_CreateTagPartialView.cshtml" />
     <Content Include="Views\Admin\Partials\_UserHeaderPartialView.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_ChatWidget.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_FavoritePostWidget.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_FolloweeWidget.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

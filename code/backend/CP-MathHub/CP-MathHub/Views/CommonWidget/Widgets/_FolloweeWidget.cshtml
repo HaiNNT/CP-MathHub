@@ -1,0 +1,22 @@
+﻿@using CP_MathHub.Entity
+@model List<User>
+<div class="mh-table-info">
+    <div class="mh-table-info-title">
+        <a href="">Theo dõi</a>
+    </div>
+    @foreach (User u in Model)
+    {
+        <div class="mh-table-info-body">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = u.Id})">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-small">
+                    </div>
+                    <div class="media-body mh-follow-user-name">
+                        @u.UserName
+                    </div>
+                </div>
+            </a>
+        </div>
+    }  
+</div>
