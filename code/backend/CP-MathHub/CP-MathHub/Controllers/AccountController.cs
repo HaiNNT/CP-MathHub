@@ -568,7 +568,7 @@ namespace CP_MathHub.Controllers
                     user.Email = model.Email;
                     break;
                 case "Facebook":
-                    user.Profile.Facebook = model.Profile.Facebook;
+                    user.Profile.Facebook = model.Facebook;
                     break;
                 case "School":
                     user.Profile.School = model.School;
