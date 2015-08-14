@@ -38,6 +38,9 @@ namespace CP_MathHub.Models.Account
         [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
         ErrorMessage = "Tên trường không được có ký tự đặt biệt.")]
         public string School { get; set; }
+        [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]:_\-\*\/\=\p{L}]*$",
+        ErrorMessage = "Địa chỉ facebook không được có ký tự đặt biệt.")]
+        public string Facebook { get; set; }
         [StringLength(300, MinimumLength = 10, ErrorMessage = "Giới thiệu từ 10 đến 300 ký tự.")]
         [RegularExpression(@"^[a-z0-9A-Z\s!.?\+\[\]_\-\*\/\=\p{L}]*$",
         ErrorMessage = "Giới thiệu không được có ký tự đặt biệt.")]

@@ -104,6 +104,10 @@ namespace CP_MathHub.Service.Services
                     0
                 ).ToList();
         }
+        public int CountBookmarkDiscussion()
+        {
+            return _dal.Repository<Discussion>().Table.Count(ExpressionHelper.DiscussionHelper.BookmarkDiscussion(_loginUserId));
+        }
         public int CountUserDiscussion(int authorId)
         {
             int result = _dal.Repository<Discussion>().Table.Count(ExpressionHelper.DiscussionHelper.UserDiscussion(authorId, _loginUserId));

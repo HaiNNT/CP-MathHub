@@ -6,72 +6,78 @@
 @{
     ViewBag.Title = "Contact";
 }
-    <div class="row mh-contact-body">
-        <div class="col-sm-6">
-            <div class="well well-sm">
-                @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
-                {
-                    <fieldset>
-                        <legend class="text-center header">Ý kiến phản hồi</legend>
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-1">
-                                <span class="mh-contact-require">* (Bắt buộc phải có tên của bạn)</span>
-                                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Họ tên", @id = "fullname" })
-                            </div>
+<div class="row mh-contact-body">
+    <div class="col-sm-6">
+        <div class="well well-sm">
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @id="contact-form", @class = "form-horizontal", role = "form" }))
+            {
+                
+                    <div class="text-center header">Ý kiến phản hồi</div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <span class="mh-contact-require">* (Bắt buộc phải có tên của bạn)</span>
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Họ tên", @id = "fullname" })
+                            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-1">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Địa chỉ email", @id = "email" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Địa chỉ email", @id = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-1">
-                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Số điện thoại", @id = "phone" })
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Số điện thoại", @id = "phone" })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-1">
-                                <span class="mh-contact-require">* (Bắt buộc phải có nội dung)</span>
-                                <textarea class="form-control" id="message" name="Message" placeholder="Nhập nội dung" rows="9"></textarea>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <span class="mh-contact-require">* (Bắt buộc phải có nội dung)</span>
+                            @*<textarea class="form-control" id="message" name="Message" placeholder="Nhập nội dung" rows="9"></textarea>*@
+                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", @id = "message", @placeholder = "Nhập nội dung", @rows = "9" })
+                            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg mh-contact-send-feedback-button">Gửi</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg mh-contact-send-feedback-button">Gửi</button>
                         </div>
-                    </fieldset>
-                }
-            </div>
+                    </div>
+                    <span class="mh-contact-thank">@ViewBag.Message</span>
+               
+            }
         </div>
-        <div class="col-sm-6">
-            <div>
-                <div class="panel panel-default">
-                    <div class="text-center header">Thông tin liên hệ</div>
-                    <div class="panel-body text-center">
-                        <div class="mh-contact-info">
-                            137 Nguyễn Thị Thập, Quận Liên Chiểu<br />
-                            thành phố Đà Nẵng<br />
-                            01227 527 757<br />
-                            MathHub@gmail.com<br />
-                            <a href="#">
-                                <img src="~/Content/img/icon-facebook.ico" class="mh-contact-social-media-icon">
-                            </a>
-                            <a href="#">
-                                <img src="~/Content/img/icon-google.ico" class="mh-contact-social-media-icon">
-                            </a>
-                            <a href="#">
-                                <img src="~/Content/img/icon-twitter.ico" class="mh-contact-social-media-icon">
-                            </a>
-                        </div>
-                        <hr />
-                        <div id="map" class="map">
-                        </div>
+    </div>
+    <div class="col-sm-6">
+        <div>
+            <div class="panel panel-default">
+                <div class="text-center header">Thông tin liên hệ</div>
+                <div class="panel-body text-center">
+                    <div class="mh-contact-info">
+                        137 Nguyễn Thị Thập, Quận Liên Chiểu<br />
+                        thành phố Đà Nẵng<br />
+                        01227 527 757<br />
+                        MathHub@gmail.com<br />
+                        <a href="#">
+                            <img src="~/Content/img/icon-facebook.ico" class="mh-contact-social-media-icon">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/img/icon-google.ico" class="mh-contact-social-media-icon">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/img/icon-twitter.ico" class="mh-contact-social-media-icon">
+                        </a>
+                    </div>
+                    <hr />
+                    <div id="map" class="map">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @section styles {
     <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
@@ -96,5 +102,6 @@
             }
             init_map();
         });
+        $("#contact-form").find("input, textarea").val("");
     </script>
 }

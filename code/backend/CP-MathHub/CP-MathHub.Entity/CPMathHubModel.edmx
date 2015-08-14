@@ -532,7 +532,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ReceiveEmail" Type="bit" Nullable="false" />
     <Property Name="SendRequest" Type="int" Nullable="false" />
-    <Property Name="SeenBlog" Type="int" Nullable="false" />
+    <Property Name="ChatPrivacy" Type="int" Nullable="false" />
     <Property Name="Notification" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -2500,7 +2500,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReceiveEmail" Type="Boolean" Nullable="false" />
           <Property Name="SendRequest" Type="CPMathHubModel.FriendRequestEnum" Nullable="false" />
-          <Property Name="SeenBlog" Type="CPMathHubModel.SeenBlogEnum" Nullable="false" />
+          <Property Name="ChatPrivacy" Type="CPMathHubModel.ChatPrivacyEnum" Nullable="false" />
           <NavigationProperty Name="User" Relationship="CPMathHubModel.PrivacySettingUser" FromRole="PrivacySetting" ToRole="User" />
           <Property Name="Notification" Type="Int32" Nullable="false" />
         </EntityType>
@@ -3111,6 +3111,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="ChatPrivacyEnum" >
+          <Member Name="Friend" Value="1" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3369,7 +3372,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ReceiveEmail" ColumnName="ReceiveEmail" />
           <ScalarProperty Name="SendRequest" ColumnName="SendRequest" />
-          <ScalarProperty Name="SeenBlog" ColumnName="SeenBlog" />
+          <ScalarProperty Name="ChatPrivacy" ColumnName="ChatPrivacy" />
           <ScalarProperty Name="Notification" ColumnName="Notification" />
         </MappingFragment>
       </EntityTypeMapping>

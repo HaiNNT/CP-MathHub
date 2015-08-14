@@ -81,6 +81,12 @@ namespace CP_MathHub.Core.Interfaces.Services
         int CountFollower(int userId);
 
         /// <summary>
+        /// Get followee
+        /// </summary>
+        /// <returns></returns>
+        List<User> GetFollowee();
+
+        /// <summary>
         /// Count number of followees of User
         /// </summary>
         /// <param name="userId"></param>

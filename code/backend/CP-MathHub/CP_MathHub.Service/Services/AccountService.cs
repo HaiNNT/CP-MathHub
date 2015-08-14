@@ -81,7 +81,7 @@ namespace CP_MathHub.Service.Services
             privacy.User = GetUser(userId);
             privacy.Notification = 0;
             privacy.ReceiveEmail = true;
-            privacy.SeenBlog = SeenBlogEnum.Everyone;
+            privacy.ChatPrivacy = ChatPrivacyEnum.Friend;
             privacy.SendRequest = FriendRequestEnum.Everyone;
             _dal.Repository<PrivacySetting>().Insert(privacy);
             _dal.Save();
@@ -120,6 +120,15 @@ namespace CP_MathHub.Service.Services
             int result = _dal.Repository<UserFriendship>().Table
                 .Count(u => (u.TargetUserId == userId) && u.Status == RelationshipEnum.Requesting);
             return result;
+        }
+        public List<User> GetFollowee()
+        {
+            return _dal.Repository<User>().Get(
+                            (u => u.Followers.Where(t => t.Id == _loginUserId).Count() > 0)
+                            , (u => u.OrderByDescending(m => m.UserName))
+                            , ""
+                            , 0
+                            , 5).ToList();
         }
         public int CountFollower(int userId)
         {

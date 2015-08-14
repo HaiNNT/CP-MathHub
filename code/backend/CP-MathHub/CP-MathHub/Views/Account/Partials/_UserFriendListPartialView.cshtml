@@ -6,7 +6,7 @@
     <div class="media mh-profile-friend">
         <div class="media-left">
             <a href="@Url.Action("UserProfile", new {userId = item.User.Id })">
-                <img class="mh-image-user-profile" src="~/Content/img/user-icon.png" alt="...">
+                <img class="mh-image-user-profile" src="@(item.User.Avatar != null ? Url.Content(item.User.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" alt="...">
             </a>
         </div>
         <div class="media-body">

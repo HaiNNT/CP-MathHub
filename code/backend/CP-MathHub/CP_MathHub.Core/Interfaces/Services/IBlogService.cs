@@ -106,5 +106,10 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// <param name="article"></param>
         void IncreaseViewArticle(Article article);
 
+        /// <summary>
+        /// Count bookmark article
+        /// </summary>
+        /// <returns></returns>
+        int CountBookmarkArticle();
     }
 }

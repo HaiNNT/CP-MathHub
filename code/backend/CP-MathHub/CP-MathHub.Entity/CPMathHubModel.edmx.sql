@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/04/2015 22:21:46
--- Generated from EDMX file: C:\Users\QuanVMH\Desktop\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
+-- Date Created: 08/13/2015 23:42:25
+-- Generated from EDMX file: C:\Users\DangMinh\Desktop\CP\CP-MathHub\code\backend\CP-MathHub\CP-MathHub.Entity\CPMathHubModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -203,6 +203,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserNotification]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Notifications] DROP CONSTRAINT [FK_UserNotification];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FeedbackUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Feedbacks] DROP CONSTRAINT [FK_FeedbackUser];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Comment_inherits_Post]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Posts_Comment] DROP CONSTRAINT [FK_Comment_inherits_Post];
 GO
@@ -321,6 +324,9 @@ IF OBJECT_ID(N'[dbo].[UserClaims]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[UserLogins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserLogins];
+GO
+IF OBJECT_ID(N'[dbo].[Feedbacks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Feedbacks];
 GO
 IF OBJECT_ID(N'[dbo].[Posts_Comment]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Posts_Comment];
@@ -572,7 +578,7 @@ CREATE TABLE [dbo].[PrivacySettings] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ReceiveEmail] bit  NOT NULL,
     [SendRequest] int  NOT NULL,
-    [SeenBlog] int  NOT NULL,
+    [ChatPrivacy] int  NOT NULL,
     [Notification] int  NOT NULL,
     [User_Id] int  NOT NULL
 );

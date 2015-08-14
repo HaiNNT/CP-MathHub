@@ -113,7 +113,24 @@ namespace CP_MathHub.Controllers
             ICollection<Tag> tags = _aService.GetFavoriteTags(User.Identity.GetUserId<int>(), 5);
             return PartialView("Widgets/_FavoriteTagWidget", tags);
         }
-
+        [ChildActionOnly]
+        [Authorize]
+        public virtual ActionResult FavoritePostWidget()
+        {
+            FavoritePostViewModel model = new FavoritePostViewModel();
+            model.FavoriteDiscussionNum = _dService.CountBookmarkDiscussion();
+            model.FavoriteArticleNum = _bService.CountBookmarkArticle();
+            model.FavoriteQuestionNum = _qService.CountBookmarkQuestion();
+            model.InvitedMainPostNum = _cService.CountInvitedMainPost();
+            return PartialView("Widgets/_FavoritePostWidget", model);
+        }
+        [ChildActionOnly]
+        [Authorize]
+        public virtual ActionResult FolloweeWidget()
+        {
+            List<User> followees = _aService.GetFollowee();
+            return PartialView("Widgets/_FolloweeWidget", followees);
+        }
         [ChildActionOnly]
         [Authorize(Roles = Constant.String.RoleAdmin + "," + Constant.String.RoleMod)]
         public virtual ActionResult AdminHeaderWidget()
@@ -228,6 +245,9 @@ namespace CP_MathHub.Controllers
                 CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(conversations, _currentUserId, true);
             return PartialView("Widgets/_ChatWidget", models);
         }
+        #endregion
+        #region Favorite Post
+
         #endregion
     }
 }

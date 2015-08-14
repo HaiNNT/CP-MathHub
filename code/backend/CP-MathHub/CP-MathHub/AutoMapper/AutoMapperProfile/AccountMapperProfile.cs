@@ -29,8 +29,8 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                     u => u.MapFrom(m => m.PrivacySetting.ReceiveEmail)
                 )
                 .ForMember(
-                    d => d.SeenBlog,
-                    u => u.MapFrom(m => m.PrivacySetting.SeenBlog)
+                    d => d.ChatPrivacy,
+                    u => u.MapFrom(m => m.PrivacySetting.ChatPrivacy)
                 )
                 .ForMember(
                     d => d.SendRequest,

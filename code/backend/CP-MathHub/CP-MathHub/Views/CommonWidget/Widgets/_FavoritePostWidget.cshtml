@@ -1,0 +1,49 @@
+﻿@using CP_MathHub.Models.Common
+@model FavoritePostViewModel
+<div class="mh-table-info">
+    <div class="mh-table-info-title">
+        <a href="@Url.Action("MyActivity", "Account", new { @tab = "bookmarks" })">Bài yêu thích</a>
+    </div>
+    <div class="mh-table-info-body">
+        <a href="@Url.Action("MyActivity", "Account", new { @tab = "bookmarks" })">
+            <div class="row mh-table-info-row">
+                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+                    Câu hỏi yêu thích
+                </div>
+                <div class="col-sm-3 col-md-3 mh-table-info-num">
+                    <span class="badge mh-num-icon">@Model.FavoriteQuestionNum</span>
+                </div>
+            </div>
+        </a>
+        <a href="@Url.Action("MyActivity", "Account", new { @tab = "bookmarks" })">
+            <div class="row mh-table-info-row">
+                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+                    Bài viết yêu thích
+                </div>
+                <div class="col-sm-3 col-md-3 mh-table-info-num">
+                    <span class="badge mh-num-icon">@Model.FavoriteArticleNum</span>
+                </div>
+            </div>
+        </a>
+        <a href="@Url.Action("MyActivity", "Account", new { @tab = "bookmarks" })">
+            <div class="row mh-table-info-row">
+                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+                    Thảo luận yêu thích
+                </div>
+                <div class="col-sm-3 col-md-3 mh-table-info-num">
+                    <span class="badge mh-num-icon">@Model.FavoriteDiscussionNum</span>
+                </div>
+            </div>
+        </a>
+        <a href="@Url.Action("MyActivity", "Account", new { @tab = "bookmarks" })">
+            <div class="row mh-table-info-row">
+                <div class="col-sm-9 col-md-9 mh-table-info-body-letter">
+                    Bài viết được mời
+                </div>
+                <div class="col-sm-3 col-md-3 mh-table-info-num">
+                    <span class="badge mh-num-icon">@Model.InvitedMainPostNum</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

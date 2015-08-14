@@ -3,7 +3,7 @@
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Service.Helpers
 @{
-    ViewBag.Title = "Privacy";
+    ViewBag.Title = "Bảo mật";
     Layout = "~/Views/Account/Layouts/_PrivacyLayout.cshtml";
 }
 
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-xs-3">
                     <span class="mh-profile-span-edit">@(Model.SendRequest != null ? Constant.Account.Dictionary.RequestSend[(int)Model.SendRequest] : "")</span>
-                    @Html.EnumDropDownListFor(m => m.SendRequest, new { @class = "mh-profile-select-edit" })
+                    @Html.SelectForEnum(Model.SendRequest, typeof(CP_MathHub.Entity.FriendRequestEnum), new Dictionary<string, string> { { "class", "mh-profile-select-edit" }, { "name", "SendRequest" } })
                     <input type="hidden" name="Property" value="SendRequest" />
                 </div>
                 <div class="col-xs-4">
@@ -75,18 +75,19 @@
             {
                 <div class="row mh-profile-info-row">
                     <div class="col-xs-5">
-                        <label>Ai có thể thấy BLOG của bạn?</label>
+                        <label>Ai có thể gửi tin nhắn cho bạn?</label>
                     </div>
                     <div class="col-xs-3">
-                        <span class="mh-profile-span-edit">@(Model.SeenBlog != null ? Constant.Account.Dictionary.SeenBlog[(int)Model.SeenBlog] : "")</span>
-                        @Html.EnumDropDownListFor(m => m.SeenBlog, new { @class = "mh-profile-select-edit" })
-                        <input type="hidden" name="Property" value="SeenBlog" />
+                        <span class="mh-profile-span-edit">@(Model.ChatPrivacy != null ? Constant.Account.Dictionary.ChatPrivacy[(int)Model.ChatPrivacy] : "")</span>
+                        @*@Html.EnumDropDownListFor(m => m.ChatPrivacy, new { @class = "mh-profile-select-edit" })*@
+                        @Html.SelectForEnum(Model.ChatPrivacy, typeof(CP_MathHub.Entity.ChatPrivacyEnum), new Dictionary<string, string> { { "class", "mh-profile-select-edit" }, { "name", "ChatPrivacy" } })
+                        <input type="hidden" name="Property" value="ChatPrivacy" />
                     </div>
                     <div class="col-xs-4">
                         <a href="" class="mh-profile-edit-button" mh-type="select">
                             <i class="fa fa-pencil mh-profile-edit"> Chỉnh sửa</i>
                         </a>
-                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.SeenBlog" mh-type="select">Hủy</button>
+                        <button type="button" class="btn btn-default mh-profile-cancel" value="@Model.ChatPrivacy" mh-type="select">Hủy</button>
                         <button type="submit" class="btn btn-primary mh-profile-save-change">Lưu thay đổi</button>
                     </div>
                 </div>

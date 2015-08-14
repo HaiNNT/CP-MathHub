@@ -583,6 +583,10 @@ namespace CP_MathHub.Service.Services
 
             return list;
         }
+        public int CountInvitedMainPost()
+        {
+            return _dal.Repository<MainPost>().Table.Count(m => m.Invitations.Count(i => i.InviteeId == _loginUserId) > 0);
+        }
         public Post GetPost(int postId, string include = "")
         {
             return _dal.Repository<Post>().Include(include).GetById(postId);

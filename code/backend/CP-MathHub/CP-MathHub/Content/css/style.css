@@ -1637,7 +1637,10 @@ footer > .container > .row {
     text-decoration: none;
 }
 .mh-contact-require {
-    color: red;
+    color: grey;
+}
+.mh-contact-thank {
+    color: forestgreen;
 }
 .mh-contact-send-feedback-button {
     width: 100px;

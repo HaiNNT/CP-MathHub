@@ -60,6 +60,10 @@ namespace CP_MathHub.Controllers
         [HttpPost]
         public ActionResult Contact(ContactViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             if (User.Identity.IsAuthenticated == true)
             {
                 Feedback feedback = new Feedback();
@@ -72,15 +76,19 @@ namespace CP_MathHub.Controllers
                 feedback.CreatedDate = DateTime.Now;
                 cService.InsertFeedback(feedback);
             }
-            Feedback feedback1 = new Feedback();
-            feedback1.FullName = model.FullName;
-            feedback1.Status = 1;
-            feedback1.Email = model.Email;
-            feedback1.Content = model.Message;
-            feedback1.PhoneNumber = model.Phone;
-            feedback1.CreatedDate = DateTime.Now;
-            cService.InsertFeedback(feedback1);
+            else
+            {
+                Feedback feedback1 = new Feedback();
+                feedback1.FullName = model.FullName;
+                feedback1.Status = 1;
+                feedback1.Email = model.Email;
+                feedback1.Content = model.Message;
+                feedback1.PhoneNumber = model.Phone;
+                feedback1.CreatedDate = DateTime.Now;
+                cService.InsertFeedback(feedback1);
+            }
             ViewBag.System = Constant.String.QuestionSystem;
+            ViewBag.Message = "Cám ơn đóng góp của bạn. Chúng tôi sẽ xem xét ý kiến của bạn trong thời gian sớm nhất!";
             return View();
         }
     }
