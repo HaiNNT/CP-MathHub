@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
     @if (Request.IsAuthenticated)
@@ -26,10 +26,18 @@
 @section scripts{
     @Scripts.Render("~/bundles/questionjs")
     @RenderSection("scripts", false)
+    <script>
+            var id = $(".mh-hover-image").attr("mh-id");
+            var userId = "#user-" + id;
+            var idUser = "#idUser-" + id;
+            $(".mh-user-info > " + userId).hover(function () { $(idUser).delay(500).fadeToggle() })
+            $(idUser).hover(function () { $(idUser).fadeToggle() })  
+    </script>
 }
 @section styles{
     <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
     <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
     @Styles.Render("~/Content/question/css")
+    @Styles.Render("~/Content/css")
     @RenderSection("styles", false)
 }

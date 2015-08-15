@@ -17,12 +17,14 @@ using CP_MathHub.RealTime;
 using AutoMapper;
 using System.Web.Routing;
 using System.Threading;
+using CP_MathHub.Models.Account;
 
 namespace CP_MathHub.Controllers
 {
     public class QuestionController : BaseController
     {
         private IQuestionService qService;
+        private IAccountService aService;
         private ICommonService cService;
         //private IRealTimeService rService;
         private CPMathHubModelContainer context;
@@ -41,12 +43,14 @@ namespace CP_MathHub.Controllers
             {
                 qService = new QuestionService(context, _currentUserId);
                 cService = new CommonService(context, _currentUserId);
+                aService = new AccountService(context, _currentUserId);
                 //rService = new RealTimeService(context, _currentUserId);
             }
             else
             {
                 qService = new QuestionService(context);
                 cService = new CommonService(context);
+                aService = new AccountService(context);
                 //rService = new RealTimeService(context);
             }
 
@@ -64,7 +68,52 @@ namespace CP_MathHub.Controllers
                     .ToList();
             for (int i = 0; i < questionPreviewVMs.Count; i++)
             {
+                User user = new User();
+                user = aService.GetUser(questionPreviewVMs.ElementAt(i).UserInfo.Id, "Profile");
                 questionPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = questionPreviewVMs.ElementAt(i).CreatedDate;
+                questionPreviewVMs.ElementAt(i).UserInfo.FollowStatus = user.Followers.Count(t => t.Id == User.Identity.GetUserId<int>()) > 0;
+                UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+                UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+                if (friendship1 != default(UserFriendship))
+                {
+                    switch (friendship1.Status)
+                    {
+                        case RelationshipEnum.Requesting:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.ActiveRequesting;
+                            break;
+                        case RelationshipEnum.Friend:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Friend;
+                            break;
+                        case RelationshipEnum.Blocked:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Blocked;
+                            break;
+                        default:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Stranger;
+                            break;
+                    }
+                }
+                else if (friendship2 != default(UserFriendship))
+                {
+                    switch (friendship2.Status)
+                    {
+                        case RelationshipEnum.Requesting:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.PasssiveRequesting;
+                            break;
+                        case RelationshipEnum.Friend:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Friend;
+                            break;
+                        case RelationshipEnum.Blocked:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Blocked;
+                            break;
+                        default:
+                            questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Stranger;
+                            break;
+                    }
+                }
+                else
+                {
+                    questionPreviewVMs.ElementAt(i).UserInfo.RequestStatus = FriendStatusEnum.Stranger;
+                }
                 if (Request.IsAuthenticated)
                     questionPreviewVMs.ElementAt(i).Bookmarked =
                         questionPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()

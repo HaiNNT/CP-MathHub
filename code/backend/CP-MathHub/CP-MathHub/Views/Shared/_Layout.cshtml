@@ -429,6 +429,82 @@
         }
     </script>
     <script>
+        function buildUnFriendButton(id) {
+            return '<button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="cancelFriendHover(this,'+id+')">'
+            + '<i class="fa fa-check"></i>' + 'Hủy bạn bè' + '</button>'
+        }
+        function buildCancelFriendRequestButton(id) {
+            return '<button type="button" class="btn btn-default mh-profile-friend-button" onclick="denyFriendRequestHover(this, '+id+')">'
+            + '<i class="fa fa-user-plus"></i>'
+            + 'Hủy lời mời kết bạn'
+            + '</button>'
+        }
+        function buildConfirmedFriendButton(id) {
+            return '<button type="button" class="btn btn-default dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+            + '<i class="fa fa-user-plus"></i>'
+            + 'Trả lời lời mời kết bạn'
+            + '<span class="caret"></span>'
+            + '</button>'
+            + '<ul class="dropdown-menu">'
+            + '<li><button type="button" class="btn-default" onclick="acceptFriendHover(this,'+id+')">Chấp nhận</button></li>'
+            + '<li><button type="button" class="btn-default" onclick="denyFriendRequestHover(this, '+id+')">Từ Chối</button></li>'
+            + '</ul>'
+        }
+        function buildSendFriendRequestButton(id) {
+            return '<button type="button" class="btn btn-primary mh-profile-friend-button" onclick="sendFriendRequestHover(this,' + id + ')">'
+            + '<i class="fa fa-user-plus"></i>' + 'Kết bạn' + '</button>'
+        }
+        function acceptFriendHover(item, id) {
+            $.ajax({
+                method: "POST",
+                url: "/Account/AcceptFriendRequest",
+                data: { targetUserId: id }
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $(item).parent().html(buildUnFriendButton(id));
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
+        function sendFriendRequestHover(item, id) {
+            $.ajax({
+                method: "POST",
+                url: "/Account/SendFriendRequest",
+                data: { targetUserId: id }
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $(item).parent().html(buildCancelFriendRequestButton(id));
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
+        function denyFriendRequestHover(item, id) {
+            $.ajax({
+                method: "POST",
+                url: "/Account/CancelFriend",
+                data: { targetUserId: id }
+            })
+            .done(function (msg) {
+                if (msg != "" && msg != "\n") {
+                    $(item).parent().html(buildSendFriendRequestButton(id));
+                } else {
+                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                }
+            })
+            .fail(function () {
+                alert("Có sự cố về mạng. Hãy thử lại sau.");
+            });
+        }
         function acceptFriend(e, item, id) {
             e.preventDefault();
             e.stopPropagation();
