@@ -390,10 +390,12 @@ a {
 
 .mh-list-tags-right {
     text-align: right;
+    position: relative;
 }
 
 .mh-list-tags-left {
     text-align: left;
+    position: relative;
 }
 
 .mh-preview {
@@ -1521,3 +1523,16 @@ footer > .container > .row {
     text-align: right;
 }
 /* Hover user: end */
+/* Hover tag: start */
+.mh-tag-hover {
+    position: absolute;
+    z-index: 1001;
+    display: none;
+    top: 20px;
+    /*transition: 10s;*/
+    /*transition-delay: 5s;*/
+}
+.mh-hover-delay {
+    transition-delay: 5s;
+}
+/* Hover tag: end */
