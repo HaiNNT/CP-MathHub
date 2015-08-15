@@ -1,13 +1,34 @@
 ﻿@model CP_MathHub.Entity.BanAccount
 @{
-    ViewBag.Title = "BannedPage";
+    ViewBag.Title = "Khóa tài khoản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Tài Khoản Của Bạn Bị Khóa.</h2>
-<div>Bị khóa ngày: @Model.BannedDate.ToString()</div>
-<div>Thời gian khóa: @Model.Duration ngày</div>
-<div>Phục hồi ngày: @Model.UnBanedDate</div>
-<div>Lý do: @Model.Description</div>
+<div class="mh-body-page">
+    <h2>Tài Khoản Của Bạn Bị Khóa.</h2>
+    <div class="mh-banned-page">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 mh-banned-page-title">Bị khóa ngày</div>
+            <div class="col-sm-9 col-md-10">@Model.BannedDate.ToString()</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-2 mh-banned-page-title">Thời gian khóa</div>
+            <div class="col-sm-9 col-md-10">@Model.Duration ngày</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-2 mh-banned-page-title">Phục hồi ngày</div>
+            <div class="col-sm-9 col-md-10">@Model.UnBanedDate</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-2 mh-banned-page-title">Lý do</div>
+            <div class="col-sm-9 col-md-10">@Model.Description</div>
+        </div>
+    </div>
+</div>
+@section styles {
+    <link href="~/Content/img/favicon.ico" rel="shorcut icon" type="image/x-icon" />
+    <link rel="icon" href="~/Content/img/favicon.ico" type="image/x-icon">
+}
+@section scripts{
+}
 
 

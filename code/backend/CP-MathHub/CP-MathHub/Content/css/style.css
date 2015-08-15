@@ -1697,3 +1697,11 @@ footer > .container > .row {
     transition-delay: 5s;
 }
 /* Hover tag: end */
+/*BannedPage: start*/
+.mh-banned-page {
+    padding: 15px;
+}
+.mh-banned-page-title {
+    font-weight: bold;
+}
+/*BannedPage: end*/
