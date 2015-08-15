@@ -71,13 +71,15 @@
                                     </div>
                                     <div class="mh-note-answer_hint">
                                         <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
-                                        <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Answers.ElementAt(i).Content">
-                                            hủy
+                                        <button type="button" onclick="@("closeEditAnswer()")" class="mh-note-answer_hint-close-button" value="@Model.Answers.ElementAt(i).Content">
+                                            Hủy
                                         </button>
                                     </div>
                                 }
                                 @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Answers.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Answers.ElementAt(i).UserId } })
-                                @Html.Partial("Partials/_CommentListPartialView", Model.Answers.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "Status", ViewData["Status"] } })
+                                <div class="panel-body mh-comment" id="mh-post-@Model.Answers.ElementAt(i).Id">
+                                    @Html.Partial("Partials/_CommentListPartialView", Model.Answers.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Answers.ElementAt(i).Id }, { "Status", ViewData["Status"] } })
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,13 +141,15 @@
                                     </div>
                                     <div class="mh-note-answer_hint">
                                         <button type="submit" class="btn btn-success btn-sm">Đăng câu trả lời</button>
-                                        <button type="button" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
-                                            hủy
+                                        <button type="button" onclick="@("closeEditAnswer()")" class="mh-note-answer_hint-close-button" value="@Model.Hints.ElementAt(i).Content">
+                                            Hủy
                                         </button>
                                     </div>
                                 }
                                 @Html.Partial("../CommonWidget/_PostSettingPartialView", new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "PostType", "answer" }, { "Status", Model.Hints.ElementAt(i).Status.Value == PostStatusEnum.Active }, { "UserId", Model.Hints.ElementAt(i).UserId } })
-                                @Html.Partial("Partials/_CommentListPartialView", Model.Hints.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "Status", ViewData["Status"] } })
+                                <div class="panel-body mh-comment" id="mh-post-@Model.Hints.ElementAt(i).Id">
+                                    @Html.Partial("Partials/_CommentListPartialView", Model.Hints.ElementAt(i).Comments.ToList(), new ViewDataDictionary { { "PostId", Model.Hints.ElementAt(i).Id }, { "Status", ViewData["Status"] } })
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -222,13 +222,11 @@ function searchTag() {
 function commentPost() {
     $(".mh-form-input-comment").each(function () {
         var input = $(this);
-        var commentDiv = $(".mh-comment");
+        var postId = input.siblings(".mh-post-id").val();
+        var commentDiv = $("#mh-post-"+postId);
         input.keypress(function (e) {
             if (e.keyCode === 13) {
-                var content = input.val();
-                var postId = input.siblings(".mh-post-id").val();
-                console.log(content);
-                console.log(postId);
+                var content = input.val();               
                 $.ajax({
                     method: "Post",
                     url: "/Question/PostComment",
@@ -351,13 +349,35 @@ function editComment() {
 				        closeEditComment();
 				    }
 				})
-				.fail(function (msg) {
-				    console.log(msg);
-				    alert(msg);
+				.fail(function (msg) {				    
+				    alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
 				});
             }
         });
     });
+}
+
+/*
+    Delete a comment
+*/
+function deleteComment(id) {
+    var check = confirm("Bạn có thật sự muốn xóa bình luận này?");
+    if (check) {
+        var commentDiv = $(".mh-comment");
+        $.ajax({
+            method: "Post",
+            url: "/Question/DeleteComment",
+            data: { id: id}
+        })
+	    .done(function (msg) {
+	        if (msg != "\n") {
+	            commentDiv.html(msg);
+	        }
+	    })
+	    .fail(function (msg) {
+		    alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
+	    });
+    }
 }
 
 /*
