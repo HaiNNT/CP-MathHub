@@ -15,6 +15,7 @@ namespace CP_MathHub.Framework.Controllers
     public class BaseController : Controller
     {
         protected int _currentUserId;
+        protected string _previousUrl;
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -29,6 +30,18 @@ namespace CP_MathHub.Framework.Controllers
                 _currentUserId = 0;
             }
 
+            _previousUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+
         }
+
+        //protected override void OnActionExecuted(ActionExecutedContext context)
+        //{
+        //    if (Request.HttpMethod == "GET")
+        //    {
+        //        var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
+        //        cookie.Expires = DateTime.Now.AddMinutes(5);
+        //        Response.Cookies.Add(cookie);
+        //    }
+        //}
     }
 }

@@ -726,6 +726,7 @@
     <Content Include="Content\assets\jquery-file-upload\server\gae-python\main.py" />
     <Content Include="Content\assets\jquery-file-upload\server\node\package.json" />
     <Content Include="Content\assets\jquery-file-upload\server\php\files\.htaccess" />
+    <None Include="Properties\PublishProfiles\Release.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Properties\PublishProfiles\Test2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

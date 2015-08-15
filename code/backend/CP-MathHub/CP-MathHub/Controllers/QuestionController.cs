@@ -199,6 +199,7 @@ namespace CP_MathHub.Controllers
             QuestionCreateViewModel model = new QuestionCreateViewModel();
             model.Privacy = MainPostPrivacyEnum.Everyone;
             ViewBag.System = Constant.String.QuestionSystem;
+            ViewBag.ReturnUrl = _previousUrl == default(string) ? Url.Action("Index") : Url.Content(_previousUrl);
             return View("Views/QuestionCreateView", model);
         }
 
@@ -278,13 +279,14 @@ namespace CP_MathHub.Controllers
 
                 questionEditVM = Mapper.Map<Question, QuestionEditViewModel>(question);
                 ViewBag.System = Constant.String.QuestionSystem;
+                ViewBag.ReturnUrl = _previousUrl == default(string) ? Url.Action("Detail", new { id = id }) : Url.Content(_previousUrl);
                 return View("Views/QuestionEditView", questionEditVM);
             }
-            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
-            if (returnUrl == default(string))
+            //string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (_previousUrl == default(string))
                 return RedirectToAction("Detail", new { id = id });
             else
-                return Redirect(Url.Content(returnUrl));
+                return Redirect(Url.Content(_previousUrl));
         }
 
         //Post: Question/Edit
@@ -321,11 +323,11 @@ namespace CP_MathHub.Controllers
                 return RedirectToAction("Detail", new { id = question.Id });
             }
             //ViewBag.ErrorMessage = "Bạn không có quyền chỉnh sửa câu hỏi này";
-            string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
-            if (returnUrl == default(string))
+            //string returnUrl = Request.Cookies.Get("returnUrl") != null ? Request.Cookies.Get("returnUrl").Value : default(string);
+            if (_previousUrl == default(string))
                 return RedirectToAction("Detail", new { id = question.Id });
             else
-                return Redirect(Url.Content(returnUrl));
+                return Redirect(Url.Content(_previousUrl));
         }
 
         //Post: Question/Delete
