@@ -237,6 +237,7 @@
     <Compile Include="Models\Common\ProfileWidgetViewModel.cs" />
     <Compile Include="Models\Common\RecommendedMainPostViewModel.cs" />
     <Compile Include="Models\Common\UserHeaderViewModel.cs" />
+    <Compile Include="Models\Common\UserHoverViewModel.cs" />
     <Compile Include="Models\Common\UserInfoViewModel.cs" />
     <Compile Include="Models\Discussion\CategoryPreviewViewModel.cs" />
     <Compile Include="Models\Discussion\DiscussionCreateViewModel.cs" />
@@ -901,6 +902,7 @@
     <Content Include="Views\CommonWidget\Widgets\_ChatWidget.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FavoritePostWidget.cshtml" />
     <Content Include="Views\CommonWidget\Widgets\_FolloweeWidget.cshtml" />
+    <Content Include="Views\CommonWidget\Widgets\_UserHoverWidget.cshtml" />
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

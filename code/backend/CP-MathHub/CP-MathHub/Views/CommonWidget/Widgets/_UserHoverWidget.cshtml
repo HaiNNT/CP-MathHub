@@ -1,0 +1,99 @@
+﻿@using CP_MathHub.Models.Common
+@using CP_MathHub.Models.Account
+@using CP_MathHub.Service.Helpers
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Entity
+@model UserHoverViewModel
+<div id="idUser-@Model.Id" class="mh-user-hover mh-hover-user">
+    <div class="media">
+        <div class="media-left">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
+                <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-image-user-profile">
+            </a>
+        </div>
+        <div class="media-body">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})" class="media-heading mh-hover-user">
+                <h3>@Model.Username</h3>
+            </a>
+            <div class="detail-reputation">
+                <span>@Html.ReputationNumer(Model.Reputation)</span>
+                <i class="fa fa-circle mh-reputation-icon"></i>
+            </div>
+            <div>
+                @(Model.Profile.Address != null ? Model.Profile.Address : "")
+            </div>
+            <div>
+                @(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationAndPostPrivacyName[Model.Profile.Education.ToString()] : "")
+            </div>
+        </div>
+    </div>
+    <div class="mh-user-hover-footer">
+        @if (Model.Username != User.Identity.Name)
+        {
+            switch (Model.RequestStatus)
+            {
+                case FriendStatusEnum.ActiveRequesting:
+                    <span>
+                        <button type="button" class="btn btn-default mh-profile-friend-button" onclick="cancelFriendHover(this, @Model.Id)">
+                            <i class="fa fa-user-plus"></i>
+                            Hủy lời mời kết bạn
+                        </button>
+                    </span>
+                    break;
+                case FriendStatusEnum.Friend:
+                <span>
+                    <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" onclick="cancelFriendHover(this, @Model.Id)">
+                        <i class="fa fa-check"></i>
+                        Hủy bạn bè
+                    </button>
+                </span>
+                    break;
+                case FriendStatusEnum.Blocked:
+                    break;
+                case FriendStatusEnum.PasssiveRequesting:
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-plus"></i>
+                        Trả lời lời mời kết bạn
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a onclick="acceptFriendHover(this, @Model.Id)">Chấp nhận</a></li>
+                        <li><a onclick="denyFriendRequestHover(this, @Model.Id)">Từ Chối</a></li>
+                    </ul>
+                </div>
+                    break;
+                case FriendStatusEnum.Stranger:
+                <span>
+                    <button type="button" class="btn btn-primary mh-profile-friend-button" onclick="sendFriendRequestHover(this, @Model.Id)">
+                        <i class="fa fa-user-plus"></i>
+                        Kết bạn
+                    </button>
+                </span>
+                    break;
+                default:
+                    break;
+            }
+            if (Model.FollowStatus)
+            {
+                <span>
+                    <button type="button" class="btn btn-default" onclick="unFollowUserHover(this, @Model.Id)">
+                        <i class="fa fa-check"></i>
+                        Bỏ theo dõi
+                    </button>
+                </span>
+            }
+            else
+            {
+                <span>
+                    <button type="button" class="btn btn-default" onclick="followUserHover(this, @Model.Id)">
+                        <i class="fa fa-rss"></i>
+                        Theo dõi
+                    </button>
+                </span>
+            }
+        }
+
+    </div>
+</div>
+

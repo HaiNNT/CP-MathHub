@@ -4,100 +4,13 @@
 @using CP_MathHub.Models.Account
 @using CP_MathHub.Entity
 <div class="mh-user-info">
-    <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})" id="user-@Model.Id" class="mh-hover-image" mh-id="@Model.Id">
+    <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})" class="mh-hover-user">
         <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar">
     </a>
-    <div id="idUser-@Model.Id" class="mh-user-hover">
-        <div class="media">
-            <div class="media-left">
-                <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
-                    <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-image-user-profile">
-                </a>
-            </div>
-            <div class="media-body">
-                <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})" class="media-heading">
-                    <h3>@Model.Username</h3>
-                </a>
-                <div class="detail-reputation">
-                    <span>@Html.ReputationNumer(Model.Reputation)</span>
-                    <i class="fa fa-circle mh-reputation-icon"></i>
-                </div>
-                <div>
-                    @(Model.Profile.Address != null ? Model.Profile.Address : "")
-                </div>
-                <div>
-                    @(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationAndPostPrivacyName[Model.Profile.Education.ToString()] : "")
-                </div>
-            </div>
-        </div>
-        <div class="mh-user-hover-footer">
-            @if (Model.Username != User.Identity.Name)
-            {
-                switch (Model.RequestStatus)
-                {
-                    case FriendStatusEnum.ActiveRequesting:
-                        <span>
-                            <button type="button" class="btn btn-default mh-profile-friend-button" onclick="denyFriendRequestHover(this, @Model.Id)">
-                                <i class="fa fa-user-plus"></i>
-                                Hủy lời mời kết bạn
-                            </button>
-                        </span>
-                        break;
-                    case FriendStatusEnum.Friend:
-                    <span>
-                        <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-check"></i>
-                            Hủy bạn bè
-                        </button>
-                    </span>
-                        break;
-                    case FriendStatusEnum.Blocked:
-                        break;
-                    case FriendStatusEnum.PasssiveRequesting:
-                    <span>
-                        <button type="button" class="btn btn-default dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user-plus"></i>
-                            Trả lời lời mời kết bạn
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><button type="button" class="btn-default" onclick="acceptFriendHover(this, @Model.Id)">Chấp nhận</button></li>
-                            <li><button type="button" class="btn-default" onclick="denyFriendRequestHover(this, @Model.Id)">Từ Chối</button></li>
-                        </ul>
-                    </span>
-                        break;
-                    case FriendStatusEnum.Stranger:
-                    <span>
-                        <button type="button" class="btn btn-primary mh-profile-friend-button" onclick="sendFriendRequestHover(this, @Model.Id)">
-                            <i class="fa fa-user-plus"></i>
-                            Kết bạn
-                        </button>
-                    </span>
-                        break;
-                    default:
-                        break;
-                }
-                if (Model.FollowStatus)
-                {
-                    <button type="button" class="btn btn-default">
-                        <i class="fa fa-check"></i>
-                        Bỏ theo dõi
-                    </button>
-                }
-                else
-                {
-                    <button type="button" class="btn btn-default">
-                        <i class="fa fa-rss"></i>
-                        Theo dõi
-                    </button>
-                }
-            }
-
-        </div>
-    </div>
+    @Html.Action("UserWidgetHover", "CommonWidget", new { @userid = Model.Id })
     <div>
         <div>
-            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id  })" class = "mh-hover-user">
                 <span class="mh-username" style="@(Model.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.Username</span>
             </a>
             <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewData["CreatedDateType"])</span>

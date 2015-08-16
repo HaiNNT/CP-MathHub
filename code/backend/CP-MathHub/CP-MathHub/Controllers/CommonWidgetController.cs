@@ -132,6 +132,55 @@ namespace CP_MathHub.Controllers
             return PartialView("Widgets/_FolloweeWidget", followees);
         }
         [ChildActionOnly]
+        public virtual ActionResult UserWidgetHover(int userid){
+            User user = _aService.GetUser(userid,"Profile");
+            UserHoverViewModel model = new UserHoverViewModel();
+            model = Mapper.Map<User, UserHoverViewModel>(user);
+            model.FollowStatus = user.Followers.Count(t => t.Id == User.Identity.GetUserId<int>()) > 0;
+            UserFriendship friendship1 = user.PassiveRelationship.Where(r => r.UserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+            UserFriendship friendship2 = user.ActiveRelationships.Where(r => r.TargetUserId == User.Identity.GetUserId<int>()).FirstOrDefault();
+            if (friendship1 != default(UserFriendship))
+            {
+                switch (friendship1.Status)
+                {
+                    case RelationshipEnum.Requesting:
+                        model.RequestStatus = FriendStatusEnum.ActiveRequesting;
+                        break;
+                    case RelationshipEnum.Friend:
+                        model.RequestStatus = FriendStatusEnum.Friend;
+                        break;
+                    case RelationshipEnum.Blocked:
+                        model.RequestStatus = FriendStatusEnum.Blocked;
+                        break;
+                    default:
+                        model.RequestStatus = FriendStatusEnum.Stranger;
+                        break;
+                }
+            }
+            else if (friendship2 != default(UserFriendship))
+            {
+                switch (friendship2.Status)
+                {
+                    case RelationshipEnum.Requesting:
+                        model.RequestStatus = FriendStatusEnum.PasssiveRequesting;
+                        break;
+                    case RelationshipEnum.Friend:
+                        model.RequestStatus = FriendStatusEnum.Friend;
+                        break;
+                    case RelationshipEnum.Blocked:
+                        model.RequestStatus = FriendStatusEnum.Blocked;
+                        break;
+                    default:
+                        model.RequestStatus = FriendStatusEnum.Stranger;
+                        break;
+                }
+            }
+            else
+            {
+                model.RequestStatus = FriendStatusEnum.Stranger;
+            }
+            return PartialView("Widgets/_UserHoverWidget", model);
+        }
         [Authorize(Roles = Constant.String.RoleAdmin + "," + Constant.String.RoleMod)]
         public virtual ActionResult AdminHeaderWidget()
         {

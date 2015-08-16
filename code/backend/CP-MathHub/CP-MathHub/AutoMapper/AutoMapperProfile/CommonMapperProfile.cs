@@ -22,6 +22,7 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
         {
             #region User
             Mapper.CreateMap<User, UserInfoViewModel>();
+            Mapper.CreateMap<User, UserHoverViewModel>();
             Mapper.CreateMap<User, ProfileWidgetViewModel>();
             Mapper.CreateMap<User, UserHeaderViewModel>();
             Mapper.CreateMap<User, CP_MathHub.Models.Admin.UserHeaderViewModel>();            
