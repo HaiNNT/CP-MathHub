@@ -209,6 +209,7 @@
     <Compile Include="Models\Admin\BlockUserViewModel.cs" />
     <Compile Include="Models\Admin\CreateTagViewModel.cs" />
     <Compile Include="Models\Admin\DashboardViewModel.cs" />
+    <Compile Include="Models\Admin\ManageContactViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracNormalPostViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracUserListViewModel.cs" />
     <Compile Include="Models\Admin\ManageInfracUsersViewModel.cs" />

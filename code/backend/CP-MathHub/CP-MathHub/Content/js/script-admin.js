@@ -211,6 +211,30 @@ function checkSelectItem() {
         $("#btnResultDuplicate").addClass("hidden");
     }
 }
+function deleteFeedback() {
+    var ids = [];
+    $(".mail-checkbox:checked").each(function () {
+        ids.push($(this).val());
+    });
+    if (!confirm("Bạn có chắc chắn muốn xóa những ý kiến này.")) {
+        return;
+    }
+    $.ajax({
+        method: "POST",
+        url: "/Admin/DeleteFeedback",
+        data: { ids: ids }
+    })
+      .done(function (msg) {
+          if (msg) {
+              location.reload();
+          } else {
+              alert("Thao tác thất bại");
+          }
+      })
+      .fail(function () {
+          alert("Thao tác thất bại");
+      });
+}
 function resultDuplicateTag() {
     var tagID = [];
     var tagName = $("#tagName").val();
@@ -227,11 +251,11 @@ function resultDuplicateTag() {
           if (msg) {
               location.reload();
           } else {
-              alert("false");
+              alert("Có lỗi xảy ra");
           }
       })
       .fail(function () {
-          alert("Phân quyền cho tài khoản này thất bại!");
+          alert("Gộp thẻ thất bạn!");
       });
 }
 
@@ -446,7 +470,14 @@ function checkall() {
         }
     });
 }
-
+function checkAllFeedback(item) {
+    var checkboxes = $('#feedbackTable').children().find(':checkbox');
+    if ($(item).is(':checked')) {
+        checkboxes.prop('checked', true);
+    } else {
+        checkboxes.prop('checked', false);
+    }
+}
 function uncheckStatus(id) {
     var url = "/Admin/CheckStatus";
     var data = { id: id };

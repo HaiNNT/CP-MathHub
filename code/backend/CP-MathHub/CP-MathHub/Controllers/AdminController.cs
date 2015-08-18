@@ -335,7 +335,15 @@ namespace CP_MathHub.Controllers
 
         public ActionResult ManageContact()
         {
-            return View("Views/ManageContactView");
+            ManageContactViewModel model = new ManageContactViewModel();
+            List<Feedback> list = aService.GetFeedback();
+            model.Feedbacks = list;
+            return View("Views/ManageContactView", model);
+        }
+        public bool DeleteFeedback(List<int> ids)
+        {
+            aService.DeleteFeedbacks(ids);
+            return true;
         }
 
         //Post: Admin/ChangeStatusReport
@@ -669,5 +677,6 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
             return View("Views/ManageInfracUsersView", modelList);
         }
+
     }
 }
