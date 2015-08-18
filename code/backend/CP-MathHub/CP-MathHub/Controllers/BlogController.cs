@@ -23,6 +23,7 @@ namespace CP_MathHub.Controllers
     {
         private IBlogService bService;
         private ICommonService cService;
+        private IAccountService aService;
         private CPMathHubModelContainer context;
         private Microsoft.AspNet.SignalR.IHubContext _hub;
         public BlogController()
@@ -38,11 +39,13 @@ namespace CP_MathHub.Controllers
             {
                 bService = new BlogService(context, _currentUserId);
                 cService = new CommonService(context);
+                aService = new AccountService(context);
             }
             else
             {
                 bService = new BlogService(context);
                 cService = new CommonService(context);
+                aService = new AccountService(context);
             }
 
         }
@@ -183,15 +186,19 @@ namespace CP_MathHub.Controllers
 
             if (page == 0)
             {
-                MyBlogViewModel myBlogVM = new MyBlogViewModel();
+                UserBlogViewModel userBlogVM = new UserBlogViewModel();
+                User user = new User();
+                user = aService.GetUser(userId, "Profile");
                 ViewBag.Tab = tab;
                 ViewBag.System = Constant.String.BlogSystem;
-                myBlogVM.Articles = articlePreviewVMs;
-                myBlogVM.View = view;
+                userBlogVM.Articles = articlePreviewVMs;
+                userBlogVM.View = view;
+                userBlogVM.UserId = user.Id;
+                userBlogVM.UserName = user.UserName;
                 var cookie = new HttpCookie("returnUrl", Request.Url.AbsolutePath + Request.Url.Query);
                 cookie.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(cookie);
-                return View("Views/MyBlogView", myBlogVM);
+                return View("Views/UserBlogView", userBlogVM);
             }
             else
             {

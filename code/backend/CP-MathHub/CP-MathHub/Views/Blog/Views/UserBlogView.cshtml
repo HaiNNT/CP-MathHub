@@ -1,0 +1,94 @@
+﻿
+@using CP_MathHub.Core.Configuration
+@using CP_MathHub.Models.Blog
+@model UserBlogViewModel
+@{
+    ViewBag.Title = "Bài viết của người dùng";
+    ViewBag.MhPage = Constant.String.BlogDetailPage;
+    ViewBag.CreatedDateType = "đăng";
+    Layout = "~/Views/Blog/Layouts/_MyBlogLayout.cshtml";
+}
+<div class="mh-top-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-5 col-lg-3 mh-content-title-1">
+            <h3></h3>
+        </div>
+        <div class="col-xs-12 col-md-7 col-lg-9 mh-content-title">
+            <a href="@Url.Action("Index")" class="btn btn-default">
+                <i class="fa fa-users mh-home-button"></i>
+                Bài viết cộng đồng
+            </a>
+            <a href="@Url.Action("MyBlog")" class="btn btn-default active">
+                <i class="fa fa-user mh-home-button"></i>
+                Bài viết của tôi
+            </a>
+        </div>
+    </div>
+</div>
+@Html.Partial("Partials/_NavPartialView", new ViewDataDictionary { { "Page", ViewBag.MhPage }, { "UserId", Model.UserId }, { "User", Model.UserName } })
+<div class="mh-page-view">
+    <a href="@Url.Action("MyBlog", new { @tab = ViewBag.Tab, @view = Constant.Blog.String.GridView })" title="Lưới" class="btn btn-default @(Model.View == Constant.Blog.String.GridView ? "active" : "")">
+        <i class="fa fa-th-large"></i>
+    </a>
+    <a href="@Url.Action("MyBlog", new { @tab = ViewBag.Tab, @view = Constant.Blog.String.ListView })" title="Danh sách" class="btn btn-default @(Model.View == Constant.Blog.String.ListView ? "active" : "")">
+        <i class="fa fa-th-list"></i>
+    </a>
+</div>
+@if (Model.Articles.Count > 0)
+{
+    if (Model.View == Constant.Blog.String.ListView)
+    {
+        <div class="mh-list-contents" id="list-articles">
+            @Html.Partial("Partials/_ArticleListPartialView", Model.Articles)
+        </div>
+    }
+    else
+    {
+        <div class="mh-grid">
+            <div class="mh-grid-body">
+                <div class="row" id="list-articles">
+                    @Html.Partial("Partials/_ArticleGridPartialView", Model.Articles)
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <span>Không có bài viết nào trong mục này.</span>
+}
+
+<input id="tab" type="hidden" value="@ViewBag.Tab" />
+<input id="view" type="hidden" value="@Model.View" />
+<input id="system" type="hidden" value="@ViewBag.System" />
+<input id="tab-param" type="hidden" value="@ViewBag.TabParam" />
+<input id="mh-page" type="hidden" value="@ViewBag.MhPage" />
+<div id="history-edit" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+</div>
+@section LeftPanel
+{
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Action("ProfileWidget", new { controller = "CommonWidget" })
+        @*@Html.Action("FavoriteTagWidget", new { controller = "CommonWidget" })
+            @Html.Action("SubscriptionWidget", new { controller = "CommonWidget" })*@
+        @Html.Partial("../CommonWidget/Mockups/_LeftSectionMockup")
+    }
+}
+@section RightPanel
+{
+    @Html.Partial("../CommonWidget/Mockups/_RightSectionMockup")
+    @*@Html.Action("PostProblemWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("MySubscriptionWidget", new { controller = "CommonWidget" })
+        <hr />
+        @Html.Action("NewBlogWidget", new { controller = "CommonWidget" })*@
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Question" })
+    @Html.Action("HotMainPost", "CommonWidget", new { system = "Discussion" })
+}
+@section styles{
+
+}
+@section scripts{
+
+}
