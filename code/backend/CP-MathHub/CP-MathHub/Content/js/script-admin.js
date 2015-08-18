@@ -590,7 +590,9 @@ function changeStatusReportUser(id, type) {
 function blockPost(item, id) {
     var url = "/Admin/BlockPost";
     var data = { id: id };
-
+    if (confirm("Bạn có chắc chắn muốn khóa bài viết này ?") == false) {
+        return;
+    }
     $.ajax({
         method: "POST",
         url: url,
@@ -610,7 +612,9 @@ function blockPost(item, id) {
 function activePost(item, id) {
     var url = "/Admin/ActivePost";
     var data = { id: id };
-
+    if (confirm("Bạn có chắc chắn muốn mở khóa bài viết này ?") == false) {
+        return;
+    }
     $.ajax({
         method: "POST",
         url: url,

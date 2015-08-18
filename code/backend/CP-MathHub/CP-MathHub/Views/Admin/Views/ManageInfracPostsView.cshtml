@@ -5,7 +5,7 @@
 @using Microsoft.AspNet.Identity.Owin;
 @model ManageInfracPostsViewModel
 @{
-    ViewBag.Title = "ManageInfracPosts";
+    ViewBag.Title = "Quản lý bài viết vi phạm";
     Layout = "~/Views/Admin/Layouts/_AdminLayout.cshtml";
 }
 <section class="wrapper">
@@ -29,15 +29,15 @@
                                 </div>
                                 <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
                                     @*@using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form" }))
-                                    {
-                                        <select onchange="GetOptionSelect()" id="selectMainPostFilterId" name="MainPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
-                                            <option value="1" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(1) ? "selected" : "")>Câu Hỏi</option>
-                                            <option value="2" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(2) ? "selected" : "")>Blog</option>
-                                            <option value="3" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(3) ? "selected" : "")>Thảo luận</option>
-                                            <option value="4" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(4) ? "selected" : "")>Đã kiểm tra</option>
-                                            <option value="5" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(5) ? "selected" : "")>Chưa kiểm tra</option>
-                                        </select>
-                                    }*@
+                                        {
+                                            <select onchange="GetOptionSelect()" id="selectMainPostFilterId" name="MainPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
+                                                <option value="1" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(1) ? "selected" : "")>Câu Hỏi</option>
+                                                <option value="2" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(2) ? "selected" : "")>Blog</option>
+                                                <option value="3" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(3) ? "selected" : "")>Thảo luận</option>
+                                                <option value="4" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(4) ? "selected" : "")>Đã kiểm tra</option>
+                                                <option value="5" @(Model.MainPostFilters != null && Model.MainPostFilters.Contains(5) ? "selected" : "")>Chưa kiểm tra</option>
+                                            </select>
+                                        }*@
                                     <select onchange="GetOptionSelect()" id="selectMainPostFilterId" name="MainPostFilters" class="selectpicker postFilter" multiple="multiple" title="Tất cả">
                                         <option value="Question">Câu Hỏi</option>
                                         <option value="Blog">Blog</option>
@@ -51,9 +51,9 @@
                             <table class="table table-striped table-hover table-bordered" id="editable-manageInfracMainPosts">
                                 <thead>
                                     <tr>
-                                        <th class="hidden"></th>
-                                        <th class ="hidden"></th>
                                         <th>STT</th>
+                                        <th class="hidden"></th>
+                                        <th class="hidden"></th>
                                         <th>Tên bài viết</th>
                                         <th>Chủ bài viết</th>
                                         <th>Ngày báo cáo</th>
@@ -68,14 +68,14 @@
                                     {
                                         ManageInfracMainPostViewModel iPost = Model.MainPosts.ElementAt(i);
                                         <tr class="">
+                                            <td class="mh-cell-center">
+                                                @(i + 1)
+                                            </td>
                                             <td class="hidden">
                                                 @Html.GetMainPostType(iPost.MainPost)
                                             </td>
                                             <td id="status-@iPost.MainPost.Id" class="hidden">
                                                 @iPost.Status
-                                            </td>
-                                            <td class="mh-cell-center">
-                                                @(i + 1)
                                             </td>
                                             <td class="mh-cell-middle">
                                                 <a href="@Url.Action("Detail", Html.GetMainPostType(iPost.MainPost), new { id = iPost.MainPost.Id })">@iPost.MainPost.Title</a>
@@ -119,19 +119,19 @@
                                                                             descriptionMainPost = r.Description;
                                                                         }
                                                                     }
-                                                                <div class="media mh-user-report">
-                                                                    <div class="media-left">
-                                                                        <a href="#">
+                                                                    <div class="media mh-user-report">
+                                                                        <div class="media-left">
+                                                                            <a href="@Url.Action("UserProfile", "Account", new { @userId = user.Id })">
                                                                             <img class="mh-user-icon" src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" />
-                                                                        </a>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <a href="@Url.Action("UserProfile", "Account", new { userId= user.Id })"><span>@user.UserName</span></a>
+                                                                        </div>
+                                                                        <div class="media-right">
+                                                                            @descriptionMainPost
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="media-body">
-                                                                        <a href="@Url.Action("UserProfile", "Account", new { userId= user.Id })"><span>@user.UserName</span></a>
-                                                                    </div>
-                                                                    <div class="media-right">
-                                                                        @descriptionMainPost
-                                                                    </div>
-                                                                </div>
                                                                 }
                                                             </div>
                                                             <div class="modal-footer">
@@ -215,15 +215,15 @@
                                 </div>
                                 <div class="col-xs-8 cols-sm-10 col-md-10 col-lg-10">
                                     @*@using (Html.BeginForm("ManageInfracPosts", "Admin", FormMethod.Post, new { id = "select-form-normalpost" }))
-                                    {
-                                        <select onchange="GetOptionSelectNormalPost()" id="selectNormalPostFilterId" name="NormalPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
-                                            <option value="1" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(1) ? "selected" : "")>Câu trả lời</option>
-                                            <option value="2" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(2) ? "selected" : "")>Bình luận</option>
-                                            <option value="3" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(3) ? "selected" : "")>Đã kiểm tra</option>
-                                            <option value="4" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(4) ? "selected" : "")>Chưa kiểm tra</option>
-                                        </select>
-                                        <input type="hidden" name="tab" value="normalposts" />
-                                    }*@
+                                        {
+                                            <select onchange="GetOptionSelectNormalPost()" id="selectNormalPostFilterId" name="NormalPostFilters" class="selectpicker" multiple="multiple" title="Tất cả">
+                                                <option value="1" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(1) ? "selected" : "")>Câu trả lời</option>
+                                                <option value="2" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(2) ? "selected" : "")>Bình luận</option>
+                                                <option value="3" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(3) ? "selected" : "")>Đã kiểm tra</option>
+                                                <option value="4" @(Model.NormalPostFilters != null && Model.NormalPostFilters.Contains(4) ? "selected" : "")>Chưa kiểm tra</option>
+                                            </select>
+                                            <input type="hidden" name="tab" value="normalposts" />
+                                        }*@
                                     <select onchange="GetOptionSelectNormalPost()" id="selectNormalPostFilterId" name="NormalPostFilters" class="selectpicker normalPostFilter" multiple="multiple" title="Tất cả">
                                         <option value="Answer">Câu trả lời</option>
                                         <option value="Comment">Bình luận</option>
@@ -280,7 +280,7 @@
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                                 <h4 class="modal-title" id="myModalLabel">Danh sách người báo cáo</h4>
                                                             </div>
-                                                            
+
 
                                                             <div class="modal-body">
                                                                 @{
