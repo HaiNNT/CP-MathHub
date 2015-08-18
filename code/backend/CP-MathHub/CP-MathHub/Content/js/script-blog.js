@@ -76,7 +76,7 @@ function createTag() {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("createTag error");
 	  });
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
@@ -166,7 +166,7 @@ function bookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("bookmark error");
 	  });
 }
 
@@ -193,7 +193,7 @@ function unBookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("unBookmark error");
 	  });
 }
 
@@ -227,7 +227,7 @@ function like(id, like) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("like error");
 	  });
 }
 
@@ -372,7 +372,7 @@ function getFacebookShareNum() {
          item.html(msg.shares);
      })
      .fail(function () {
-         alert("fail error");
+         alert("getFacebookShareNum error");
      });
     });
 }
@@ -389,7 +389,7 @@ function sendReport(id) {
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
         })
          .fail(function () {
-             alert("fail error");
+             alert("sendReport error");
          });
 }
 
@@ -409,7 +409,7 @@ function loadEditedLog(id, type) {
          $('[data-toggle="tooltip"]').tooltip();
      })
      .fail(function () {
-         alert("fail error");
+         alert("loadEditedLog error");
      });
 }
 

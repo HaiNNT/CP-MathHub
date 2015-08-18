@@ -467,7 +467,7 @@ function uncheckStatus(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("uncheckStatus error");
     });
 }
 
@@ -491,7 +491,7 @@ function checkStatus(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("checkStatus error");
 	  });
 }
 

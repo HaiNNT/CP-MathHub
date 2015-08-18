@@ -281,7 +281,10 @@
     vertical-align: top;
     font-size: 13pt;
 }
-#list-questions {
+/*#list-questions {
+    border-right: 0px;
+}*/
+.mh-question-tags {
     border-right: 0px;
 }
 
