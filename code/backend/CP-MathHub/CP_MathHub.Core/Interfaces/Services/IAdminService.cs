@@ -178,7 +178,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// Result duplicate tags
         /// </summary>
         /// <param name="tagIds"></param>
-        void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "");
+        void ResolveDuplicateTags(List<int> tagIds, string tagName, string description = "");
         /// <summary>
         /// Get list reported user
         /// </summary>
@@ -189,5 +189,24 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <returns></returns>
         List<Post> GetReportedPost();
+
+        /// <summary>
+        /// Get feedback from user
+        /// </summary>
+        /// <returns></returns>
+        List<Feedback> GetFeedback();
+
+        /// <summary>
+        /// Delete feedbacks by ids
+        /// </summary>
+        /// <param name="ids"></param>
+        void DeleteFeedbacks(List<int> ids);
+        
+        /// <summary>
+        /// Get feedbacks by ids
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        List<Feedback> GetFeedbacks(List<int> ids);
     }
 }

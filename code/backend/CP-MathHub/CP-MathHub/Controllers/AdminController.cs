@@ -291,11 +291,11 @@ namespace CP_MathHub.Controllers
             aService.DeleteTag(tagId);
             return true;
         }
-        //Post: Admin/ResultDuplicateTag
+        //Post: Admin/ResolveDuplicateTag
         [HttpPost]
-        public bool ResultDuplicateTags(List<int> tagIds, string tagName, string description)
+        public bool ResolveDuplicateTags(List<int> tagIds, string tagName, string description)
         {
-            aService.ResultDuplicateTags(tagIds, tagName, description);
+            aService.ResolveDuplicateTags(tagIds, tagName, description);
             return true;
         }
         //Get: Admin/SendEMail
@@ -335,7 +335,15 @@ namespace CP_MathHub.Controllers
 
         public ActionResult ManageContact()
         {
-            return View("Views/ManageContactView");
+            ManageContactViewModel model = new ManageContactViewModel();
+            List<Feedback> list = aService.GetFeedback();
+            model.Feedbacks = list;
+            return View("Views/ManageContactView", model);
+        }
+        public bool DeleteFeedback(List<int> ids)
+        {
+            aService.DeleteFeedbacks(ids);
+            return true;
         }
 
         //Post: Admin/ChangeStatusReport
@@ -669,5 +677,6 @@ namespace CP_MathHub.Controllers
             ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
             return View("Views/ManageInfracUsersView", modelList);
         }
+
     }
 }

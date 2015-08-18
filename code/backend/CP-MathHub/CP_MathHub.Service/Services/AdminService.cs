@@ -183,7 +183,7 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Tag>().Delete(tagId);
             dal.Save();
         }
-        public void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "")
+        public void ResolveDuplicateTags(List<int> tagIds, string tagName, string description = "")
         {
             List<Tag> tags = new List<Tag>();
             List<MainPost> mainPosts = new List<MainPost>();
@@ -195,9 +195,9 @@ namespace CP_MathHub.Service.Services
             tag.CreatedDate = DateTime.Now;
             dal.Repository<Tag>().Insert(tag);
             dal.Save();
-            foreach ( Tag t in tags)
+            foreach (Tag t in tags)
             {
-                mainPosts.AddRange( dal.Repository<MainPost>().Table.Where(m => m.Tags.Count(c => c.Id == t.Id) > 0).ToList());           
+                mainPosts.AddRange(dal.Repository<MainPost>().Table.Where(m => m.Tags.Count(c => c.Id == t.Id) > 0).ToList());
                 t.MainPosts.Clear();
                 dal.Repository<Tag>().Update(t);
                 dal.Save();
@@ -206,6 +206,30 @@ namespace CP_MathHub.Service.Services
             }
             tag.MainPosts = mainPosts;
             dal.Repository<Tag>().Update(tag);
+            dal.Save();
+        }
+        public List<Feedback> GetFeedbacks(List<int> ids)
+        {
+            List<Feedback> feedbacks = new List<Feedback>();
+            if (ids != null)
+            {
+                foreach (int id in ids)
+                {
+                    Feedback f = dal.Repository<Feedback>().GetById(id);
+                    feedbacks.Add(f);
+                }
+            }
+            return feedbacks;
+        }
+        public void DeleteFeedbacks(List<int> ids)
+        {
+            List<Feedback> list = new List<Feedback>();
+            list = GetFeedbacks(ids);
+            foreach (Feedback f in list)
+            {
+                dal.Repository<Feedback>().Delete(f);
+                dal.Save();
+            }
             dal.Save();
         }
         public List<BanReason> GetListBanReason(List<int> list)
@@ -259,7 +283,7 @@ namespace CP_MathHub.Service.Services
                 return false;
                 throw;
             }
-            
+
         }
 
         public Post GetPost(int id)
@@ -276,6 +300,12 @@ namespace CP_MathHub.Service.Services
         public List<User> GetReportedUser()
         {
             return dal.Repository<User>().Table.Where(u => u.ReportedList.Count > 0).ToList();
+        }
+        public List<Feedback> GetFeedback()
+        {
+            List<Feedback> list = new List<Feedback>();
+            list = dal.Repository<Feedback>().Table.OrderBy(p => p.CreatedDate).ToList();
+            return list;
         }
     }
 }

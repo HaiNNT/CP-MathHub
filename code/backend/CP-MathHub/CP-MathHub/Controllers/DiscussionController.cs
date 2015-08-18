@@ -673,17 +673,18 @@ namespace CP_MathHub.Controllers
             //User user = cService.GetUser(User.Identity.GetUserId<int>());
             Constant.Enum.LikeResult result = cService.Like(id, _currentUserId);
             Post post = cService.GetPost(id);
-            if (post.UserId != _currentUserId && 
-                result != Constant.Enum.LikeResult.Fail && 
+            if (post.UserId != _currentUserId &&
+                result != Constant.Enum.LikeResult.Fail &&
                 result != Constant.Enum.LikeResult.Unlike)
             {
                 //new Thread(() =>
                 //{
-                
                 NotificationSettingEnum notiType = default(NotificationSettingEnum);
                 int userId = 0;
                 int mainPostId = 0;
                 string content = default(string);
+                string mainPostType = default(string);
+                string url = default(string);
                 switch (result)
                 {
                     case Constant.Enum.LikeResult.Fail:
@@ -693,30 +694,48 @@ namespace CP_MathHub.Controllers
                         userId = post.UserId;
                         content = ((Article)post).Title;
                         mainPostId = id;
+                        url = Url.Action("Detail", "Blog", new { id = mainPostId });
                         break;
                     case Constant.Enum.LikeResult.Discussion:
                         notiType = NotificationSettingEnum.UserLikeMainPost;
                         userId = post.UserId;
                         content = ((Discussion)post).Title;
                         mainPostId = id;
+                        url = Url.Action("Detail", "Discussion", new { id = mainPostId });
                         break;
                     case Constant.Enum.LikeResult.Comment:
                         notiType = NotificationSettingEnum.UserLikeComment;
                         userId = post.UserId;
                         content = ((MainPost)((Comment)post).Post).Title;
-                        mainPostId = id;
+                        mainPostId = ((MainPost)((Comment)post).Post).Id;
+                        mainPostType = EntityHelper.GetMainPostTypeNameOfNormalPost(post);
+                        url = Url.Action("Detail", mainPostType, new { id = mainPostId });
                         break;
                     case Constant.Enum.LikeResult.Reply:
                         notiType = NotificationSettingEnum.UserLikeComment;
                         userId = post.UserId;
                         content = ((MainPost)((Comment)((Comment)post).Post).Post).Title;
-                        mainPostId = id;
+                        mainPostId = ((MainPost)((Comment)((Comment)post).Post).Post).Id;
+                        mainPostType = EntityHelper.GetMainPostTypeNameOfNormalPost(post);
+                        url = Url.Action("Detail", mainPostType, new { id = mainPostId });
                         break;
                     case Constant.Enum.LikeResult.Unlike:
                         break;
                     default:
                         break;
                 }
+                //if (vote.Post.GetType().BaseType == typeof(Question))
+                //{
+                //    question = qService.GetQuestion(vote.PostId);
+                //    notiType = NotificationSettingEnum.VotedQuestion;
+                //    userId = question.UserId;
+                //}
+                //else
+                //{
+                //    question = qService.GetQuestion(((Answer)vote.Post).QuestionId);
+                //    notiType = NotificationSettingEnum.VotedAnswer;
+                //    userId = vote.Post.UserId;
+                //}
 
                 Notification notification = new Notification();
                 notification.AuthorId = _currentUserId;
@@ -725,7 +744,7 @@ namespace CP_MathHub.Controllers
                 notification.Seen = false;
                 notification.Type = notiType;
                 notification.UserId = userId;
-                notification.Link = Url.Action("Detail", "Discussion", new { id = mainPostId });
+                notification.Link = url;
                 cService.AddNotification(notification);
 
                 using (RealTimeService rService = new RealTimeService(new CPMathHubModelContainer(), notification.UserId))
@@ -734,7 +753,7 @@ namespace CP_MathHub.Controllers
                     foreach (string conId in connectionIds)
                     {
                         _hub.Clients.Client(conId).notifyNewActivity(rService.CountNewActivityNotification());
-                    } 
+                    }
                 }
                 //}
                 //).Start();

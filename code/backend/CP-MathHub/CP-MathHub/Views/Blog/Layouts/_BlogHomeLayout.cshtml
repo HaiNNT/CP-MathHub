@@ -25,13 +25,6 @@
 @section scripts{
     @Scripts.Render("~/bundles/blogjs")
     @RenderSection("scripts", false)
-    <script>
-        var id = $(".mh-hover-image").attr("mh-id");
-        var userId = "#user-" + id;
-        var idUser = "#idUser-" + id;
-        $(".mh-user-info > " + userId).hover(function () { $(idUser).delay(500).fadeToggle() })
-        $(idUser).hover(function () { $(idUser).fadeToggle() })
-    </script>
 }
 @section styles{
     <link href="~/Content/img/favicon-blog.ico" rel="shorcut icon" type="image/x-icon" />

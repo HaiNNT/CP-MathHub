@@ -73,7 +73,7 @@ namespace CP_MathHub.Service.Helpers
                     result = "đã chấp nhận trả lời của bạn trong:";
                     break;
                 case NotificationSettingEnum.UserLikeComment:
-                    result = "đã thích bình luận của bạn:";
+                    result = "đã thích bình luận của bạn trong:";
                     break;
                 case NotificationSettingEnum.ReceivedPrivilege:
                     result = "bạn đã nhận được danh hiệu:";
