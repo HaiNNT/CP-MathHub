@@ -220,7 +220,7 @@ function resultDuplicateTag() {
     });
     $.ajax({
         method: "POST",
-        url: "/Admin/ResultDuplicateTags",
+        url: "/Admin/ResolveDuplicateTags",
         data: { tagIds: tagID, tagName: tagName, description: description }
     })
       .done(function (msg) {

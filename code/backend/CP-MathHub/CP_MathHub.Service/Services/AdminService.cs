@@ -183,7 +183,7 @@ namespace CP_MathHub.Service.Services
             dal.Repository<Tag>().Delete(tagId);
             dal.Save();
         }
-        public void ResultDuplicateTags(List<int> tagIds, string tagName, string description = "")
+        public void ResolveDuplicateTags(List<int> tagIds, string tagName, string description = "")
         {
             List<Tag> tags = new List<Tag>();
             List<MainPost> mainPosts = new List<MainPost>();
