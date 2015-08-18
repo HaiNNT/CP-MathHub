@@ -226,7 +226,7 @@ function loadConversationDetail(item, id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("loadConversationDetail error");
 	  });
 }
 

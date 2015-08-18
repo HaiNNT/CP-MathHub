@@ -59,7 +59,7 @@ function bookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("bookmark error");
 	  });
 }
 
@@ -86,7 +86,7 @@ function unBookmark(id) {
 	      }
 	  })
 	  .fail(function () {
-	      alert("fail error");
+	      alert("unBookmark error");
 	  });
 }
 
@@ -159,7 +159,7 @@ function createTag() {
           }
       })
       .fail(function () {
-          alert("fail error");
+          alert("createTag error");
       });
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
@@ -286,7 +286,7 @@ function vote(vote, postId, type) {
           }
       })
       .fail(function () {
-          alert("fail error");
+          alert("vote error");
       });
 
 }
@@ -307,7 +307,7 @@ function loadEditedLog(id, type) {
          $('[data-toggle="tooltip"]').tooltip();
      })
      .fail(function () {
-         alert("fail error");
+         alert("loadEditedLog error");
      });
 }
 
@@ -484,7 +484,7 @@ function sendReport(id) {
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
         })
          .fail(function () {
-             alert("fail error");
+             alert("sendReport error");
          });
 }
 

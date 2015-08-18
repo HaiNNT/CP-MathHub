@@ -7,14 +7,14 @@
         <div class="hidden-xs col-sm-4 col-md-3 col-lg-2 mh-left-section">
             @RenderSection("LeftPanel", true)
         </div>
-        <div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section" id="list-questions">
+        <div class="col-xs-12 col-sm-8 col-md-9  col-lg-10 mh-mid-section mh-question-tags" id="list-questions">
             @RenderBody()
         </div>
     }
     else
     {
         @RenderSection("LeftPanel", false)
-        <div class="col-xs-12 mh-mid-section" id="list-questions">
+        <div class="col-xs-12 mh-mid-section mh-question-tags" id="list-questions">
             @RenderBody()
         </div>
     }
