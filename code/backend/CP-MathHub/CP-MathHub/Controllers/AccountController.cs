@@ -532,6 +532,7 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+            model.Assessments = user.Assessments.ToList();
             ViewBag.System = Constant.String.ProfileSystem;
             return View("Views/ProfileView", model);
         }

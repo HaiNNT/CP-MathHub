@@ -111,7 +111,7 @@
                     <label>Chức vụ</label>
                 </div>
                 <div class="col-xs-5">
-                    <span class="mh-profile-span-edit">Người dùng</span>
+                    <span class="mh-profile-span-edit">@(string.Join(", ", Model.Assessments.Select(r => r.Role.Name)))</span>
                 </div>
             </div>
             @Html.Partial("Partials/_ChangePasswordPartialView", Model.Password)
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.FullName</span>
-                        @Html.EditorFor(m => m.FullName, new { @class = "mh-profile-input-edit" })
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "mh-profile-input-edit", @Value = Model.Profile.FullName })
                         @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="FullName" />
                     </div>
@@ -195,7 +195,7 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.Address</span>
-                        @Html.TextBoxFor(m => m.Address, new { @class = "mh-profile-input-edit" })
+                        @Html.TextBoxFor(m => m.Address, new { @class = "mh-profile-input-edit", @Value = Model.Profile.Address })
                         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="Address" />
                     </div>
@@ -237,7 +237,7 @@
                     </div>
                     <div class="col-xs-5">
                         <a href="@Model.Profile.Facebook" class="mh-profile-span-edit">@Model.Profile.Facebook</a>
-                        @Html.TextBoxFor(m => m.Facebook, new { @class = "mh-profile-input-edit" })
+                        @Html.TextBoxFor(m => m.Facebook, new { @class = "mh-profile-input-edit", @Value = Model.Profile.Facebook })
                         @Html.ValidationMessageFor(m => m.Facebook, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="Facebook" />
                     </div>
@@ -263,7 +263,7 @@
                     </div>
                     <div class="col-xs-5">
                         <span class="mh-profile-span-edit">@Model.Profile.School</span>
-                        @Html.TextBoxFor(m => m.School, new { @class = "mh-profile-input-edit" })
+                        @Html.TextBoxFor(m => m.School, new { @class = "mh-profile-input-edit", @Value = Model.Profile.School })
                         @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="School" />
                     </div>
@@ -306,7 +306,7 @@
                         <span class="mh-profile-span-edit">@Model.Profile.ViewPoint</span>
                         @*@Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })*@
                         @*<textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.ViewPoint">@Model.Profile.ViewPoint</textarea>*@
-                        @Html.TextAreaFor(m => m.ViewPoint, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3" })
+                        @Html.TextAreaFor(m => m.ViewPoint, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3", @Value = Model.Profile.ViewPoint })
                         @Html.ValidationMessageFor(m => m.ViewPoint, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="ViewPoint" />
                     </div>
@@ -329,7 +329,7 @@
                         <span class="mh-profile-span-edit">@Model.Profile.Summary</span>
                         @*@Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })*@
                         @*<textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
-                        @Html.TextAreaFor(m => m.Summary, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3" })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3", @Value = Model.Profile.Summary })
                         @Html.ValidationMessageFor(m => m.Summary, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="Summary" />
                     </div>
@@ -369,8 +369,6 @@
     </a>
 }
 @section styles{
-
 }
 @section scripts{
-
 }
