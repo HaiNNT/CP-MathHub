@@ -4,19 +4,25 @@
     <div class="mh-table-info-title">
         <a href="">Theo dõi</a>
     </div>
-    @foreach (User u in Model)
+    @if (Model.Count == 0)
     {
-        <div class="mh-table-info-body">
-            <a href="@Url.Action("UserProfile", "Account", new { @userId = u.Id})">
-                <div class="media">
-                    <div class="media-left">
-                        <img src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-small">
-                    </div>
-                    <div class="media-body mh-follow-user-name">
-                        @u.UserName
-                    </div>
-                </div>
-            </a>
+        <div class="col-sm-10 col-md-10 mh-table-info-body-letter">
+            Bạn chưa theo dõi ai
         </div>
-    }  
-</div>
+    }
+            @foreach (User u in Model)
+    {
+                <div class="mh-table-info-body">
+                    <a href="@Url.Action("UserProfile", "Account", new { @userId = u.Id})">
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="@(u.Avatar != null ? Url.Content(u.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-small">
+                            </div>
+                            <div class="media-body mh-follow-user-name">
+                                @u.UserName
+                            </div>
+                        </div>
+                    </a>
+                </div>
+    }
+        </div>

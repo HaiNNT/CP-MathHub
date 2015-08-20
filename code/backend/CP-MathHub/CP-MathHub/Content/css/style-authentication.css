@@ -104,3 +104,7 @@
     width: 100%;
 }
 /* Login_register: end */
+.mh-info-validate {
+    color: #03135D;
+    font-size: 12pt;
+}

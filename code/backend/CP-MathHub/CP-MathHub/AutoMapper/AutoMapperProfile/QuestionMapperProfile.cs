@@ -163,6 +163,10 @@ namespace CP_MathHub.AutoMapper.AutoMapperProfile
                    s => s.VoteDown,
                    d => d.MapFrom(m => 0)
                )
+               //.ForMember(
+               //    s => s.Privacy,
+               //    d => d.MapFrom(m => m.Privacy)
+               //)
                ;
             #endregion
 

@@ -33,6 +33,8 @@
         </div>
         <div class="mh-ckeditor">
             @Html.Label("Nội dung:", new { @class = "mh-create-label" })<br />
+            *(@Html.Label("Chú ý: để nhập công thức toán học, hãy nhấn vào icon:", new { @class = "mh-create-label-note" })
+            <img src="~/Content/img/iconLaTex.PNG" />)<br />
             @Html.TextAreaFor(model => model.Content, new { @class = "editor", @id = "editor1", @rows = "15", @cols = "80" })
             @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
         </div>

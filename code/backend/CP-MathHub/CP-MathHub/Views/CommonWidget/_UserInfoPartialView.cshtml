@@ -3,14 +3,14 @@
 @using CP_MathHub.Core.Configuration
 @using CP_MathHub.Models.Account
 @using CP_MathHub.Entity
-<div class="mh-user-info">
+<div class="mh-user-info mh-hover-user-only">
     <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id})" class="mh-hover-user">
         <img src="@(Model.Avatar != null ? Url.Content(Model.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar">
     </a>
     @Html.Action("UserWidgetHover", "CommonWidget", new { @userid = Model.Id })
     <div>
         <div>
-            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id  })" class = "mh-hover-user">
+            <a href="@Url.Action("UserProfile", "Account", new { @userId = Model.Id  })" class="mh-hover-user">
                 <span class="mh-username" style="@(Model.Status == UserStatusEnum.Banned ? "text-decoration: line-through;":"")">@Model.Username</span>
             </a>
             <span class="mh-time">@Html.PostCreatedTime(Model.CreateMainPostDate, (string)ViewData["CreatedDateType"])</span>

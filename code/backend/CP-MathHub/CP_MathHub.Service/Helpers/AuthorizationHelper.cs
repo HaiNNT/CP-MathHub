@@ -37,6 +37,10 @@ namespace CP_MathHub.Service.Helpers
         //Core authentication, called before each action
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            if (!httpContext.User.Identity.IsAuthenticated)
+            {
+                return true;
+            }
             AccountService aService = new AccountService(new CPMathHubModelContainer());
             User user = aService.GetUser(httpContext.User.Identity.GetUserId<int>());
             return user.Status != UserStatusEnum.Banned;

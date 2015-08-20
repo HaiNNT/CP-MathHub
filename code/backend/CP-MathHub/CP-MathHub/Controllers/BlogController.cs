@@ -445,7 +445,7 @@ namespace CP_MathHub.Controllers
             {
                 article.Title = articleEditVM.Title;
                 article.Content = articleEditVM.Content;
-                article.Privacy = articleEditVM.Privacy;
+                article.Privacy = articleEditVM.Privacy == 0 ? article.Privacy : articleEditVM.Privacy;
                 if (article.UserId == _currentUserId)
                 {
                     article.PublicDate = articleEditVM.PublicDate.Value;

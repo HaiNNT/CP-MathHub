@@ -235,6 +235,8 @@ function commentPost() {
                 .done(function (msg) {
                     if (msg != "\n") {
                         commentDiv.html(msg);
+                        commentPost();
+                        commentDiv.find(".mh-seemore-comment").click();
                         input.val("");
                     }
                 })

@@ -41,15 +41,16 @@
                                                 <span class="mh-time">@Html.PostCreatedTime(Model.Answers.ElementAt(i).CreatedDate, "trả lời")</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7 mh-hover-user-only">
                                             <div class="row">
                                                 <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Answers.ElementAt(i).Author.Id })">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Answers.ElementAt(i).Author.Id })" class="mh-hover-user">
                                                         <img src="@(Model.Answers.ElementAt(i).Author.Avatar != null ? Url.Content(Model.Answers.ElementAt(i).Author.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar">
                                                     </a>
+                                                    @Html.Action("UserWidgetHover", "CommonWidget", new { @userid = Model.Answers.ElementAt(i).Author.Id })
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Answers.ElementAt(i).Author.Id })">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Answers.ElementAt(i).Author.Id })" class="mh-hover-user">
                                                         <span class="mh-username">@Model.Answers.ElementAt(i).Author.UserName</span>
                                                     </a>
                                                     <div class="detail-reputat">
@@ -111,15 +112,16 @@
                                                 <span class="mh-time">@Html.PostCreatedTime(Model.Hints.ElementAt(i).CreatedDate, "gợi ý")</span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7">
+                                        <div class="col-sm-6 col-sm-offset-6 col-md-7 col-md-offset-5 col-lg-5 col-lg-offset-7 mh-hover-user-only">
                                             <div class="row">
                                                 <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 mh-answer-avatar">
-                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Hints.ElementAt(i).Author.Id })">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Hints.ElementAt(i).Author.Id })" class="mh-hover-user">
                                                         <img src="@(Model.Hints.ElementAt(i).Author.Avatar != null ? Url.Content(Model.Hints.ElementAt(i).Author.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" class="mh-user-avatar">
                                                     </a>
+                                                    @Html.Action("UserWidgetHover", "CommonWidget", new { @userid = Model.Hints.ElementAt(i).Author.Id })
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 mh-answer-username">
-                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Hints.ElementAt(i).Author.Id })">
+                                                    <a href="@Url.Action("UserProfile", "Account", new {userId = Model.Hints.ElementAt(i).Author.Id })" class="mh-hover-user">
                                                         <span class="mh-username">@Model.Hints.ElementAt(i).Author.UserName</span>
                                                     </a>
                                                     <div class="detail-reputat">

@@ -107,6 +107,7 @@ $(document).ready(function () {
     searchFriend();
     searchUserFriend();
     applyInfinityLoading();
+    scrollToBottom();
 });
 /*
     Search users
@@ -211,6 +212,7 @@ function loadConversationDetail(item, id) {
 	      if (msg || msg != "") {
 	          $(".mh-profile-chat-details").html($(msg).html());
 	          checkOnline(id);
+	          scrollToBottom();
 	          $('.mh-profile-chat-footer-textarea').keypress(function (e) {
 	              if (e.keyCode === 13) {
 	                  e.preventDefault();

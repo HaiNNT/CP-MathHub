@@ -939,6 +939,9 @@ footer > .container > .row {
     font-size: 14pt;
 }
 
+.mh-create-label-note {
+    color:#ccc;
+}
 .mh-create-input {
     width: 100%;
     height: 40px;

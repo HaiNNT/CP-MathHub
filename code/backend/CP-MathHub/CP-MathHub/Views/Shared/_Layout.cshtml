@@ -351,6 +351,7 @@
                                 + '</div>'
                             + '</div>';
                 $(".mh-profile-chat-detail").append(result);
+                scrollToBottom();
             }
 
 
@@ -665,6 +666,7 @@
         function resetMessageNum() {
             $("#mh-message-number").addClass("hidden");
             $("#mh-message-number").html(0);
+            realTime.server.refreshMessageNum();
         }
     </script>
     <script>
@@ -672,7 +674,7 @@
             var timeoutHover;
             $(".mh-hover-user").each(function () {
                 var item = $(this);
-                var info = item.parents(".mh-user-info").find(".mh-user-hover");
+                var info = item.parents(".mh-hover-user-only").find(".mh-user-hover");
                 item.mouseover(function () {
                     clearTimeout(timeoutHover);
                     timeoutHover = setTimeout(
@@ -689,7 +691,6 @@
                 });
             });
         });
-        
     </script>
 </body>
 </html>

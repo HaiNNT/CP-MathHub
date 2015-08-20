@@ -196,8 +196,7 @@ namespace CP_MathHub.Controllers
 
         // GET: Question/Create
         [HttpGet]
-        [Authorize]
-        [BannedUser]
+        [Authorize, BannedUser]
         public ActionResult Create()
         {
             QuestionCreateViewModel model = new QuestionCreateViewModel();
@@ -318,7 +317,7 @@ namespace CP_MathHub.Controllers
 
                 question.Title = questionVM.Title;
                 question.Content = questionVM.Content;
-                question.Privacy = questionVM.Privacy;
+                question.Privacy = questionVM.Privacy == 0 ? question.Privacy : questionVM.Privacy;
 
                 question.LastEditedDate = editedlog.CreatedDate;
                 question.EditedContents.Add(editedlog);
@@ -490,6 +489,8 @@ namespace CP_MathHub.Controllers
             //).Start();
             //}
             List<Comment> comments = cService.GetComments(postId);
+            ViewData["Status"] = PostStatusEnum.Active;
+            ViewData["PostId"] = postId;
             return PartialView("Partials/_CommentListPartialView", comments);
         }
 

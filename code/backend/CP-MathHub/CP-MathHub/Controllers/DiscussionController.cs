@@ -415,7 +415,7 @@ namespace CP_MathHub.Controllers
 
                 discussion.Title = discussionEditVM.Title;
                 discussion.Content = discussionEditVM.Content;
-                discussion.Privacy = discussionEditVM.Privacy;
+                discussion.Privacy = discussionEditVM.Privacy == 0 ? discussion.Privacy : discussionEditVM.Privacy;
 
                 discussion.LastEditedDate = editedlog.CreatedDate;
                 discussion.EditedContents.Add(editedlog);
