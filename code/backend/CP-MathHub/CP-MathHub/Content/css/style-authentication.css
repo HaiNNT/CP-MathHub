@@ -53,7 +53,7 @@
     position: relative;
 }
 .mh-login-mathHub-username, .mh-login-mathHub-password, .mh-login-mathHub-email {
-    width: 100%;
+    width: 95%;
     margin-bottom: 5px;
     margin-top: 5px;
     padding: 5px 10px 5px 33px;
