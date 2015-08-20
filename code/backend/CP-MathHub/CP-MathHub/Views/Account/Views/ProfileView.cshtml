@@ -306,7 +306,7 @@
                         <span class="mh-profile-span-edit">@Model.Profile.ViewPoint</span>
                         @*@Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })*@
                         @*<textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.ViewPoint">@Model.Profile.ViewPoint</textarea>*@
-                        @Html.TextAreaFor(m => m.ViewPoint, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3", @Value = Model.Profile.ViewPoint })
+                        @Html.TextAreaFor(m => m.ViewPoint, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3" })
                         @Html.ValidationMessageFor(m => m.ViewPoint, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="ViewPoint" />
                     </div>
@@ -329,7 +329,7 @@
                         <span class="mh-profile-span-edit">@Model.Profile.Summary</span>
                         @*@Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })*@
                         @*<textarea rows="3" class="mh-profile-input-edit mh-profile-txtArea-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
-                        @Html.TextAreaFor(m => m.Summary, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3", @Value = Model.Profile.Summary })
+                        @Html.TextAreaFor(m => m.Summary, new { @class = "mh-profile-input-edit mh-profile-txtArea-edit", @rows = "3" })
                         @Html.ValidationMessageFor(m => m.Summary, "", new { @class = "text-danger" })
                         <input type="hidden" name="Property" value="Summary" />
                     </div>
