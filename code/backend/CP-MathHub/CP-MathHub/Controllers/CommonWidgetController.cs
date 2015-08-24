@@ -231,7 +231,7 @@ namespace CP_MathHub.Controllers
                 case "Blog":
                     model.Name = "Bài viết";
                     model.Type = RecommendedMainPostTypeEnum.Hot;
-                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab, _currentUserId).Take(5).ToList<MainPost>();
+                    model.MainPosts = _bService.GetArticles(Constant.Blog.String.HomeHotTab,0, _currentUserId).Take(5).ToList<MainPost>();
                     break;
                 case "Discussion":
                     model.Name = "Thảo luận";
