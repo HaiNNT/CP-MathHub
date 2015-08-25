@@ -80,7 +80,7 @@ function tableManageUsers() {
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
             "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sEmptyTable": "Không có dữ liệu phù hợp",
             "sInfoPostFix": "",
             "sUrl": ""
         }
@@ -347,7 +347,7 @@ function ManageInfracMainPosts_edittable() {
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
             "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sEmptyTable": "Không có dữ liệu phù hợp",
             "sInfoPostFix": "",
             "sUrl": ""
         },
@@ -408,7 +408,7 @@ function ManageInfracNormalPosts_edittable() {
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
             "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sEmptyTable": "Không có dữ liệu phù hợp",
             "sInfoPostFix": "",
             "sUrl": ""
         },
@@ -723,7 +723,7 @@ function dataTableManageInfracUsers() {
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
             "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sEmptyTable": "Không có dữ liệu phù hợp",
             "sInfoPostFix": "",
             "sUrl": ""
         },
@@ -782,7 +782,7 @@ function tableRecevierMail() {
             "sZeroRecords": "Không tìm thấy mục nào phù hợp",
             "sInfoFiltered": "(được lọc từ _MAX_ mục)",
             "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sEmptyTable": "Không có dữ liệu phù hợp ở bảng",
+            "sEmptyTable": "Không có dữ liệu phù hợp",
             "sInfoPostFix": "",
             "sUrl": ""
         }

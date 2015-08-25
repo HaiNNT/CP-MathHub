@@ -65,8 +65,10 @@ namespace CP_MathHub.Controllers
             {
                 articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
                 if (Request.IsAuthenticated)
-                    articlePreviewVMs.ElementAt(i).Bookmarked = articles.ElementAt(i).BookmarkUsers
-                                                .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
+                    articlePreviewVMs.ElementAt(i).Bookmarked =
+                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                            && articles.ElementAt(i).BookmarkUsers
+                                                    .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
             }
 
             if (page == 0)
@@ -75,12 +77,12 @@ namespace CP_MathHub.Controllers
                 ICollection<ArticlePreviewViewModel> articleHotPreviewVMs =
                         hotArticles.Select(Mapper.Map<Article, ArticlePreviewViewModel>) // Using Mapper with Collection
                         .ToList();
-                for (int i = 0; i < articlePreviewVMs.Count; i++)
+                for (int i = 0; i < articleHotPreviewVMs.Count; i++)
                 {
-                    articlePreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articlePreviewVMs.ElementAt(i).PublicDate.Value;
+                    articleHotPreviewVMs.ElementAt(i).UserInfo.CreateMainPostDate = articleHotPreviewVMs.ElementAt(i).PublicDate.Value;
                     if (Request.IsAuthenticated)
-                        articlePreviewVMs.ElementAt(i).Bookmarked =
-                            articlePreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
+                        articleHotPreviewVMs.ElementAt(i).Bookmarked =
+                            articleHotPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
                             && articles.ElementAt(i).BookmarkUsers
                                                     .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
                 }
