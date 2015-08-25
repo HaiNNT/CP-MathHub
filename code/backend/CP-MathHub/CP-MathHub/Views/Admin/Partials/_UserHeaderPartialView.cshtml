@@ -9,13 +9,12 @@
     </a>
     <ul class="dropdown-menu extended logout">
         <div class="log-arrow-up"></div>
-        <li><a href="@Url.Action("MyProfile","Account")"><i class=" icon-suitcase"></i>Thông tin cá nhân</a></li>
-        <li><a href="@Url.Action("Friend","Account")">Bạn bè</a></li>
-        <li><a href="@Url.Action("MyActivity","Account")">Hoạt động</a></li>
-        <li><a href="@Url.Action("Index","Admin")">Quản lý</a></li>
-        <li><a href="@Url.Action("Privacy","Account")">Thiết lập quyền riêng tư</a></li>
-        <li class="divider"></li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+        <li><a href="@Url.Action("MyProfile","Account")"><i class="icon-info"></i>Tài khoản</a></li>
+        <li><a href="@Url.Action("Friend","Account")"><i class="icon-group"></i> Bạn bè</a></li>
+        <li><a href="@Url.Action("MyActivity","Account")"><i class="icon-ellipsis-vertical"></i>Hoạt động</a></li>
+        <li><a href="@Url.Action("Index","Admin")"><i class="icon-suitcase"></i>Quản lý</a></li>
+        <li><a href="@Url.Action("Privacy","Account")"><i class="icon-lock"></i>Quyền riêng tư</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon-key"></i>Đăng xuất</a></li>
     </ul>
     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hidden" }))
     {
