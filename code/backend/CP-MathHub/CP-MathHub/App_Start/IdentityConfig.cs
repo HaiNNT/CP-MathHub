@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
+using System.Net.Mail;
 namespace CP_MathHub.Models.Account
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
@@ -83,9 +84,18 @@ namespace CP_MathHub.Models.Account
 
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public Task SendAsync(IdentityMessage content)
         {
             // Plug in your email service here to send an email.
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(content.Destination)); //Get mail list
+            message.Subject = content.Subject;
+            message.Body = content.Body;
+            message.IsBodyHtml = true;
+            using (var smtp = new SmtpClient())
+            {
+                smtp.Send(message);
+            }
             return Task.FromResult(0);
         }
     }
