@@ -230,7 +230,9 @@ namespace CP_MathHub.Controllers
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
-                ViewBag.Message = result.Errors.FirstOrDefault();
+                ViewBag.Message = result.Errors.FirstOrDefault()
+                                                .Replace("is already taken","đã được sử dụng")
+                                                .Replace("Account","Tài khoản");
             }
             // If we got this far, something failed, redisplay form
             return View(model);
