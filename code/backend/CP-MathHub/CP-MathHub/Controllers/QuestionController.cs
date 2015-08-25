@@ -565,7 +565,11 @@ namespace CP_MathHub.Controllers
             Answer answer = new Answer();
             answer.Content = content;
             answer.Id = id;
-            answer = qService.EditAnswer(answer, _currentUserId, User.IsInRole("Expert"));
+            answer = qService.EditAnswer(answer,
+                                        _currentUserId,
+                                        User.IsInRole(Constant.String.RoleExpert) ||
+                                        User.IsInRole(Constant.String.RoleMod) ||
+                                        User.IsInRole(Constant.String.RoleAdmin));
             return RedirectToAction("Detail", new { id = answer.QuestionId });
         }
 

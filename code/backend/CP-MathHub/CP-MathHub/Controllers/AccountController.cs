@@ -212,7 +212,7 @@ namespace CP_MathHub.Controllers
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
+                    //ViewBag.Link = callbackUrl;
                     aService.CreatePrivacy(user.Id);
                     aService.CreateProfile(user.Id);
                     aService.CreateAvatar(user.Id);
@@ -532,6 +532,9 @@ namespace CP_MathHub.Controllers
             Entity.User user = new User();
             user = aService.GetUser(User.Identity.GetUserId<int>(), "Profile");
             ProfileViewModel model = Mapper.Map<User, ProfileViewModel>(user);
+            model.Assessments = user.Assessments.ToList();
+            model.Summary = model.Profile.Summary;
+            model.ViewPoint = model.Profile.ViewPoint;
             ViewBag.System = Constant.String.ProfileSystem;
             return View("Views/ProfileView", model);
         }

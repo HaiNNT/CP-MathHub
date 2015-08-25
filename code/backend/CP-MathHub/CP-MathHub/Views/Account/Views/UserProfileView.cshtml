@@ -21,7 +21,7 @@
     <div class="row">
         <div class="visible-xs mh-home-tab">
             <a href="@Url.Action("UserProfile", new { @userId = Model.Id })" class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
-            <a href="@Url.Action("UserFriend", new { @friendId = Model.Id })" class="btn btn-danger btn-sm">Bạn bè</a>   
+            <a href="@Url.Action("UserFriend", new { @friendId = Model.Id })" class="btn btn-danger btn-sm">Bạn bè</a>
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        @if(!Model.FollowStatus)
+                        @if (!Model.FollowStatus)
                         {
                             <li>
                                 <a href="@Url.Action("FollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
@@ -84,9 +84,9 @@
                         </li>
                     </ul>
                 </div>
-                    break;
+                        break;
                 case FriendStatusEnum.Blocked:
-                    break;
+                        break;
                 case FriendStatusEnum.PasssiveRequesting:
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -99,237 +99,206 @@
                         <li><a href="@Url.Action("CancelFriend", new { targetUserId = Model.Id, returnPage = "UserProfile" })">Từ chối</a></li>
                     </ul>
                 </div>
-                    break;
+                        break;
                 case FriendStatusEnum.Stranger:
-                    using (Html.BeginForm("SendFriendRequest", "Account", FormMethod.Post))
-                    {
-                        <div class="btn-group">
-                            <input type="hidden" name="targetUserId" value="@Model.Id" />
-                            <input type="hidden" name="returnPage" value="UserProfile" />
-                            <button type="submit" class="btn btn-primary mh-profile-friend-button">
-                                <i class="fa fa-user-plus"></i>
-                                Kết bạn
-                            </button>
-                            <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                @if (!Model.FollowStatus)
-                                {
+                        using (Html.BeginForm("SendFriendRequest", "Account", FormMethod.Post))
+                        {
+                            <div class="btn-group">
+                                <input type="hidden" name="targetUserId" value="@Model.Id" />
+                                <input type="hidden" name="returnPage" value="UserProfile" />
+                                <button type="submit" class="btn btn-primary mh-profile-friend-button">
+                                    <i class="fa fa-user-plus"></i>
+                                    Kết bạn
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle mh-profile-friend-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @if (!Model.FollowStatus)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("FollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                                <i class="fa fa-rss"></i>
+                                                Theo dõi
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("UnFollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
+                                                <i class="fa fa-times"></i>
+                                                Bỏ theo dõi
+                                            </a>
+                                        </li>
+                                    }
                                     <li>
-                                        <a href="@Url.Action("FollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
-                                            <i class="fa fa-rss"></i>
-                                            Theo dõi
+                                        <a href="#">
+                                            <i class="fa fa-comments"></i>
+                                            Tin nhắn
                                         </a>
                                     </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <a href="@Url.Action("UnFollowFriend", new {targetUserId = Model.Id, returnPage = "UserProfile" })">
-                                            <i class="fa fa-times"></i>
-                                            Bỏ theo dõi
-                                        </a>
-                                    </li>
-                                }
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-comments"></i>
-                                        Tin nhắn
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    }
-                    break;
+                                </ul>
+                            </div>
+                        }
+                        break;
                 default:
-                    break;
+                        break;
             }
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Tài khoản</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.User.UserName</span>
-                        @* @Html.EditorFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })*@
-                    </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Tài khoản</label>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Email</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Email</span>
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.User.UserName</span>
+                    @* @Html.EditorFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })*@
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Điểm thưởng</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Reputation != null ? @Model.Reputation : 0)</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Email</label>
                 </div>
-            }
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Email</span>
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Điểm thưởng</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(Model.Reputation != null ? @Model.Reputation : 0)</span>
+                    <i class="fa fa-circle mh-reputation-icon"></i>
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Chức vụ</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(string.Join(", ", Model.Assessments.Select(r => r.Role.Name)))</span>
+                </div>
+            </div>
         </div>
     </div>
     <div>
         <h3>Thông tin cơ bản</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Họ tên</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.FullName</span>
-                        @Html.TextBoxFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="FullName" />
-                    </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Họ tên</label>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Giới tính</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Profile.Gender != null ? Constant.Account.Dictionary.GenderName[(int)Model.Profile.Gender] : "")</span>
-                        @Html.RadioListForGenderEnum("Profile.Gender", Model.Profile.Gender)
-                        <input type="hidden" name="Property" value="Gender" />
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.FullName</span>
+                    @Html.TextBoxFor(m => m.Profile.FullName, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="FullName" />
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Ngày sinh</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")</span>
-                        @*@Html.TextBoxFor(m => m.Profile.Birthday, new { @class = "mh-profile-input-edit", @id = "datepicker"})*@
-                        <input type="datetime" name="Profile.Birthday" class="mh-profile-input-edit" id="datepicker" value="@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")" />
-                        <input type="hidden" name="Property" value="BirthDay" />
-                    </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Giới tính</label>
                 </div>
-            }
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(Model.Profile.Gender != null ? Constant.Account.Dictionary.GenderName[(int)Model.Profile.Gender] : "")</span>
+                    @Html.RadioListForGenderEnum("Profile.Gender", Model.Profile.Gender)
+                    <input type="hidden" name="Property" value="Gender" />
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Ngày sinh</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")</span>
+                    @*@Html.TextBoxFor(m => m.Profile.Birthday, new { @class = "mh-profile-input-edit", @id = "datepicker"})*@
+                    <input type="datetime" name="Profile.Birthday" class="mh-profile-input-edit" id="datepicker" value="@(Model.Profile.Birthday != null ? Model.Profile.Birthday.Value.ToString("dd-MM-yyyy") : "")" />
+                    <input type="hidden" name="Property" value="BirthDay" />
+                </div>
+            </div>
         </div>
     </div>
     <div>
         <h3>Thông tin liên hệ</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Địa chỉ</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.Address</span>
-                        @Html.TextBoxFor(m => m.Profile.Address, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="Address" />
-                    </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Địa chỉ</label>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Số điện thoại</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.PhoneNumber</span>
-                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="PhoneNumber" />
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.Address</span>
+                    @Html.TextBoxFor(m => m.Profile.Address, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="Address" />
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Facebook</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <a href="@Model.Profile.Facebook" class="mh-profile-span-edit">@Model.Profile.Facebook</a>
-                        @Html.TextBoxFor(m => m.Profile.Facebook, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="Facebook" />
-                    </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Số điện thoại</label>
                 </div>
-            }
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.PhoneNumber</span>
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="PhoneNumber" />
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Facebook</label>
+                </div>
+                <div class="col-xs-5">
+                    <a href="@Model.Profile.Facebook" class="mh-profile-span-edit">@Model.Profile.Facebook</a>
+                    @Html.TextBoxFor(m => m.Profile.Facebook, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="Facebook" />
+                </div>
+            </div>
         </div>
     </div>
     <div>
         <h3>Thông tin khác</h3>
         <div class="mh-profile-info">
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Trường</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.School</span>
-                        @Html.TextBoxFor(m => m.Profile.School, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="School" />
-                    </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Trường</label>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Trình độ</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationName[(int)Model.Profile.Education] : "")</span>
-                        @Html.EnumDropDownListFor(m => m.Profile.Education, new { @class = "mh-profile-select-edit" })
-                        <input type="hidden" name="Property" value="Education" />
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.School</span>
+                    @Html.TextBoxFor(m => m.Profile.School, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="School" />
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Quan điểm</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.ViewPoint</span>
-                        @Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })
-                        <input type="hidden" name="Property" value="ViewPoint" />
-                    </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Trình độ</label>
                 </div>
-            }
-            @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post))
-            {
-                <div class="row mh-profile-info-row">
-                    <div class="col-xs-3">
-                        <label>Giới thiệu</label>
-                    </div>
-                    <div class="col-xs-5">
-                        <span class="mh-profile-span-edit">@Model.Profile.Summary</span>
-                        @Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })
-                        @*<textarea rows="5" cols="8" class="mh-profile-input-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
-                        <input type="hidden" name="Property" value="Summary" />
-                    </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@(Model.Profile.Education != null ? Constant.Account.Dictionary.EducationName[(int)Model.Profile.Education] : "")</span>
+                    @Html.EnumDropDownListFor(m => m.Profile.Education, new { @class = "mh-profile-select-edit" })
+                    <input type="hidden" name="Property" value="Education" />
                 </div>
-            }
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Quan điểm</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.ViewPoint</span>
+                    @Html.TextBoxFor(m => m.Profile.ViewPoint, new { @class = "mh-profile-input-edit" })
+                    <input type="hidden" name="Property" value="ViewPoint" />
+                </div>
+            </div>
+            <div class="row mh-profile-info-row">
+                <div class="col-xs-3">
+                    <label>Giới thiệu</label>
+                </div>
+                <div class="col-xs-5">
+                    <span class="mh-profile-span-edit">@Model.Profile.Summary</span>
+                    @Html.TextBoxFor(m => m.Profile.Summary, new { @class = "mh-profile-input-edit" })
+                    @*<textarea rows="5" cols="8" class="mh-profile-input-edit" name="Profile.Summary">@Model.Profile.Summary</textarea>*@
+                    <input type="hidden" name="Property" value="Summary" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

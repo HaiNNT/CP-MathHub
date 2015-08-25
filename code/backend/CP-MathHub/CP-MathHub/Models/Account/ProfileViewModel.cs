@@ -47,6 +47,8 @@ namespace CP_MathHub.Models.Account
         public string Summary { get; set; }
         public Image Avatar { get; set; }
 
+        public List<Accessment> Assessments { get; set; }
+
         public int FriendNumber { get; set; }
         public FriendStatusEnum RequestStatus { get; set; }
         public bool FollowStatus { get; set; }
