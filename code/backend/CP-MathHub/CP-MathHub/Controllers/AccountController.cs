@@ -127,6 +127,16 @@ namespace CP_MathHub.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var userid = UserManager.FindByName(model.Username).Id;
+                    if (!UserManager.IsEmailConfirmed(userid))
+                    {
+                        var code = await UserManager.GenerateEmailConfirmationTokenAsync(userid);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = userid, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(userid, "Xác nhận tài khoản", "Hãy xác nhận tài khoản của bạn bằng cách nhấn vào đường dẫn sau: <a href=\"" + callbackUrl + "\">link</a>");
+                        AuthenticationManager.SignOut();
+                        ViewBag.Message = "Bạn chưa xác nhận tài khoản.";
+                        return View(model);
+                    }
                     aService.LogLastLogin(model.Username);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -211,7 +221,7 @@ namespace CP_MathHub.Controllers
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Xác nhận tài khoản", "Hãy xác nhận tài khoản của bạn bằng cách nhấn vào đường dẫn sau: <a href=\"" + callbackUrl + "\">link</a>");
                     //ViewBag.Link = callbackUrl;
                     aService.CreatePrivacy(user.Id);
                     aService.CreateProfile(user.Id);
@@ -220,8 +230,8 @@ namespace CP_MathHub.Controllers
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
+                ViewBag.Message = result.Errors.FirstOrDefault();
             }
-            ViewBag.Message = "Tên tài khoản đã được sử dụng.";
             // If we got this far, something failed, redisplay form
             return View(model);
         }

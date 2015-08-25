@@ -88,6 +88,7 @@ namespace CP_MathHub.Models.Account
         {
             // Plug in your email service here to send an email.
             var message = new MailMessage();
+            message.From = new MailAddress("admin@mathhub.com","MathHub");
             message.To.Add(new MailAddress(content.Destination)); //Get mail list
             message.Subject = content.Subject;
             message.Body = content.Body;
