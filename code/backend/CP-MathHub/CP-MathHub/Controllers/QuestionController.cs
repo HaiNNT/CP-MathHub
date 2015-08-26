@@ -306,7 +306,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/QuestionEditView", questionVM);
             }
             Question question = qService.GetQuestion(questionVM.Id);
-            if (question.Content == questionVM.Content)
+            if (question.Content == questionVM.Content && question.Title == questionVM.Title)
             {
                 return RedirectToAction("Detail", new { id = question.Id });
             }

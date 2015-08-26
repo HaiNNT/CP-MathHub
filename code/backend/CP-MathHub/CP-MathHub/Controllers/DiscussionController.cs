@@ -404,7 +404,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/DiscussionEditView", discussionEditVM);
             }
             Discussion discussion = dService.GetDiscussion(discussionEditVM.Id);
-            if (discussion.Content == discussionEditVM.Content)
+            if (discussion.Content == discussionEditVM.Content && discussion.Title == discussionEditVM.Title)
             {
                 return RedirectToAction("Detail", new { id = discussion.Id });
             }
