@@ -111,7 +111,7 @@
                     <label>Chức vụ</label>
                 </div>
                 <div class="col-xs-5">
-                    <span class="mh-profile-span-edit">@(string.Join(", ", Model.Assessments.Select(r => r.Role.Name)))</span>
+                    <span class="mh-profile-span-edit">@Constant.Account.Dictionary.RoleName[(string.Join(", ", Model.Assessments.Select(r => r.Role.Name)))]</span>
                 </div>
             </div>
             @Html.Partial("Partials/_ChangePasswordPartialView", Model.Password)

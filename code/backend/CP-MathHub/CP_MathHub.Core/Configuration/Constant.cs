@@ -220,6 +220,7 @@ namespace CP_MathHub.Core.Configuration
                                                                                                {4,"Trả lời spam"}, {5,"Sử dụng tài khoản ão"},{6,"Câu hỏi spam"}, {7,"Sai vị trí"}, {0,"Lý do khác"}};
                 public static Dictionary<string, string> RoleColor =
                     new Dictionary<string, string> { { Constant.String.RoleAdmin, "red" }, { Constant.String.RoleMod, "yellow" }, { Constant.String.RoleExpert, "green" }, { Constant.String.RoleUser, "black" } };
+                public static Dictionary<string, string> RoleName = new Dictionary<string, string> { { "User", "Người dùng" }, { "Moderator", "Quản trị viên" }, { "Expert", "Chuyên gia" }, { "Administrator", "Admin" } };
             }
         }
         /// <summary>

@@ -1708,3 +1708,7 @@ footer > .container > .row {
     font-weight: bold;
 }
 /*BannedPage: end*/
+.mh-footer-media-image {
+    width: 64px;
+    height: 64px;
+}
