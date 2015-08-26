@@ -72,6 +72,11 @@ namespace CP_MathHub.Service.Services
             user.CreatedDate = DateTime.Now;
             user.Reputation = 0;
             user.Status = UserStatusEnum.Active;
+            Accessment accessment = new Accessment();
+            accessment.RoleId = 1;
+            accessment.AccessedDate = DateTime.Now;
+            accessment.ExpireDate = DateTime.Now.AddYears(1);
+            user.Assessments.Add(accessment);
             _dal.Repository<User>().Update(user);
             _dal.Save();
         }
