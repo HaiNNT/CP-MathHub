@@ -235,7 +235,7 @@ function deleteFeedback() {
           alert("Thao tác thất bại");
       });
 }
-function resultDuplicateTag() {
+function resultDuplicateTag() {   
     var tagID = [];
     var tagName = $("#tagName").val();
     var description = $("#tagDescription").val();
@@ -251,11 +251,11 @@ function resultDuplicateTag() {
           if (msg) {
               location.reload();
           } else {
-              alert("Có lỗi xảy ra");
+              alert("Gộp thẻ thất bại!");
           }
       })
       .fail(function () {
-          alert("Gộp thẻ thất bạn!");
+          alert("Có lỗi xảy ra!");
       });
 }
 
@@ -885,6 +885,7 @@ $(document).ready(function () {
                 checkboxes.prop('checked', false);
                 $("#btnResultDuplicate").addClass("hidden");
             });
+            $(".mh-tag-form").data("validator").settings.submitHandler = function () { resultDuplicateTag(); };
             break;
         case "ManageInfracUsers":
             selectPicker();

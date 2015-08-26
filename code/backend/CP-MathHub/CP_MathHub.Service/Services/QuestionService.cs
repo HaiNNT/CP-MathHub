@@ -182,13 +182,13 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Question> ienum = _dal.Repository<Question>()
-                               .Get(ExpressionHelper.QuestionHelper.SearchQuestion(searchString, _loginUserId),
+                               .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports",
                                     skip
                                );
                 ienum.Distinct();
-                list = ienum.ToList();
+                list = ienum.Where(ExpressionHelper.QuestionHelper.SearchQuestion(searchString, _loginUserId)).ToList();
             }
             return list;
         }

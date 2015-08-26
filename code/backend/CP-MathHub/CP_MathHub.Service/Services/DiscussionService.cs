@@ -175,13 +175,13 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Discussion> ienum = _dal.Repository<Discussion>()
-                               .Get(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId),
+                               .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                );
                 ienum.Distinct();
-                list = ienum.ToList();
+                list = ienum.Where(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId)).ToList();
             }
             return list;
         }

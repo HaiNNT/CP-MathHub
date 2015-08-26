@@ -262,6 +262,10 @@ namespace CP_MathHub.Controllers
         {
             DiscussionDetailViewModel discussionDetailVM = new DiscussionDetailViewModel();
             Discussion discussion = dService.GetDetailDiscussion(id);
+            if (discussion == default(Discussion))
+            {
+                return Redirect("~/Error404.html");
+            }
             dService.IncludeUserForComments(discussion.Comments.ToList());
             dService.IncludeReplyForComments(discussion.Comments.ToList());
 

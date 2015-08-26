@@ -311,6 +311,10 @@ namespace CP_MathHub.Controllers
         {
             ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
             Article article = bService.GetDetailArticle(id);
+            if (article == default(Article))
+            {
+                return Redirect("~/Error404.html");
+            }
             bService.IncludeUserForComments(article.Comments.ToList());
             bService.IncludeReplyForComments(article.Comments.ToList());
 
