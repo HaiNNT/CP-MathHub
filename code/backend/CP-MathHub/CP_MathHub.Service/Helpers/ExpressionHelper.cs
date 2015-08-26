@@ -116,9 +116,9 @@ namespace CP_MathHub.Service.Helpers
             /// <returns></returns>
             public static Expression<Func<Question, bool>> HotQuestion(int userId)
             {
-                return (q => (q.Answers.Count > 2
-                                && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                                && (q.View > 500))
+                return (q => (q.Answers.Count > 1
+                                && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 7
+                                && (q.View > 100))
                               && (q.Status != PostStatusEnum.Hidden
                                 && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
@@ -274,8 +274,8 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Discussion, bool>> HotDiscussion(int userId)
             {
                 return (q => (q.Comments.Count >= 0
-                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                            && (q.View > 500)) && (q.Status != PostStatusEnum.Hidden
+                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 7
+                            && (q.View > 100)) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
@@ -470,8 +470,8 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> HotArticle(int userId)
             {
                 return (q => (q.Comments.Count >= 0
-                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 500
-                            && (q.View > 500)
+                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 7
+                            && (q.View > 100)
                             && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
