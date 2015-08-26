@@ -256,13 +256,13 @@ namespace CP_MathHub.Service.Services
             if (searchString != null)
             {
                 IEnumerable<Article> ienum = _dal.Repository<Article>()
-                               .Get(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId),
+                               .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
                                     skip
                                );
                 ienum.Distinct();
-                list = ienum.ToList();
+                list = ienum.Where(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId)).ToList();
             }
             return list;
         }

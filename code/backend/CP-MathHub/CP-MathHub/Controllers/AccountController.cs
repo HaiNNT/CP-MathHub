@@ -23,6 +23,7 @@ using System.IO;
 using System.Text;
 using System.Web.Routing;
 using CP_MathHub.RealTime;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CP_MathHub.Controllers
 {
@@ -35,11 +36,13 @@ namespace CP_MathHub.Controllers
         private IQuestionService qService;
         private IBlogService bService;
         private IRealTimeService rService;
-        private CPMathHubModelContainer context;
+        private CPMathHubModelContainer _context;
+        private ApplicationDbContext _aContext;
         private Microsoft.AspNet.SignalR.IHubContext _hub;
         public AccountController()
         {
-            context = new CPMathHubModelContainer();
+            _context = new CPMathHubModelContainer();
+            _aContext = new ApplicationDbContext();
             _hub = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<RealTimeHub>();
         }
 
@@ -47,7 +50,7 @@ namespace CP_MathHub.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            context = new CPMathHubModelContainer();
+            _context = new CPMathHubModelContainer();
         }
         protected override void Initialize(RequestContext requestContext)
         {
@@ -55,20 +58,20 @@ namespace CP_MathHub.Controllers
 
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                aService = new AccountService(context, _currentUserId);
-                dService = new DiscussionService(context, _currentUserId);
-                bService = new BlogService(context, _currentUserId);
-                qService = new QuestionService(context, _currentUserId);
-                rService = new RealTimeService(context, _currentUserId);
-                cService = new CommonService(context, _currentUserId);
+                aService = new AccountService(_context, _currentUserId);
+                dService = new DiscussionService(_context, _currentUserId);
+                bService = new BlogService(_context, _currentUserId);
+                qService = new QuestionService(_context, _currentUserId);
+                rService = new RealTimeService(_context, _currentUserId);
+                cService = new CommonService(_context, _currentUserId);
             }
             else
             {
-                aService = new AccountService(context);
-                dService = new DiscussionService(context);
-                bService = new BlogService(context);
-                qService = new QuestionService(context);
-                cService = new CommonService(context);
+                aService = new AccountService(_context);
+                dService = new DiscussionService(_context);
+                bService = new BlogService(_context);
+                qService = new QuestionService(_context);
+                cService = new CommonService(_context);
             }
 
         }
@@ -136,8 +139,7 @@ namespace CP_MathHub.Controllers
                         AuthenticationManager.SignOut();
                         ViewBag.Message = "Bạn chưa xác nhận tài khoản.";
                         return View(model);
-                    }
-                    aService.LogLastLogin(model.Username);
+                    }                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -215,8 +217,9 @@ namespace CP_MathHub.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };               
+                var result = await UserManager.CreateAsync(user, model.Password);               
+                //UserManager.AddToRole(user.Id, "User");
                 if (result.Succeeded)
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -456,6 +459,7 @@ namespace CP_MathHub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            aService.LogLastLogin(User.Identity.Name);
             AuthenticationManager.SignOut();
             Response.Cookies["returnUrl"].Expires = DateTime.Now.AddDays(-1);
             return RedirectToAction("Index", "Home");

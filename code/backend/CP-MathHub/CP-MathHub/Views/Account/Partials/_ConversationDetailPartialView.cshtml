@@ -38,7 +38,7 @@
         }      
     </div>
     <div class="mh-profile-chat-footer">
-        <textarea mh-id="@Model.Id" rows="3" onclick="resetMessageNum()" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
+        <textarea mh-id="@Model.Id" rows="3" onclick="resetMessageNum()" onchange="resetMessageNum()" class="mh-profile-chat-footer-textarea" placeholder="Viết trả lời..."></textarea>
         <a href="">
             <i class="fa fa-smile-o mh-profile-chat-footer-smile" title="Chọn biểu tượng cảm xúc"></i>
         </a>

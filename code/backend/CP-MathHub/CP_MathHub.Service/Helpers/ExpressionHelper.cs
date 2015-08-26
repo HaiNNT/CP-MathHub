@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using CP_MathHub.Entity;
+using CP_MathHub.Framework.Utils;
 
 namespace CP_MathHub.Service.Helpers
 {
@@ -54,9 +55,9 @@ namespace CP_MathHub.Service.Helpers
             /// </summary>
             /// <param name="userId"></param>
             /// <returns></returns>
-            public static Expression<Func<Question, bool>> SearchQuestion(string name, int userId)
+            public static Func<Question, bool> SearchQuestion(string title, int userId)
             {
-                return (q => (q.Title.ToLower().Contains(name.ToLower())) && (q.Status != PostStatusEnum.Hidden
+                return (q => (StringUtil.ContainString(q.Title, title)) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
@@ -200,9 +201,9 @@ namespace CP_MathHub.Service.Helpers
             /// Search Discussion lambda expression
             /// </summary>
             /// <returns></returns>
-            public static Expression<Func<Discussion, bool>> SearchDiscussion(string title, int userId)
+            public static Func<Discussion, bool> SearchDiscussion(string title, int userId)
             {
-                return (q => (q.Title.ToLower().Contains(title.ToLower())) && (q.Status != PostStatusEnum.Hidden
+                return (q => (StringUtil.ContainString(q.Title, title)) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
@@ -343,9 +344,9 @@ namespace CP_MathHub.Service.Helpers
             /// </summary>
             /// <param name="name"></param>
             /// <returns></returns>
-            public static Expression<Func<Article, bool>> SearchArticle(string title, int loginUserId)
+            public static Func<Article, bool> SearchArticle(string title, int loginUserId)
             {
-                return (q => (q.Title.ToLower().Contains(title.ToLower()) && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
+                return (q => (StringUtil.ContainString(q.Title, title) && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == loginUserId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == loginUserId) > 0

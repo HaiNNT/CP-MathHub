@@ -311,6 +311,10 @@ namespace CP_MathHub.Controllers
         {
             ArticleDetailViewModel articleDetailVM = new ArticleDetailViewModel();
             Article article = bService.GetDetailArticle(id);
+            if (article == default(Article))
+            {
+                return Redirect("~/Error404.html");
+            }
             bService.IncludeUserForComments(article.Comments.ToList());
             bService.IncludeReplyForComments(article.Comments.ToList());
 
@@ -439,7 +443,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/BlogEditView", articleEditVM);
             }
             Article article = bService.GetArticle(articleEditVM.Id);
-            if (article.Content == articleEditVM.Content)
+            if (article.Content == articleEditVM.Content && article.Title == articleEditVM.Title)
             {
                 return RedirectToAction("Detail", new { id = article.Id });
             }

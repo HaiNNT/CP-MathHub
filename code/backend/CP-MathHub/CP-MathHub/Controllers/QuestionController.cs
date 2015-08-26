@@ -174,6 +174,10 @@ namespace CP_MathHub.Controllers
         {
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
             Question question = qService.GetDetailQuestion(id);
+            if (question == default(Question))
+            {
+                return Redirect("~/Error404.html");
+            }
             qService.IncludeUserForComments(question.Comments.ToList());
             qService.IncludeUserForVotes(question.Votes.ToList());
             questionDetailVM = Mapper.Map<Question, QuestionDetailViewModel>(question);
@@ -302,7 +306,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/QuestionEditView", questionVM);
             }
             Question question = qService.GetQuestion(questionVM.Id);
-            if (question.Content == questionVM.Content)
+            if (question.Content == questionVM.Content && question.Title == questionVM.Title)
             {
                 return RedirectToAction("Detail", new { id = question.Id });
             }

@@ -55,12 +55,12 @@
                 </table>
                 <div class="space15"></div>
                 <div class="mh-admin-tag-footer">
-                    <button class="btn btn-info hidden" onclick="selectTag()" id="btnResultDuplicate" data-toggle="modal" data-target="#checkDuplica-1" >Gộp thẻ trùng</button>
+                    <button class="btn btn-info hidden" onclick="selectTag()" id="btnResultDuplicate" data-toggle="modal" data-target="#checkDuplica-1">Gộp thẻ trùng</button>
                     <!-- Modal -->
                     <div class="modal fade" id="checkDuplica-1" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
-                                <form>
+                                <form class="mh-tag-form" role="form">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label=" close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel">Thay đổi quyền của <span class="mh-manage-user-username">Admin</span></h4>
@@ -79,9 +79,7 @@
                                                                 <th><input type="checkbox" id="all"></th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="duplicateView">
-                                                           
-                                                        </tbody>
+                                                        <tbody id="duplicateView"></tbody>
                                                     </table>
                                                 </div>
                                                 <div class="row mh-admin-row-duplicate">
@@ -89,7 +87,9 @@
                                                         <label>Tên tag:</label>
                                                     </div>
                                                     <div class="col-xs-9">
-                                                        <input type="text" class="mh-admin-row-input" id="tagName" />
+                                                        @*<input type="text" class="mh-admin-row-input" id="tagName" />*@
+                                                        @Html.TextBoxFor(m => m.Name, new { @class = "mh-admin-row-input", @placeholder = "Nhập tên thẻ", @id = "tagName" })
+                                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                                 <div class="row mh-admin-row-duplicate">
@@ -97,7 +97,9 @@
                                                         <label>Miêu tả:</label>
                                                     </div>
                                                     <div class="col-xs-9">
-                                                        <input type="text" class="mh-admin-row-input" id="tagDescription" />
+                                                        @*<input type="text" class="mh-admin-row-input" id="tagDescription" />*@
+                                                        @Html.TextBoxFor(m => m.Description, new { @class = "mh-admin-row-input", @placeholder = "Nhập miêu tả cho thẻ này", @id = "tagDescription" })
+                                                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,7 +107,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="resultDuplicateTag()">Gộp thẻ</button>
+                                        <button type="submit" class="btn btn-warning">Gộp thẻ</button>
                                     </div>
                                 </form>
                             </div>
