@@ -103,5 +103,10 @@ namespace CP_MathHub.Framework.Utils
         {
             return ConvertToUnSign(str1).ToLower().Replace(" ", "") == ConvertToUnSign(str2).ToLower().Replace(" ", "");
         }
+
+        public static bool ContainString(string str1, string str2)
+        {
+            return ConvertToUnSign(str1).ToLower().Contains(ConvertToUnSign(str2).ToLower());
+        }
     }
 }
