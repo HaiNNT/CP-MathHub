@@ -82,7 +82,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Tag> GetDupicateTags(string name)
         {
-            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            List<Tag> tags = _dal.Repository<Tag>().Table.OrderByDescending(t => t.CreatedDate).ToList();
             tags = tags.Where(m => StringUtil.Compare2String(name, m.Name)).ToList();
             return tags;
         }
