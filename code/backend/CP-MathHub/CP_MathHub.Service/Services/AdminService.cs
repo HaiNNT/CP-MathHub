@@ -66,7 +66,7 @@ namespace CP_MathHub.Service.Services
         public List<BanReason> GetBanReasons()
         {
             List<BanReason> list = new List<BanReason>();
-            list = dal.Repository<BanReason>().Get(null, (p => p.OrderByDescending(b => b.CreatedDate)), "", 0).ToList();
+            list = dal.Repository<BanReason>().Get(null, (p => p.OrderByDescending(b => b.CreatedDate)), "", 0, 0).ToList();
             return list;
         }
 

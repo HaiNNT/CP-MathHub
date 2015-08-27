@@ -166,7 +166,7 @@
                                 </td>
                                 <td class="mh-cell-center">
                                     <a href="" id="activeUser-@user.User.Id" type="button" class="btn btn-warning @(user.User.Status.Value == UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" onclick="@("unBlockUser(" + @user.User.Id + ")")" data-target="#unblockuser-@user.User.Id">Bỏ khóa</a>
-                                    <a href="" id="deActiveUser-@user.User.Id" type="button" class="btn btn-warning @(user.User.Status.Value != UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" data-target="#blockuser-@user.User.Id">Khóa</a>
+                                    <a href="" id="deActiveUser-@user.User.Id" type="button" class="btn btn-danger @(user.User.Status.Value != UserStatusEnum.Banned ? "" : "hidden")" data-toggle="modal" data-target="#blockuser-@user.User.Id">Khóa</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="blockuser-@user.User.Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" mh-id="@user.User.Id">
                                         <div class="modal-dialog" role="document">
