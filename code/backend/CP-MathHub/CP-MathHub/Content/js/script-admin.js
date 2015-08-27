@@ -204,10 +204,10 @@ function checkSelectItem() {
     $(".selectcheckTag:checked").each(function () {
         tagID.push($(this).val());
     });
-    if (tagID.length > 0) {
+    if (tagID.length > 1) {
         $("#btnResultDuplicate").removeClass("hidden");
     }
-    else if (tagID.length == 0) {
+    else if (tagID.length == 0 || tagID.length == 1) {
         $("#btnResultDuplicate").addClass("hidden");
     }
 }
@@ -249,7 +249,7 @@ function resultDuplicateTag() {
         })
       .done(function (msg) {
           if (msg) {
-              location.reload();
+              location.reload(true);
           } else {
               message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }

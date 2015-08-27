@@ -103,25 +103,24 @@
                 var nRow = $(this).parents('tr')[0];
                 var id = $(this).attr("mh-id");
                 var userNum = $(this).attr("mh-usedNum");
-                if (confirm("Bạn có chắc chắn muốn xóa thẻ này ?") == false) {
-                    return;
-                }
-                if (userNum > 0)
-                {
-                    alert("Thẻ này đã được dùng. Bạn không thể xóa");
-                    return;
-                }
-                $.ajax({
-                    type: 'POST',
-                    url: '/Admin/DeleteTag',
-                    data: { tagId: id },
-                    //contentType: 'application/json; charset=utf-8',
-                    success: function (msg) {
-                        if (msg) {                         
-                            oTable.fnDeleteRow(nRow);
-                        }
+                getConfirm("Bạn có chắc chắn muốn xóa thẻ này ?", function () {
+                    if (userNum > 0) {
+                        message("Thẻ này đã được dùng. Bạn không thể xóa", "warning");
+                        return;
                     }
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Admin/DeleteTag',
+                        data: { tagId: id },
+                        //contentType: 'application/json; charset=utf-8',
+                        success: function (msg) {
+                            if (msg) {
+                                oTable.fnDeleteRow(nRow);
+                            }
+                        }
+                    });
                 });
+                
                 //var nRow = $(this).parents('tr')[0];
                 //oTable.fnDeleteRow(nRow);
                 //alert("Deleted! Do not forget to do some ajax to sync with backend :)");
