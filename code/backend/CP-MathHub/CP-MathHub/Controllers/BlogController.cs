@@ -405,11 +405,11 @@ namespace CP_MathHub.Controllers
                 }
                 //    }
                 //).Start();
-                return RedirectToAction("MyBlog");
+                return RedirectToAction("Detail", new { id = article.Id });
             }
             else
             {
-                return View("Views/Error");
+                return new HttpStatusCodeResult(500);
             }
         }
         //Get: Blog/Edit
@@ -443,7 +443,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/BlogEditView", articleEditVM);
             }
             Article article = bService.GetArticle(articleEditVM.Id);
-            if (article.Content == articleEditVM.Content)
+            if (article.Content == articleEditVM.Content && article.Title == articleEditVM.Title)
             {
                 return RedirectToAction("Detail", new { id = article.Id });
             }

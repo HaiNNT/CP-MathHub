@@ -192,21 +192,25 @@ function initCkeditor(preview) {
 */
 function createTag() {
     var name = $("#mh-input-tag").val();
-    $.ajax({
-        method: "POST",
-        url: "/Discussion/CreateTag",
-        data: { name: name }
-    })
+    if (name.length > 5 && name.length < 13) {
+        $.ajax({
+            method: "POST",
+            url: "/Discussion/CreateTag",
+            data: { name: name }
+        })
       .done(function (msg) {
           if (msg) {
               add(msg);
           } else {
-              alert("false");
+              alert("Tạo thẻ thất bại.");
           }
       })
       .fail(function () {
-          alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
+          alert("Có lỗi xảy ra. Xin thử lại sau.");
       });
+    } else {
+        alert("Tên thẻ phải có độ dài từ 6-12 ký tự");
+    }
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
         var tagName = $(item).find("label").text();
@@ -223,7 +227,7 @@ function createTag() {
         $("#mh-input-tag").val("");
         $("#mh-input-tag").focus();
         autocomplete.hide();
-        if (!tagIds[tagId]) {
+        if (!tagIds[tagId] && list.find(".mh-tag-item").length < 5) {
             tagIds[tagId] = tagName;
             list.append($(item));
         }
@@ -398,7 +402,7 @@ function sendReport(id) {
             if (msg == "False")
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
             else
-                alert("Báo cáo vi phạm thành công");
+                message("Báo cáo vi phạm thành công ");
         })
          .fail(function () {
              alert("Có sự cố bất thường hoặc do đường truyền Internet. Bạn hãy thử pại sau.");
@@ -461,6 +465,19 @@ function selectCategory(select) {
     var value = $(select).val();
     $("#category-input").val(value);
 }
+
+/*
+    Message notification
+*/
+function message(content) {
+    var div = '<div class="alert alert-success fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
+}
+
 /*
     Init all necessary fucntions
 */

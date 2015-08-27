@@ -366,11 +366,11 @@ namespace CP_MathHub.Controllers
                 }
                 //    }
                 //).Start();
-                return RedirectToAction("Detail", new { @id = discussion.Id });
+                return RedirectToAction("Detail", new { id = discussion.Id });
             }
             else
             {
-                return View("Views/Error");
+                return new HttpStatusCodeResult(500);
             }
         }
         //Get: Discussion/Edit
@@ -404,7 +404,7 @@ namespace CP_MathHub.Controllers
                 return View("Views/DiscussionEditView", discussionEditVM);
             }
             Discussion discussion = dService.GetDiscussion(discussionEditVM.Id);
-            if (discussion.Content == discussionEditVM.Content)
+            if (discussion.Content == discussionEditVM.Content && discussion.Title == discussionEditVM.Title)
             {
                 return RedirectToAction("Detail", new { id = discussion.Id });
             }

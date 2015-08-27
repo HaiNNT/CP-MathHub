@@ -62,7 +62,7 @@ function addTag(item) {
     $("#mh-input-tag").val("");
     $("#mh-input-tag").focus();
     autocomplete.hide();
-    if (!tagIds[tagId]) {
+    if (!tagIds[tagId] && list.find(".mh-tag-item").length < 5) {
         tagIds[tagId] = tagName;
         list.append($(item));
     }
@@ -116,7 +116,7 @@ function addInvite(item) {
     $("#mh-input-invite").val("");
     $("#mh-input-invite").focus();
     autocomplete.hide();
-    if (!inviteIds[inviteId]) {
+    if (!inviteIds[inviteId] && list.find(".mh-friend-item").length < 5) {
         inviteIds[inviteId] = inviteName;
         list.append($(item));
     }
