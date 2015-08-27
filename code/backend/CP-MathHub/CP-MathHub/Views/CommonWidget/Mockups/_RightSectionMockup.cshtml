@@ -1,7 +1,29 @@
 ﻿<div class="mh-banner">
-    <a href="#">
+    <a href="#" data-toggle="modal" data-target="#mh-banner-CTV">
         <img src="~/Content/img/CTV.jpg">
     </a>
+    <!-- Modal -->
+    <div class="modal fade" id="mh-banner-CTV" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tuyển cộng tác viên</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Mọi chi tiết liên hệ:</p>
+                    <ul>
+                        <li>Địa chỉ: 137 Nguyễn Thị Thập, Quận Liên Chiểu, thành phố Đà Nẵng</li>
+                        <li>Email: ctv.cpmathhub@gmail.com</li>
+                        <li>Điện thoại: 0121 381 0670 - Gặp anh Hải</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @if (ViewBag.System != null)
 {
