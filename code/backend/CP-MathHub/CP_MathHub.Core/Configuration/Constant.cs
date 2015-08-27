@@ -88,7 +88,7 @@ namespace CP_MathHub.Core.Configuration
         {
             public static class Integer
             {
-                public const int PagingDefaultTake = 10;
+                public const int PagingDefaultTake = 5;
                 public const int UserPagingDefaultTake = 30;
                 public const int TagPagingDefaultTake = 30;
 
@@ -127,7 +127,7 @@ namespace CP_MathHub.Core.Configuration
         {
             public static class Integer
             {
-                public const int PagingDefaultTake = 10;
+                public const int PagingDefaultTake = 5;
             }
 
             public static class String
@@ -158,7 +158,7 @@ namespace CP_MathHub.Core.Configuration
         {
             public static class Integer
             {
-                public const int PagingDefaultTake = 10;
+                public const int PagingDefaultTake = 5;
                 public const int CategoryDefaultLoad = 5;
                 public const int TagPagingDefaultTake = 30;
                 public const int UserPagingDefaultTake = 30;

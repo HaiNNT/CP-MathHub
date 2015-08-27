@@ -470,7 +470,7 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> HotArticle(int userId)
             {
                 return (q => (q.Comments.Count >= 0
-                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 7
+                            && DbFunctions.DiffDays(q.PublicDate, DateTime.Now) < 7
                             && (q.View > 100)
                             && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
@@ -488,7 +488,7 @@ namespace CP_MathHub.Service.Helpers
             public static Expression<Func<Article, bool>> FeatureArticle(int userId)
             {
                 return (q => (q.Comments.Count > 1
-                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 1000
+                            && DbFunctions.DiffDays(q.CreatedDate, DateTime.Now) < 7
                             && (q.View > 500)
                             && q.PublicDate <= DateTime.Now) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
@@ -500,7 +500,7 @@ namespace CP_MathHub.Service.Helpers
             }
 
             /// <summary>
-            /// Get feature Article lambda expression
+            /// Get recomend Article lambda expression
             /// </summary>
             /// <returns></returns>
             public static Expression<Func<Article, bool>> RecomendedArticle(int userId)

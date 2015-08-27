@@ -83,7 +83,7 @@ namespace CP_MathHub.Controllers
                     if (Request.IsAuthenticated)
                         articleHotPreviewVMs.ElementAt(i).Bookmarked =
                             articleHotPreviewVMs.ElementAt(i).UserId != User.Identity.GetUserId<int>()
-                            && articles.ElementAt(i).BookmarkUsers
+                            && hotArticles.ElementAt(i).BookmarkUsers
                                                     .Where(u => u.Id == User.Identity.GetUserId<int>()).Count() > 0;
                 }
                 BlogHomeViewModel blogHomeVM = new BlogHomeViewModel();
