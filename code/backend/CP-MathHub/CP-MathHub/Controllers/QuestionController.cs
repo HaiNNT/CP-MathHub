@@ -266,11 +266,11 @@ namespace CP_MathHub.Controllers
                 }
                 //    }
                 //).Start();
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail", new { id = question.Id });
             }
             else
             {
-                return View("Views/Error");
+                return new HttpStatusCodeResult(500);
             }
         }
 

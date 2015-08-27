@@ -664,6 +664,7 @@
         }
 
         function resetMessageNum() {
+            console.log("reset");
             $("#mh-message-number").addClass("hidden");
             $("#mh-message-number").html(0);
             realTime.server.refreshMessageNum();

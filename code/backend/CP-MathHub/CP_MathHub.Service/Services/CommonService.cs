@@ -160,7 +160,7 @@ namespace CP_MathHub.Service.Services
         }
         public List<Tag> GetAllTags()
         {
-            List<Tag> tags = _dal.Repository<Tag>().Table.ToList();
+            List<Tag> tags = _dal.Repository<Tag>().Table.OrderByDescending(m => m.CreatedDate).ToList();
             return tags;
         }
         public List<Tag> GetTags(int skip, string tab)
@@ -443,7 +443,7 @@ namespace CP_MathHub.Service.Services
         public List<User> GetUsers(string include = "")
         {
             //return _dal.Repository<User>().Include(include).Table.ToList();
-            return _dal.Repository<User>().Include(include).Table.Where(u => u.Assessments.Where(a => a.RoleId != 4).Count() > 0).ToList();
+            return _dal.Repository<User>().Include(include).Table.Where(u => u.Assessments.Where(a => a.RoleId != 4).Count() > 0).OrderByDescending(m => m.CreatedDate).ToList();
         }
 
         public List<Invitation> GetInvitations(List<int> userIds, int userId)

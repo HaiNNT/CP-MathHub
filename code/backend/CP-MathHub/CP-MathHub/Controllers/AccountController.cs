@@ -894,19 +894,31 @@ namespace CP_MathHub.Controllers
             List<Notification> notifications = cService.GetNotifications();
             List<Tag> tags = aService.GetFavoriteTags(User.Identity.GetUserId<int>());
             List<Conversation> convers = rService.GetConversations(_currentUserId);
-            List<ConversationPreviewViewModel> conversations =
-                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
-            ConversationDetailViewModel conversation = new ConversationDetailViewModel();
-            conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
-            conversation.Name = rService.GetConversationName(convers.First());
-            conversation.Id = convers.First().Id;
-
-            Conversation conver = rService.GetConversation(convers.First().Id);
-            for (int i = 0; i < conver.Attendances.Count; i++)
+            List<ConversationPreviewViewModel> conversations;
+            ConversationDetailViewModel conversation;
+            if (convers.Count != 0)
             {
-                conver.Attendances.ElementAt(i).SeenDate = DateTime.Now;
+                conversations =
+                CP_MathHub.Helper.ListHelper.ConversationsToConversationViewModels(convers, _currentUserId);
+                conversation = new ConversationDetailViewModel();
+                conversation.SetDates(rService.GetAllConversationMessages(convers.First().Id));
+                conversation.Name = rService.GetConversationName(convers.First());
+                conversation.Id = convers.First().Id;
+
+                Conversation conver = rService.GetConversation(convers.First().Id);
+                for (int i = 0; i < conver.Attendances.Count; i++)
+                {
+                    conver.Attendances.ElementAt(i).SeenDate = DateTime.Now;
+                }
+                rService.UpdateConversation(conver);
             }
-            rService.UpdateConversation(conver);
+            else
+            {
+                conversations = new List<ConversationPreviewViewModel>();
+                conversation = new ConversationDetailViewModel();
+                conversation.Dates = new List<MesagesOfDate>();
+                conversation.Name = "";
+            }
 
             ActivityViewModel model = new ActivityViewModel();
             //Post

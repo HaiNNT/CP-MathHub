@@ -59,42 +59,46 @@ function seemoreContent(obj) {
 }
 
 /*
-	Create a tag 
+    Create a tag 
 */
 function createTag() {
     var name = $("#mh-input-tag").val();
-    $.ajax({
-        method: "POST",
-        url: "/Question/CreateTag",
-        data: { name: name }
-    })
-	  .done(function (msg) {
-	      if (msg) {
-	          add(msg);
-	      } else {
-	          alert("false");
-	      }
-	  })
-	  .fail(function () {
-	      alert("createTag error");
-	  });
+    if (name.length > 5 && name.length < 13) {
+        $.ajax({
+            method: "POST",
+            url: "/Blog/CreateTag",
+            data: { name: name }
+        })
+      .done(function (msg) {
+          if (msg) {
+              add(msg);
+          } else {
+              alert("Tạo thẻ thất bại.");
+          }
+      })
+      .fail(function () {
+          alert("Có lỗi xảy ra. Xin thử lại sau.");
+      });
+    } else {
+        alert("Tên thẻ phải có độ dài từ 6-12 ký tự");
+    }
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
         var tagName = $(item).find("label").text();
         var tagId = $(item).find("span").text();
         var hidden = "<input type='hidden' name='TagIds' value='" + tagId + "' />"
         var item = "<span class='mh-tag-item'>"
-					+ "<span>"
-					+ tagName
-					+ "</span>"
-					+ "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
-					+ hidden
-					+ "</span>";
+                    + "<span>"
+                    + tagName
+                    + "</span>"
+                    + "<i class='fa fa-times-circle' onclick='removeTag(this)'></i>"
+                    + hidden
+                    + "</span>";
         var list = $("#mh-tag-list");
         $("#mh-input-tag").val("");
         $("#mh-input-tag").focus();
         autocomplete.hide();
-        if (!tagIds[tagId]) {
+        if (!tagIds[tagId] && list.find(".mh-tag-item").length < 5) {
             tagIds[tagId] = tagName;
             list.append($(item));
         }
@@ -387,6 +391,8 @@ function sendReport(id) {
             $(formId).trigger("reset");
             if (msg == "False")
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+            else
+                message("Báo cáo vi phạm thành công ");
         })
          .fail(function () {
              alert("sendReport error");
@@ -433,6 +439,18 @@ function closeEdit() {
     });
     //input.hide();
     //input.val($(this).val());
+}
+
+/*
+    Message notification
+*/
+function message(content) {
+    var div = '<div class="alert alert-success fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
 }
 
 $(document).ready(function () {
