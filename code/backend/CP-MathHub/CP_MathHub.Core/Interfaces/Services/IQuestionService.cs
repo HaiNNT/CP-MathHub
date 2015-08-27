@@ -69,7 +69,7 @@ namespace CP_MathHub.Core.Interfaces.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Question GetDetailQuestion(int id);
+        Question GetDetailQuestion(int id, bool isAdmin = false);
 
         /// <summary>
         /// Insert a Question

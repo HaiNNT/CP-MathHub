@@ -29,12 +29,12 @@ function selectValuePlus() {
         var temp2 = $(this).val();
         //var ids = $(this).prop("selectedOptions").attr("mh-id");
         var id = $(this).attr("mh-id");
-            var total = 0;
+        var total = 0;
         for (var item in temp2) {
             total += +temp2[item];
-            }
+        }
         $('#dayresult-' + id).val(total + " ngày");
-        });
+    });
 }
 
 /*
@@ -94,7 +94,7 @@ function tableManageUsers() {
 
     $('#editable-manageUser_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-manageUser_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-    
+
 
     $('.selectpicker.roleFilter').change(function () {
         table.draw();
@@ -137,14 +137,14 @@ function blockUser(id) {
               activeButton.removeClass("hidden");
               deActiveButton.addClass("hidden");
               deActiveButton.text("Khóa");
-              alert("Khóa tài khoản thành công!");
+              message("Khóa tài khoản thành công!", "success");
           }
           else {
-              alert("false");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Khóa tài khoản này thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 
@@ -166,14 +166,14 @@ function unBlockUser(id) {
               activeButton.addClass("hidden");
               activeButton.text("Mở khóa");
               deActiveButton.removeClass("hidden");
-              alert("Bỏ khóa tài khoản thành công!");
+              message("Bỏ khóa tài khoản thành công!", "success");
           }
           else {
-              alert("false");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Khóa tài khoản này thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 /*
@@ -196,7 +196,7 @@ function selectTag() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 function checkSelectItem() {
@@ -216,47 +216,48 @@ function deleteFeedback() {
     $(".mail-checkbox:checked").each(function () {
         ids.push($(this).val());
     });
-    if (!confirm("Bạn có chắc chắn muốn xóa những ý kiến này.")) {
-        return;
-    }
-    $.ajax({
-        method: "POST",
-        url: "/Admin/DeleteFeedback",
-        data: { ids: ids }
-    })
-      .done(function (msg) {
+    getConfirm("Bạn có chắc chắn muốn xóa những ý kiến này.", function () {
+        $.ajax({
+            method: "POST",
+            url: "/Admin/DeleteFeedback",
+            data: { ids: ids }
+        })
+        .done(function (msg) {
           if (msg) {
               location.reload();
           } else {
-              alert("Thao tác thất bại");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
-      })
-      .fail(function () {
-          alert("Thao tác thất bại");
-      });
+        })
+        .fail(function () {
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
+        });
+    });
 }
-function resultDuplicateTag() {   
+function resultDuplicateTag() {
     var tagID = [];
     var tagName = $("#tagName").val();
     var description = $("#tagDescription").val();
     $(".checkduplicate:checked").each(function () {
         tagID.push($(this).val());
     });
-    $.ajax({
-        method: "POST",
-        url: "/Admin/ResolveDuplicateTags",
-        data: { tagIds: tagID, tagName: tagName, description: description }
-    })
+    getConfirm("Bạn có chắc chắn muốn gộp những thẻ này?", function () {
+        $.ajax({
+            method: "POST",
+            url: "/Admin/ResolveDuplicateTags",
+            data: { tagIds: tagID, tagName: tagName, description: description }
+        })
       .done(function (msg) {
           if (msg) {
               location.reload();
           } else {
-              alert("Gộp thẻ thất bại!");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Có lỗi xảy ra!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
+    }); 
 }
 
 function clearBlockUser(id) {
@@ -286,13 +287,13 @@ function setRuleUser(id) {
           if (msg) {
               //add(msg);
               role.html(nameLast.trim());
-              alert("Thay đổi quyền thành công!")
+              message("Thay đổi quyền thành công!", "success")
           } else {
-              alert("false");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Phân quyền cho tài khoản này thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 function ManageInfracPosts_blockday() {
@@ -301,7 +302,7 @@ function ManageInfracPosts_blockday() {
     $('select[name=selValue]').val(1);
     $('.selectpicker').selectpicker('refresh');
 
-    
+
 }
 
 function ManageInfracMainPosts_edittable() {
@@ -353,7 +354,7 @@ function ManageInfracMainPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8,9]
+            'aTargets': [8, 9]
         }
         ]
     });
@@ -414,7 +415,7 @@ function ManageInfracNormalPosts_edittable() {
         },
         "aoColumnDefs": [{
             'bSortable': false,
-            'aTargets': [8,9]
+            'aTargets': [8, 9]
         }
         ]
     });
@@ -438,19 +439,19 @@ function tableTag() {
 function GetDuplicateTags(item) {
     var name = $(item).parents("tr").find(".selectedDuplicateTagName").text();
     var list = $("#duplicateView");
-        $.ajax({
+    $.ajax({
         method: "POST",
         url: "/Admin/GetDupicateTags",
         data: { tagName: name }
-        })
-      .done(function (msg) {
-          if (msg != "\n") {
-              list.html(msg);
-          }
-      })
-      .fail(function (msg) {
-          alert(msg);
-      });
+    })
+  .done(function (msg) {
+      if (msg != "\n") {
+          list.html(msg);
+      }
+  })
+  .fail(function (msg) {
+      message("Có lỗi xảy ra. Xin thử lại.", "danger");
+  });
 }
 function checkall() {
     $('#all').change(function () {
@@ -494,12 +495,12 @@ function uncheckStatus(id) {
 	          $(check).each(function () { $(this).removeClass("hidden"); });
 	          $(checked).each(function () { $(this).addClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("uncheckStatus error");
-    });
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
+	  });
 }
 
 function checkStatus(id) {
@@ -518,11 +519,11 @@ function checkStatus(id) {
 	          $(check).each(function () { $(this).addClass("hidden"); });
 	          $(checked).each(function () { $(this).removeClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("checkStatus error");
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	  });
 }
 
@@ -545,16 +546,15 @@ function changeStatusReportInfracMainPost(id, type) {
             else {
                 tableInfracMainPost.cell(statusId).data("True").draw();
             }
-            
         }
         else {
-            alert("false");
+            message("Có lỗi xảy ra. Xin thử lại.", "danger");
         }
     })
       .fail(function () {
-          alert("Thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
-} 
+}
 
 
 //change status report InfracNormalPost
@@ -579,11 +579,11 @@ function changeStatusReportInfracNormalPost(id, type) {
 
         }
         else {
-            alert("false");
+            message("Có lỗi xảy ra. Xin thử lại.", "danger");
         }
     })
       .fail(function () {
-          alert("Thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 
@@ -609,11 +609,11 @@ function changeStatusReportUser(id, type) {
 
         }
         else {
-            alert("false");
+            message("Có lỗi xảy ra. Xin thử lại.", "danger");
         }
     })
       .fail(function () {
-          alert("Thất bại!");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
 }
 
@@ -621,43 +621,56 @@ function changeStatusReportUser(id, type) {
 function blockPost(item, id) {
     var url = "/Admin/BlockPost";
     var data = { id: id };
-    if (confirm("Bạn có chắc chắn muốn khóa bài viết này ?") == false) {
-        return;
-    }
-    $.ajax({
-        method: "POST",
-        url: url,
-        data: data,
-        success: function (msg) {
-            if (msg == "True") {
-                $(item).addClass("hidden");
-                $(item).siblings(".hidden").removeClass("hidden");
+    getConfirm("Bạn có chắc chắn muốn khóa bài viết này ?", function () {
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: data,
+            success: function (msg) {
+                if (msg == "True") {
+                    $(item).addClass("hidden");
+                    $(item).siblings(".hidden").removeClass("hidden");
+                    message("Khóa bài thành công.", "success");
+                    //changeStatusReportInfracMainPost(id, 1);
+                    if (!$(item).parents("tr").find(".mh-checkbox-excute").is(":checked")) {
+                        $(item).parents("tr").find(".switch-right").click();
+                    }                   
+                } else {
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
+                }
+            },
+            fail: function (msg) {
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             }
-        }
-
-
+        });
     });
+    
 }
 
 //active post
 function activePost(item, id) {
     var url = "/Admin/ActivePost";
     var data = { id: id };
-    if (confirm("Bạn có chắc chắn muốn mở khóa bài viết này ?") == false) {
-        return;
-    }
-    $.ajax({
-        method: "POST",
-        url: url,
-        data: data,
-        success: function (msg) {
-            if (msg == "True") {
-                $(item).addClass("hidden");
-                $(item).siblings(".hidden").removeClass("hidden");
+    getConfirm("Bạn có chắc chắn muốn mở khóa bài viết này ?", function () {
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: data,
+            success: function (msg) {
+                if (msg == "True") {
+                    $(item).addClass("hidden");
+                    $(item).siblings(".hidden").removeClass("hidden");
+                    message("Bỏ khóa thành công.", "success");
+                    //changeStatusReportInfracMainPost(id, 1);
+                    //$(item).parents("tr").find(".switch-right").click();
+                } else {
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
+                }
+            },
+            fail: function (msg) {
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             }
-        }
-
-
+        });
     });
 }
 var timeoutMainpostFilter;
@@ -665,7 +678,7 @@ function GetOptionSelect() {
     clearTimeout(timeoutMainpostFilter);
     var load = function () {
         $("#select-form").submit();
-    }   
+    }
     timeoutMainpostFilter = setTimeout(load, 1000);
 }
 function GetOptionSelectNormalPost() {
@@ -795,7 +808,7 @@ function tableRecevierMail() {
 
     $('#editable-receiver_wrapper .dataTables_filter input').addClass("form-control medium"); // modify table search input
     $('#editable-receiver_wrapper .dataTables_length select').addClass("form-control xsmall"); // modify table per page dropdown
-    
+
 
     $('.selectpicker.roleFilter').change(function () {
         table.draw();
@@ -852,6 +865,43 @@ function selectReceiver() {
     });
     email = email.slice(0, -2);
     reciever = $(".mh-admin-receiver-input").val(email.trim());
+}
+
+/*
+    Message notification
+*/
+function message(content, type) {
+    var div = '<div class="alert alert-' + type + ' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
+}
+
+/*
+    Confirm
+*/
+function getConfirm(confirmMessage, callback) {
+    confirmMessage = confirmMessage || '';
+
+    $('#confirmbox').modal({
+        show: true,
+        backdrop: false,
+        keyboard: false,
+    });
+
+    $('#confirmMessage').html(confirmMessage);
+    //$('#confirmFalse').click(function () {
+    //    //$('#confirmbox').modal('hide');
+    //    //if (callback) callback(false);
+    //});
+    $('#confirmTrue').unbind("click");
+    $('#confirmTrue').click(function (e) {
+        e.stopPropagation();
+        $('#confirmbox').modal('hide');
+        if (callback) callback();
+    });
 }
 
 $(document).ready(function () {

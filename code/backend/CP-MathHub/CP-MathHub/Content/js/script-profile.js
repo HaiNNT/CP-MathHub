@@ -131,7 +131,7 @@ function searchUser() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     }
     $("#mh-search-user").keypress(function () {
@@ -161,7 +161,7 @@ function searchFriend() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     }
     $("#mh-search-friend").keypress(function () {
@@ -190,7 +190,7 @@ function searchUserFriend() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     }
     $("#mh-search-userfriend").keypress(function () {
@@ -224,11 +224,11 @@ function loadConversationDetail(item, id) {
 	              }
 	          });
 	      } else {
-	          alert("empty conversation");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("loadConversationDetail error");
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	  });
 }
 
@@ -242,4 +242,16 @@ function scrollToBottom() {
 */
 function applyInfinityLoading() {
     il_ready = true;
+}
+
+/*
+    Message notification
+*/
+function message(content, type) {
+    var div = '<div class="alert alert-' + type + ' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
 }

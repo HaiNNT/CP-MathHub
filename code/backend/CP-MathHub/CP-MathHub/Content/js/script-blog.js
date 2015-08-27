@@ -73,14 +73,14 @@ function createTag() {
           if (msg) {
               add(msg);
           } else {
-              alert("Tạo thẻ thất bại.");
+              message("Có lỗi xảy ra. Xin thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Có lỗi xảy ra. Xin thử lại sau.");
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     } else {
-        alert("Tên thẻ phải có độ dài từ 6-12 ký tự");
+        message("Tên thẻ phải có độ dài từ 6-12 ký tự","warning");
     }
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
@@ -166,11 +166,11 @@ function bookmark(id) {
 	          $(bookmark).each(function () { $(this).addClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).removeClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("bookmark error");
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	  });
 }
 
@@ -193,11 +193,11 @@ function unBookmark(id) {
 	          $(bookmark).each(function () { $(this).removeClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).addClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("unBookmark error");
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	  });
 }
 
@@ -227,11 +227,11 @@ function like(id, like) {
 	              like.siblings(".mh-comment-like").find(".like").text(num > 0 ? --num : 0);
 	          }
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("like error");
+	      message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	  });
 }
 
@@ -308,7 +308,7 @@ function commentPost() {
 				})
 				.fail(function (msg) {
 				    console.log(msg);
-				    alert(msg);
+				    message("Có lỗi xảy ra. Xin thử lại.", "danger");
 				});
             }
         });
@@ -339,7 +339,7 @@ function editComment() {
 				})
 				.fail(function (msg) {
 				    console.log(msg);
-				    alert(msg);
+				    message("Có lỗi xảy ra. Xin thử lại.", "danger");
 				});
             }
         });
@@ -376,7 +376,7 @@ function getFacebookShareNum() {
          item.html(msg.shares);
      })
      .fail(function () {
-         alert("getFacebookShareNum error");
+         message("Có lỗi xảy ra. Xin thử lại.", "danger");
      });
     });
 }
@@ -390,12 +390,12 @@ function sendReport(id) {
         .done(function (msg) {
             $(formId).trigger("reset");
             if (msg == "False")
-                alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+                message("Bạn không thể báo cáo nhiều hơn 1 lần","warning");
             else
-                message("Báo cáo vi phạm thành công ");
+                message("Báo cáo vi phạm thành công ", "success");
         })
          .fail(function () {
-             alert("sendReport error");
+             message("Có lỗi xảy ra. Xin thử lại.", "danger");
          });
 }
 
@@ -415,7 +415,7 @@ function loadEditedLog(id, type) {
          $('[data-toggle="tooltip"]').tooltip();
      })
      .fail(function () {
-         alert("loadEditedLog error");
+         message("Có lỗi xảy ra. Xin thử lại.", "danger");
      });
 }
 
@@ -444,8 +444,8 @@ function closeEdit() {
 /*
     Message notification
 */
-function message(content) {
-    var div = '<div class="alert alert-success fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+function message(content, type) {
+    var div = '<div class="alert alert-' + type + ' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
                     '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
                     content +
               '</div>';

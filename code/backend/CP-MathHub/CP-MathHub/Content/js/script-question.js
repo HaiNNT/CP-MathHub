@@ -55,11 +55,11 @@ function bookmark(id) {
 	          $(bookmark).each(function () { $(this).addClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).removeClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin Thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("bookmark error");
+	      message("Có lỗi xảy ra. Xin Thử lại.", "danger");
 	  });
 }
 
@@ -82,11 +82,11 @@ function unBookmark(id) {
 	          $(bookmark).each(function () { $(this).removeClass("hidden"); });
 	          $(bookmarked).each(function () { $(this).addClass("hidden"); });
 	      } else {
-	          alert("false");
+	          message("Có lỗi xảy ra. Xin Thử lại.", "danger");
 	      }
 	  })
 	  .fail(function () {
-	      alert("unBookmark error");
+	      message("Có lỗi xảy ra. Xin Thử lại.", "danger");
 	  });
 }
 
@@ -156,14 +156,14 @@ function createTag() {
           if (msg) {
               add(msg);
           } else {
-              alert("Tạo thẻ thất bại.");
+              message("Có lỗi xảy ra. Xin Thử lại.", "danger");
           }
       })
       .fail(function () {
-          alert("Có lỗi xảy ra. Xin thử lại sau.");
+          message("Có lỗi xảy ra. Xin Thử lại.", "danger");
       });
     } else {
-        alert("Tên thẻ phải có độ dài từ 6-12 ký tự");
+        message("Tên thẻ phải có độ dài từ 6-12 ký tự","warning");
     }
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
@@ -210,7 +210,7 @@ function searchTag() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin Thử lại.", "danger");
       });
     }
     $("#mh-search-tag").keypress(function () {
@@ -245,8 +245,7 @@ function commentPost() {
                     }
                 })
                 .fail(function (msg) {
-                    console.log(msg);
-                    alert(msg);
+                    message("Có lỗi xảy ra. Xin Thử lại.", "danger");
                 });
             }
         });
@@ -288,11 +287,11 @@ function vote(vote, postId, type) {
                   $(vote).parents(".mh-vote").find(".mh-vote-num").html(num - 1);
               }
           } else {
-              alert(msg.message);
+              message(msg.message, "warning");
           }
       })
       .fail(function () {
-          alert("vote error");
+          message("Có lỗi xảy ra. Xin thử lại", "danger");
       });
 
 }
@@ -313,7 +312,7 @@ function loadEditedLog(id, type) {
          $('[data-toggle="tooltip"]').tooltip();
      })
      .fail(function () {
-         alert("loadEditedLog error");
+         message("Có lỗi xảy ra. Xin thử lại", "danger");
      });
 }
 
@@ -356,7 +355,7 @@ function editComment() {
 				    }
 				})
 				.fail(function (msg) {
-				    alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
+				    message("Có sự cố đường truyền Internet. Hãy thử lại sau.","danger");
 				});
             }
         });
@@ -381,7 +380,7 @@ function deleteComment(id) {
 	        }
 	    })
 	    .fail(function (msg) {
-	        alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
+	        message("Có sự cố đường truyền Internet. Hãy thử lại sau.","danger");
 	    });
     }
 }
@@ -470,11 +469,11 @@ function accept(item, id) {
 	            $(item).addClass("mh-checked");
 	        }
 	    } else {
-	        alert("Bạn không thể chấp nhận hơn 1 câu trả lời");
+	        message("Bạn không thể chấp nhận hơn 1 câu trả lời","warning");
 	    }
 	})
 	.fail(function (msg) {
-	    alert(msg);
+	    message("Có lỗi xảy ra. Xin thử lại.", "danger");
 	});
 }
 
@@ -487,20 +486,20 @@ function sendReport(id) {
         .done(function (msg) {
             $(formId).trigger("reset");
             if (msg == "False")
-                alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+                message("Bạn không thể báo cáo nhiều hơn 1 lần", "warning");
             else
-                message("Báo cáo vi phạm thành công ");
+                message("Báo cáo vi phạm thành công ", "success");
         })
          .fail(function () {
-             alert("Có lỗi xảy ra. Xin thử lại.");
+             message("Có lỗi xảy ra. Xin thử lại.", "danger");
          });
 }
 
 /*
     Message notification
 */
-function message(content) {
-    var div = '<div class="alert alert-success fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+function message(content, type) {
+    var div = '<div class="alert alert-'+type+' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
                     '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
                     content +
               '</div>';

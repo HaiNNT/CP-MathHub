@@ -114,6 +114,25 @@
             @RenderBody()
         </section>
         <!--main content end-->
+        <div id="confirmbox" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <!-- Modal content-->
+                <div class="modal-content" style="border: 1px solid #D29620;">
+                    <div class="modal-header" style="background-color: #D29620;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Xác nhận</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="confirmMessage"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="confirmFalse">Hủy</button>
+                        <button class="btn btn-primary" id="confirmTrue">Chấp Nhận</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!--footer start-->
         <footer class="site-footer">
             <div class="text-center">

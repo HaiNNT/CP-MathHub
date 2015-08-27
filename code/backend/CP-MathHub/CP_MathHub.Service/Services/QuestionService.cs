@@ -151,11 +151,11 @@ namespace CP_MathHub.Service.Services
             question.Author = _cService.GetUser(question.UserId);
             return question;
         }
-        public Question GetDetailQuestion(int id)
+        public Question GetDetailQuestion(int id, bool isAdmin = false)
         {
             Question question = _dal.Repository<Question>()
                                         .Include("Author,BookmarkUsers,Sharers,Tags,Reports,Votes").Table
-                                        .Where(ExpressionHelper.QuestionHelper.DetailQuestion(id, _loginUserId))
+                                        .Where(ExpressionHelper.QuestionHelper.DetailQuestion(id, _loginUserId, isAdmin))
                                         .FirstOrDefault();
             if (question != default(Question))
                 question.Author = _cService.GetUser(question.UserId);

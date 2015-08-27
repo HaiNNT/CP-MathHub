@@ -21,7 +21,7 @@ namespace CP_MathHub.Service.Helpers
         public class QuestionHelper
         {
             /// <summary>
-            /// Get Detail Question lambda expression by id
+            /// Get Bookmark Question lambda expression by id
             /// </summary>
             /// <param name="userId"></param>
             /// <returns></returns>
@@ -40,10 +40,10 @@ namespace CP_MathHub.Service.Helpers
             /// </summary>
             /// <param name="userId"></param>
             /// <returns></returns>
-            public static Expression<Func<Question, bool>> DetailQuestion(int id, int userId)
+            public static Expression<Func<Question, bool>> DetailQuestion(int id, int userId, bool isAdmin = false)
             {
-                return (q => (q.Id == id) && (q.Status != PostStatusEnum.Hidden
-                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
+                return (q => (q.Id == id) && ((q.Status != PostStatusEnum.Hidden || isAdmin)
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId || isAdmin
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
                                         || q.Author.PassiveRelationship.Count(r => r.UserId == userId) > 0))
@@ -170,7 +170,7 @@ namespace CP_MathHub.Service.Helpers
         public class DiscussionHelper
         {
             /// <summary>
-            /// Detail Discussion lambda expression
+            /// Bookmark Discussion lambda expression
             /// </summary>
             /// <returns></returns>
             public static Expression<Func<Discussion, bool>> BookmarkDiscussion(int userId)
@@ -187,10 +187,10 @@ namespace CP_MathHub.Service.Helpers
             /// Detail Discussion lambda expression
             /// </summary>
             /// <returns></returns>
-            public static Expression<Func<Discussion, bool>> DetailDiscussion(int id, int userId)
+            public static Expression<Func<Discussion, bool>> DetailDiscussion(int id, int userId, bool isAdmin = false)
             {
-                return (q => (q.Id == id) && (q.Status != PostStatusEnum.Hidden
-                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId
+                return (q => (q.Id == id) && ((q.Status != PostStatusEnum.Hidden || isAdmin)
+                             && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == userId || isAdmin
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == userId) > 0
                                         || q.Author.PassiveRelationship.Count(r => r.UserId == userId) > 0))
@@ -359,15 +359,15 @@ namespace CP_MathHub.Service.Helpers
             /// </summary>
             /// <param name="name"></param>
             /// <returns></returns>
-            public static Expression<Func<Article, bool>> DetailArticle(int id, int loginUserId)
+            public static Expression<Func<Article, bool>> DetailArticle(int id, int loginUserId, bool isAdmin = false)
             {
-                return (q => (q.Id == id && (q.PublicDate <= DateTime.Now ||q.UserId == loginUserId)) && (q.Status != PostStatusEnum.Hidden
+                return (q => q.Id == id && (isAdmin || ((q.PublicDate <= DateTime.Now ||q.UserId == loginUserId) && (q.Status != PostStatusEnum.Hidden
                              && ((q.Privacy == MainPostPrivacyEnum.Everyone) || q.UserId == loginUserId
                                 || (q.Privacy == MainPostPrivacyEnum.Friend
                                     && (q.Author.ActiveRelationships.Count(r => r.TargetUserId == loginUserId) > 0
                                         || q.Author.PassiveRelationship.Count(r => r.UserId == loginUserId) > 0))
                                 || (q.Privacy == MainPostPrivacyEnum.Invited
-                                    && q.Invitations.Count(i => i.InviteeId == loginUserId) > 0))));
+                                    && q.Invitations.Count(i => i.InviteeId == loginUserId) > 0))))));
             }
             /// <summary>
             /// Get user's article lambda expression

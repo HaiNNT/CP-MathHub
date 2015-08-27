@@ -183,6 +183,18 @@ function getMoreMainPost(type) {
       })
       .fail(function () {
           --il_page; 
-          alert("error");
+          //message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
+}
+
+/*
+    Message notification
+*/
+function message(content, type) {
+    var div = '<div class="alert alert-' + type + ' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
 }

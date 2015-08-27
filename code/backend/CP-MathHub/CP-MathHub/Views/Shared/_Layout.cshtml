@@ -477,11 +477,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().parent().parent().html(buildUnFriendButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function sendFriendRequestHover(item, id) {
@@ -494,11 +494,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().html(buildCancelFriendRequestButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function cancelFriendHover(item, id) {
@@ -511,11 +511,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().html(buildSendFriendRequestButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function denyFriendRequestHover(item, id) {
@@ -528,11 +528,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().parent().parent().html(buildSendFriendRequestButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function followUserHover(item, id) {
@@ -545,11 +545,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().html(buildUnFollowUserButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function unFollowUserHover(item, id) {
@@ -562,11 +562,11 @@
                 if (msg != "" && msg != "\n") {
                     $(item).parent().html(buildFollowUserButton(id));
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
         function acceptFriend(e, item, id) {
@@ -583,11 +583,11 @@
                     $(item).siblings("button").addClass("hidden");
                     $(item).siblings("span").removeClass("hidden").text("Bạn bè");
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
 
@@ -604,11 +604,11 @@
                     $(item).siblings("button").addClass("hidden");
                     $(item).siblings("span").removeClass("hidden").text("Đã từ chối");
                 } else {
-                    alert("Có sự cố hệ thống. Hãy thử lại.");
+                    message("Có lỗi xảy ra. Xin thử lại.", "danger");
                 }
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
 
@@ -625,7 +625,7 @@
                 realTime.server.refreshRequestNum();
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
 
@@ -642,7 +642,7 @@
                 realTime.server.refreshMessageNum();
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
 
@@ -659,7 +659,7 @@
                 realTime.server.refreshActivityNum();
             })
             .fail(function () {
-                alert("Có sự cố về mạng. Hãy thử lại sau.");
+                message("Có lỗi xảy ra. Xin thử lại.", "danger");
             });
         }
 

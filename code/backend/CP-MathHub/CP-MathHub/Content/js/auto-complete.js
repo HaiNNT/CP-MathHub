@@ -31,7 +31,7 @@ function autocompleteTag() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     }
     $("#mh-input-tag").keypress(function () {
@@ -147,7 +147,7 @@ function autocompleteInvite() {
           }
       })
       .fail(function (msg) {
-          alert(msg);
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
       });
     }
     $("#mh-input-invite").keypress(function () {
@@ -160,6 +160,18 @@ function autocompleteInvite() {
         list.hide();
         list.html("");
     });
+}
+
+/*
+    Message notification
+*/
+function message(content, type) {
+    var div = '<div class="alert alert-' + type + ' fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
 }
 
 $(document).ready(function () {

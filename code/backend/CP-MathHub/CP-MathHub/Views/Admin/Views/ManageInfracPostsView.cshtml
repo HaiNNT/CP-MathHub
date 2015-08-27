@@ -122,7 +122,7 @@
                                                                     <div class="media mh-user-report">
                                                                         <div class="media-left">
                                                                             <a href="@Url.Action("UserProfile", "Account", new { @userId = user.Id })">
-                                                                            <img class="mh-user-icon" src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" />
+                                                                                <img class="mh-user-icon" src="@(user.Avatar != null ? Url.Content(user.Avatar.Url) : Url.Content("~/Content/img/user.jpg"))" />
                                                                             </a>
                                                                         </div>
                                                                         <div class="media-body">
@@ -186,7 +186,7 @@
                                                 <div class="switch switch-square"
                                                      data-on-label="@("<i class=' icon-ok'></i>")"
                                                      data-off-label="@("<i class='icon-remove'></i>")">
-                                                    <input type="checkbox" @(iPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracMainPost(@iPost.MainPost.Id,1)" />
+                                                    <input class="mh-checkbox-excute" type="checkbox" @(iPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracMainPost(@iPost.MainPost.Id,1)" />
                                                     @*<input onclick="uncheckStatus(@iPost.MainPost.Id)" type="checkbox" class="checked-@iPost.MainPost.Id @(iPost.Status==true ? "":"hidden")" @(iPost.Status == true ? "checked" : "") />*@
                                                     @*<input onclick="checkStatus(@iPost.MainPost.Id)" type="checkbox" class="check-@iPost.MainPost.Id @(iPost.Status == true ? "hidden" : "")" @(iPost.Status == true ? "checked" : "") />*@
                                                 </div>
@@ -281,10 +281,9 @@
                                                                 <h4 class="modal-title" id="myModalLabel">Danh sách người báo cáo</h4>
                                                             </div>
 
-
                                                             <div class="modal-body">
                                                                 @{
-                                        String descriptionNormalPost = "";
+                                                                    string descriptionNormalPost = "";
                                                                 }
                                                                 <div class="row mh-admin-title">
                                                                     <div class="col-lg-3">
@@ -318,7 +317,6 @@
                                                                     </div>
                                                                 }
                                                             </div>
-
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                                                             </div>
@@ -371,7 +369,7 @@
                                                 <div class="switch switch-square"
                                                      data-on-label="@("<i class=' icon-ok'></i>")"
                                                      data-off-label="@("<i class='icon-remove'></i>")">
-                                                    <input type="checkbox" @(nPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracNormalPost(@nPost.Post.Id,1)" />
+                                                    <input class="mh-checkbox-excute" type="checkbox" @(nPost.Status == true ? "checked" : "") onchange="changeStatusReportInfracNormalPost(@nPost.Post.Id,1)" />
                                                     @*<input onclick="uncheckStatus(@iPost.MainPost.Id)" type="checkbox" class="checked-@iPost.MainPost.Id @(iPost.Status==true ? "":"hidden")" @(iPost.Status == true ? "checked" : "") />*@
                                                     @*<input onclick="checkStatus(@iPost.MainPost.Id)" type="checkbox" class="check-@iPost.MainPost.Id @(iPost.Status == true ? "hidden" : "")" @(iPost.Status == true ? "checked" : "") />*@
                                                 </div>
@@ -390,13 +388,8 @@
                 </section>
             </div>
         </div>
-
     </div>
-
 </section>
 
-
 <input id="mh-page" type="hidden" value="@ViewBag.Page" />
-
-
 

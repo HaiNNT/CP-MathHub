@@ -173,7 +173,7 @@ namespace CP_MathHub.Controllers
         public ActionResult Detail(int id)
         {
             QuestionDetailViewModel questionDetailVM = new QuestionDetailViewModel();
-            Question question = qService.GetDetailQuestion(id);
+            Question question = qService.GetDetailQuestion(id, User.IsInRole(Constant.String.RoleAdmin) || User.IsInRole(Constant.String.RoleMod));
             if (question == default(Question))
             {
                 return Redirect("~/Error404.html");
