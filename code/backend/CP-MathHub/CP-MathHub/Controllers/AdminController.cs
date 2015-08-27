@@ -526,7 +526,7 @@ namespace CP_MathHub.Controllers
                 listMainPostChecked = models.MainPosts.ToList();//get all when not check both of them
             }
             listMainPostChecked.AddRange(listMainPostUnChecked);// merge 2 list into listMainPostChecked
-            models.MainPosts = listMainPostChecked;
+            models.MainPosts = listMainPostChecked.OrderByDescending(m => m.ReportedDate).ToList();
             #endregion
 
             #region select normalpost
@@ -595,7 +595,7 @@ namespace CP_MathHub.Controllers
                 listNormalPostChecked = models.NormalPosts.ToList();//get all when not check both of them
             }
             listNormalPostChecked.AddRange(listNormalPostUnChecked);
-            models.NormalPosts = listNormalPostChecked;
+            models.NormalPosts = listNormalPostChecked.OrderByDescending(m => m.ReportedDate).ToList();
             #endregion
             ViewBag.Page = Constant.Admin.String.ManageInfracPosts;
             ViewBag.Tab = tab;
@@ -673,7 +673,7 @@ namespace CP_MathHub.Controllers
                 modelsChecked = modelList.Items.ToList();//get all when not check both of them
             }
             modelsChecked.AddRange(modelsUnChecked);
-            modelList.Items = modelsChecked;
+            modelList.Items = modelsChecked.OrderByDescending(m => m.ReportedDate).ToList();
             ViewBag.Page = Constant.Admin.String.ManageInfracUsers;
             return View("Views/ManageInfracUsersView", modelList);
         }

@@ -405,11 +405,11 @@ namespace CP_MathHub.Controllers
                 }
                 //    }
                 //).Start();
-                return RedirectToAction("MyBlog");
+                return RedirectToAction("Detail", new { id = article.Id });
             }
             else
             {
-                return View("Views/Error");
+                return new HttpStatusCodeResult(500);
             }
         }
         //Get: Blog/Edit

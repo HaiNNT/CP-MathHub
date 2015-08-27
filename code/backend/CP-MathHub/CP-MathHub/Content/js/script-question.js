@@ -146,21 +146,25 @@ function initCkeditor(preview) {
 */
 function createTag() {
     var name = $("#mh-input-tag").val();
-    $.ajax({
-        method: "POST",
-        url: "/Question/CreateTag",
-        data: { name: name }
-    })
+    if (name.length > 5 && name.length < 13) {
+        $.ajax({
+            method: "POST",
+            url: "/Question/CreateTag",
+            data: { name: name }
+        })
       .done(function (msg) {
           if (msg) {
               add(msg);
           } else {
-              alert("false");
+              alert("Tạo thẻ thất bại.");
           }
       })
       .fail(function () {
-          alert("createTag error");
+          alert("Có lỗi xảy ra. Xin thử lại sau.");
       });
+    } else {
+        alert("Tên thẻ phải có độ dài từ 6-12 ký tự");
+    }
     var add = function (item) {
         var autocomplete = $("#mh-tag-autocomplete-list");
         var tagName = $(item).find("label").text();
@@ -177,7 +181,7 @@ function createTag() {
         $("#mh-input-tag").val("");
         $("#mh-input-tag").focus();
         autocomplete.hide();
-        if (!tagIds[tagId]) {
+        if (!tagIds[tagId] && list.find(".mh-tag-item").length < 5) {
             tagIds[tagId] = tagName;
             list.append($(item));
         }
@@ -202,7 +206,7 @@ function searchTag() {
         })
       .done(function (msg) {
           if (msg != "\n") {
-              list.html($(msg));           
+              list.html($(msg));
           }
       })
       .fail(function (msg) {
@@ -223,10 +227,10 @@ function commentPost() {
     $(".mh-form-input-comment").each(function () {
         var input = $(this);
         var postId = input.siblings(".mh-post-id").val();
-        var commentDiv = $("#mh-post-"+postId);
+        var commentDiv = $("#mh-post-" + postId);
         input.keypress(function (e) {
             if (e.keyCode === 13) {
-                var content = input.val();               
+                var content = input.val();
                 $.ajax({
                     method: "Post",
                     url: "/Question/PostComment",
@@ -351,7 +355,7 @@ function editComment() {
 				        closeEditComment();
 				    }
 				})
-				.fail(function (msg) {				    
+				.fail(function (msg) {
 				    alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
 				});
             }
@@ -369,7 +373,7 @@ function deleteComment(id) {
         $.ajax({
             method: "Post",
             url: "/Question/DeleteComment",
-            data: { id: id}
+            data: { id: id }
         })
 	    .done(function (msg) {
 	        if (msg != "\n") {
@@ -377,7 +381,7 @@ function deleteComment(id) {
 	        }
 	    })
 	    .fail(function (msg) {
-		    alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
+	        alert("Có sự cố đường truyền Internet. Hãy thử lại sau.");
 	    });
     }
 }
@@ -484,10 +488,24 @@ function sendReport(id) {
             $(formId).trigger("reset");
             if (msg == "False")
                 alert("Bạn không thể báo cáo nhiều hơn 1 lần");
+            else
+                message("Báo cáo vi phạm thành công ");
         })
          .fail(function () {
-             alert("sendReport error");
+             alert("Có lỗi xảy ra. Xin thử lại.");
          });
+}
+
+/*
+    Message notification
+*/
+function message(content) {
+    var div = '<div class="alert alert-success fade in" id="message-notification" style="position: fixed; top: 80px; left: 40%; z-index: 9999;">' +
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                    content +
+              '</div>';
+    $("body").append(div);
+    setTimeout(function () { $("#message-notification").remove() }, 3000);
 }
 
 /*

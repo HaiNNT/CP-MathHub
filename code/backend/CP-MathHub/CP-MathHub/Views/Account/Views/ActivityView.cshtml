@@ -33,7 +33,7 @@
             <a href="@Url.Action("MyProfile")" class="btn btn-danger btn-sm active">Thông tin cá nhân</a>
             <a href="@Url.Action("Friend")" class="btn btn-danger btn-sm">Bạn bè</a>
             <a href="@Url.Action("MyActivity")" class="btn btn-danger btn-sm">Hoạt động</a>
-            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a>           
+            <a href="@Url.Action("Privacy")" class="btn btn-danger btn-sm">Quyền riêng tư</a>
         </div>
     </div>
 </div>
@@ -56,15 +56,15 @@
             </a>
         </li>
         @*<li role="presentation" class="@(ViewBag.Tab == "privileges" ? "active" : "" )">
-            <a href="#brands" aria-controls="brands" role="tab" data-toggle="tab">
-                Danh hiệu
-            </a>
-        </li>*@
+                <a href="#brands" aria-controls="brands" role="tab" data-toggle="tab">
+                    Danh hiệu
+                </a>
+            </li>*@
         @*<li role="presentation">
-            <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">
-                Hoạt động
-            </a>
-        </li>*@
+                <a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">
+                    Hoạt động
+                </a>
+            </li>*@
         <li role="presentation" class="@(ViewBag.Tab == "notifications" ? "active" : "")">
             <a href="#notification" aria-controls="notification" role="tab" data-toggle="tab">
                 Thông báo
@@ -159,159 +159,181 @@
             </div>
         </div>
         <div id="tags" role="tabpanel" class="tab-pane @(ViewBag.Tab == "tags" ? "active" : "")">
-            <div class="row mh-profile-tag-favourite">
-                @Html.Partial("Partials/_FavoriteTagsPartialView", Model.TagList)
-            </div>
+            @if (Model.TagList.Count != 0)
+            {
+                <div class="row mh-profile-tag-favourite">
+                    @Html.Partial("Partials/_FavoriteTagsPartialView", Model.TagList)
+                </div>
+            }
+            else
+            {
+                <div style="text-align: center;">Bạn chưa yêu thích thẻ nào</div>
+            }
+           
         </div>
         @*<div role="tabpanel" class="tab-pane @(ViewBag.Tab == "privileges" ? "active" : "")" id="brands">
-            <div class="row">
-                <div class="mh-profile-brand">
-                    Hiện tại bạn đạt danh hiệu:
-                    <span class="mh-profile-brand-name">Newbie </span>
-                </div>
-                <div class="detail-reputat">
-                    với số điểm thưởng đạt được là:
-                    <span>1432</span>
-                    <i class="fa fa-circle mh-reputation-icon"></i>
-                </div>
-            </div>
-            <div class="mh-system-brand">
-                Hệ thống danh hiệu của MathHub là:
                 <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Newbie:</span>
+                    <div class="mh-profile-brand">
+                        Hiện tại bạn đạt danh hiệu:
+                        <span class="mh-profile-brand-name">Newbie </span>
                     </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>0</span>
+                    <div class="detail-reputat">
+                        với số điểm thưởng đạt được là:
+                        <span>1432</span>
                         <i class="fa fa-circle mh-reputation-icon"></i>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">10000</span> người đạt danh hiệu này
+                </div>
+                <div class="mh-system-brand">
+                    Hệ thống danh hiệu của MathHub là:
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Newbie:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>0</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">10000</span> người đạt danh hiệu này
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Thành viên cấp 1:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>2000</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">5000</span> người đạt danh hiệu này
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Thành viên cấp 2:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>5000</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">2000</span> người đạt danh hiệu này
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Thành viên cấp 3:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>10000</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">800</span> người đạt danh hiệu này
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Kì cựu:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>30000</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">300</span> người đạt danh hiệu này
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
+                            <span class="mh-profile-brand-name">Chuyên gia:</span>
+                        </div>
+                        <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
+                            <span>70000</span>
+                            <i class="fa fa-circle mh-reputation-icon"></i>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
+                            <span class="mh-profile-brand-quantity">10</span> người đạt danh hiệu này
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Thành viên cấp 1:</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>2000</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">5000</span> người đạt danh hiệu này
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Thành viên cấp 2:</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>5000</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">2000</span> người đạt danh hiệu này
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Thành viên cấp 3:</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>10000</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">800</span> người đạt danh hiệu này
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Kì cựu:</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>30000</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">300</span> người đạt danh hiệu này
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-7 col-sm-5 col-md-3 col-lg-2">
-                        <span class="mh-profile-brand-name">Chuyên gia:</span>
-                    </div>
-                    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 detail-reputat">
-                        <span>70000</span>
-                        <i class="fa fa-circle mh-reputation-icon"></i>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-7 col-lg-8">
-                        <span class="mh-profile-brand-quantity">10</span> người đạt danh hiệu này
-                    </div>
-                </div>
-            </div>
-        </div>*@
+            </div>*@
         @*<div id="activity" class="tab-pane">
-            <h4>Hoạt động của bạn</h4>
-            <div class="mh-profile-activities">
-                <div class="mh-profile-activity">
-                    Bạn đã thích
-                    <a href="">bài viết</a>
-                    của
-                    <a>Thân Văn Tâm</a>
+                <h4>Hoạt động của bạn</h4>
+                <div class="mh-profile-activities">
+                    <div class="mh-profile-activity">
+                        Bạn đã thích
+                        <a href="">bài viết</a>
+                        của
+                        <a>Thân Văn Tâm</a>
+                    </div>
+                    <div class="mh-profile-activity">
+                        Bạn đã được gắn thẻ tại
+                        <a href="">câu hỏi</a>
+                        của
+                        <a>Thân Văn Tâm</a>
+                    </div>
                 </div>
-                <div class="mh-profile-activity">
-                    Bạn đã được gắn thẻ tại
-                    <a href="">câu hỏi</a>
-                    của
-                    <a>Thân Văn Tâm</a>
-                </div>
-            </div>
-        </div>*@
+            </div>*@
         <div id="notification" class="tab-pane @(ViewBag.Tab == "notifications" ? "active" : "")">
-            <h4>Thông báo của bạn</h4>
-            <div class="mh-profile-notifications">
-                @Html.Partial("Partials/_NotificationPartialView", Model.NotificationList)
-            </div>
+            @if (Model.NotificationList.Count != 0)
+            {
+                <h4>Thông báo của bạn</h4>
+                <div class="mh-profile-notifications">
+                    @Html.Partial("Partials/_NotificationPartialView", Model.NotificationList)
+                </div>
+            }
+            else
+            {
+                <div style="text-align: center;">Bạn chưa có thông báo nào</div>
+            }
         </div>
         <div id="message" class="tab-pane @(ViewBag.Tab == "conversations" ? "active" : "")">
             <div class="row">
-                <div class="col-xs-4 mh-profile-chat-users">
-                    <div class="mh-profile-chat-top">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                @if (Model.Conversations.Count != 0)
+                {
+                    <div class="col-xs-4 mh-profile-chat-users">
+                        <div class="mh-profile-chat-top">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mh-profile-chat-user">
+                            @foreach (ConversationPreviewViewModel conversation in Model.Conversations)
+                            {
+                                <div class="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "active" : "")">
+                                    <a href="#" id="conversation-@conversation.Id" onclick="@("loadConversationDetail(this," + @conversation.Id + ")")">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img src="@(conversation.Avatar != "" ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
+                                            </div>
+                                            <div class="media-body">
+                                                <span class="media-heading">@conversation.Name</span><br />
+                                                <span class="mh-profile-chat-content">@conversation.LastMessage.Content</span><br />
+                                                <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate, "")</span><br />
+                                                @if (conversation.NewMessageNum != default(int) || conversation.NewMessageNum > 0)
+                                                {
+                                                    <span class="mh-new-message" style="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "color: #fff;" : "")">@conversation.NewMessageNum tin nhắn mới</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </div>
-                    <div class="mh-profile-chat-user">
-                        @foreach (ConversationPreviewViewModel conversation in Model.Conversations)
-                        {
-                            <div class="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "active" : "")">
-                                <a href="#" id="conversation-@conversation.Id" onclick="@("loadConversationDetail(this," + @conversation.Id + ")")">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <img src="@(conversation.Avatar != "" ? Url.Content(conversation.Avatar) : Url.Content("~/Content/img/user.jpg"))" alt="..." class="mh-user-image">
-                                        </div>
-                                        <div class="media-body">
-                                            <span class="media-heading">@conversation.Name</span><br />
-                                            <span class="mh-profile-chat-content">@conversation.LastMessage.Content</span><br />
-                                            <span class="mh-time">@Html.PostCreatedTime(conversation.LastMessage.CreatedDate, "")</span><br />
-                                            @if (conversation.NewMessageNum != default(int) || conversation.NewMessageNum > 0)
-                                            {
-                                                <span class="mh-new-message" style="@(conversation.Equals(Model.Conversations.FirstOrDefault()) ? "color: #fff;" : "")">@conversation.NewMessageNum tin nhắn mới</span>
-                                            }
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        }
-                    </div>
-                </div>
-                @Html.Partial("Partials/_ConversationDetailPartialView", Model.Conversation)
+                    @Html.Partial("Partials/_ConversationDetailPartialView", Model.Conversation)
+                }
+                else
+                {
+                    <div style="text-align: center;">Bạn chưa có bạn bè nào</div>
+                }
             </div>
         </div>
     </div>
@@ -340,5 +362,4 @@
     </a>
 }
 @section scripts{
-
 }
