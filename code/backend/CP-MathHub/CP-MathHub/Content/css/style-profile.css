@@ -431,3 +431,8 @@ form:last-child .mh-profile-info-row {
 .mh-profile-change-password {
     padding: 3px 5px;
 }
+
+.mh-profile-friend-text {
+    padding: 0px 15px 0px 15px;
+    font-size: 17px;
+}

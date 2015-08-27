@@ -13,12 +13,15 @@ var IL_TYPE_USER = "user";
 var IL_TYPE_TAG = "tag";
 var IL_TYPE_SEARCH_USER = "searchuser";
 var IL_TYPE_SEARCH_TAG = "searchtag";
+var IL_LOADING_ICON;
 
 $(document).ready(function () {
+    IL_LOADING_ICON = $("#mh-loading-icon");
     $(window).scroll(function () {
         if (($(window).scrollTop() + $(window).height() > $(document).height() - 1500) && il_ready) {
             il_ready = false;
-            var type = $("#system").val();
+            IL_LOADING_ICON.removeClass("hidden");
+            var type = $("#system").val(); 
             getMoreMainPost(type);
         }
     });
@@ -169,10 +172,13 @@ function getMoreMainPost(type) {
         data: data
     })
       .done(function (msg) {
+          IL_LOADING_ICON.remove();
           list.append(msg);
+          IL_LOADING_ICON.addClass("hidden");
+          list.append(IL_LOADING_ICON);
           if (type == IL_TYPE_DISCUSSION)
               commentPost();
-          if(msg != "\n")
+          if(msg.trim() != "")
             il_ready = true;
       })
       .fail(function () {
