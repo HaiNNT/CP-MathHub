@@ -178,10 +178,14 @@ namespace CP_MathHub.Service.Services
                                .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
-                                    skip
+                                    0,
+                                    0
                                );
                 ienum.Distinct();
-                list = ienum.Where(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId)).ToList();
+                list = ienum.Where(ExpressionHelper.DiscussionHelper.SearchDiscussion(searchString, _loginUserId))
+                            .Skip(skip)
+                            .Take(Constant.Discussion.Integer.PagingDefaultTake)
+                            .ToList();
             }
             return list;
         }

@@ -259,10 +259,14 @@ namespace CP_MathHub.Service.Services
                                .Get(null,
                                     (p => p.OrderByDescending(s => s.CreatedDate)),
                                     "Author,BookmarkUsers,Sharers,Tags,Reports,Comments",
-                                    skip
+                                    0,
+                                    0
                                );
                 ienum.Distinct();
-                list = ienum.Where(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId)).ToList();
+                list = ienum.Where(ExpressionHelper.BlogHelper.SearchArticle(searchString, _loginUserId))
+                            .Skip(skip)
+                            .Take(Constant.Blog.Integer.PagingDefaultTake)
+                            .ToList();
             }
             return list;
         }

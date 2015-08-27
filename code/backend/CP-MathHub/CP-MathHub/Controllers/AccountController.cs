@@ -230,6 +230,7 @@ namespace CP_MathHub.Controllers
                     aService.CreateProfile(user.Id);
                     aService.CreateAvatar(user.Id);
                     aService.CreateActivity(user.Id, Request.UserHostAddress);
+                    ViewBag.Email = model.Email;
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
