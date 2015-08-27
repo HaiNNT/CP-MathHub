@@ -602,7 +602,7 @@ namespace CP_MathHub.Controllers
             return View("Views/ManageInfracPostsView", models);
         }
 
-        //public ActionResult ManageInfracUsers(List<int> Filters = null)
+        //public ActionResult ManageInfracUsers(List<int> Filters =s null)
         //{
         //    ManageInfracUserListViewModel modelList = new ManageInfracUserListViewModel();
         //    modelList.Filters = Filters;
@@ -645,6 +645,7 @@ namespace CP_MathHub.Controllers
                 model.Reporters = user.ReportedList.Select(r => r.Reporter).ToList();
                 model.Reasons = user.ReportedList.GroupBy(r => r.Type).ToDictionary(k => k.Key, k => k.Count());
                 model.Status = user.ReportedList.Count(s => !s.Status) == 0;
+                model.Id = user.Id;
                 modelList.Items.Add(model);
             }
 

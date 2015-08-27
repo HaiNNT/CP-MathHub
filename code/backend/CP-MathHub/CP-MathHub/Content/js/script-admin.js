@@ -308,8 +308,8 @@ function ManageInfracPosts_blockday() {
 function ManageInfracMainPosts_edittable() {
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
-            var post = data[0] || "";
-            var check = data[1] || "";
+            var post = data[1] || "";
+            var check = data[2] || "";
             var val = $('.selectpicker.postFilter').val();
 
             if (val == null) {
@@ -587,36 +587,6 @@ function changeStatusReportInfracNormalPost(id, type) {
       });
 }
 
-//change status report InfracUser
-function changeStatusReportUser(id, type) {
-    var url = "/Admin/ChangeStatusReport";
-    var data = { id: id, type: type };
-    var statusId = $("#status-" + id);
-    var status = statusId.text().trim();
-    $.ajax({
-        method: "POST",
-        url: url,
-        data: data
-    })
-    .done(function (msg) {
-        if (msg) {
-            if (status.trim() == "True") {
-                tableInfracNormailPost.cell(statusId).data("False").draw();
-            }
-            else {
-                tableInfracNormailPost.cell(statusId).data("True").draw();
-            }
-
-        }
-        else {
-            message("Có lỗi xảy ra. Xin thử lại.", "danger");
-        }
-    })
-      .fail(function () {
-          message("Có lỗi xảy ra. Xin thử lại.", "danger");
-      });
-}
-
 //block post
 function blockPost(item, id) {
     var url = "/Admin/BlockPost";
@@ -753,6 +723,36 @@ function dataTableManageInfracUsers() {
     $('.selectpicker.userFilter').change(function () {
         tableInfracUsers.draw();
     });
+}
+
+//change status report InfracUser
+function changeStatusReportUser(id, type) {
+    var url = "/Admin/ChangeStatusReport";
+    var data = { id: id, type: type };
+    var statusId = $("#status-" + id);
+    var status = statusId.text().trim();
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: data
+    })
+    .done(function (msg) {
+        if (msg) {
+            if (status.trim() == "True") {
+                tableInfracUsers.cell(statusId).data("False").draw();
+            }
+            else {
+                tableInfracUsers.cell(statusId).data("True").draw();
+            }
+
+        }
+        else {
+            message("Có lỗi xảy ra. Xin thử lại.", "danger");
+        }
+    })
+      .fail(function () {
+          message("Có lỗi xảy ra. Xin thử lại.", "danger");
+      });
 }
 
 function tableRecevierMail() {
